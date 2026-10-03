@@ -1,0 +1,60 @@
+name: validate packs
+
+on:
+  pull_request:
+    paths: ['packs/**', 'scripts/**', '.github/workflows/**']
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate packs (PR — only changed packs, only files under packs/)
+        if: github.event_name == 'pull_request'
+        env:
+          # Maintainers (repo owner) may change tooling; contributors may only add or edit packs.
+          WORKSHOP_MAINTAINER: ${{ github.event.pull_request.author_association == 'OWNER' || github.event.pull_request.author_association == 'MEMBER' }}
+        run: node scripts/validate.mjs --changed origin/${{ github.base_ref }}
+      - name: Validate all packs
+        if: github.event_name != 'pull_request'
+        run: node scripts/validate.mjs
+
+  index:
+    # Rebuild index.json on main after a merge. Commits made with GITHUB_TOKEN do not trigger new runs.
+    needs: validate
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build index.json
+        run: INDEX_COMMIT=$(git rev-parse HEAD) node scripts/build-index.mjs
+      - name: Commit index.json if packs changed
+        run: |
+          # Compare without the volatile fields (generated time and commit).
+          strip() { node -e "const j=JSON.parse(require('fs').readFileSync(0,'utf8'));delete j.generated;delete j.commit;console.log(JSON.stringify(j))"; }
+          old=$(git show HEAD:index.json 2>/dev/null | strip || echo none)
+          new=$(strip < index.json)
+          if [ "$old" = "$new" ]; then echo "index.json unchanged"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.json
+          git commit -m "index: rebuild [skip ci]"
+          git push

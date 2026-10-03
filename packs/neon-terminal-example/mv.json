@@ -1,0 +1,76 @@
+{
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "Neon Terminal (example)",
+  "artist": "dsh-mv",
+  "credits": [
+    "Example scenes: dsh-mv-cli template (MIT)",
+    "Techniques adapted from MisakaZentai/world-execute-me-dsh-pv (code MIT, © MisakaZentai); no artwork, audio or lyrics included"
+  ],
+  "notice": "Workshop pack: no audio or lyric text included. Play it with your own copy of the song. 工坊包不含音频和歌词文本，请使用你自己的歌曲文件。",
+  "duration": 120,
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js",
+    "bpm": 120,
+    "beatOffset": 0
+  },
+  "x-dsh-mv-workshop": {
+    "id": "neon-terminal-example",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": "Alice-Marx",
+    "description": "Example pack from the dsh-mv template: boot log, chat window, spectrum ring, heartbeat, EXECUTE glitch and a sinking-whale ending. Silent placeholder timeline (120 s, 120 BPM); use it to learn the format.",
+    "tags": [
+      "example",
+      "ascii",
+      "terminal"
+    ],
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop",
+    "audio": {
+      "duration": 120
+    },
+    "lyricsTiming": "lyrics.timing.json",
+    "publishedAt": "2026-10-03"
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "intro",
+        "label": "boot",
+        "start": 0,
+        "end": 12
+      },
+      {
+        "kind": "verse",
+        "label": "chat",
+        "start": 12,
+        "end": 40
+      },
+      {
+        "kind": "chorus",
+        "label": "spectrum ring",
+        "start": 40,
+        "end": 60
+      },
+      {
+        "kind": "bridge",
+        "label": "heartbeat",
+        "start": 60,
+        "end": 76
+      },
+      {
+        "kind": "chorus",
+        "label": "EXECUTE",
+        "start": 76,
+        "end": 96
+      },
+      {
+        "kind": "outro",
+        "label": "sinking",
+        "start": 96,
+        "end": 120
+      }
+    ]
+  }
+}
