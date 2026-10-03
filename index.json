@@ -1,0 +1,58 @@
+{
+ "format": "dsh-mv-workshop-index",
+ "version": 1,
+ "repo": "Alice-Marx/dsh-mv-workshop",
+ "commit": "66554014db4272b72f1f256145b876f87fc6425c",
+ "generated": "2026-10-03T17:14:05.060Z",
+ "packs": [
+  {
+   "id": "neon-terminal-example",
+   "title": "Neon Terminal (example)",
+   "artist": "dsh-mv",
+   "author": "Alice-Marx",
+   "license": "MIT",
+   "version": "1.0.0",
+   "duration": 120,
+   "renderer": "script",
+   "description": "Example pack from the dsh-mv template: boot log, chat window, spectrum ring, heartbeat, EXECUTE glitch and a sinking-whale ending. Silent placeholder timeline (120 s, 120 BPM); use it to learn the format.",
+   "tags": [
+    "example",
+    "ascii",
+    "terminal"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": true,
+   "sections": 6,
+   "updated": "2026-10-04T01:14:04+08:00",
+   "files": [
+    {
+     "path": "README.md",
+     "size": 1020,
+     "sha256": "064cce807e15c435e4afbf466c967d01d5ca46257135d1d151cb4e9ed55073af"
+    },
+    {
+     "path": "cover.png",
+     "size": 17074,
+     "sha256": "d074cef11d180edfac9a5f4e65fc4f9a9b9c1661e1455b889d4884a1bcc3d2f5"
+    },
+    {
+     "path": "lyrics.timing.json",
+     "size": 3008,
+     "sha256": "45caaaa2addaaea84fc5e662e4b8acd1c14406b21ca0c95afb30f3545573b89c"
+    },
+    {
+     "path": "mv.json",
+     "size": 1939,
+     "sha256": "ca45611d4b6fc41cac4f5d0b22b59a6963b3eaca1a68996c2407e6dfa07a38c6"
+    },
+    {
+     "path": "scenes.js",
+     "size": 12503,
+     "sha256": "0897d70e2f7d1ba431797bd487e5eb91e8b84824e94f1c6b8ccd9d660827a186"
+    }
+   ]
+  }
+ ]
+}
