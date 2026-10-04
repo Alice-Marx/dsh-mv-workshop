@@ -2,9 +2,243 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "66554014db4272b72f1f256145b876f87fc6425c",
- "generated": "2026-10-03T17:14:05.060Z",
+ "commit": "cd520059fe6c8e8cb756705457b2716b13aaffb9",
+ "generated": "2026-10-04T10:40:12.877Z",
  "packs": [
+  {
+   "id": "world-execute-me",
+   "title": "world.execute(me);",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "Custom: scenes © yym8224961 (野生大K), redistributed here with permission; not open source — see NOTICE.md",
+   "version": "1.0.0",
+   "duration": 211.907,
+   "renderer": "script",
+   "description": "world.execute(me); as a terminal ASCII film: the scenes of yym8224961's world.execute-me-ascii, ported to a dsh-mv scene script (formerly the built-in preset of dsh-mv-cli). Bring your own audio and lyrics.",
+   "tags": [
+    "world.execute(me)",
+    "mili",
+    "ascii",
+    "terminal",
+    "preset"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me",
+   "source": "https://github.com/yym8224961/world.execute-me-ascii",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "sections": 5,
+   "updated": "2026-10-04T18:39:47+08:00",
+   "files": [
+    {
+     "path": "NOTICE.md",
+     "size": 1649,
+     "sha256": "3d02ccdc2bccc1bad76068153984a94161ffd61f1341ad6b262efbde9cef276b"
+    },
+    {
+     "path": "README.md",
+     "size": 1713,
+     "sha256": "e94534c7ff2eec0cdfe1a3c178eaf443f30e4b647fad5daf4e7118e825cdc525"
+    },
+    {
+     "path": "cover.png",
+     "size": 23930,
+     "sha256": "7a4e6d05e4771f8a7e5dc05d0f1822e1bd5b952b98492f8e985fbaac82a76107"
+    },
+    {
+     "path": "mv.json",
+     "size": 2318,
+     "sha256": "99a2deb6c4caddc5fee01cb7642dfae710d70279db874273639e00052a88dab7"
+    },
+    {
+     "path": "scenes.js",
+     "size": 200971,
+     "sha256": "51fea45ad7c701cdcfa307f8e17a1f7e972441a8183b4361b96b5065401abc4c"
+    }
+   ]
+  },
+  {
+   "id": "world-execute-me-dsh-pv",
+   "title": "world.execute(me); · 大肥鱼眼中的 world.execute(me)",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "CC-BY-NC-SA-4.0",
+   "version": "1.0.0",
+   "duration": 211.913,
+   "renderer": "dsh-pv",
+   "description": "MisakaZentai's world.execute(me) dsh PV (\"大肥鱼眼中的 world.execute(me)\") replayed live on the canvas by dsh-mv's dsh-pv renderer: recorded shot timeline, dsh chat window and whale-girl art (formerly a built-in preset of dsh-mv-cli). Bring your own audio.",
+   "tags": [
+    "world.execute(me)",
+    "mili",
+    "dsh-pv",
+    "whale",
+    "preset"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-dsh-pv",
+   "source": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "sections": 5,
+   "updated": "2026-10-04T18:39:47+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 21286,
+     "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 1433,
+     "sha256": "e58704bfedceda1aedd94ec5e14cc2643cb551b7f218c8cf6d9829c101384870"
+    },
+    {
+     "path": "README.md",
+     "size": 1968,
+     "sha256": "6e92265a87f2cb595002abe0d138819084e808c721113061f7b6c51942e94daa"
+    },
+    {
+     "path": "art/LICENSE.txt",
+     "size": 21286,
+     "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98"
+    },
+    {
+     "path": "art/NOTICE.md",
+     "size": 3662,
+     "sha256": "7a170d4829a04a74dc428710e404aa615359f01e028bc63144f77ebf1cb7e0d6"
+    },
+    {
+     "path": "art/maid-left.webp",
+     "size": 23222,
+     "sha256": "68e9c767dbb33acfe2f1b6298dcc441871178a387f7bf743c4fac2da7a4b7c3c"
+    },
+    {
+     "path": "art/upstream-NOTICE-dsh-deep-whale.txt",
+     "size": 1350,
+     "sha256": "d9b0d1b71355f9a03415f415c04e505e4aa9a33e59a859e82dfb2c29b677b011"
+    },
+    {
+     "path": "art/upstream-NOTICE-dsh-whale-galgame.md",
+     "size": 11862,
+     "sha256": "34dda2fffc855b3ff4a97ab81b2c9d94d09115d5197e81b509290ef9b461e24d"
+    },
+    {
+     "path": "art/whale-angry.webp",
+     "size": 24336,
+     "sha256": "ffb6fb2063f19d6932322af2bc2405786a71dad62dd974937696a7cadadbf2b6"
+    },
+    {
+     "path": "art/whale-cheerful.webp",
+     "size": 23214,
+     "sha256": "2950ddffd17f8f43ab5c903f27bafaafc46e325f26ab575b876697b09c6a0505"
+    },
+    {
+     "path": "art/whale-confused.webp",
+     "size": 22712,
+     "sha256": "ce582288a950bb75d6fd412716a13b3b141502fbc98f23b182b270d680b3c2aa"
+    },
+    {
+     "path": "art/whale-exasperated.webp",
+     "size": 23058,
+     "sha256": "c47f785ad63c4776a93b4889ad219b7e8b5c4d6d9b2422746891b73e4c7bda73"
+    },
+    {
+     "path": "art/whale-frightened.webp",
+     "size": 24340,
+     "sha256": "ddc0f3b9e5c20aff3d15aa589c0887cc651f52759f6ec07f9372ca3cb3a4767c"
+    },
+    {
+     "path": "art/whale-serious.webp",
+     "size": 22258,
+     "sha256": "8bcda35248c8a9ee71ffa7a6dc546a89bbe185ec1479639f687401f86cedf9eb"
+    },
+    {
+     "path": "art/whale-shy.webp",
+     "size": 22800,
+     "sha256": "f8719c6b5cf18650238cdc16ac6c8f7a2600bd84c4a1b212d6e2a1779737d3df"
+    },
+    {
+     "path": "art/whale-starry.webp",
+     "size": 24720,
+     "sha256": "19de680e4e0b78a9db2d70408c82d9422ef045f722da5de362468c44a0e38021"
+    },
+    {
+     "path": "cover.png",
+     "size": 126778,
+     "sha256": "a6d674e99655f60368a5bb66255d9e91da1cb85b4f25fdb36d561e69b7c5aac3"
+    },
+    {
+     "path": "data/NOTICE.md",
+     "size": 2558,
+     "sha256": "ed668d1bd7c91f1bb9f6f64e08e850af08adcf8da0a6bec1611c7b74099d8618"
+    },
+    {
+     "path": "data/band.json",
+     "size": 21571,
+     "sha256": "a9a751a6ca85fde44a62d9de15192b94975dadc23f6107eef6cef7e3060f182a"
+    },
+    {
+     "path": "data/chat-1.json",
+     "size": 491520,
+     "sha256": "b28e91a1bdd76f3b7a8aba4567c7f777c26cc325fd21c655793aad1ff4ed8956"
+    },
+    {
+     "path": "data/chat-2.json",
+     "size": 270522,
+     "sha256": "32baca6b6f887f7944fc9a0981bd3cfa3f0ef4cb9abaee5048d7187212e6ff26"
+    },
+    {
+     "path": "data/timeline-1.json",
+     "size": 486322,
+     "sha256": "c7c283523dc0f772e813de5ec0bcd7b54b6ed7ddc20e1ef25c85a971b4c5c6ae"
+    },
+    {
+     "path": "data/timeline-2.json",
+     "size": 444600,
+     "sha256": "ddb1f78f6c4fac582a947310e42d8ddd504480c2b3a6eaedbb6134e6bc853b2d"
+    },
+    {
+     "path": "data/timeline-3.json",
+     "size": 436235,
+     "sha256": "87e983e6e8d483b31c9689abf3b6908056a370557a91de51b1bb62a5b39c7629"
+    },
+    {
+     "path": "data/timeline-4.json",
+     "size": 491284,
+     "sha256": "88ca7c4a64a30bc0713b59e744e2d79ac377befe8c5bd205f2f4e776c2c8be5d"
+    },
+    {
+     "path": "data/timeline-5.json",
+     "size": 469635,
+     "sha256": "e11a27fb12aa68683c72ed6334655bd08128a9c5c037908ee11f8100f0940f09"
+    },
+    {
+     "path": "data/timeline-6.json",
+     "size": 477004,
+     "sha256": "56d64a027e9e3057aaa126e12d0c976575f566e11f2f6f34718b3e20e36da120"
+    },
+    {
+     "path": "data/timeline-7.json",
+     "size": 364004,
+     "sha256": "8a46783ae24c2f8d53d4a2e83c9354fc6514d236f7c7a31c65ef05967cdbd7f1"
+    },
+    {
+     "path": "data/timeline-8.json",
+     "size": 397733,
+     "sha256": "94ad77328aa41184f3770ae91410ef92a200b9199df69b8ce6a7df896de7a682"
+    },
+    {
+     "path": "data/timeline-9.json",
+     "size": 133045,
+     "sha256": "51b94291ea4c3db6d93b59da5fb9dac9041194e5928e81d0953c85c0124156bc"
+    },
+    {
+     "path": "mv.json",
+     "size": 3336,
+     "sha256": "1f8524d3ce372ecf776cc1125314ebcc44c071eed2911e6ecc284b756d605c6b"
+    }
+   ]
+  },
   {
    "id": "neon-terminal-example",
    "title": "Neon Terminal (example)",
