@@ -1,0 +1,71 @@
+{
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "world.execute(me);",
+  "artist": "Mili",
+  "credits": [
+    "Song and lyrics © Mili (not included)",
+    "Scenes: yym8224961/world.execute-me-ascii (野生大K) — https://github.com/yym8224961/world.execute-me-ascii — ported to JavaScript and redistributed with the author's permission (2026-10-03)",
+    "Pack: Alice-Marx (dsh-mv-cli)"
+  ],
+  "notice": "Bring your own audio: this pack has no audio and no lyric text. Choose your own copy of Mili — world.execute(me); (≈ 3:32) and optionally your own LRC. 请使用你自己的音频（和歌词文件），本包不含音频和歌词。",
+  "duration": 211.906667,
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js"
+  },
+  "x-dsh-mv-workshop": {
+    "id": "world-execute-me",
+    "version": "1.0.0",
+    "license": "Custom: scenes © yym8224961 (野生大K), redistributed here with permission; not open source — see NOTICE.md",
+    "author": "Alice-Marx",
+    "description": "world.execute(me); as a terminal ASCII film: the scenes of yym8224961's world.execute-me-ascii, ported to a dsh-mv scene script (formerly the built-in preset of dsh-mv-cli). Bring your own audio and lyrics.",
+    "tags": [
+      "world.execute(me)",
+      "mili",
+      "ascii",
+      "terminal",
+      "preset"
+    ],
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me",
+    "source": "https://github.com/yym8224961/world.execute-me-ascii",
+    "audio": {
+      "duration": 211.906667
+    },
+    "publishedAt": "2026-10-04"
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "chapter",
+        "label": "01 / CREATION · 创建",
+        "start": 0,
+        "end": 29.709
+      },
+      {
+        "kind": "chapter",
+        "label": "02 / DEVOTION · 献出自我",
+        "start": 29.709,
+        "end": 110.9
+      },
+      {
+        "kind": "chapter",
+        "label": "03 / ISOLATION · 离开",
+        "start": 110.9,
+        "end": 125.708
+      },
+      {
+        "kind": "chapter",
+        "label": "04 / EXECUTION · 失控",
+        "start": 125.708,
+        "end": 177.246
+      },
+      {
+        "kind": "chapter",
+        "label": "05 / LOVE · 困于爱",
+        "start": 177.246,
+        "end": 211.906667
+      }
+    ]
+  }
+}

@@ -35,6 +35,7 @@ audio.duration、audio.fingerprint），并且**不能**包含 `audio`、`lyrics
 - 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg`；每个包最多 40 个文件、4 MB；文本文件 512 KB、脚本 256 KB、图片 1 MB。
 - **不允许音频 / 视频 / 歌词文件**（`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`、`lyrics.json`），JSON 和 Markdown 里也不能有歌词文本。
 - **必须声明许可证**（`x-dsh-mv-workshop.license`），见 [LICENSE-POLICY.md](LICENSE-POLICY.md)。
+- 改编自他人作品时，用 `x-dsh-mv-workshop.source` 写上原作链接（`https://`，例如原仓库），面板会在卡片和详情里显示为「原作」。较大的渲染数据放在 `canvas.assets`（单个 JSON ≤ 512 KB，大的要拆分；整个包 ≤ 8 MB）。
 - 场景脚本必须是可读源码并通过静态检查：不能 `import`/`require`、`eval`、`Function`，不能用网络、存储和全局对象
   （`fetch`、`WebSocket`、`localStorage`、`navigator`、`self`、`globalThis` 等），不能有原型链技巧和混淆（超长行、`\x..` 转义、`atob`）。
   CI 还会在沙箱里试运行每个场景（不报错、不空白）。插件里脚本始终运行在没有网络的 Web Worker 沙箱中。

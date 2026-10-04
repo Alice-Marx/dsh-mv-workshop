@@ -50,6 +50,7 @@ punctuation and symbols.
 - **No audio / video / lyric files** (`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`, `lyrics.json`), no lyric
   text inside JSON or Markdown.
 - A **license is required** (`x-dsh-mv-workshop.license`), see [LICENSE-POLICY.md](LICENSE-POLICY.md).
+- If the pack adapts someone else's work, link it in `x-dsh-mv-workshop.source` (an `https://` URL, e.g. the original repository); the panel shows it as **原作** on the card and in the details. Large renderer data goes in `canvas.assets` (JSON files ≤ 512 KB each — shard bigger ones; whole pack ≤ 8 MB).
 - Scene scripts must be readable source and pass static checks: no `import`/`require`, `eval`, `Function`, network,
   storage or global objects (`fetch`, `WebSocket`, `localStorage`, `navigator`, `self`, `globalThis`, …), no
   prototype tricks, no obfuscation (very long lines, `\x..` escapes, `atob`). CI also runs every scene in a sandbox

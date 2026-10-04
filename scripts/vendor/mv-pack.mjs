@@ -17,8 +17,14 @@
  *   "audio":    { "file": "song.mp3", "offset": 0 },
  *   "lyrics":   { "file": "lyrics.lrc", "offset": 0 },
  *   "spectrum": { "file": "spectrum.json" },
- *   "canvas":   { "renderer": "generic" | "world-execute-me" | "script", "script": "scenes.js", "fontSize": 14 }
+ *   "canvas":   { "renderer": "generic" | "dsh-pv" | "script", "script": "scenes.js", "fontSize": 14,
+ *                 "assets": { "timeline": ["data/timeline-1.json", …], "maid-left": "art/maid-left.webp" } }
  * }
+ * canvas.assets (0.9.0) names the data and image files a built-in renderer
+ * reads from the pack (dsh-pv: timeline, chat, band, maid-left, whale-*). A
+ * list means JSON shards that are merged in order (arrays concatenated).
+ * "world-execute-me" (the renderer bundled until 0.8.x) is still accepted and
+ * plays with the generic renderer; the scenes now ship as a workshop pack.
  * A "terminal" section written for versions before 0.6.0 is accepted and
  * ignored (the loader reports a warning).
  */
@@ -31,7 +37,11 @@ export const MV_PACK_MANIFEST = 'mv.json'
 export const MV_PACK_SCHEMA_FILE = 'mv.schema.json'
 export const MV_CANVAS_RENDERERS = Object.freeze(['generic', 'world-execute-me', 'dsh-pv', 'script'])
 /** Pack files the panel may read (only through the pack's own manifest). */
-export const MV_PACK_FILE_ROLES = Object.freeze(['audio', 'lyrics', 'spectrum', 'scene', 'timing'])
+export const MV_PACK_FILE_ROLES = Object.freeze(['audio', 'lyrics', 'spectrum', 'scene', 'timing', 'asset'])
+/** Renderers the plugin itself implements (0.9.0 moved the world.execute(me) scenes to a workshop pack). */
+export const MV_RENDERERS_BUILTIN = Object.freeze(['generic', 'dsh-pv', 'script'])
+export const MV_ASSET_EXTENSIONS = Object.freeze(['.json', '.webp', '.png'])
+export const MV_ASSET_NAME = /^[a-z0-9][a-z0-9-]{0,39}$/
 export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt'])
 
 export const MV_PACK_LIMITS = Object.freeze({
@@ -46,7 +56,10 @@ export const MV_PACK_LIMITS = Object.freeze({
   maxPathChars: 1_024,
   maxDuration: 36_000,
   maxOffset: 30,
-  recentPacks: 8,
+  maxAssets: 32,
+  maxAssetParts: 16,
+  assetBytes: 8 * 1024 * 1024,
+  recentPacks: 50, // library entries kept (0.8.2: was 8; the list view stays compact)
 })
 
 const TOP_KEYS = new Set(['$schema', 'format', 'version', 'title', 'artist', 'album', 'credits', 'notice', 'duration', 'audio', 'lyrics', 'spectrum', 'canvas', 'terminal'])
@@ -161,7 +174,7 @@ export function parseMvPack(input) {
   const canvas = data.canvas ?? {}
   if (!isObject(canvas)) problems.push('canvas 必须是对象')
   else {
-    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset']), 'canvas', problems)
+    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets']), 'canvas', problems)
     const renderer = canvas.renderer ?? (canvas.script ? 'script' : 'generic')
     if (!MV_CANVAS_RENDERERS.includes(renderer)) problems.push(`canvas.renderer 必须是 ${MV_CANVAS_RENDERERS.join(' / ')}`)
     let script
@@ -170,8 +183,9 @@ export function parseMvPack(input) {
       if (script && !['.js', '.mjs'].includes(extOf(script))) problems.push('canvas.script 应是 .js 文件（定义 render(t, cols, rows, ctx) 的场景脚本）')
     }
     if (renderer === 'script' && !script && !problems.some(p => p.startsWith('canvas.script'))) problems.push('canvas.renderer 为 script 时必须提供 canvas.script（如 "scenes.js"）')
+    const assets = canvasAssets(canvas.assets, problems)
     pack.canvas = {
-      renderer, ...(script ? { script } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
+      renderer, ...(script ? { script } : {}), ...(assets ? { assets } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
       bpm: optionalNumber(canvas, 'bpm', 20, 400, problems, 'canvas.bpm'), beatOffset: optionalNumber(canvas, 'beatOffset', -60, 60, problems, 'canvas.beatOffset'),
     }
   }
@@ -187,6 +201,35 @@ export function parseMvPack(input) {
   return stripUndefined(pack)
 }
 
+const httpsUrl = v => (typeof v === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(v.trim()) ? v.trim() : undefined)
+
+/** canvas.assets: { name: "path" | ["shard", …] } with relative paths only. */
+function canvasAssets(value, problems) {
+  if (value === undefined || value === null) return undefined
+  if (!isObject(value)) { problems.push('canvas.assets 必须是对象 { 名称: 路径或路径数组 }'); return undefined }
+  const names = Object.keys(value)
+  if (names.length > MV_PACK_LIMITS.maxAssets) { problems.push(`canvas.assets 最多 ${MV_PACK_LIMITS.maxAssets} 项`); return undefined }
+  const out = {}
+  for (const name of names) {
+    if (!MV_ASSET_NAME.test(name)) { problems.push(`canvas.assets 的名称「${name}」无效（小写字母、数字和 -）`); continue }
+    const list = Array.isArray(value[name]) ? value[name] : [value[name]]
+    if (!list.length || list.length > MV_PACK_LIMITS.maxAssetParts) { problems.push(`canvas.assets.${name} 应有 1–${MV_PACK_LIMITS.maxAssetParts} 个文件`); continue }
+    const paths = []
+    for (const item of list) {
+      const path = checkPackPath(item, `canvas.assets.${name}`, problems)
+      if (!path) continue
+      if (isAbsolutePackPath(path)) { problems.push(`canvas.assets.${name} 只能用包内的相对路径：${path}`); continue }
+      if (!MV_ASSET_EXTENSIONS.includes(extOf(path))) { problems.push(`canvas.assets.${name} 只能是 ${MV_ASSET_EXTENSIONS.join(' / ')} 文件：${path}`); continue }
+      paths.push(path)
+    }
+    if (paths.length === list.length) out[name] = Array.isArray(value[name]) ? paths : paths[0]
+  }
+  return Object.keys(out).length ? out : undefined
+}
+
+/** Files of one canvas asset (always a list). */
+export const assetParts = (pack, name) => { const v = pack?.canvas?.assets?.[name]; return v === undefined ? [] : Array.isArray(v) ? v : [v] }
+
 /** The parts of x-dsh-mv-workshop the panel uses (anything malformed is dropped, never an error). */
 export function workshopMeta(value) {
   if (!isObject(value)) return null
@@ -196,7 +239,7 @@ export function workshopMeta(value) {
     ? { kind: str(audio.fingerprint.kind, 40) ?? 'energy-2hz-v1', values: audio.fingerprint.values } : undefined
   return stripUndefined({
     id: str(value.id, 64), version: str(value.version, 32), license: str(value.license, 120), author: str(value.author, 120),
-    homepage: str(value.homepage, 300),
+    homepage: httpsUrl(value.homepage), source: httpsUrl(value.source),
     audio: stripUndefined({ duration: Number.isFinite(audio.duration) && audio.duration > 0 ? Math.round(audio.duration * 1000) / 1000 : undefined, fingerprint: fp, sha256: typeof audio.sha256 === 'string' && /^[0-9a-f]{64}$/.test(audio.sha256) ? audio.sha256 : undefined }),
     lyricsTiming: typeof value.lyricsTiming === 'string' && /^[\w.-]{1,64}\.json$/.test(value.lyricsTiming) ? value.lyricsTiming : undefined,
   })
@@ -226,14 +269,22 @@ export function parsePackLoad(value) {
 
 export function parsePackRead(value) {
   if (!isObject(value)) throw new TypeError('pack read request must be an object')
-  const extra = Object.keys(value).filter(key => !['manifestPath', 'role', 'offset', 'length'].includes(key))
+  const extra = Object.keys(value).filter(key => !['manifestPath', 'role', 'offset', 'length', 'asset', 'part'].includes(key))
   if (extra.length) throw new TypeError(`pack read request has unexpected fields: ${extra.join(', ')}`)
   if (!MV_PACK_FILE_ROLES.includes(value.role)) throw new TypeError(`role must be ${MV_PACK_FILE_ROLES.join(' / ')}`)
   const offset = value.offset ?? 0
   const length = value.length ?? MV_PACK_LIMITS.readChunkBytes
   if (!Number.isInteger(offset) || offset < 0 || offset > MV_PACK_LIMITS.audioBytes) throw new TypeError('offset is invalid')
   if (!Number.isInteger(length) || length < 1 || length > MV_PACK_LIMITS.readChunkBytes) throw new TypeError(`length must be 1..${MV_PACK_LIMITS.readChunkBytes}`)
-  return { manifestPath: parseManifestPath(value.manifestPath), role: value.role, offset, length }
+  const request = { manifestPath: parseManifestPath(value.manifestPath), role: value.role, offset, length }
+  if (value.role === 'asset') {
+    if (typeof value.asset !== 'string' || !MV_ASSET_NAME.test(value.asset)) throw new TypeError('asset must be a canvas.assets name')
+    const part = value.part ?? 0
+    if (!Number.isInteger(part) || part < 0 || part >= MV_PACK_LIMITS.maxAssetParts) throw new TypeError('part is invalid')
+    return { ...request, asset: value.asset, part }
+  }
+  if (value.asset !== undefined || value.part !== undefined) throw new TypeError('asset / part are only for role "asset"')
+  return request
 }
 
 export function parseTemplateWrite(value) {

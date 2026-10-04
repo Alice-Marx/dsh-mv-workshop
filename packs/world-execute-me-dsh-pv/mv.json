@@ -1,0 +1,98 @@
+{
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "world.execute(me); · 大肥鱼眼中的 world.execute(me)",
+  "artist": "Mili",
+  "credits": [
+    "Song and lyrics © Mili (not included)",
+    "PV: MisakaZentai/world-execute-me-dsh-pv — https://github.com/MisakaZentai/world-execute-me-dsh-pv — code and data MIT © MisakaZentai; real-time canvas port in dsh-mv-cli",
+    "Whale-girl art (resized, pixelated, recoloured), CC BY-NC-SA 4.0: 溟月 © 上善无形 → maid version ZipZipPipe → standing art Small-tailqwq / dsh-deep-whale → expressions dsh-whale-galgame (see art/NOTICE.md)",
+    "Pack: Alice-Marx (dsh-mv-cli)"
+  ],
+  "notice": "Bring your own audio: this pack has no audio and no lyric text. Choose your own copy of Mili — world.execute(me); (≈ 3:32). Non-commercial use only (CC BY-NC-SA 4.0 artwork). 请使用你自己的音频；含 CC BY-NC-SA 4.0 美术，仅限非商业使用。",
+  "duration": 211.913,
+  "canvas": {
+    "renderer": "dsh-pv",
+    "assets": {
+      "timeline": [
+        "data/timeline-1.json",
+        "data/timeline-2.json",
+        "data/timeline-3.json",
+        "data/timeline-4.json",
+        "data/timeline-5.json",
+        "data/timeline-6.json",
+        "data/timeline-7.json",
+        "data/timeline-8.json",
+        "data/timeline-9.json"
+      ],
+      "chat": [
+        "data/chat-1.json",
+        "data/chat-2.json"
+      ],
+      "band": "data/band.json",
+      "maid-left": "art/maid-left.webp",
+      "whale-angry": "art/whale-angry.webp",
+      "whale-cheerful": "art/whale-cheerful.webp",
+      "whale-confused": "art/whale-confused.webp",
+      "whale-exasperated": "art/whale-exasperated.webp",
+      "whale-frightened": "art/whale-frightened.webp",
+      "whale-serious": "art/whale-serious.webp",
+      "whale-shy": "art/whale-shy.webp",
+      "whale-starry": "art/whale-starry.webp"
+    }
+  },
+  "x-dsh-mv-workshop": {
+    "id": "world-execute-me-dsh-pv",
+    "version": "1.0.0",
+    "license": "CC-BY-NC-SA-4.0",
+    "author": "Alice-Marx",
+    "description": "MisakaZentai's world.execute(me) dsh PV (\"大肥鱼眼中的 world.execute(me)\") replayed live on the canvas by dsh-mv's dsh-pv renderer: recorded shot timeline, dsh chat window and whale-girl art (formerly a built-in preset of dsh-mv-cli). Bring your own audio.",
+    "tags": [
+      "world.execute(me)",
+      "mili",
+      "dsh-pv",
+      "whale",
+      "preset"
+    ],
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-dsh-pv",
+    "source": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
+    "audio": {
+      "duration": 211.913
+    },
+    "publishedAt": "2026-10-04"
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "chapter",
+        "label": "00 / BOOT",
+        "start": 0,
+        "end": 44
+      },
+      {
+        "kind": "chapter",
+        "label": "02 / SFT",
+        "start": 44,
+        "end": 73.5
+      },
+      {
+        "kind": "chapter",
+        "label": "04 / DEPLOY",
+        "start": 73.5,
+        "end": 117.85
+      },
+      {
+        "kind": "chapter",
+        "label": "06 / REWARD_HACK",
+        "start": 117.85,
+        "end": 176.9
+      },
+      {
+        "kind": "chapter",
+        "label": "08 / EVAL: LOVE",
+        "start": 176.9,
+        "end": 211.913
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@
  * contains audio or lyric text: installed packs play with the user's own
  * audio, matched by duration and an optional energy fingerprint.
  */
-import { parseMvPack } from './mv-pack.mjs'
+import { assetParts, parseMvPack } from './mv-pack.mjs'
 
 export const WORKSHOP_REPO = 'Alice-Marx/dsh-mv-workshop'
 export const WORKSHOP_BRANCH = 'main'
@@ -21,12 +21,24 @@ export const WORKSHOP_TIMING_FILE = 'lyrics.timing.json'
 export const WORKSHOP_DEFAULT_LICENSE = 'CC-BY-NC-SA-4.0'
 export const FINGERPRINT_KIND = 'energy-2hz-v1'
 
+/**
+ * The two MVs that were built into the plugin until 0.8.x and now live in the workshop (0.9.0). The empty
+ * library recommends them; `legacyId` is the old built-in id still stored by 0.8.x in localStorage.
+ */
+export const PRESET_PACKS = Object.freeze([
+  Object.freeze({ id: 'world-execute-me', legacyId: 'builtin:world-execute-me', title: 'world.execute(me);', artist: 'Mili', kind: 'ASCII 场景', cover: '>_', hue: 18,
+    source: 'https://github.com/yym8224961/world.execute-me-ascii', sourceLabel: 'yym8224961/world.execute-me-ascii' }),
+  Object.freeze({ id: 'world-execute-me-dsh-pv', legacyId: 'builtin:dsh-pv', title: 'world.execute(me); dsh PV', artist: 'MisakaZentai', kind: 'dsh PV 画布', cover: 'dsh', hue: 222,
+    source: 'https://github.com/MisakaZentai/world-execute-me-dsh-pv', sourceLabel: 'MisakaZentai/world-execute-me-dsh-pv' }),
+])
+
 export const WORKSHOP_LIMITS = Object.freeze({
   maxFiles: 40,
   fileBytes: 512 * 1024,
   coverBytes: 1024 * 1024,
   scriptBytes: 256 * 1024,
-  packBytes: 4 * 1024 * 1024,
+  /** 0.9.0: 8 MB (was 4) so the dsh PV pack's recorded data fits; single files stay ≤ 512 KB (shard big JSON). */
+  packBytes: 8 * 1024 * 1024,
   indexBytes: 8 * 1024 * 1024,
   maxPacks: 5000,
   maxLongLine: 4000,
@@ -210,6 +222,12 @@ export async function validateWorkshopPack({ id, files, readText }) {
     const script = pack.canvas.script
     if (!script || !paths.has(script)) errors.push(`canvas.script 指向的文件不在包里：${script ?? '(空)'}`)
   }
+  for (const name of Object.keys(pack.canvas?.assets ?? {})) {
+    for (const ref of assetParts(pack, name)) if (!paths.has(ref)) errors.push(`canvas.assets.${name} 指向的文件不在包里：${ref}`)
+  }
+  if (pack.canvas?.renderer === 'world-execute-me') errors.push('canvas.renderer "world-execute-me" 自 0.9.0 起不再内置：请把场景写成 scene script（renderer "script"）')
+  if (pack.canvas?.renderer === 'dsh-pv' && !['timeline', 'chat', 'band'].every(n => pack.canvas?.assets?.[n])) errors.push('dsh-pv 渲染器需要 canvas.assets 里的 timeline、chat、band')
+  if (ws?.source !== undefined && !(typeof ws.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source))) errors.push('x-dsh-mv-workshop.source 应是 https:// 链接（原作的仓库或主页）')
   for (const file of files.filter(f => ['.js', '.mjs'].includes(extOf(f.path)))) {
     const result = checkScriptSafety(await readText(file.path), file.path)
     errors.push(...result.errors); warnings.push(...result.warnings)
@@ -237,6 +255,7 @@ export async function validateWorkshopPack({ id, files, readText }) {
     renderer: pack.canvas?.renderer ?? 'generic', description: String(ws?.description ?? pack.notice ?? '').slice(0, 500),
     tags: Array.isArray(ws?.tags) ? ws.tags.filter(t => typeof t === 'string').map(t => t.slice(0, 24)).slice(0, 8) : [],
     homepage: typeof ws?.homepage === 'string' && /^https:\/\//.test(ws.homepage) ? ws.homepage.slice(0, 300) : undefined,
+    source: typeof ws?.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source) ? ws.source : undefined,
     cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), sections: pack.sections?.length ?? 0,
   }
   return { errors, warnings, pack, meta }
@@ -257,6 +276,7 @@ export function parseWorkshopIndex(value) {
       version: VERSION_PATTERN.test(String(p.version)) ? p.version : '0.0.0', duration: Number.isFinite(p.duration) ? p.duration : null,
       renderer: str(p.renderer, 40), description: str(p.description, 500), tags: Array.isArray(p.tags) ? p.tags.filter(t => typeof t === 'string').slice(0, 8).map(t => t.slice(0, 24)) : [],
       homepage: typeof p.homepage === 'string' && /^https:\/\//.test(p.homepage) ? p.homepage.slice(0, 300) : '',
+      source: typeof p.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(p.source) ? p.source : '',
       cover: typeof p.cover === 'string' && COVER_NAMES.includes(p.cover) && files.some(f => f.path === p.cover) ? p.cover : '',
       fingerprint: p.fingerprint === true, timing: p.timing === true, sections: Number.isInteger(p.sections) ? p.sections : 0,
       updated: str(p.updated, 40), size: files.reduce((s, f) => s + f.size, 0), files,
