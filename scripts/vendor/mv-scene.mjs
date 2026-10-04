@@ -47,7 +47,17 @@ export const SCENE_BLOCKED_GLOBALS = Object.freeze([
   'BroadcastChannel', 'Worker', 'SharedWorker', 'RTCPeerConnection', 'RTCDataChannel', 'Request', 'Response', 'Headers',
   'FileReader', 'FileReaderSync', 'Notification', 'navigator', 'location', 'open', 'close', 'storageFoundation',
   'WebAssembly', 'MessageChannel', 'importScripts',
+  // 0.9.1: fonts can be loaded from URLs; scripts use the fonts the system already has.
+  'FontFace', 'fonts',
 ])
+
+/** Pixel scenes (canvas.output "pixels", 0.9.1). */
+export const PIXEL_SCENE_LIMITS = Object.freeze({
+  maxWidth: 1920, maxHeight: 1080,
+  // Painting runs off the main thread and only one frame is in flight, so a slow pixel scene lowers the
+  // frame rate instead of blocking the panel: it is stopped only below ~10 fps for too long.
+  frameBudgetMs: 100,
+})
 
 /** Accept `export function render…` / `export default function…` written by habit. */
 export function stripModuleSyntax(source) {
@@ -92,8 +102,15 @@ function __mvNormalize(out, cols, rows) {
 }
 `
 
-/** Worker source: sandbox prelude, the user's scene, then the frame loop. */
-export function sceneWorkerSource(userSource) {
+/**
+ * Worker source: sandbox prelude, the user's scene, then the frame loop.
+ * output "pixels": the scene defines paint(g, t, width, height, ctx) and draws
+ * on an OffscreenCanvas 2D context (only "2d" contexts can be created); each
+ * frame goes back as an ImageBitmap (the canvas starts blank every frame).
+ * setup(info) receives info.assets (the pack's canvas.assets, JSON parsed).
+ */
+export function sceneWorkerSource(userSource, { output = 'text' } = {}) {
+  const pixels = output === 'pixels'
   const blocked = JSON.stringify(SCENE_BLOCKED_GLOBALS)
   return `"use strict";
 const __post = self.postMessage.bind(self);
@@ -108,16 +125,33 @@ const __now = () => (typeof performance !== 'undefined' ? performance.now() : Da
   }
   for (const name of names) { try { Object.defineProperty(self, name, { value: undefined, writable: false, configurable: false }) } catch (e) {} }
   try { Object.defineProperty(self, 'postMessage', { value: undefined, writable: false, configurable: false }) } catch (e) {}
+  if (typeof OffscreenCanvas === 'function') {
+    // Only 2D canvases: no WebGL / WebGPU / bitmaprenderer contexts from scene scripts.
+    const getContext = OffscreenCanvas.prototype.getContext;
+    try { Object.defineProperty(OffscreenCanvas.prototype, 'getContext', { value: function (type, options) { return type === '2d' ? getContext.call(this, type, options) : null }, writable: false, configurable: false }) } catch (e) {}
+  }
 })();
 ${SCENE_RUNTIME_SOURCE}
-let __scene = null, __setupError = '';
+const __pixels = ${pixels ? 'true' : 'false'};
+const __Canvas = typeof OffscreenCanvas === 'function' ? OffscreenCanvas : null;
+let __scene = null, __setupError = '', __cv = null, __g = null;
 try {
   __scene = (function () {
 ${stripModuleSyntax(userSource)}
-;return { render: typeof render === 'function' ? render : null, setup: typeof setup === 'function' ? setup : null };
+;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };
   })();
-  if (!__scene.render) __setupError = '场景脚本没有定义 render(t, cols, rows, ctx) 函数。';
+  if (__pixels && !__scene.paint) __setupError = '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。';
+  else if (__pixels && !__Canvas) __setupError = '这个环境不支持 OffscreenCanvas，无法运行像素场景。';
+  else if (!__pixels && !__scene.render) __setupError = '场景脚本没有定义 render(t, cols, rows, ctx) 函数。';
 } catch (error) { __setupError = String(error && error.stack || error); }
+function __paint(msg) {
+  const w = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxWidth}, msg.cols | 0)), h = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxHeight}, msg.rows | 0));
+  if (!__cv || __cv.width !== w || __cv.height !== h) { __cv = new __Canvas(w, h); __g = __cv.getContext('2d'); }
+  if (typeof __g.reset === 'function') __g.reset();
+  else { __g.setTransform(1, 0, 0, 1, 0, 0); __g.globalAlpha = 1; __g.globalCompositeOperation = 'source-over'; __g.filter = 'none'; __g.clearRect(0, 0, w, h); }
+  __scene.paint(__g, msg.t, w, h, msg.ctx);
+  return __cv.transferToImageBitmap();
+}
 __listen('message', event => {
   const msg = event.data || {};
   if (msg.type === 'init') {
@@ -128,8 +162,11 @@ __listen('message', event => {
   if (msg.type !== 'frame' || __setupError) return;
   const started = __now();
   try {
-    const frame = __mvNormalize(__scene.render(msg.t, msg.cols, msg.rows, msg.ctx), msg.cols, msg.rows);
-    __post({ type: 'frame', id: msg.id, frame, ms: __now() - started });
+    if (__pixels) { const bitmap = __paint(msg); __post({ type: 'frame', id: msg.id, bitmap, ms: __now() - started }, [bitmap]); }
+    else {
+      const frame = __mvNormalize(__scene.render(msg.t, msg.cols, msg.rows, msg.ctx), msg.cols, msg.rows);
+      __post({ type: 'frame', id: msg.id, frame, ms: __now() - started });
+    }
   } catch (error) {
     __post({ type: 'error', id: msg.id, error: String(error && error.stack || error).slice(0, 2000) });
   }

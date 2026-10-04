@@ -94,7 +94,8 @@ export function checkScriptSafety(source, name = 'scenes.js') {
     const target = label.startsWith('escaped') ? text : code
     if (pattern.test(target)) errors.push(`${name}：不允许使用 ${label}`)
   }
-  if (!/\bfunction\s+render\s*\(/.test(code) && !/\brender\s*=\s*(function|\()/.test(code)) errors.push(`${name}：没有定义 render(t, cols, rows, ctx)`)
+  const defines = fn => new RegExp(`\\bfunction\\s+${fn}\\s*\\(`).test(code) || new RegExp(`\\b${fn}\\s*=\\s*(function|\\()`).test(code)
+  if (!defines('render') && !defines('paint')) errors.push(`${name}：没有定义 render(t, cols, rows, ctx)（或像素场景的 paint(g, t, width, height, ctx)）`)
   const longest = text.split('\n').reduce((max, line) => Math.max(max, line.length), 0)
   if (longest > WORKSHOP_LIMITS.maxLongLine) errors.push(`${name}：有一行超过 ${WORKSHOP_LIMITS.maxLongLine} 个字符（像是压缩或混淆过的代码；请提交可读的源码）`)
   if (/Math\.random\s*\(/.test(code)) warnings.push(`${name}：使用了 Math.random()，拖动进度时画面会不一致（建议用确定性的 hash）`)
@@ -257,8 +258,24 @@ export async function validateWorkshopPack({ id, files, readText }) {
     homepage: typeof ws?.homepage === 'string' && /^https:\/\//.test(ws.homepage) ? ws.homepage.slice(0, 300) : undefined,
     source: typeof ws?.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source) ? ws.source : undefined,
     cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), sections: pack.sections?.length ?? 0,
+    requires: packRequires(pack, ws?.requires),
   }
+  if (pack.canvas?.renderer === 'script' && pack.canvas.output === 'pixels') {
+    const script = pack.canvas.script && paths.has(pack.canvas.script) ? stripCommentsAndStrings(await readText(pack.canvas.script)) : ''
+    if (script && !/\bfunction\s+paint\s*\(|\bpaint\s*=\s*(function|\()/.test(script)) errors.push(`${pack.canvas.script}：canvas.output 为 "pixels" 时要定义 paint(g, t, width, height, ctx)`)
+  }
+  if (ws?.requires !== undefined && !VERSION_PATTERN.test(String(ws.requires))) errors.push('x-dsh-mv-workshop.requires 应为 x.y.z（需要的最低插件版本）')
   return { errors, warnings, pack, meta }
+}
+
+/**
+ * Lowest plugin version that plays a pack: pixel scene scripts and scripts that read canvas.assets need 0.9.1
+ * (0.9.0 does not know canvas.output and gives scripts no assets). An explicit x-dsh-mv-workshop.requires can raise it.
+ */
+export function packRequires(pack, declared) {
+  let need = pack?.canvas?.renderer === 'script' && (pack.canvas.output === 'pixels' || Object.keys(pack.canvas.assets ?? {}).length) ? '0.9.1' : undefined
+  if (VERSION_PATTERN.test(String(declared ?? '')) && (!need || compareVersions(declared, need) > 0)) need = String(declared)
+  return need
 }
 
 /** Sanitise index.json for the panel (drops malformed entries). */
@@ -277,6 +294,7 @@ export function parseWorkshopIndex(value) {
       renderer: str(p.renderer, 40), description: str(p.description, 500), tags: Array.isArray(p.tags) ? p.tags.filter(t => typeof t === 'string').slice(0, 8).map(t => t.slice(0, 24)) : [],
       homepage: typeof p.homepage === 'string' && /^https:\/\//.test(p.homepage) ? p.homepage.slice(0, 300) : '',
       source: typeof p.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(p.source) ? p.source : '',
+      requires: VERSION_PATTERN.test(String(p.requires ?? '')) ? p.requires : '',
       cover: typeof p.cover === 'string' && COVER_NAMES.includes(p.cover) && files.some(f => f.path === p.cover) ? p.cover : '',
       fingerprint: p.fingerprint === true, timing: p.timing === true, sections: Number.isInteger(p.sections) ? p.sections : 0,
       updated: str(p.updated, 40), size: files.reduce((s, f) => s + f.size, 0), files,
@@ -453,4 +471,64 @@ export function parseWorkshopPublish(value) {
     description: str(value.description, 500, 'description'), tags: tags.map(t => t.trim()).filter(Boolean), homepage,
     duration: value.duration, fingerprint: value.fingerprint, coverPng: value.coverPng,
   }
+}
+
+// ---- 0.9.1: where workshop packs are installed (user-configurable) --------------------------------
+
+/**
+ * Normalise a folder typed by the user for the workshop install location. Windows: a drive path
+ * (C:\…, F:\, any drive letter) or a UNC share (\\server\share\…); forward slashes are accepted.
+ * Elsewhere: an absolute POSIX path. Throws a readable error; returns the normalised path.
+ */
+export function normalizeWorkshopDir(input, platform = 'win32') {
+  if (typeof input !== 'string') throw new TypeError('安装位置必须是文件夹路径')
+  let value = input.trim().replace(/^"(.*)"$/, '$1').trim()
+  if (!value) throw new TypeError('请填写文件夹路径')
+  if (value.length > 400 || /[\0-\x1f]/.test(value)) throw new TypeError('文件夹路径无效')
+  if (platform === 'win32') {
+    value = value.replace(/\//g, '\\')
+    if (/^[A-Za-z]:$/.test(value)) value += '\\'
+    const drive = /^[A-Za-z]:\\/.test(value), unc = /^\\\\[^\\?.][^\\]*\\[^\\]+/.test(value)
+    if (!drive && !unc) throw new TypeError('请填写完整路径，例如 F:\\MV\\workshop 或 D:\\dsh-mv（以盘符开头）')
+    const rest = drive ? value.slice(2) : value.slice(2)
+    if (/[<>"|?*:]/.test(rest)) throw new TypeError('路径里不能有 < > " | ? * : 这些字符')
+    const parts = value.slice(drive ? 3 : 2).split('\\').filter(Boolean)
+    if (parts.some(p => p === '..' || /[. ]$/.test(p) && p !== '.')) throw new TypeError('路径里不能有 ..，文件夹名也不能以空格或 . 结尾')
+    if (parts.some(p => /^(con|prn|aux|nul|com\d|lpt\d)(\.|$)/i.test(p))) throw new TypeError('路径里有 Windows 保留名（CON、NUL 等）')
+    const clean = parts.filter(p => p !== '.')
+    return drive ? `${value.slice(0, 2).toUpperCase()}\\${clean.join('\\')}` : `\\\\${clean.join('\\')}`
+  }
+  if (!value.startsWith('/')) throw new TypeError('请填写绝对路径（以 / 开头）')
+  const parts = value.split('/').filter(Boolean)
+  if (parts.some(p => p === '..')) throw new TypeError('路径里不能有 ..')
+  return `/${parts.filter(p => p !== '.').join('/')}`
+}
+
+/** Same folder? (Windows paths compare case-insensitively.) */
+export function sameDir(a, b, platform = 'win32') {
+  const norm = p => String(p ?? '').replace(/[\\/]+$/, '').replace(/\//g, platform === 'win32' ? '\\' : '/')
+  return platform === 'win32' ? norm(a).toLowerCase() === norm(b).toLowerCase() : norm(a) === norm(b)
+}
+
+/** Is `child` inside `parent` (or the same folder)? */
+export function insideDir(child, parent, platform = 'win32') {
+  const sep = platform === 'win32' ? '\\' : '/'
+  const norm = p => { let s = String(p ?? '').replace(/[\\/]+/g, sep).replace(/[\\/]+$/, ''); if (platform === 'win32') s = s.toLowerCase(); return s }
+  const c = norm(child), p = norm(parent)
+  return c === p || c.startsWith(p + sep)
+}
+
+export function parseWorkshopDirInfo(value = {}) { onlyKeys(value ?? {}, [], 'workshop dir request'); return {} }
+export function parseWorkshopDirOpen(value = {}) { onlyKeys(value ?? {}, [], 'workshop dir open request'); return {} }
+export function parseWorkshopDirSet(value) {
+  onlyKeys(value, ['dir', 'reset', 'keep'], 'workshop dir request')
+  if (value.reset !== undefined && typeof value.reset !== 'boolean') throw new TypeError('reset 无效')
+  if (value.keep !== undefined && typeof value.keep !== 'boolean') throw new TypeError('keep 无效')
+  if (!value.reset && (typeof value.dir !== 'string' || !value.dir.trim() || value.dir.length > 400 || /[\0\r\n]/.test(value.dir))) throw new TypeError('安装位置无效')
+  return { dir: value.reset ? null : value.dir.trim(), reset: value.reset === true, keep: value.keep !== false }
+}
+export function parseWorkshopDirMove(value) {
+  onlyKeys(value, ['id'], 'workshop move request')
+  if (!ID_PATTERN.test(String(value.id ?? ''))) throw new TypeError('包 id 无效')
+  return { id: value.id }
 }

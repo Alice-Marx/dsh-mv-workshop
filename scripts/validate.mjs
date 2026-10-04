@@ -42,9 +42,20 @@ for (const id of ids) {
     const source = readPackText(id)(pack.canvas.script)
     const duration = pack.duration ?? result.meta.duration ?? 180
     const times = [0.5, duration * 0.25, duration * 0.5, duration * 0.75, Math.max(0, duration - 1)].map(t => Math.round(t * 10) / 10)
-    const info = { duration, title: pack.title, artist: pack.artist ?? '', sections: pack.sections ?? [], bpm: pack.canvas.bpm ?? 0, beatOffset: pack.canvas.beatOffset ?? 0 }
-    for (const [cols, rows] of [[100, 32], [60, 18]]) {
-      const check = checkScene(source, { times, cols, rows, info })
+    // 0.9.1: scripts get canvas.assets (JSON shards merged like the panel does) in setup(info.assets).
+    const assets = {}
+    for (const [name, value] of Object.entries(pack.canvas.assets ?? {})) {
+      const list = Array.isArray(value) ? value : [value]
+      if (!list.every(p => p.endsWith('.json'))) continue
+      const shards = list.map(p => JSON.parse(readPackText(id)(p)))
+      const merged = {}
+      for (const shard of shards) for (const [k, v] of Object.entries(shard ?? {})) { if (Array.isArray(v) && Array.isArray(merged[k])) merged[k] = merged[k].concat(v); else if (!(k in merged)) merged[k] = v }
+      assets[name] = shards.length === 1 ? shards[0] : merged
+    }
+    const info = { duration, title: pack.title, artist: pack.artist ?? '', sections: pack.sections ?? [], bpm: pack.canvas.bpm ?? 0, beatOffset: pack.canvas.beatOffset ?? 0, assets }
+    const pixels = pack.canvas.output === 'pixels'
+    for (const [cols, rows] of pixels ? [pack.canvas.size] : [[100, 32], [60, 18]]) {
+      const check = checkScene(source, { times, cols, rows, info, ...(pixels ? { output: 'pixels', size: pack.canvas.size } : {}) })
       if (!check.ok) fail(`packs/${id}: scene script fails in the sandbox (${cols}x${rows}): ${check.problems.join('; ')}`)
       else for (const p of check.problems) warn(`packs/${id}: ${p}`)
     }

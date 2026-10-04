@@ -22,6 +22,15 @@ dsh-mv-cli 0.8.x 内置的两个 MV 自 0.9.0 起在这里发布（需要 0.9.0 
 
 Both are generated from [dsh-mv-cli/presets](https://github.com/Alice-Marx/dsh-mv-cli/tree/main/presets) with
 `presets/build-workshop-packs.mjs`. Neither contains audio or lyric text — bring your own copy of the song.
+
+Ported community projects (pixel scenes, **need dsh-mv-cli ≥ 0.9.1**) / 移植的社区项目（像素场景，需要 0.9.1 及以上）:
+
+| Pack / 包 | Original / 原作 | License / 许可 |
+| --- | --- | --- |
+| [`world-execute-me-wallpaper`](packs/world-execute-me-wallpaper) — wallpaper MV, 1920×1080 | [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) | `MIT` (© 2026 seasnakes; music and lyrics © Mili, not included; [NOTICE](packs/world-execute-me-wallpaper/NOTICE.md)) |
+| [`polytech-tree`](packs/polytech-tree) — tech-tree tour, no music needed | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | `MIT AND CC-BY-4.0` (code MIT © 2026 secwind; structured data CC BY 4.0, the CC BY-SA `desc` field is not used; [NOTICE](packs/polytech-tree/NOTICE.md)) |
+
+They are built by `presets/ports/*/build.mjs` in dsh-mv-cli from the upstream commits named in each NOTICE.
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
 
 ## How it works / 工作方式

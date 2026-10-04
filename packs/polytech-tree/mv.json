@@ -1,0 +1,116 @@
+{
+  "$schema": "./mv.schema.json",
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "Polytech Tree · 人类科技树漫游",
+  "artist": "secwind7",
+  "credits": [
+    "Polytech Tree — secwind (secwind7), code MIT, data CC BY 4.0: https://github.com/secwind7/polytech-tree",
+    "dsh-mv adaptation (tour as a pixel scene): Alice-Marx"
+  ],
+  "notice": "No music: play it silently or with any song you like (about 3 minutes). The tour follows the original's schedule; music only adds a little glow.",
+  "duration": 192.113,
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js",
+    "output": "pixels",
+    "size": [
+      1280,
+      720
+    ],
+    "assets": {
+      "tower": "data/tower.json",
+      "nodes": [
+        "data/nodes-1.json",
+        "data/nodes-2.json"
+      ],
+      "edges": "data/edges.json"
+    }
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "era",
+        "label": "史前",
+        "start": 2,
+        "end": 12.277
+      },
+      {
+        "kind": "era",
+        "label": "农业革命",
+        "start": 12.277,
+        "end": 22.277
+      },
+      {
+        "kind": "era",
+        "label": "青铜时代",
+        "start": 22.277,
+        "end": 34.443
+      },
+      {
+        "kind": "era",
+        "label": "古典时代",
+        "start": 34.443,
+        "end": 49.229
+      },
+      {
+        "kind": "era",
+        "label": "中世纪",
+        "start": 49.229,
+        "end": 62.327
+      },
+      {
+        "kind": "era",
+        "label": "文艺复兴·科学革命",
+        "start": 62.327,
+        "end": 76.332
+      },
+      {
+        "kind": "era",
+        "label": "工业革命",
+        "start": 76.332,
+        "end": 97.869
+      },
+      {
+        "kind": "era",
+        "label": "第二次工业革命",
+        "start": 97.869,
+        "end": 127.869
+      },
+      {
+        "kind": "era",
+        "label": "战后·原子与电子",
+        "start": 127.869,
+        "end": 150.111
+      },
+      {
+        "kind": "era",
+        "label": "信息时代",
+        "start": 150.111,
+        "end": 171.144
+      },
+      {
+        "kind": "era",
+        "label": "智能时代",
+        "start": 171.144,
+        "end": 187.113
+      }
+    ]
+  },
+  "x-dsh-mv-workshop": {
+    "id": "polytech-tree",
+    "version": "1.0.0",
+    "license": "MIT AND CC-BY-4.0",
+    "author": "Alice-Marx",
+    "description": "Polytech Tree 的「漫游动画」：3862 项人类科技按时代分层、按领域着色，镜头沿塔轴俯视上升，科技按年代逐个显现、前置连线爬向它。原作是 Three.js 3D，这里移植为像素场景。没有配乐，可以静音播放或配任意音乐。需要插件 0.9.1+。",
+    "tags": [
+      "tech-tree",
+      "visualization",
+      "history",
+      "pixels"
+    ],
+    "source": "https://github.com/secwind7/polytech-tree",
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/polytech-tree",
+    "requires": "0.9.1"
+  }
+}

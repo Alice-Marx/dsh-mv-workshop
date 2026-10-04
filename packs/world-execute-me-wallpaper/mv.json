@@ -1,0 +1,140 @@
+{
+  "$schema": "./mv.schema.json",
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "world.execute(me); · Wallpaper MV",
+  "artist": "Mili",
+  "credits": [
+    "Visuals: seasnakes — world.execute(me); MV / Wallpaper Engine wallpaper (MIT), https://github.com/seasnakes/world.execute-me-wallpaper",
+    "Music and lyrics: Mili — world.execute(me);",
+    "dsh-mv adaptation: Alice-Marx"
+  ],
+  "notice": "Bring your own audio: this pack has no music and no lyric text. Choose your copy of Mili's \"world.execute(me);\" (and, if you like, your own lyrics file for the bilingual card).",
+  "duration": 211.907,
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js",
+    "output": "pixels",
+    "size": [
+      1920,
+      1080
+    ],
+    "bpm": 130,
+    "beatOffset": 0.303,
+    "assets": {
+      "analysis": [
+        "data/analysis-1.json",
+        "data/analysis-2.json",
+        "data/analysis-3.json"
+      ]
+    }
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "intro",
+        "label": "Boot",
+        "start": 0.303,
+        "end": 15.072
+      },
+      {
+        "kind": "verse",
+        "label": "Flight",
+        "start": 15.072,
+        "end": 28.226
+      },
+      {
+        "kind": "verse",
+        "label": "Math",
+        "start": 28.226,
+        "end": 43.918
+      },
+      {
+        "kind": "verse",
+        "label": "Travel",
+        "start": 43.918,
+        "end": 58.457
+      },
+      {
+        "kind": "chorus",
+        "label": "Chorus",
+        "start": 58.457,
+        "end": 73.457
+      },
+      {
+        "kind": "verse",
+        "label": "Food",
+        "start": 73.457,
+        "end": 88.226
+      },
+      {
+        "kind": "verse",
+        "label": "Switch",
+        "start": 88.226,
+        "end": 102.765
+      },
+      {
+        "kind": "bridge",
+        "label": "Leave",
+        "start": 102.765,
+        "end": 117.765
+      },
+      {
+        "kind": "bridge",
+        "label": "Erase",
+        "start": 117.765,
+        "end": 133.226
+      },
+      {
+        "kind": "interlude",
+        "label": "Kaleido",
+        "start": 133.226,
+        "end": 147.072
+      },
+      {
+        "kind": "drop",
+        "label": "EXECUTION",
+        "start": 147.072,
+        "end": 162.072
+      },
+      {
+        "kind": "chorus",
+        "label": "Final",
+        "start": 162.072,
+        "end": 176.841
+      },
+      {
+        "kind": "outro",
+        "label": "Love",
+        "start": 176.841,
+        "end": 192.303
+      },
+      {
+        "kind": "outro",
+        "label": "Outro",
+        "start": 192.303,
+        "end": 207.072
+      }
+    ]
+  },
+  "x-dsh-mv-workshop": {
+    "id": "world-execute-me-wallpaper",
+    "version": "1.0.0",
+    "license": "MIT",
+    "author": "Alice-Marx",
+    "description": "seasnakes 的 world.execute(me); 动态壁纸 MV（1920×1080 画布动画，随原曲节拍与频谱同步），原样移植为像素场景；双语歌词卡片显示你自己的歌词文件。需要插件 0.9.1+。",
+    "tags": [
+      "world.execute(me)",
+      "Mili",
+      "wallpaper",
+      "canvas",
+      "pixels"
+    ],
+    "source": "https://github.com/seasnakes/world.execute-me-wallpaper",
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-wallpaper",
+    "requires": "0.9.1",
+    "audio": {
+      "duration": 211.907
+    }
+  }
+}

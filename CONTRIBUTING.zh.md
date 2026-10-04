@@ -36,6 +36,7 @@ audio.duration、audio.fingerprint），并且**不能**包含 `audio`、`lyrics
 - **不允许音频 / 视频 / 歌词文件**（`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`、`lyrics.json`），JSON 和 Markdown 里也不能有歌词文本。
 - **必须声明许可证**（`x-dsh-mv-workshop.license`），见 [LICENSE-POLICY.md](LICENSE-POLICY.md)。
 - 改编自他人作品时，用 `x-dsh-mv-workshop.source` 写上原作链接（`https://`，例如原仓库），面板会在卡片和详情里显示为「原作」。较大的渲染数据放在 `canvas.assets`（单个 JSON ≤ 512 KB，大的要拆分；整个包 ≤ 8 MB）。
+- **像素场景（dsh-mv-cli 0.9.1+）**：`canvas.output: "pixels"`，`canvas.size: [宽, 高]`（最大 1920×1080），定义 `paint(g, t, w, h, ctx)` 在 2D 画布上绘制（不能用 WebGL）。脚本包还会在 `setup(info)` 的 `info.assets` 里拿到 `canvas.assets`。CI 会算出 `requires`（能播放这个包的最低插件版本，这类包为 `0.9.1`）写进 `index.json`；也可以自己在 `x-dsh-mv-workshop.requires` 写更高的版本。CI 用替身画布检查像素场景（每个采样帧都必须画了东西）。
 - 场景脚本必须是可读源码并通过静态检查：不能 `import`/`require`、`eval`、`Function`，不能用网络、存储和全局对象
   （`fetch`、`WebSocket`、`localStorage`、`navigator`、`self`、`globalThis` 等），不能有原型链技巧和混淆（超长行、`\x..` 转义、`atob`）。
   CI 还会在沙箱里试运行每个场景（不报错、不空白）。插件里脚本始终运行在没有网络的 Web Worker 沙箱中。

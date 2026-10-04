@@ -18,11 +18,17 @@
  *   "lyrics":   { "file": "lyrics.lrc", "offset": 0 },
  *   "spectrum": { "file": "spectrum.json" },
  *   "canvas":   { "renderer": "generic" | "dsh-pv" | "script", "script": "scenes.js", "fontSize": 14,
+ *                 "output": "text" | "pixels", "size": [1280, 720],
  *                 "assets": { "timeline": ["data/timeline-1.json", …], "maid-left": "art/maid-left.webp" } }
  * }
  * canvas.assets (0.9.0) names the data and image files a built-in renderer
  * reads from the pack (dsh-pv: timeline, chat, band, maid-left, whale-*). A
  * list means JSON shards that are merged in order (arrays concatenated).
+ * Since 0.9.1 scene scripts get them too: setup(info) receives info.assets
+ * (JSON parsed and merged; images as ImageBitmap when the script paints pixels).
+ * canvas.output "pixels" (0.9.1, renderer "script") makes the script paint
+ * on a sandboxed 2D canvas of canvas.size [w, h] (default 1280 × 720):
+ *   function paint(g, t, width, height, ctx) { g.fillRect(…) }
  * "world-execute-me" (the renderer bundled until 0.8.x) is still accepted and
  * plays with the generic renderer; the scenes now ship as a workshop pack.
  * A "terminal" section written for versions before 0.6.0 is accepted and
@@ -40,6 +46,9 @@ export const MV_CANVAS_RENDERERS = Object.freeze(['generic', 'world-execute-me',
 export const MV_PACK_FILE_ROLES = Object.freeze(['audio', 'lyrics', 'spectrum', 'scene', 'timing', 'asset'])
 /** Renderers the plugin itself implements (0.9.0 moved the world.execute(me) scenes to a workshop pack). */
 export const MV_RENDERERS_BUILTIN = Object.freeze(['generic', 'dsh-pv', 'script'])
+/** What a scene script draws: characters on the grid (render) or pixels on a 2D canvas (paint, 0.9.1). */
+export const MV_SCENE_OUTPUTS = Object.freeze(['text', 'pixels'])
+export const MV_PIXEL_LIMITS = Object.freeze({ minWidth: 160, minHeight: 90, maxWidth: 1920, maxHeight: 1080, defaultSize: Object.freeze([1280, 720]) })
 export const MV_ASSET_EXTENSIONS = Object.freeze(['.json', '.webp', '.png'])
 export const MV_ASSET_NAME = /^[a-z0-9][a-z0-9-]{0,39}$/
 export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt'])
@@ -174,7 +183,7 @@ export function parseMvPack(input) {
   const canvas = data.canvas ?? {}
   if (!isObject(canvas)) problems.push('canvas 必须是对象')
   else {
-    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets']), 'canvas', problems)
+    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets', 'output', 'size']), 'canvas', problems)
     const renderer = canvas.renderer ?? (canvas.script ? 'script' : 'generic')
     if (!MV_CANVAS_RENDERERS.includes(renderer)) problems.push(`canvas.renderer 必须是 ${MV_CANVAS_RENDERERS.join(' / ')}`)
     let script
@@ -184,8 +193,21 @@ export function parseMvPack(input) {
     }
     if (renderer === 'script' && !script && !problems.some(p => p.startsWith('canvas.script'))) problems.push('canvas.renderer 为 script 时必须提供 canvas.script（如 "scenes.js"）')
     const assets = canvasAssets(canvas.assets, problems)
+    // 0.9.1: a scene script may paint pixels (paint(g, t, width, height, ctx) on a sandboxed 2D canvas).
+    const output = canvas.output ?? 'text'
+    if (!MV_SCENE_OUTPUTS.includes(output)) problems.push(`canvas.output 必须是 ${MV_SCENE_OUTPUTS.join(' / ')}`)
+    else if (output !== 'text' && renderer !== 'script') problems.push('canvas.output 只用于 renderer "script"')
+    let size
+    if (canvas.size !== undefined && canvas.size !== null) {
+      const [w, h] = Array.isArray(canvas.size) ? canvas.size : []
+      const { minWidth, minHeight, maxWidth, maxHeight } = MV_PIXEL_LIMITS
+      if (!Array.isArray(canvas.size) || canvas.size.length !== 2 || !Number.isInteger(w) || !Number.isInteger(h) || w < minWidth || h < minHeight || w > maxWidth || h > maxHeight) problems.push(`canvas.size 应是 [宽, 高]（整数像素，${minWidth}–${maxWidth} × ${minHeight}–${maxHeight}）`)
+      else if (output !== 'pixels') problems.push('canvas.size 只用于 canvas.output "pixels"')
+      else size = [w, h]
+    }
     pack.canvas = {
-      renderer, ...(script ? { script } : {}), ...(assets ? { assets } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
+      renderer, ...(script ? { script } : {}), ...(assets ? { assets } : {}), ...(output !== 'text' && MV_SCENE_OUTPUTS.includes(output) ? { output } : {}),
+      ...(output === 'pixels' ? { size: size ?? MV_PIXEL_LIMITS.defaultSize } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
       bpm: optionalNumber(canvas, 'bpm', 20, 400, problems, 'canvas.bpm'), beatOffset: optionalNumber(canvas, 'beatOffset', -60, 60, problems, 'canvas.beatOffset'),
     }
   }
