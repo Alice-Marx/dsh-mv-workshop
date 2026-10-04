@@ -2,9 +2,169 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "cd520059fe6c8e8cb756705457b2716b13aaffb9",
- "generated": "2026-10-04T10:40:12.877Z",
+ "commit": "4830489891610513af1f48903460253bcd60f4df",
+ "generated": "2026-10-04T11:37:21.593Z",
  "packs": [
+  {
+   "id": "polytech-tree",
+   "title": "Polytech Tree · 人类科技树漫游",
+   "artist": "secwind7",
+   "author": "Alice-Marx",
+   "license": "MIT AND CC-BY-4.0",
+   "version": "1.0.0",
+   "duration": 192.113,
+   "renderer": "script",
+   "description": "Polytech Tree 的「漫游动画」：3862 项人类科技按时代分层、按领域着色，镜头沿塔轴俯视上升，科技按年代逐个显现、前置连线爬向它。原作是 Three.js 3D，这里移植为像素场景。没有配乐，可以静音播放或配任意音乐。需要插件 0.9.1+。",
+   "tags": [
+    "tech-tree",
+    "visualization",
+    "history",
+    "pixels"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/polytech-tree",
+   "source": "https://github.com/secwind7/polytech-tree",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "sections": 11,
+   "requires": "0.9.1",
+   "updated": "2026-10-04T19:36:58+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 1080,
+     "sha256": "a92e388d06cccb6aac8c69c4270ded18f5765e82fdc1a453946c1d2df22515f1"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 913,
+     "sha256": "1b66b13c6c87ddde62559b175bab5fb52fa821d90127f1a0ecd84deb62b70001"
+    },
+    {
+     "path": "README.md",
+     "size": 1044,
+     "sha256": "b6cd3805da25c807faea6ede22bf4f389ec284d9a291cf910f3c4bf39b34aac9"
+    },
+    {
+     "path": "cover.png",
+     "size": 293252,
+     "sha256": "9d8d8985f3a3d10b288f1e1efc190a7e81c42824dbc5813ec33e252cf85119d3"
+    },
+    {
+     "path": "data/NOTICE.md",
+     "size": 837,
+     "sha256": "9b52fe8a64510cfdf971f5ede6b422ddf61a9c4be668143307173bd6b01f320a"
+    },
+    {
+     "path": "data/edges.json",
+     "size": 113986,
+     "sha256": "59a34a3c2081fb343e00fcbe868f83405783d77d0ed603dd525edefa5b2b9670"
+    },
+    {
+     "path": "data/nodes-1.json",
+     "size": 114711,
+     "sha256": "321288bad1d26e50968d9f44387ab4e9db4fcd8b08c76deaa4f728924241f7a0"
+    },
+    {
+     "path": "data/nodes-2.json",
+     "size": 119804,
+     "sha256": "155c8484374a79bd4d1675a558e5c94e667cbfc931578caa7f36d0049aced4a0"
+    },
+    {
+     "path": "data/tower.json",
+     "size": 3048,
+     "sha256": "63f0640ab9c0630aefa66e1a86b1b0713fb6e991616a0efd325d681ca8565035"
+    },
+    {
+     "path": "mv.json",
+     "size": 2986,
+     "sha256": "1e680e8f246f68444eb61619899a217d8de6998f478fe9640a1f1c4f8c5c9a1d"
+    },
+    {
+     "path": "scenes.js",
+     "size": 10827,
+     "sha256": "4940655ff23c5585e2b35c0a15c49fdf1b6a992f1b3a780f1ed8540172d68169"
+    }
+   ]
+  },
+  {
+   "id": "world-execute-me-wallpaper",
+   "title": "world.execute(me); · Wallpaper MV",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "MIT",
+   "version": "1.0.0",
+   "duration": 211.907,
+   "renderer": "script",
+   "description": "seasnakes 的 world.execute(me); 动态壁纸 MV（1920×1080 画布动画，随原曲节拍与频谱同步），原样移植为像素场景；双语歌词卡片显示你自己的歌词文件。需要插件 0.9.1+。",
+   "tags": [
+    "world.execute(me)",
+    "Mili",
+    "wallpaper",
+    "canvas",
+    "pixels"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-wallpaper",
+   "source": "https://github.com/seasnakes/world.execute-me-wallpaper",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "sections": 14,
+   "requires": "0.9.1",
+   "updated": "2026-10-04T19:36:58+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 1066,
+     "sha256": "82c3d0719328c4be43bcc8de828494882e8278f7611c335a9f33bd31a5327862"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 1198,
+     "sha256": "387b4f72fdaa1297eea7b422e21dd7035567c84e46a514c661d094067f238896"
+    },
+    {
+     "path": "README.md",
+     "size": 936,
+     "sha256": "606ac8973acecfa9c4fcfa2c43c88c27eb09dc55f9ad7bb95e272ee1c320df63"
+    },
+    {
+     "path": "cover.png",
+     "size": 83601,
+     "sha256": "23b5ed645c6aa0e0f51ab97204742193ba3fe20f4666c9568abcec07971430cb"
+    },
+    {
+     "path": "data/NOTICE.md",
+     "size": 420,
+     "sha256": "c62b3092cc56eead5945378fa2bbee506a90c0d6c7236b1eb1a26cbe4a04189c"
+    },
+    {
+     "path": "data/analysis-1.json",
+     "size": 246384,
+     "sha256": "7d0c408c310656548257c6203f850258c43c29a2b50fb1425e9a44dbfa43bb6e"
+    },
+    {
+     "path": "data/analysis-2.json",
+     "size": 247103,
+     "sha256": "e068b327ed383e534d58c98e847d8a7da3751fa663a494d6dc38f5025b88a92c"
+    },
+    {
+     "path": "data/analysis-3.json",
+     "size": 246745,
+     "sha256": "32e1f863cdf74358b6a90a8cc9492f5c0ad6fdd394b124d456d03a1e9db1016e"
+    },
+    {
+     "path": "mv.json",
+     "size": 3376,
+     "sha256": "2dc4c549cbf37ee1c77650a89fb971fef5536924cad2968d9f3515afbff8527b"
+    },
+    {
+     "path": "scenes.js",
+     "size": 133330,
+     "sha256": "a8ae75c43aa428c239b761c7a921a5d21f4269140d93de5ae7e4f5a6d251b37d"
+    }
+   ]
+  },
   {
    "id": "world-execute-me",
    "title": "world.execute(me);",
