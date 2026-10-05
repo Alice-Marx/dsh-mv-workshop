@@ -2,9 +2,72 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "204809ed84d4db68e129fbe2e54feac14bd4c544",
- "generated": "2026-10-05T16:03:10.387Z",
+ "commit": "5d14cfccf3954517ca77b8f3fcb662d60311d0e2",
+ "generated": "2026-10-05T17:02:43.164Z",
  "packs": [
+  {
+   "id": "world-execute-me-three",
+   "title": "world.execute(me); · Original Three.js MV",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "MIT",
+   "version": "1.0.2",
+   "duration": 213,
+   "renderer": "webgl",
+   "description": "Original 12-section Three.js MV with camera blending, bloom and opt-in bilingual subtitles. Requires dsh-mv-cli 0.9.3+. Bring your own audio and local lyrics.js/LRC file.",
+   "tags": [
+    "world.execute(me)",
+    "Mili",
+    "three.js",
+    "webgl",
+    "3d"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
+   "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "sections": 12,
+   "requires": "0.9.3",
+   "updated": "2026-10-06T01:02:13+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 3577,
+     "sha256": "f32a107059e545fca498cf73d90246cca746542fc739f830a49359d04fed6dab"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 1694,
+     "sha256": "80e6e4dc3b4e4bc1fce527ac2724e4637fd2dfe693f84f61adb04f3d2d8af61d"
+    },
+    {
+     "path": "README.md",
+     "size": 1825,
+     "sha256": "04f380d34326da9f753cf8f3c8fc938ddc12fc55a2d8af82eccd0648733e13c3"
+    },
+    {
+     "path": "cover.png",
+     "size": 627525,
+     "sha256": "3f13b2c1687faa378b91b1f8cf776dc063c8e34df846943c64ffc046fc80ba44"
+    },
+    {
+     "path": "mv.json",
+     "size": 2928,
+     "sha256": "d01e1f0e7afaea5fbd9e3fa70050eec1b855354c77f0a5f8c58db725148651e2"
+    },
+    {
+     "path": "scenes.js",
+     "size": 1454924,
+     "sha256": "6cda00486b0ddc83a4eafe8cff76320599b9b2d1db11e1bfa9388daa3e850096"
+    },
+    {
+     "path": "source-provenance.json",
+     "size": 5618,
+     "sha256": "c5233af73e4cdeb35397eee21adf7de7d4f7186b6d97534a47e0bb233bef961f"
+    }
+   ]
+  },
   {
    "id": "polytech-tree",
    "title": "Polytech Tree · 人类科技树漫游",
@@ -85,69 +148,6 @@
      "path": "scenes.js",
      "size": 11677,
      "sha256": "fd93dd10202fbed7b9c9f2af37dec9dd1c5ac1df8b11b088a415290f814f3c15"
-    }
-   ]
-  },
-  {
-   "id": "world-execute-me-three",
-   "title": "world.execute(me); · Original Three.js MV",
-   "artist": "Mili",
-   "author": "Alice-Marx",
-   "license": "MIT",
-   "version": "1.0.1",
-   "duration": 213,
-   "renderer": "webgl",
-   "description": "Original 12-section Three.js MV with original procedural geometry, camera blending and UnrealBloomPass post-processing. Requires dsh-mv-cli 0.9.2+. Bring your own audio and lyrics.",
-   "tags": [
-    "world.execute(me)",
-    "Mili",
-    "three.js",
-    "webgl",
-    "3d"
-   ],
-   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
-   "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
-   "cover": "cover.png",
-   "fingerprint": false,
-   "timing": false,
-   "sections": 12,
-   "requires": "0.9.2",
-   "updated": "2026-10-06T00:02:37+08:00",
-   "files": [
-    {
-     "path": "LICENSE.txt",
-     "size": 3577,
-     "sha256": "f32a107059e545fca498cf73d90246cca746542fc739f830a49359d04fed6dab"
-    },
-    {
-     "path": "NOTICE.md",
-     "size": 1694,
-     "sha256": "80e6e4dc3b4e4bc1fce527ac2724e4637fd2dfe693f84f61adb04f3d2d8af61d"
-    },
-    {
-     "path": "README.md",
-     "size": 1451,
-     "sha256": "a9798f08d2777b1503347f1c62a191bf4448b9249942bc14a348b85e820720cf"
-    },
-    {
-     "path": "cover.png",
-     "size": 627525,
-     "sha256": "3f13b2c1687faa378b91b1f8cf776dc063c8e34df846943c64ffc046fc80ba44"
-    },
-    {
-     "path": "mv.json",
-     "size": 2915,
-     "sha256": "084432f4f50f938dcb5d05395bb484d5a2ffb85beb24615b9f3bcab6e8ba620a"
-    },
-    {
-     "path": "scenes.js",
-     "size": 1454924,
-     "sha256": "6cda00486b0ddc83a4eafe8cff76320599b9b2d1db11e1bfa9388daa3e850096"
-    },
-    {
-     "path": "source-provenance.json",
-     "size": 5618,
-     "sha256": "c5233af73e4cdeb35397eee21adf7de7d4f7186b6d97534a47e0bb233bef961f"
     }
    ]
   },
