@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Validate workshop packs with the same rules the dsh-mv plugin applies when installing them:
 // layout and size limits, no audio / lyric files, required license, mv.json schema, static sandbox
-// checks on scene scripts, and a dry run of each scene in a node:vm sandbox (no errors, not blank).
+// checks on scene scripts, and a dry run in node:vm. Bitmap outputs record drawing API
+// calls only: they do not compile GPU shaders, decode images, or validate visible pixels.
 //
 //   node scripts/validate.mjs                 all packs
 //   node scripts/validate.mjs --changed BASE  also fail if a PR touches files outside packs/<id>/
@@ -46,16 +47,21 @@ for (const id of ids) {
     const assets = {}
     for (const [name, value] of Object.entries(pack.canvas.assets ?? {})) {
       const list = Array.isArray(value) ? value : [value]
-      if (!list.every(p => p.endsWith('.json'))) continue
+      if (!list.every(p => /\.json$/i.test(p))) {
+        warn(`packs/${id}: canvas.assets.${name} is an image; CI does not decode image assets. Verify this scene in the browser.`)
+        continue
+      }
       const shards = list.map(p => JSON.parse(readPackText(id)(p)))
       const merged = {}
       for (const shard of shards) for (const [k, v] of Object.entries(shard ?? {})) { if (Array.isArray(v) && Array.isArray(merged[k])) merged[k] = merged[k].concat(v); else if (!(k in merged)) merged[k] = v }
       assets[name] = shards.length === 1 ? shards[0] : merged
     }
     const info = { duration, title: pack.title, artist: pack.artist ?? '', sections: pack.sections ?? [], bpm: pack.canvas.bpm ?? 0, beatOffset: pack.canvas.beatOffset ?? 0, assets }
-    const pixels = pack.canvas.output === 'pixels'
-    for (const [cols, rows] of pixels ? [pack.canvas.size] : [[100, 32], [60, 18]]) {
-      const check = checkScene(source, { times, cols, rows, info, ...(pixels ? { output: 'pixels', size: pack.canvas.size } : {}) })
+    // 0.9.2: webgl scripts also paint per-frame on a sized canvas; pixels / webgl both run at canvas.size.
+    const output = pack.canvas.output === 'pixels' || pack.canvas.output === 'webgl' ? pack.canvas.output : 'text'
+    const sizes = (output === 'text') ? [[100, 32], [60, 18]] : [pack.canvas.size]
+    for (const [cols, rows] of sizes) {
+      const check = checkScene(source, { times, cols, rows, info, ...(output !== 'text' ? { output, size: pack.canvas.size } : {}) })
       if (!check.ok) fail(`packs/${id}: scene script fails in the sandbox (${cols}x${rows}): ${check.problems.join('; ')}`)
       else for (const p of check.problems) warn(`packs/${id}: ${p}`)
     }

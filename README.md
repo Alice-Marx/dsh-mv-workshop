@@ -1,14 +1,14 @@
 # dsh-mv 创意工坊 / MV Workshop
 
-ASCII music videos for **MV 放映室**, the [dsh-mv](https://www.npmjs.com/package/@ljwei-stak/dsh-mv-cli) plugin of
-DeepSeek Harness. 为 DeepSeek Harness 的 MV 放映室插件收集的 ASCII MV 包。
+Text, Canvas2D and WebGL2 3D music videos for **MV 放映室**, the [dsh-mv](https://www.npmjs.com/package/@ljwei-stak/dsh-mv-cli) plugin of
+DeepSeek Harness. 为 MV 放映室收集文本、2D 与实时 3D MV 包。
 
 - **Install / 安装**: MV 放映室 → 曲库 → **创意工坊** → pick a pack → **安装**. Then choose your own copy of the song
   (and lyrics) to play it. 选择包 → 安装 → 选择你自己的歌曲文件（和歌词）即可播放。
 - **Publish / 发布**: open your pack → **发布到工坊** → **在 GitHub 上提交** (fork & pull request in your browser).
   See [CONTRIBUTING.md](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh.md).
 - **No audio, no lyric text** in this repository — packs carry timings and hashes only. 本仓库不含音频和歌词文本。
-- Licenses: each pack declares its own; default CC BY-NC-SA 4.0 — [LICENSE-POLICY.md](LICENSE-POLICY.md).
+- Licenses: each pack must declare its own rights; never infer a license for upstream work — [LICENSE-POLICY.md](LICENSE-POLICY.md).
 
 ## world.execute(me) packs / world.execute(me) 包
 
@@ -23,12 +23,13 @@ dsh-mv-cli 0.8.x 内置的两个 MV 自 0.9.0 起在这里发布（需要 0.9.0 
 Both are generated from [dsh-mv-cli/presets](https://github.com/Alice-Marx/dsh-mv-cli/tree/main/presets) with
 `presets/build-workshop-packs.mjs`. Neither contains audio or lyric text — bring your own copy of the song.
 
-Ported community projects (pixel scenes, **need dsh-mv-cli ≥ 0.9.1**) / 移植的社区项目（像素场景，需要 0.9.1 及以上）:
+Ported community projects / 移植社区项目：Wallpaper 保持 2D（0.9.1+），Polytech Tree 使用实时 WebGL2 3D（0.9.2+）。
 
 | Pack / 包 | Original / 原作 | License / 许可 |
 | --- | --- | --- |
 | [`world-execute-me-wallpaper`](packs/world-execute-me-wallpaper) — wallpaper MV, 1920×1080 | [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) | `MIT` (© 2026 seasnakes; music and lyrics © Mili, not included; [NOTICE](packs/world-execute-me-wallpaper/NOTICE.md)) |
-| [`polytech-tree`](packs/polytech-tree) — tech-tree tour, no music needed | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | `MIT AND CC-BY-4.0` (code MIT © 2026 secwind; structured data CC BY 4.0, the CC BY-SA `desc` field is not used; [NOTICE](packs/polytech-tree/NOTICE.md)) |
+| [`polytech-tree`](packs/polytech-tree) — GPU-instanced 3D tour, no music needed; 0.9.2+ | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | `MIT AND CC-BY-4.0` (code MIT © 2026 secwind; structured data CC BY 4.0, the CC BY-SA `desc` field is not used; [NOTICE](packs/polytech-tree/NOTICE.md)) |
+| [`world-execute-me-three`](packs/world-execute-me-three) — original 12-scene Three.js MV with bloom; 0.9.2+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | `MIT` (direct author permission confirmed by maintainer, Three.js MIT; [NOTICE](packs/world-execute-me-three/NOTICE.md)) |
 
 They are built by `presets/ports/*/build.mjs` in dsh-mv-cli from the upstream commits named in each NOTICE.
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
@@ -49,3 +50,17 @@ scripts/vendor/          rule files shared with the plugin
 ```
 
 Local check / 本地检查: `node scripts/validate.mjs` (Node 20+, no dependencies).
+
+## 3D packs / 3D 包
+
+Use `canvas.renderer: "script"`, `canvas.output: "webgl"`, `canvas.size: [1280, 720]` and a bundled
+`setup(info, gl)` / `paint(gl, t, w, h, ctx)` script. Three.js must use the explicit
+`{ canvas: info.canvas, context: gl }` renderer and no DOM, network loaders or animation loop.
+Textures belong in `canvas.assets` (PNG/WebP as ImageBitmap); JSON shards are merged before setup.
+WebGL scripts may be 2 MiB; the index marks them `renderer: webgl` and `requires: 0.9.2`.
+CI uses a recording stand-in, **not a GPU**; maintainers must also verify real Chromium shader compilation,
+nonblank frames, seeking and cleanup. 在真实浏览器验着色器、画面、拖动进度和切包清理，不能只看 Node/CI 通过。
+
+The wiers-jack pack preserves the original 12-scene Three.js rendering core and 213-second visual timeline.
+The maintainer confirmed direct MIT permission from the author on 2026-10-05; LICENSE/NOTICE records this
+separately from the older upstream package's ISC declaration. It includes no audio or lyric text.

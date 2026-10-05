@@ -30,6 +30,8 @@
  */
 export const SCENE_LIMITS = Object.freeze({
   scriptBytes: 256 * 1024,
+  /** 0.9.2: webgl scenes may be larger (inlined Three.js etc.). */
+  webglScriptBytes: 2 * 1024 * 1024,
   /** A frame slower than this counts as slow; too many slow frames stop the script. */
   frameBudgetMs: 40,
   slowFramesAllowed: 45,
@@ -41,15 +43,40 @@ export const SCENE_LIMITS = Object.freeze({
   maxRows: 85,
 })
 
-/** Names removed from the worker global scope (and its prototypes) before the scene runs. */
+/**
+ * Names removed from the worker global scope (and its prototypes) before the scene runs.
+ * Every output has the same restrictions. Worker-safe library bundles can test
+ * absent browser globals, but never receive a DOM, network, storage or timers.
+ */
 export const SCENE_BLOCKED_GLOBALS = Object.freeze([
-  'fetch', 'XMLHttpRequest', 'WebSocket', 'WebTransport', 'EventSource', 'importScripts', 'indexedDB', 'caches',
-  'BroadcastChannel', 'Worker', 'SharedWorker', 'RTCPeerConnection', 'RTCDataChannel', 'Request', 'Response', 'Headers',
-  'FileReader', 'FileReaderSync', 'Notification', 'navigator', 'location', 'open', 'close', 'storageFoundation',
-  'WebAssembly', 'MessageChannel', 'importScripts',
-  // 0.9.1: fonts can be loaded from URLs; scripts use the fonts the system already has.
+  // Network: still blocked in every mode.
+  'fetch', 'XMLHttpRequest', 'WebSocket', 'WebTransport', 'EventSource', 'Request', 'Response', 'Headers',
+  // Storage / caches: still blocked in every mode.
+  'indexedDB', 'localStorage', 'sessionStorage', 'caches', 'BroadcastChannel', 'Worker', 'SharedWorker', 'storageFoundation',
+  // P2P / media capture: still blocked.
+  'RTCPeerConnection', 'RTCDataChannel', 'FileReader', 'FileReaderSync', 'Notification',
+  // WASM: still blocked (vm context disables `codeGeneration.wasm` too).
+  'WebAssembly',
+  // Code generation: still blocked in every mode.
+  'Function', 'eval',
+  // Fonts: scripts use the fonts the system already has.
   'FontFace', 'fonts',
+  // Supervisor uses these before lockdown; user code is compiled in a separate Function scope
+  // and cannot reach supervisor-private __* bindings.
+  'importScripts', 'onmessage', 'postMessage',
+  // Browser glue that text / pixel scenes don't need and would only widen the attack surface.
+  'window', 'document', 'self', 'globalThis', 'process',
+  'navigator', 'location', 'open', 'close',
+  // Async / timers — scenes must drive the frame loop via paint(t, …) only.
+  'setTimeout', 'setInterval', 'clearTimeout', 'clearInterval',
+  'requestAnimationFrame', 'cancelAnimationFrame', 'queueMicrotask',
+  // Event listeners / message channels.
+  'MessageChannel', 'addEventListener', 'removeEventListener', 'dispatchEvent',
+  'onmessageerror', 'onerror', 'onunhandledrejection',
 ])
+
+/** Kept as a per-output API for consumers; WebGL does not widen privileges. */
+export function sceneBlockedGlobals() { return SCENE_BLOCKED_GLOBALS }
 
 /** Pixel scenes (canvas.output "pixels", 0.9.1). */
 export const PIXEL_SCENE_LIMITS = Object.freeze({
@@ -68,12 +95,18 @@ export function stripModuleSyntax(source) {
 }
 
 /** Problems that make a script unusable before running it (size, imports). */
-export function sceneSourceProblems(source) {
+export function sceneSourceProblems(source, { output = 'text' } = {}) {
   const problems = []
   const text = String(source ?? '')
   if (!text.trim()) problems.push('场景脚本是空的。')
-  if (new TextEncoder().encode(text).length > SCENE_LIMITS.scriptBytes) problems.push(`场景脚本超过 ${SCENE_LIMITS.scriptBytes / 1024} KB。`)
-  if (/^\s*import\s[^(]/m.test(text) || /\bimport\s*\(/.test(text) || /\brequire\s*\(/.test(text)) problems.push('场景脚本不能 import / require 其他模块（运行在没有文件和网络的沙箱里）。')
+  // 0.9.2: webgl output mode raises the byte limit to allow inlined 3D libraries (Three.js etc.).
+  const limit = output === 'webgl' ? SCENE_LIMITS.webglScriptBytes : SCENE_LIMITS.scriptBytes
+  if (new TextEncoder().encode(text).length > limit) problems.push(`场景脚本超过 ${limit / 1024} KB。`)
+  // Dynamic import can fetch modules even when fetch is removed. Match comment-
+  // separated calls too, including inside template substitutions; intentionally
+  // scan the original text so string/comment tricks cannot hide executable imports.
+  const gap = String.raw`(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?:\r\n?|\n|$))*`
+  if (/^\s*import\s[^(]/m.test(text) || new RegExp(`\\b(?:import|require)${gap}\\(`).test(text)) problems.push('场景脚本不能 import / require 其他模块（运行在没有文件和网络的沙箱里）。')
   return problems
 }
 
@@ -102,67 +135,152 @@ function __mvNormalize(out, cols, rows) {
 }
 `
 
+/** Minimal canvas interface for bundled Three.js, shared by playback and structural checks. */
+export const WEBGL_CANVAS_FACADE_SOURCE = String.raw`
+function __mvCanvasFacade(canvas, gl) {
+  const facade = Object.create(null);
+  const size = (n, max) => { if (!Number.isInteger(n) || n < 1 || n > max) throw new RangeError('canvas size exceeds scene limits'); return n; };
+  Object.defineProperties(facade, {
+    width: { enumerable: true, get: () => canvas.width, set: n => { canvas.width = size(n, 1920); } },
+    height: { enumerable: true, get: () => canvas.height, set: n => { canvas.height = size(n, 1080); } },
+    clientWidth: { enumerable: true, get: () => canvas.width },
+    clientHeight: { enumerable: true, get: () => canvas.height },
+    style: { value: Object.create(null), enumerable: true },
+    getContext: { value: type => type === 'webgl2' ? gl : null },
+    setAttribute: { value: () => {} },
+    addEventListener: { value: () => {} },
+    removeEventListener: { value: () => {} },
+  });
+  return Object.freeze(facade);
+}
+`
+
 /**
  * Worker source: sandbox prelude, the user's scene, then the frame loop.
  * output "pixels": the scene defines paint(g, t, width, height, ctx) and draws
  * on an OffscreenCanvas 2D context (only "2d" contexts can be created); each
  * frame goes back as an ImageBitmap (the canvas starts blank every frame).
+ * output "webgl": paint(gl, t, width, height, ctx) receives the supervisor's
+ * WebGL2 context; setup(info, gl) receives the same context and info.canvas is a
+ * minimal canvas facade. Bundled Three.js must use { canvas: info.canvas, context: gl }.
  * setup(info) receives info.assets (the pack's canvas.assets, JSON parsed).
  */
 export function sceneWorkerSource(userSource, { output = 'text' } = {}) {
   const pixels = output === 'pixels'
-  const blocked = JSON.stringify(SCENE_BLOCKED_GLOBALS)
+  const webgl = output === 'webgl'
+  const blocked = JSON.stringify(sceneBlockedGlobals(output))
+  // Compile the scene through a captured Function constructor after supervisor state has been enclosed in the
+  // IIFE below. Functions created this way resolve globals from the worker, not lexical __* supervisor bindings.
+  const userBody = JSON.stringify(`"use strict";\n${stripModuleSyntax(userSource)}\n;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };`)
   return `"use strict";
-const __post = self.postMessage.bind(self);
-const __listen = self.addEventListener.bind(self);
-const __now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
+(() => {
+const __global = self;
+const __post = __global.postMessage.bind(__global);
+const __listen = __global.addEventListener.bind(__global);
+const __now = typeof performance !== 'undefined' ? performance.now.bind(performance) : Date.now.bind(Date);
+const __compile = Function;
+const __pixels = ${pixels ? 'true' : 'false'};
+const __webgl = ${webgl ? 'true' : 'false'};
+const __bitmap = __pixels || __webgl;
+const __Canvas = typeof OffscreenCanvas === 'function' ? OffscreenCanvas : null;
+const __nativeGetContext = __Canvas && OffscreenCanvas.prototype.getContext;
+const __snapshot = __Canvas && OffscreenCanvas.prototype.transferToImageBitmap;
+const __canvasListen = typeof EventTarget !== 'undefined' ? EventTarget.prototype.addEventListener : null;
 (() => {
   const names = ${blocked};
   const seen = new Set();
-  for (let o = self; o && !seen.has(o); o = Object.getPrototypeOf(o)) {
+  for (let o = __global; o && !seen.has(o); o = Object.getPrototypeOf(o)) {
     seen.add(o);
     for (const name of names) { try { delete o[name] } catch (e) {} }
   }
-  for (const name of names) { try { Object.defineProperty(self, name, { value: undefined, writable: false, configurable: false }) } catch (e) {} }
-  try { Object.defineProperty(self, 'postMessage', { value: undefined, writable: false, configurable: false }) } catch (e) {}
-  if (typeof OffscreenCanvas === 'function') {
-    // Only 2D canvases: no WebGL / WebGPU / bitmaprenderer contexts from scene scripts.
-    const getContext = OffscreenCanvas.prototype.getContext;
-    try { Object.defineProperty(OffscreenCanvas.prototype, 'getContext', { value: function (type, options) { return type === '2d' ? getContext.call(this, type, options) : null }, writable: false, configurable: false }) } catch (e) {}
+  for (const name of names) { try { Object.defineProperty(__global, name, { value: undefined, writable: false, configurable: false }) } catch (e) {} }
+  // Removing global Function alone leaves (() => {}).constructor and async/generator
+  // constructors able to create code. Lock those paths too; only the private compiler remains.
+  for (const fn of [__compile, Object.getPrototypeOf(async function() {}).constructor, Object.getPrototypeOf(function*() {}).constructor, Object.getPrototypeOf(async function*() {}).constructor]) {
+    try { Object.defineProperty(fn.prototype, 'constructor', { value: undefined, writable: false, configurable: false }) } catch (e) {}
+  }
+  if (__Canvas) {
+    // pixels / text: user-created canvases stay 2D-only; the supervisor canvas holds the only WebGL2 context.
+    // webgl (0.9.2): user code may also create its own canvases and ask for 'webgl2' (Three.js's WebGLRenderer does).
+    try { Object.defineProperty(__Canvas.prototype, 'getContext', { value: function (type, options) {
+      if (type === '2d') return __nativeGetContext.call(this, type, options)
+      if (type === 'webgl2' && __webgl) return __nativeGetContext.call(this, type, options)
+      return null
+    }, writable: false, configurable: false }) } catch (e) {}
   }
 })();
 ${SCENE_RUNTIME_SOURCE}
-const __pixels = ${pixels ? 'true' : 'false'};
-const __Canvas = typeof OffscreenCanvas === 'function' ? OffscreenCanvas : null;
-let __scene = null, __setupError = '', __cv = null, __g = null;
+${WEBGL_CANVAS_FACADE_SOURCE}
+let __scene = null, __setupError = '', __cv = null, __g = null, __facade = null, __initialized = false, __contextLost = false;
 try {
-  __scene = (function () {
-${stripModuleSyntax(userSource)}
-;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };
-  })();
-  if (__pixels && !__scene.paint) __setupError = '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。';
-  else if (__pixels && !__Canvas) __setupError = '这个环境不支持 OffscreenCanvas，无法运行像素场景。';
-  else if (!__pixels && !__scene.render) __setupError = '场景脚本没有定义 render(t, cols, rows, ctx) 函数。';
+  __scene = __compile(${userBody})();
+  if (__bitmap && !__scene.paint) __setupError = __webgl
+    ? '场景脚本没有定义 paint(gl, t, width, height, ctx) 函数（canvas.output 为 "webgl"）。'
+    : '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。';
+  else if (__bitmap && !__Canvas) __setupError = '这个环境不支持 OffscreenCanvas，无法运行像素场景。';
+  else if (!__bitmap && !__scene.render) __setupError = '场景脚本没有定义 render(t, cols, rows, ctx) 函数。';
 } catch (error) { __setupError = String(error && error.stack || error); }
+function __surface(w, h) {
+  w = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxWidth}, w | 0)); h = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxHeight}, h | 0));
+  if (!__cv) {
+    __cv = new __Canvas(w, h);
+    __g = __webgl
+      ? __nativeGetContext.call(__cv, 'webgl2', { alpha: false, antialias: true, depth: true, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false })
+      : __nativeGetContext.call(__cv, '2d');
+    if (__webgl && __g) {
+      __facade = __mvCanvasFacade(__cv, __g);
+      const lost = event => {
+        if (__contextLost) return;
+        __contextLost = true;
+        event.preventDefault?.();
+        __post({ type: 'fatal', error: 'WebGL 上下文已丢失，场景已停止。' });
+      };
+      // Lockdown removes EventTarget listener methods from the shared prototype.
+      // Keep the supervisor's original method, so context-loss handling still works.
+      if (__canvasListen) {
+        __canvasListen.call(__cv, 'webglcontextlost', lost);
+        __canvasListen.call(__cv, 'contextlost', lost);
+      } else {
+        __cv.addEventListener?.('webglcontextlost', lost);
+        __cv.addEventListener?.('contextlost', lost);
+      }
+    }
+  } else if (__cv.width !== w || __cv.height !== h) { __cv.width = w; __cv.height = h; }
+  if (!__g) throw new Error(__webgl ? '这个环境不支持 OffscreenCanvas WebGL2。' : '这个环境不支持 OffscreenCanvas 2D。');
+  if (__webgl && (__contextLost || __g.isContextLost?.())) throw new Error('WebGL 上下文已丢失，场景已停止。');
+  return [w, h];
+}
+// 0.9.2: in webgl mode the user may also create their own canvases; the supervisor canvas
+// (__cv / __g) is what we transfer to the main thread each frame. WebGL frames are
+// produced by paint() drawing on __g; transferToImageBitmap() snapshots the canvas.
 function __paint(msg) {
-  const w = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxWidth}, msg.cols | 0)), h = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxHeight}, msg.rows | 0));
-  if (!__cv || __cv.width !== w || __cv.height !== h) { __cv = new __Canvas(w, h); __g = __cv.getContext('2d'); }
-  if (typeof __g.reset === 'function') __g.reset();
-  else { __g.setTransform(1, 0, 0, 1, 0, 0); __g.globalAlpha = 1; __g.globalCompositeOperation = 'source-over'; __g.filter = 'none'; __g.clearRect(0, 0, w, h); }
+  const [w, h] = __surface(msg.cols, msg.rows);
+  if (__pixels && typeof __g.reset === 'function') __g.reset();
+  else if (__pixels) { __g.setTransform(1, 0, 0, 1, 0, 0); __g.globalAlpha = 1; __g.globalCompositeOperation = 'source-over'; __g.filter = 'none'; __g.clearRect(0, 0, w, h); }
   __scene.paint(__g, msg.t, w, h, msg.ctx);
-  return __cv.transferToImageBitmap();
+  if (__cv.width !== w || __cv.height !== h) throw new Error('paint() 不能更改输出 canvas.size。');
+  if (__webgl && (__contextLost || __g.isContextLost?.())) throw new Error('WebGL 上下文已丢失，场景已停止。');
+  if (__webgl && typeof __g.flush === 'function') __g.flush();
+  return __snapshot.call(__cv);
 }
 __listen('message', event => {
   const msg = event.data || {};
   if (msg.type === 'init') {
-    if (!__setupError && __scene.setup) { try { __scene.setup(msg.info || {}) } catch (error) { __setupError = String(error && error.stack || error) } }
+    if (__initialized) return;
+    __initialized = true;
+    if (!__setupError && __webgl) { try { __surface(msg.info && msg.info.width || 1280, msg.info && msg.info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
+    if (!__setupError && __scene.setup) { try { __scene.setup(__webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {}), __webgl ? __g : undefined) } catch (error) { __setupError = String(error && error.stack || error) } }
     __post({ type: 'ready', error: __setupError });
     return;
   }
-  if (msg.type !== 'frame' || __setupError) return;
+  if (msg.type !== 'frame' || !__initialized || __setupError || __contextLost) return;
   const started = __now();
   try {
-    if (__pixels) { const bitmap = __paint(msg); __post({ type: 'frame', id: msg.id, bitmap, ms: __now() - started }, [bitmap]); }
+    if (__bitmap) {
+      const bitmap = __paint(msg);
+      try { __post({ type: 'frame', id: msg.id, bitmap, ms: __now() - started }, [bitmap]); }
+      catch (error) { bitmap.close?.(); throw error; }
+    }
     else {
       const frame = __mvNormalize(__scene.render(msg.t, msg.cols, msg.rows, msg.ctx), msg.cols, msg.rows);
       __post({ type: 'frame', id: msg.id, frame, ms: __now() - started });
@@ -171,6 +289,7 @@ __listen('message', event => {
     __post({ type: 'error', id: msg.id, error: String(error && error.stack || error).slice(0, 2000) });
   }
 });
+})();
 `
 }
 

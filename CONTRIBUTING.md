@@ -2,7 +2,7 @@
 
 [中文](CONTRIBUTING.zh.md)
 
-Packs are ASCII music videos for **MV 放映室** (the [dsh-mv](https://www.npmjs.com/package/@ljwei-stak/dsh-mv-cli)
+Packs are text, Canvas2D or WebGL2 music videos for **MV 放映室** (the [dsh-mv](https://www.npmjs.com/package/@ljwei-stak/dsh-mv-cli)
 plugin of DeepSeek Harness). Each pack lives in `packs/<id>/` and is listed in `index.json`, which CI rebuilds after
 every merge. There is no server: the plugin downloads `index.json` and pack files from `raw.githubusercontent.com`
 and checks each file's sha256 against the index.
@@ -45,8 +45,8 @@ punctuation and symbols.
 ## Rules (checked by CI: `node scripts/validate.mjs`)
 
 - `<id>`: lowercase letters, digits and `-`, 3–64 characters; equals `x-dsh-mv-workshop.id`.
-- Allowed files: `.json .js .mjs .md .txt .png .webp .jpg`. At most 40 files, 4 MB per pack, 512 KB per text file,
-  256 KB per script, 1 MB per image.
+- Allowed files: `.json .js .mjs .md .txt .png .webp .jpg`. At most 40 files, 8 MiB per pack, 512 KiB per text/data file,
+  256 KiB per text/pixels script, 2 MiB per WebGL script, 1 MiB per cover (canvas.assets images remain 512 KiB).
 - **No audio / video / lyric files** (`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`, `lyrics.json`), no lyric
   text inside JSON or Markdown.
 - A **license is required** (`x-dsh-mv-workshop.license`), see [LICENSE-POLICY.md](LICENSE-POLICY.md).
@@ -56,6 +56,11 @@ punctuation and symbols.
   storage or global objects (`fetch`, `WebSocket`, `localStorage`, `navigator`, `self`, `globalThis`, …), no
   prototype tricks, no obfuscation (very long lines, `\x..` escapes, `atob`). CI also runs every scene in a sandbox
   at several times (no errors, not blank). In the plugin, scripts always run in a Web Worker sandbox without network.
+- **WebGL 3D (0.9.2+)**: `canvas.output: "webgl"`, `setup(info, gl)`, `paint(gl, t, w, h, ctx)`.
+  Bundled Three.js uses `{ canvas: info.canvas, context: gl }`. Dormant library references to browser/network
+  APIs may warn rather than fail static checks, but those APIs remain unavailable at runtime. No CDN, DOM or independent
+  frame loop. Rebuild from absolute `t` for seek correctness. CI only records calls (`gpuValidated: false`);
+  also verify real Chromium shaders, textures, frames, seeking, resize and cleanup before submitting.
 - Pull requests may only touch `packs/<id>/`. Don't edit `index.json`.
 
 The maintainer reviews every pull request before merging. Packs can be removed if a rights holder asks.

@@ -32,7 +32,7 @@ audio.duration、audio.fingerprint），并且**不能**包含 `audio`、`lyrics
 ## 规则（CI 用 `node scripts/validate.mjs` 检查）
 
 - `<id>`：小写字母、数字和 `-`，3–64 个字符，与 `x-dsh-mv-workshop.id` 相同。
-- 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg`；每个包最多 40 个文件、4 MB；文本文件 512 KB、脚本 256 KB、图片 1 MB。
+- 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg`；每个包最多 40 个文件、8 MiB；文本/数据 512 KiB，文本/2D 脚本 256 KiB、WebGL 脚本 2 MiB、封面 1 MiB（canvas.assets 图片仍为 512 KiB）。
 - **不允许音频 / 视频 / 歌词文件**（`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`、`lyrics.json`），JSON 和 Markdown 里也不能有歌词文本。
 - **必须声明许可证**（`x-dsh-mv-workshop.license`），见 [LICENSE-POLICY.md](LICENSE-POLICY.md)。
 - 改编自他人作品时，用 `x-dsh-mv-workshop.source` 写上原作链接（`https://`，例如原仓库），面板会在卡片和详情里显示为「原作」。较大的渲染数据放在 `canvas.assets`（单个 JSON ≤ 512 KB，大的要拆分；整个包 ≤ 8 MB）。
@@ -41,5 +41,9 @@ audio.duration、audio.fingerprint），并且**不能**包含 `audio`、`lyrics
   （`fetch`、`WebSocket`、`localStorage`、`navigator`、`self`、`globalThis` 等），不能有原型链技巧和混淆（超长行、`\x..` 转义、`atob`）。
   CI 还会在沙箱里试运行每个场景（不报错、不空白）。插件里脚本始终运行在没有网络的 Web Worker 沙箱中。
 - Pull Request 只能改动 `packs/<id>/`，不要修改 `index.json`。
+- **WebGL 3D（0.9.2+）**：`canvas.output: "webgl"`，定义 `setup(info, gl)` 与 `paint(gl, t, w, h, ctx)`。
+  已打包的 Three.js 使用 `{ canvas: info.canvas, context: gl }`。库里未执行的浏览器/网络 API 引用可保留并给警告，
+  但运行时仍禁用这些 API，不支持 CDN、DOM 或独立动画循环。按绝对时间 `t` 重建画面保证 seek。
+  CI 只记录调用（`gpuValidated: false`），投稿前须另用真实 Chromium 验着色器、纹理、画面、拖动进度、缩放及资源清理。
 
 维护者会审核每个 Pull Request 后再合并。权利人要求时，包可能被移除。

@@ -37,6 +37,8 @@ export const WORKSHOP_LIMITS = Object.freeze({
   fileBytes: 512 * 1024,
   coverBytes: 1024 * 1024,
   scriptBytes: 256 * 1024,
+  /** 0.9.2: webgl scenes (Three.js bundles etc.) get a higher single-script cap. */
+  webglScriptBytes: 2 * 1024 * 1024,
   /** 0.9.0: 8 MB (was 4) so the dsh PV pack's recorded data fits; single files stay ≤ 512 KB (shard big JSON). */
   packBytes: 8 * 1024 * 1024,
   indexBytes: 8 * 1024 * 1024,
@@ -61,6 +63,7 @@ const PATH_PATTERN = /^[A-Za-z0-9._-]+(\/[A-Za-z0-9._-]+){0,2}$/
 
 const extOf = name => { const at = name.lastIndexOf('.'); return at > 0 ? name.slice(at).toLowerCase() : '' }
 const isObject = v => v !== null && typeof v === 'object' && !Array.isArray(v)
+const hasShareableLicense = value => typeof value === 'string' && Boolean(value.trim()) && !/^(?:unlicensed|unknown|none|noassertion|all rights reserved|pending(?:[- ]permission)?|licenseref-pending-permission)$/i.test(value.trim())
 
 /** Slug for a pack id from a title (ASCII letters/digits/dashes; falls back to "mv-<random>"). */
 export function workshopSlug(title, artist = '', random = () => Math.random().toString(36).slice(2, 8)) {
@@ -72,31 +75,47 @@ export function workshopSlug(title, artist = '', random = () => Math.random().to
  * Static checks on a scene script before it is accepted into the workshop. The
  * panel runs scripts in a Web Worker sandbox anyway; this keeps obviously
  * unsafe or obfuscated code out of the catalogue. Returns { errors, warnings }.
+ *
+ * `mode = 'webgl'` (0.9.2) relaxes the strict-global rule so scenes can ship
+ * inlined 3D libraries (Three.js / Babylon.js etc.). Dormant loader references
+ * are warnings here; network / storage / WASM remain blocked by the worker.
  */
-export function checkScriptSafety(source, name = 'scenes.js') {
+export function checkScriptSafety(source, name = 'scenes.js', { mode = 'text' } = {}) {
   const errors = [], warnings = []
   const text = String(source ?? '')
-  if (new TextEncoder().encode(text).length > WORKSHOP_LIMITS.scriptBytes) errors.push(`${name}：超过 ${WORKSHOP_LIMITS.scriptBytes / 1024} KB`)
+  const byteLimit = mode === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : WORKSHOP_LIMITS.scriptBytes
+  if (new TextEncoder().encode(text).length > byteLimit) errors.push(`${name}：超过 ${byteLimit / 1024} KB`)
+  const strictGlobals = /\b(fetch|XMLHttpRequest|WebSocket|WebTransport|EventSource|importScripts|indexedDB|localStorage|sessionStorage|caches|BroadcastChannel|SharedWorker|Worker|RTCPeerConnection|WebAssembly|Notification|navigator|location|document|window|process|globalThis|self|postMessage|setTimeout|setInterval|queueMicrotask|Atomics|SharedArrayBuffer)\b/
+  const moduleGap = String.raw`(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?:\r\n?|\n|$))*`
+  // Readable bundled libraries include loaders and browser-only paths that the
+  // scene never calls. Their identifier names do not confer capabilities: the
+  // same restricted worker globals apply in every output mode.
   const rules = [
-    [/^\s*import\s[^(]|\bimport\s*\(/m, 'import'],
-    [/\brequire\s*\(/, 'require()'],
+    [new RegExp(`^\\s*import\\s[^(]|\\bimport${moduleGap}\\(`, 'm'), 'import'],
+    [new RegExp(`\\brequire${moduleGap}\\(`), 'require()'],
     [/\beval\s*\(/, 'eval()'],
     [/\bnew\s+Function\b|\bFunction\s*\(/, 'Function()'],
-    [/\b(fetch|XMLHttpRequest|WebSocket|WebTransport|EventSource|importScripts|indexedDB|localStorage|sessionStorage|caches|BroadcastChannel|SharedWorker|Worker|RTCPeerConnection|WebAssembly|Notification|navigator|location|document|window|process|globalThis|self|postMessage|setTimeout|setInterval|queueMicrotask|Atomics|SharedArrayBuffer)\b/, 'network / storage / global API'],
+    ...(mode === 'webgl' ? [] : [[strictGlobals, 'network / storage / global API']]),
     [/\bconstructor\s*\.\s*constructor\b|\[\s*['"`]constructor['"`]\s*\]/, 'constructor escape'],
     [/__proto__|\bReflect\b|\bProxy\b/, 'prototype tricks'],
     [/\\x[0-9a-f]{2}.*\\x[0-9a-f]{2}.*\\x[0-9a-f]{2}|\\u00[0-9a-f]{2}.*\\u00[0-9a-f]{2}.*\\u00[0-9a-f]{2}/i, 'escaped / obfuscated identifiers'],
-    [/\b(atob|btoa|String\.fromCharCode)\s*\(/, 'string decoding (obfuscation)'],
+    ...(mode === 'webgl' ? [] : [[/\b(atob|btoa|String\.fromCharCode)\s*\(/, 'string decoding (obfuscation)']]),
   ]
   // Comments and string contents may legitimately mention these words; check code only.
   const code = stripCommentsAndStrings(text)
   for (const [pattern, label] of rules) {
-    const target = label.startsWith('escaped') ? text : code
+    // Module imports are capability-bearing even without fetch. Use the same
+    // conservative original-text check as playback so regex, comment, and
+    // template-literal tricks cannot hide a module load.
+    const target = (label.startsWith('escaped') && mode !== 'webgl') || label === 'import' || label === 'require()' ? text : code
     if (pattern.test(target)) errors.push(`${name}：不允许使用 ${label}`)
   }
+  if (mode === 'webgl' && strictGlobals.test(code)) warnings.push(`${name}：包含浏览器 / 网络 / 存储 API 引用；沙箱禁用这些 API，仅未执行的库代码可以保留`)
+  if (mode === 'webgl' && /\b(atob|btoa|String\.fromCharCode)\s*\(/.test(code)) warnings.push(`${name}：包含字符串解码代码；请确认它来自可读的库源码`)
   const defines = fn => new RegExp(`\\bfunction\\s+${fn}\\s*\\(`).test(code) || new RegExp(`\\b${fn}\\s*=\\s*(function|\\()`).test(code)
-  if (!defines('render') && !defines('paint')) errors.push(`${name}：没有定义 render(t, cols, rows, ctx)（或像素场景的 paint(g, t, width, height, ctx)）`)
-  const longest = text.split('\n').reduce((max, line) => Math.max(max, line.length), 0)
+  if (!defines('render') && !defines('paint')) errors.push(`${name}：没有定义 render(t, cols, rows, ctx)（或像素/WebGL 场景的 paint(g|gl, t, width, height, ctx)）`)
+  // Shader-string literals can be long without obfuscating executable code.
+  const longest = (mode === 'webgl' ? code : text).split('\n').reduce((max, line) => Math.max(max, line.length), 0)
   if (longest > WORKSHOP_LIMITS.maxLongLine) errors.push(`${name}：有一行超过 ${WORKSHOP_LIMITS.maxLongLine} 个字符（像是压缩或混淆过的代码；请提交可读的源码）`)
   if (/Math\.random\s*\(/.test(code)) warnings.push(`${name}：使用了 Math.random()，拖动进度时画面会不一致（建议用确定性的 hash）`)
   return { errors, warnings }
@@ -183,20 +202,7 @@ export async function validateWorkshopPack({ id, files, readText }) {
   if (!ID_PATTERN.test(String(id))) errors.push(`包 id「${id}」无效：只能用小写字母、数字和 -（3–64 个字符）`)
   if (!Array.isArray(files) || !files.length) return { errors: [...errors, '包是空的'], warnings }
   if (files.length > WORKSHOP_LIMITS.maxFiles) errors.push(`文件太多（上限 ${WORKSHOP_LIMITS.maxFiles}）`)
-  let total = 0
-  for (const file of files) {
-    const name = file.path.split('/').pop()
-    const ext = extOf(name)
-    total += file.size
-    if (!PATH_PATTERN.test(file.path) || file.path.split('/').some(part => part === '..' || part.startsWith('.'))) { errors.push(`文件路径不允许：${file.path}（只能用字母数字 . _ -，最多两层子文件夹，不能以 . 开头）`); continue }
-    if (WORKSHOP_BANNED_EXT.includes(ext)) { errors.push(`不允许上传音频 / 视频 / 歌词文件：${file.path}`); continue }
-    if (BANNED_NAMES.test(name) && file.path !== WORKSHOP_TIMING_FILE) { errors.push(`不允许上传歌词文件：${file.path}（只提交 ${WORKSHOP_TIMING_FILE} 时间轴）`); continue }
-    if (!WORKSHOP_ALLOWED_EXT.includes(ext)) { errors.push(`不支持的文件类型：${file.path}`); continue }
-    const isImage = ['.png', '.webp', '.jpg', '.jpeg'].includes(ext)
-    const max = isImage ? WORKSHOP_LIMITS.coverBytes : ['.js', '.mjs'].includes(ext) ? WORKSHOP_LIMITS.scriptBytes : WORKSHOP_LIMITS.fileBytes
-    if (file.size > max) errors.push(`${file.path} 太大（上限 ${Math.round(max / 1024)} KB）`)
-  }
-  if (total > WORKSHOP_LIMITS.packBytes) errors.push(`整个包太大（上限 ${WORKSHOP_LIMITS.packBytes / 1048576} MB）`)
+  if (new Set(files.map(f => String(f.path).toLowerCase())).size !== files.length) errors.push('文件路径重复（不能只靠大小写区分，否则在 Windows 安装时会冲突）')
   const paths = new Set(files.map(f => f.path))
   if (!paths.has('mv.json')) return { errors: [...errors, '缺少 mv.json'], warnings }
   let pack = null, raw = null
@@ -208,12 +214,29 @@ export async function validateWorkshopPack({ id, files, readText }) {
     errors.push(`mv.json 无效：${(error?.problems ?? [error?.message ?? String(error)]).join('；')}`)
     return { errors, warnings }
   }
+  // 0.9.2: webgl packs (declared via canvas.output) get higher caps for their .js scene scripts.
+  const isWebglPack = pack.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
+  let total = 0
+  for (const file of files) {
+    const name = file.path.split('/').pop()
+    const ext = extOf(name)
+    total += file.size
+    if (!PATH_PATTERN.test(file.path) || file.path.split('/').some(part => part === '..' || part.startsWith('.'))) { errors.push(`文件路径不允许：${file.path}（只能用字母数字 . _ -，最多两层子文件夹，不能以 . 开头）`); continue }
+    if (WORKSHOP_BANNED_EXT.includes(ext)) { errors.push(`不允许上传音频 / 视频 / 歌词文件：${file.path}`); continue }
+    if (BANNED_NAMES.test(name) && file.path !== WORKSHOP_TIMING_FILE) { errors.push(`不允许上传歌词文件：${file.path}（只提交 ${WORKSHOP_TIMING_FILE} 时间轴）`); continue }
+    if (!WORKSHOP_ALLOWED_EXT.includes(ext)) { errors.push(`不支持的文件类型：${file.path}`); continue }
+    const isImage = ['.png', '.webp', '.jpg', '.jpeg'].includes(ext)
+    const isScript = ['.js', '.mjs'].includes(ext)
+    const max = isImage ? WORKSHOP_LIMITS.coverBytes : isScript && isWebglPack ? WORKSHOP_LIMITS.webglScriptBytes : isScript ? WORKSHOP_LIMITS.scriptBytes : WORKSHOP_LIMITS.fileBytes
+    if (file.size > max) errors.push(`${file.path} 太大（上限 ${Math.round(max / 1024)} KB）`)
+  }
+  if (total > WORKSHOP_LIMITS.packBytes) errors.push(`整个包太大（上限 ${WORKSHOP_LIMITS.packBytes / 1048576} MB）`)
   const ws = isObject(raw['x-dsh-mv-workshop']) ? raw['x-dsh-mv-workshop'] : null
   if (!ws) errors.push('mv.json 缺少 "x-dsh-mv-workshop"（id、version、license、author）')
   else {
     if (ws.id !== id) errors.push(`x-dsh-mv-workshop.id 应与文件夹名一致：${id}`)
     if (!VERSION_PATTERN.test(String(ws.version ?? ''))) errors.push('x-dsh-mv-workshop.version 应为 x.y.z')
-    if (typeof ws.license !== 'string' || !ws.license.trim()) errors.push('x-dsh-mv-workshop.license 必填（例如 CC-BY-NC-SA-4.0、CC-BY-4.0、MIT）')
+    if (!hasShareableLicense(ws.license)) errors.push('x-dsh-mv-workshop.license 必填且必须允许分享（例如 CC-BY-NC-SA-4.0、CC-BY-4.0、MIT；待授权或未声明许可的包不能发布）')
     if (typeof ws.author !== 'string' || !ws.author.trim()) errors.push('x-dsh-mv-workshop.author 必填（GitHub 用户名或署名）')
   }
   if (raw.audio !== undefined) errors.push('mv.json 不能包含 "audio"：工坊包不带音频，用户用自己的音频播放（发布时会自动去掉）')
@@ -230,7 +253,7 @@ export async function validateWorkshopPack({ id, files, readText }) {
   if (pack.canvas?.renderer === 'dsh-pv' && !['timeline', 'chat', 'band'].every(n => pack.canvas?.assets?.[n])) errors.push('dsh-pv 渲染器需要 canvas.assets 里的 timeline、chat、band')
   if (ws?.source !== undefined && !(typeof ws.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source))) errors.push('x-dsh-mv-workshop.source 应是 https:// 链接（原作的仓库或主页）')
   for (const file of files.filter(f => ['.js', '.mjs'].includes(extOf(f.path)))) {
-    const result = checkScriptSafety(await readText(file.path), file.path)
+    const result = checkScriptSafety(await readText(file.path), file.path, { mode: isWebglPack ? 'webgl' : 'text' })
     errors.push(...result.errors); warnings.push(...result.warnings)
   }
   let timing = null
@@ -253,27 +276,30 @@ export async function validateWorkshopPack({ id, files, readText }) {
   const meta = {
     id, title: pack.title, artist: pack.artist ?? '', author: String(ws?.author ?? '').slice(0, 120), license: String(ws?.license ?? '').slice(0, 120),
     version: String(ws?.version ?? ''), duration: audioDuration ? Math.round(audioDuration * 1000) / 1000 : null,
-    renderer: pack.canvas?.renderer ?? 'generic', description: String(ws?.description ?? pack.notice ?? '').slice(0, 500),
+    renderer: pack.canvas?.renderer === 'script' && pack.canvas.output === 'webgl' ? 'webgl' : pack.canvas?.renderer ?? 'generic', description: String(ws?.description ?? pack.notice ?? '').slice(0, 500),
     tags: Array.isArray(ws?.tags) ? ws.tags.filter(t => typeof t === 'string').map(t => t.slice(0, 24)).slice(0, 8) : [],
     homepage: typeof ws?.homepage === 'string' && /^https:\/\//.test(ws.homepage) ? ws.homepage.slice(0, 300) : undefined,
     source: typeof ws?.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source) ? ws.source : undefined,
     cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), sections: pack.sections?.length ?? 0,
     requires: packRequires(pack, ws?.requires),
   }
-  if (pack.canvas?.renderer === 'script' && pack.canvas.output === 'pixels') {
+  if (pack.canvas?.renderer === 'script' && ['pixels', 'webgl'].includes(pack.canvas.output)) {
     const script = pack.canvas.script && paths.has(pack.canvas.script) ? stripCommentsAndStrings(await readText(pack.canvas.script)) : ''
-    if (script && !/\bfunction\s+paint\s*\(|\bpaint\s*=\s*(function|\()/.test(script)) errors.push(`${pack.canvas.script}：canvas.output 为 "pixels" 时要定义 paint(g, t, width, height, ctx)`)
+    if (script && !/\bfunction\s+paint\s*\(|\bpaint\s*=\s*(function|\()/.test(script)) errors.push(`${pack.canvas.script}：canvas.output 为 "${pack.canvas.output}" 时要定义 paint(g, t, width, height, ctx)`)
   }
   if (ws?.requires !== undefined && !VERSION_PATTERN.test(String(ws.requires))) errors.push('x-dsh-mv-workshop.requires 应为 x.y.z（需要的最低插件版本）')
   return { errors, warnings, pack, meta }
 }
 
 /**
- * Lowest plugin version that plays a pack: pixel scene scripts and scripts that read canvas.assets need 0.9.1
- * (0.9.0 does not know canvas.output and gives scripts no assets). An explicit x-dsh-mv-workshop.requires can raise it.
+ * Lowest plugin version that plays a pack: webgl scene scripts need 0.9.2;
+ * pixel scene scripts and scripts that read canvas.assets need 0.9.1. An
+ * explicit x-dsh-mv-workshop.requires can raise it.
  */
 export function packRequires(pack, declared) {
-  let need = pack?.canvas?.renderer === 'script' && (pack.canvas.output === 'pixels' || Object.keys(pack.canvas.assets ?? {}).length) ? '0.9.1' : undefined
+  let need = pack?.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
+    ? '0.9.2'
+    : pack?.canvas?.renderer === 'script' && (pack.canvas.output === 'pixels' || Object.keys(pack.canvas.assets ?? {}).length) ? '0.9.1' : undefined
   if (VERSION_PATTERN.test(String(declared ?? '')) && (!need || compareVersions(declared, need) > 0)) need = String(declared)
   return need
 }
@@ -285,16 +311,19 @@ export function parseWorkshopIndex(value) {
   const str = (v, n) => (typeof v === 'string' ? v.slice(0, n) : '')
   const packs = []
   for (const p of value.packs.slice(0, WORKSHOP_LIMITS.maxPacks)) {
-    if (!isObject(p) || !ID_PATTERN.test(String(p.id)) || !Array.isArray(p.files)) continue
-    const files = p.files.filter(f => isObject(f) && typeof f.path === 'string' && PATH_PATTERN.test(f.path) && !f.path.split('/').some(x => x.startsWith('.')) && Number.isInteger(f.size) && f.size >= 0 && SHA256_PATTERN.test(String(f.sha256)) && !WORKSHOP_BANNED_EXT.includes(extOf(f.path)))
+    if (!isObject(p) || !ID_PATTERN.test(String(p.id)) || !Array.isArray(p.files) || !hasShareableLicense(p.license)) continue
+    const limit = path => ['.png', '.webp', '.jpg', '.jpeg'].includes(extOf(path)) ? WORKSHOP_LIMITS.coverBytes : ['.js', '.mjs'].includes(extOf(path)) ? (p.renderer === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : WORKSHOP_LIMITS.scriptBytes) : WORKSHOP_LIMITS.fileBytes
+    const files = p.files.filter(f => isObject(f) && typeof f.path === 'string' && PATH_PATTERN.test(f.path) && !f.path.split('/').some(x => x.startsWith('.')) && Number.isInteger(f.size) && f.size >= 0 && f.size <= limit(f.path) && SHA256_PATTERN.test(String(f.sha256)) && WORKSHOP_ALLOWED_EXT.includes(extOf(f.path)))
     if (!files.some(f => f.path === 'mv.json') || files.length !== p.files.length || files.length > WORKSHOP_LIMITS.maxFiles) continue
+    if (new Set(files.map(f => f.path.toLowerCase())).size !== files.length || files.reduce((s, f) => s + f.size, 0) > WORKSHOP_LIMITS.packBytes) continue
+    const requires = VERSION_PATTERN.test(String(p.requires ?? '')) ? p.requires : ''
     packs.push({
-      id: p.id, title: str(p.title, 200) || p.id, artist: str(p.artist, 200), author: str(p.author, 120), license: str(p.license, 120) || WORKSHOP_DEFAULT_LICENSE,
+      id: p.id, title: str(p.title, 200) || p.id, artist: str(p.artist, 200), author: str(p.author, 120), license: str(p.license, 120),
       version: VERSION_PATTERN.test(String(p.version)) ? p.version : '0.0.0', duration: Number.isFinite(p.duration) ? p.duration : null,
       renderer: str(p.renderer, 40), description: str(p.description, 500), tags: Array.isArray(p.tags) ? p.tags.filter(t => typeof t === 'string').slice(0, 8).map(t => t.slice(0, 24)) : [],
       homepage: typeof p.homepage === 'string' && /^https:\/\//.test(p.homepage) ? p.homepage.slice(0, 300) : '',
       source: typeof p.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(p.source) ? p.source : '',
-      requires: VERSION_PATTERN.test(String(p.requires ?? '')) ? p.requires : '',
+      requires: p.renderer === 'webgl' && compareVersions(requires, '0.9.2') < 0 ? '0.9.2' : requires,
       cover: typeof p.cover === 'string' && COVER_NAMES.includes(p.cover) && files.some(f => f.path === p.cover) ? p.cover : '',
       fingerprint: p.fingerprint === true, timing: p.timing === true, sections: Number.isInteger(p.sections) ? p.sections : 0,
       updated: str(p.updated, 40), size: files.reduce((s, f) => s + f.size, 0), files,
@@ -453,7 +482,9 @@ export function parseWorkshopPublish(value) {
   const str = (v, n, name, required = false) => {
     if (v === undefined || v === '') { if (required) throw new TypeError(`${name} 必填`); return '' }
     if (typeof v !== 'string' || v.length > n || /[\0\r]/.test(v)) throw new TypeError(`${name} 无效`)
-    return v.trim()
+    const text = v.trim()
+    if (required && !text) throw new TypeError(`${name} 必填`)
+    return text
   }
   if (typeof value.manifestPath !== 'string' || !value.manifestPath.trim() || value.manifestPath.length > 1000) throw new TypeError('manifestPath 无效')
   const version = str(value.version, 20, 'version', true)

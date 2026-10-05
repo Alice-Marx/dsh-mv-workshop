@@ -11,7 +11,7 @@
  * Web Worker sandbox (see mv-scene.mjs).
  */
 import vm from 'node:vm'
-import { SCENE_LIMITS, SCENE_RUNTIME_SOURCE, sceneContext, sceneSourceProblems, stripModuleSyntax } from './mv-scene.mjs'
+import { SCENE_LIMITS, SCENE_BLOCKED_GLOBALS, SCENE_RUNTIME_SOURCE, WEBGL_CANVAS_FACADE_SOURCE, sceneContext, sceneSourceProblems, stripModuleSyntax } from './mv-scene.mjs'
 
 export const PREVIEW_LIMITS = Object.freeze({ compileTimeoutMs: 2000, frameTimeoutMs: 500, maxCols: 160, maxRows: 60 })
 
@@ -47,14 +47,84 @@ OffscreenCanvas.prototype.getContext = function (type) { if (type !== '2d') retu
 OffscreenCanvas.prototype.transferToImageBitmap = function () { return { width: this.width, height: this.height, close: function () {} } };
 `
 
+/**
+ * Recording WebGL2 stand-in for structural checks. It deliberately does not
+ * compile shaders or render pixels: it supplies stable object handles and
+ * common query results, counts API calls, and separately counts clear/draw
+ * submissions. Real GPU capability is checked only by the panel/browser.
+ */
+export const WEBGL_STUB_SOURCE = String.raw`
+var __glCalls = 0, __glDrawCalls = 0;
+var __GL_DRAW = { clear: 1, drawArrays: 1, drawElements: 1, drawArraysInstanced: 1, drawElementsInstanced: 1, blitFramebuffer: 1 };
+var __GL_OBJECT = { createBuffer: 1, createFramebuffer: 1, createProgram: 1, createQuery: 1, createRenderbuffer: 1, createSampler: 1, createShader: 1, createTexture: 1, createTransformFeedback: 1, createVertexArray: 1, fenceSync: 1 };
+var __GL_TRUE = { isBuffer: 1, isEnabled: 1, isFramebuffer: 1, isProgram: 1, isQuery: 1, isRenderbuffer: 1, isSampler: 1, isShader: 1, isSync: 1, isTexture: 1, isTransformFeedback: 1, isVertexArray: 1 };
+var __GL_CONSTANTS = {
+  COLOR_BUFFER_BIT: 16384, DEPTH_BUFFER_BIT: 256, STENCIL_BUFFER_BIT: 1024,
+  VERTEX_SHADER: 35633, FRAGMENT_SHADER: 35632, COMPILE_STATUS: 35713, LINK_STATUS: 35714, ACTIVE_UNIFORMS: 35718, ACTIVE_ATTRIBUTES: 35721,
+  VERSION: 7938, SHADING_LANGUAGE_VERSION: 35724, SCISSOR_BOX: 3088,
+  ARRAY_BUFFER: 34962, ELEMENT_ARRAY_BUFFER: 34963, STATIC_DRAW: 35044, DYNAMIC_DRAW: 35048,
+  FLOAT: 5126, UNSIGNED_BYTE: 5121, UNSIGNED_SHORT: 5123, UNSIGNED_INT: 5125,
+  TRIANGLES: 4, LINES: 1, POINTS: 0, FRAMEBUFFER_COMPLETE: 36053,
+  TEXTURE_2D: 3553, TEXTURE0: 33984, RGBA: 6408, RGB: 6407,
+};
+function __stubWebGL2(canvas) {
+  var state = { canvas: canvas, drawingBufferColorSpace: 'srgb', unpackColorSpace: 'srgb' };
+  return new Proxy(state, {
+    get: function (o, k) {
+      if (k === 'drawingBufferWidth') return canvas.width;
+      if (k === 'drawingBufferHeight') return canvas.height;
+      if (k in o) return o[k];
+      if (k in __GL_CONSTANTS) return __GL_CONSTANTS[k];
+      if (typeof k === 'string' && /^[A-Z][A-Z0-9_]+$/.test(k)) return 0;
+      return function () {
+        __glCalls++;
+        if (__GL_DRAW[k]) __glDrawCalls++;
+        if (__GL_OBJECT[k]) return { __webglStub: k };
+        if (__GL_TRUE[k]) return true;
+        if (k === 'getShaderParameter') return arguments[1] === 35713;
+        if (k === 'getProgramParameter') return arguments[1] === 35714 ? true : 0;
+        if (k === 'checkFramebufferStatus') return __GL_CONSTANTS.FRAMEBUFFER_COMPLETE;
+        if (k === 'getAttribLocation') return 0;
+        if (k === 'getUniformLocation') return { __webglStub: k };
+        if (k === 'getShaderInfoLog' || k === 'getProgramInfoLog') return '';
+        if (k === 'getSupportedExtensions') return [];
+        if (k === 'getExtension') return null;
+        if (k === 'isContextLost') return false;
+        if (k === 'getContextAttributes') return { alpha: false, antialias: true, depth: true, stencil: false, premultipliedAlpha: false };
+        if (k === 'getParameter') {
+          if (arguments[0] === 7938) return 'WebGL 2.0 structural stub';
+          if (arguments[0] === 35724) return 'WebGL GLSL ES 3.00 structural stub';
+          if (arguments[0] === 3088) return [0, 0, canvas.width, canvas.height];
+          if (arguments[0] === 33902 || arguments[0] === 33901) return [1, 1];
+          return 16;
+        }
+        if (k === 'getShaderPrecisionFormat') return { rangeMin: 127, rangeMax: 127, precision: 23 };
+        if (k === 'getActiveUniform' || k === 'getActiveAttrib') return null;
+        return undefined;
+      };
+    },
+    set: function (o, k, v) { o[k] = v; return true },
+  });
+}
+function OffscreenCanvas(w, h) { this.width = w | 0; this.height = h | 0; this.__gl = null }
+OffscreenCanvas.prototype.getContext = function (type) { if (type === '2d') return this.__g || (this.__g = __stubContext(this)); if (type !== 'webgl2') return null; if (!this.__gl) this.__gl = __stubWebGL2(this); return this.__gl };
+var __hostCanvas = new OffscreenCanvas(1, 1), __hostGl = __hostCanvas.getContext('webgl2');
+`
+
 /** Compile a scene; returns { ok, problems, renderFrame(t, cols, rows, ctxData) } (pixels: cols × rows are width × height). */
 export function compileScene(source, { output = 'text' } = {}) {
   const pixels = output === 'pixels'
-  const problems = sceneSourceProblems(source)
+  const webgl = output === 'webgl'
+  const bitmap = pixels || webgl
+  const problems = sceneSourceProblems(source, { output })
   if (problems.length) return { ok: false, problems }
   const context = vm.createContext(Object.create(null), { codeGeneration: { strings: false, wasm: false }, microtaskMode: 'afterEvaluate' })
   try {
-    vm.runInContext(`${SCENE_RUNTIME_SOURCE}${pixels ? PIXEL_STUB_SOURCE : ''}
+    vm.runInContext(`"use strict";
+(function (scope) {
+  for (const name of ${JSON.stringify(SCENE_BLOCKED_GLOBALS)}) Object.defineProperty(scope, name, { value: undefined, writable: false, configurable: false });
+})(globalThis);
+${SCENE_RUNTIME_SOURCE}${WEBGL_CANVAS_FACADE_SOURCE}${bitmap ? PIXEL_STUB_SOURCE : ''}${webgl ? WEBGL_STUB_SOURCE : ''}
 var __scene = (function () {
 ${stripModuleSyntax(source)}
 ;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };
@@ -62,22 +132,27 @@ ${stripModuleSyntax(source)}
   } catch (error) {
     return { ok: false, problems: [`场景脚本无法加载：${errorText(error)}`] }
   }
-  const entry = pixels ? 'paint' : 'render'
+  const entry = bitmap ? 'paint' : 'render'
   const hasEntry = vm.runInContext(`typeof __scene.${entry}`, context, { timeout: 100 }) === 'function'
-  if (!hasEntry) return { ok: false, problems: [pixels ? '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。' : '场景脚本没有定义 render(t, cols, rows, ctx) 函数。'] }
+  if (!hasEntry) return { ok: false, problems: [webgl ? '场景脚本没有定义 paint(gl, t, width, height, ctx) 函数（canvas.output 为 "webgl"）。' : pixels ? '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。' : '场景脚本没有定义 render(t, cols, rows, ctx) 函数。'] }
   const call = (code, timeout) => vm.runInContext(code, context, { timeout })
   return {
     ok: true,
     problems: [],
     pixels,
+    webgl,
+    gpuValidated: webgl ? false : undefined,
     setup(info) {
-      if (call('typeof __scene.setup', 100) !== 'function') return
-      call(`__scene.setup(JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}))`, PREVIEW_LIMITS.compileTimeoutMs)
+      call(webgl
+        ? `(function () { const info = JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}); __hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720; info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl); if (__scene.setup) __scene.setup(info, __hostGl); })()`
+        : `if (__scene.setup) __scene.setup(JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}))`, PREVIEW_LIMITS.compileTimeoutMs)
     },
     renderFrame(t, cols, rows, ctxData) {
       const started = process.hrtime.bigint()
       const code = pixels
         ? `(function () { __drawCalls = 0; var c = new OffscreenCanvas(${cols | 0}, ${rows | 0}); __scene.paint(c.getContext('2d'), ${Number(t)}, ${cols | 0}, ${rows | 0}, JSON.parse(${JSON.stringify(JSON.stringify(ctxData))})); return JSON.stringify({ lines: [], styles: [], calls: __drawCalls }) })()`
+        : webgl
+          ? `(function () { __glCalls = 0; __glDrawCalls = 0; __hostCanvas.width = ${cols | 0}; __hostCanvas.height = ${rows | 0}; __scene.paint(__hostGl, ${Number(t)}, ${cols | 0}, ${rows | 0}, JSON.parse(${JSON.stringify(JSON.stringify(ctxData))})); return JSON.stringify({ lines: [], styles: [], calls: __glCalls, drawCalls: __glDrawCalls }) })()`
         : `JSON.stringify(__mvNormalize(__scene.render(${Number(t)}, ${cols | 0}, ${rows | 0}, JSON.parse(${JSON.stringify(JSON.stringify(ctxData))})), ${cols | 0}, ${rows | 0}))`
       const json = call(code, PREVIEW_LIMITS.frameTimeoutMs)
       const ms = Number(process.hrtime.bigint() - started) / 1e6
@@ -100,7 +175,9 @@ const SAMPLE_BANDS = t => Array.from({ length: 48 }, (_, i) => Math.max(0, Math.
  */
 export function checkScene(source, { times = [0], cols = 100, rows = 32, info = {}, cues = [], bandsAt = SAMPLE_BANDS, output = 'text', size = [1280, 720] } = {}) {
   const pixels = output === 'pixels'
-  if (pixels) [cols, rows] = size
+  const webgl = output === 'webgl'
+  const bitmap = pixels || webgl
+  if (bitmap) [cols, rows] = size
   else {
     cols = Math.max(20, Math.min(PREVIEW_LIMITS.maxCols, cols | 0))
     rows = Math.max(8, Math.min(PREVIEW_LIMITS.maxRows, rows | 0))
@@ -108,7 +185,7 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
   const scene = compileScene(source, { output })
   if (!scene.ok) return { ok: false, problems: scene.problems, frames: [] }
   const problems = []
-  try { scene.setup(info) } catch (error) { return { ok: false, problems: [`setup() 出错：${errorText(error)}`], frames: [] } }
+  try { scene.setup(bitmap ? { ...info, width: cols, height: rows } : info) } catch (error) { return { ok: false, problems: [`setup() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) } }
   const frames = []
   const cueAt = t => { let found = null; for (const cue of cues) if (cue.time <= t && !(cue.end <= t)) found = cue; return found }
   const nextAt = t => cues.find(cue => cue.time > t) ?? null
@@ -117,10 +194,10 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
     try {
       const frame = scene.renderFrame(t, cols, rows, ctx)
       // pixel scenes run against a stand-in canvas here, so their timing says nothing about the panel
-      if (!pixels && frame.ms > SCENE_LIMITS.frameBudgetMs) problems.push(`t=${t}s 这一帧用了 ${frame.ms.toFixed(1)} ms，超过 ${SCENE_LIMITS.frameBudgetMs} ms 的预算（面板里会被判为太慢）。`)
-      if (pixels) {
-        if (!frame.calls) problems.push(`t=${t}s 这一帧没有画任何东西。`)
-        frames.push({ t, ms: Math.round(frame.ms * 10) / 10, text: '', calls: frame.calls })
+      if (!bitmap && frame.ms > SCENE_LIMITS.frameBudgetMs) problems.push(`t=${t}s 这一帧用了 ${frame.ms.toFixed(1)} ms，超过 ${SCENE_LIMITS.frameBudgetMs} ms 的预算（面板里会被判为太慢）。`)
+      if (bitmap) {
+        if (webgl ? !frame.drawCalls : !frame.calls) problems.push(webgl ? `t=${t}s 这一帧没有提交任何 WebGL 绘制或清屏调用。` : `t=${t}s 这一帧没有画任何东西。`)
+        frames.push({ t, ms: Math.round(frame.ms * 10) / 10, text: '', calls: frame.calls, ...(webgl ? { drawCalls: frame.drawCalls } : {}) })
         continue
       }
       if (frame.lines.every(line => !line.trim())) problems.push(`t=${t}s 这一帧是空白的。`)
@@ -129,5 +206,6 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
       problems.push(`render(${t}) 出错：${errorText(error)}`)
     }
   }
-  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows }
+  if (webgl) problems.push('WebGL 场景在 Host 中只做结构与 API 调用记录检查；未在真实 GPU 上编译 shader 或验证像素。')
+  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows, ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) }
 }

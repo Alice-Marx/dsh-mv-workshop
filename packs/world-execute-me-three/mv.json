@@ -1,0 +1,121 @@
+{
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "world.execute(me); · Original Three.js MV",
+  "artist": "Mili",
+  "duration": 213,
+  "credits": [
+    "Original visuals and rendering: wiers-jack, https://gitee.com/wiers-jack/world-execute-me-mv",
+    "Three.js contributors (MIT)",
+    "Worker adapter: Alice-Marx",
+    "Music and lyrics: Mili (not included)"
+  ],
+  "notice": "Choose your own audio and lyric files. This pack preserves the upstream 213-second visual timeline. Original visual code is distributed under MIT with direct author permission confirmed by the workshop maintainer on 2026-10-05; see NOTICE.md.",
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js",
+    "output": "webgl",
+    "size": [
+      1280,
+      720
+    ],
+    "bpm": 130,
+    "beatOffset": 0
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "intro",
+        "label": "Boot",
+        "start": 0,
+        "end": 14
+      },
+      {
+        "kind": "verse",
+        "label": "World",
+        "start": 14,
+        "end": 29.74
+      },
+      {
+        "kind": "verse",
+        "label": "Math",
+        "start": 29.74,
+        "end": 44.48
+      },
+      {
+        "kind": "verse",
+        "label": "AC/DC",
+        "start": 44.48,
+        "end": 59.4
+      },
+      {
+        "kind": "chorus",
+        "label": "Cage",
+        "start": 59.4,
+        "end": 74.04
+      },
+      {
+        "kind": "verse",
+        "label": "Organic",
+        "start": 74.04,
+        "end": 88.78
+      },
+      {
+        "kind": "verse",
+        "label": "Trance",
+        "start": 88.78,
+        "end": 103.48
+      },
+      {
+        "kind": "bridge",
+        "label": "Left alone",
+        "start": 103.48,
+        "end": 118.34
+      },
+      {
+        "kind": "bridge",
+        "label": "Fragments",
+        "start": 118.34,
+        "end": 129.04
+      },
+      {
+        "kind": "drop",
+        "label": "Execution",
+        "start": 129.04,
+        "end": 162.72
+      },
+      {
+        "kind": "chorus",
+        "label": "Final chorus",
+        "start": 162.72,
+        "end": 177.41
+      },
+      {
+        "kind": "outro",
+        "label": "Coda",
+        "start": 177.41,
+        "end": 213
+      }
+    ]
+  },
+  "x-dsh-mv-workshop": {
+    "id": "world-execute-me-three",
+    "version": "1.0.1",
+    "license": "MIT",
+    "author": "Alice-Marx",
+    "description": "Original 12-section Three.js MV with original procedural geometry, camera blending and UnrealBloomPass post-processing. Requires dsh-mv-cli 0.9.2+. Bring your own audio and lyrics.",
+    "tags": [
+      "world.execute(me)",
+      "Mili",
+      "three.js",
+      "webgl",
+      "3d"
+    ],
+    "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
+    "requires": "0.9.2",
+    "audio": {
+      "duration": 213
+    }
+  }
+}
