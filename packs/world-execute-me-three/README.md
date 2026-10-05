@@ -1,6 +1,8 @@
 # world.execute(me); · Original Three.js MV
 
-This pack preserves wiers-jack's actual Three.js rendering: all 12 original scenes and their 213-second timeline, camera paths, 1.2-second crossfades, fog/palettes, UnrealBloomPass and final shader effects. Install with dsh-mv-cli 0.9.2+ and select your own audio and lyrics. The scene runs offline in the WebGL worker.
+This pack preserves wiers-jack's actual Three.js rendering: all 12 original scenes and their 213-second timeline, camera paths, 1.2-second crossfades, fog/palettes, UnrealBloomPass and final shader effects. Install with dsh-mv-cli 0.9.3+ and select your own audio and lyrics. The scene runs offline in the WebGL worker.
+
+Version 1.0.2 enables canvas.subtitles: the panel renders your local bilingual lyrics over the 3D image. Select the original src/lyrics.js directly (or your own LRC/JSON). Only the static LYRICS array is read; imports and overlay code never run. Nothing from your lyric file is uploaded. Update the plugin and this workshop pack, then select the file via Lyrics -> Choose.
 
 The default 1280×720 render target keeps the full post-processing practical. Only DOM/audio/subtitle glue and embedded lyric text have been adapted; the visuals are upstream geometry rather than replacement cubes. See NOTICE.md for exact changes and attribution.
 

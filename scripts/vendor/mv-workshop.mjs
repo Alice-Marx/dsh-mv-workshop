@@ -53,7 +53,7 @@ export const WORKSHOP_BANNED_EXT = Object.freeze([
   '.mp3', '.mp2', '.m4a', '.mp4', '.aac', '.webm', '.mka', '.mkv', '.ogg', '.oga', '.opus', '.flac', '.wav', '.wma', '.aiff', '.aif', '.ape', '.amr', '.ac3', '.mov', '.avi', '.mid', '.midi',
   '.lrc', '.srt', '.vtt', '.ass', '.ssa', '.ttml', '.krc', '.qrc', '.yrc', '.lrcx',
 ])
-const BANNED_NAMES = /^(lyrics?|歌词)(\.[\w-]+)?\.(json|txt)$/i
+const BANNED_NAMES = /^(lyrics?|歌词)(\.[\w-]+)?\.(json|txt|js|mjs)$/i
 export const COVER_NAMES = Object.freeze(['cover.webp', 'cover.png', 'cover.jpg', 'cover.jpeg'])
 
 export const ID_PATTERN = /^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$/
@@ -292,12 +292,15 @@ export async function validateWorkshopPack({ id, files, readText }) {
 }
 
 /**
- * Lowest plugin version that plays a pack: webgl scene scripts need 0.9.2;
+ * Lowest plugin version that plays a pack: panel bitmap subtitles need 0.9.3;
+ * webgl scene scripts need 0.9.2;
  * pixel scene scripts and scripts that read canvas.assets need 0.9.1. An
  * explicit x-dsh-mv-workshop.requires can raise it.
  */
 export function packRequires(pack, declared) {
-  let need = pack?.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
+  let need = pack?.canvas?.renderer === 'script' && pack.canvas.subtitles === true
+    ? '0.9.3'
+    : pack?.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
     ? '0.9.2'
     : pack?.canvas?.renderer === 'script' && (pack.canvas.output === 'pixels' || Object.keys(pack.canvas.assets ?? {}).length) ? '0.9.1' : undefined
   if (VERSION_PATTERN.test(String(declared ?? '')) && (!need || compareVersions(declared, need) > 0)) need = String(declared)

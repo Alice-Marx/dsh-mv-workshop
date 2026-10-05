@@ -29,7 +29,7 @@ Ported community projects / 移植社区项目：Wallpaper 保持 2D（0.9.1+）
 | --- | --- | --- |
 | [`world-execute-me-wallpaper`](packs/world-execute-me-wallpaper) — wallpaper MV, 1920×1080 | [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) | `MIT` (© 2026 seasnakes; music and lyrics © Mili, not included; [NOTICE](packs/world-execute-me-wallpaper/NOTICE.md)) |
 | [`polytech-tree`](packs/polytech-tree) — GPU-instanced 3D tour, no music needed; 0.9.2+ | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | `MIT AND CC-BY-4.0` (code MIT © 2026 secwind; structured data CC BY 4.0, the CC BY-SA `desc` field is not used; [NOTICE](packs/polytech-tree/NOTICE.md)) |
-| [`world-execute-me-three`](packs/world-execute-me-three) — original 12-scene Three.js MV with bloom; 0.9.2+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | `MIT` (direct author permission confirmed by maintainer, Three.js MIT; [NOTICE](packs/world-execute-me-three/NOTICE.md)) |
+| [`world-execute-me-three`](packs/world-execute-me-three) — original 12-scene Three.js MV with bloom and bilingual subtitles; 0.9.3+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | `MIT` (direct author permission confirmed by maintainer, Three.js MIT; [NOTICE](packs/world-execute-me-three/NOTICE.md)) |
 
 They are built by `presets/ports/*/build.mjs` in dsh-mv-cli from the upstream commits named in each NOTICE.
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
@@ -62,5 +62,8 @@ CI uses a recording stand-in, **not a GPU**; maintainers must also verify real C
 nonblank frames, seeking and cleanup. 在真实浏览器验着色器、画面、拖动进度和切包清理，不能只看 Node/CI 通过。
 
 The wiers-jack pack preserves the original 12-scene Three.js rendering core and 213-second visual timeline.
+Pack 1.0.2 enables `canvas.subtitles: true` (plugin 0.9.3+) to display your local bilingual lyrics over the
+3D image. Choose the original `src/lyrics.js` or your own LRC/JSON; imports/helpers never execute and no
+lyric text is uploaded. Update both the plugin and pack to use this feature.
 The maintainer confirmed direct MIT permission from the author on 2026-10-05; LICENSE/NOTICE records this
 separately from the older upstream package's ISC declaration. It includes no audio or lyric text.

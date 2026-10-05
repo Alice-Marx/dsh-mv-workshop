@@ -18,7 +18,7 @@
  *   "lyrics":   { "file": "lyrics.lrc", "offset": 0 },
  *   "spectrum": { "file": "spectrum.json" },
  *   "canvas":   { "renderer": "generic" | "dsh-pv" | "script", "script": "scenes.js", "fontSize": 14,
- *                 "output": "text" | "pixels" | "webgl", "size": [1280, 720],
+ *                 "output": "text" | "pixels" | "webgl", "size": [1280, 720], "subtitles": false,
  *                 "assets": { "timeline": ["data/timeline-1.json", …], "maid-left": "art/maid-left.webp" } }
  * }
  * canvas.assets (0.9.0) names the data and image files a built-in renderer
@@ -32,6 +32,8 @@
  * canvas.output "webgl" uses the same bitmap pipeline but gives paint() a raw
  * WebGL2RenderingContext owned by the sandbox. setup(info, gl) receives that
  * same context once. It still has no DOM, network or imports.
+ * Bitmap scenes may opt into canvas.subtitles (0.9.3): the player overlays
+ * the user's local lyric cues after the bitmap. It defaults to off.
  * "world-execute-me" (the renderer bundled until 0.8.x) is still accepted and
  * plays with the generic renderer; the scenes now ship as a workshop pack.
  * A "terminal" section written for versions before 0.6.0 is accepted and
@@ -54,7 +56,8 @@ export const MV_SCENE_OUTPUTS = Object.freeze(['text', 'pixels', 'webgl'])
 export const MV_PIXEL_LIMITS = Object.freeze({ minWidth: 160, minHeight: 90, maxWidth: 1920, maxHeight: 1080, defaultSize: Object.freeze([1280, 720]) })
 export const MV_ASSET_EXTENSIONS = Object.freeze(['.json', '.webp', '.png'])
 export const MV_ASSET_NAME = /^[a-z0-9][a-z0-9-]{0,39}$/
-export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt'])
+/** Local lyric data only. JS/MJS imports extract a static LYRICS array; no code is executed. */
+export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt', '.js', '.mjs'])
 
 export const MV_PACK_LIMITS = Object.freeze({
   manifestBytes: 256 * 1024,
@@ -188,7 +191,7 @@ export function parseMvPack(input) {
   const canvas = data.canvas ?? {}
   if (!isObject(canvas)) problems.push('canvas 必须是对象')
   else {
-    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets', 'output', 'size']), 'canvas', problems)
+    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets', 'output', 'size', 'subtitles']), 'canvas', problems)
     const renderer = canvas.renderer ?? (canvas.script ? 'script' : 'generic')
     if (!MV_CANVAS_RENDERERS.includes(renderer)) problems.push(`canvas.renderer 必须是 ${MV_CANVAS_RENDERERS.join(' / ')}`)
     let script
@@ -202,6 +205,10 @@ export function parseMvPack(input) {
     const output = canvas.output ?? 'text'
     if (!MV_SCENE_OUTPUTS.includes(output)) problems.push(`canvas.output 必须是 ${MV_SCENE_OUTPUTS.join(' / ')}`)
     else if (output !== 'text' && renderer !== 'script') problems.push('canvas.output 只用于 renderer "script"')
+    if (canvas.subtitles !== undefined) {
+      if (typeof canvas.subtitles !== 'boolean') problems.push('canvas.subtitles 必须是布尔值（true / false）')
+      else if (renderer !== 'script' || !['pixels', 'webgl'].includes(output)) problems.push('canvas.subtitles 只用于 renderer "script" 的 "pixels" / "webgl" 输出')
+    }
     let size
     if (canvas.size !== undefined && canvas.size !== null) {
       const [w, h] = Array.isArray(canvas.size) ? canvas.size : []
@@ -212,6 +219,7 @@ export function parseMvPack(input) {
     }
     pack.canvas = {
       renderer, ...(script ? { script } : {}), ...(assets ? { assets } : {}), ...(output !== 'text' && MV_SCENE_OUTPUTS.includes(output) ? { output } : {}),
+      ...(typeof canvas.subtitles === 'boolean' ? { subtitles: canvas.subtitles } : {}),
       ...(['pixels', 'webgl'].includes(output) ? { size: size ?? MV_PIXEL_LIMITS.defaultSize } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
       bpm: optionalNumber(canvas, 'bpm', 20, 400, problems, 'canvas.bpm'), beatOffset: optionalNumber(canvas, 'beatOffset', -60, 60, problems, 'canvas.beatOffset'),
     }
