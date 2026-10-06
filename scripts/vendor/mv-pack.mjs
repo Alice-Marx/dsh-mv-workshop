@@ -56,6 +56,14 @@ export const MV_SCENE_OUTPUTS = Object.freeze(['text', 'pixels', 'webgl'])
 export const MV_PIXEL_LIMITS = Object.freeze({ minWidth: 160, minHeight: 90, maxWidth: 1920, maxHeight: 1080, defaultSize: Object.freeze([1280, 720]) })
 export const MV_ASSET_EXTENSIONS = Object.freeze(['.json', '.webp', '.png'])
 export const MV_ASSET_NAME = /^[a-z0-9][a-z0-9-]{0,39}$/
+/** 0.9.5: only the two upstream OFL dsh-pv faces may be shipped as binary fonts. */
+export const DSHPV_FONT_LIMITS = Object.freeze({ fileBytes: 512 * 1024, maxTables: 64, maxNameRecords: 128, maxNameChars: 256 })
+export const DSHPV_FONT_ASSETS = Object.freeze({
+  'font-head': Object.freeze({ path: 'fonts/SpaceMono-Bold.ttf', licenseFile: 'fonts/OFL_spacemono.txt', family: 'DshMvPvSpaceMono', weight: '700', sourceFamily: 'Space Mono', sourceStyle: 'Bold' }),
+  'font-banner': Object.freeze({ path: 'fonts/Anton-Regular.ttf', licenseFile: 'fonts/OFL_anton.txt', family: 'DshMvPvAnton', weight: '400', sourceFamily: 'Anton', sourceStyle: 'Regular' }),
+})
+export const DSHPV_FONT_NOTICE = 'fonts/NOTICE.md'
+export const WINDOWS_FONT_NAME = /^(?:consola[a-z]*|msyh[a-z]*|msyi[a-z]*|simsun[a-z]*|simhei[a-z]*|simfang[a-z]*|simkai[a-z]*|seg(?:oe|ui)[a-z]*|tahoma[a-z]*|arial[a-z]*|calibri[a-z]*|cambria[a-z]*|verdana[a-z]*)\.(?:ttf|ttc|otf|woff2?)$/i
 /** Local lyric data only. JS/MJS imports extract a static LYRICS array; no code is executed. */
 export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt', '.js', '.mjs'])
 
@@ -200,7 +208,7 @@ export function parseMvPack(input) {
       if (script && !['.js', '.mjs'].includes(extOf(script))) problems.push('canvas.script 应是 .js 文件（定义 render(t, cols, rows, ctx) 的场景脚本）')
     }
     if (renderer === 'script' && !script && !problems.some(p => p.startsWith('canvas.script'))) problems.push('canvas.renderer 为 script 时必须提供 canvas.script（如 "scenes.js"）')
-    const assets = canvasAssets(canvas.assets, problems)
+    const assets = canvasAssets(canvas.assets, problems, renderer)
     // Bitmap scenes paint an OffscreenCanvas in the worker: 2D (pixels) or raw WebGL2 (webgl).
     const output = canvas.output ?? 'text'
     if (!MV_SCENE_OUTPUTS.includes(output)) problems.push(`canvas.output 必须是 ${MV_SCENE_OUTPUTS.join(' / ')}`)
@@ -239,7 +247,7 @@ export function parseMvPack(input) {
 const httpsUrl = v => (typeof v === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(v.trim()) ? v.trim() : undefined)
 
 /** canvas.assets: { name: "path" | ["shard", …] } with relative paths only. */
-function canvasAssets(value, problems) {
+function canvasAssets(value, problems, renderer) {
   if (value === undefined || value === null) return undefined
   if (!isObject(value)) { problems.push('canvas.assets 必须是对象 { 名称: 路径或路径数组 }'); return undefined }
   const names = Object.keys(value)
@@ -249,11 +257,17 @@ function canvasAssets(value, problems) {
     if (!MV_ASSET_NAME.test(name)) { problems.push(`canvas.assets 的名称「${name}」无效（小写字母、数字和 -）`); continue }
     const list = Array.isArray(value[name]) ? value[name] : [value[name]]
     if (!list.length || list.length > MV_PACK_LIMITS.maxAssetParts) { problems.push(`canvas.assets.${name} 应有 1–${MV_PACK_LIMITS.maxAssetParts} 个文件`); continue }
+    const font = Object.hasOwn(DSHPV_FONT_ASSETS, name) ? DSHPV_FONT_ASSETS[name] : undefined
+    if (font && (renderer !== 'dsh-pv' || Array.isArray(value[name]))) { problems.push(`canvas.assets.${name} 只允许 dsh-pv 渲染器的单个 OFL TTF 文件（不能是分片数组）`); continue }
     const paths = []
     for (const item of list) {
       const path = checkPackPath(item, `canvas.assets.${name}`, problems)
       if (!path) continue
       if (isAbsolutePackPath(path)) { problems.push(`canvas.assets.${name} 只能用包内的相对路径：${path}`); continue }
+      if (font) {
+        if (path !== font.path) { problems.push(`canvas.assets.${name} 只能引用已支持的 OFL 字体 ${font.path}（Windows 字体不能随包分发）`); continue }
+        paths.push(path); continue
+      }
       if (!MV_ASSET_EXTENSIONS.includes(extOf(path))) { problems.push(`canvas.assets.${name} 只能是 ${MV_ASSET_EXTENSIONS.join(' / ')} 文件：${path}`); continue }
       paths.push(path)
     }
@@ -264,6 +278,51 @@ function canvasAssets(value, problems) {
 
 /** Files of one canvas asset (always a list). */
 export const assetParts = (pack, name) => { const v = pack?.canvas?.assets?.[name]; return v === undefined ? [] : Array.isArray(v) ? v : [v] }
+
+/** Data-only bounded sfnt/name check; known font assets must identify the supported family and style. */
+export function checkDshPvFont(value, name = 'font.ttf') {
+  const bytes = value instanceof Uint8Array ? value : value instanceof ArrayBuffer ? new Uint8Array(value) : null
+  const errors = []
+  if (!bytes || bytes.byteLength < 12 || bytes.byteLength > DSHPV_FONT_LIMITS.fileBytes) return { errors: [`${name}：TTF 字体大小无效（12 字节–512 KiB）`] }
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength)
+  const tables = view.getUint16(4, false)
+  if (view.getUint32(0, false) !== 0x00010000 || tables < 1 || tables > DSHPV_FONT_LIMITS.maxTables || 12 + tables * 16 > bytes.byteLength) return { errors: [`${name}：不是受支持的 TrueType TTF 字体（sfnt 签名 / 表目录无效）`] }
+  let nameTable = null
+  for (let i = 0; i < tables; i++) {
+    const at = 12 + i * 16, offset = view.getUint32(at + 8, false), length = view.getUint32(at + 12, false)
+    if (offset < 12 + tables * 16 || offset > bytes.byteLength || length > bytes.byteLength - offset) { errors.push(`${name}：TTF 第 ${i + 1} 个表超出文件范围`); break }
+    if (view.getUint32(at, false) === 0x6e616d65) {
+      if (nameTable) { errors.push(`${name}：TTF 有重复的 name 表`); break }
+      nameTable = { offset, length }
+    }
+  }
+  const descriptor = (Object.hasOwn(DSHPV_FONT_ASSETS, name) ? DSHPV_FONT_ASSETS[name] : undefined) ?? Object.values(DSHPV_FONT_ASSETS).find(font => font.path === name || basenameOf(font.path) === name)
+  if (!errors.length && descriptor) errors.push(...checkDshPvFontName(view, nameTable, descriptor, name))
+  return { errors }
+}
+
+function checkDshPvFontName(view, table, descriptor, name) {
+  const invalid = message => [`${name}：TTF name 表${message}`]
+  if (!table || table.length < 6) return invalid('缺失或无效，不能确认受支持的 OFL 字体身份')
+  const { offset, length } = table, format = view.getUint16(offset), count = view.getUint16(offset + 2), strings = view.getUint16(offset + 4)
+  if (format > 1 || count < 1 || count > DSHPV_FONT_LIMITS.maxNameRecords || 6 + count * 12 > length || strings < 6 + count * 12 || strings > length) return invalid('记录数量 / 字符串范围无效')
+  const families = new Set(), styles = new Set()
+  for (let i = 0; i < count; i++) {
+    const at = offset + 6 + i * 12, platform = view.getUint16(at), id = view.getUint16(at + 6), size = view.getUint16(at + 8), start = view.getUint16(at + 10)
+    if (size > DSHPV_FONT_LIMITS.maxNameChars * 2 || start > length - strings || size > length - strings - start) return invalid('字符串超出文件范围或过长')
+    // The supplied upstream faces have Unicode/Windows records. Ignore legacy
+    // Mac encodings; they do not independently establish a supported identity.
+    if (![0, 3].includes(platform) || ![1, 2, 16, 17].includes(id)) continue
+    if (size % 2) return invalid('Unicode 字符串长度不是偶数')
+    let text = ''
+    for (let pos = offset + strings + start; pos < offset + strings + start + size; pos += 2) text += String.fromCharCode(view.getUint16(pos))
+    if (/[\u0000-\u001f\u007f]/.test(text)) return invalid('字体名称含控制字符')
+    if (id === 1 || id === 16) families.add(text.trim())
+    else styles.add(text.trim())
+  }
+  if (!families.size || !styles.size || [...families].some(family => family !== descriptor.sourceFamily) || [...styles].some(style => style !== descriptor.sourceStyle)) return invalid(`身份不符（只支持 ${descriptor.sourceFamily} ${descriptor.sourceStyle}；重命名 Windows / 其他字体不能随包分发）`)
+  return []
+}
 
 /** The parts of x-dsh-mv-workshop the panel uses (anything malformed is dropped, never an error). */
 export function workshopMeta(value) {
@@ -278,6 +337,7 @@ export function workshopMeta(value) {
     audio: stripUndefined({ duration: Number.isFinite(audio.duration) && audio.duration > 0 ? Math.round(audio.duration * 1000) / 1000 : undefined, fingerprint: fp, sha256: typeof audio.sha256 === 'string' && /^[0-9a-f]{64}$/.test(audio.sha256) ? audio.sha256 : undefined }),
     lyricsTiming: typeof value.lyricsTiming === 'string' && /^[\w.-]{1,64}\.json$/.test(value.lyricsTiming) ? value.lyricsTiming : undefined,
     lyricsLicense: str(value.lyricsLicense, 120), lyricsCredit: str(value.lyricsCredit, 500), lyricsSource: httpsUrl(value.lyricsSource),
+    fontsLicense: str(value.fontsLicense, 120), fontsCredit: str(value.fontsCredit, 500), fontsNotice: value.fontsNotice === DSHPV_FONT_NOTICE ? DSHPV_FONT_NOTICE : undefined,
   })
 }
 

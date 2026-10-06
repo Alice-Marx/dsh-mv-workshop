@@ -25,3 +25,4 @@ export function packFiles(id) {
 }
 
 export const readPackText = id => path => readFileSync(join(PACKS, id, ...path.split('/')), 'utf8')
+export const readPackBytes = id => path => readFileSync(join(PACKS, id, ...path.split('/')))

@@ -45,8 +45,13 @@ punctuation and symbols.
 ## Rules (checked by CI: `node scripts/validate.mjs`)
 
 - `<id>`: lowercase letters, digits and `-`, 3–64 characters; equals `x-dsh-mv-workshop.id`.
-- Allowed files: `.json .js .mjs .md .txt .png .webp .jpg`. At most 40 files, 8 MiB per pack, 512 KiB per text/data file,
-  256 KiB per text/pixels script, 2 MiB per WebGL script, 1 MiB per cover (canvas.assets images remain 512 KiB).
+- Allowed files: `.json .js .mjs .md .txt .png .webp .jpg .jpeg` plus declared static lyric formats below.
+  Ordinary packs allow 40 files / 8 MiB; only built-in `dsh-pv` packs allow 64 files / 24 MiB (plugin 0.9.5+).
+  Single files remain bounded: 512 KiB text/data, 256 KiB text/pixels script, 2 MiB WebGL script, 1 MiB image/cover.
+  Only `dsh-pv` may declare `font-head: fonts/SpaceMono-Bold.ttf` and `font-banner: fonts/Anton-Regular.ttf`,
+  with exact supported internal family/style, at most 512 KiB each, independent `fontsLicense: OFL-1.1`,
+  `fontsCredit`, `fontsNotice: fonts/NOTICE.md` and both corresponding full OFL texts. Renaming Windows fonts
+  does not make them distributable. TTF/TTC/WOFF or per-glyph Windows font atlases are otherwise prohibited.
 - **No song audio / video** (`.mp3 .flac .wav .m4a .ogg .mp4 …`). Declared lyric tracks may use `.lrc .srt .vtt .json .js .mjs`, with explicit lyric license/credit. Unreferenced lyric files/text remain rejected. Lyric JS is static data only and is never executed as a scene; prefer the publisher's canonical JSON.
 - A **license is required** (`x-dsh-mv-workshop.license`), see [LICENSE-POLICY.md](LICENSE-POLICY.md).
 - If the pack adapts someone else's work, link it in `x-dsh-mv-workshop.source` (an `https://` URL, e.g. the original repository); the panel shows it as **原作** on the card and in the details. Large renderer data goes in `canvas.assets` (JSON files ≤ 512 KB each — shard bigger ones; whole pack ≤ 8 MB).

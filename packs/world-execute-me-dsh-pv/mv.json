@@ -4,12 +4,14 @@
   "title": "world.execute(me); · 大肥鱼眼中的 world.execute(me)",
   "artist": "Mili",
   "credits": [
-    "Song and lyrics © Mili (not included)",
+    "Music recording © Mili (not included); caption text © Mili, separate non-commercial fan-work terms in LYRICS-NOTICE.md.",
     "PV: MisakaZentai/world-execute-me-dsh-pv — https://github.com/MisakaZentai/world-execute-me-dsh-pv — code and data MIT © MisakaZentai; real-time canvas port in dsh-mv-cli",
     "Whale-girl art (resized, pixelated, recoloured), CC BY-NC-SA 4.0: 溟月 © 上善无形 → maid version ZipZipPipe → standing art Small-tailqwq / dsh-deep-whale → expressions dsh-whale-galgame (see art/NOTICE.md)",
-    "Pack: Alice-Marx (dsh-mv-cli)"
+    "Pack: Alice-Marx (dsh-mv-cli)",
+    "OFL fonts: Copyright 2016 The Space Mono Project Authors; Copyright 2020 The Anton Project Authors.",
+    "AI-assisted eight-pose dancer remake, NOT original-film MMD: 溟月 © 上善无形 → 女仆版 ZipZipPipe → 立绘 Small-tailqwq / dsh-deep-whale → 表情 dsh-whale-galgame; upstream MisakaZentai; AI-assisted dancer remake from the user-provided reference."
   ],
-  "notice": "Bring your own audio: this pack has no audio and no lyric text. Choose your own copy of Mili — world.execute(me); (≈ 3:32). Non-commercial use only (CC BY-NC-SA 4.0 artwork). 请使用你自己的音频；含 CC BY-NC-SA 4.0 美术，仅限非商业使用。",
+  "notice": "Only music audio is user-provided. 98 English caption cues, original vector/chat/band timing, raster layers, art and supported OFL fonts are included. Non-commercial unofficial AI-assisted fan adaptation; the dancer is newly remade, NOT original MMD/model/motion restoration. Windows fonts are local-only. 听众仅自备音乐；舞者为 AI 辅助重做，非原片 MMD 恢复。",
   "duration": 211.913,
   "canvas": {
     "renderer": "dsh-pv",
@@ -29,7 +31,7 @@
         "data/chat-1.json",
         "data/chat-2.json"
       ],
-      "band": "data/band.json",
+      "band": "data/band-1.json",
       "maid-left": "art/maid-left.webp",
       "whale-angry": "art/whale-angry.webp",
       "whale-cheerful": "art/whale-cheerful.webp",
@@ -38,15 +40,34 @@
       "whale-frightened": "art/whale-frightened.webp",
       "whale-serious": "art/whale-serious.webp",
       "whale-shy": "art/whale-shy.webp",
-      "whale-starry": "art/whale-starry.webp"
+      "whale-starry": "art/whale-starry.webp",
+      "raster-timeline": "raster/timeline-1.json",
+      "raster-atlas": [
+        "raster/raster-atlas-00.webp",
+        "raster/raster-atlas-01.webp",
+        "raster/raster-atlas-02.webp",
+        "raster/raster-atlas-03.webp",
+        "raster/raster-atlas-04.webp",
+        "raster/raster-atlas-05.webp",
+        "raster/raster-atlas-06.webp",
+        "raster/raster-atlas-07.webp",
+        "raster/raster-atlas-08.webp",
+        "raster/raster-atlas-09.webp",
+        "raster/raster-atlas-10.webp",
+        "raster/raster-atlas-11.webp",
+        "raster/raster-atlas-12.webp",
+        "raster/raster-atlas-13.webp"
+      ],
+      "font-head": "fonts/SpaceMono-Bold.ttf",
+      "font-banner": "fonts/Anton-Regular.ttf"
     }
   },
   "x-dsh-mv-workshop": {
     "id": "world-execute-me-dsh-pv",
-    "version": "1.0.0",
-    "license": "CC-BY-NC-SA-4.0",
+    "version": "1.1.0",
+    "license": "MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1 AND LicenseRef-Mili-NonCommercial-FanWork",
     "author": "Alice-Marx",
-    "description": "MisakaZentai's world.execute(me) dsh PV (\"大肥鱼眼中的 world.execute(me)\") replayed live on the canvas by dsh-mv's dsh-pv renderer: recorded shot timeline, dsh chat window and whale-girl art (formerly a built-in preset of dsh-mv-cli). Bring your own audio.",
+    "description": "Complete non-commercial fan PV: 98 English captions, original timing/chat/vector scenes, raster avatars/memory/sampling layers, AI-remade dancer, Space Mono Bold and Anton Regular. Only music is user-provided; Windows fonts remain local-only.",
     "tags": [
       "world.execute(me)",
       "mili",
@@ -59,7 +80,14 @@
     "audio": {
       "duration": 211.913
     },
-    "publishedAt": "2026-10-04"
+    "publishedAt": "2026-10-07",
+    "requires": "0.9.5",
+    "fontsLicense": "OFL-1.1",
+    "fontsCredit": "Copyright 2016 The Space Mono Project Authors; Copyright 2020 The Anton Project Authors.",
+    "fontsNotice": "fonts/NOTICE.md",
+    "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+    "lyricsCredit": "Mili (song text); timing reconstructed from MisakaZentai/world-execute-me-dsh-pv text-free records and official song words.",
+    "lyricsSource": "https://projectmili.com/copyright-guidelines"
   },
   "x-dsh-mv-ai": {
     "sections": [
@@ -94,5 +122,211 @@
         "end": 211.913
       }
     ]
+  },
+  "lyrics": {
+    "file": "lyrics.json",
+    "offset": 0
+  },
+  "x-dsh-pv-provenance": {
+    "baseManifestSha256": "2d4a9dc73daa32998459d49abbf2541a62ec5aaf3266f8f934d41e671a751cfc",
+    "source": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
+    "revision": "a598092a1b1db91fa43961a81269353d13419f6f",
+    "replacementVectorTimeline": {
+      "basename": "timeline.json",
+      "sha256": "a0df6e781ca1289c5999e1c0a7203079dc170d9d4b2c1764f970c5bc5d8d08ba",
+      "originalShotsAndKeyframeTimesRetained": true
+    },
+    "developmentProbe": false,
+    "raster": {
+      "upstream": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
+      "commit": "a598092a1b1db91fa43961a81269353d13419f6f",
+      "renderer": "dsh_her production compositor with h3 lookups redirected in memory",
+      "dance": {
+        "kind": "AI-generated 8-pose remake from user-provided DeepSeek1.png; NOT original-film dance",
+        "sheetSha256": "2f6d2a29b75122f16adf0c5ad463b518ee4703515a01ea1f61aa20efde0d52a8",
+        "poses": 8,
+        "poseHashes": [
+          "ead8fd55fe927c7fbf4e9fef488dba531a4d74a4b17bddb03ed4897df3e1cde1",
+          "c43200f416d15fba8f8589d80a99508d92c13741e3cf5316e05f9fcd6b14152b",
+          "a0c5730f99cdb8fe60867d8cdae3269185d43cadee2b26c7eeb021b0e65deb24",
+          "7cb8ad606cfb34a0062dca0a5b356fc7635f73341106322038c27ee3829e5275",
+          "a4b696df7e00c5b9d702509d96300643ade9b398ea9a92c62c3a7a7728b47767",
+          "94c48c66119a9d9f3a7b83944cb86d66aa48c6fb40a6e52b26a211bcfc727b21",
+          "cfbcea26cb6ec90882bb0dc1342e6b7be47ad4382440364cc9f736f8c0d72e83",
+          "60a210aeaf905c56cc317848b7eb6bbe00659f735f24f48b62929c8e61f7df41"
+        ],
+        "timing": "half-beat pose changes with short boundary blends",
+        "originalMmdOrH3CachesUsed": false
+      },
+      "copyright": "Whale-girl derived art: CC-BY-NC-SA-4.0 with upstream attribution; renderer code MIT; label AI use",
+      "fonts": {
+        "Windows": "local rendering only; no font files or per-glyph font atlas distributed",
+        "OFL": [
+          "Space Mono Bold",
+          "Anton Regular"
+        ]
+      },
+      "audioOrVideoFiles": 0,
+      "songAudioRead": false,
+      "frames": 1658,
+      "uniqueSurfaces": 2761,
+      "samplingFps": 8,
+      "rasterScale": 0.5,
+      "fullyOffscreenOpsOmitted": 3,
+      "atlasPages": [
+        {
+          "file": "raster-atlas-00.webp",
+          "width": 1536,
+          "height": 1282,
+          "quality": 80,
+          "bytes": 29428,
+          "sha256": "b7edbd9d6097df88620de4fd9c67ae9fd480a64a0839a99a1b4f5bbba49d739d"
+        },
+        {
+          "file": "raster-atlas-01.webp",
+          "width": 1536,
+          "height": 1398,
+          "quality": 80,
+          "bytes": 38598,
+          "sha256": "7d1a83da37e47a8060a3b2167ae9f03b3698896a21e9f182be6debf149c5597f"
+        },
+        {
+          "file": "raster-atlas-02.webp",
+          "width": 1536,
+          "height": 1373,
+          "quality": 80,
+          "bytes": 219322,
+          "sha256": "d18d29c60fe91d8b846348a8cf5d31ad5160afd37e4c74b9ac24cf11eb5da7df"
+        },
+        {
+          "file": "raster-atlas-03.webp",
+          "width": 1536,
+          "height": 1299,
+          "quality": 80,
+          "bytes": 382364,
+          "sha256": "71f270ac87b335d65c434d09bc13ff345cb74f65edd731b4affd94cf6ffd2805"
+        },
+        {
+          "file": "raster-atlas-04.webp",
+          "width": 1536,
+          "height": 1443,
+          "quality": 80,
+          "bytes": 510528,
+          "sha256": "aff41f09024743d0904f7c22af86fe781980dad4cd5052d250944fee0032dabf"
+        },
+        {
+          "file": "raster-atlas-05.webp",
+          "width": 1536,
+          "height": 1365,
+          "quality": 80,
+          "bytes": 388596,
+          "sha256": "b27c9893d92572736b75adfadee8f22e9ab1248594524de560a232195511e6cd"
+        },
+        {
+          "file": "raster-atlas-06.webp",
+          "width": 1536,
+          "height": 1514,
+          "quality": 80,
+          "bytes": 659596,
+          "sha256": "b9cc8d5d6c8876dc5be490ac7784527c7d34b59f8bf28516b6f53fed224bfaa1"
+        },
+        {
+          "file": "raster-atlas-07.webp",
+          "width": 1536,
+          "height": 1468,
+          "quality": 80,
+          "bytes": 519896,
+          "sha256": "7660b2729e62cd5efafe0cdbe50b383deb3430d03a70a5cccb72417a48eb03aa"
+        },
+        {
+          "file": "raster-atlas-08.webp",
+          "width": 1536,
+          "height": 1525,
+          "quality": 80,
+          "bytes": 371436,
+          "sha256": "b2dc2d0be235fba395124d094bac4b4ec931cf598b98946f33c6e68bef0bf2d1"
+        },
+        {
+          "file": "raster-atlas-09.webp",
+          "width": 1536,
+          "height": 1501,
+          "quality": 80,
+          "bytes": 512598,
+          "sha256": "8a046f853c99c2c52d3ff9509b7997f7372a10dfc37bf1a343f2a465de86f192"
+        },
+        {
+          "file": "raster-atlas-10.webp",
+          "width": 1536,
+          "height": 1443,
+          "quality": 80,
+          "bytes": 472356,
+          "sha256": "938f33c405c980107ddbaadfa9d8f07a47ee10c5ab0a61d4f5838d4887f5de9f"
+        },
+        {
+          "file": "raster-atlas-11.webp",
+          "width": 1536,
+          "height": 1467,
+          "quality": 80,
+          "bytes": 685440,
+          "sha256": "151242d5a2a277cf1863415dbe1731cc66c177e1a63932e85cce97c89f1bf083"
+        },
+        {
+          "file": "raster-atlas-12.webp",
+          "width": 1536,
+          "height": 1530,
+          "quality": 48,
+          "bytes": 1045540,
+          "sha256": "abb37988a28cd0759bc2b6342f2f55e4f82268ba6726cbdcd68e309b94dce0b7"
+        },
+        {
+          "file": "raster-atlas-13.webp",
+          "width": 1536,
+          "height": 1228,
+          "quality": 80,
+          "bytes": 1007340,
+          "sha256": "ee7a7cbed7b629005b90bdb568859db8749c20df1c2ecb15df6678a233940c55"
+        }
+      ],
+      "timeline": {
+        "file": "raster-timeline.json",
+        "bytes": 421479,
+        "sha256": "0625f58645b9b51315a51b32e5347511f54faea0b02aa088d634ac8b4d50b85c"
+      }
+    },
+    "fonts": [
+      {
+        "file": "fonts/SpaceMono-Bold.ttf",
+        "sha256": "405e73d41afb7e5906efce206a326af5c956f38e255f35421c260e861e599c59",
+        "bytes": 98232,
+        "licenseFile": "fonts/OFL_spacemono.txt",
+        "licenseSha256": "a73c20d6b38329c23a89570c7e16373a9100976fef58deb5a8f2a867ee332496"
+      },
+      {
+        "file": "fonts/Anton-Regular.ttf",
+        "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab",
+        "bytes": 170812,
+        "licenseFile": "fonts/OFL_anton.txt",
+        "licenseSha256": "ee67e6ee22790b7929f1a3769ca2801d565c64b5a9096942c1adf5596de9c9e4"
+      }
+    ],
+    "captions": {
+      "source": "film/ai_mascot_mv_world_execute_20260926/audio/lyrics_synced.lrc",
+      "sourceSha256": "29ae04a89b13a89ec130b1f7d0169ea1093dd2a5c972a6a5268bba8ca0496b27",
+      "cues": 98,
+      "terms": "https://projectmili.com/copyright-guidelines"
+    },
+    "dance": {
+      "reference": {
+        "basename": "DeepSeek1.png",
+        "sha256": "1ee43fb06f5d0c6a9b342d37b0dd74859b73b375946f0e938b7bdc41c42833f0",
+        "permission": "User confirmed public non-commercial fan-work distribution of this reference in the 2026-10-06 conversation; this statement does not grant rights to unrelated images or third-party MMD models/motions."
+      },
+      "sourceSheetBasename": "dance-poses-v1.png",
+      "sourceSheetSha256": "2f6d2a29b75122f16adf0c5ad463b518ee4703515a01ea1f61aa20efde0d52a8",
+      "attribution": "溟月 © 上善无形 → 女仆版 ZipZipPipe → 立绘 Small-tailqwq / dsh-deep-whale → 表情 dsh-whale-galgame; upstream MisakaZentai; AI-assisted dancer remake from the user-provided reference.",
+      "aiAssisted": true,
+      "originalFilmMmd": false,
+      "standaloneSheetInstalled": false
+    }
   }
 }

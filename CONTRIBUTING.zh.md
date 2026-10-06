@@ -32,7 +32,8 @@ audio.duration、audio.fingerprint），并且**不能**包含歌曲 `audio`。�
 ## 规则（CI 用 `node scripts/validate.mjs` 检查）
 
 - `<id>`：小写字母、数字和 `-`，3–64 个字符，与 `x-dsh-mv-workshop.id` 相同。
-- 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg`；每个包最多 40 个文件、8 MiB；文本/数据 512 KiB，文本/2D 脚本 256 KiB、WebGL 脚本 2 MiB、封面 1 MiB（canvas.assets 图片仍为 512 KiB）。
+- 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg .jpeg`，以及下面显式声明的歌词格式。普通包保持最多 40 文件 / 8 MiB；仅内置 `dsh-pv` 包可达 64 文件 / 24 MiB（插件 0.9.5+）。单文件仍限：文本/数据 512 KiB、文本/2D 脚本 256 KiB、WebGL 脚本 2 MiB、图像/封面 1 MiB。
+- 只有 `dsh-pv` 可声明 `font-head: fonts/SpaceMono-Bold.ttf` 与 `font-banner: fonts/Anton-Regular.ttf`；内部字体名称/字重必须正确，单文件≤512 KiB，并独立声明 `fontsLicense: OFL-1.1`、`fontsCredit`、`fontsNotice: fonts/NOTICE.md`，附两份完整 OFL 文本。重命名 Windows 字体也不允许；其他 TTF/TTC/WOFF 和 Windows 逐字字模不分发。
 - **不允许歌曲音频 / 视频**（`.mp3 .flac .wav .m4a .ogg .mp4 …`）。显式引用并授权署名的歌词轨可用 `.lrc .srt .vtt .json .js .mjs`；未声明的词文仍拒绝。JS只读静态数据，不作为场景执行；建议用发布器生成的标准JSON。
 - **必须声明许可证**（`x-dsh-mv-workshop.license`），见 [LICENSE-POLICY.md](LICENSE-POLICY.md)。
 - 改编自他人作品时，用 `x-dsh-mv-workshop.source` 写上原作链接（`https://`，例如原仓库），面板会在卡片和详情里显示为「原作」。较大的渲染数据放在 `canvas.assets`（单个 JSON ≤ 512 KB，大的要拆分；整个包 ≤ 8 MB）。

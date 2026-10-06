@@ -3,10 +3,10 @@
 The image files in this folder (`whale-*.webp`, `maid-left.webp`) are **not** covered by the MIT licence of
 dsh-mv-cli. They are adapted artwork distributed under the
 **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** licence
-(CC BY-NC-SA 4.0, https://creativecommons.org/licenses/by-nc-sa/4.0/ ; full text in `LICENSE`).
+(CC BY-NC-SA 4.0, https://creativecommons.org/licenses/by-nc-sa/4.0/ ; full text in `../LICENSE.txt`).
 
 本目录里的图片（`whale-*.webp`、`maid-left.webp`）**不属于** dsh-mv-cli 的 MIT 许可，
-按 **署名-非商业性使用-相同方式共享 4.0 国际（CC BY-NC-SA 4.0）** 分发，许可全文见 `LICENSE`。
+按 **署名-非商业性使用-相同方式共享 4.0 国际（CC BY-NC-SA 4.0）** 分发，许可全文见 `../LICENSE.txt`。
 
 ## Attribution chain / 署名链
 

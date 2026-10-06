@@ -4,7 +4,7 @@ Text, Canvas2D and WebGL2 3D music videos for **MV 放映室**, the [dsh-mv](htt
 DeepSeek Harness. 为 MV 放映室收集文本、2D 与实时 3D MV 包。
 
 - **Install / 安装**: MV 放映室 → 曲库 → **创意工坊** → pick a pack → **安装**. Then choose your own copy of the song
-  (and lyrics) to play it. 选择包 → 安装 → 选择你自己的歌曲文件（和歌词）即可播放。
+  to play it; complete packs auto-load their licensed captions and other resources. 选择包 → 安装 → 自备音乐；完整包的已授权歌词与其他资源自动加载。
 - **Publish / 发布**: open your pack → **发布到工坊** → **在 GitHub 上提交** (fork & pull request in your browser).
   See [CONTRIBUTING.md](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh.md).
 - **No song audio** in this repository. Licensed lyrics/translations, timing, spectrum and visual resources may be included and load automatically. 只需自备音乐；歌词、译文与其他非音乐资源可随完整包提供。
@@ -18,10 +18,15 @@ dsh-mv-cli 0.8.x 内置的两个 MV 自 0.9.0 起在这里发布（需要 0.9.0 
 | Pack / 包 | Original / 原作 | License / 许可 |
 | --- | --- | --- |
 | [`world-execute-me`](packs/world-execute-me) — ASCII scenes, renderer `script` | [yym8224961/world.execute-me-ascii](https://github.com/yym8224961/world.execute-me-ascii) | custom: used with the original author's permission, not open source ([NOTICE](packs/world-execute-me/NOTICE.md)) |
-| [`world-execute-me-dsh-pv`](packs/world-execute-me-dsh-pv) — dsh PV, renderer `dsh-pv` | [MisakaZentai/world-execute-me-dsh-pv](https://github.com/MisakaZentai/world-execute-me-dsh-pv) | `CC-BY-NC-SA-4.0` (data MIT, whale-girl art CC BY-NC-SA 4.0; [NOTICE](packs/world-execute-me-dsh-pv/NOTICE.md)) |
+| [`world-execute-me-dsh-pv`](packs/world-execute-me-dsh-pv) — complete 1.1.0, new AI-assisted dancer, raster layers, 98 English cues and OFL fonts; plugin 0.9.5+ | [MisakaZentai/world-execute-me-dsh-pv](https://github.com/MisakaZentai/world-execute-me-dsh-pv) | Data MIT; derived art CC-BY-NC-SA-4.0; fonts OFL-1.1; Mili captions under separate non-commercial fan terms ([NOTICE](packs/world-execute-me-dsh-pv/NOTICE.md)) |
 
-Both are generated from [dsh-mv-cli/presets](https://github.com/Alice-Marx/dsh-mv-cli/tree/main/presets) with
-`presets/build-workshop-packs.mjs`. Neither contains audio or lyric text — bring your own copy of the song.
+Their legacy sources are in [dsh-mv-cli/presets](https://github.com/Alice-Marx/dsh-mv-cli/tree/main/presets).
+The complete dsh PV uses `tools/dsh-pv/build-complete.mjs`: 97 shots, 1,658 raster samples / 14 atlas pages,
+new eight-pose dance and matching point-cloud/heat-map geometry. It is an AI-assisted remake, **not** recovery
+of unpublished original-film/MMD material. [Dance source and attribution](https://github.com/Alice-Marx/dsh-mv-cli/tree/main/presets/dsh-pv-remake).
+Consolas / Microsoft YaHei / Segoe UI Symbol remain local Windows fonts; only unmodified Space Mono / Anton
+are bundled under OFL. No pack includes song audio. The ASCII pack remains caption-free; dsh PV supplies
+98 English cues under its independent Mili fan-work terms.
 
 Ported community projects / 移植社区项目：Wallpaper 保持 2D（0.9.1+），Polytech Tree 使用实时 WebGL2 3D（0.9.2+）。
 

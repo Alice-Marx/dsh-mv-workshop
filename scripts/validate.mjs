@@ -11,7 +11,7 @@ import { existsSync, readdirSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { validateWorkshopPack } from './vendor/mv-workshop.mjs'
 import { checkScene } from './vendor/mv-scene-host.mjs'
-import { PACKS, ROOT, packFiles, packIds, readPackText } from './lib.mjs'
+import { PACKS, ROOT, packFiles, packIds, readPackText, readPackBytes } from './lib.mjs'
 
 const args = process.argv.slice(2)
 const base = args.includes('--changed') ? args[args.indexOf('--changed') + 1] : null
@@ -34,7 +34,7 @@ const ids = packIds()
 for (const id of ids) {
   if (only && !only.has(id)) continue
   const files = packFiles(id)
-  const result = await validateWorkshopPack({ id, files, readText: readPackText(id) })
+  const result = await validateWorkshopPack({ id, files, readText: readPackText(id), readBytes: readPackBytes(id) })
   for (const e of result.errors) fail(`packs/${id}: ${e}`)
   for (const w of result.warnings) warn(`packs/${id}: ${w}`)
   if (result.errors.length) continue
