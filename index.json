@@ -2,82 +2,19 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "5d14cfccf3954517ca77b8f3fcb662d60311d0e2",
- "generated": "2026-10-05T17:02:43.164Z",
+ "commit": "467c7ece41a828c08fbc4485cea18f4c38e0e760",
+ "generated": "2026-10-06T11:07:18.033Z",
  "packs": [
-  {
-   "id": "world-execute-me-three",
-   "title": "world.execute(me); · Original Three.js MV",
-   "artist": "Mili",
-   "author": "Alice-Marx",
-   "license": "MIT",
-   "version": "1.0.2",
-   "duration": 213,
-   "renderer": "webgl",
-   "description": "Original 12-section Three.js MV with camera blending, bloom and opt-in bilingual subtitles. Requires dsh-mv-cli 0.9.3+. Bring your own audio and local lyrics.js/LRC file.",
-   "tags": [
-    "world.execute(me)",
-    "Mili",
-    "three.js",
-    "webgl",
-    "3d"
-   ],
-   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
-   "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
-   "cover": "cover.png",
-   "fingerprint": false,
-   "timing": false,
-   "sections": 12,
-   "requires": "0.9.3",
-   "updated": "2026-10-06T01:02:13+08:00",
-   "files": [
-    {
-     "path": "LICENSE.txt",
-     "size": 3577,
-     "sha256": "f32a107059e545fca498cf73d90246cca746542fc739f830a49359d04fed6dab"
-    },
-    {
-     "path": "NOTICE.md",
-     "size": 1694,
-     "sha256": "80e6e4dc3b4e4bc1fce527ac2724e4637fd2dfe693f84f61adb04f3d2d8af61d"
-    },
-    {
-     "path": "README.md",
-     "size": 1825,
-     "sha256": "04f380d34326da9f753cf8f3c8fc938ddc12fc55a2d8af82eccd0648733e13c3"
-    },
-    {
-     "path": "cover.png",
-     "size": 627525,
-     "sha256": "3f13b2c1687faa378b91b1f8cf776dc063c8e34df846943c64ffc046fc80ba44"
-    },
-    {
-     "path": "mv.json",
-     "size": 2928,
-     "sha256": "d01e1f0e7afaea5fbd9e3fa70050eec1b855354c77f0a5f8c58db725148651e2"
-    },
-    {
-     "path": "scenes.js",
-     "size": 1454924,
-     "sha256": "6cda00486b0ddc83a4eafe8cff76320599b9b2d1db11e1bfa9388daa3e850096"
-    },
-    {
-     "path": "source-provenance.json",
-     "size": 5618,
-     "sha256": "c5233af73e4cdeb35397eee21adf7de7d4f7186b6d97534a47e0bb233bef961f"
-    }
-   ]
-  },
   {
    "id": "polytech-tree",
    "title": "Polytech Tree · 人类科技树漫游",
    "artist": "secwind7",
    "author": "Alice-Marx",
-   "license": "MIT AND CC-BY-4.0",
-   "version": "1.1.0",
+   "license": "MIT AND CC-BY-4.0 AND CC-BY-SA-4.0",
+   "version": "1.2.0",
    "duration": 192.113,
    "renderer": "webgl",
-   "description": "Polytech Tree 的实时 3D 漫游：3862 项科技分层呈现，GPU 实例化多面体、透视镜头、深度遮挡与前置关系连线。按原作布局和漫游时序适配，不是原网页的完整交互。无配乐，可静音或配任意音乐。需要插件 0.9.2+。",
+   "description": "完整非音乐科技树漫游：3862 项科技、4962 条关系、原始完整条目/中文描述/来源署名随包提供。没有原曲或歌词轨，可静音播放或自备音乐。需要插件0.9.4+。",
    "tags": [
     "tech-tree",
     "visualization",
@@ -90,9 +27,11 @@
    "cover": "cover.png",
    "fingerprint": false,
    "timing": false,
+   "lyrics": false,
+   "spectrum": false,
    "sections": 11,
-   "requires": "0.9.2",
-   "updated": "2026-10-06T00:02:37+08:00",
+   "requires": "0.9.4",
+   "updated": "2026-10-06T19:06:46+08:00",
    "files": [
     {
      "path": "LICENSE.txt",
@@ -101,13 +40,13 @@
     },
     {
      "path": "NOTICE.md",
-     "size": 938,
-     "sha256": "c40f4ca3d1d5e10eb2193e4188a8086b581fa07ba59e882bba828e91554bed73"
+     "size": 1687,
+     "sha256": "b881b2d8a21062fbe65b3ca4a1b1a97b5d1d067d68fb5b8e364213994e32c66a"
     },
     {
      "path": "README.md",
-     "size": 990,
-     "sha256": "ffacc35ece43df2db091b4f201c32dea12bcf03a275801b2e21bb2995ebf65a4"
+     "size": 1695,
+     "sha256": "797b696abe09e55209a4cf54a6affc3fdb2121a8ce13643e925fe8f978493a2f"
     },
     {
      "path": "cover.png",
@@ -116,8 +55,38 @@
     },
     {
      "path": "data/NOTICE.md",
-     "size": 837,
-     "sha256": "9b52fe8a64510cfdf971f5ede6b422ddf61a9c4be668143307173bd6b01f320a"
+     "size": 1579,
+     "sha256": "ccc5447018ef2aaeb85aba3d121775445976f3f8bb903d1689c12a6836795685"
+    },
+    {
+     "path": "data/catalog-1.json",
+     "size": 393158,
+     "sha256": "dfcc17da61d3f0217b87511e6d7fa1b7e69452fec03dc7b2300cd9b8f47dd988"
+    },
+    {
+     "path": "data/catalog-2.json",
+     "size": 392886,
+     "sha256": "98c7decb69ca96a1c6310d8695bbf710073b885bc4b70afd8c41cd2e48654ed3"
+    },
+    {
+     "path": "data/catalog-3.json",
+     "size": 393104,
+     "sha256": "06cb2e6f716dbcdb8dc8807f13b749834cf85a9d312bab519bc9365982de44a1"
+    },
+    {
+     "path": "data/catalog-4.json",
+     "size": 393162,
+     "sha256": "1cb64a476f4ddc1b1fd558b57f41f6c270d9f25fc6e2b9860418c7dbaebd4cf5"
+    },
+    {
+     "path": "data/catalog-5.json",
+     "size": 392952,
+     "sha256": "dda1ed319f3fa1d76f9f1b980a4c6685321306701c543335089ddcd1ddebe23c"
+    },
+    {
+     "path": "data/catalog-6.json",
+     "size": 96556,
+     "sha256": "414cfe4fafa855cc3ae391d5f99d66a0c841e628e13536ce229f014903ac864e"
     },
     {
      "path": "data/edges.json",
@@ -135,14 +104,19 @@
      "sha256": "155c8484374a79bd4d1675a558e5c94e667cbfc931578caa7f36d0049aced4a0"
     },
     {
+     "path": "data/source-meta.json",
+     "size": 6016,
+     "sha256": "146863ec2c98f7f0de82696124e288019de070963dd37a50fa2ad94e9801281b"
+    },
+    {
      "path": "data/tower.json",
      "size": 3048,
      "sha256": "63f0640ab9c0630aefa66e1a86b1b0713fb6e991616a0efd325d681ca8565035"
     },
     {
      "path": "mv.json",
-     "size": 2969,
-     "sha256": "bdd5121b2c43230cbd63d6752e4709768ba8f4f57bc448aeefccee890e938113"
+     "size": 3316,
+     "sha256": "19f5a17bb3300b5884ffc4ca11f67a101e1eed2f455e9f9d86233157ddd32d34"
     },
     {
      "path": "scenes.js",
@@ -152,15 +126,98 @@
    ]
   },
   {
+   "id": "world-execute-me-three",
+   "title": "world.execute(me); · Original Three.js MV",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "MIT AND LicenseRef-Mili-NonCommercial-FanWork",
+   "version": "1.1.0",
+   "duration": 213,
+   "renderer": "webgl",
+   "description": "完整非音乐 Three.js MV：12 原始场景、镜头/泛光、75 条双语歌词与时间轴随包提供并自动加载，只需自备音乐。非商业同人用途，需要插件 0.9.4+。",
+   "tags": [
+    "world.execute(me)",
+    "Mili",
+    "three.js",
+    "webgl",
+    "3d"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
+   "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": true,
+   "lyrics": true,
+   "spectrum": false,
+   "sections": 12,
+   "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+   "lyricsCredit": "Mili (song text); wiers-jack (upstream Chinese captions and timing), author MIT permission confirmed by maintainer",
+   "lyricsSource": "https://projectmili.com/copyright-guidelines",
+   "requires": "0.9.4",
+   "updated": "2026-10-06T19:06:46+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 3577,
+     "sha256": "f32a107059e545fca498cf73d90246cca746542fc739f830a49359d04fed6dab"
+    },
+    {
+     "path": "LYRICS-NOTICE.md",
+     "size": 823,
+     "sha256": "1b4876b4412951217d96c75ec959d6d15fae2f58a5fb04981a1d24ffa3756445"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 1962,
+     "sha256": "b5bca7f572f6662576087180c5492c0ad1b23c9c683be9e10d5fdcade0edcb60"
+    },
+    {
+     "path": "README.md",
+     "size": 894,
+     "sha256": "5deca944fde3ec624866b239cd049c3a270f0b5e09cb8a3d1dbc9a2f4b61b1da"
+    },
+    {
+     "path": "cover.png",
+     "size": 627525,
+     "sha256": "3f13b2c1687faa378b91b1f8cf776dc063c8e34df846943c64ffc046fc80ba44"
+    },
+    {
+     "path": "lyrics.json",
+     "size": 8924,
+     "sha256": "ed61b9d7da444ae67a20b78719ffa1991083ec3646a563cd6a57982370640673"
+    },
+    {
+     "path": "lyrics.timing.json",
+     "size": 6100,
+     "sha256": "67752ac3dd3e277199a79bc7f23484691e04c07d6bc65388f8be15642ed6e859"
+    },
+    {
+     "path": "mv.json",
+     "size": 3487,
+     "sha256": "3be49f36fed7b44f05d23f041eb8cf7bedb7ff65d0d1caae27d98953cb93dd45"
+    },
+    {
+     "path": "scenes.js",
+     "size": 1454924,
+     "sha256": "6cda00486b0ddc83a4eafe8cff76320599b9b2d1db11e1bfa9388daa3e850096"
+    },
+    {
+     "path": "source-provenance.json",
+     "size": 6004,
+     "sha256": "56bdd59107e3cf87ace62d6235a80b77c8a3d03b757f710789cd8727f8e9f9e5"
+    }
+   ]
+  },
+  {
    "id": "world-execute-me-wallpaper",
    "title": "world.execute(me); · Wallpaper MV",
    "artist": "Mili",
    "author": "Alice-Marx",
-   "license": "MIT",
-   "version": "1.0.0",
+   "license": "MIT AND LicenseRef-Mili-NonCommercial-FanWork",
+   "version": "1.1.0",
    "duration": 211.907,
    "renderer": "script",
-   "description": "seasnakes 的 world.execute(me); 动态壁纸 MV（1920×1080 画布动画，随原曲节拍与频谱同步），原样移植为像素场景；双语歌词卡片显示你自己的歌词文件。需要插件 0.9.1+。",
+   "description": "完整非音乐动态壁纸 MV：原始画布动画、节拍/频谱与92条双语歌词卡片随包提供并自动加载，只需自备音乐。非商业同人用途，需要插件0.9.4+。",
    "tags": [
     "world.execute(me)",
     "Mili",
@@ -172,10 +229,15 @@
    "source": "https://github.com/seasnakes/world.execute-me-wallpaper",
    "cover": "cover.png",
    "fingerprint": false,
-   "timing": false,
+   "timing": true,
+   "lyrics": true,
+   "spectrum": false,
    "sections": 14,
-   "requires": "0.9.1",
-   "updated": "2026-10-04T19:36:58+08:00",
+   "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+   "lyricsCredit": "Mili (song text); seasnakes (upstream Chinese captions and timing), upstream adaptation MIT",
+   "lyricsSource": "https://projectmili.com/copyright-guidelines",
+   "requires": "0.9.4",
+   "updated": "2026-10-06T19:06:46+08:00",
    "files": [
     {
      "path": "LICENSE.txt",
@@ -183,14 +245,19 @@
      "sha256": "82c3d0719328c4be43bcc8de828494882e8278f7611c335a9f33bd31a5327862"
     },
     {
+     "path": "LYRICS-NOTICE.md",
+     "size": 800,
+     "sha256": "2b942f8dfe472c16c304273ede0b778f5b71081e4f8e24a2db85fb12541cec3f"
+    },
+    {
      "path": "NOTICE.md",
-     "size": 1198,
-     "sha256": "387b4f72fdaa1297eea7b422e21dd7035567c84e46a514c661d094067f238896"
+     "size": 1355,
+     "sha256": "cbe762c952ae82797883c51ee137caa8ca4384baa4b7f99493295f864537c786"
     },
     {
      "path": "README.md",
-     "size": 936,
-     "sha256": "606ac8973acecfa9c4fcfa2c43c88c27eb09dc55f9ad7bb95e272ee1c320df63"
+     "size": 730,
+     "sha256": "09b6ccdb7670d9e05ede217b48e733807432344285d11effcaa615af1044530f"
     },
     {
      "path": "cover.png",
@@ -218,14 +285,29 @@
      "sha256": "32e1f863cdf74358b6a90a8cc9492f5c0ad6fdd394b124d456d03a1e9db1016e"
     },
     {
+     "path": "lyrics.json",
+     "size": 10763,
+     "sha256": "18e597c7c906cde02a7839f4446deee30f0b454f1bac5e0747116c69e4691c94"
+    },
+    {
+     "path": "lyrics.timing.json",
+     "size": 7664,
+     "sha256": "aa79b238f25540ecbd7f535fdf04b947fc9e470eb9474f894e2e760649703b0f"
+    },
+    {
      "path": "mv.json",
-     "size": 3376,
-     "sha256": "2dc4c549cbf37ee1c77650a89fb971fef5536924cad2968d9f3515afbff8527b"
+     "size": 3827,
+     "sha256": "22f436dbbf3b8cc4e54616901fa5556c3f595a183c19d4427654a8acbb1aace7"
     },
     {
      "path": "scenes.js",
      "size": 133330,
      "sha256": "a8ae75c43aa428c239b761c7a921a5d21f4269140d93de5ae7e4f5a6d251b37d"
+    },
+    {
+     "path": "source-provenance.json",
+     "size": 496,
+     "sha256": "91392390feade03d6d9ce8bd7933194fb6f574995a6d8dc25b5d34b8184072e5"
     }
    ]
   },
@@ -251,6 +333,8 @@
    "cover": "cover.png",
    "fingerprint": false,
    "timing": false,
+   "lyrics": false,
+   "spectrum": false,
    "sections": 5,
    "updated": "2026-10-04T18:39:47+08:00",
    "files": [
@@ -303,6 +387,8 @@
    "cover": "cover.png",
    "fingerprint": false,
    "timing": false,
+   "lyrics": false,
+   "spectrum": false,
    "sections": 5,
    "updated": "2026-10-04T18:39:47+08:00",
    "files": [
@@ -482,6 +568,8 @@
    "cover": "cover.png",
    "fingerprint": false,
    "timing": true,
+   "lyrics": false,
+   "spectrum": false,
    "sections": 6,
    "updated": "2026-10-04T01:14:04+08:00",
    "files": [
