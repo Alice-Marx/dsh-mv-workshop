@@ -2,9 +2,302 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "467c7ece41a828c08fbc4485cea18f4c38e0e760",
- "generated": "2026-10-06T11:07:18.033Z",
+ "commit": "d829e66c9d4826e832ab8ff50cc08b1dfaae3ab6",
+ "generated": "2026-10-06T16:47:15.578Z",
  "packs": [
+  {
+   "id": "world-execute-me-dsh-pv",
+   "title": "world.execute(me); · 大肥鱼眼中的 world.execute(me)",
+   "artist": "Mili",
+   "author": "Alice-Marx",
+   "license": "MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1 AND LicenseRef-Mili-NonCommercial-FanWork",
+   "version": "1.1.0",
+   "duration": 211.913,
+   "renderer": "dsh-pv",
+   "description": "Complete non-commercial fan PV: 98 English captions, original timing/chat/vector scenes, raster avatars/memory/sampling layers, AI-remade dancer, Space Mono Bold and Anton Regular. Only music is user-provided; Windows fonts remain local-only.",
+   "tags": [
+    "world.execute(me)",
+    "mili",
+    "dsh-pv",
+    "whale",
+    "preset"
+   ],
+   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-dsh-pv",
+   "source": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
+   "cover": "cover.png",
+   "fingerprint": false,
+   "timing": false,
+   "lyrics": true,
+   "spectrum": false,
+   "sections": 5,
+   "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+   "lyricsCredit": "Mili (song text); timing reconstructed from MisakaZentai/world-execute-me-dsh-pv text-free records and official song words.",
+   "lyricsSource": "https://projectmili.com/copyright-guidelines",
+   "fonts": true,
+   "fontsLicense": "OFL-1.1",
+   "fontsCredit": "Copyright 2016 The Space Mono Project Authors; Copyright 2020 The Anton Project Authors.",
+   "fontsNotice": "fonts/NOTICE.md",
+   "raster": true,
+   "requires": "0.9.5",
+   "updated": "2026-10-07T00:41:31+08:00",
+   "files": [
+    {
+     "path": "LICENSE.txt",
+     "size": 21286,
+     "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98"
+    },
+    {
+     "path": "LYRICS-NOTICE.md",
+     "size": 919,
+     "sha256": "7f1aaf9e89de9056086827d12f2e76d8a6e49ed877341e4ff31362e397219d43"
+    },
+    {
+     "path": "NOTICE.md",
+     "size": 5406,
+     "sha256": "a0214d500ca936b88a46d22bc1467c13a873699357dc82b669aec54aa16fc7db"
+    },
+    {
+     "path": "README.md",
+     "size": 2681,
+     "sha256": "0d79c3911f11cffac522b61963e706baabb5305f1e7287a2383dfe0982ef9c62"
+    },
+    {
+     "path": "art/NOTICE.md",
+     "size": 3676,
+     "sha256": "7b5ac29f7610b1f862d12068c628e6486327e102dde8a25476a6b405f7fc4912"
+    },
+    {
+     "path": "art/maid-left.webp",
+     "size": 23222,
+     "sha256": "68e9c767dbb33acfe2f1b6298dcc441871178a387f7bf743c4fac2da7a4b7c3c"
+    },
+    {
+     "path": "art/upstream-NOTICE-dsh-deep-whale.txt",
+     "size": 1350,
+     "sha256": "d9b0d1b71355f9a03415f415c04e505e4aa9a33e59a859e82dfb2c29b677b011"
+    },
+    {
+     "path": "art/upstream-NOTICE-dsh-whale-galgame.md",
+     "size": 11862,
+     "sha256": "34dda2fffc855b3ff4a97ab81b2c9d94d09115d5197e81b509290ef9b461e24d"
+    },
+    {
+     "path": "art/whale-angry.webp",
+     "size": 24336,
+     "sha256": "ffb6fb2063f19d6932322af2bc2405786a71dad62dd974937696a7cadadbf2b6"
+    },
+    {
+     "path": "art/whale-cheerful.webp",
+     "size": 23214,
+     "sha256": "2950ddffd17f8f43ab5c903f27bafaafc46e325f26ab575b876697b09c6a0505"
+    },
+    {
+     "path": "art/whale-confused.webp",
+     "size": 22712,
+     "sha256": "ce582288a950bb75d6fd412716a13b3b141502fbc98f23b182b270d680b3c2aa"
+    },
+    {
+     "path": "art/whale-exasperated.webp",
+     "size": 23058,
+     "sha256": "c47f785ad63c4776a93b4889ad219b7e8b5c4d6d9b2422746891b73e4c7bda73"
+    },
+    {
+     "path": "art/whale-frightened.webp",
+     "size": 24340,
+     "sha256": "ddc0f3b9e5c20aff3d15aa589c0887cc651f52759f6ec07f9372ca3cb3a4767c"
+    },
+    {
+     "path": "art/whale-serious.webp",
+     "size": 22258,
+     "sha256": "8bcda35248c8a9ee71ffa7a6dc546a89bbe185ec1479639f687401f86cedf9eb"
+    },
+    {
+     "path": "art/whale-shy.webp",
+     "size": 22800,
+     "sha256": "f8719c6b5cf18650238cdc16ac6c8f7a2600bd84c4a1b212d6e2a1779737d3df"
+    },
+    {
+     "path": "art/whale-starry.webp",
+     "size": 24720,
+     "sha256": "19de680e4e0b78a9db2d70408c82d9422ef045f722da5de362468c44a0e38021"
+    },
+    {
+     "path": "cover.png",
+     "size": 126778,
+     "sha256": "a6d674e99655f60368a5bb66255d9e91da1cb85b4f25fdb36d561e69b7c5aac3"
+    },
+    {
+     "path": "data/band-1.json",
+     "size": 21571,
+     "sha256": "a9a751a6ca85fde44a62d9de15192b94975dadc23f6107eef6cef7e3060f182a"
+    },
+    {
+     "path": "data/chat-1.json",
+     "size": 491520,
+     "sha256": "b28e91a1bdd76f3b7a8aba4567c7f777c26cc325fd21c655793aad1ff4ed8956"
+    },
+    {
+     "path": "data/chat-2.json",
+     "size": 270522,
+     "sha256": "32baca6b6f887f7944fc9a0981bd3cfa3f0ef4cb9abaee5048d7187212e6ff26"
+    },
+    {
+     "path": "data/timeline-1.json",
+     "size": 479209,
+     "sha256": "536992accc7714120b48dd34f0f4928996be5ab32763e746911c81b72f89c691"
+    },
+    {
+     "path": "data/timeline-2.json",
+     "size": 438787,
+     "sha256": "45f80bbb665799438fe8f8d42d9d724d4ca1b252dfe2dbd2dfe6859f13230165"
+    },
+    {
+     "path": "data/timeline-3.json",
+     "size": 448492,
+     "sha256": "c7aebdb0e18e5a9d526d30bfa41bfc89b46473e256a05fe46945167f7de396b5"
+    },
+    {
+     "path": "data/timeline-4.json",
+     "size": 488926,
+     "sha256": "0e9dc86b4f9214b1ec27c2f26c8842c877e1c472bb918310d5331fb4b7bd7e3d"
+    },
+    {
+     "path": "data/timeline-5.json",
+     "size": 475805,
+     "sha256": "2c58a979af96a2725a8f0370f56f66fcfb042fce540b3ee777b4d63435a857c9"
+    },
+    {
+     "path": "data/timeline-6.json",
+     "size": 473043,
+     "sha256": "13eb4dce3e3c7e35e4c7520d399470ef83a4f800490d047f1616d75bdb8601ab"
+    },
+    {
+     "path": "data/timeline-7.json",
+     "size": 319821,
+     "sha256": "df4100353cc039f38212e6e201dd1ce950ff7fcf8295b1f26539c9938b2468b8"
+    },
+    {
+     "path": "data/timeline-8.json",
+     "size": 391762,
+     "sha256": "95bc3a30d7f8e387e492bc5e20b8a0245e962016b4060681ff9e9ed804f67523"
+    },
+    {
+     "path": "data/timeline-9.json",
+     "size": 137457,
+     "sha256": "59a1720df8ecfaef7fb21e7675d69e8697f1443c4cba74b04736c2a267db0b37"
+    },
+    {
+     "path": "fonts/Anton-Regular.ttf",
+     "size": 170812,
+     "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab"
+    },
+    {
+     "path": "fonts/NOTICE.md",
+     "size": 679,
+     "sha256": "0a35c9c76d5badaf63a499ac12e3b9aae8ef225ee667a8a7a8dfbcc768ea1e78"
+    },
+    {
+     "path": "fonts/OFL_anton.txt",
+     "size": 4391,
+     "sha256": "eee1d24ff8f553eb732237c7dd9b945a78313ed49ad6de02872a47277741b44a"
+    },
+    {
+     "path": "fonts/OFL_spacemono.txt",
+     "size": 4392,
+     "sha256": "8e4ee42b2553e1e01504e61cb0d46d148cd8c9e5eacaa3622a7df2d4f2955b9f"
+    },
+    {
+     "path": "fonts/SpaceMono-Bold.ttf",
+     "size": 98232,
+     "sha256": "405e73d41afb7e5906efce206a326af5c956f38e255f35421c260e861e599c59"
+    },
+    {
+     "path": "lyrics.json",
+     "size": 6221,
+     "sha256": "ae4885f37c3a50428f662931db974a0940da2caa96d1a981ad494fef8efd6631"
+    },
+    {
+     "path": "mv.json",
+     "size": 13054,
+     "sha256": "1309e013804248030f0ffaba07cbf65dc5f4a897b36c60b58f07d1ac07e1c70c"
+    },
+    {
+     "path": "raster/raster-atlas-00.webp",
+     "size": 29428,
+     "sha256": "b7edbd9d6097df88620de4fd9c67ae9fd480a64a0839a99a1b4f5bbba49d739d"
+    },
+    {
+     "path": "raster/raster-atlas-01.webp",
+     "size": 38598,
+     "sha256": "7d1a83da37e47a8060a3b2167ae9f03b3698896a21e9f182be6debf149c5597f"
+    },
+    {
+     "path": "raster/raster-atlas-02.webp",
+     "size": 219322,
+     "sha256": "d18d29c60fe91d8b846348a8cf5d31ad5160afd37e4c74b9ac24cf11eb5da7df"
+    },
+    {
+     "path": "raster/raster-atlas-03.webp",
+     "size": 382364,
+     "sha256": "71f270ac87b335d65c434d09bc13ff345cb74f65edd731b4affd94cf6ffd2805"
+    },
+    {
+     "path": "raster/raster-atlas-04.webp",
+     "size": 510528,
+     "sha256": "aff41f09024743d0904f7c22af86fe781980dad4cd5052d250944fee0032dabf"
+    },
+    {
+     "path": "raster/raster-atlas-05.webp",
+     "size": 388596,
+     "sha256": "b27c9893d92572736b75adfadee8f22e9ab1248594524de560a232195511e6cd"
+    },
+    {
+     "path": "raster/raster-atlas-06.webp",
+     "size": 659596,
+     "sha256": "b9cc8d5d6c8876dc5be490ac7784527c7d34b59f8bf28516b6f53fed224bfaa1"
+    },
+    {
+     "path": "raster/raster-atlas-07.webp",
+     "size": 519896,
+     "sha256": "7660b2729e62cd5efafe0cdbe50b383deb3430d03a70a5cccb72417a48eb03aa"
+    },
+    {
+     "path": "raster/raster-atlas-08.webp",
+     "size": 371436,
+     "sha256": "b2dc2d0be235fba395124d094bac4b4ec931cf598b98946f33c6e68bef0bf2d1"
+    },
+    {
+     "path": "raster/raster-atlas-09.webp",
+     "size": 512598,
+     "sha256": "8a046f853c99c2c52d3ff9509b7997f7372a10dfc37bf1a343f2a465de86f192"
+    },
+    {
+     "path": "raster/raster-atlas-10.webp",
+     "size": 472356,
+     "sha256": "938f33c405c980107ddbaadfa9d8f07a47ee10c5ab0a61d4f5838d4887f5de9f"
+    },
+    {
+     "path": "raster/raster-atlas-11.webp",
+     "size": 685440,
+     "sha256": "151242d5a2a277cf1863415dbe1731cc66c177e1a63932e85cce97c89f1bf083"
+    },
+    {
+     "path": "raster/raster-atlas-12.webp",
+     "size": 1045540,
+     "sha256": "abb37988a28cd0759bc2b6342f2f55e4f82268ba6726cbdcd68e309b94dce0b7"
+    },
+    {
+     "path": "raster/raster-atlas-13.webp",
+     "size": 1007340,
+     "sha256": "ee7a7cbed7b629005b90bdb568859db8749c20df1c2ecb15df6678a233940c55"
+    },
+    {
+     "path": "raster/timeline-1.json",
+     "size": 421062,
+     "sha256": "db5bee5247dd509729bd0313928f5868a46803edf82bc4dab0648da3df72146d"
+    }
+   ]
+  },
   {
    "id": "polytech-tree",
    "title": "Polytech Tree · 人类科技树漫游",
@@ -362,190 +655,6 @@
      "path": "scenes.js",
      "size": 200971,
      "sha256": "51fea45ad7c701cdcfa307f8e17a1f7e972441a8183b4361b96b5065401abc4c"
-    }
-   ]
-  },
-  {
-   "id": "world-execute-me-dsh-pv",
-   "title": "world.execute(me); · 大肥鱼眼中的 world.execute(me)",
-   "artist": "Mili",
-   "author": "Alice-Marx",
-   "license": "CC-BY-NC-SA-4.0",
-   "version": "1.0.0",
-   "duration": 211.913,
-   "renderer": "dsh-pv",
-   "description": "MisakaZentai's world.execute(me) dsh PV (\"大肥鱼眼中的 world.execute(me)\") replayed live on the canvas by dsh-mv's dsh-pv renderer: recorded shot timeline, dsh chat window and whale-girl art (formerly a built-in preset of dsh-mv-cli). Bring your own audio.",
-   "tags": [
-    "world.execute(me)",
-    "mili",
-    "dsh-pv",
-    "whale",
-    "preset"
-   ],
-   "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-dsh-pv",
-   "source": "https://github.com/MisakaZentai/world-execute-me-dsh-pv",
-   "cover": "cover.png",
-   "fingerprint": false,
-   "timing": false,
-   "lyrics": false,
-   "spectrum": false,
-   "sections": 5,
-   "updated": "2026-10-04T18:39:47+08:00",
-   "files": [
-    {
-     "path": "LICENSE.txt",
-     "size": 21286,
-     "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98"
-    },
-    {
-     "path": "NOTICE.md",
-     "size": 1433,
-     "sha256": "e58704bfedceda1aedd94ec5e14cc2643cb551b7f218c8cf6d9829c101384870"
-    },
-    {
-     "path": "README.md",
-     "size": 1968,
-     "sha256": "6e92265a87f2cb595002abe0d138819084e808c721113061f7b6c51942e94daa"
-    },
-    {
-     "path": "art/LICENSE.txt",
-     "size": 21286,
-     "sha256": "047d2259741a3ebb30d8c8a43d4ba79b5b229a069acd1d2bea49f22b297d8e98"
-    },
-    {
-     "path": "art/NOTICE.md",
-     "size": 3662,
-     "sha256": "7a170d4829a04a74dc428710e404aa615359f01e028bc63144f77ebf1cb7e0d6"
-    },
-    {
-     "path": "art/maid-left.webp",
-     "size": 23222,
-     "sha256": "68e9c767dbb33acfe2f1b6298dcc441871178a387f7bf743c4fac2da7a4b7c3c"
-    },
-    {
-     "path": "art/upstream-NOTICE-dsh-deep-whale.txt",
-     "size": 1350,
-     "sha256": "d9b0d1b71355f9a03415f415c04e505e4aa9a33e59a859e82dfb2c29b677b011"
-    },
-    {
-     "path": "art/upstream-NOTICE-dsh-whale-galgame.md",
-     "size": 11862,
-     "sha256": "34dda2fffc855b3ff4a97ab81b2c9d94d09115d5197e81b509290ef9b461e24d"
-    },
-    {
-     "path": "art/whale-angry.webp",
-     "size": 24336,
-     "sha256": "ffb6fb2063f19d6932322af2bc2405786a71dad62dd974937696a7cadadbf2b6"
-    },
-    {
-     "path": "art/whale-cheerful.webp",
-     "size": 23214,
-     "sha256": "2950ddffd17f8f43ab5c903f27bafaafc46e325f26ab575b876697b09c6a0505"
-    },
-    {
-     "path": "art/whale-confused.webp",
-     "size": 22712,
-     "sha256": "ce582288a950bb75d6fd412716a13b3b141502fbc98f23b182b270d680b3c2aa"
-    },
-    {
-     "path": "art/whale-exasperated.webp",
-     "size": 23058,
-     "sha256": "c47f785ad63c4776a93b4889ad219b7e8b5c4d6d9b2422746891b73e4c7bda73"
-    },
-    {
-     "path": "art/whale-frightened.webp",
-     "size": 24340,
-     "sha256": "ddc0f3b9e5c20aff3d15aa589c0887cc651f52759f6ec07f9372ca3cb3a4767c"
-    },
-    {
-     "path": "art/whale-serious.webp",
-     "size": 22258,
-     "sha256": "8bcda35248c8a9ee71ffa7a6dc546a89bbe185ec1479639f687401f86cedf9eb"
-    },
-    {
-     "path": "art/whale-shy.webp",
-     "size": 22800,
-     "sha256": "f8719c6b5cf18650238cdc16ac6c8f7a2600bd84c4a1b212d6e2a1779737d3df"
-    },
-    {
-     "path": "art/whale-starry.webp",
-     "size": 24720,
-     "sha256": "19de680e4e0b78a9db2d70408c82d9422ef045f722da5de362468c44a0e38021"
-    },
-    {
-     "path": "cover.png",
-     "size": 126778,
-     "sha256": "a6d674e99655f60368a5bb66255d9e91da1cb85b4f25fdb36d561e69b7c5aac3"
-    },
-    {
-     "path": "data/NOTICE.md",
-     "size": 2558,
-     "sha256": "ed668d1bd7c91f1bb9f6f64e08e850af08adcf8da0a6bec1611c7b74099d8618"
-    },
-    {
-     "path": "data/band.json",
-     "size": 21571,
-     "sha256": "a9a751a6ca85fde44a62d9de15192b94975dadc23f6107eef6cef7e3060f182a"
-    },
-    {
-     "path": "data/chat-1.json",
-     "size": 491520,
-     "sha256": "b28e91a1bdd76f3b7a8aba4567c7f777c26cc325fd21c655793aad1ff4ed8956"
-    },
-    {
-     "path": "data/chat-2.json",
-     "size": 270522,
-     "sha256": "32baca6b6f887f7944fc9a0981bd3cfa3f0ef4cb9abaee5048d7187212e6ff26"
-    },
-    {
-     "path": "data/timeline-1.json",
-     "size": 486322,
-     "sha256": "c7c283523dc0f772e813de5ec0bcd7b54b6ed7ddc20e1ef25c85a971b4c5c6ae"
-    },
-    {
-     "path": "data/timeline-2.json",
-     "size": 444600,
-     "sha256": "ddb1f78f6c4fac582a947310e42d8ddd504480c2b3a6eaedbb6134e6bc853b2d"
-    },
-    {
-     "path": "data/timeline-3.json",
-     "size": 436235,
-     "sha256": "87e983e6e8d483b31c9689abf3b6908056a370557a91de51b1bb62a5b39c7629"
-    },
-    {
-     "path": "data/timeline-4.json",
-     "size": 491284,
-     "sha256": "88ca7c4a64a30bc0713b59e744e2d79ac377befe8c5bd205f2f4e776c2c8be5d"
-    },
-    {
-     "path": "data/timeline-5.json",
-     "size": 469635,
-     "sha256": "e11a27fb12aa68683c72ed6334655bd08128a9c5c037908ee11f8100f0940f09"
-    },
-    {
-     "path": "data/timeline-6.json",
-     "size": 477004,
-     "sha256": "56d64a027e9e3057aaa126e12d0c976575f566e11f2f6f34718b3e20e36da120"
-    },
-    {
-     "path": "data/timeline-7.json",
-     "size": 364004,
-     "sha256": "8a46783ae24c2f8d53d4a2e83c9354fc6514d236f7c7a31c65ef05967cdbd7f1"
-    },
-    {
-     "path": "data/timeline-8.json",
-     "size": 397733,
-     "sha256": "94ad77328aa41184f3770ae91410ef92a200b9199df69b8ce6a7df896de7a682"
-    },
-    {
-     "path": "data/timeline-9.json",
-     "size": 133045,
-     "sha256": "51b94291ea4c3db6d93b59da5fb9dac9041194e5928e81d0953c85c0124156bc"
-    },
-    {
-     "path": "mv.json",
-     "size": 3336,
-     "sha256": "1f8524d3ce372ecf776cc1125314ebcc44c071eed2911e6ecc284b756d605c6b"
     }
    ]
   },
