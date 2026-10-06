@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Validate workshop packs with the same rules the dsh-mv plugin applies when installing them:
-// layout and size limits, no audio / lyric files, required license, mv.json schema, static sandbox
+// layout and size limits, no audio, separately licensed declared lyrics, mv.json schema, static sandbox
 // checks on scene scripts, and a dry run in node:vm. Bitmap outputs record drawing API
 // calls only: they do not compile GPU shaders, decode images, or validate visible pixels.
 //

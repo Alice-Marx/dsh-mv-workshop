@@ -1,8 +1,12 @@
+# Complete non-audio resources / 完整非音乐资源 1.2.0
+
+Full original technology rows, descriptions and per-entry sources are retained in data/catalog-*.json; original eras/categories are in data/source-meta.json. Only sharding changed. Structured fields remain CC BY 4.0; Chinese descriptions remain CC BY-SA 4.0, including attribution to upstream and referenced Wikipedia contributors. Code is MIT. The row descriptions and their adaptations must retain their share-alike terms: https://creativecommons.org/licenses/by-sa/4.0/ . The original project has no song/lyric track; no artificial lyrics are added. 可以静音播放，或自备音乐。
+
 # Polytech Tree · 人类科技树漫游
 
-**Original / 原作:** [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) · code MIT · data CC BY 4.0
+**Original / 原作:** [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) · code MIT · structured data CC BY 4.0 · descriptions CC BY-SA 4.0
 
-把 Polytech Tree 的「▶ 漫游动画」适配为实时 GPU 3D（`canvas.output: "webgl"`，需要 dsh-mv-cli **0.9.2** 或更新）：
+把 Polytech Tree 的「▶ 漫游动画」适配为实时 GPU 3D（`canvas.output: "webgl"`，完整包需要 dsh-mv-cli **0.9.4** 或更新）：
 3862 项科技、4962 条前置关系、11 个时代；镜头沿塔轴俯视上升，每个时代按科技数分配 10–30 秒，
 科技按年份逐个显现，前置连线在目标显现前 1.6 秒内爬到。全片约 192 秒。
 

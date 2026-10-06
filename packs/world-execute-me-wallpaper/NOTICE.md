@@ -7,7 +7,7 @@
 - **Changes (Alice-Marx, 2026-10):** common.js + scenes2.js run as a dsh-mv pixel scene script on an
   OffscreenCanvas (DOM lookups replaced, `String.fromCharCode` replaced by a lookup table); analysis.js
   moved to `data/analysis-*.json`; events.js inlined; the HTML lyric card redrawn on the canvas from the
-  user's own lyrics. Removed: audio, `lyrics-data.js` (lyric text), the "Claude UI" mock-up, Wallpaper Engine glue.
-- **Music and lyrics:** Mili — "world.execute(me);". Not included. Rights belong to Mili and the respective
+  included static bilingual caption data. Removed: audio recording, the "Claude UI" mock-up, Wallpaper Engine glue.
+- **Music and lyrics:** Mili — "world.execute(me);". Music recordings are not included; static captions are included for non-commercial fan-MV use, with separate Mili terms and upstream seasnakes credit in LYRICS-NOTICE.md. Rights belong to Mili and the respective
   rights holders; see https://projectmili.com/copyright-guidelines . The original repository is marked
   “仅供交流学习使用” (for exchange and study).

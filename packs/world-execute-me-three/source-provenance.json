@@ -91,19 +91,14 @@
       "adaptedSha256": "0499d02d5d50905b1e7fe73a8867c4e7f74fc57f0b06e7452a15830a6d809e5f",
       "changed": false
     },
-    "util.js": {
-      "sha256": "3896273aa70f45a13df24395cbebe2a724dea11093fcdef88601969028f865da",
-      "adaptedSha256": "58529e525b4ba5dcc097ab77a75f0a8d50081985511106f0a026fb6db412cde9",
-      "changed": true
-    },
     "palette.js": {
       "sha256": "7234f03822c0fedf9ecb392feb91fceb7e51efe701126df261e1d26b65a7b8a8",
       "adaptedSha256": "7234f03822c0fedf9ecb392feb91fceb7e51efe701126df261e1d26b65a7b8a8",
       "changed": false
     },
-    "sections/s11_coda.js": {
-      "sha256": "338efb0fd83516cbf9dd1546e4dcb08046dbe2abf09940c8b22f673a673e7602",
-      "adaptedSha256": "7c94cb9abce36464f8d95aa438ec9c3d2ca75c633a43af922c2385bdb81ab02c",
+    "util.js": {
+      "sha256": "3896273aa70f45a13df24395cbebe2a724dea11093fcdef88601969028f865da",
+      "adaptedSha256": "58529e525b4ba5dcc097ab77a75f0a8d50081985511106f0a026fb6db412cde9",
       "changed": true
     },
     "sections/s00_boot.js": {
@@ -111,44 +106,14 @@
       "adaptedSha256": "79d9b9356f264905930c9cf9176e7f900fa75ab9686082509b6d1bfa3a02e8e4",
       "changed": true
     },
-    "sections/s06_trance.js": {
-      "sha256": "673434056c48939d8a5d967e76f53575e2e79b777f19d7742e096d13080e97a1",
-      "adaptedSha256": "c30297c82551d78c4737b2473de027adcccddd0893dd1e98cd6208355b6c3694",
-      "changed": true
-    },
-    "sections/s08_fragments.js": {
-      "sha256": "9a0f9f0397d071c6c4feab76d1def386cd20ae17319a862b68126e5396bea18a",
-      "adaptedSha256": "9a0f9f0397d071c6c4feab76d1def386cd20ae17319a862b68126e5396bea18a",
-      "changed": false
-    },
-    "sections/s10_finalchorus.js": {
-      "sha256": "75994387abfcfa3bcadadb838b7a054d7c0654a024fc8dd7c943762e01f6458d",
-      "adaptedSha256": "283598860f4b704ddc369c4ff388bd6f75f0fa1b5f274e4e4bfc8728cfc87b28",
-      "changed": true
-    },
     "sections/s02_mathlove.js": {
       "sha256": "e2f2b1d217f32c80e5494705e193732d2ec158dede0789ed55d544acbc5727e2",
       "adaptedSha256": "0266ad2b86a6515a5f0ef2c7e9402bca04facc5ff94bfcc98c5c7a1d90d7b6bb",
       "changed": true
     },
-    "sections/s07_leftalone.js": {
-      "sha256": "07ffc34fb8ddc3e8c4d1357d38e2a0e29f542530b6c7ac428f3cb313f8728d8b",
-      "adaptedSha256": "65540f3260a6c04999e188b7d0c812397c81f5f892c25224236119964006e9da",
-      "changed": true
-    },
-    "sections/s01_world.js": {
-      "sha256": "e54e8f78375745501bdb59b5403dd82aeea37b6c75c881f01de6837f4b02400a",
-      "adaptedSha256": "e54e8f78375745501bdb59b5403dd82aeea37b6c75c881f01de6837f4b02400a",
-      "changed": false
-    },
-    "sections/s04_cage.js": {
-      "sha256": "d189570ee16fe54c2c9269e550396daab577495bc524f50627ea658c338c0b4e",
-      "adaptedSha256": "7c86beec35d6588adfc3a2b474c5f918bb961acc4000df7389bf606eff3348cf",
-      "changed": true
-    },
-    "sections/s09_execution.js": {
-      "sha256": "557f6a40d2ef48a5f46966d90cb4dd4d439b7a78633693d29047dcad7c26d21a",
-      "adaptedSha256": "610d32d43049dff843eea6dbae9379c2872e28a97af5b816b86c29cd23aa93cd",
+    "sections/s06_trance.js": {
+      "sha256": "673434056c48939d8a5d967e76f53575e2e79b777f19d7742e096d13080e97a1",
+      "adaptedSha256": "c30297c82551d78c4737b2473de027adcccddd0893dd1e98cd6208355b6c3694",
       "changed": true
     },
     "sections/s03_acdc.js": {
@@ -156,10 +121,53 @@
       "adaptedSha256": "700cf10a19d1b1494ad5a822b0000e2d3a93158d027fcf6ba48c2d0f17c72a8b",
       "changed": true
     },
+    "sections/s04_cage.js": {
+      "sha256": "d189570ee16fe54c2c9269e550396daab577495bc524f50627ea658c338c0b4e",
+      "adaptedSha256": "7c86beec35d6588adfc3a2b474c5f918bb961acc4000df7389bf606eff3348cf",
+      "changed": true
+    },
+    "sections/s01_world.js": {
+      "sha256": "e54e8f78375745501bdb59b5403dd82aeea37b6c75c881f01de6837f4b02400a",
+      "adaptedSha256": "e54e8f78375745501bdb59b5403dd82aeea37b6c75c881f01de6837f4b02400a",
+      "changed": false
+    },
+    "sections/s10_finalchorus.js": {
+      "sha256": "75994387abfcfa3bcadadb838b7a054d7c0654a024fc8dd7c943762e01f6458d",
+      "adaptedSha256": "283598860f4b704ddc369c4ff388bd6f75f0fa1b5f274e4e4bfc8728cfc87b28",
+      "changed": true
+    },
+    "sections/s11_coda.js": {
+      "sha256": "338efb0fd83516cbf9dd1546e4dcb08046dbe2abf09940c8b22f673a673e7602",
+      "adaptedSha256": "7c94cb9abce36464f8d95aa438ec9c3d2ca75c633a43af922c2385bdb81ab02c",
+      "changed": true
+    },
     "sections/s05_organic.js": {
       "sha256": "4e9d2c8811a5962b758755993b376c7bdff99dca3cb597708bce44af01eef65d",
       "adaptedSha256": "e8b53a1df3b4fd74b8b3e18aaf3b6e571c988ffe78b7c765a104b239e96c1e79",
       "changed": true
+    },
+    "sections/s07_leftalone.js": {
+      "sha256": "07ffc34fb8ddc3e8c4d1357d38e2a0e29f542530b6c7ac428f3cb313f8728d8b",
+      "adaptedSha256": "65540f3260a6c04999e188b7d0c812397c81f5f892c25224236119964006e9da",
+      "changed": true
+    },
+    "sections/s09_execution.js": {
+      "sha256": "557f6a40d2ef48a5f46966d90cb4dd4d439b7a78633693d29047dcad7c26d21a",
+      "adaptedSha256": "610d32d43049dff843eea6dbae9379c2872e28a97af5b816b86c29cd23aa93cd",
+      "changed": true
+    },
+    "sections/s08_fragments.js": {
+      "sha256": "9a0f9f0397d071c6c4feab76d1def386cd20ae17319a862b68126e5396bea18a",
+      "adaptedSha256": "9a0f9f0397d071c6c4feab76d1def386cd20ae17319a862b68126e5396bea18a",
+      "changed": false
     }
+  },
+  "lyrics": {
+    "source": "lyrics.js",
+    "sourceSha256": "1e02f2b991f97dd9e21c62fe1d24267aeb91552eeb0550b80484924e950a4744",
+    "cueCount": 75,
+    "terms": "https://projectmili.com/copyright-guidelines",
+    "usage": "non-commercial unofficial fan MV captions",
+    "credit": "wiers-jack (upstream Chinese captions and timing), author MIT permission confirmed by maintainer"
   }
 }

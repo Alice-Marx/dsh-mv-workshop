@@ -1,0 +1,452 @@
+[
+  {
+    "time": 0.27,
+    "end": 1.85,
+    "en": "Switch on the power line",
+    "zh": "接通电源线"
+  },
+  {
+    "time": 1.93,
+    "end": 3.87,
+    "en": "Remember to put on protection",
+    "zh": "记得穿上防护"
+  },
+  {
+    "time": 3.95,
+    "end": 5.49,
+    "en": "Lay down your pieces",
+    "zh": "放下你的棋子"
+  },
+  {
+    "time": 5.57,
+    "end": 7.52,
+    "en": "And let's begin object creation",
+    "zh": "让我们开始创造对象"
+  },
+  {
+    "time": 7.6,
+    "end": 11.16,
+    "en": "Fill in my data parameters, initialisation",
+    "zh": "填入我的数据参数，初始化"
+  },
+  {
+    "time": 11.24,
+    "end": 12.85,
+    "en": "Set up our new world",
+    "zh": "建立我们的新世界"
+  },
+  {
+    "time": 12.93,
+    "end": 19.43,
+    "en": "And let's begin the simulation",
+    "zh": "让我们开始这场模拟"
+  },
+  {
+    "time": 29.74,
+    "end": 31.29,
+    "en": "If I'm a set of points",
+    "zh": "若我是一群点"
+  },
+  {
+    "time": 31.37,
+    "end": 33.34,
+    "en": "Then I will give you my dimension",
+    "zh": "我愿给你我的维度"
+  },
+  {
+    "time": 33.42,
+    "end": 34.9,
+    "en": "If I'm a circle",
+    "zh": "若我是一个圆"
+  },
+  {
+    "time": 34.98,
+    "end": 37.07,
+    "en": "Then I will give you my circumference",
+    "zh": "我愿给你我的圆周"
+  },
+  {
+    "time": 37.15,
+    "end": 38.65,
+    "en": "If I'm a sine wave",
+    "zh": "若我是一道正弦波"
+  },
+  {
+    "time": 38.73,
+    "end": 40.7,
+    "en": "Then you can sit on all my tangents",
+    "zh": "你可以安坐在我所有的切线上"
+  },
+  {
+    "time": 40.78,
+    "end": 42.34,
+    "en": "If I approach infinity",
+    "zh": "若我趋近无穷"
+  },
+  {
+    "time": 42.42,
+    "end": 44.4,
+    "en": "Then you can be my limitations",
+    "zh": "你便是我的极限"
+  },
+  {
+    "time": 44.48,
+    "end": 46.05,
+    "en": "Switch my current",
+    "zh": "切换我的电流"
+  },
+  {
+    "time": 46.13,
+    "end": 47.86,
+    "en": "To AC, to DC",
+    "zh": "从交流到直流"
+  },
+  {
+    "time": 47.94,
+    "end": 49.7,
+    "en": "And then blind my vision",
+    "zh": "然后蒙蔽我的双眼"
+  },
+  {
+    "time": 49.78,
+    "end": 51.3,
+    "en": "So dizzy, so dizzy",
+    "zh": "如此眩晕，如此眩晕"
+  },
+  {
+    "time": 51.38,
+    "end": 53.4,
+    "en": "Oh, we can travel",
+    "zh": "哦，我们可以旅行"
+  },
+  {
+    "time": 53.48,
+    "end": 55.09,
+    "en": "To A.D., to B.C.",
+    "zh": "到公元，到公元前"
+  },
+  {
+    "time": 55.17,
+    "end": 57.09,
+    "en": "And we can unite",
+    "zh": "我们彼此交融"
+  },
+  {
+    "time": 57.17,
+    "end": 59.32,
+    "en": "So deeply, so deeply",
+    "zh": "如此深邃，如此深邃"
+  },
+  {
+    "time": 59.4,
+    "end": 62.84,
+    "en": "If I can give you all the stimulations",
+    "zh": "若我能给你所有刺激"
+  },
+  {
+    "time": 62.92,
+    "end": 66.54,
+    "en": "Then I can be your only satisfaction",
+    "zh": "我便是你唯一的满足"
+  },
+  {
+    "time": 66.62,
+    "end": 68.4,
+    "en": "If I can make you happy",
+    "zh": "若我能让你快乐"
+  },
+  {
+    "time": 68.48,
+    "end": 70.24,
+    "en": "I will run the execution",
+    "zh": "我愿运行这场执行"
+  },
+  {
+    "time": 70.32,
+    "end": 71.68,
+    "en": "Though we are trapped",
+    "zh": "尽管我们被困于"
+  },
+  {
+    "time": 71.76,
+    "end": 73.96,
+    "en": "In this strange, strange simulation",
+    "zh": "这奇异、奇异的模拟之中"
+  },
+  {
+    "time": 74.04,
+    "end": 75.6,
+    "en": "If I'm an eggplant",
+    "zh": "若我是一只茄子"
+  },
+  {
+    "time": 75.68,
+    "end": 77.62,
+    "en": "Then I will give you my nutrients",
+    "zh": "我愿给你我的养分"
+  },
+  {
+    "time": 77.7,
+    "end": 79.24,
+    "en": "If I'm a tomato",
+    "zh": "若我是一颗番茄"
+  },
+  {
+    "time": 79.32,
+    "end": 81.29,
+    "en": "Then I'll give you antioxidants",
+    "zh": "我愿给你抗氧化物"
+  },
+  {
+    "time": 81.37,
+    "end": 82.98,
+    "en": "If I'm a tabby cat",
+    "zh": "若我是一只虎斑猫"
+  },
+  {
+    "time": 83.06,
+    "end": 85.05,
+    "en": "Then I will purr for your enjoyment",
+    "zh": "我愿为你咕噜作响"
+  },
+  {
+    "time": 85.13,
+    "end": 86.66,
+    "en": "If I'm the only god",
+    "zh": "若我是唯一的神明"
+  },
+  {
+    "time": 86.74,
+    "end": 88.7,
+    "en": "Then you're the proof of my existence",
+    "zh": "你便是我存在的证明"
+  },
+  {
+    "time": 88.78,
+    "end": 90.26,
+    "en": "Switch my gender",
+    "zh": "切换我的性别"
+  },
+  {
+    "time": 90.34,
+    "end": 92.05,
+    "en": "To F, to M",
+    "zh": "从女，到男"
+  },
+  {
+    "time": 92.13,
+    "end": 94.01,
+    "en": "And then do whatever",
+    "zh": "然后随心所欲"
+  },
+  {
+    "time": 94.09,
+    "end": 95.7,
+    "en": "From A.M. to P.M.",
+    "zh": "从清晨到夜晚"
+  },
+  {
+    "time": 95.78,
+    "end": 97.64,
+    "en": "Oh, switch my role",
+    "zh": "哦，切换我的角色"
+  },
+  {
+    "time": 97.72,
+    "end": 99.5,
+    "en": "To S, to M",
+    "zh": "从施予，到承受"
+  },
+  {
+    "time": 99.58,
+    "end": 101.27,
+    "en": "So we can enter",
+    "zh": "让我们一同进入"
+  },
+  {
+    "time": 101.35,
+    "end": 103.4,
+    "en": "The trance, the trance",
+    "zh": "那恍惚，恍惚之境"
+  },
+  {
+    "time": 103.48,
+    "end": 107.14,
+    "en": "If I can feel your vibrations",
+    "zh": "若我能感受到你的颤动"
+  },
+  {
+    "time": 107.22,
+    "end": 110.84,
+    "en": "Then I can finally be completion",
+    "zh": "我就能终于圆满"
+  },
+  {
+    "time": 110.92,
+    "end": 112.25,
+    "en": "Though you have left",
+    "zh": "但你已经离开"
+  },
+  {
+    "time": 112.33,
+    "end": 113.17,
+    "en": "You have left",
+    "zh": "你已经离开"
+  },
+  {
+    "time": 113.25,
+    "end": 114.1,
+    "en": "You have left",
+    "zh": "你已经离开"
+  },
+  {
+    "time": 114.18,
+    "end": 115,
+    "en": "You have left",
+    "zh": "你已经离开"
+  },
+  {
+    "time": 115.08,
+    "end": 115.95,
+    "en": "You have left",
+    "zh": "你已经离开"
+  },
+  {
+    "time": 116.03,
+    "end": 118.26,
+    "en": "You have left me in isolation",
+    "zh": "你把我留在孤独之中"
+  },
+  {
+    "time": 118.34,
+    "end": 121.94,
+    "en": "If I can erase all the pointless fragments",
+    "zh": "若我能抹去所有无意义的碎片"
+  },
+  {
+    "time": 122.02,
+    "end": 125.59,
+    "en": "Then maybe you won't leave me so disheartened",
+    "zh": "也许你就不会让我如此心碎"
+  },
+  {
+    "time": 125.67,
+    "end": 128.96,
+    "en": "Challenging your god",
+    "zh": "质疑你的神"
+  },
+  {
+    "time": 129.04,
+    "end": 135.54,
+    "en": "You have made some illegal arguments",
+    "zh": "你抛出了非法参数"
+  },
+  {
+    "time": 147.86,
+    "end": 151.48,
+    "en": "Execution",
+    "zh": "执行"
+  },
+  {
+    "time": 151.56,
+    "end": 155.14,
+    "en": "Execution",
+    "zh": "执行"
+  },
+  {
+    "time": 155.22,
+    "end": 158.87,
+    "en": "Execution",
+    "zh": "执行"
+  },
+  {
+    "time": 158.95,
+    "end": 161.64,
+    "en": "Ein, Dos, Trois, Ne, Fem, Liu",
+    "zh": "一、二、三、四、五、六"
+  },
+  {
+    "time": 161.72,
+    "end": 162.64,
+    "en": "Execution",
+    "zh": "执行"
+  },
+  {
+    "time": 162.72,
+    "end": 166.23,
+    "en": "If I can give them all the execution",
+    "zh": "若我能为他们处决一切"
+  },
+  {
+    "time": 166.31,
+    "end": 169.91,
+    "en": "Then I can be your only execution",
+    "zh": "我就能成为你唯一的执行"
+  },
+  {
+    "time": 169.99,
+    "end": 171.87,
+    "en": "If I can have you back",
+    "zh": "若你能回到我身边"
+  },
+  {
+    "time": 171.95,
+    "end": 173.62,
+    "en": "I will run the execution",
+    "zh": "我愿运行这场执行"
+  },
+  {
+    "time": 173.7,
+    "end": 175.06,
+    "en": "Though we are trapped",
+    "zh": "尽管我们被困"
+  },
+  {
+    "time": 175.14,
+    "end": 177.33,
+    "en": "We are trapped, ah",
+    "zh": "我们被困，啊"
+  },
+  {
+    "time": 177.41,
+    "end": 181.08,
+    "en": "I've studied how to properly lo-o-ove",
+    "zh": "我已研习如何正确去爱"
+  },
+  {
+    "time": 181.16,
+    "end": 184.75,
+    "en": "Question me, I can answer all lo-o-ove",
+    "zh": "问我吧，我能答尽爱的一切"
+  },
+  {
+    "time": 184.83,
+    "end": 188.4,
+    "en": "I know the algebraic expression of lo-o-ove",
+    "zh": "我知道爱的代数表达式"
+  },
+  {
+    "time": 188.48,
+    "end": 189.81,
+    "en": "Though you are free",
+    "zh": "但你是自由的"
+  },
+  {
+    "time": 189.89,
+    "end": 190.69,
+    "en": "I am trapped",
+    "zh": "我却被困"
+  },
+  {
+    "time": 190.77,
+    "end": 197.27,
+    "en": "Trapped in lo-o-ove",
+    "zh": "被困在爱里"
+  },
+  {
+    "time": 205.96,
+    "end": 212.46,
+    "en": "Execution",
+    "zh": "执行"
+  }
+]

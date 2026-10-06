@@ -1,0 +1,12 @@
+{
+  "repo": "https://github.com/seasnakes/world.execute-me-wallpaper",
+  "commit": "151471d3220729e16d51937ec5ba9024fd65b932",
+  "lyrics": {
+    "source": "lyrics-data.js",
+    "sourceSha256": "4072f50f4e534c698ccd778c27e151cc48715fed7d2a956427e194f1dfd911b7",
+    "cueCount": 92,
+    "terms": "https://projectmili.com/copyright-guidelines",
+    "usage": "non-commercial unofficial fan MV captions",
+    "credit": "seasnakes (upstream Chinese captions and timing), upstream adaptation MIT"
+  }
+}

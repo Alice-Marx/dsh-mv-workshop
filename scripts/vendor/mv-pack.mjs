@@ -277,6 +277,7 @@ export function workshopMeta(value) {
     homepage: httpsUrl(value.homepage), source: httpsUrl(value.source),
     audio: stripUndefined({ duration: Number.isFinite(audio.duration) && audio.duration > 0 ? Math.round(audio.duration * 1000) / 1000 : undefined, fingerprint: fp, sha256: typeof audio.sha256 === 'string' && /^[0-9a-f]{64}$/.test(audio.sha256) ? audio.sha256 : undefined }),
     lyricsTiming: typeof value.lyricsTiming === 'string' && /^[\w.-]{1,64}\.json$/.test(value.lyricsTiming) ? value.lyricsTiming : undefined,
+    lyricsLicense: str(value.lyricsLicense, 120), lyricsCredit: str(value.lyricsCredit, 500), lyricsSource: httpsUrl(value.lyricsSource),
   })
 }
 

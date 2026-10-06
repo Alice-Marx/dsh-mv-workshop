@@ -10,8 +10,8 @@ and checks each file's sha256 against the index.
 ## The easy way: 发布到工坊 in the plugin
 
 1. Open your pack in MV 放映室 → **发布到工坊**. Fill in id, version, license, author, description.
-2. The plugin checks the pack, **removes the audio and the lyric text** (lyrics become `lyrics.timing.json`: line
-   times, word times and a hash of each line — no text), adds a cover from the current frame, writes a README, and
+2. The plugin checks the pack, **removes only song audio**, preserves separately licensed lyrics/translations,
+   cue/word timing, spectrum and declared visual resources, adds a cover from the current frame, writes a README, and
    puts everything in a local folder `…\dsh-mv\workshop-publish\<id>\packs\<id>\`.
 3. Click **在 GitHub 上提交**: your browser opens this repository's *upload files* page for `packs/<id>/`. Drag the
    files from that folder in. GitHub forks the repository for you and opens a pull request. Nothing is submitted until
@@ -38,7 +38,7 @@ packs/<id>/
 }
 ```
 
-and must **not** contain `audio`, `lyrics` or `spectrum` (users play the pack with their own copy of the song).
+and must **not** contain song `audio`. Optional `lyrics` / `spectrum` reference local non-audio data. A lyric track requires separate `lyricsLicense` and `lyricsCredit` in the workshop metadata; `lyricsSource` can link its permission/terms. Complete tracks require dsh-mv-cli 0.9.4+ and load automatically. Users provide only music.
 `h` in the timing file is the first 16 hex digits of sha256 of the line after NFKC, lower-casing and removing spaces,
 punctuation and symbols.
 
@@ -47,8 +47,7 @@ punctuation and symbols.
 - `<id>`: lowercase letters, digits and `-`, 3–64 characters; equals `x-dsh-mv-workshop.id`.
 - Allowed files: `.json .js .mjs .md .txt .png .webp .jpg`. At most 40 files, 8 MiB per pack, 512 KiB per text/data file,
   256 KiB per text/pixels script, 2 MiB per WebGL script, 1 MiB per cover (canvas.assets images remain 512 KiB).
-- **No audio / video / lyric files** (`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`, `lyrics.json`), no lyric
-  text inside JSON or Markdown.
+- **No song audio / video** (`.mp3 .flac .wav .m4a .ogg .mp4 …`). Declared lyric tracks may use `.lrc .srt .vtt .json .js .mjs`, with explicit lyric license/credit. Unreferenced lyric files/text remain rejected. Lyric JS is static data only and is never executed as a scene; prefer the publisher's canonical JSON.
 - A **license is required** (`x-dsh-mv-workshop.license`), see [LICENSE-POLICY.md](LICENSE-POLICY.md).
 - If the pack adapts someone else's work, link it in `x-dsh-mv-workshop.source` (an `https://` URL, e.g. the original repository); the panel shows it as **原作** on the card and in the details. Large renderer data goes in `canvas.assets` (JSON files ≤ 512 KB each — shard bigger ones; whole pack ≤ 8 MB).
 - **Pixel scenes (dsh-mv-cli 0.9.1+)**: `canvas.output: "pixels"` with `canvas.size: [w, h]` (up to 1920×1080) and a `paint(g, t, w, h, ctx)` function that draws on a 2D canvas (no WebGL). Script packs also get their `canvas.assets` in `setup(info)` as `info.assets`. CI computes `requires` (the lowest plugin version that plays the pack, `0.9.1` for these) and puts it in `index.json`; you may set a higher `x-dsh-mv-workshop.requires` yourself. CI checks pixel scenes with a stand-in canvas (every sample frame must draw something).

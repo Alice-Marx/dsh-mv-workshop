@@ -7,9 +7,10 @@
   "credits": [
     "Visuals: seasnakes — world.execute(me); MV / Wallpaper Engine wallpaper (MIT), https://github.com/seasnakes/world.execute-me-wallpaper",
     "Music and lyrics: Mili — world.execute(me);",
-    "dsh-mv adaptation: Alice-Marx"
+    "dsh-mv adaptation: Alice-Marx",
+    "Mili (song text); seasnakes (upstream Chinese captions and timing), upstream adaptation MIT"
   ],
-  "notice": "Bring your own audio: this pack has no music and no lyric text. Choose your copy of Mili's \"world.execute(me);\" (and, if you like, your own lyrics file for the bilingual card).",
+  "notice": "Only music is user-provided. Lyrics, Chinese captions, timing and visuals are included for non-commercial fan use. Song text has separate terms; see LYRICS-NOTICE.md.",
   "duration": 211.907,
   "canvas": {
     "renderer": "script",
@@ -119,10 +120,10 @@
   },
   "x-dsh-mv-workshop": {
     "id": "world-execute-me-wallpaper",
-    "version": "1.0.0",
-    "license": "MIT",
+    "version": "1.1.0",
+    "license": "MIT AND LicenseRef-Mili-NonCommercial-FanWork",
     "author": "Alice-Marx",
-    "description": "seasnakes 的 world.execute(me); 动态壁纸 MV（1920×1080 画布动画，随原曲节拍与频谱同步），原样移植为像素场景；双语歌词卡片显示你自己的歌词文件。需要插件 0.9.1+。",
+    "description": "完整非音乐动态壁纸 MV：原始画布动画、节拍/频谱与92条双语歌词卡片随包提供并自动加载，只需自备音乐。非商业同人用途，需要插件0.9.4+。",
     "tags": [
       "world.execute(me)",
       "Mili",
@@ -132,9 +133,17 @@
     ],
     "source": "https://github.com/seasnakes/world.execute-me-wallpaper",
     "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-wallpaper",
-    "requires": "0.9.1",
+    "requires": "0.9.4",
     "audio": {
       "duration": 211.907
-    }
+    },
+    "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+    "lyricsCredit": "Mili (song text); seasnakes (upstream Chinese captions and timing), upstream adaptation MIT",
+    "lyricsSource": "https://projectmili.com/copyright-guidelines",
+    "lyricsTiming": "lyrics.timing.json"
+  },
+  "lyrics": {
+    "file": "lyrics.json",
+    "offset": 0
   }
 }

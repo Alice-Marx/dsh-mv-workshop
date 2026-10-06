@@ -9,7 +9,7 @@ ASCII MV 包。每个包放在 `packs/<id>/`，CI 在每次合并后重新生成
 ## 最简单：在插件里「发布到工坊」
 
 1. 在 MV 放映室打开你的包 → **发布到工坊**，填写 id、版本、许可证、作者、简介。
-2. 插件检查包，**去掉音频和歌词文本**（歌词变成 `lyrics.timing.json`：每行时间、逐词时间和每行文字的哈希，不含文字），
+2. 插件检查包，**只去掉歌曲音频**，保留独立授权的歌词/译文、逐句/逐词时间、频谱和声明的画面资源，
    用当前画面生成封面，写 README，全部放到本机文件夹 `…\dsh-mv\workshop-publish\<id>\packs\<id>\`。
 3. 点 **在 GitHub 上提交**：浏览器打开本仓库 `packs/<id>/` 的「上传文件」页面，把文件夹里的文件拖进去，
    GitHub 会自动 fork 并创建 Pull Request。在 github.com 上点按钮之前，什么都不会提交。
@@ -26,14 +26,14 @@ packs/<id>/
 ```
 
 `mv.json` 必须包含 `x-dsh-mv-workshop`（id、version、license、author，可选 description、tags、
-audio.duration、audio.fingerprint），并且**不能**包含 `audio`、`lyrics`、`spectrum`（用户用自己的歌曲文件播放）。
+audio.duration、audio.fingerprint），并且**不能**包含歌曲 `audio`。可以用 `lyrics` / `spectrum` 引用包内数据；歌词需在工坊元数据单独声明 `lyricsLicense`、`lyricsCredit`，可填 `lyricsSource`。完整轨道需插件0.9.4+，安装后自动加载；用户只需自备音乐。
 时间轴里的 `h` 是该行文字经 NFKC、转小写、去掉空格 / 标点 / 符号后 sha256 的前 16 位十六进制。
 
 ## 规则（CI 用 `node scripts/validate.mjs` 检查）
 
 - `<id>`：小写字母、数字和 `-`，3–64 个字符，与 `x-dsh-mv-workshop.id` 相同。
 - 允许的文件：`.json .js .mjs .md .txt .png .webp .jpg`；每个包最多 40 个文件、8 MiB；文本/数据 512 KiB，文本/2D 脚本 256 KiB、WebGL 脚本 2 MiB、封面 1 MiB（canvas.assets 图片仍为 512 KiB）。
-- **不允许音频 / 视频 / 歌词文件**（`.mp3 .flac .wav .m4a .ogg … .lrc .srt .vtt .ass …`、`lyrics.json`），JSON 和 Markdown 里也不能有歌词文本。
+- **不允许歌曲音频 / 视频**（`.mp3 .flac .wav .m4a .ogg .mp4 …`）。显式引用并授权署名的歌词轨可用 `.lrc .srt .vtt .json .js .mjs`；未声明的词文仍拒绝。JS只读静态数据，不作为场景执行；建议用发布器生成的标准JSON。
 - **必须声明许可证**（`x-dsh-mv-workshop.license`），见 [LICENSE-POLICY.md](LICENSE-POLICY.md)。
 - 改编自他人作品时，用 `x-dsh-mv-workshop.source` 写上原作链接（`https://`，例如原仓库），面板会在卡片和详情里显示为「原作」。较大的渲染数据放在 `canvas.assets`（单个 JSON ≤ 512 KB，大的要拆分；整个包 ≤ 8 MB）。
 - **像素场景（dsh-mv-cli 0.9.1+）**：`canvas.output: "pixels"`，`canvas.size: [宽, 高]`（最大 1920×1080），定义 `paint(g, t, w, h, ctx)` 在 2D 画布上绘制（不能用 WebGL）。脚本包还会在 `setup(info)` 的 `info.assets` 里拿到 `canvas.assets`。CI 会算出 `requires`（能播放这个包的最低插件版本，这类包为 `0.9.1`）写进 `index.json`；也可以自己在 `x-dsh-mv-workshop.requires` 写更高的版本。CI 用替身画布检查像素场景（每个采样帧都必须画了东西）。

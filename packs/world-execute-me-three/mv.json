@@ -8,9 +8,10 @@
     "Original visuals and rendering: wiers-jack, https://gitee.com/wiers-jack/world-execute-me-mv",
     "Three.js contributors (MIT)",
     "Worker adapter: Alice-Marx",
-    "Music and lyrics: Mili (not included)"
+    "Song text: Mili (separate non-commercial fan-MV terms); music recording not included",
+    "Mili (song text); wiers-jack (upstream Chinese captions and timing), author MIT permission confirmed by maintainer"
   ],
-  "notice": "Choose your own audio and lyric files. This pack preserves the upstream 213-second visual timeline. Original visual code is distributed under MIT with direct author permission confirmed by the workshop maintainer on 2026-10-05; see NOTICE.md.",
+  "notice": "Choose only your own music. Lyrics, Chinese captions, timing and all visual resources are included for non-commercial fan use; code MIT and song-text usage terms are separate. See LYRICS-NOTICE.md.",
   "canvas": {
     "renderer": "script",
     "script": "scenes.js",
@@ -101,10 +102,10 @@
   },
   "x-dsh-mv-workshop": {
     "id": "world-execute-me-three",
-    "version": "1.0.2",
-    "license": "MIT",
+    "version": "1.1.0",
+    "license": "MIT AND LicenseRef-Mili-NonCommercial-FanWork",
     "author": "Alice-Marx",
-    "description": "Original 12-section Three.js MV with camera blending, bloom and opt-in bilingual subtitles. Requires dsh-mv-cli 0.9.3+. Bring your own audio and local lyrics.js/LRC file.",
+    "description": "完整非音乐 Three.js MV：12 原始场景、镜头/泛光、75 条双语歌词与时间轴随包提供并自动加载，只需自备音乐。非商业同人用途，需要插件 0.9.4+。",
     "tags": [
       "world.execute(me)",
       "Mili",
@@ -114,9 +115,17 @@
     ],
     "source": "https://gitee.com/wiers-jack/world-execute-me-mv",
     "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-three",
-    "requires": "0.9.3",
+    "requires": "0.9.4",
     "audio": {
       "duration": 213
-    }
+    },
+    "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+    "lyricsCredit": "Mili (song text); wiers-jack (upstream Chinese captions and timing), author MIT permission confirmed by maintainer",
+    "lyricsSource": "https://projectmili.com/copyright-guidelines",
+    "lyricsTiming": "lyrics.timing.json"
+  },
+  "lyrics": {
+    "file": "lyrics.json",
+    "offset": 0
   }
 }

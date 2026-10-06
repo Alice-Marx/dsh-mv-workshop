@@ -6,7 +6,8 @@
   "artist": "secwind7",
   "credits": [
     "Polytech Tree — secwind (secwind7), code MIT, data CC BY 4.0: https://github.com/secwind7/polytech-tree",
-    "dsh-mv adaptation (GPU-instanced WebGL2 tour): Alice-Marx"
+    "dsh-mv adaptation (GPU-instanced WebGL2 tour): Alice-Marx",
+    "Full source catalogue descriptions: secwind7 and credited Wikipedia contributors, CC-BY-SA-4.0; original per-entry sources retained"
   ],
   "notice": "No music: play it silently or with any song you like (about 3 minutes). The tour follows the original's schedule; music only adds a little glow.",
   "duration": 192.113,
@@ -24,7 +25,16 @@
         "data/nodes-1.json",
         "data/nodes-2.json"
       ],
-      "edges": "data/edges.json"
+      "edges": "data/edges.json",
+      "catalogue": [
+        "data/catalog-1.json",
+        "data/catalog-2.json",
+        "data/catalog-3.json",
+        "data/catalog-4.json",
+        "data/catalog-5.json",
+        "data/catalog-6.json"
+      ],
+      "source-meta": "data/source-meta.json"
     }
   },
   "x-dsh-mv-ai": {
@@ -99,10 +109,10 @@
   },
   "x-dsh-mv-workshop": {
     "id": "polytech-tree",
-    "version": "1.1.0",
-    "license": "MIT AND CC-BY-4.0",
+    "version": "1.2.0",
+    "license": "MIT AND CC-BY-4.0 AND CC-BY-SA-4.0",
     "author": "Alice-Marx",
-    "description": "Polytech Tree 的实时 3D 漫游：3862 项科技分层呈现，GPU 实例化多面体、透视镜头、深度遮挡与前置关系连线。按原作布局和漫游时序适配，不是原网页的完整交互。无配乐，可静音或配任意音乐。需要插件 0.9.2+。",
+    "description": "完整非音乐科技树漫游：3862 项科技、4962 条关系、原始完整条目/中文描述/来源署名随包提供。没有原曲或歌词轨，可静音播放或自备音乐。需要插件0.9.4+。",
     "tags": [
       "tech-tree",
       "visualization",
@@ -112,6 +122,6 @@
     ],
     "source": "https://github.com/secwind7/polytech-tree",
     "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/polytech-tree",
-    "requires": "0.9.2"
+    "requires": "0.9.4"
   }
 }

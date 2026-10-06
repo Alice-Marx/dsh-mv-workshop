@@ -1,13 +1,7 @@
-# world.execute(me); · Wallpaper MV
+# world.execute(me); · Wallpaper MV · 1.1.0
 
-**Original / 原作:** [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) · MIT
+Original: https://github.com/seasnakes/world.execute-me-wallpaper. Install dsh-mv-cli **0.9.4+** and choose only your own music (about 212 seconds). Original Canvas2D animation, beat/spectrum analysis, 92 English/Chinese captions and timing are included and load automatically. Non-commercial unofficial fan MV.
 
-seasnakes 的 world.execute(me); 动态壁纸 MV（原为网页 / Wallpaper Engine 壁纸，1920×1080 Canvas 动画，按原曲的节拍与频谱逐帧同步），
-移植为 dsh-mv 的**像素场景脚本**（`canvas.output: "pixels"`，需要 dsh-mv-cli **0.9.1** 或更新）。
+只需自备音乐，歌词、译文、时间轴、原作节拍/频谱和双语字幕卡片随包提供。原作默认关闭的 Claude UI mockup and Wallpaper Engine property panel are not part of the MV renderer.
 
-- 不带音乐、不带歌词文本：安装后选择你自己的《world.execute(me);》音频（约 212 秒）；
-  想看双语歌词卡片，再选你自己的歌词文件（LRC，可带中文翻译）。
-- 画面完全由时间决定，可随意拖动进度；节拍 / 频谱来自原作的分析数据（`data/`），不是实时频谱。
-- 未移植：原作默认关闭的 “Claude 对话动画”、壁纸属性面板。
-
-See [NOTICE.md](NOTICE.md) for attribution and changes.
+Visual code: MIT. Song text is **not MIT**; see LYRICS-NOTICE.md. Original timing/captions: seasnakes. Worker stays offline; caption JS is never executed.

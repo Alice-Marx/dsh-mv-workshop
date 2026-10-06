@@ -4,12 +4,14 @@
  * this file together with mv-pack.mjs and mv-scene.mjs).
  *
  * A workshop pack is packs/<id>/ in that GitHub repository: mv.json, scene
- * scripts, an optional cover image and README, and optionally
- * lyrics.timing.json (line times and hashes, never lyric text). It never
- * contains audio or lyric text: installed packs play with the user's own
- * audio, matched by duration and an optional energy fingerprint.
+ * scripts, covers, assets, README, optional static lyrics and spectrum data,
+ * and optionally lyrics.timing.json (line times and hashes, never lyric text).
+ * Music/video are never included: installed packs play with the user's own
+ * audio, matched by duration and an optional energy fingerprint. Full lyrics
+ * require their own explicit shareable license and attribution declaration.
  */
 import { assetParts, parseMvPack } from './mv-pack.mjs'
+import { looksLikeLyricsJs, parseLyrics } from './mv-lyrics.mjs'
 
 export const WORKSHOP_REPO = 'Alice-Marx/dsh-mv-workshop'
 export const WORKSHOP_BRANCH = 'main'
@@ -47,23 +49,26 @@ export const WORKSHOP_LIMITS = Object.freeze({
 })
 
 /** File kinds a workshop pack may contain. */
-export const WORKSHOP_ALLOWED_EXT = Object.freeze(['.json', '.js', '.mjs', '.md', '.txt', '.png', '.webp', '.jpg', '.jpeg'])
-/** Audio, video and lyric/subtitle formats are rejected outright. */
+export const WORKSHOP_ALLOWED_EXT = Object.freeze(['.json', '.js', '.mjs', '.lrc', '.srt', '.vtt', '.md', '.txt', '.png', '.webp', '.jpg', '.jpeg'])
+/** Music/video and unsupported subtitle formats are rejected outright. */
 export const WORKSHOP_BANNED_EXT = Object.freeze([
   '.mp3', '.mp2', '.m4a', '.mp4', '.aac', '.webm', '.mka', '.mkv', '.ogg', '.oga', '.opus', '.flac', '.wav', '.wma', '.aiff', '.aif', '.ape', '.amr', '.ac3', '.mov', '.avi', '.mid', '.midi',
-  '.lrc', '.srt', '.vtt', '.ass', '.ssa', '.ttml', '.krc', '.qrc', '.yrc', '.lrcx',
+  '.ass', '.ssa', '.ttml', '.krc', '.qrc', '.yrc', '.lrcx',
 ])
 const BANNED_NAMES = /^(lyrics?|歌词)(\.[\w-]+)?\.(json|txt|js|mjs)$/i
+const LYRIC_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt', '.js', '.mjs'])
 export const COVER_NAMES = Object.freeze(['cover.webp', 'cover.png', 'cover.jpg', 'cover.jpeg'])
 
 export const ID_PATTERN = /^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$/
 export const VERSION_PATTERN = /^\d{1,4}\.\d{1,4}\.\d{1,4}$/
 export const SHA256_PATTERN = /^[0-9a-f]{64}$/
 const PATH_PATTERN = /^[A-Za-z0-9._-]+(\/[A-Za-z0-9._-]+){0,2}$/
+const isWorkshopPath = path => typeof path === 'string' && PATH_PATTERN.test(path) && !path.split('/').some(part => part === '..' || part.startsWith('.'))
+const isHttpsUrl = value => typeof value === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(value)
 
 const extOf = name => { const at = name.lastIndexOf('.'); return at > 0 ? name.slice(at).toLowerCase() : '' }
 const isObject = v => v !== null && typeof v === 'object' && !Array.isArray(v)
-const hasShareableLicense = value => typeof value === 'string' && Boolean(value.trim()) && !/^(?:unlicensed|unknown|none|noassertion|all rights reserved|pending(?:[- ]permission)?|licenseref-pending-permission)$/i.test(value.trim())
+const hasShareableLicense = value => typeof value === 'string' && Boolean(value.trim()) && !/\b(?:unlicensed|unknown|noassertion|pending)\b|^(?:none|all rights reserved)$|待授权|未授权|许可未知/i.test(value.trim())
 
 /** Slug for a pack id from a title (ASCII letters/digits/dashes; falls back to "mv-<random>"). */
 export function workshopSlug(title, artist = '', random = () => Math.random().toString(36).slice(2, 8)) {
@@ -182,14 +187,25 @@ export function looksLikeLyricText(value) {
   const visit = (v, depth) => {
     if (depth > 6 || hits > 5) return
     if (Array.isArray(v)) {
-      const texty = v.filter(x => isObject(x) && ['text', 'en', 'zh', 'line', 'lyric', 'lyrics'].some(k => typeof x[k] === 'string' && x[k].trim().length > 1) && ['time', 't', 'start'].some(k => Number.isFinite(x[k])))
-      if (texty.length >= 4) hits++
+      const texty = v.filter(x => isObject(x) && ['text', 'en', 'zh', 'cn', 'line', 'lyric', 'lyrics'].some(k => typeof x[k] === 'string' && x[k].trim()) && ['time', 't', 'start'].some(k => Number.isFinite(x[k])))
+      if (texty.length) hits++
       for (const x of v.slice(0, 200)) visit(x, depth + 1)
     } else if (isObject(v)) for (const x of Object.values(v)) visit(x, depth + 1)
     else if (typeof v === 'string' && (v.match(/^\s*\[\d{1,3}:\d{2}[.:]\d{1,3}\]/gm) ?? []).length >= 3) hits++
   }
   visit(value, 0)
   return hits > 0
+}
+
+/** Precomputed spectrum is bounded numeric visualization data, never audio. */
+export function checkSpectrum(value, name = 'spectrum.json') {
+  const errors = []
+  if (!isObject(value) || !Number.isFinite(value.fps) || value.fps <= 0 || value.fps > 240 || !Array.isArray(value.frames) || !value.frames.length) return { errors: [`${name}：频谱应为 { fps: 0–240, frames: [[0–1, …], …] } 非空数据`] }
+  if (Object.keys(value).some(key => !['fps', 'bands', 'frames'].includes(key))) errors.push(`${name}：频谱只能包含 fps、bands、frames 数值数据`)
+  const bands = value.frames[0]?.length
+  if (!Number.isInteger(bands) || bands < 1 || bands > 256 || value.bands !== undefined && value.bands !== bands) errors.push(`${name}：频谱每帧应有 1–256 个一致的频段，bands 应与帧宽一致`)
+  if (value.frames.length > 1_000_000 || value.frames.some(frame => !Array.isArray(frame) || frame.length !== bands || !frame.every(v => Number.isFinite(v) && v >= 0 && v <= 1))) errors.push(`${name}：频谱帧只能包含 0–1 的有限数字（不能携带音频或文本）`)
+  return { errors }
 }
 
 /**
@@ -216,22 +232,27 @@ export async function validateWorkshopPack({ id, files, readText }) {
   }
   // 0.9.2: webgl packs (declared via canvas.output) get higher caps for their .js scene scripts.
   const isWebglPack = pack.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
+  const lyricsFile = pack.lyrics?.file, spectrumFile = pack.spectrum?.file
+  const ws = isObject(raw['x-dsh-mv-workshop']) ? raw['x-dsh-mv-workshop'] : null
+  const timingFile = typeof ws?.lyricsTiming === 'string' ? ws.lyricsTiming : undefined
+  const readable = new Set()
   let total = 0
   for (const file of files) {
-    const name = file.path.split('/').pop()
+    const name = String(file.path).split('/').pop()
     const ext = extOf(name)
+    if (!Number.isInteger(file.size) || file.size < 0) { errors.push(`文件大小无效：${file.path}`); continue }
     total += file.size
-    if (!PATH_PATTERN.test(file.path) || file.path.split('/').some(part => part === '..' || part.startsWith('.'))) { errors.push(`文件路径不允许：${file.path}（只能用字母数字 . _ -，最多两层子文件夹，不能以 . 开头）`); continue }
-    if (WORKSHOP_BANNED_EXT.includes(ext)) { errors.push(`不允许上传音频 / 视频 / 歌词文件：${file.path}`); continue }
-    if (BANNED_NAMES.test(name) && file.path !== WORKSHOP_TIMING_FILE) { errors.push(`不允许上传歌词文件：${file.path}（只提交 ${WORKSHOP_TIMING_FILE} 时间轴）`); continue }
+    if (!isWorkshopPath(file.path)) { errors.push(`文件路径不允许：${file.path}（只能用字母数字 . _ -，最多两层子文件夹，不能以 . 开头）`); continue }
+    if (WORKSHOP_BANNED_EXT.includes(ext)) { errors.push(`不允许上传音频 / 视频文件或不支持的歌词格式：${file.path}`); continue }
+    if (file.path !== lyricsFile && (['.lrc', '.srt', '.vtt'].includes(ext) || BANNED_NAMES.test(name) && file.path !== WORKSHOP_TIMING_FILE && !(file.path === timingFile && pack.workshop?.lyricsTiming === timingFile))) { errors.push(`不允许上传未声明的歌词文件：${file.path}（请用 lyrics.file 引用并声明 lyricsLicense / lyricsCredit）`); continue }
     if (!WORKSHOP_ALLOWED_EXT.includes(ext)) { errors.push(`不支持的文件类型：${file.path}`); continue }
     const isImage = ['.png', '.webp', '.jpg', '.jpeg'].includes(ext)
-    const isScript = ['.js', '.mjs'].includes(ext)
+    const isScript = ['.js', '.mjs'].includes(ext) && file.path !== lyricsFile
     const max = isImage ? WORKSHOP_LIMITS.coverBytes : isScript && isWebglPack ? WORKSHOP_LIMITS.webglScriptBytes : isScript ? WORKSHOP_LIMITS.scriptBytes : WORKSHOP_LIMITS.fileBytes
     if (file.size > max) errors.push(`${file.path} 太大（上限 ${Math.round(max / 1024)} KB）`)
+    else readable.add(file.path)
   }
   if (total > WORKSHOP_LIMITS.packBytes) errors.push(`整个包太大（上限 ${WORKSHOP_LIMITS.packBytes / 1048576} MB）`)
-  const ws = isObject(raw['x-dsh-mv-workshop']) ? raw['x-dsh-mv-workshop'] : null
   if (!ws) errors.push('mv.json 缺少 "x-dsh-mv-workshop"（id、version、license、author）')
   else {
     if (ws.id !== id) errors.push(`x-dsh-mv-workshop.id 应与文件夹名一致：${id}`)
@@ -240,8 +261,22 @@ export async function validateWorkshopPack({ id, files, readText }) {
     if (typeof ws.author !== 'string' || !ws.author.trim()) errors.push('x-dsh-mv-workshop.author 必填（GitHub 用户名或署名）')
   }
   if (raw.audio !== undefined) errors.push('mv.json 不能包含 "audio"：工坊包不带音频，用户用自己的音频播放（发布时会自动去掉）')
-  if (raw.lyrics !== undefined) errors.push('mv.json 不能包含 "lyrics"：工坊包不带歌词文本，只带时间轴 lyrics.timing.json')
-  if (raw.spectrum !== undefined) errors.push('mv.json 不能包含 "spectrum"：频谱由用户自己的音频实时分析')
+  if (lyricsFile) {
+    if (!isWorkshopPath(lyricsFile)) errors.push(`lyrics.file 只能引用包内相对路径：${lyricsFile}`)
+    else if (!paths.has(lyricsFile)) errors.push(`lyrics.file 指向的歌词文件不在包里：${lyricsFile}`)
+    if (!LYRIC_EXTENSIONS.includes(extOf(lyricsFile))) errors.push('lyrics.file 应是 LRC / SRT / VTT / JSON / TXT / JS / MJS 静态歌词数据')
+    if (!hasShareableLicense(ws?.lyricsLicense)) errors.push('x-dsh-mv-workshop.lyricsLicense 必填且必须明确允许歌词及译文分享（不能沿用场景代码许可或待授权声明）')
+    if (typeof ws?.lyricsCredit !== 'string' || !ws.lyricsCredit.trim() || ws.lyricsCredit.length > 500 || /[\0\r]/.test(ws.lyricsCredit)) errors.push('x-dsh-mv-workshop.lyricsCredit 必填（歌词作者 / 译者署名，最多 500 字符）')
+    if (lyricsFile === pack.canvas?.script) errors.push('lyrics.file 不能同时用作 canvas.script：歌词 JS 只读取静态数据，不执行')
+    if (lyricsFile === spectrumFile || lyricsFile === WORKSHOP_TIMING_FILE || lyricsFile === timingFile) errors.push('lyrics.file 不能同时用作频谱或纯哈希时间轴')
+  }
+  if (ws?.lyricsLicense !== undefined && (!hasShareableLicense(ws.lyricsLicense) || ws.lyricsLicense.length > 120 || /[\0\r\n]/.test(ws.lyricsLicense))) errors.push('x-dsh-mv-workshop.lyricsLicense 应是非 pending 的明确分享许可（最多 120 字符）')
+  if (ws?.lyricsSource !== undefined && !isHttpsUrl(ws.lyricsSource)) errors.push('x-dsh-mv-workshop.lyricsSource 应是 https:// 链接')
+  if (spectrumFile) {
+    if (!isWorkshopPath(spectrumFile)) errors.push(`spectrum.file 只能引用包内相对路径：${spectrumFile}`)
+    else if (!paths.has(spectrumFile)) errors.push(`spectrum.file 指向的频谱文件不在包里：${spectrumFile}`)
+    if (spectrumFile === WORKSHOP_TIMING_FILE || spectrumFile === timingFile) errors.push('spectrum.file 不能同时用作纯哈希歌词时间轴')
+  }
   if (pack.canvas?.renderer === 'script') {
     const script = pack.canvas.script
     if (!script || !paths.has(script)) errors.push(`canvas.script 指向的文件不在包里：${script ?? '(空)'}`)
@@ -252,22 +287,37 @@ export async function validateWorkshopPack({ id, files, readText }) {
   if (pack.canvas?.renderer === 'world-execute-me') errors.push('canvas.renderer "world-execute-me" 自 0.9.0 起不再内置：请把场景写成 scene script（renderer "script"）')
   if (pack.canvas?.renderer === 'dsh-pv' && !['timeline', 'chat', 'band'].every(n => pack.canvas?.assets?.[n])) errors.push('dsh-pv 渲染器需要 canvas.assets 里的 timeline、chat、band')
   if (ws?.source !== undefined && !(typeof ws.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source))) errors.push('x-dsh-mv-workshop.source 应是 https:// 链接（原作的仓库或主页）')
-  for (const file of files.filter(f => ['.js', '.mjs'].includes(extOf(f.path)))) {
-    const result = checkScriptSafety(await readText(file.path), file.path, { mode: isWebglPack ? 'webgl' : 'text' })
+  for (const file of files.filter(f => readable.has(f.path) && f.path !== lyricsFile && ['.js', '.mjs'].includes(extOf(f.path)))) {
+    const source = await readText(file.path)
+    if (looksLikeLyricsJs(source)) { errors.push(`${file.path} 看起来包含未声明的歌词文本（请用 lyrics.file 引用并声明歌词许可）`); continue }
+    const result = checkScriptSafety(source, file.path, { mode: isWebglPack ? 'webgl' : 'text' })
     errors.push(...result.errors); warnings.push(...result.warnings)
   }
+  if (lyricsFile && readable.has(lyricsFile)) {
+    try {
+      const text = await readText(lyricsFile)
+      if (new TextEncoder().encode(text).length > WORKSHOP_LIMITS.fileBytes) throw new Error(`超过 ${WORKSHOP_LIMITS.fileBytes / 1024} KB 数据限制`)
+      const cues = parseLyrics(lyricsFile, text, { duration: pack.duration ?? 36_000 })
+      if (!cues.length) throw new Error('没有可读取的非空歌词时间轴')
+      if (cues.length > 5000 || cues.some(c => c.time < 0 || c.time > (pack.duration ?? 36_000) || !Number.isFinite(c.end) || c.end < c.time || c.end > (pack.duration ?? 36_000) || String(c.en).length > 4000 || String(c.zh).length > 4000)) throw new Error('歌词行数 / 文本长度 / 起止时间无效（最多 5000 行，每语言行最多 4000 字符，时间必须在歌曲时长内）')
+    } catch (error) { errors.push(`${lyricsFile}：歌词数据无效：${error?.message ?? String(error)}`) }
+  }
   let timing = null
-  for (const file of files.filter(f => extOf(f.path) === '.json' && f.path !== 'mv.json')) {
+  for (const file of files.filter(f => readable.has(f.path) && extOf(f.path) === '.json' && f.path !== 'mv.json' && f.path !== lyricsFile)) {
     let value
     try { value = JSON.parse(await readText(file.path)) } catch { errors.push(`${file.path} 不是有效的 JSON`); continue }
-    if (file.path === WORKSHOP_TIMING_FILE) { timing = value; errors.push(...checkTiming(value, pack.duration ?? 36_000).errors) }
-    else if (looksLikeLyricText(value)) errors.push(`${file.path} 看起来包含歌词文本（不允许）`)
+    if (file.path === WORKSHOP_TIMING_FILE || file.path === timingFile) { timing = value; errors.push(...checkTiming(value, pack.duration ?? 36_000).errors) }
+    else if (file.path === spectrumFile) errors.push(...checkSpectrum(value, file.path).errors)
+    else if (looksLikeLyricText(value)) errors.push(`${file.path} 看起来包含未声明的歌词文本（请用 lyrics.file 引用并声明歌词许可）`)
   }
-  for (const file of files.filter(f => ['.md', '.txt'].includes(extOf(f.path)))) {
+  for (const file of files.filter(f => readable.has(f.path) && f.path !== lyricsFile && ['.md', '.txt'].includes(extOf(f.path)))) {
     const text = await readText(file.path)
     if ((text.match(/^\s*\[\d{1,3}:\d{2}[.:]\d{1,3}\]/gm) ?? []).length >= 3) errors.push(`${file.path} 看起来包含带时间轴的歌词（不允许）`)
   }
-  if (ws?.lyricsTiming && !paths.has(ws.lyricsTiming)) errors.push(`x-dsh-mv-workshop.lyricsTiming 指向的文件不在包里：${ws.lyricsTiming}`)
+  if (ws?.lyricsTiming !== undefined) {
+    if (!timingFile || !isWorkshopPath(timingFile) || pack.workshop?.lyricsTiming !== timingFile) errors.push('x-dsh-mv-workshop.lyricsTiming 应是包内根目录的 JSON 文件名（纯时间与哈希，不允许远程地址 / 子目录）')
+    else if (!paths.has(timingFile)) errors.push(`x-dsh-mv-workshop.lyricsTiming 指向的文件不在包里：${timingFile}`)
+  }
   const cover = COVER_NAMES.find(name => paths.has(name)) ?? null
   if (!cover) warnings.push('没有封面（cover.webp / cover.png / cover.jpg）')
   if (!paths.has('README.md')) warnings.push('没有 README.md')
@@ -280,11 +330,12 @@ export async function validateWorkshopPack({ id, files, readText }) {
     tags: Array.isArray(ws?.tags) ? ws.tags.filter(t => typeof t === 'string').map(t => t.slice(0, 24)).slice(0, 8) : [],
     homepage: typeof ws?.homepage === 'string' && /^https:\/\//.test(ws.homepage) ? ws.homepage.slice(0, 300) : undefined,
     source: typeof ws?.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source) ? ws.source : undefined,
-    cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), sections: pack.sections?.length ?? 0,
+    cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), lyrics: Boolean(lyricsFile), spectrum: Boolean(spectrumFile), sections: pack.sections?.length ?? 0,
+    ...(lyricsFile ? { lyricsLicense: String(ws?.lyricsLicense ?? '').slice(0, 120), lyricsCredit: String(ws?.lyricsCredit ?? '').slice(0, 500), ...(isHttpsUrl(ws?.lyricsSource) ? { lyricsSource: ws.lyricsSource } : {}) } : {}),
     requires: packRequires(pack, ws?.requires),
   }
   if (pack.canvas?.renderer === 'script' && ['pixels', 'webgl'].includes(pack.canvas.output)) {
-    const script = pack.canvas.script && paths.has(pack.canvas.script) ? stripCommentsAndStrings(await readText(pack.canvas.script)) : ''
+    const script = pack.canvas.script && readable.has(pack.canvas.script) && pack.canvas.script !== lyricsFile ? stripCommentsAndStrings(await readText(pack.canvas.script)) : ''
     if (script && !/\bfunction\s+paint\s*\(|\bpaint\s*=\s*(function|\()/.test(script)) errors.push(`${pack.canvas.script}：canvas.output 为 "${pack.canvas.output}" 时要定义 paint(g, t, width, height, ctx)`)
   }
   if (ws?.requires !== undefined && !VERSION_PATTERN.test(String(ws.requires))) errors.push('x-dsh-mv-workshop.requires 应为 x.y.z（需要的最低插件版本）')
@@ -292,13 +343,16 @@ export async function validateWorkshopPack({ id, files, readText }) {
 }
 
 /**
- * Lowest plugin version that plays a pack: panel bitmap subtitles need 0.9.3;
+ * Lowest plugin version that plays a pack: workshop lyrics/spectrum need 0.9.4;
+ * panel bitmap subtitles need 0.9.3;
  * webgl scene scripts need 0.9.2;
  * pixel scene scripts and scripts that read canvas.assets need 0.9.1. An
  * explicit x-dsh-mv-workshop.requires can raise it.
  */
 export function packRequires(pack, declared) {
-  let need = pack?.canvas?.renderer === 'script' && pack.canvas.subtitles === true
+  let need = pack?.lyrics || pack?.spectrum
+    ? '0.9.4'
+    : pack?.canvas?.renderer === 'script' && pack.canvas.subtitles === true
     ? '0.9.3'
     : pack?.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
     ? '0.9.2'
@@ -315,8 +369,8 @@ export function parseWorkshopIndex(value) {
   const packs = []
   for (const p of value.packs.slice(0, WORKSHOP_LIMITS.maxPacks)) {
     if (!isObject(p) || !ID_PATTERN.test(String(p.id)) || !Array.isArray(p.files) || !hasShareableLicense(p.license)) continue
-    const limit = path => ['.png', '.webp', '.jpg', '.jpeg'].includes(extOf(path)) ? WORKSHOP_LIMITS.coverBytes : ['.js', '.mjs'].includes(extOf(path)) ? (p.renderer === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : WORKSHOP_LIMITS.scriptBytes) : WORKSHOP_LIMITS.fileBytes
-    const files = p.files.filter(f => isObject(f) && typeof f.path === 'string' && PATH_PATTERN.test(f.path) && !f.path.split('/').some(x => x.startsWith('.')) && Number.isInteger(f.size) && f.size >= 0 && f.size <= limit(f.path) && SHA256_PATTERN.test(String(f.sha256)) && WORKSHOP_ALLOWED_EXT.includes(extOf(f.path)))
+    const limit = path => ['.png', '.webp', '.jpg', '.jpeg'].includes(extOf(path)) ? WORKSHOP_LIMITS.coverBytes : ['.js', '.mjs'].includes(extOf(path)) ? (p.renderer === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : p.lyrics === true ? WORKSHOP_LIMITS.fileBytes : WORKSHOP_LIMITS.scriptBytes) : WORKSHOP_LIMITS.fileBytes
+    const files = p.files.filter(f => isObject(f) && isWorkshopPath(f.path) && Number.isInteger(f.size) && f.size >= 0 && f.size <= limit(f.path) && SHA256_PATTERN.test(String(f.sha256)) && WORKSHOP_ALLOWED_EXT.includes(extOf(f.path)))
     if (!files.some(f => f.path === 'mv.json') || files.length !== p.files.length || files.length > WORKSHOP_LIMITS.maxFiles) continue
     if (new Set(files.map(f => f.path.toLowerCase())).size !== files.length || files.reduce((s, f) => s + f.size, 0) > WORKSHOP_LIMITS.packBytes) continue
     const requires = VERSION_PATTERN.test(String(p.requires ?? '')) ? p.requires : ''
@@ -326,9 +380,11 @@ export function parseWorkshopIndex(value) {
       renderer: str(p.renderer, 40), description: str(p.description, 500), tags: Array.isArray(p.tags) ? p.tags.filter(t => typeof t === 'string').slice(0, 8).map(t => t.slice(0, 24)) : [],
       homepage: typeof p.homepage === 'string' && /^https:\/\//.test(p.homepage) ? p.homepage.slice(0, 300) : '',
       source: typeof p.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(p.source) ? p.source : '',
-      requires: p.renderer === 'webgl' && compareVersions(requires, '0.9.2') < 0 ? '0.9.2' : requires,
+      requires: (p.lyrics === true || p.spectrum === true) && compareVersions(requires, '0.9.4') < 0 ? '0.9.4' : p.renderer === 'webgl' && compareVersions(requires, '0.9.2') < 0 ? '0.9.2' : requires,
       cover: typeof p.cover === 'string' && COVER_NAMES.includes(p.cover) && files.some(f => f.path === p.cover) ? p.cover : '',
-      fingerprint: p.fingerprint === true, timing: p.timing === true, sections: Number.isInteger(p.sections) ? p.sections : 0,
+      fingerprint: p.fingerprint === true, timing: p.timing === true, lyrics: p.lyrics === true, spectrum: p.spectrum === true,
+      lyricsLicense: hasShareableLicense(p.lyricsLicense) ? str(p.lyricsLicense, 120) : '', lyricsCredit: str(p.lyricsCredit, 500), lyricsSource: isHttpsUrl(p.lyricsSource) ? p.lyricsSource : '',
+      sections: Number.isInteger(p.sections) ? p.sections : 0,
       updated: str(p.updated, 40), size: files.reduce((s, f) => s + f.size, 0), files,
     })
   }
@@ -481,7 +537,7 @@ export function parseWorkshopInstalled(value = {}) {
   return {}
 }
 export function parseWorkshopPublish(value) {
-  onlyKeys(value, ['manifestPath', 'id', 'version', 'license', 'author', 'description', 'tags', 'homepage', 'duration', 'fingerprint', 'coverPng'], 'workshop publish request')
+  onlyKeys(value, ['manifestPath', 'id', 'version', 'license', 'author', 'description', 'tags', 'homepage', 'duration', 'fingerprint', 'coverPng', 'lyricsLicense', 'lyricsCredit', 'lyricsSource'], 'workshop publish request')
   const str = (v, n, name, required = false) => {
     if (v === undefined || v === '') { if (required) throw new TypeError(`${name} 必填`); return '' }
     if (typeof v !== 'string' || v.length > n || /[\0\r]/.test(v)) throw new TypeError(`${name} 无效`)
@@ -496,6 +552,9 @@ export function parseWorkshopPublish(value) {
   if (!Array.isArray(tags) || tags.length > 8 || !tags.every(t => typeof t === 'string' && t.length <= 24)) throw new TypeError('tags 无效（最多 8 个，每个不超过 24 字符）')
   const homepage = str(value.homepage, 300, 'homepage')
   if (homepage && !/^https:\/\/[^\s]+$/.test(homepage)) throw new TypeError('homepage 必须是 https:// 链接')
+  const lyricsLicense = str(value.lyricsLicense, 120, 'lyricsLicense'), lyricsCredit = str(value.lyricsCredit, 500, 'lyricsCredit'), lyricsSource = str(value.lyricsSource, 300, 'lyricsSource')
+  if (lyricsLicense && (!hasShareableLicense(lyricsLicense) || /\n/.test(lyricsLicense))) throw new TypeError('lyricsLicense 必须是明确允许分享的许可（不能是未授权 / pending）')
+  if (lyricsSource && !isHttpsUrl(lyricsSource)) throw new TypeError('lyricsSource 必须是 https:// 链接')
   if (value.duration !== undefined && !(Number.isFinite(value.duration) && value.duration > 0 && value.duration <= 36_000)) throw new TypeError('duration 无效')
   if (value.fingerprint !== undefined && !(typeof value.fingerprint === 'string' && /^[A-Za-z0-9+/=]{1,4096}$/.test(value.fingerprint))) throw new TypeError('fingerprint 无效')
   if (value.coverPng !== undefined && !(typeof value.coverPng === 'string' && value.coverPng.length <= 1_400_000 && /^[A-Za-z0-9+/=]+$/.test(value.coverPng))) throw new TypeError('coverPng 无效（base64 PNG，最大约 1 MB）')
@@ -503,6 +562,7 @@ export function parseWorkshopPublish(value) {
     manifestPath: value.manifestPath.trim(), id: packId(value.id), version,
     license: str(value.license, 120, 'license', true), author: str(value.author, 120, 'author', true),
     description: str(value.description, 500, 'description'), tags: tags.map(t => t.trim()).filter(Boolean), homepage,
+    lyricsLicense, lyricsCredit, lyricsSource,
     duration: value.duration, fingerprint: value.fingerprint, coverPng: value.coverPng,
   }
 }

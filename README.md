@@ -7,7 +7,7 @@ DeepSeek Harness. 为 MV 放映室收集文本、2D 与实时 3D MV 包。
   (and lyrics) to play it. 选择包 → 安装 → 选择你自己的歌曲文件（和歌词）即可播放。
 - **Publish / 发布**: open your pack → **发布到工坊** → **在 GitHub 上提交** (fork & pull request in your browser).
   See [CONTRIBUTING.md](CONTRIBUTING.md) · [中文](CONTRIBUTING.zh.md).
-- **No audio, no lyric text** in this repository — packs carry timings and hashes only. 本仓库不含音频和歌词文本。
+- **No song audio** in this repository. Licensed lyrics/translations, timing, spectrum and visual resources may be included and load automatically. 只需自备音乐；歌词、译文与其他非音乐资源可随完整包提供。
 - Licenses: each pack must declare its own rights; never infer a license for upstream work — [LICENSE-POLICY.md](LICENSE-POLICY.md).
 
 ## world.execute(me) packs / world.execute(me) 包
@@ -27,9 +27,9 @@ Ported community projects / 移植社区项目：Wallpaper 保持 2D（0.9.1+）
 
 | Pack / 包 | Original / 原作 | License / 许可 |
 | --- | --- | --- |
-| [`world-execute-me-wallpaper`](packs/world-execute-me-wallpaper) — wallpaper MV, 1920×1080 | [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) | `MIT` (© 2026 seasnakes; music and lyrics © Mili, not included; [NOTICE](packs/world-execute-me-wallpaper/NOTICE.md)) |
-| [`polytech-tree`](packs/polytech-tree) — GPU-instanced 3D tour, no music needed; 0.9.2+ | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | `MIT AND CC-BY-4.0` (code MIT © 2026 secwind; structured data CC BY 4.0, the CC BY-SA `desc` field is not used; [NOTICE](packs/polytech-tree/NOTICE.md)) |
-| [`world-execute-me-three`](packs/world-execute-me-three) — original 12-scene Three.js MV with bloom and bilingual subtitles; 0.9.3+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | `MIT` (direct author permission confirmed by maintainer, Three.js MIT; [NOTICE](packs/world-execute-me-three/NOTICE.md)) |
+| [`world-execute-me-wallpaper`](packs/world-execute-me-wallpaper) — complete 1.1.0, 92 bilingual cues; plugin 0.9.4+ | [seasnakes/world.execute-me-wallpaper](https://github.com/seasnakes/world.execute-me-wallpaper) | Visual code MIT; Mili captions under separate non-commercial fan terms ([NOTICE](packs/world-execute-me-wallpaper/LYRICS-NOTICE.md)) |
+| [`polytech-tree`](packs/polytech-tree) — complete 1.2.0, GPU tour and full source catalogue; plugin 0.9.4+ | [secwind7/polytech-tree](https://github.com/secwind7/polytech-tree) | Code MIT; structured fields CC BY 4.0; descriptions CC BY-SA 4.0 ([NOTICE](packs/polytech-tree/NOTICE.md)) |
+| [`world-execute-me-three`](packs/world-execute-me-three) — complete 1.1.0, original 12 scenes and 75 bilingual cues; plugin 0.9.4+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | Visual code and Three.js MIT; Mili captions under separate non-commercial fan terms ([NOTICE](packs/world-execute-me-three/LYRICS-NOTICE.md)) |
 
 They are built by `presets/ports/*/build.mjs` in dsh-mv-cli from the upstream commits named in each NOTICE.
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
