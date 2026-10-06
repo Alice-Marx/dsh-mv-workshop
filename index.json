@@ -2,8 +2,8 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "d829e66c9d4826e832ab8ff50cc08b1dfaae3ab6",
- "generated": "2026-10-06T16:47:15.578Z",
+ "commit": "5184433b1507a18cdb9f1d876452fff1112169f3",
+ "generated": "2026-10-06T16:53:38.417Z",
  "packs": [
   {
    "id": "world-execute-me-dsh-pv",
@@ -39,7 +39,7 @@
    "fontsNotice": "fonts/NOTICE.md",
    "raster": true,
    "requires": "0.9.5",
-   "updated": "2026-10-07T00:41:31+08:00",
+   "updated": "2026-10-07T00:53:08+08:00",
    "files": [
     {
      "path": "LICENSE.txt",
@@ -53,8 +53,8 @@
     },
     {
      "path": "NOTICE.md",
-     "size": 5406,
-     "sha256": "a0214d500ca936b88a46d22bc1467c13a873699357dc82b669aec54aa16fc7db"
+     "size": 5461,
+     "sha256": "a138e24b7a6d62f8fbae2b972dc4bf9b003ae7e802a0001f6ae67af6319fde94"
     },
     {
      "path": "README.md",
@@ -63,8 +63,8 @@
     },
     {
      "path": "art/NOTICE.md",
-     "size": 3676,
-     "sha256": "7b5ac29f7610b1f862d12068c628e6486327e102dde8a25476a6b405f7fc4912"
+     "size": 3720,
+     "sha256": "f3212fe9d8c7cb777129ab55ed16fe853c983f1ee403a07cc88eecbda4e10bb7"
     },
     {
      "path": "art/maid-left.webp",
@@ -198,13 +198,13 @@
     },
     {
      "path": "fonts/OFL_anton.txt",
-     "size": 4391,
-     "sha256": "eee1d24ff8f553eb732237c7dd9b945a78313ed49ad6de02872a47277741b44a"
+     "size": 4484,
+     "sha256": "ee67e6ee22790b7929f1a3769ca2801d565c64b5a9096942c1adf5596de9c9e4"
     },
     {
      "path": "fonts/OFL_spacemono.txt",
-     "size": 4392,
-     "sha256": "8e4ee42b2553e1e01504e61cb0d46d148cd8c9e5eacaa3622a7df2d4f2955b9f"
+     "size": 4485,
+     "sha256": "a73c20d6b38329c23a89570c7e16373a9100976fef58deb5a8f2a867ee332496"
     },
     {
      "path": "fonts/SpaceMono-Bold.ttf",
