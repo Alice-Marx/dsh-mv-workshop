@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // FrostNova world-execute-web 29aefca50e40c14498420e1c6e1f3a1037727e17; adapter Alice-Marx, modified 2026-10-07.
-// Corresponding Source: https://github.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.0/20261007_frostnova-corresponding-source-1.0.0.zip
+// Corresponding Source: https://github.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.1/20261007_frostnova-corresponding-source-1.0.1.zip
 let __frostInitialAssets = null, __frostScene = null;
 function __makeFrostNova() {
 var FrostNovaWorkshop=(()=>{
-var Mm=Object.defineProperty;
+var xm=Object.defineProperty;
 var hD=Object.getOwnPropertyDescriptor;
 var fD=Object.getOwnPropertyNames;
 var dD=Object.prototype.hasOwnProperty;
 var c=(e,
-t)=>Mm(e,
+t)=>xm(e,
 "name",
 {
 value:t,
@@ -17,7 +17,7 @@ configurable:!0}
 );
 var pD=(e,
 t)=>{
-for(var n in t)Mm(e,
+for(var n in t)xm(e,
 n,
 {
 get:t[n],
@@ -29,7 +29,7 @@ t,
 n,
 i)=>{
 if(t&&typeof t=="object"||typeof t=="function")for(let r of fD(t))!dD.call(e,
-r)&&r!==n&&Mm(e,
+r)&&r!==n&&xm(e,
 r,
 {
 get:()=>t[r],
@@ -38,7 +38,7 @@ r))||i.enumerable}
 );
 return e}
 ;
-var vD=e=>mD(Mm({
+var vD=e=>mD(xm({
 }
 ,
 "__esModule",
@@ -46,24 +46,25 @@ var vD=e=>mD(Mm({
 value:!0}
 ),
 e);
-var dne={
+var pne={
 }
 ;
-pD(dne,
+pD(pne,
 {
 paint:()=>hne,
 prepare:()=>fne,
-setup:()=>cne}
+setup:()=>cne,
+warmup:()=>dne}
 );
-var w_={
+var A_={
 BASE_URL:"./",
 DEV:!1,
 MODE:"production",
 PROD:!0,
 SSR:!1}
 ,
-mne=w_.BASE_URL||"/",
-vne=!!w_.PROD,
+vne=A_.BASE_URL||"/",
+gne=!!A_.PROD,
 wf={
 audio:"assets/song_48k.wav",
 master:"assets/song.flac",
@@ -169,7 +170,7 @@ wf.onsets,
 wf.featuresMeta,
 wf.featuresData,
 ...kt.fonts.map(e=>e.file)];
-var xm=["systemFonts",
+var _m=["systemFonts",
 "fontFallback",
 "clockZero"];
 function V5(e,
@@ -180,18 +181,18 @@ let n=t.byEdit??{
 for(let[r,
 o]of Object.entries(n)){
 if(o===null||typeof o!="object"||Array.isArray(o))throw new Error("config.js PROJECT.byEdit.".concat(r,
-" must be an object of the settings the edit keeps of its own (").concat(xm.join(", "),
+" must be an object of the settings the edit keeps of its own (").concat(_m.join(", "),
 "), not ").concat(JSON.stringify(o)??String(o)));
-let a=Object.keys(o).filter(s=>!xm.includes(s));
+let a=Object.keys(o).filter(s=>!_m.includes(s));
 if(a.length)throw new Error("config.js PROJECT.byEdit.".concat(r,
 ": ").concat(a.join(", "),
-" cannot differ by edit; an edit may keep only ").concat(xm.join(", "),
+" cannot differ by edit; an edit may keep only ").concat(_m.join(", "),
 " of its own"))}
 let i=Object.hasOwn(n,
 e)&&n[e]||{
 }
 ;
-return Object.fromEntries(xm.map(r=>[r,
+return Object.fromEntries(_m.map(r=>[r,
 i[r]!==void 0?i[r]:t[r]]))}
 c(V5,
 "settingsFor");
@@ -203,10 +204,10 @@ return q5.push(e),
 e}
 c(Wn,
 "chapter");
-var F1=c((e,
+var D1=c((e,
 t)=>typeof e=="function"?e(t):e,
 "resolve"),
-A_=class{
+y_=class{
 static{
 c(this,
 "Timeline")}
@@ -246,13 +247,13 @@ v={
 type:"cut"}
 ;
 try{
-w=F1(g?.at??d.at,
+w=D1(g?.at??d.at,
 e)}
 catch(A){
 this.problems.push("".concat(m,
 ": ").concat(A.message))}
 if(!Number.isFinite(w)&&g?.at!=null)try{
-w=F1(d.at,
+w=D1(d.at,
 e)}
 catch{
 }
@@ -268,7 +269,7 @@ param:[0,
 0,
 0],
 ...g.join,
-dur:F1(g.join.dur,
+dur:D1(g.join.dur,
 e)??0}
 :d.transitionIn&&(v={
 type:"fade",
@@ -336,9 +337,9 @@ if(h.fallback||h.from==null&&h.to==null)continue;
 let f=-1/0,
 d=1/0;
 try{
-f=F1(h.from??-1/0,
+f=D1(h.from??-1/0,
 e),
-d=F1(h.to??1/0,
+d=D1(h.to??1/0,
 e)}
 catch(p){
 this.problems.push("".concat(h.id,
@@ -409,7 +410,7 @@ gD=c((e,
 t,
 n)=>(n-e)/(t-e),
 "invLerp"),
-I1=c(e=>e-Math.floor(e),
+z1=c(e=>e-Math.floor(e),
 "fract"),
 _=c((e,
 t,
@@ -473,7 +474,7 @@ outElastic:c(e=>(e=La(e),
 e===0||e===1?e:1+Math.sin((10*e-.75)*j/3)*2**(-10*e)),
 "outElastic")}
 ;
-function b_(e,
+function M_(e,
 t,
 n=R.inOutCubic){
 let i=t[0];
@@ -496,9 +497,9 @@ u++)l[u]=C(o[1][u],
 a[1][u],
 s);
 return l}
-c(b_,
+c(M_,
 "kf");
-var y_=c(e=>(e^=e>>>18,
+var b_=c(e=>(e^=e>>>18,
 e=Math.imul(e,
 3031247185),
 e^=e>>>14,
@@ -515,7 +516,7 @@ t){
 return j5.setFloat64(0,
 t===0?0:t,
 !0),
-y_(y_(e^j5.getUint32(0,
+b_(b_(e^j5.getUint32(0,
 !0))^j5.getUint32(4,
 !0))}
 c(X5,
@@ -541,7 +542,7 @@ n|61),
 }
 c(Be,
 "rng");
-function M_(e){
+function x_(e){
 let t=parseInt(e.slice(1),
 16),
 n=c(i=>(i/=255,
@@ -550,7 +551,7 @@ i<=.04045?i/12.92:((i+.055)/1.055)**2.4),
 return[n(t>>16&255),
 n(t>>8&255),
 n(t&255)]}
-c(M_,
+c(x_,
 "linearRGB");
 var H={
 me:[.42,
@@ -822,21 +823,21 @@ textGlow:1.6}
 var AD=.05,
 yD=1.5,
 bD="{{",
-x_=c((e,
+__=c((e,
 t,
 n)=>n>t?_(e,
 t,
 n):+(e>=t),
 "ramp"),
-__=(new RegExp("[\\u3000-\\u9FFF\\uAC00-\\uD7AF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF]|[\\u{20000}-\\u{3FFFF}]","u")),
-MD=c(e=>__.test(String(e??"")),
+S_=(new RegExp("[\\u3000-\\u9FFF\\uAC00-\\uD7AF\\uF900-\\uFAFF\\uFE30-\\uFE4F\\uFF00-\\uFFEF]|[\\u{20000}-\\u{3FFFF}]","u")),
+MD=c(e=>S_.test(String(e??"")),
 "hasCJK"),
-S_=c(e=>(e?.lines??[]).some(t=>MD("".concat(t.gutter??"").concat(t.tag??"").concat(t.text??""))),
+T_=c(e=>(e?.lines??[]).some(t=>MD("".concat(t.gutter??"").concat(t.tag??"").concat(t.text??""))),
 "needsCJK");
 function xD(e,
 t){
 let n=0;
-for(let i of String(e??""))n+=__.test(i)?1:.6;
+for(let i of String(e??""))n+=S_.test(i)?1:.6;
 return n*t}
 c(xD,
 "estimateWidth");
@@ -864,7 +865,7 @@ weight:500,
 }
 c(Y5,
 "styleOf");
-var T_=c((e,
+var C_=c((e,
 t)=>({
 ...Y5(e,
 t),
@@ -873,7 +874,7 @@ t),
 }
 ),
 "tagStyleOf"),
-C_=c(e=>({
+E_=c(e=>({
 font:e.font,
 size:e.size,
 weight:600,
@@ -925,7 +926,7 @@ dim:n=.2}
 }
 ){
 let i=t.lineIn.map((a,
-s)=>e>=t.clearAt[s]?0:R.outCubic(x_(e,
+s)=>e>=t.clearAt[s]?0:R.outCubic(__(e,
 a,
 a+t.fade))),
 r=e>=t.home,
@@ -933,7 +934,7 @@ o=t.blink>0?Math.floor(e/t.blink)%2===0:!0;
 return{
 lines:i,
 home:r,
-cursor:r?0:x_(e,
+cursor:r?0:__(e,
 t.cursorIn[0],
 t.cursorIn[1])*(o?1:n)}
 }
@@ -941,17 +942,17 @@ c(Z5,
 "cardAt");
 var K5=c(e=>-e.preroll,
 "cardStart"),
-E_=c((e,
+R_=c((e,
 t)=>(e?.preroll??0)>0?[t]:[],
 "cardShots");
-function R_(e,
+function B_(e,
 t,
 n){
 let i=e.lines,
 r=i.length,
 o=e.lineHeight,
 a=e.gap,
-s=C_(e),
+s=E_(e),
 l=c(v=>!!(v.gutter??"").trim(),
 "has"),
 u=Math.max(0,
@@ -959,7 +960,7 @@ u=Math.max(0,
 s))),
 h=i.map(v=>{
 let A=v.tag?n(v.tag,
-T_(e,
+C_(e,
 v.kind)):0;
 return{
 x:l(v)?a:-u,
@@ -995,7 +996,7 @@ y:Math.round(m+r*o-g.h/2),
 ...g}
 }
 }
-c(R_,
+c(B_,
 "layoutCard");
 function TD(e,
 t,
@@ -1019,7 +1020,7 @@ t.h)}
 )}
 c(TD,
 "paintCursor");
-function B_(e,
+function P_(e,
 t,
 n){
 let i=e.text.overlay,
@@ -1029,12 +1030,12 @@ Q5(r,
 t.lines.length,
 t.timing),
 t.cursor),
-a=R_(t,
+a=B_(t,
 n,
 (p,
 m)=>i.measure(p,
 m)),
-s=C_(t);
+s=E_(t);
 t.lines.forEach((p,
 m)=>{
 let g=o.lines[m],
@@ -1056,7 +1057,7 @@ align:"left",
 alpha:g*(v.alpha??1)}
 ;
 if(p.tag){
-let y=T_(t,
+let y=C_(t,
 p.kind);
 i.text(p.tag,
 w.x,
@@ -1094,9 +1095,9 @@ glow:o.home?l.glow:l.waitGlow??l.glow}
 ),
 Object.assign(e.post,
 o.home?t.homeLook:t.look)}
-c(B_,
+c(P_,
 "drawCard");
-function P_(e,
+function k_(e,
 t={
 width:1920,
 height:1080}
@@ -1191,7 +1192,7 @@ for(let u of["look",
 "homeLook"])(!e[u]||typeof e[u]!="object")&&i.push("".concat(u,
 ": an object of post parameters"));
 if(!i.length){
-let u=R_(e,
+let u=B_(e,
 t,
 n),
 h=_D(t),
@@ -1221,32 +1222,32 @@ m+u.cursor.w),
 " to ").concat(f(h.right),
 " (shorten the longest line or lower size)"))}
 return i}
-c(P_,
+c(k_,
 "checkConfig");
 var Yu=1e3,
 co=1001,
-Zm=1002,
+Km=1002,
 Ai=1003,
-c6=1004,
-h6=1005,
-On=1006,
-f6=1007,
+h6=1004,
+f6=1005,
+Nn=1006,
+d6=1007,
 ho=1008,
 wa=1009,
-d6=1010,
-p6=1011,
+p6=1010,
+m6=1011,
 Rw=1012,
-m6=1013,
+v6=1013,
 Qu=1014,
 Aa=1015,
 Da=1016,
 Bw=1017,
 Pw=1018,
 kw=1020,
-v6=35902,
-g6=35899,
-w6=1021,
-A6=1022,
+g6=35902,
+w6=35899,
+A6=1021,
+y6=1022,
 So=1023,
 Uf=1026,
 Lw=1027,
@@ -1255,54 +1256,54 @@ Fw=1029,
 Zc=1030,
 Iw=1031,
 Dw=1033,
-y6=33776,
-b6=33777,
-M6=33778,
-x6=33779,
-_6=35840,
-S6=35841,
-T6=35842,
-C6=35843,
-E6=36196,
-R6=37492,
-B6=37496,
-P6=37488,
-k6=37489,
-L6=37490,
-F6=37491,
-I6=37808,
-D6=37809,
-z6=37810,
-O6=37811,
-N6=37812,
-U6=37813,
-G6=37814,
-H6=37815,
-W6=37816,
-V6=37817,
-q6=37818,
-j6=37819,
-X6=37820,
-Y6=37821,
-Q6=36492,
-Z6=36494,
-K6=36495,
-J6=36283,
-$6=36284,
-eS=36285,
-tS=36286,
-Km=2300,
+b6=33776,
+M6=33777,
+x6=33778,
+_6=33779,
+S6=35840,
+T6=35841,
+C6=35842,
+E6=35843,
+R6=36196,
+B6=37492,
+P6=37496,
+k6=37488,
+L6=37489,
+F6=37490,
+I6=37491,
+D6=37808,
+z6=37809,
+O6=37810,
+N6=37811,
+U6=37812,
+G6=37813,
+H6=37814,
+W6=37815,
+V6=37816,
+q6=37817,
+j6=37818,
+X6=37819,
+Y6=37820,
+Q6=37821,
+Z6=36492,
+K6=36494,
+J6=36495,
+$6=36283,
+eS=36284,
+tS=36285,
+nS=36286,
+Jm=2300,
 xw=2301,
 J5=2302,
-k_=2303,
-L_=2400,
-F_=2401,
-I_=2402,
+L_=2303,
+F_=2400,
+I_=2401,
+D_=2402,
 CD=3200,
 ga="srgb",
 Df="srgb-linear",
-j1="linear",
-J1="srgb",
+Y1="linear",
+ed="srgb",
 $5=7680,
 ED=35044,
 is=35048,
@@ -1319,18 +1320,18 @@ function BD(e){
 return ArrayBuffer.isView(e)&&!(e instanceof DataView)}
 c(BD,
 "isTypedArray");
-function X1(e){
+function Q1(e){
 return(void 0).createElementNS("http://www.w3.org/1999/xhtml",
 e)}
-c(X1,
+c(Q1,
 "createElementNS");
-function nS(){
-let e=X1("canvas");
+function iS(){
+let e=Q1("canvas");
 return e.style.display="block",
 e}
-c(nS,
+c(iS,
 "createCanvasElement");
-var D_={
+var z_={
 }
 ,
 zf=null;
@@ -1342,16 +1343,16 @@ t,
 ...e)}
 c(zw,
 "log");
-function iS(e){
+function rS(e){
 let t=e[0];
 if(typeof t=="string"&&t.startsWith("TSL:")){
 let n=e[1];
 n&&n.isStackTrace?e[0]+=" "+n.getLocation():e[1]='Stack trace not available. Enable "THREE.Node.captureStackTrace" to capture stack traces.'}
 return e}
-c(iS,
+c(rS,
 "enhanceLogMessage");
 function Ot(...e){
-e=iS(e);
+e=rS(e);
 let t="THREE."+e.shift();
 if(zf)zf("warn",
 t,
@@ -1364,7 +1365,7 @@ n&&n.isStackTrace?console.warn(n.getError(t)):console.warn(t,
 c(Ot,
 "warn");
 function Ht(...e){
-e=iS(e);
+e=rS(e);
 let t="THREE."+e.shift();
 if(zf)zf("error",
 t,
@@ -1378,11 +1379,11 @@ c(Ht,
 "error");
 function jc(...e){
 let t=e.join(" ");
-t in D_||(D_[t]=!0,
+t in z_||(z_[t]=!0,
 Ot(...e))}
 c(jc,
 "warnOnce");
-function rS(e,
+function oS(e,
 t,
 n){
 return new Promise(function(i,
@@ -1403,9 +1404,9 @@ c(o,
 setTimeout(o,
 n)}
 )}
-c(rS,
+c(oS,
 "probeAsync");
-var oS={
+var aS={
 0:1,
 2:6,
 4:7,
@@ -1713,8 +1714,8 @@ Go=["00",
 "fd",
 "fe",
 "ff"],
-z_=1234567,
-H1=Math.PI/180,
+O_=1234567,
+V1=Math.PI/180,
 Of=180/Math.PI;
 function Kc(){
 let e=Math.random()*4294967295|0,
@@ -1724,13 +1725,13 @@ i=Math.random()*4294967295|0;
 return(Go[e&255]+Go[e>>8&255]+Go[e>>16&255]+Go[e>>24&255]+"-"+Go[t&255]+Go[t>>8&255]+"-"+Go[t>>16&15|64]+Go[t>>24&255]+"-"+Go[n&63|128]+Go[n>>8&255]+"-"+Go[n>>16&255]+Go[n>>24&255]+Go[i&255]+Go[i>>8&255]+Go[i>>16&255]+Go[i>>24&255]).toLowerCase()}
 c(Kc,
 "generateUUID");
-function xn(e,
+function _n(e,
 t,
 n){
 return Math.max(t,
 Math.min(n,
 e))}
-c(xn,
+c(_n,
 "clamp");
 function Ow(e,
 t){
@@ -1751,17 +1752,17 @@ n){
 return e!==t?(n-e)/(t-e):0}
 c(kD,
 "inverseLerp");
-function W1(e,
+function q1(e,
 t,
 n){
 return(1-n)*e+n*t}
-c(W1,
+c(q1,
 "lerp");
 function LD(e,
 t,
 n,
 i){
-return W1(e,
+return q1(e,
 t,
 1-Math.exp(-n*i))}
 c(LD,
@@ -1801,8 +1802,8 @@ return e*(.5-Math.random())}
 c(ND,
 "randFloatSpread");
 function UD(e){
-e!==void 0&&(z_=e);
-let t=z_+=1831565813;
+e!==void 0&&(O_=e);
+let t=O_+=1831565813;
 return t=Math.imul(t^t>>>15,
 t|1),
 t^=t+Math.imul(t^t>>>7,
@@ -1811,7 +1812,7 @@ t|61),
 c(UD,
 "seededRandom");
 function GD(e){
-return e*H1}
+return e*V1}
 c(GD,
 "degToRad");
 function HD(e){
@@ -1914,14 +1915,14 @@ default:throw new Error("THREE.MathUtils: Invalid component type.")}
 c(la,
 "normalize");
 var ut={
-DEG2RAD:H1,
+DEG2RAD:V1,
 RAD2DEG:Of,
 generateUUID:Kc,
-clamp:xn,
+clamp:_n,
 euclideanModulo:Ow,
 mapLinear:PD,
 inverseLerp:kD,
-lerp:W1,
+lerp:q1,
 damp:LD,
 pingpong:FD,
 smoothstep:ID,
@@ -1939,12 +1940,12 @@ setQuaternionFromProperEuler:jD,
 normalize:la,
 denormalize:kf}
 ,
-he=class aS{
+he=class sS{
 static{
 c(this,
 "Vector2")}
 static{
-aS.prototype.isVector2=!0}
+sS.prototype.isVector2=!0}
 constructor(t=0,
 n=0){
 this.x=t,
@@ -2060,26 +2061,26 @@ t.y),
 this}
 clamp(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t.x,
 n.x),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t.y,
 n.y),
 this}
 clampScalar(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t,
 n),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t,
 n),
 this}
 clampLength(t,
 n){
 let i=this.length();
-return this.divideScalar(i||1).multiplyScalar(xn(i,
+return this.divideScalar(i||1).multiplyScalar(_n(i,
 t,
 n))}
 floor(){
@@ -2121,7 +2122,7 @@ angleTo(t){
 let n=Math.sqrt(this.lengthSq()*t.lengthSq());
 if(n===0)return Math.PI/2;
 let i=this.dot(t)/n;
-return Math.acos(xn(i,
+return Math.acos(_n(i,
 -1,
 1))}
 distanceTo(t){
@@ -2413,7 +2414,7 @@ this._z=e.x*t.y-e.y*t.x,
 this._w=n),
 this.normalize()}
 angleTo(e){
-return 2*Math.acos(Math.abs(xn(this.dot(e),
+return 2*Math.acos(Math.abs(_n(this.dot(e),
 -1,
 1)))}
 rotateTowards(e,
@@ -2561,12 +2562,12 @@ yield this._z,
 yield this._w}
 }
 ,
-B=class sS{
+B=class lS{
 static{
 c(this,
 "Vector3")}
 static{
-sS.prototype.isVector3=!0}
+lS.prototype.isVector3=!0}
 constructor(t=0,
 n=0,
 i=0){
@@ -2677,10 +2678,10 @@ this.y=t.y*n.y,
 this.z=t.z*n.z,
 this}
 applyEuler(t){
-return this.applyQuaternion(O_.setFromEuler(t))}
+return this.applyQuaternion(N_.setFromEuler(t))}
 applyAxisAngle(t,
 n){
-return this.applyQuaternion(O_.setFromAxisAngle(t,
+return this.applyQuaternion(N_.setFromAxisAngle(t,
 n))}
 applyMatrix3(t){
 let n=this.x,
@@ -2756,32 +2757,32 @@ t.z),
 this}
 clamp(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t.x,
 n.x),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t.y,
 n.y),
-this.z=xn(this.z,
+this.z=_n(this.z,
 t.z,
 n.z),
 this}
 clampScalar(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t,
 n),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t,
 n),
-this.z=xn(this.z,
+this.z=_n(this.z,
 t,
 n),
 this}
 clampLength(t,
 n){
 let i=this.length();
-return this.divideScalar(i||1).multiplyScalar(xn(i,
+return this.divideScalar(i||1).multiplyScalar(_n(i,
 t,
 n))}
 floor(){
@@ -2865,7 +2866,7 @@ angleTo(t){
 let n=Math.sqrt(this.lengthSq()*t.lengthSq());
 if(n===0)return Math.PI/2;
 let i=this.dot(t)/n;
-return Math.acos(xn(i,
+return Math.acos(_n(i,
 -1,
 1))}
 distanceTo(t){
@@ -2975,13 +2976,13 @@ yield this.z}
 }
 ,
 ew=new B,
-O_=new To,
-qt=class lS{
+N_=new To,
+qt=class uS{
 static{
 c(this,
 "Matrix3")}
 static{
-lS.prototype.isMatrix3=!0}
+uS.prototype.isMatrix3=!0}
 constructor(t,
 n,
 i,
@@ -3311,7 +3312,7 @@ return new this.constructor().fromArray(this.elements)}
 }
 ,
 tw=new qt,
-N_=new qt().set(.4123908,
+U_=new qt().set(.4123908,
 .3575843,
 .1804808,
 .212639,
@@ -3320,7 +3321,7 @@ N_=new qt().set(.4123908,
 .0193308,
 .1191948,
 .9505322),
-U_=new qt().set(3.2409699,
+G_=new qt().set(3.2409699,
 -1.5373832,
 -.4986108,
 -.9692436,
@@ -3369,7 +3370,7 @@ return this.spaces[r].primaries}
 ,
 "getPrimaries"),
 getTransfer:c(function(r){
-return r===""?j1:this.spaces[r].transfer}
+return r===""?Y1:this.spaces[r].transfer}
 ,
 "getTransfer"),
 getToneMappingMode:c(function(r){
@@ -3430,9 +3431,9 @@ return e.define({
 [Df]:{
 primaries:t,
 whitePoint:i,
-transfer:j1,
-toXYZ:N_,
-fromXYZ:U_,
+transfer:Y1,
+toXYZ:U_,
+fromXYZ:G_,
 luminanceCoefficients:n,
 workingColorSpaceConfig:{
 unpackColorSpace:ga}
@@ -3444,9 +3445,9 @@ drawingBufferColorSpace:ga}
 [ga]:{
 primaries:t,
 whitePoint:i,
-transfer:J1,
-toXYZ:N_,
-fromXYZ:U_,
+transfer:ed,
+toXYZ:U_,
+fromXYZ:G_,
 luminanceCoefficients:n,
 outputColorSpaceConfig:{
 drawingBufferColorSpace:ga}
@@ -3456,7 +3457,7 @@ drawingBufferColorSpace:ga}
 e}
 c(XD,
 "createColorManagement");
-var kn=XD();
+var Ln=XD();
 function Zl(e){
 return e<.04045?e*.0773993808:Math.pow(e*.9478672986+.0521327014,
 2.4)}
@@ -3478,7 +3479,7 @@ if((new RegExp("^data:","i")).test(e.src)||typeof HTMLCanvasElement>"u")return e
 let n;
 if(e instanceof HTMLCanvasElement)n=e;
 else{
-Af===void 0&&(Af=X1("canvas")),
+Af===void 0&&(Af=Q1("canvas")),
 Af.width=e.width,
 Af.height=e.height;
 let i=Af.getContext("2d");
@@ -3493,7 +3494,7 @@ n=Af}
 return n.toDataURL(t)}
 static sRGBToLinear(e){
 if(typeof HTMLImageElement<"u"&&e instanceof HTMLImageElement||typeof HTMLCanvasElement<"u"&&e instanceof HTMLCanvasElement||typeof ImageBitmap<"u"&&e instanceof ImageBitmap){
-let t=X1("canvas");
+let t=Q1("canvas");
 t.width=e.width,
 t.height=e.height;
 let n=t.getContext("2d");
@@ -3594,19 +3595,19 @@ c(nw,
 "serializeImage");
 var ZD=0,
 iw=new B,
-za=class Ym extends Zu{
+za=class Qm extends Zu{
 static{
 c(this,
 "Texture")}
-constructor(t=Ym.DEFAULT_IMAGE,
-n=Ym.DEFAULT_MAPPING,
+constructor(t=Qm.DEFAULT_IMAGE,
+n=Qm.DEFAULT_MAPPING,
 i=co,
 r=co,
-o=On,
+o=Nn,
 a=ho,
 s=So,
 l=wa,
-u=Ym.DEFAULT_ANISOTROPY,
+u=Qm.DEFAULT_ANISOTROPY,
 h=""){
 super(),
 this.isTexture=!0,
@@ -3779,13 +3780,13 @@ case Yu:t.x=t.x-Math.floor(t.x);
 break;
 case co:t.x=t.x<0?0:1;
 break;
-case Zm:Math.abs(Math.floor(t.x)%2)===1?t.x=Math.ceil(t.x)-t.x:t.x=t.x-Math.floor(t.x)}
+case Km:Math.abs(Math.floor(t.x)%2)===1?t.x=Math.ceil(t.x)-t.x:t.x=t.x-Math.floor(t.x)}
 if(t.y<0||t.y>1)switch(this.wrapT){
 case Yu:t.y=t.y-Math.floor(t.y);
 break;
 case co:t.y=t.y<0?0:1;
 break;
-case Zm:Math.abs(Math.floor(t.y)%2)===1?t.y=Math.ceil(t.y)-t.y:t.y=t.y-Math.floor(t.y)}
+case Km:Math.abs(Math.floor(t.y)%2)===1?t.y=Math.ceil(t.y)-t.y:t.y=t.y-Math.floor(t.y)}
 return this.flipY&&(t.y=1-t.y),
 t}
 set needsUpdate(t){
@@ -3798,12 +3799,12 @@ t===!0&&this.pmremVersion++}
 za.DEFAULT_IMAGE=null;
 za.DEFAULT_MAPPING=300;
 za.DEFAULT_ANISOTROPY=1;
-var ot=class uS{
+var ot=class cS{
 static{
 c(this,
 "Vector4")}
 static{
-uS.prototype.isVector4=!0}
+cS.prototype.isVector4=!0}
 constructor(t=0,
 n=0,
 i=0,
@@ -4046,38 +4047,38 @@ t.w),
 this}
 clamp(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t.x,
 n.x),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t.y,
 n.y),
-this.z=xn(this.z,
+this.z=_n(this.z,
 t.z,
 n.z),
-this.w=xn(this.w,
+this.w=_n(this.w,
 t.w,
 n.w),
 this}
 clampScalar(t,
 n){
-return this.x=xn(this.x,
+return this.x=_n(this.x,
 t,
 n),
-this.y=xn(this.y,
+this.y=_n(this.y,
 t,
 n),
-this.z=xn(this.z,
+this.z=_n(this.z,
 t,
 n),
-this.w=xn(this.w,
+this.w=_n(this.w,
 t,
 n),
 this}
 clampLength(t,
 n){
 let i=this.length();
-return this.divideScalar(i||1).multiplyScalar(xn(i,
+return this.divideScalar(i||1).multiplyScalar(_n(i,
 t,
 n))}
 floor(){
@@ -4186,7 +4187,7 @@ super(),
 n=Object.assign({
 generateMipmaps:!1,
 internalFormat:null,
-minFilter:On,
+minFilter:Nn,
 depthBuffer:!0,
 stencilBuffer:!1,
 resolveColorBuffer:!0,
@@ -4246,7 +4247,7 @@ _setTextureOptions(e={
 }
 ){
 let t={
-minFilter:On,
+minFilter:Nn,
 generateMipmaps:!1,
 flipY:!1,
 internalFormat:null}
@@ -4763,16 +4764,16 @@ Fa.normalize(),
 Wu.crossVectors(i,
 Fa)),
 Wu.normalize(),
-_m.crossVectors(Fa,
+Sm.crossVectors(Fa,
 Wu),
 r[0]=Wu.x,
-r[4]=_m.x,
+r[4]=Sm.x,
 r[8]=Fa.x,
 r[1]=Wu.y,
-r[5]=_m.y,
+r[5]=Sm.y,
 r[9]=Fa.y,
 r[2]=Wu.z,
-r[6]=_m.z,
+r[6]=Sm.z,
 r[10]=Fa.z,
 this}
 multiply(t){
@@ -5382,18 +5383,18 @@ $D=new B(1,
 1,
 1),
 Wu=new B,
-_m=new B,
+Sm=new B,
 Fa=new B,
-G_=new Ke,
-H_=new To,
-Yc=class cS{
+H_=new Ke,
+W_=new To,
+Yc=class hS{
 static{
 c(this,
 "Euler")}
 constructor(t=0,
 n=0,
 i=0,
-r=cS.DEFAULT_ORDER){
+r=hS.DEFAULT_ORDER){
 this.isEuler=!0,
 this._x=t,
 this._y=n,
@@ -5455,7 +5456,7 @@ f=r[2],
 d=r[6],
 p=r[10];
 switch(n){
-case"XYZ":this._y=Math.asin(xn(s,
+case"XYZ":this._y=Math.asin(_n(s,
 -1,
 1)),
 Math.abs(s)<.9999999?(this._x=Math.atan2(-h,
@@ -5465,7 +5466,7 @@ o)):(this._x=Math.atan2(d,
 u),
 this._z=0);
 break;
-case"YXZ":this._x=Math.asin(-xn(h,
+case"YXZ":this._x=Math.asin(-_n(h,
 -1,
 1)),
 Math.abs(h)<.9999999?(this._y=Math.atan2(s,
@@ -5475,7 +5476,7 @@ u)):(this._y=Math.atan2(-f,
 o),
 this._z=0);
 break;
-case"ZXY":this._x=Math.asin(xn(d,
+case"ZXY":this._x=Math.asin(_n(d,
 -1,
 1)),
 Math.abs(d)<.9999999?(this._y=Math.atan2(-f,
@@ -5485,7 +5486,7 @@ u)):(this._y=0,
 this._z=Math.atan2(l,
 o));
 break;
-case"ZYX":this._y=Math.asin(-xn(f,
+case"ZYX":this._y=Math.asin(-_n(f,
 -1,
 1)),
 Math.abs(f)<.9999999?(this._x=Math.atan2(d,
@@ -5495,7 +5496,7 @@ o)):(this._x=0,
 this._z=Math.atan2(-a,
 u));
 break;
-case"YZX":this._z=Math.asin(xn(l,
+case"YZX":this._z=Math.asin(_n(l,
 -1,
 1)),
 Math.abs(l)<.9999999?(this._x=Math.atan2(-h,
@@ -5505,7 +5506,7 @@ o)):(this._x=0,
 this._y=Math.atan2(s,
 p));
 break;
-case"XZY":this._z=Math.asin(-xn(a,
+case"XZY":this._z=Math.asin(-_n(a,
 -1,
 1)),
 Math.abs(a)<.9999999?(this._x=Math.atan2(d,
@@ -5522,8 +5523,8 @@ this}
 setFromQuaternion(t,
 n,
 i){
-return G_.makeRotationFromQuaternion(t),
-this.setFromRotationMatrix(G_,
+return H_.makeRotationFromQuaternion(t),
+this.setFromRotationMatrix(H_,
 n,
 i)}
 setFromVector3(t,
@@ -5533,8 +5534,8 @@ t.y,
 t.z,
 n)}
 reorder(t){
-return H_.setFromEuler(this),
-this.setFromQuaternion(H_,
+return W_.setFromEuler(this),
+this.setFromQuaternion(W_,
 t)}
 equals(t){
 return t._x===this._x&&t._y===this._y&&t._z===this._z&&t._order===this._order}
@@ -5590,23 +5591,23 @@ return(this.mask&(1<<e|0))!==0}
 }
 ,
 ez=0,
-W_=new B,
+V_=new B,
 bf=new To,
 Vl=new Ke,
-Sm=new B,
-D1=new B,
+Tm=new B,
+O1=new B,
 tz=new B,
 nz=new To,
-V_=new B(1,
+q_=new B(1,
 0,
-0),
-q_=new B(0,
-1,
 0),
 j_=new B(0,
+1,
+0),
+X_=new B(0,
 0,
 1),
-X_={
+Y_={
 type:"added"}
 ,
 iz={
@@ -5620,7 +5621,7 @@ rw={
 type:"childremoved",
 child:null}
 ,
-ya=class Qm extends Zu{
+ya=class Zm extends Zu{
 static{
 c(this,
 "Object3D")}
@@ -5637,7 +5638,7 @@ this.name="",
 this.type="Object3D",
 this.parent=null,
 this.children=[],
-this.up=Qm.DEFAULT_UP.clone();
+this.up=Zm.DEFAULT_UP.clone();
 let t=new B,
 n=new Yc,
 i=new To,
@@ -5688,8 +5689,8 @@ value:new qt}
 ),
 this.matrix=new Ke,
 this.matrixWorld=new Ke,
-this.matrixAutoUpdate=Qm.DEFAULT_MATRIX_AUTO_UPDATE,
-this.matrixWorldAutoUpdate=Qm.DEFAULT_MATRIX_WORLD_AUTO_UPDATE,
+this.matrixAutoUpdate=Zm.DEFAULT_MATRIX_AUTO_UPDATE,
+this.matrixWorldAutoUpdate=Zm.DEFAULT_MATRIX_WORLD_AUTO_UPDATE,
 this.matrixWorldNeedsUpdate=!1,
 this.layers=new Gw,
 this.visible=!0,
@@ -5746,27 +5747,27 @@ n),
 this.quaternion.premultiply(bf),
 this}
 rotateX(t){
-return this.rotateOnAxis(V_,
-t)}
-rotateY(t){
 return this.rotateOnAxis(q_,
 t)}
-rotateZ(t){
+rotateY(t){
 return this.rotateOnAxis(j_,
+t)}
+rotateZ(t){
+return this.rotateOnAxis(X_,
 t)}
 translateOnAxis(t,
 n){
-return W_.copy(t).applyQuaternion(this.quaternion),
-this.position.add(W_.multiplyScalar(n)),
+return V_.copy(t).applyQuaternion(this.quaternion),
+this.position.add(V_.multiplyScalar(n)),
 this}
 translateX(t){
-return this.translateOnAxis(V_,
-t)}
-translateY(t){
 return this.translateOnAxis(q_,
 t)}
-translateZ(t){
+translateY(t){
 return this.translateOnAxis(j_,
+t)}
+translateZ(t){
+return this.translateOnAxis(X_,
 t)}
 localToWorld(t){
 return this.updateWorldMatrix(!0,
@@ -5779,17 +5780,17 @@ t.applyMatrix4(Vl.copy(this.matrixWorld).invert())}
 lookAt(t,
 n,
 i){
-t.isVector3?Sm.copy(t):Sm.set(t,
+t.isVector3?Tm.copy(t):Tm.set(t,
 n,
 i);
 let r=this.parent;
 this.updateWorldMatrix(!0,
 !1),
-D1.setFromMatrixPosition(this.matrixWorld),
-this.isCamera||this.isLight?Vl.lookAt(D1,
-Sm,
-this.up):Vl.lookAt(Sm,
-D1,
+O1.setFromMatrixPosition(this.matrixWorld),
+this.isCamera||this.isLight?Vl.lookAt(O1,
+Tm,
+this.up):Vl.lookAt(Tm,
+O1,
 this.up),
 this.quaternion.setFromRotationMatrix(Vl),
 r&&(Vl.extractRotation(r.matrixWorld),
@@ -5806,7 +5807,7 @@ t),
 this):(t&&t.isObject3D?(t.removeFromParent(),
 t.parent=this,
 this.children.push(t),
-t.dispatchEvent(X_),
+t.dispatchEvent(Y_),
 Mf.child=t,
 this.dispatchEvent(Mf),
 Mf.child=null):Ht("Object3D.add: object not an instance of THREE.Object3D.",
@@ -5846,7 +5847,7 @@ t.parent=this,
 this.children.push(t),
 t.updateWorldMatrix(!1,
 !0),
-t.dispatchEvent(X_),
+t.dispatchEvent(Y_),
 Mf.child=t,
 this.dispatchEvent(Mf),
 Mf.child=null,
@@ -5887,14 +5888,14 @@ t.setFromMatrixPosition(this.matrixWorld)}
 getWorldQuaternion(t){
 return this.updateWorldMatrix(!0,
 !1),
-this.matrixWorld.decompose(D1,
+this.matrixWorld.decompose(O1,
 t,
 tz),
 t}
 getWorldScale(t){
 return this.updateWorldMatrix(!0,
 !1),
-this.matrixWorld.decompose(D1,
+this.matrixWorld.decompose(O1,
 nz,
 t),
 t}
@@ -6200,7 +6201,7 @@ this.type="Group"}
 rz={
 type:"move"}
 ,
-Jm=class{
+$m=class{
 static{
 c(this,
 "WebXRController")}
@@ -6344,7 +6345,7 @@ e.add(n)}
 return e.joints[t.jointName]}
 }
 ,
-hS={
+fS={
 aliceblue:15792383,
 antiquewhite:16444375,
 aqua:65535,
@@ -6499,7 +6500,7 @@ h:0,
 s:0,
 l:0}
 ,
-Tm={
+Cm={
 h:0,
 s:0,
 l:0}
@@ -6547,29 +6548,29 @@ return e=Math.floor(e),
 this.r=(e>>16&255)/255,
 this.g=(e>>8&255)/255,
 this.b=(e&255)/255,
-kn.colorSpaceToWorking(this,
+Ln.colorSpaceToWorking(this,
 t),
 this}
 setRGB(e,
 t,
 n,
-i=kn.workingColorSpace){
+i=Ln.workingColorSpace){
 return this.r=e,
 this.g=t,
 this.b=n,
-kn.colorSpaceToWorking(this,
+Ln.colorSpaceToWorking(this,
 i),
 this}
 setHSL(e,
 t,
 n,
-i=kn.workingColorSpace){
+i=Ln.workingColorSpace){
 if(e=Ow(e,
 1),
-t=xn(t,
+t=_n(t,
 0,
 1),
-n=xn(n,
+n=_n(n,
 0,
 1),
 t===0)this.r=this.g=this.b=n;
@@ -6585,7 +6586,7 @@ e),
 this.b=ow(o,
 r,
 e-1/3)}
-return kn.colorSpaceToWorking(this,
+return Ln.colorSpaceToWorking(this,
 i),
 this}
 setStyle(e,
@@ -6650,7 +6651,7 @@ t);
 return this}
 setColorName(e,
 t=ga){
-let n=hS[e.toLowerCase()];
+let n=fS[e.toLowerCase()];
 return n!==void 0?this.setHex(n,
 t):Ot("Color: Unknown color "+e),
 this}
@@ -6680,20 +6681,20 @@ convertLinearToSRGB(){
 return this.copyLinearToSRGB(this),
 this}
 getHex(e=ga){
-return kn.workingToColorSpace(Ho.copy(this),
+return Ln.workingToColorSpace(Ho.copy(this),
 e),
-Math.round(xn(Ho.r*255,
+Math.round(_n(Ho.r*255,
 0,
-255))*65536+Math.round(xn(Ho.g*255,
+255))*65536+Math.round(_n(Ho.g*255,
 0,
-255))*256+Math.round(xn(Ho.b*255,
+255))*256+Math.round(_n(Ho.b*255,
 0,
 255))}
 getHexString(e=ga){
 return("000000"+this.getHex(e).toString(16)).slice(-6)}
 getHSL(e,
-t=kn.workingColorSpace){
-kn.workingToColorSpace(Ho.copy(this),
+t=Ln.workingColorSpace){
+Ln.workingToColorSpace(Ho.copy(this),
 t);
 let n=Ho.r,
 i=Ho.g,
@@ -6724,15 +6725,15 @@ e.s=l,
 e.l=u,
 e}
 getRGB(e,
-t=kn.workingColorSpace){
-return kn.workingToColorSpace(Ho.copy(this),
+t=Ln.workingColorSpace){
+return Ln.workingToColorSpace(Ho.copy(this),
 t),
 e.r=Ho.r,
 e.g=Ho.g,
 e.b=Ho.b,
 e}
 getStyle(e=ga){
-kn.workingToColorSpace(Ho.copy(this),
+Ln.workingToColorSpace(Ho.copy(this),
 e);
 let t=Ho.r,
 n=Ho.g,
@@ -6802,15 +6803,15 @@ this}
 lerpHSL(e,
 t){
 this.getHSL(Vu),
-e.getHSL(Tm);
-let n=W1(Vu.h,
-Tm.h,
+e.getHSL(Cm);
+let n=q1(Vu.h,
+Cm.h,
 t),
-i=W1(Vu.s,
-Tm.s,
+i=q1(Vu.s,
+Cm.s,
 t),
-r=W1(Vu.l,
-Tm.l,
+r=q1(Vu.l,
+Cm.l,
 t);
 return this.setHSL(n,
 i,
@@ -6859,8 +6860,8 @@ yield this.b}
 }
 ,
 Ho=new Ne;
-Ne.NAMES=hS;
-var fn=class extends ya{
+Ne.NAMES=fS;
+var dn=class extends ya{
 static{
 c(this,
 "Scene")}
@@ -6913,14 +6914,14 @@ aw=new B,
 jl=new B,
 xf=new B,
 _f=new B,
-Y_=new B,
+Q_=new B,
 sw=new B,
 lw=new B,
 uw=new B,
 cw=new ot,
 hw=new ot,
 fw=new ot,
-z1=class Lf{
+N1=class Lf{
 static{
 c(this,
 "Triangle")}
@@ -7153,10 +7154,10 @@ if(g<=0&&u>=0&&m<=0)return s=u/(u-m),
 n.copy(i).addScaledVector(_f,
 s);
 let w=h*m-p*f;
-if(w<=0&&f-h>=0&&p-m>=0)return Y_.subVectors(o,
+if(w<=0&&f-h>=0&&p-m>=0)return Q_.subVectors(o,
 r),
 s=(f-h)/(f-h+(p-m)),
-n.copy(r).addScaledVector(Y_,
+n.copy(r).addScaledVector(Q_,
 s);
 let v=1/(w+g+d);
 return a=g*v,
@@ -7168,7 +7169,7 @@ equals(t){
 return t.a.equals(this.a)&&t.b.equals(this.b)&&t.c.equals(this.c)}
 }
 ,
-$1=class{
+td=class{
 static{
 c(this,
 "Box3")}
@@ -7270,10 +7271,10 @@ o),
 Cs.applyMatrix4(e.matrixWorld),
 this.expandByPoint(Cs);
 else e.boundingBox!==void 0?(e.boundingBox===null&&e.computeBoundingBox(),
-Cm.copy(e.boundingBox)):(n.boundingBox===null&&n.computeBoundingBox(),
-Cm.copy(n.boundingBox)),
-Cm.applyMatrix4(e.matrixWorld),
-this.union(Cm)}
+Em.copy(e.boundingBox)):(n.boundingBox===null&&n.computeBoundingBox(),
+Em.copy(n.boundingBox)),
+Em.applyMatrix4(e.matrixWorld),
+this.union(Em)}
 let i=e.children;
 for(let r=0,
 o=i.length;
@@ -7311,15 +7312,15 @@ n+=e.normal.z*this.min.z),
 t<=-e.constant&&n>=-e.constant}
 intersectsTriangle(e){
 if(this.isEmpty())return!1;
-this.getCenter(O1),
-Em.subVectors(this.max,
-O1),
+this.getCenter(U1),
+Rm.subVectors(this.max,
+U1),
 Sf.subVectors(e.a,
-O1),
+U1),
 Tf.subVectors(e.b,
-O1),
+U1),
 Cf.subVectors(e.c,
-O1),
+U1),
 qu.subVectors(Tf,
 Sf),
 ju.subVectors(Cf,
@@ -7357,7 +7358,7 @@ return!dw(t,
 Sf,
 Tf,
 Cf,
-Em)||(t=[1,
+Rm)||(t=[1,
 0,
 0,
 0,
@@ -7370,16 +7371,16 @@ Em)||(t=[1,
 Sf,
 Tf,
 Cf,
-Em))?!1:(Rm.crossVectors(qu,
+Rm))?!1:(Bm.crossVectors(qu,
 ju),
-t=[Rm.x,
-Rm.y,
-Rm.z],
+t=[Bm.x,
+Bm.y,
+Bm.z],
 dw(t,
 Sf,
 Tf,
 Cf,
-Em))}
+Rm))}
 clampPoint(e,
 t){
 return t.copy(e).clamp(this.min,
@@ -7453,16 +7454,16 @@ new B,
 new B,
 new B],
 Cs=new B,
-Cm=new $1,
+Em=new td,
 Sf=new B,
 Tf=new B,
 Cf=new B,
 qu=new B,
 ju=new B,
 Hc=new B,
-O1=new B,
-Em=new B,
+U1=new B,
 Rm=new B,
+Bm=new B,
 Wc=new B;
 function dw(e,
 t,
@@ -7489,7 +7490,7 @@ return!0}
 c(dw,
 "satForAxes");
 var zr=new B,
-Bm=new he,
+Pm=new he,
 oz=0,
 Xt=class extends Zu{
 static{
@@ -7556,12 +7557,12 @@ applyMatrix3(e){
 if(this.itemSize===2)for(let t=0,
 n=this.count;
 t<n;
-t++)Bm.fromBufferAttribute(this,
+t++)Pm.fromBufferAttribute(this,
 t),
-Bm.applyMatrix3(e),
+Pm.applyMatrix3(e),
 this.setXY(t,
-Bm.x,
-Bm.y);
+Pm.x,
+Pm.y);
 else if(this.itemSize===3)for(let t=0,
 n=this.count;
 t<n;
@@ -7763,7 +7764,7 @@ t,
 n)}
 }
 ,
-Ln=class extends Xt{
+Fn=class extends Xt{
 static{
 c(this,
 "Float32BufferAttribute")}
@@ -7775,10 +7776,10 @@ t,
 n)}
 }
 ,
-az=new $1,
-N1=new B,
+az=new td,
+G1=new B,
 pw=new B,
-$m=class{
+ev=class{
 static{
 c(this,
 "Sphere")}
@@ -7851,13 +7852,13 @@ expandByPoint(e){
 if(this.isEmpty())return this.center.copy(e),
 this.radius=0,
 this;
-N1.subVectors(e,
+G1.subVectors(e,
 this.center);
-let t=N1.lengthSq();
+let t=G1.lengthSq();
 if(t>this.radius*this.radius){
 let n=Math.sqrt(t),
 i=(n-this.radius)*.5;
-this.center.addScaledVector(N1,
+this.center.addScaledVector(G1,
 i/n),
 this.radius+=i}
 return this}
@@ -7866,8 +7867,8 @@ return e.isEmpty()?this:this.isEmpty()?(this.copy(e),
 this):(this.center.equals(e.center)===!0?this.radius=Math.max(this.radius,
 e.radius):(pw.subVectors(e.center,
 this.center).setLength(e.radius),
-this.expandByPoint(N1.copy(e.center).add(pw)),
-this.expandByPoint(N1.copy(e.center).sub(pw))),
+this.expandByPoint(G1.copy(e.center).add(pw)),
+this.expandByPoint(G1.copy(e.center).sub(pw))),
 this)}
 equals(e){
 return e.center.equals(this.center)&&e.radius===this.radius}
@@ -7888,10 +7889,10 @@ sz=0,
 ns=new Ke,
 mw=new ya,
 Ef=new B,
-Ia=new $1,
-U1=new $1,
+Ia=new td,
+H1=new td,
 uo=new B,
-It=class fS extends Zu{
+It=class dS extends Zu{
 static{
 c(this,
 "BufferGeometry")}
@@ -8038,7 +8039,7 @@ i.push(a.x,
 a.y,
 a.z||0)}
 this.setAttribute("position",
-new Ln(i,
+new Fn(i,
 3))}
 else{
 let i=Math.min(t.length,
@@ -8055,7 +8056,7 @@ t.length>n.count&&Ot("BufferGeometry: Buffer size too small for points data. Use
 n.needsUpdate=!0}
 return this}
 computeBoundingBox(){
-this.boundingBox===null&&(this.boundingBox=new $1);
+this.boundingBox===null&&(this.boundingBox=new td);
 let t=this.attributes.position,
 n=this.morphAttributes.position;
 if(t&&t.isGLBufferAttribute){
@@ -8088,7 +8089,7 @@ else this.boundingBox.makeEmpty();
 (isNaN(this.boundingBox.min.x)||isNaN(this.boundingBox.min.y)||isNaN(this.boundingBox.min.z))&&Ht('BufferGeometry.computeBoundingBox(): Computed min/max have NaN values. The "position" attribute is likely to have NaN values.',
 this)}
 computeBoundingSphere(){
-this.boundingSphere===null&&(this.boundingSphere=new $m);
+this.boundingSphere===null&&(this.boundingSphere=new ev);
 let t=this.attributes.position,
 n=this.morphAttributes.position;
 if(t&&t.isGLBufferAttribute){
@@ -8105,14 +8106,14 @@ a=n.length;
 o<a;
 o++){
 let s=n[o];
-U1.setFromBufferAttribute(s),
+H1.setFromBufferAttribute(s),
 this.morphTargetsRelative?(uo.addVectors(Ia.min,
-U1.min),
+H1.min),
 Ia.expandByPoint(uo),
 uo.addVectors(Ia.max,
-U1.max),
-Ia.expandByPoint(uo)):(Ia.expandByPoint(U1.min),
-Ia.expandByPoint(U1.max))}
+H1.max),
+Ia.expandByPoint(uo)):(Ia.expandByPoint(H1.min),
+Ia.expandByPoint(H1.max))}
 Ia.getCenter(i);
 let r=0;
 for(let o=0,
@@ -8383,7 +8384,7 @@ if(c(t,
 "convertBufferAttribute"),
 this.index===null)return Ot("BufferGeometry.toNonIndexed(): BufferGeometry is already non-indexed."),
 this;
-let n=new fS,
+let n=new dS,
 i=this.index.array,
 r=this.attributes;
 for(let s in r){
@@ -8634,7 +8635,7 @@ this}
 }
 ,
 cz=0,
-ed=class extends Zu{
+nd=class extends Zu{
 static{
 c(this,
 "Material")}
@@ -9077,9 +9078,9 @@ e===!0&&this.version++}
 ,
 Yl=new B,
 gw=new B,
-Pm=new B,
 km=new B,
-dS=class{
+Lm=new B,
+pS=class{
 static{
 c(this,
 "Ray")}
@@ -9129,13 +9130,13 @@ t,
 n,
 i){
 gw.copy(e).add(t).multiplyScalar(.5),
-Pm.copy(t).sub(e).normalize(),
-km.copy(this.origin).sub(gw);
+km.copy(t).sub(e).normalize(),
+Lm.copy(this.origin).sub(gw);
 let r=e.distanceTo(t)*.5,
-o=-this.direction.dot(Pm),
-a=km.dot(this.direction),
-s=-km.dot(Pm),
-l=km.lengthSq(),
+o=-this.direction.dot(km),
+a=Lm.dot(this.direction),
+s=-Lm.dot(km),
+l=Lm.lengthSq(),
 u=Math.abs(1-o*o),
 h,
 f,
@@ -9178,7 +9179,7 @@ h=Math.max(0,
 d=-h*h+f*(f+2*s)+l;
 return n&&n.copy(this.origin).addScaledVector(this.direction,
 h),
-i&&i.copy(gw).addScaledVector(Pm,
+i&&i.copy(gw).addScaledVector(km,
 f),
 d}
 intersectSphere(e,
@@ -9361,7 +9362,7 @@ clone(){
 return new this.constructor().copy(this)}
 }
 ,
-Jc=class extends ed{
+Jc=class extends nd{
 static{
 c(this,
 "MeshBasicMaterial")}
@@ -9411,17 +9412,17 @@ this.fog=e.fog,
 this}
 }
 ,
-Q_=new Ke,
-Vc=new dS,
-Lm=new $m,
-Z_=new B,
-Fm=new B,
+Z_=new Ke,
+Vc=new pS,
+Fm=new ev,
+K_=new B,
 Im=new B,
 Dm=new B,
-ww=new B,
 zm=new B,
-K_=new B,
+ww=new B,
 Om=new B,
+J_=new B,
+Nm=new B,
 tt=class extends ya{
 static{
 c(this,
@@ -9479,7 +9480,7 @@ t.fromBufferAttribute(i,
 e);
 let a=this.morphTargetInfluences;
 if(r&&a){
-zm.set(0,
+Om.set(0,
 0,
 0);
 for(let s=0,
@@ -9490,10 +9491,10 @@ let u=a[s],
 h=r[s];
 u!==0&&(ww.fromBufferAttribute(h,
 e),
-o?zm.addScaledVector(ww,
-u):zm.addScaledVector(ww.sub(t),
+o?Om.addScaledVector(ww,
+u):Om.addScaledVector(ww.sub(t),
 u))}
-t.add(zm)}
+t.add(Om)}
 return t}
 intersectsFrustum(e){
 return e.intersectsObject(this)}
@@ -9503,12 +9504,12 @@ let n=this.geometry,
 i=this.material,
 r=this.matrixWorld;
 i!==void 0&&(n.boundingSphere===null&&n.computeBoundingSphere(),
-Lm.copy(n.boundingSphere),
-Lm.applyMatrix4(r),
+Fm.copy(n.boundingSphere),
+Fm.applyMatrix4(r),
 Vc.copy(e.ray).recast(e.near),
-!(Lm.containsPoint(Vc.origin)===!1&&(Vc.intersectSphere(Lm,
-Z_)===null||Vc.origin.distanceToSquared(Z_)>(e.far-e.near)**2))&&(Q_.copy(r).invert(),
-Vc.copy(e.ray).applyMatrix4(Q_),
+!(Fm.containsPoint(Vc.origin)===!1&&(Vc.intersectSphere(Fm,
+K_)===null||Vc.origin.distanceToSquared(K_)>(e.far-e.near)**2))&&(Z_.copy(r).invert(),
+Vc.copy(e.ray).applyMatrix4(Z_),
 !(n.boundingBox!==null&&Vc.intersectsBox(n.boundingBox)===!1)&&this._computeIntersections(e,
 t,
 Vc)))}
@@ -9543,7 +9544,7 @@ y+=3){
 let x=a.getX(y),
 M=a.getX(y+1),
 T=a.getX(y+2);
-i=Nm(this,
+i=Um(this,
 w,
 e,
 n,
@@ -9569,7 +9570,7 @@ g+=3){
 let v=a.getX(g),
 A=a.getX(g+1),
 y=a.getX(g+2);
-i=Nm(this,
+i=Um(this,
 o,
 e,
 n,
@@ -9600,7 +9601,7 @@ y+=3){
 let x=y,
 M=y+1,
 T=y+2;
-i=Nm(this,
+i=Um(this,
 w,
 e,
 n,
@@ -9626,7 +9627,7 @@ g+=3){
 let v=g,
 A=g+1,
 y=g+2;
-i=Nm(this,
+i=Um(this,
 o,
 e,
 n,
@@ -9661,17 +9662,17 @@ a,
 t.side===0,
 s),
 l===null)return null;
-Om.copy(s),
-Om.applyMatrix4(e.matrixWorld);
-let u=n.ray.origin.distanceTo(Om);
+Nm.copy(s),
+Nm.applyMatrix4(e.matrixWorld);
+let u=n.ray.origin.distanceTo(Nm);
 return u<n.near||u>n.far?null:{
 distance:u,
-point:Om.clone(),
+point:Nm.clone(),
 object:e}
 }
 c(hz,
 "checkIntersection$1");
-function Nm(e,
+function Um(e,
 t,
 n,
 i,
@@ -9682,39 +9683,39 @@ s,
 l,
 u){
 e.getVertexPosition(s,
-Fm),
-e.getVertexPosition(l,
 Im),
+e.getVertexPosition(l,
+Dm),
 e.getVertexPosition(u,
-Dm);
+zm);
 let h=hz(e,
 t,
 n,
 i,
-Fm,
 Im,
 Dm,
-K_);
+zm,
+J_);
 if(h){
 let f=new B;
-z1.getBarycoord(K_,
-Fm,
+N1.getBarycoord(J_,
 Im,
 Dm,
+zm,
 f),
-r&&(h.uv=z1.getInterpolatedAttribute(r,
+r&&(h.uv=N1.getInterpolatedAttribute(r,
 s,
 l,
 u,
 f,
 new he)),
-o&&(h.uv1=z1.getInterpolatedAttribute(o,
+o&&(h.uv1=N1.getInterpolatedAttribute(o,
 s,
 l,
 u,
 f,
 new he)),
-a&&(h.normal=z1.getInterpolatedAttribute(a,
+a&&(h.normal=N1.getInterpolatedAttribute(a,
 s,
 l,
 u,
@@ -9728,14 +9729,14 @@ c:u,
 normal:new B,
 materialIndex:0}
 ;
-z1.getNormal(Fm,
-Im,
+N1.getNormal(Im,
 Dm,
+zm,
 d.normal),
 h.face=d,
 h.barycoord=f}
 return h}
-c(Nm,
+c(Um,
 "checkGeometryIntersection");
 var Jl=class extends za{
 static{
@@ -9798,10 +9799,10 @@ e.isInstancedBufferAttribute=!0,
 e}
 }
 ,
-qc=new $m,
+qc=new ev,
 fz=new he(.5,
 .5),
-Um=new B,
+Gm=new B,
 Vw=class{
 static{
 c(this,
@@ -9926,10 +9927,10 @@ for(let n=0;
 n<6;
 n++){
 let i=t[n];
-if(Um.x=i.normal.x>0?e.max.x:e.min.x,
-Um.y=i.normal.y>0?e.max.y:e.min.y,
-Um.z=i.normal.z>0?e.max.z:e.min.z,
-i.distanceToPoint(Um)<0)return!1}
+if(Gm.x=i.normal.x>0?e.max.x:e.min.x,
+Gm.y=i.normal.y>0?e.max.y:e.min.y,
+Gm.z=i.normal.z>0?e.max.z:e.min.z,
+i.distanceToPoint(Gm)<0)return!1}
 return!0}
 containsPoint(e){
 let t=this.planes;
@@ -9941,7 +9942,7 @@ clone(){
 return new this.constructor().copy(this)}
 }
 ,
-dz=class extends ed{
+dz=class extends nd{
 static{
 c(this,
 "PointsMaterial")}
@@ -9967,10 +9968,10 @@ this.fog=e.fog,
 this}
 }
 ,
-J_=new Ke,
-Sw=new dS,
-Gm=new $m,
-Hm=new B,
+$_=new Ke,
+Sw=new pS,
+Hm=new ev,
+Wm=new B,
 oi=class extends ya{
 static{
 c(this,
@@ -10001,12 +10002,12 @@ i=this.matrixWorld,
 r=e.params.Points.threshold,
 o=n.drawRange;
 if(n.boundingSphere===null&&n.computeBoundingSphere(),
-Gm.copy(n.boundingSphere),
-Gm.applyMatrix4(i),
-Gm.radius+=r,
-e.ray.intersectsSphere(Gm)===!1)return;
-J_.copy(i).invert(),
-Sw.copy(e.ray).applyMatrix4(J_);
+Hm.copy(n.boundingSphere),
+Hm.applyMatrix4(i),
+Hm.radius+=r,
+e.ray.intersectsSphere(Hm)===!1)return;
+$_.copy(i).invert(),
+Sw.copy(e.ray).applyMatrix4($_);
 let a=r/((this.scale.x+this.scale.y+this.scale.z)/3),
 s=a*a,
 l=n.index,
@@ -10021,9 +10022,9 @@ p=f;
 d<p;
 d++){
 let m=l.getX(d);
-Hm.fromBufferAttribute(u,
+Wm.fromBufferAttribute(u,
 m),
-$_(Hm,
+e6(Wm,
 m,
 s,
 i,
@@ -10039,9 +10040,9 @@ o.start+o.count);
 for(let d=h,
 p=f;
 d<p;
-d++)Hm.fromBufferAttribute(u,
+d++)Wm.fromBufferAttribute(u,
 d),
-$_(Hm,
+e6(Wm,
 d,
 s,
 i,
@@ -10071,7 +10072,7 @@ this.morphTargetDictionary[o]=i}
 }
 }
 ;
-function $_(e,
+function e6(e,
 t,
 n,
 i,
@@ -10097,7 +10098,7 @@ barycoord:null,
 object:a}
 )}
 }
-c($_,
+c(e6,
 "testPoint");
 var qw=class extends za{
 static{
@@ -10204,7 +10205,7 @@ return t.compareFunction=this.compareFunction,
 t}
 }
 ,
-pS=class extends Hf{
+mS=class extends Hf{
 static{
 c(this,
 "CubeDepthTexture")}
@@ -10261,7 +10262,7 @@ this.sourceTexture=e.sourceTexture,
 this}
 }
 ,
-fo=class mS extends It{
+fo=class vS extends It{
 static{
 c(this,
 "BoxGeometry")}
@@ -10359,13 +10360,13 @@ o,
 5),
 this.setIndex(l),
 this.setAttribute("position",
-new Ln(u,
+new Fn(u,
 3)),
 this.setAttribute("normal",
-new Ln(h,
+new Fn(h,
 3)),
 this.setAttribute("uv",
-new Ln(f,
+new Fn(f,
 2));
 function m(g,
 w,
@@ -10440,7 +10441,7 @@ this.parameters=Object.assign({
 t.parameters),
 this}
 static fromJSON(t){
-return new mS(t.width,
+return new vS(t.width,
 t.height,
 t.depth,
 t.widthSegments,
@@ -10448,7 +10449,7 @@ t.heightSegments,
 t.depthSegments)}
 }
 ,
-Xw=class vS extends It{
+Xw=class gS extends It{
 static{
 c(this,
 "CylinderGeometry")}
@@ -10488,13 +10489,13 @@ a===!1&&(t>0&&y(!0),
 n>0&&y(!1)),
 this.setIndex(h),
 this.setAttribute("position",
-new Ln(f,
+new Fn(f,
 3)),
 this.setAttribute("normal",
-new Ln(d,
+new Fn(d,
 3)),
 this.setAttribute("uv",
-new Ln(p,
+new Fn(p,
 2));
 function A(){
 let b=new B,
@@ -10617,7 +10618,7 @@ this.parameters=Object.assign({
 t.parameters),
 this}
 static fromJSON(t){
-return new vS(t.radiusTop,
+return new gS(t.radiusTop,
 t.radiusBottom,
 t.height,
 t.radialSegments,
@@ -10764,7 +10765,7 @@ a.crossVectors(i[d-1],
 i[d]),
 a.length()>Number.EPSILON){
 a.normalize();
-let p=Math.acos(xn(i[d-1].dot(i[d]),
+let p=Math.acos(_n(i[d-1].dot(i[d]),
 -1,
 1));
 r[d].applyMatrix4(s.makeRotationAxis(a,
@@ -10772,7 +10773,7 @@ p))}
 o[d].crossVectors(i[d],
 r[d])}
 if(t===!0){
-let d=Math.acos(xn(r[0].dot(r[e]),
+let d=Math.acos(_n(r[0].dot(r[e]),
 -1,
 1));
 d/=e,
@@ -10968,8 +10969,8 @@ return e+t*o+n*a+i*s}
 }
 c(Qw,
 "CubicPoly");
-var e6=new B,
-t6=new B,
+var t6=new B,
+n6=new B,
 Aw=new Qw,
 yw=new Qw,
 bw=new Qw,
@@ -11000,14 +11001,14 @@ this.closed?a+=a>0?0:(Math.floor(Math.abs(a)/r)+1)*r:s===0&&a===r-1&&(a=r-2,
 s=1);
 let l,
 u;
-this.closed||a>0?l=i[(a-1)%r]:(t6.subVectors(i[0],
+this.closed||a>0?l=i[(a-1)%r]:(n6.subVectors(i[0],
 i[1]).add(i[0]),
-l=t6);
+l=n6);
 let h=i[a%r],
 f=i[(a+1)%r];
-if(this.closed||a+2<r?u=i[(a+2)%r]:(e6.subVectors(i[r-1],
+if(this.closed||a+2<r?u=i[(a+2)%r]:(t6.subVectors(i[r-1],
 i[r-2]).add(i[r-1]),
-u=e6),
+u=t6),
 this.curveType==="centripetal"||this.curveType==="chordal"){
 let d=this.curveType==="chordal"?.5:.25,
 p=Math.pow(l.distanceToSquared(h),
@@ -11100,7 +11101,7 @@ this.tension=e.tension,
 this}
 }
 ;
-function n6(e,
+function i6(e,
 t,
 n,
 i,
@@ -11110,7 +11111,7 @@ a=(r-n)*.5,
 s=e*e,
 l=e*s;
 return(2*n-2*i+o+a)*l+(-3*n+3*i-2*o-a)*s+o*e+n}
-c(n6,
+c(i6,
 "CatmullRom");
 function vz(e,
 t){
@@ -11128,7 +11129,7 @@ t){
 return e*e*t}
 c(wz,
 "QuadraticBezierP2");
-function V1(e,
+function j1(e,
 t,
 n,
 i){
@@ -11136,7 +11137,7 @@ return vz(e,
 t)+gz(e,
 n)+wz(e,
 i)}
-c(V1,
+c(j1,
 "QuadraticBezier");
 function Az(e,
 t){
@@ -11160,7 +11161,7 @@ t){
 return e*e*e*t}
 c(Mz,
 "CubicBezierP3");
-function q1(e,
+function X1(e,
 t,
 n,
 i,
@@ -11170,9 +11171,9 @@ t)+yz(e,
 n)+bz(e,
 i)+Mz(e,
 r)}
-c(q1,
+c(X1,
 "CubicBezier");
-var gS=class extends il{
+var wS=class extends il{
 static{
 c(this,
 "CubicBezierCurve")}
@@ -11194,12 +11195,12 @@ i=this.v0,
 r=this.v1,
 o=this.v2,
 a=this.v3;
-return n.set(q1(e,
+return n.set(X1(e,
 i.x,
 r.x,
 o.x,
 a.x),
-q1(e,
+X1(e,
 i.y,
 r.y,
 o.y,
@@ -11250,17 +11251,17 @@ i=this.v0,
 r=this.v1,
 o=this.v2,
 a=this.v3;
-return n.set(q1(e,
+return n.set(X1(e,
 i.x,
 r.x,
 o.x,
 a.x),
-q1(e,
+X1(e,
 i.y,
 r.y,
 o.y,
 a.y),
-q1(e,
+X1(e,
 i.z,
 r.z,
 o.z,
@@ -11289,7 +11290,7 @@ this.v3.fromArray(e.v3),
 this}
 }
 ,
-wS=class extends il{
+AS=class extends il{
 static{
 c(this,
 "LineCurve")}
@@ -11381,7 +11382,7 @@ this.v2.fromArray(e.v2),
 this}
 }
 ,
-AS=class extends il{
+yS=class extends il{
 static{
 c(this,
 "QuadraticBezierCurve")}
@@ -11400,11 +11401,11 @@ let n=t,
 i=this.v0,
 r=this.v1,
 o=this.v2;
-return n.set(V1(e,
+return n.set(j1(e,
 i.x,
 r.x,
 o.x),
-V1(e,
+j1(e,
 i.y,
 r.y,
 o.y)),
@@ -11448,15 +11449,15 @@ let n=t,
 i=this.v0,
 r=this.v1,
 o=this.v2;
-return n.set(V1(e,
+return n.set(j1(e,
 i.x,
 r.x,
 o.x),
-V1(e,
+j1(e,
 i.y,
 r.y,
 o.y),
-V1(e,
+j1(e,
 i.z,
 r.z,
 o.z)),
@@ -11481,7 +11482,7 @@ this.v2.fromArray(e.v2),
 this}
 }
 ,
-yS=class extends il{
+bS=class extends il{
 static{
 c(this,
 "SplineCurve")}
@@ -11501,12 +11502,12 @@ s=i[o===0?o:o-1],
 l=i[o],
 u=i[o>i.length-2?i.length-1:o+1],
 h=i[o>i.length-3?i.length-1:o+2];
-return n.set(n6(a,
+return n.set(i6(a,
 s.x,
 l.x,
 u.x,
 h.x),
-n6(a,
+i6(a,
 s.y,
 l.y,
 u.y,
@@ -11548,14 +11549,14 @@ Tw=Object.freeze(Object.assign(Object.create(null),
 {
 ArcCurve:pz,
 CatmullRomCurve3:mz,
-CubicBezierCurve:gS,
+CubicBezierCurve:wS,
 CubicBezierCurve3:xz,
 EllipseCurve:Yw,
-LineCurve:wS,
+LineCurve:AS,
 LineCurve3:_z,
-QuadraticBezierCurve:AS,
+QuadraticBezierCurve:yS,
 QuadraticBezierCurve3:Sz,
-SplineCurve:yS}
+SplineCurve:bS}
 )),
 Tz=class extends il{
 static{
@@ -11672,7 +11673,7 @@ this.curves.push(new Tw[i.type]().fromJSON(i))}
 return this}
 }
 ,
-Y1=class extends Tz{
+Z1=class extends Tz{
 static{
 c(this,
 "Path")}
@@ -11697,7 +11698,7 @@ t),
 this}
 lineTo(e,
 t){
-let n=new wS(this.currentPoint.clone(),
+let n=new AS(this.currentPoint.clone(),
 new he(e,
 t));
 return this.curves.push(n),
@@ -11708,7 +11709,7 @@ quadraticCurveTo(e,
 t,
 n,
 i){
-let r=new AS(this.currentPoint.clone(),
+let r=new yS(this.currentPoint.clone(),
 new he(e,
 t),
 new he(n,
@@ -11723,7 +11724,7 @@ n,
 i,
 r,
 o){
-let a=new gS(this.currentPoint.clone(),
+let a=new wS(this.currentPoint.clone(),
 new he(e,
 t),
 new he(n,
@@ -11735,7 +11736,7 @@ this.currentPoint.set(r,
 o),
 this}
 splineThru(e){
-let t=new yS([this.currentPoint.clone()].concat(e));
+let t=new bS([this.currentPoint.clone()].concat(e));
 return this.curves.push(t),
 this.currentPoint.copy(e[e.length-1]),
 this}
@@ -11825,7 +11826,7 @@ this.currentPoint.fromArray(e.currentPoint),
 this}
 }
 ,
-Zw=class extends Y1{
+Zw=class extends Z1{
 static{
 c(this,
 "Shape")}
@@ -11876,7 +11877,7 @@ n=e.holes.length;
 t<n;
 t++){
 let i=e.holes[t];
-this.holes.push(new Y1().fromJSON(i))}
+this.holes.push(new Z1().fromJSON(i))}
 return this}
 }
 ;
@@ -11885,7 +11886,7 @@ t,
 n=2){
 let i=t&&t.length,
 r=i?t[0]*n:e.length,
-o=bS(e,
+o=MS(e,
 0,
 r,
 n,
@@ -11916,7 +11917,7 @@ m>f&&(f=m)}
 u=Math.max(h-s,
 f-l),
 u=u!==0?32767/u:0}
-return Q1(o,
+return K1(o,
 a,
 n,
 s,
@@ -11926,7 +11927,7 @@ u,
 a}
 c(Cz,
 "earcut");
-function bS(e,
+function MS(e,
 t,
 n,
 i,
@@ -11937,21 +11938,21 @@ t,
 n,
 i)>0)for(let a=t;
 a<n;
-a+=i)o=i6(a/i|0,
+a+=i)o=r6(a/i|0,
 e[a],
 e[a+1],
 o);
 else for(let a=n-i;
 a>=t;
-a-=i)o=i6(a/i|0,
+a-=i)o=r6(a/i|0,
 e[a],
 e[a+1],
 o);
 return o&&Nf(o,
-o.next)&&(K1(o),
+o.next)&&($1(o),
 o=o.next),
 o}
-c(bS,
+c(MS,
 "linkedList");
 function Qc(e,
 t){
@@ -11964,7 +11965,7 @@ do if(i=!1,
 n.next)||fr(n.prev,
 n,
 n.next)===0)){
-if(K1(n),
+if($1(n),
 n=t=n.prev,
 n===n.next)break;
 i=!0}
@@ -11973,7 +11974,7 @@ while(i||n!==t);
 return t}
 c(Qc,
 "filterPoints");
-function Q1(e,
+function K1(e,
 t,
 n,
 i,
@@ -11998,7 +11999,7 @@ o):Ez(e)){
 t.push(l.i,
 e.i,
 u.i),
-K1(e),
+$1(e),
 e=u.next,
 s=u.next;
 continue}
@@ -12006,7 +12007,7 @@ if(e=u,
 e===s){
 a?a===1?(e=Bz(Qc(e),
 t),
-Q1(e,
+K1(e,
 t,
 n,
 i,
@@ -12017,7 +12018,7 @@ t,
 n,
 i,
 r,
-o):Q1(Qc(e),
+o):K1(Qc(e),
 t,
 n,
 i,
@@ -12027,7 +12028,7 @@ o,
 break}
 }
 }
-c(Q1,
+c(K1,
 "earcutLinked");
 function Ez(e){
 let t=e.prev,
@@ -12058,7 +12059,7 @@ m=i.next;
 for(;
 m!==t;
 ){
-if(m.x>=h&&m.x<=d&&m.y>=f&&m.y<=p&&G1(r,
+if(m.x>=h&&m.x<=d&&m.y>=f&&m.y<=p&&W1(r,
 s,
 o,
 l,
@@ -12115,7 +12116,7 @@ b=e.nextZ;
 for(;
 y&&y.z>=v&&b&&b.z<=A;
 ){
-if(y.x>=p&&y.x<=g&&y.y>=m&&y.y<=w&&y!==r&&y!==a&&G1(s,
+if(y.x>=p&&y.x<=g&&y.y>=m&&y.y<=w&&y!==r&&y!==a&&W1(s,
 h,
 l,
 f,
@@ -12125,7 +12126,7 @@ y.x,
 y.y)&&fr(y.prev,
 y,
 y.next)>=0||(y=y.prevZ,
-b.x>=p&&b.x<=g&&b.y>=m&&b.y<=w&&b!==r&&b!==a&&G1(s,
+b.x>=p&&b.x<=g&&b.y>=m&&b.y<=w&&b!==r&&b!==a&&W1(s,
 h,
 l,
 f,
@@ -12139,7 +12140,7 @@ b=b.nextZ}
 for(;
 y&&y.z>=v;
 ){
-if(y.x>=p&&y.x<=g&&y.y>=m&&y.y<=w&&y!==r&&y!==a&&G1(s,
+if(y.x>=p&&y.x<=g&&y.y>=m&&y.y<=w&&y!==r&&y!==a&&W1(s,
 h,
 l,
 f,
@@ -12153,7 +12154,7 @@ y=y.prevZ}
 for(;
 b&&b.z<=A;
 ){
-if(b.x>=p&&b.x<=g&&b.y>=m&&b.y<=w&&b!==r&&b!==a&&G1(s,
+if(b.x>=p&&b.x<=g&&b.y>=m&&b.y<=w&&b!==r&&b!==a&&W1(s,
 h,
 l,
 f,
@@ -12174,16 +12175,16 @@ do{
 let i=n.prev,
 r=n.next.next;
 !Nf(i,
-r)&&xS(i,
+r)&&_S(i,
 n,
 n.next,
-r)&&Z1(i,
-r)&&Z1(r,
+r)&&J1(i,
+r)&&J1(r,
 i)&&(t.push(i.i,
 n.i,
 r.i),
-K1(n),
-K1(n.next),
+$1(n),
+$1(n.next),
 n=e=r),
 n=n.next}
 while(n!==e);
@@ -12204,20 +12205,20 @@ s!==a.prev;
 ){
 if(a.i!==s.i&&Uz(a,
 s)){
-let l=_S(a,
+let l=SS(a,
 s);
 a=Qc(a,
 a.next),
 l=Qc(l,
 l.next),
-Q1(a,
+K1(a,
 t,
 n,
 i,
 r,
 o,
 0),
-Q1(l,
+K1(l,
 t,
 n,
 i,
@@ -12239,7 +12240,7 @@ for(let o=0,
 a=t.length;
 o<a;
 o++){
-let s=bS(e,
+let s=MS(e,
 t[o]*i,
 o<a-1?t[o+1]*i:e.length,
 i,
@@ -12267,7 +12268,7 @@ t){
 let n=Iz(e,
 t);
 if(!n)return t;
-let i=_S(n,
+let i=SS(n,
 e);
 return Qc(i,
 i.next),
@@ -12301,7 +12302,7 @@ u=a.y,
 h=1/0;
 n=a;
 do{
-if(i>=n.x&&n.x>=l&&i!==n.x&&MS(r<u?i:o,
+if(i>=n.x&&n.x>=l&&i!==n.x&&xS(r<u?i:o,
 r,
 l,
 u,
@@ -12310,7 +12311,7 @@ r,
 n.x,
 n.y)){
 let f=Math.abs(r-n.y)/(i-n.x);
-Z1(n,
+J1(n,
 e)&&(f<h||f===h&&(n.x>a.x||n.x===a.x&&Dz(a,
 n)))&&(a=n,
 h=f)}
@@ -12411,7 +12412,7 @@ while(t!==e);
 return n}
 c(Nz,
 "getLeftmost");
-function MS(e,
+function xS(e,
 t,
 n,
 i,
@@ -12420,9 +12421,9 @@ o,
 a,
 s){
 return(r-a)*(t-s)>=(e-a)*(o-s)&&(e-a)*(i-s)>=(n-a)*(t-s)&&(n-a)*(o-s)>=(r-a)*(i-s)}
-c(MS,
+c(xS,
 "pointInTriangle");
-function G1(e,
+function W1(e,
 t,
 n,
 i,
@@ -12430,7 +12431,7 @@ r,
 o,
 a,
 s){
-return!(e===a&&t===s)&&MS(e,
+return!(e===a&&t===s)&&xS(e,
 t,
 n,
 i,
@@ -12438,13 +12439,13 @@ r,
 o,
 a,
 s)}
-c(G1,
+c(W1,
 "pointInTriangleExceptFirst");
 function Uz(e,
 t){
 return e.next.i!==t.i&&e.prev.i!==t.i&&!Gz(e,
-t)&&(Z1(e,
-t)&&Z1(t,
+t)&&(J1(e,
+t)&&J1(t,
 e)&&Hz(e,
 t)&&(fr(e.prev,
 e,
@@ -12469,34 +12470,34 @@ t){
 return e.x===t.x&&e.y===t.y}
 c(Nf,
 "equals");
-function xS(e,
+function _S(e,
 t,
 n,
 i){
-let r=Vm(fr(e,
+let r=qm(fr(e,
 t,
 n)),
-o=Vm(fr(e,
+o=qm(fr(e,
 t,
 i)),
-a=Vm(fr(n,
+a=qm(fr(n,
 i,
 e)),
-s=Vm(fr(n,
+s=qm(fr(n,
 i,
 t));
-return!!(r!==o&&a!==s||r===0&&Wm(e,
+return!!(r!==o&&a!==s||r===0&&Vm(e,
 n,
-t)||o===0&&Wm(e,
+t)||o===0&&Vm(e,
 i,
-t)||a===0&&Wm(n,
+t)||a===0&&Vm(n,
 e,
-i)||s===0&&Wm(n,
+i)||s===0&&Vm(n,
 t,
 i))}
-c(xS,
+c(_S,
 "intersects");
-function Wm(e,
+function Vm(e,
 t,
 n){
 return t.x<=Math.max(e.x,
@@ -12504,17 +12505,17 @@ n.x)&&t.x>=Math.min(e.x,
 n.x)&&t.y<=Math.max(e.y,
 n.y)&&t.y>=Math.min(e.y,
 n.y)}
-c(Wm,
-"onSegment");
-function Vm(e){
-return e>0?1:e<0?-1:0}
 c(Vm,
+"onSegment");
+function qm(e){
+return e>0?1:e<0?-1:0}
+c(qm,
 "sign");
 function Gz(e,
 t){
 let n=e;
 do{
-if(n.i!==e.i&&n.next.i!==e.i&&n.i!==t.i&&n.next.i!==t.i&&xS(n,
+if(n.i!==e.i&&n.next.i!==e.i&&n.i!==t.i&&n.next.i!==t.i&&_S(n,
 n.next,
 e,
 t))return!0;
@@ -12523,7 +12524,7 @@ while(n!==e);
 return!1}
 c(Gz,
 "intersectsPolygon");
-function Z1(e,
+function J1(e,
 t){
 return fr(e.prev,
 e,
@@ -12536,7 +12537,7 @@ t,
 e.prev)<0||fr(e,
 e.next,
 t)<0}
-c(Z1,
+c(J1,
 "locallyInside");
 function Hz(e,
 t){
@@ -12550,7 +12551,7 @@ while(n!==e);
 return i}
 c(Hz,
 "middleInside");
-function _S(e,
+function SS(e,
 t){
 let n=Ew(e.i,
 e.x,
@@ -12569,9 +12570,9 @@ n.prev=i,
 o.next=i,
 i.prev=o,
 i}
-c(_S,
+c(SS,
 "splitPolygon");
-function i6(e,
+function r6(e,
 t,
 n,
 i){
@@ -12584,14 +12585,14 @@ i.next.prev=r,
 i.next=r):(r.prev=r,
 r.next=r),
 r}
-c(i6,
+c(r6,
 "insertNode");
-function K1(e){
+function $1(e){
 e.next.prev=e.prev,
 e.prev.next=e.next,
 e.prevZ&&(e.prevZ.nextZ=e.nextZ),
 e.nextZ&&(e.nextZ.prevZ=e.prevZ)}
-c(K1,
+c($1,
 "removeNode");
 function Ew(e,
 t,
@@ -12634,7 +12635,7 @@ t,
 n)}
 }
 ,
-qm=class SS{
+jm=class TS{
 static{
 c(this,
 "ShapeUtils")}
@@ -12647,22 +12648,22 @@ o<n;
 r=o++)i+=t[r].x*t[o].y-t[o].x*t[r].y;
 return i*.5}
 static isClockWise(t){
-return SS.area(t)<0}
+return TS.area(t)<0}
 static triangulateShape(t,
 n){
 let i=[],
 r=[],
 o=[];
-r6(t),
-o6(i,
+o6(t),
+a6(i,
 t);
 let a=t.length;
-n.forEach(r6);
+n.forEach(o6);
 for(let l=0;
 l<n.length;
 l++)r.push(a),
 a+=n[l].length,
-o6(i,
+a6(i,
 n[l]);
 let s=Vz.triangulate(i,
 r);
@@ -12673,20 +12674,20 @@ l+3));
 return o}
 }
 ;
-function r6(e){
+function o6(e){
 let t=e.length;
 t>2&&e[t-1].equals(e[0])&&e.pop()}
-c(r6,
+c(o6,
 "removeDupEndPts");
-function o6(e,
+function a6(e,
 t){
 for(let n=0;
 n<t.length;
 n++)e.push(t[n].x),
 e.push(t[n].y)}
-c(o6,
+c(a6,
 "addContour");
-var TS=class CS extends It{
+var CS=class ES extends It{
 static{
 c(this,
 "ExtrudeGeometry")}
@@ -12718,10 +12719,10 @@ s++){
 let u=t[s];
 a(u)}
 this.setAttribute("position",
-new Ln(r,
+new Fn(r,
 3)),
 this.setAttribute("uv",
-new Ln(o,
+new Fn(o,
 2)),
 this.computeVertexNormals();
 function a(s){
@@ -12759,14 +12760,14 @@ g=0);
 let E=s.extractPoints(u),
 L=E.shape,
 F=E.holes;
-if(!qm.isClockWise(L)){
+if(!jm.isClockWise(L)){
 L=L.reverse();
 for(let Ae=0,
 _e=F.length;
 Ae<_e;
 Ae++){
 let Oe=F[Ae];
-qm.isClockWise(Oe)&&(F[Ae]=Oe.reverse())}
+jm.isClockWise(Oe)&&(F[Ae]=Oe.reverse())}
 }
 function D(Ae){
 let Oe=10000000000000001e-36,
@@ -12821,12 +12822,12 @@ vt=Ae.y-_e.y,
 At=Oe.x-Ae.x,
 W=Oe.y-Ae.y,
 Hn=mt*mt+vt*vt,
-en=mt*W-vt*At;
-if(Math.abs(en)>Number.EPSILON){
-let hn=Math.sqrt(Hn),
+tn=mt*W-vt*At;
+if(Math.abs(tn)>Number.EPSILON){
+let fn=Math.sqrt(Hn),
 z=Math.sqrt(At*At+W*W),
-k=_e.x-vt/hn,
-Y=_e.y+mt/hn,
+k=_e.x-vt/fn,
+Y=_e.y+mt/fn,
 ce=Oe.x-W/z,
 Re=Oe.y+At/z,
 Ge=((ce-k)*W-(Re-Y)*At)/(mt*W-vt*At);
@@ -12837,9 +12838,9 @@ if(Xe<=2)return new he(Ye,
 Ze);
 st=Math.sqrt(Xe/2)}
 else{
-let hn=!1;
-mt>Number.EPSILON?At>Number.EPSILON&&(hn=!0):mt<-Number.EPSILON?At<-Number.EPSILON&&(hn=!0):Math.sign(vt)===Math.sign(W)&&(hn=!0),
-hn?(Ye=-vt,
+let fn=!1;
+mt>Number.EPSILON?At>Number.EPSILON&&(fn=!0):mt<-Number.EPSILON?At<-Number.EPSILON&&(fn=!0):Math.sign(vt)===Math.sign(W)&&(fn=!0),
+fn?(Ye=-vt,
 Ze=mt,
 st=Math.sqrt(Hn)):(Ye=mt,
 Ze=vt,
@@ -12885,7 +12886,7 @@ Oe[mt]);
 ie.push(le),
 ge=ge.concat(le)}
 let je;
-if(w===0)je=qm.triangulateShape(O,
+if(w===0)je=jm.triangulateShape(O,
 F);
 else{
 let Ae=[],
@@ -12915,19 +12916,19 @@ let At=F[mt];
 le=ie[mt];
 let W=[];
 for(let Hn=0,
-en=At.length;
-Hn<en;
+tn=At.length;
+Hn<tn;
 Hn++){
-let hn=U(At[Hn],
+let fn=U(At[Hn],
 le[Hn],
 st);
-Le(hn.x,
-hn.y,
+Le(fn.x,
+fn.y,
 -Ze),
-Ye===0&&W.push(hn)}
+Ye===0&&W.push(fn)}
 Ye===0&&_e.push(W)}
 }
-je=qm.triangulateShape(Ae,
+je=jm.triangulateShape(Ae,
 _e)}
 let De=je.length,
 Ut=m+g;
@@ -13172,7 +13173,7 @@ let s=n[t.shapes[o]];
 i.push(s)}
 let r=t.options.extrudePath;
 return r!==void 0&&(t.options.extrudePath=new Tw[r.type]().fromJSON(r)),
-new CS(i,
+new ES(i,
 t.options)}
 }
 ,
@@ -13251,7 +13252,7 @@ t.extrudePath!==void 0&&(n.options.extrudePath=t.extrudePath.toJSON()),
 n}
 c(jz,
 "toJSON$1");
-var _n=class ES extends It{
+var Sn=class RS extends It{
 static{
 c(this,
 "PlaneGeometry")}
@@ -13313,13 +13314,13 @@ x,
 M)}
 this.setIndex(p),
 this.setAttribute("position",
-new Ln(m,
+new Fn(m,
 3)),
 this.setAttribute("normal",
-new Ln(g,
+new Fn(g,
 3)),
 this.setAttribute("uv",
-new Ln(w,
+new Fn(w,
 2))}
 copy(t){
 return super.copy(t),
@@ -13329,7 +13330,7 @@ this.parameters=Object.assign({
 t.parameters),
 this}
 static fromJSON(t){
-return new ES(t.width,
+return new RS(t.width,
 t.height,
 t.widthSegments,
 t.heightSegments)}
@@ -13345,9 +13346,9 @@ t[n]={
 ;
 for(let i in e[n]){
 let r=e[n][i];
-if(a6(r))r.isRenderTargetTexture?(Ot("UniformsUtils: Textures of render targets cannot be cloned via cloneUniforms() or mergeUniforms()."),
+if(s6(r))r.isRenderTargetTexture?(Ot("UniformsUtils: Textures of render targets cannot be cloned via cloneUniforms() or mergeUniforms()."),
 t[n][i]=null):t[n][i]=r.clone();
-else if(Array.isArray(r))if(a6(r[0])){
+else if(Array.isArray(r))if(s6(r[0])){
 let o=[];
 for(let a=0,
 s=r.length;
@@ -13372,9 +13373,9 @@ for(let r in i)t[r]=i[r]}
 return t}
 c(Wo,
 "mergeUniforms");
-function a6(e){
+function s6(e){
 return e&&(e.isColor||e.isMatrix3||e.isMatrix4||e.isVector2||e.isVector3||e.isVector4||e.isTexture||e.isQuaternion)}
-c(a6,
+c(s6,
 "isThreeObject");
 function Xz(e){
 let t=[];
@@ -13386,16 +13387,16 @@ c(Xz,
 "cloneUniformsGroups");
 function Kw(e){
 let t=e.getRenderTarget();
-return t===null?e.outputColorSpace:t.isXRRenderTarget===!0?t.texture.colorSpace:kn.workingColorSpace}
+return t===null?e.outputColorSpace:t.isXRRenderTarget===!0?t.texture.colorSpace:Ln.workingColorSpace}
 c(Kw,
 "getUnlitUniformColorSpace");
-var RS={
+var BS={
 clone:$c,
 merge:Wo}
 ,
 Yz="void main() {\n	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}",
 Qz="void main() {\n	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );\n}",
-Zr=class extends ed{
+Zr=class extends nd{
 static{
 c(this,
 "ShaderMaterial")}
@@ -13542,7 +13543,7 @@ e.clipping!==void 0&&(this.clipping=e.clipping),
 this}
 }
 ,
-BS=class extends Zr{
+PS=class extends Zr{
 static{
 c(this,
 "RawShaderMaterial")}
@@ -13552,7 +13553,7 @@ this.isRawShaderMaterial=!0,
 this.type="RawShaderMaterial"}
 }
 ,
-PS=class extends ed{
+kS=class extends nd{
 static{
 c(this,
 "MeshDepthMaterial")}
@@ -13582,7 +13583,7 @@ this.wireframeLinewidth=e.wireframeLinewidth,
 this}
 }
 ,
-kS=class extends ed{
+LS=class extends nd{
 static{
 c(this,
 "MeshDistanceMaterial")}
@@ -13615,7 +13616,7 @@ function Mw(e){
 return e!==void 0&&e.inTangents!==void 0&&e.outTangents!==void 0}
 c(Mw,
 "hasTangents");
-var td=class{
+var id=class{
 static{
 c(this,
 "Interpolant")}
@@ -13710,7 +13711,7 @@ intervalChanged_(){
 }
 }
 ,
-Zz=class extends td{
+Zz=class extends id{
 static{
 c(this,
 "CubicInterpolant")}
@@ -13727,8 +13728,8 @@ this._offsetPrev=-0,
 this._weightNext=-0,
 this._offsetNext=-0,
 this.DefaultSettings_={
-endingStart:L_,
-endingEnd:L_}
+endingStart:F_,
+endingEnd:F_}
 }
 intervalChanged_(e,
 t,
@@ -13739,19 +13740,19 @@ o=e+1,
 a=i[r],
 s=i[o];
 if(a===void 0)switch(this.getSettings_().endingStart){
-case F_:r=e,
+case I_:r=e,
 a=2*t-n;
 break;
-case I_:r=i.length-2,
+case D_:r=i.length-2,
 a=t+i[r]-i[r+1];
 break;
 default:r=e,
 a=n}
 if(s===void 0)switch(this.getSettings_().endingEnd){
-case F_:o=e,
+case I_:o=e,
 s=2*n-t;
 break;
-case I_:o=1,
+case D_:o=1,
 s=n+i[1]-i[0];
 break;
 default:o=e-1,
@@ -13788,7 +13789,7 @@ b!==a;
 return r}
 }
 ,
-Kz=class extends td{
+Kz=class extends id{
 static{
 c(this,
 "LinearInterpolant")}
@@ -13817,7 +13818,7 @@ f!==a;
 return r}
 }
 ,
-Jz=class extends td{
+Jz=class extends id{
 static{
 c(this,
 "DiscreteInterpolant")}
@@ -13833,7 +13834,7 @@ interpolate_(e){
 return this.copySampleValue_(e-1)}
 }
 ,
-$z=class extends td{
+$z=class extends id{
 static{
 c(this,
 "BezierInterpolant")}
@@ -13873,7 +13874,7 @@ t,
 v,
 b,
 i);
-r[p]=LS(M,
+r[p]=FS(M,
 m,
 A,
 x,
@@ -13881,14 +13882,14 @@ g)}
 return r}
 }
 ;
-function LS(e,
+function FS(e,
 t,
 n,
 i,
 r){
 let o=1-e;
 return o*o*o*t+3*o*o*e*n+3*o*e*e*i+e*e*e*r}
-c(LS,
+c(FS,
 "cubicBezier");
 function eO(e,
 t,
@@ -13908,7 +13909,7 @@ let o=(e-t)/(r-t);
 for(let a=0;
 a<8;
 a++){
-let s=LS(o,
+let s=FS(o,
 t,
 n,
 i,
@@ -13990,13 +13991,13 @@ t}
 setInterpolation(e){
 let t;
 switch(e){
-case Km:t=this.InterpolantFactoryMethodDiscrete;
+case Jm:t=this.InterpolantFactoryMethodDiscrete;
 break;
 case xw:t=this.InterpolantFactoryMethodLinear;
 break;
 case J5:t=this.InterpolantFactoryMethodSmooth;
 break;
-case k_:t=this.InterpolantFactoryMethodBezier}
+case L_:t=this.InterpolantFactoryMethodBezier}
 if(t===void 0){
 let n="unsupported interpolation for "+this.ValueTypeName+" keyframe track named "+this.name;
 if(this.createInterpolant===void 0)if(e!==this.DefaultInterpolation)this.setInterpolation(this.DefaultInterpolation);
@@ -14008,10 +14009,10 @@ return this.createInterpolant=t,
 this}
 getInterpolation(){
 switch(this.createInterpolant){
-case this.InterpolantFactoryMethodDiscrete:return Km;
+case this.InterpolantFactoryMethodDiscrete:return Jm;
 case this.InterpolantFactoryMethodLinear:return xw;
 case this.InterpolantFactoryMethodSmooth:return J5;
-case this.InterpolantFactoryMethodBezier:return k_}
+case this.InterpolantFactoryMethodBezier:return L_}
 }
 getValueSize(){
 return this.values.length/this.times.length}
@@ -14030,9 +14031,9 @@ for(let n=0,
 i=t.length;
 n!==i;
 ++n)t[n]*=e;
-Mw(this.settings)&&(s6(this.settings.inTangents,
+Mw(this.settings)&&(l6(this.settings.inTangents,
 e),
-s6(this.settings.outTangents,
+l6(this.settings.outTangents,
 e))}
 return this}
 trim(e,
@@ -14170,19 +14171,19 @@ outTangents:this.settings.outTangents.slice()}
 i}
 }
 ;
-function s6(e,
+function l6(e,
 t){
 for(let n=0,
 i=e.length;
 n!==i;
 n+=2)e[n]*=t}
-c(s6,
+c(l6,
 "scaleTangentTimes");
 rl.prototype.ValueTypeName="";
 rl.prototype.TimeBufferType=Float32Array;
 rl.prototype.ValueBufferType=Float32Array;
 rl.prototype.DefaultInterpolation=xw;
-var nd=class extends rl{
+var rd=class extends rl{
 static{
 c(this,
 "BooleanKeyframeTrack")}
@@ -14194,11 +14195,11 @@ t,
 n)}
 }
 ;
-nd.prototype.ValueTypeName="bool";
-nd.prototype.ValueBufferType=Array;
-nd.prototype.DefaultInterpolation=Km;
-nd.prototype.InterpolantFactoryMethodLinear=void 0;
-nd.prototype.InterpolantFactoryMethodSmooth=void 0;
+rd.prototype.ValueTypeName="bool";
+rd.prototype.ValueBufferType=Array;
+rd.prototype.DefaultInterpolation=Jm;
+rd.prototype.InterpolantFactoryMethodLinear=void 0;
+rd.prototype.InterpolantFactoryMethodSmooth=void 0;
 var nO=class extends rl{
 static{
 c(this,
@@ -14229,7 +14230,7 @@ i)}
 }
 ;
 iO.prototype.ValueTypeName="number";
-var rO=class extends td{
+var rO=class extends id{
 static{
 c(this,
 "QuaternionLinearInterpolant")}
@@ -14262,7 +14263,7 @@ s);
 return r}
 }
 ,
-FS=class extends rl{
+IS=class extends rl{
 static{
 c(this,
 "QuaternionKeyframeTrack")}
@@ -14281,9 +14282,9 @@ this.getValueSize(),
 e)}
 }
 ;
-FS.prototype.ValueTypeName="quaternion";
-FS.prototype.InterpolantFactoryMethodSmooth=void 0;
-var id=class extends rl{
+IS.prototype.ValueTypeName="quaternion";
+IS.prototype.InterpolantFactoryMethodSmooth=void 0;
+var od=class extends rl{
 static{
 c(this,
 "StringKeyframeTrack")}
@@ -14295,11 +14296,11 @@ t,
 n)}
 }
 ;
-id.prototype.ValueTypeName="string";
-id.prototype.ValueBufferType=Array;
-id.prototype.DefaultInterpolation=Km;
-id.prototype.InterpolantFactoryMethodLinear=void 0;
-id.prototype.InterpolantFactoryMethodSmooth=void 0;
+od.prototype.ValueTypeName="string";
+od.prototype.ValueBufferType=Array;
+od.prototype.DefaultInterpolation=Jm;
+od.prototype.InterpolantFactoryMethodLinear=void 0;
+od.prototype.InterpolantFactoryMethodSmooth=void 0;
 var oO=class extends rl{
 static{
 c(this,
@@ -14444,10 +14445,10 @@ return this}
 }
 ;
 lO.DEFAULT_MATERIAL_NAME="__DEFAULT";
-var jm=new B,
-Xm=new To,
+var Xm=new B,
+Ym=new To,
 el=new B,
-IS=class extends ya{
+DS=class extends ya{
 static{
 c(this,
 "Camera")}
@@ -14475,11 +14476,11 @@ getWorldDirection(e){
 return super.getWorldDirection(e).negate()}
 updateMatrixWorld(e){
 super.updateMatrixWorld(e),
-this.matrixWorld.decompose(jm,
-Xm,
+this.matrixWorld.decompose(Xm,
+Ym,
 el),
-el.x===1&&el.y===1&&el.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(jm,
-Xm,
+el.x===1&&el.y===1&&el.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(Xm,
+Ym,
 el.set(1,
 1,
 1)).invert()}
@@ -14489,11 +14490,11 @@ n=!1){
 super.updateWorldMatrix(e,
 t,
 n),
-this.matrixWorld.decompose(jm,
-Xm,
+this.matrixWorld.decompose(Xm,
+Ym,
 el),
-el.x===1&&el.y===1&&el.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(jm,
-Xm,
+el.x===1&&el.y===1&&el.z===1?this.matrixWorldInverse.copy(this.matrixWorld).invert():this.matrixWorldInverse.compose(Xm,
+Ym,
 el.set(1,
 1,
 1)).invert()}
@@ -14502,9 +14503,9 @@ return new this.constructor().copy(this)}
 }
 ,
 Xu=new B,
-l6=new he,
 u6=new he,
-wi=class extends IS{
+c6=new he,
+wi=class extends DS{
 static{
 c(this,
 "PerspectiveCamera")}
@@ -14547,10 +14548,10 @@ let t=.5*this.getFilmHeight()/e;
 this.fov=Of*2*Math.atan(t),
 this.updateProjectionMatrix()}
 getFocalLength(){
-let e=Math.tan(H1*.5*this.fov);
+let e=Math.tan(V1*.5*this.fov);
 return .5*this.getFilmHeight()/e}
 getEffectiveFOV(){
-return Of*2*Math.atan(Math.tan(H1*.5*this.fov)/this.zoom)}
+return Of*2*Math.atan(Math.tan(V1*.5*this.fov)/this.zoom)}
 getFilmWidth(){
 return this.filmGauge*Math.min(this.aspect,
 1)}
@@ -14573,10 +14574,10 @@ Xu.y).multiplyScalar(-e/Xu.z)}
 getViewSize(e,
 t){
 return this.getViewBounds(e,
-l6,
-u6),
-t.subVectors(u6,
-l6)}
+u6,
+c6),
+t.subVectors(c6,
+u6)}
 setViewOffset(e,
 t,
 n,
@@ -14606,7 +14607,7 @@ this.view!==null&&(this.view.enabled=!1),
 this.updateProjectionMatrix()}
 updateProjectionMatrix(){
 let e=this.near,
-t=e*Math.tan(H1*.5*this.fov)/this.zoom,
+t=e*Math.tan(V1*.5*this.fov)/this.zoom,
 n=2*t,
 i=this.aspect*n,
 r=-.5*i,
@@ -14646,7 +14647,7 @@ t.object.filmOffset=this.filmOffset,
 t}
 }
 ,
-An=class extends IS{
+yn=class extends DS{
 static{
 c(this,
 "OrthographicCamera")}
@@ -14773,7 +14774,7 @@ e}
 ,
 Bf=-90,
 Pf=1,
-DS=class extends ya{
+zS=class extends ya{
 static{
 c(this,
 "CubeCamera")}
@@ -14974,7 +14975,7 @@ e.xr.enabled=p,
 n.texture.needsPMREMUpdate=!0}
 }
 ,
-zS=class extends wi{
+OS=class extends wi{
 static{
 c(this,
 "ArrayCamera")}
@@ -15326,12 +15327,12 @@ br.prototype._setValue_arrayElement_setMatrixWorldNeedsUpdate],
 [br.prototype._setValue_fromArray,
 br.prototype._setValue_fromArray_setNeedsUpdate,
 br.prototype._setValue_fromArray_setMatrixWorldNeedsUpdate]];
-var Lne=class OS{
+var Fne=class NS{
 static{
 c(this,
 "Matrix2")}
 static{
-OS.prototype.isMatrix2=!0}
+NS.prototype.isMatrix2=!0}
 constructor(t,
 n,
 i,
@@ -15374,52 +15375,52 @@ n,
 i){
 let r=AO(i);
 switch(n){
-case w6:return e*t;
+case A6:return e*t;
 case nl:return e*t/r.components*r.byteLength;
 case Fw:return e*t/r.components*r.byteLength;
 case Zc:return e*t*2/r.components*r.byteLength;
 case Iw:return e*t*2/r.components*r.byteLength;
-case A6:return e*t*3/r.components*r.byteLength;
+case y6:return e*t*3/r.components*r.byteLength;
 case So:return e*t*4/r.components*r.byteLength;
 case Dw:return e*t*4/r.components*r.byteLength;
-case y6:case b6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*8;
-case M6:case x6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
-case S6:case C6:return Math.max(e,
+case b6:case M6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*8;
+case x6:case _6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
+case T6:case E6:return Math.max(e,
 16)*Math.max(t,
 8)/4;
-case _6:case T6:return Math.max(e,
+case S6:case C6:return Math.max(e,
 8)*Math.max(t,
 8)/2;
-case E6:case R6:case P6:case k6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*8;
-case B6:case L6:case F6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
-case I6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
-case D6:return Math.floor((e+4)/5)*Math.floor((t+3)/4)*16;
-case z6:return Math.floor((e+4)/5)*Math.floor((t+4)/5)*16;
-case O6:return Math.floor((e+5)/6)*Math.floor((t+4)/5)*16;
-case N6:return Math.floor((e+5)/6)*Math.floor((t+5)/6)*16;
-case U6:return Math.floor((e+7)/8)*Math.floor((t+4)/5)*16;
-case G6:return Math.floor((e+7)/8)*Math.floor((t+5)/6)*16;
-case H6:return Math.floor((e+7)/8)*Math.floor((t+7)/8)*16;
-case W6:return Math.floor((e+9)/10)*Math.floor((t+4)/5)*16;
-case V6:return Math.floor((e+9)/10)*Math.floor((t+5)/6)*16;
-case q6:return Math.floor((e+9)/10)*Math.floor((t+7)/8)*16;
-case j6:return Math.floor((e+9)/10)*Math.floor((t+9)/10)*16;
-case X6:return Math.floor((e+11)/12)*Math.floor((t+9)/10)*16;
-case Y6:return Math.floor((e+11)/12)*Math.floor((t+11)/12)*16;
-case Q6:case Z6:case K6:return Math.ceil(e/4)*Math.ceil(t/4)*16;
-case J6:case $6:return Math.ceil(e/4)*Math.ceil(t/4)*8;
-case eS:case tS:return Math.ceil(e/4)*Math.ceil(t/4)*16}
+case R6:case B6:case k6:case L6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*8;
+case P6:case F6:case I6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
+case D6:return Math.floor((e+3)/4)*Math.floor((t+3)/4)*16;
+case z6:return Math.floor((e+4)/5)*Math.floor((t+3)/4)*16;
+case O6:return Math.floor((e+4)/5)*Math.floor((t+4)/5)*16;
+case N6:return Math.floor((e+5)/6)*Math.floor((t+4)/5)*16;
+case U6:return Math.floor((e+5)/6)*Math.floor((t+5)/6)*16;
+case G6:return Math.floor((e+7)/8)*Math.floor((t+4)/5)*16;
+case H6:return Math.floor((e+7)/8)*Math.floor((t+5)/6)*16;
+case W6:return Math.floor((e+7)/8)*Math.floor((t+7)/8)*16;
+case V6:return Math.floor((e+9)/10)*Math.floor((t+4)/5)*16;
+case q6:return Math.floor((e+9)/10)*Math.floor((t+5)/6)*16;
+case j6:return Math.floor((e+9)/10)*Math.floor((t+7)/8)*16;
+case X6:return Math.floor((e+9)/10)*Math.floor((t+9)/10)*16;
+case Y6:return Math.floor((e+11)/12)*Math.floor((t+9)/10)*16;
+case Q6:return Math.floor((e+11)/12)*Math.floor((t+11)/12)*16;
+case Z6:case K6:case J6:return Math.ceil(e/4)*Math.ceil(t/4)*16;
+case $6:case eS:return Math.ceil(e/4)*Math.ceil(t/4)*8;
+case tS:case nS:return Math.ceil(e/4)*Math.ceil(t/4)*16}
 throw new Error("Unable to determine texture byte length for ".concat(n,
 " format."))}
 c($w,
 "getByteLength");
 function AO(e){
 switch(e){
-case wa:case d6:return{
+case wa:case p6:return{
 byteLength:1,
 components:1}
 ;
-case Rw:case p6:case Da:return{
+case Rw:case m6:case Da:return{
 byteLength:2,
 components:1}
 ;
@@ -15427,11 +15428,11 @@ case Bw:case Pw:return{
 byteLength:2,
 components:4}
 ;
-case Qu:case m6:case Aa:return{
+case Qu:case v6:case Aa:return{
 byteLength:4,
 components:1}
 ;
-case v6:case g6:return{
+case g6:case w6:return{
 byteLength:4,
 components:3}
 }
@@ -15513,7 +15514,7 @@ r.fill()}
 )}
 c(po,
 "drawCursor");
-function NS(e,
+function US(e,
 t){
 let n=new B;
 return e.map(i=>(n.set(i[0],
@@ -15521,9 +15522,9 @@ i[1],
 i[2]).project(t),
 [(n.x*.5+.5)*1920,
 (1-(n.y*.5+.5))*1080]))}
-c(NS,
+c(US,
 "projectQuad");
-function US({
+function GS({
 w:e=.16,
 h:t=.028,
 d:n=.028}
@@ -15548,9 +15549,9 @@ h:t,
 d:n}
 ,
 i}
-c(US,
+c(GS,
 "cursorMesh");
-function GS(e,
+function HS(e,
 t,
 n=[1,
 1,
@@ -15559,15 +15560,15 @@ e.visible=t>.001,
 e.material.color.setRGB(n[0]*t,
 n[1]*t,
 n[2]*t)}
-c(GS,
+c(HS,
 "setCursorMesh");
 var ol="JetBrains Mono",
-HS="PingFang SC",
-WS=440,
-VS=336,
-qS=50,
+WS="PingFang SC",
+VS=440,
+qS=336,
+jS=50,
 Es=30,
-jS=[["",
+XS=[["",
 "warning[W0001]: photosensitive content",
 "head"],
 [" -->",
@@ -15607,7 +15608,7 @@ Q5(t,
 Wl.lines.length,
 Wl.timing),
 Wl.cursor).home;
-B_(e,
+P_(e,
 n?yO:Wl,
 kt.design),
 n&&po(e.text.scene,
@@ -15625,7 +15626,7 @@ i=e.t+n,
 r=1-R.inOutSine(_(i,
 n-.75,
 n-.3));
-jS.forEach(([s,
+XS.forEach(([s,
 l,
 u],
 h)=>{
@@ -15633,9 +15634,9 @@ let f=.25+h*.07,
 d=R.outCubic(_(i,
 f,
 f+.18))*r,
-p=VS+h*qS;
+p=qS+h*jS;
 if(d<=0||(s&&t.text(s,
-WS,
+VS,
 p,
 {
 size:Es,
@@ -15648,7 +15649,7 @@ alpha:d}
 !l))return;
 let m=462;
 if(u==="head"){
-let g=WS-t.measure("-->",
+let g=VS-t.measure("-->",
 {
 size:Es,
 font:ol,
@@ -15699,7 +15700,7 @@ m,
 p,
 {
 size:Es,
-font:HS,
+font:WS,
 weight:500,
 color:P.white,
 align:"left",
@@ -15735,14 +15736,14 @@ weight:700}
 p,
 {
 size:28,
-font:HS,
+font:WS,
 weight:400,
 color:"#aab4cc",
 align:"left",
 alpha:d}
 ))}
 );
-let o=VS+jS.length*qS+6,
+let o=qS+XS.length*jS+6,
 a=Math.floor(i*2)%2===0?1:.15;
 t.text("_",
 462,
@@ -15766,14 +15767,14 @@ grain:.03}
 )}
 c(MO,
 "cardOrig");
-var XS=new Set,
+var YS=new Set,
 tA=c(e=>{
-XS.has(e)||(XS.add(e),
+YS.has(e)||(YS.add(e),
 console.warn("warning-card: ".concat(e)))}
 ,
 "tell"),
 xO=c(e=>{
-S_(Wl)&&!String(e?.fallback??"").trim()&&tA("the card has Chinese text but the text layer's font fallback (PROJECT.fontFallback, or the edit's own) is empty, so the browser picks a system font for it and the card looks different on another machine. Add an open Chinese font to PROJECT.fonts and set fontFallback (modules/warning-card/README.md).")}
+T_(Wl)&&!String(e?.fallback??"").trim()&&tA("the card has Chinese text but the text layer's font fallback (PROJECT.fontFallback, or the edit's own) is empty, so the browser picks a system font for it and the card looks different on another machine. Add an open Chinese font to PROJECT.fonts and set fontFallback (modules/warning-card/README.md).")}
 ,
 "checkFont"),
 _O={
@@ -15788,11 +15789,11 @@ id:"warning",
 from:K5,
 to:0,
 shotsFor(e){
-let t=E_(e,
+let t=R_(e,
 _O);
 if(!t.length)return tA("the pre-roll is 0, so there is no warning card. Set preroll: 5 in src/engine/config.js (render.mjs --preroll=5 tries it for one render)."),
 t;
-for(let n of P_(Wl,
+for(let n of k_(Wl,
 kt.design))tA("src/warning.config.js: ".concat(n));
 return t}
 }
@@ -15837,17 +15838,17 @@ uniforms:n,
 )}
 c(qe,
 "shaderMaterial");
-var YS=class{
+var QS=class{
 static{
 c(this,
 "FullscreenQuad")}
 constructor(){
-this.mesh=new tt(new _n(2,
+this.mesh=new tt(new Sn(2,
 2)),
 this.mesh.frustumCulled=!1,
-this.scene=new fn,
+this.scene=new dn,
 this.scene.add(this.mesh),
-this.camera=new An(-1,
+this.camera=new yn(-1,
 1,
 1,
 -1,
@@ -15880,8 +15881,8 @@ type:n?Da:wa,
 format:So,
 depthBuffer:i,
 samples:r,
-minFilter:On,
-magFilter:On,
+minFilter:Nn,
+magFilter:Nn,
 generateMipmaps:!1,
 colorSpace:"",
 wrapS:co,
@@ -15889,7 +15890,7 @@ wrapT:co}
 )}
 c(Kr,
 "makeRT");
-function an(e,
+function sn(e,
 t,
 n,
 {
@@ -15911,7 +15912,7 @@ return o.minFilter=o.magFilter=Ai,
 o.generateMipmaps=!1,
 o.needsUpdate=!0,
 o}
-c(an,
+c(sn,
 "dataTexture");
 var iA=kt.design.height,
 rA=new Map;
@@ -15927,19 +15928,19 @@ if(o.length!==t*4)throw new Error("shape '".concat(e,
 "' returned ").concat(o.length/4,
 " points, expected ").concat(t));
 rA.set(i,
-an(o,
+sn(o,
 r,
 r))}
 return rA.get(i)}
 c(eh,
 "shapeTexture");
 var TO=c((e,
-t)=>"\nuniform sampler2D uA, uB;\nuniform float uS, uMorph, uSpread, uArc, uReveal, uNoise, uNoiseFreq, uNoiseSpeed, uT;\nuniform float uSize, uMinPx, uFocal, uBright, uSparkle, uProj4, uW4, uWave, uRevealW, uFocus, uAperture, uMaxBlur, uOrtho;\nuniform vec3 uSine; // travelling wave on y: amplitude, wavenumber along x, angular speed\nuniform vec3 uColA, uColB, uWaveOrigin;\nuniform mat4 uRot4;".concat(e?ZS[0]:"").concat(t?QS[0]:"",
-"\nout vec3 vCol; out float vBlur;\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), b = texture(uB, uv);\n  float h = hash11(i * .754877 + 3.1);\n  // stagger: random, or as a wave spreading from uWaveOrigin when uWave > 0\n  float d = uWave > 0. ? clamp(length(a.xyz - uWaveOrigin) / uWave, 0., 1.) * uSpread : h * uSpread;\n  float k = smoothstep(d, d + max(1. - uSpread, 1e-3), uMorph);\n  vec4 p4 = mix(a, b, k);\n  p4.xyz += (hash31(i * 1.618) - .5) * sin(k * PI) * uArc;\n  if (uProj4 > .5) { vec4 r = uRot4 * p4; p4 = vec4(r.xyz / max(uW4 - r.w, .05), 0.); }\n  vec3 p = p4.xyz;\n  if (uNoise > 0.) p += curlNoise(p * uNoiseFreq + vec3(0., 0., uT * uNoiseSpeed)) * uNoise;\n  p.y += uSine.x * sin(uSine.y * p.x - uSine.z * uT);\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3);\n  float persp = uOrtho > .5 ? 1. : 1. / dist;                   // orthographic views do not shrink with depth\n  float px = uSize * uFocal * persp;                            // world-size diameter in pixels\n  float key = uRevealW > .5 ? a.w : h;                          // reveal order: random, or along w (0..1) of shape A\n  float vis = 1. - smoothstep(uReveal * 1.02 - .02, uReveal * 1.02, key);\n  float core = max(px, uMinPx);\n  // depth of field: circle of confusion grows with distance from the focal plane; energy spreads over the bokeh disc\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  float energy = vis * min(1., (px * px) / (uMinPx * uMinPx)) * (core * core) / (sz * sz);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float tw = 1. + uSparkle * (hash11(i + floor(uT * 12.) * 7.13) - .5) * 2.;\n  vCol = mix(uColA, uColB, k) * uBright * energy * (.55 + .9 * hash11(i * 1.31)) * max(tw, 0.);").concat(e?ZS[1]:"").concat(t?QS[1]:"",
+t)=>"\nuniform sampler2D uA, uB;\nuniform float uS, uMorph, uSpread, uArc, uReveal, uNoise, uNoiseFreq, uNoiseSpeed, uT;\nuniform float uSize, uMinPx, uFocal, uBright, uSparkle, uProj4, uW4, uWave, uRevealW, uFocus, uAperture, uMaxBlur, uOrtho;\nuniform vec3 uSine; // travelling wave on y: amplitude, wavenumber along x, angular speed\nuniform vec3 uColA, uColB, uWaveOrigin;\nuniform mat4 uRot4;".concat(e?KS[0]:"").concat(t?ZS[0]:"",
+"\nout vec3 vCol; out float vBlur;\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), b = texture(uB, uv);\n  float h = hash11(i * .754877 + 3.1);\n  // stagger: random, or as a wave spreading from uWaveOrigin when uWave > 0\n  float d = uWave > 0. ? clamp(length(a.xyz - uWaveOrigin) / uWave, 0., 1.) * uSpread : h * uSpread;\n  float k = smoothstep(d, d + max(1. - uSpread, 1e-3), uMorph);\n  vec4 p4 = mix(a, b, k);\n  p4.xyz += (hash31(i * 1.618) - .5) * sin(k * PI) * uArc;\n  if (uProj4 > .5) { vec4 r = uRot4 * p4; p4 = vec4(r.xyz / max(uW4 - r.w, .05), 0.); }\n  vec3 p = p4.xyz;\n  if (uNoise > 0.) p += curlNoise(p * uNoiseFreq + vec3(0., 0., uT * uNoiseSpeed)) * uNoise;\n  p.y += uSine.x * sin(uSine.y * p.x - uSine.z * uT);\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3);\n  float persp = uOrtho > .5 ? 1. : 1. / dist;                   // orthographic views do not shrink with depth\n  float px = uSize * uFocal * persp;                            // world-size diameter in pixels\n  float key = uRevealW > .5 ? a.w : h;                          // reveal order: random, or along w (0..1) of shape A\n  float vis = 1. - smoothstep(uReveal * 1.02 - .02, uReveal * 1.02, key);\n  float core = max(px, uMinPx);\n  // depth of field: circle of confusion grows with distance from the focal plane; energy spreads over the bokeh disc\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  float energy = vis * min(1., (px * px) / (uMinPx * uMinPx)) * (core * core) / (sz * sz);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float tw = 1. + uSparkle * (hash11(i + floor(uT * 12.) * 7.13) - .5) * 2.;\n  vCol = mix(uColA, uColB, k) * uBright * energy * (.55 + .9 * hash11(i * 1.31)) * max(tw, 0.);").concat(e?KS[1]:"").concat(t?ZS[1]:"",
 "\n  if (vis <= 0.) { gl_PointSize = 0.; gl_Position = vec4(2., 2., 2., 1.); } // not revealed: cull (no fill cost)\n}"),
 "VERT"),
 CO="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42; // lens bokeh: flat disc, bright rim\n  float a = mix(gauss, disc, smoothstep(0., .6, vBlur));\n  o = vec4(vCol * a, 1.); // additive: alpha 1, colour already weighted\n}",
-Qt=class{
+Zt=class{
 static{
 c(this,
 "Swarm")}
@@ -16114,7 +16115,7 @@ i.uFocal.value=t.isPerspectiveCamera?n/2/Math.tan(ut.degToRad(t.fov)/2):n*t.zoom
 this}
 }
 ;
-function KS({
+function JS({
 xw:e=0,
 yw:t=0,
 zw:n=0,
@@ -16151,7 +16152,7 @@ a(0,
 1,
 i),
 r}
-c(KS,
+c(JS,
 "rot4");
 function oA(e,
 t){
@@ -16166,9 +16167,9 @@ return"".concat(e,
 "²). Even powers of two are squares: 1 << 12, 1 << 14, 1 << 16, 1 << 18.")}
 c(oA,
 "notSquare");
-var QS=["\nuniform float uCap; // cap: the largest diameter drawn (px)",
+var ZS=["\nuniform float uCap; // cap: the largest diameter drawn (px)",
 "\n  gl_PointSize = min(gl_PointSize, uCap);"],
-ZS=["\nuniform vec4 uBandO; uniform vec3 uBand; // bands: origin (world) and how far the first has come; wavenumber, phase, depth",
+KS=["\nuniform vec4 uBandO; uniform vec3 uBand; // bands: origin (world) and how far the first has come; wavenumber, phase, depth",
 "\n  float bd = distance((modelMatrix * vec4(p, 1.)).xyz, uBandO.xyz);\n  float bw = uBand.z * sin(uBand.x * bd - uBand.y) * (1. - smoothstep(uBandO.w - .15, uBandO.w, bd));\n  vCol *= 1. + bw; gl_PointSize *= 1. + .5 * bw;"];
 function EO(e,
 t){
@@ -16207,7 +16208,7 @@ constructor(e=8192){
 this.max=e;
 let t=new Nr;
 t.setAttribute("position",
-new Ln([0,
+new Fn([0,
 -1,
 0,
 1,
@@ -16338,9 +16339,9 @@ t),
 this}
 }
 ;
-var JS=Symbol("rig probe"),
+var $S=Symbol("rig probe"),
 PO=600,
-rd={
+ad={
 mode:"off",
 pose:null,
 found:null,
@@ -16349,22 +16350,22 @@ shift:null,
 bump:0}
 ,
 Gi={
-...rd}
+...ad}
 ,
 kO=new wi(40,
 16/9,
 .01,
 500),
-LO=new An(-1,
+LO=new yn(-1,
 1,
 1,
 -1,
 .01,
 200),
 FO=new B,
-$S=new To,
+eT=new To,
 IO=new To,
-eT=c(e=>e*Math.PI/180,
+tT=c(e=>e*Math.PI/180,
 "rad"),
 $l=c((e,
 t,
@@ -16427,12 +16428,12 @@ fov:e.fov,
 }
 c(zO,
 "poseOf");
-var tT=c(e=>e.ortho?{
+var nT=c(e=>e.ortho?{
 s:e.height/2,
 th:e.height/2/PO}
 :{
-s:e.dist*Math.tan(eT(e.fov)/2),
-th:Math.tan(eT(e.fov)/2)}
+s:e.dist*Math.tan(tT(e.fov)/2),
+th:Math.tan(tT(e.fov)/2)}
 ,
 "lens");
 function aA(e,
@@ -16441,16 +16442,16 @@ n){
 let i=DO(e.look,
 t.look,
 n),
-r=tT(e),
-o=tT(t),
+r=nT(e),
+o=nT(t),
 a=Math.exp($l(Math.log(r.s),
 Math.log(o.s),
 n)),
-s=$S.fromArray(e.quat).slerp(IO.fromArray(t.quat),
+s=eT.fromArray(e.quat).slerp(IO.fromArray(t.quat),
 n).toArray(),
 l=new B(0,
 0,
-1).applyQuaternion($S),
+1).applyQuaternion(eT),
 u=$l(e.aspect,
 t.aspect,
 n),
@@ -16550,7 +16551,7 @@ t={
 if(Gi.mode==="off"||t.inset||Gi.used&&!t.main)return e;
 if(Gi.mode==="probe")throw Gi.found=zO(e,
 t),
-JS;
+$S;
 Gi.used=!0;
 let n=Gi.mode==="drive"?OO(Gi.pose):e;
 return(Gi.shift||Gi.bump)&&NO(n),
@@ -16559,13 +16560,13 @@ n}
 probe(e){
 let t=Gi;
 Gi={
-...rd,
+...ad,
 mode:"probe"}
 ;
 try{
 e()}
 catch(i){
-if(i!==JS)throw Gi=t,
+if(i!==$S)throw Gi=t,
 i}
 let n=Gi.found;
 return Gi=t,
@@ -16578,7 +16579,7 @@ n={
 ){
 let i=Gi;
 Gi={
-...rd,
+...ad,
 mode:"drive",
 pose:e,
 shift:n.shift??null,
@@ -16594,7 +16595,7 @@ dress(e,
 t){
 let n=Gi;
 Gi={
-...rd,
+...ad,
 mode:"dress",
 shift:e.shift??null,
 bump:e.bump??0}
@@ -16608,7 +16609,7 @@ Gi=n}
 isolate(e){
 let t=Gi;
 Gi={
-...rd}
+...ad}
 ;
 try{
 return e()}
@@ -16618,7 +16619,7 @@ Gi=t}
 }
 ;
 var UO="01<>/\\[]{}()=+*#%&$@!?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-function ev(e,
+function tv(e,
 t,
 n,
 i,
@@ -16667,7 +16668,7 @@ alpha:h*(a.alpha??1),
 scale:.92+.08*m,
 align:a.align??"center"}
 )}
-c(ev,
+c(tv,
 "heroWord");
 function ai(e,
 t,
@@ -16805,7 +16806,7 @@ intensity:s=1}
 ={
 }
 ){
-let l=new _n(t,
+let l=new Sn(t,
 t);
 e==="xz"?l.rotateX(-Math.PI/2):e==="yz"&&l.rotateY(Math.PI/2);
 let u=new tt(l,
@@ -16873,24 +16874,24 @@ u}
 c(Mr,
 "gridPlane");
 var{
-width:od,
-height:nv}
+width:sd,
+height:iv}
 =kt.design,
 th=c(()=>hr.lyrics.font,
 "face"),
-tv=new B;
+nv=new B;
 function G(e,
 t,
 n=[0,
 0,
-od,
-nv]){
-return tv.set(e[0],
+sd,
+iv]){
+return nv.set(e[0],
 e[1],
 e[2]).project(t),
-[n[0]+(tv.x*.5+.5)*n[2],
-n[1]+(1-(tv.y*.5+.5))*n[3],
-tv.z]}
+[n[0]+(nv.x*.5+.5)*n[2],
+n[1]+(1-(nv.y*.5+.5))*n[3],
+nv.z]}
 c(G,
 "toDesign");
 function WO(e,
@@ -16920,7 +16921,7 @@ return"".concat(e<0&&t?"-":"").concat(String(n).padStart(2,
 "0"))}
 ,
 "fmtTime");
-function dn(e,
+function pn(e,
 t,
 n,
 i={
@@ -16941,16 +16942,16 @@ w]of[[a,
 a,
 1,
 1],
-[od-a,
+[sd-a,
 a,
 -1,
 1],
 [a,
-nv-a,
+iv-a,
 1,
 -1],
-[od-a,
-nv-a,
+[sd-a,
+iv-a,
 -1,
 -1]])d.beginPath(),
 d.moveTo(p,
@@ -16983,20 +16984,20 @@ a+8,
 align:"left"}
 ),
 e.text(VO(t),
-od-a-36,
+sd-a-36,
 a+8,
 {
 ...l,
 align:"right"}
 ),
 i.bottomRight&&e.text(i.bottomRight,
-od-a-36,
-nv-a-8,
+sd-a-36,
+iv-a-8,
 {
 ...l,
 align:"right"}
 )}
-c(dn,
+c(pn,
 "frame");
 function be(e,
 t,
@@ -17036,7 +17037,7 @@ alpha:s}
 )}
 c(be,
 "readout");
-function Sn(e,
+function Tn(e,
 t,
 n,
 i,
@@ -17096,9 +17097,9 @@ alpha:a,
 rot:b}
 )}
 }
-c(Sn,
+c(Tn,
 "dimLine");
-function Tn(e,
+function Cn(e,
 t,
 n,
 i=22,
@@ -17144,7 +17145,7 @@ color:o,
 align:"left",
 alpha:a}
 )}
-c(Tn,
+c(Cn,
 "crosshair");
 function nh(e,
 t,
@@ -17265,7 +17266,7 @@ c(Vo,
 var Na=Uint8Array,
 Wf=Uint16Array,
 qO=Int32Array,
-nT=new Na([0,
+iT=new Na([0,
 0,
 0,
 0,
@@ -17297,7 +17298,7 @@ nT=new Na([0,
 0,
 0,
 0]),
-iT=new Na([0,
+rT=new Na([0,
 0,
 0,
 0,
@@ -17348,7 +17349,7 @@ jO=new Na([16,
 14,
 1,
 15]),
-rT=c(function(e,
+oT=c(function(e,
 t){
 for(var n=new Wf(31),
 i=0;
@@ -17366,16 +17367,16 @@ r}
 }
 ,
 "freb"),
-oT=rT(nT,
+aT=oT(iT,
 2),
-aT=oT.b,
-XO=oT.r;
-aT[28]=258,
+sT=aT.b,
+XO=aT.r;
+sT[28]=258,
 XO[258]=28;
-var sT=rT(iT,
+var lT=oT(rT,
 0),
-YO=sT.b,
-Jre=sT.r,
+YO=lT.b,
+$re=lT.r,
 uA=new Wf(32768);
 for(ei=0;
 ei<32768;
@@ -17385,7 +17386,7 @@ tu=(tu&61680)>>4|(tu&3855)<<4,
 uA[ei]=((tu&65280)>>8|(tu&255)<<8)>>1;
 var tu,
 ei,
-ad=c((function(e,
+ld=c((function(e,
 t,
 n){
 for(var i=e.length,
@@ -17416,32 +17417,32 @@ r<i;
 return s}
 ),
 "hMap"),
-sd=new Na(288);
+ud=new Na(288);
 for(ei=0;
 ei<144;
-++ei)sd[ei]=8;
+++ei)ud[ei]=8;
 var ei;
 for(ei=144;
 ei<256;
-++ei)sd[ei]=9;
+++ei)ud[ei]=9;
 var ei;
 for(ei=256;
 ei<280;
-++ei)sd[ei]=7;
+++ei)ud[ei]=7;
 var ei;
 for(ei=280;
 ei<288;
-++ei)sd[ei]=8;
+++ei)ud[ei]=8;
 var ei,
-lT=new Na(32);
+uT=new Na(32);
 for(ei=0;
 ei<32;
-++ei)lT[ei]=5;
+++ei)uT[ei]=5;
 var ei;
-var QO=ad(sd,
+var QO=ld(ud,
 9,
 1);
-var ZO=ad(lT,
+var ZO=ld(uT,
 5,
 1),
 sA=c(function(e){
@@ -17469,7 +17470,7 @@ KO=c(function(e){
 return(e+7)/8|0}
 ,
 "shft"),
-uT=c(function(e,
+cT=c(function(e,
 t,
 n){
 return(t==null||t<0)&&(t=0),
@@ -17566,7 +17567,7 @@ f+F*3,
 f+=T*3;
 for(var D=sA(L),
 N=(1<<D)-1,
-O=ad(L,
+O=ld(L,
 D,
 1),
 F=0;
@@ -17600,10 +17601,10 @@ M),
 ie=E.subarray(M);
 g=sA(we),
 w=sA(ie),
-p=ad(we,
+p=ld(we,
 g,
 1),
-m=ad(ie,
+m=ld(ie,
 w,
 1)}
 else os(1);
@@ -17649,10 +17650,10 @@ else{
 var Ut=De-254;
 if(De>264){
 var F=De-257,
-Bt=nT[F];
+Bt=iT[F];
 Ut=Rs(e,
 f,
-(1<<Bt)-1)+aT[F],
+(1<<Bt)-1)+sT[F],
 f+=Bt}
 var me=m[lA(e,
 f)&ge],
@@ -17661,7 +17662,7 @@ me||os(3),
 f+=me&15;
 var ie=YO[ke];
 if(ke>3){
-var Bt=iT[ke];
+var Bt=rT[ke];
 ie+=lA(e,
 f)&(1<<Bt)-1,
 f+=Bt}
@@ -17690,7 +17691,7 @@ t.m=g,
 t.d=m,
 t.n=w)}
 while(!h);
-return d!=n.length&&a?uT(n,
+return d!=n.length&&a?cT(n,
 0,
 d):n.subarray(0,
 d)}
@@ -17714,7 +17715,7 @@ var t=e.length;
 return(e[t-4]|e[t-3]<<8|e[t-2]<<16|e[t-1]<<24)>>>0}
 ,
 "gzl");
-function iv(e,
+function rv(e,
 t){
 var n=tN(e);
 return n+8>e.length&&os(6,
@@ -17726,7 +17727,7 @@ i:2}
 ,
 t&&t.out||new Na(nN(e)),
 t&&t.dictionary)}
-c(iv,
+c(rv,
 "gunzipSync");
 var cA=typeof TextDecoder<"u"&&new TextDecoder,
 iN=0;
@@ -17747,7 +17748,7 @@ var i=e[n++],
 r=(i>127)+(i>223)+(i>239);
 if(n+r>e.length)return{
 s:t,
-r:uT(e,
+r:cT(e,
 n-1)}
 ;
 r?r==3?(i=((i&15)<<18|(e[n++]&63)<<12|(e[n++]&63)<<6|e[n++]&63)-65536,
@@ -17756,7 +17757,7 @@ t+=String.fromCharCode(55296|i>>10,
 }
 ,
 "dutf8");
-function cT(e,
+function hT(e,
 t){
 if(t){
 for(var n="",
@@ -17774,7 +17775,7 @@ n=r.r;
 return n.length&&os(8),
 o}
 }
-c(cT,
+c(hT,
 "strFromU8");
 var oN=Object.freeze({
 "JetBrains Mono":["Menlo",
@@ -17801,25 +17802,25 @@ return String(e).trim().replace((new RegExp("\\s+","g")),
 " ").toLowerCase()}
 c(Ju,
 "normalizedFamily");
-function hT(e){
+function fT(e){
 let t=Ju(e);
 for(let[n,
 i]of Object.entries(oN))if(Ju(n)===t||i.some(r=>Ju(r)===t))return n;
 return e}
-c(hT,
+c(fT,
 "canonicalFamily");
-var fT=null,
+var dT=null,
 $u=[],
-gT=new WeakMap,
 wT=new WeakMap,
+AT=new WeakMap,
 nu=new Map,
 Bs=new Map,
-rv=0,
 ov=0,
-AT=64,
+av=0,
+yT=64,
 aN=12*1024*1024,
 sN="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-function yT(e,
+function bT(e,
 t,
 n,
 i=!1){
@@ -17842,7 +17843,7 @@ if(o.length<18)throw new Error("Invalid font-mask gzip");
 let h=o.length-4,
 f=(o[h]|o[h+1]<<8|o[h+2]<<16|o[h+3]<<24)>>>0;
 if(f>t*n*2)throw new Error("Oversized font-mask gzip");
-l=iv(new Uint8Array(o),
+l=rv(new Uint8Array(o),
 {
 out:new Uint8Array(f)}
 )}
@@ -17859,10 +17860,10 @@ u+f),
 u+=f}
 if(u!==r.length)throw new Error("Incomplete font mask");
 return r}
-c(yT,
+c(bT,
 "decodeMask");
 function lN(e){
-if(e===fT)return $u.length;
+if(e===dT)return $u.length;
 let t=new Map,
 n=Object.values(e||{
 }
@@ -17870,7 +17871,7 @@ n=Object.values(e||{
 if(!n.length)throw new Error("The complete FrostNova font-mask assets are missing");
 let i=0;
 for(let r of n){
-if(r.version!==1||r.em!==AT||![void 0,
+if(r.version!==1||r.em!==yT||![void 0,
 "gzip-rle8"].includes(r.encoding)||!Array.isArray(r.faces)||!Array.isArray(r.glyphs))throw new Error("Unsupported FrostNova font-mask version");
 for(let o of r.faces){
 if(!o||typeof o.id!="string"||o.id.length>64||typeof o.family!="string"||o.family.length>100||!Number.isFinite(o.weight)||!Number.isFinite(o.ascent)||!Number.isFinite(o.descent)||Math.abs(o.ascent)>192||Math.abs(o.descent)>192||t.size>64||o.aliases!==void 0&&(!Array.isArray(o.aliases)||o.aliases.length>32||o.aliases.some(s=>typeof s!="string"||s.length>100)))throw new Error("Invalid font-face metrics");
@@ -17891,7 +17892,7 @@ o.x,
 o.y,
 o.w,
 o.h].every(Number.isFinite)||a.glyphs.has(o.char)||++i>12e3)throw new Error("Invalid or duplicate font glyph");
-yT(o.rle,
+bT(o.rle,
 o.w,
 o.h,
 r.encoding==="gzip-rle8"),
@@ -17902,11 +17903,11 @@ compressed:r.encoding==="gzip-rle8"}
 )}
 if($u=[...t.values()],
 !$u.length||!$u.some(r=>r.family==="JetBrains Mono"&&r.glyphs.has("?")))throw new Error("Incomplete FrostNova fonts");
-return fT=e,
+return dT=e,
 nu.clear(),
 Bs.clear(),
-rv=0,
 ov=0,
+av=0,
 $u.length}
 c(lN,
 "configureFonts");
@@ -17945,7 +17946,7 @@ let n=[...e.families,
 "Noto Sans",
 "Noto Sans Symbols 2"];
 for(let i of n){
-let r=hT(i),
+let r=fT(i),
 o=null,
 a=1/0;
 for(let s of $u){
@@ -17957,11 +17958,11 @@ if(o)return o}
 return $u.find(i=>i.family==="JetBrains Mono"&&i.glyphs.has("?"))}
 c(cN,
 "faceFor");
-function bT(e,
+function MT(e,
 t){
 if(!$u.length)throw new Error("configureFonts must run before text is drawn");
 let n=uN(e),
-i=n.size/AT,
+i=n.size/yT,
 r=[...String(t).replace((new RegExp("[\\t\\n\\r\\f]","g")),
 " ")],
 o=[],
@@ -18018,19 +18019,19 @@ maxY:h,
 ascent:f,
 descent:d}
 }
-c(bT,
+c(MT,
 "layoutText");
-function MT(e,
+function xT(e,
 t){
 let n=e.direction==="rtl",
 i=e.textAlign;
 return i==="center"?-t.width/2:i==="right"||i==="end"&&!n||i==="start"&&n?-t.width:0}
-c(MT,
+c(xT,
 "alignmentOffset");
-function xT(e,
+function _T(e,
 t){
 return(t.placed[0]?.face?.baselines?.[e.textBaseline]||0)*t.scale}
-c(xT,
+c(_T,
 "baselineOffset");
 function hA(e,
 t){
@@ -18050,7 +18051,7 @@ r="".concat(e.id,
 "/").concat(t.char,
 "/").concat(i);
 if(nu.has(r))return nu.get(r);
-let o=yT(t.rle,
+let o=bT(t.rle,
 t.w,
 t.h,
 t.compressed),
@@ -18102,28 +18103,28 @@ canvas:u,
 pad:a}
 ;
 for(;
-nu.size&&(nu.size>=4096||ov+u.width*u.height>4*1024*1024);
+nu.size&&(nu.size>=4096||av+u.width*u.height>4*1024*1024);
 ){
 let m=nu.keys().next().value,
 g=nu.get(m);
-ov-=g.canvas.width*g.canvas.height,
+av-=g.canvas.width*g.canvas.height,
 nu.delete(m)}
 return nu.set(r,
 p),
-ov+=u.width*u.height,
+av+=u.width*u.height,
 p}
 c(hN,
 "glyphImage");
-function dT(e){
+function pT(e){
 return[e.a,
 e.b,
 e.c,
 e.d,
 e.e,
 e.f]}
-c(dT,
+c(pT,
 "matrixOf");
-function pT(e,
+function mT(e,
 t){
 return[e[0]*t[0]+e[2]*t[1],
 e[1]*t[0]+e[3]*t[1],
@@ -18131,9 +18132,9 @@ e[0]*t[2]+e[2]*t[3],
 e[1]*t[2]+e[3]*t[3],
 e[0]*t[4]+e[2]*t[5]+e[4],
 e[1]*t[4]+e[3]*t[5]+e[5]]}
-c(pT,
+c(mT,
 "multiply");
-function mT(e){
+function vT(e){
 let t=e[0]*e[3]-e[1]*e[2];
 return t?[e[3]/t,
 -e[1]/t,
@@ -18141,7 +18142,7 @@ return t?[e[3]/t,
 e[0]/t,
 (e[2]*e[5]-e[3]*e[4])/t,
 (e[1]*e[4]-e[0]*e[5])/t]:null}
-c(mT,
+c(vT,
 "inverse");
 function fN(e,
 t,
@@ -18184,26 +18185,26 @@ v.x+(v.glyph.x-A.pad)*n.scale-u,
 A.canvas.width*n.scale,
 A.canvas.height*n.scale)}
 m.globalCompositeOperation="source-in";
-let g=typeof o=="object"&&wT.get(o);
+let g=typeof o=="object"&&AT.get(o);
 if(g){
-let v=pT(dT(e.getTransform()),
+let v=mT(pT(e.getTransform()),
 [r.shrink,
 0,
 0,
 1,
 r.x+r.shrink*(r.offsetX+u),
 r.y+r.offsetY+h]),
-A=mT(v);
+A=vT(v);
 if(!A)return null;
-let y=pT(A,
-dT(e.getTransform()));
+let y=mT(A,
+pT(e.getTransform()));
 m.setTransform(...y);
 let b=m[g.type](...g.args);
 for(let[E,
 L]of g.stops)b.addColorStop(E,
 L);
 m.fillStyle=b;
-let x=mT(y);
+let x=vT(y);
 if(!x)return null;
 let M=[[0,
 0],
@@ -18233,19 +18234,19 @@ top:h}
 ;
 if(s){
 for(;
-Bs.size&&(Bs.size>=192||rv+f*d>aN);
+Bs.size&&(Bs.size>=192||ov+f*d>aN);
 ){
 let v=Bs.keys().next().value,
 A=Bs.get(v);
-rv-=A.canvas.width*A.canvas.height,
+ov-=A.canvas.width*A.canvas.height,
 Bs.delete(v)}
 Bs.set(s,
 w),
-rv+=f*d}
+ov+=f*d}
 return w}
 c(fN,
 "textImage");
-function vT(e,
+function gT(e,
 t,
 n,
 i,
@@ -18255,13 +18256,13 @@ if(n=Number(n),
 i=Number(i),
 !Number.isFinite(n)||!Number.isFinite(i))return;
 let a=String(t),
-s=bT(e,
+s=MT(e,
 a);
 if(!a||!s.placed.length||r!==void 0&&(!Number.isFinite(Number(r))||Number(r)<=0))return;
 let l=r!==void 0&&s.width>Number(r)?Number(r)/s.width:1,
-u=MT(e,
+u=xT(e,
 s),
-h=xT(e,
+h=_T(e,
 s),
 f=fN(e,
 a,
@@ -18283,10 +18284,10 @@ e.drawImage(f.canvas,
 u+f.left,
 h+f.top),
 e.restore())}
-c(vT,
+c(gT,
 "drawText");
 function fA(e){
-let t=gT.get(e);
+let t=wT.get(e);
 if(!t)throw new Error("Not a FrostNova text context");
 Object.defineProperty(e,
 "fillText",
@@ -18304,7 +18305,7 @@ configurable:!0}
 )}
 c(fA,
 "restoreText");
-function Fn(e=300,
+function In(e=300,
 t=150){
 let n=hA(e,
 t),
@@ -18326,7 +18327,7 @@ fillText(l,
 u,
 h,
 f){
-vT(r,
+gT(r,
 l,
 u,
 h,
@@ -18337,7 +18338,7 @@ strokeText(l,
 u,
 h,
 f){
-vT(r,
+gT(r,
 l,
 u,
 h,
@@ -18345,7 +18346,7 @@ f,
 !0)}
 }
 ;
-gT.set(r,
+wT.set(r,
 s),
 fA(r);
 for(let l of["createLinearGradient",
@@ -18365,7 +18366,7 @@ type:l,
 args:h,
 stops:[]}
 ;
-return wT.set(f,
+return AT.set(f,
 p),
 Object.defineProperty(f,
 "addColorStop",
@@ -18388,11 +18389,11 @@ return Object.defineProperty(r,
 configurable:!0,
 writable:!0,
 value(l){
-let u=bT(r,
+let u=MT(r,
 l),
-h=MT(r,
+h=xT(r,
 u),
-f=xT(r,
+f=_T(r,
 u),
 d=u.placed[0]?.face?.baselines||{
 }
@@ -18417,15 +18418,15 @@ r}
 }
 ),
 n}
-c(Fn,
+c(In,
 "makeCanvas");
 typeof __frostInitialAssets<"u"&&__frostInitialAssets&&lN(__frostInitialAssets);
-var _T="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
-ST=new Int16Array(128).fill(-1);
+var ST="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+TT=new Int16Array(128).fill(-1);
 for(let e=0;
-e<_T.length;
-e++)ST[_T.charCodeAt(e)]=e;
-function ld(e){
+e<ST.length;
+e++)TT[ST.charCodeAt(e)]=e;
+function cd(e){
 if(typeof e!="string"||e.length%4||e.length>7*1024*1024)throw new Error("Invalid bounded base64");
 let t=e.endsWith("==")?2:e.endsWith("=")?1:0,
 n=e.length-t,
@@ -18437,7 +18438,7 @@ for(let s=0;
 s<n;
 s++){
 let l=e.charCodeAt(s),
-u=l<128?ST[l]:-1;
+u=l<128?TT[l]:-1;
 if(u<0)throw new Error("Invalid base64 character");
 o=o<<6|u,
 r+=6,
@@ -18445,7 +18446,7 @@ r>=8&&(r-=8,
 i[a++]=o>>r&255)}
 if(a!==i.length||r&&o&(1<<r)-1)throw new Error("Invalid base64 padding");
 return i}
-c(ld,
+c(cd,
 "base64Bytes");
 function dA(e){
 let t=e?.chunks;
@@ -18453,7 +18454,7 @@ if(!Array.isArray(t)||t.length>16||t.some(s=>typeof s!="string"))throw new Error
 if(t.reduce((s,
 l)=>s+l.length,
 0)>7*1024*1024)throw new Error("Compressed data too large");
-let n=t.map(ld),
+let n=t.map(cd),
 i=n.reduce((s,
 l)=>s+l.length,
 0);
@@ -18467,29 +18468,29 @@ if(i<18)throw new Error("Invalid gzip data");
 let a=new DataView(r.buffer).getUint32(i-4,
 !0);
 if(a>4*1024*1024)throw new Error("Expanded data too large");
-return iv(r,
+return rv(r,
 {
 out:new Uint8Array(a)}
 )}
 c(dA,
 "decodeGzipChunks");
-function TT(e){
-return JSON.parse(cT(dA(e)))}
-c(TT,
+function CT(e){
+return JSON.parse(hT(dA(e)))}
+c(CT,
 "decodeGzipJson");
-var CT=Object.defineProperty,
-ud=c((e,
+var ET=Object.defineProperty,
+hd=c((e,
 t)=>{
 let n={
 }
 ;
-for(var i in e)CT(n,
+for(var i in e)ET(n,
 i,
 {
 get:e[i],
 enumerable:!0}
 );
-return t||CT(n,
+return t||ET(n,
 Symbol.toStringTag,
 {
 value:"Module"}
@@ -18497,18 +18498,18 @@ value:"Module"}
 n}
 ,
 "__exportAll");
-var ET=Object.freeze({
+var RT=Object.freeze({
 fadeIn:.1,
 fadeOut:.2,
 hold:1}
 );
-function RT(e,
+function BT(e,
 t,
 n={
 }
 ){
 let i={
-...ET,
+...RT,
 ...n}
 ,
 r=new Set(n.silent??[]),
@@ -18544,15 +18545,15 @@ h)=>{
 u.fadeIn=h===0||l[h-1].end<u.start}
 ),
 l}
-c(RT,
+c(BT,
 "subtitleEvents");
-function BT(e,
+function PT(e,
 t,
 n={
 }
 ){
 let i={
-...ET,
+...RT,
 ...n}
 ,
 r=0,
@@ -18579,7 +18580,7 @@ row:s.row,
 accent:s.accent,
 alpha:u}
 :null}
-c(BT,
+c(PT,
 "subtitleAt");
 var dN={
 intro:"#7ef0ff",
@@ -18596,15 +18597,15 @@ c3:"#ff4a3d",
 love:"#ffd27a",
 outro:"#aab4c8"}
 ,
-PT="#aab4c8",
+kT="#aab4c8",
 pN=19.75;
-function kT(e,
+function LT(e,
 t){
 let n=e.sectionAt(t)?.id;
-return n==="intro"&&t<e.beatTime(pN)?PT:dN[n]??PT}
-c(kT,
+return n==="intro"&&t<e.beatTime(pN)?kT:dN[n]??kT}
+c(LT,
 "accent");
-var LT=[e=>[e.findLine("INITIALIZATION").start,
+var FT=[e=>[e.findLine("INITIALIZATION").start,
 e.beatTime(24)],
 e=>[e.lines[111].start,
 e.lines[112].start]];
@@ -18641,7 +18642,7 @@ w:1200,
 h:160}
 }
 );
-function FT(e,
+function IT(e,
 t,
 n,
 i=1,
@@ -18711,17 +18712,17 @@ e.fillText(t.text,
 p,
 u),
 e.restore()}
-c(FT,
+c(IT,
 "drawSubtitle");
-var IT=Object.create(null),
-DT=[],
+var DT=Object.create(null),
+zT=[],
 ih=null;
-typeof __frostInitialAssets<"u"&&__frostInitialAssets&&(IT=TT(__frostInitialAssets.quotes));
+typeof __frostInitialAssets<"u"&&__frostInitialAssets&&(DT=CT(__frostInitialAssets.quotes));
 function se(){
-return IT}
+return DT}
 c(se,
 "quotedSources");
-function zT(e){
+function OT(e){
 let t=dA(e.features),
 n=e["feature-meta"];
 if(t.length!==n.frames*n.channels.length*4||n.frames!==12715||n.fps!==60||n.channels.length!==25)throw new Error("Original feature data dimensions changed");
@@ -18742,22 +18743,22 @@ meta:n,
 captions:e.captions,
 onsets:e.onsets}
 }
-c(zT,
+c(OT,
 "configureResources");
-function OT(e,
+function NT(e,
 t){
-DT=RT(e,
+zT=BT(e,
 t.lines,
 {
 skip:t.skip,
 silent:t.silent,
-accent:kT,
-rows:LT}
+accent:LT,
+rows:FT}
 ),
-ih=Fn()}
-c(OT,
+ih=In()}
+c(NT,
 "configureChinese");
-function NT(e,
+function UT(e,
 t,
 n){
 let i=e.canvas.width,
@@ -18771,8 +18772,8 @@ font:{
 family:"Noto Sans SC"}
 }
 ;
-FT(ih.getContext("2d"),
-BT(DT,
+IT(ih.getContext("2d"),
+PT(zT,
 n),
 o,
 i/1920),
@@ -18787,7 +18788,7 @@ a.drawImage(ih,
 0,
 0)}
 )}
-c(NT,
+c(UT,
 "drawChinese");
 var mN=se()["src/lib/glyphs.js:__import_glob__0_0_"],
 vN=se()["src/lib/glyphs.js:__import_glob__0_1_"],
@@ -18950,7 +18951,7 @@ cH=se()["src/lib/glyphs.js:__import_glob__0_157_"],
 hH=se()["src/lib/glyphs.js:__import_glob__0_158_"],
 fH=se()["src/lib/glyphs.js:__import_glob__0_159_"],
 dH=se()["src/lib/glyphs.js:SELF"],
-UT=kt.design.height,
+GT=kt.design.height,
 mA;
 try{
 mA=Object.assign({
@@ -19155,8 +19156,8 @@ sourceFiles:n}
 c(vH,
 "sourcesOf");
 var{
-source:tn,
-sourceFiles:Doe}
+source:nn,
+sourceFiles:zoe}
 =vH({
 ...mA,
 "./glyphs.js":dH}
@@ -19174,12 +19175,12 @@ t)=>String.fromCharCode(32+t)).join("")+["·…–—−‘’“”°",
 iu=64,
 Vf=16,
 wH='"JetBrains Mono", "Apple Symbols", "Menlo", monospace',
-av=null;
+sv=null;
 function Eo(){
-if(av)return av;
+if(sv)return sv;
 let e=[...gH],
 t=Math.ceil(e.length/Vf),
-n=Fn();
+n=In();
 n.width=1024,
 n.height=t*iu;
 let i=n.getContext("2d",
@@ -19223,12 +19224,12 @@ flipY:!1,
 colorSpace:"",
 generateMipmaps:!0,
 minFilter:ho,
-magFilter:On}
+magFilter:Nn}
 );
 let s=new Map(e.map((l,
 u)=>[l,
 u]));
-return av={
+return sv={
 tex:a,
 cols:Vf,
 rows:t,
@@ -19239,7 +19240,7 @@ index:c(l=>s.get(l)??s.get("?"),
 has:c(l=>s.has(l),
 "has")}
 ,
-av}
+sv}
 c(Eo,
 "glyphAtlas");
 var AH=new Set("const let var function return if else for while do new import export from class extends this of in true false null undefined async await break continue switch case default typeof instanceof void try catch finally throw delete yield static super float vec2 vec3 vec4 mat2 mat3 mat4 uniform in out int bool sampler2D precision highp flat discard".split(" "));
@@ -19257,7 +19258,7 @@ i.index+i[0].length)}
 return t}
 c(vA,
 "classify");
-var GT=[[.8,
+var HT=[[.8,
 .85,
 .95],
 [.18,
@@ -19275,12 +19276,12 @@ var GT=[[.8,
 [.35,
 .42,
 .6]],
-WT=c(e=>e===1?.8:1,
+VT=c(e=>e===1?.8:1,
 "dimComments");
 function yH(e,
 t,
 n,
-i=WT){
+i=VT){
 let r=e.replace((new RegExp("\\r\\n?","g")),
 "\n").replace((new RegExp("\\t","g")),
 "  "),
@@ -19458,11 +19459,11 @@ MH=c((e=null)=>"\nuniform sampler2D uA, uB, uG;\nuniform float uS, uMorph, uSpre
 "\n  vChar = g.x;\n}"),
 "VERT"),
 xH="\nuniform sampler2D uAtlas; uniform vec2 uGrid;\nin vec3 vCol; in float vCore; in float vBlur; flat in float vChar; out vec4 o;\nvec2 gCell;\nfloat tap(vec2 q, float lod) {                                       // the glyph at q (cell units), zero outside its cell\n  vec2 d = abs(q - .5);\n  return d.x > .5 || d.y > .5 ? 0. : textureLod(uAtlas, (gCell + clamp(q, .01, .99)) / uGrid, lod).r;\n}\nvoid main() {\n  vec2 pc = gl_PointCoord;\n  gCell = vec2(mod(vChar, uGrid.x), floor(vChar / uGrid.x));\n  float scale = (vCore + vBlur) / vCore;                             // sprite size / glyph size\n  vec2 q = (pc - .5) * scale + .5;                                   // position in the glyph's cell\n  float rb = .5 * vBlur / vCore;                                     // blur radius, in cells\n  float w = smoothstep(.1, .3, rb);                                  // 0: the glyph (soft) · 1: its bokeh disc\n  float glyph = 0.;\n  if (w < 1.) {\n    float lod0 = log2(max(1., 64. / vCore));                         // minification (the sprite's own footprint)\n    if (rb < .01) glyph = tap(q, lod0);\n    else {\n      float lod = max(lod0, log2(max(1., 64. * rb * .6)));           // soften by about the spacing of the taps\n      glyph = tap(q, lod) * .2;\n      for (int k = 0; k < 8; k++) {\n        float an = float(k) * .7853982 + .39;\n        glyph += tap(q + rb * .8 * vec2(cos(an), sin(an)), lod) * .1;\n      }\n    }\n  }\n  float cov = textureLod(uAtlas, (gCell + .5) / uGrid, 6.).r;        // mean ink of the cell (the 1-texel-per-cell mip)\n  float r = length(pc - .5) * 2.;\n  float disc = (1. - smoothstep(.8, 1., r)) * cov / (scale * scale * .644);   // .644: area of the soft disc, sprite units\n  o = vec4(vCol * mix(glyph, disc, w), 1.);\n}",
-HT=new Map,
+WT=new Map,
 _H=c(e=>"U+".concat(e.codePointAt(0).toString(16).toUpperCase().padStart(4,
 "0")),
 "hex"),
-nn=class{
+rn=class{
 static{
 c(this,
 "GlyphField")}
@@ -19563,7 +19564,7 @@ uOrtho:{
 value:0}
 ,
 uPal:{
-value:GT.map(r=>new B(...r))}
+value:HT.map(r=>new B(...r))}
 ,
 uScroll:{
 value:new B}
@@ -19600,13 +19601,13 @@ this.glyphTex=null}
 text(e,
 t,
 {
-brightness:n=WT}
+brightness:n=VT}
 ={
 }
 ){
 let i="".concat(e,
 "@").concat(this.N),
-r=HT.get(i);
+r=WT.get(i);
 if(r)return Object.assign(this,
 r),
 this.material.uniforms.uG.value=r.glyphTex,
@@ -19627,13 +19628,13 @@ l.size&&console.warn("glyphs: '".concat(e,
 ")")).join(" "),
 "; add them to EXTRA in src/lib/glyphs.js"));
 let u={
-glyphTex:an(o,
+glyphTex:sn(o,
 this.S,
 this.S),
 _grid:a,
 _count:s}
 ;
-return HT.set(i,
+return WT.set(i,
 u),
 Object.assign(this,
 u),
@@ -19662,10 +19663,10 @@ i.uNoiseFreq.value=e.noiseFreq??1,
 i.uNoiseSpeed.value=e.noiseSpeed??.2,
 i.uT.value=e.t??0,
 i.uSize.value=e.size??.05,
-i.uMinPx.value=(e.minPx??3)*n/UT,
+i.uMinPx.value=(e.minPx??3)*n/GT,
 i.uBright.value=e.bright??1,
 i.uFlicker.value=e.flicker??0;
-let r=e.palette??GT,
+let r=e.palette??HT,
 o=typeof r[0]=="number";
 if(i.uPal.value.forEach((a,
 s)=>a.set(...o?r:r[s]??r[0])),
@@ -19674,7 +19675,7 @@ i.uScroll.value.set(...e.scroll??[0,
 0]),
 i.uFocus.value=e.focus??5,
 i.uAperture.value=e.aperture??0,
-i.uMaxBlur.value=(e.maxBlur??60)*n/UT,
+i.uMaxBlur.value=(e.maxBlur??60)*n/GT,
 i.uOrtho.value=t.isOrthographicCamera?1:0,
 i.uFocal.value=t.isPerspectiveCamera?n/2/Math.tan(ut.degToRad(t.fov)/2):n*t.zoom/(t.top-t.bottom),
 i.uRip){
@@ -19725,13 +19726,13 @@ return t.filter(Boolean).length}
 }
 c(SH,
 "levelBuffers");
-var VT=new WeakMap,
+var qT=new WeakMap,
 AA=0;
 function TH(e,
 t){
 let n=e.engine??e.renderer,
-i=VT.get(n);
-return i||VT.set(n,
+i=qT.get(n);
+return i||qT.set(n,
 i=SH()),
 i.get(e.sizeVersion,
 t,
@@ -19813,8 +19814,8 @@ n.setRenderTarget(e.target),
 i.texture}
 c(Dt,
 "capture");
-var XT="\nuniform sampler2D tSrc; uniform vec2 uRes; uniform float uT, uGain, uMix; uniform vec3 uInk, uPaper, uTint;\nin vec2 vUv; out vec4 o;\nvec3 lin(vec3 c) { return pow(max(c, 0.), vec3(2.2)); }\nfloat lum(vec3 c) { return 1. - exp(-luma(c) * uGain); }    // HDR luminance, softly compressed to 0..1\n",
-cd={
+var YT="\nuniform sampler2D tSrc; uniform vec2 uRes; uniform float uT, uGain, uMix; uniform vec3 uInk, uPaper, uTint;\nin vec2 vUv; out vec4 o;\nvec3 lin(vec3 c) { return pow(max(c, 0.), vec3(2.2)); }\nfloat lum(vec3 c) { return 1. - exp(-luma(c) * uGain); }    // HDR luminance, softly compressed to 0..1\n",
+fd={
 ascii:"\nuniform sampler2D tAtlas, tRamp; uniform vec2 uGrid; uniform float uCell, uRampN, uSource;\nvoid main() {\n  vec2 cellPx = vec2(uCell * .6, uCell), px = vUv * uRes, id = floor(px / cellPx), f = fract(px / cellPx);\n  vec2 c = (id + .5) * cellPx / uRes;\n  vec3 s = (texture(tSrc, c).rgb + texture(tSrc, c + vec2(.3, .3) * cellPx / uRes).rgb + texture(tSrc, c - vec2(.3, .3) * cellPx / uRes).rgb) / 3.;\n  float l = lum(s), k = floor(clamp(l, 0., .999) * uRampN);\n  if (k < .5) { o = vec4(mix(texture(tSrc, vUv).rgb, vec3(0.), uMix), 1.); return; }   // the blank glyph: nothing to ink\n  float ch = texture(tRamp, vec2((k + .5) / uRampN, .5)).r;\n  vec2 cell = vec2(mod(ch, uGrid.x), floor(ch / uGrid.x));\n  // the em box inside an atlas cell, kept off the cell's edge; the mip level is explicit (atlas texels per pixel), so the\n  // jump of the coordinate where one text cell meets the next cannot pull in a blurred neighbour (faint 1-px rows).\n  // The atlas is uploaded with flipY off (v = 0 is the canvas top) while f.y counts up, hence the minus.\n  vec2 g = clamp(vec2(.5 + (f.x - .5) * .43, .54 - (f.y - .5) * .72), vec2(.06), vec2(.94));\n  float lod = log2(max(1., max(64. * .43 / cellPx.x, 64. * .72 / cellPx.y)));\n  float ink = textureLod(tAtlas, (cell + g) / uGrid, lod).r;\n  vec3 col = mix(uTint, normalize(s + 1e-4) * 1.7, uSource) * (.35 + 1.3 * l);\n  o = vec4(mix(texture(tSrc, vUv).rgb, col * ink, uMix), 1.);\n}",
 dither:"\nuniform float uPix;\nfloat bayer2(vec2 a) { a = floor(a); return fract(a.x / 2. + a.y * a.y * .75); }\nfloat bayer8(vec2 a) { return (bayer2(.25 * a) * .25 + bayer2(.5 * a)) * .25 + bayer2(a); }\nvoid main() {\n  vec2 px = floor(vUv * uRes / uPix), c = (px + .5) * uPix / uRes;\n  float l = lum(texture(tSrc, c).rgb);\n  vec3 col = l > bayer8(px) + .5 / 64. ? uInk : uPaper;\n  o = vec4(mix(texture(tSrc, vUv).rgb, lin(col), uMix), 1.);\n}",
 thermal:"\nvec3 inferno(float t) {\n  const vec3 c0 = vec3(.0002189, .001651, -.01948), c1 = vec3(.1065, .5640, 3.9327), c2 = vec3(11.6025, -3.9729, -15.9424);\n  const vec3 c3 = vec3(-41.7040, 17.4364, 44.3541), c4 = vec3(77.1629, -33.4024, -81.8073), c5 = vec3(-71.3194, 32.6261, 73.2095), c6 = vec3(25.1311, -12.2427, -23.0703);\n  return c0 + t * (c1 + t * (c2 + t * (c3 + t * (c4 + t * (c5 + t * c6)))));\n}\nvoid main() { float l = lum(texture(tSrc, vUv).rgb); o = vec4(mix(texture(tSrc, vUv).rgb, lin(clamp(inferno(l), 0., 1.)), uMix), 1.); }",
@@ -19823,10 +19824,10 @@ paper:"\nvoid main() { float l = lum(texture(tSrc, vUv).rgb); o = vec4(mix(textu
 halftone:"\nuniform float uPix, uAngle;\nvoid main() {\n  vec2 px = vUv * uRes; float c = cos(uAngle), s = sin(uAngle);\n  vec2 q = mat2(c, -s, s, c) * px / uPix, id = floor(q) + .5, f = fract(q) - .5;\n  vec2 src = (mat2(c, s, -s, c) * (id * uPix)) / uRes;\n  float l = lum(texture(tSrc, src).rgb), rad = sqrt(l) * .62, d = length(f);\n  float k = (1. - smoothstep(rad - .06, rad + .06, d)) * smoothstep(0., .06, rad);   // no dot at all where the source is black\n  o = vec4(mix(texture(tSrc, vUv).rgb, lin(mix(uPaper, uInk, k)), uMix), 1.);\n}",
 duotone:"\nvoid main() {\n  vec3 s = texture(tSrc, vUv).rgb; float l = lum(s);\n  vec3 col = mix(mix(uPaper, uInk, smoothstep(0., .8, l)), vec3(1.), smoothstep(.72, 1., l) * .55);\n  o = vec4(mix(s, lin(col), uMix), 1.);\n}"}
 ;
-Object.freeze(Object.fromEntries(Object.entries(cd).map(([e,
+Object.freeze(Object.fromEntries(Object.entries(fd).map(([e,
 t])=>[e,
-XT+t])));
-var YT=Object.freeze(Object.keys(cd)),
+YT+t])));
+var QT=Object.freeze(Object.keys(fd)),
 CH=c(e=>Object.freeze(Object.fromEntries(Object.entries(e).map(([t,
 n])=>[t,
 Object.freeze(n)]))),
@@ -19895,14 +19896,14 @@ i)=>t.set([n,
 0],
 i*4)),
 gA={
-tex:an(t,
+tex:sn(t,
 e.length,
 1),
 n:e.length}
 }
 c(BH,
 "rampTexture");
-var qT=c(e=>e.map(t=>Math.min(1,
+var jT=c(e=>e.map(t=>Math.min(1,
 Math.max(0,
 t)**(1/2.2))),
 "toDisplay"),
@@ -19912,8 +19913,8 @@ t)=>e.map(n=>n+(1-n)*t),
 function kH(){
 return{
 tint:[...H.subject],
-paper:qT(hr.rampCol),
-lightInk:PH(qT(H.subject),
+paper:jT(hr.rampCol),
+lightInk:PH(jT(H.subject),
 .75),
 darkInk:[.07,
 .08,
@@ -19925,7 +19926,7 @@ var LH=new Set(["dither",
 "edges",
 "halftone",
 "duotone"]),
-jT=["ink",
+XT=["ink",
 "paper",
 "tint"];
 function FH(e,
@@ -19937,15 +19938,15 @@ let n=hr.views??{
 ;
 for(let[a,
 s]of Object.entries(n)){
-if(!Object.hasOwn(cd,
+if(!Object.hasOwn(fd,
 a))throw new Error("modes: THEME.views.".concat(a,
-" is no view (have: ").concat(YT.join(", "),
+" is no view (have: ").concat(QT.join(", "),
 ")"));
 for(let l of Object.keys(s??{
 }
-))if(!jT.includes(l))throw new Error("modes: THEME.views.".concat(a,
+))if(!XT.includes(l))throw new Error("modes: THEME.views.".concat(a,
 ".").concat(l,
-" is not a colour of a view (have: ").concat(jT.join(", "),
+" is not a colour of a view (have: ").concat(XT.join(", "),
 ")"))}
 let i=Object.hasOwn(n,
 e)&&n[e]||{
@@ -19965,9 +19966,9 @@ c(FH,
 var wA=new Map;
 function IH(e){
 if(wA.has(e))return wA.get(e);
-if(!Object.hasOwn(cd,
+if(!Object.hasOwn(fd,
 e))throw new Error("modes: unknown mode '".concat(e,
-"' (have: ").concat(YT.join(", "),
+"' (have: ").concat(QT.join(", "),
 ")"));
 let t={
 tSrc:{
@@ -20019,14 +20020,14 @@ uRampN:{
 value:1}
 }
 ,
-n=Lt(XT+cd[e],
+n=Lt(YT+fd[e],
 t);
 return wA.set(e,
 n),
 n}
 c(IH,
 "material");
-function rn(e,
+function on(e,
 t,
 n,
 i={
@@ -20063,10 +20064,10 @@ o.uCell.value=(i.cell??16)*a}
 e.pass(r),
 i.look!==!1&&Object.assign(e.post,
 EH[n])}
-c(rn,
+c(on,
 "view");
-var dd=ud({
-CLAUDE:c(()=>hd,
+var md=hd({
+CLAUDE:c(()=>dd,
 "CLAUDE"),
 COLORS:c(()=>DH,
 "COLORS"),
@@ -20074,55 +20075,55 @@ MONO:c(()=>zH,
 "MONO"),
 SPIN:c(()=>bA,
 "SPIN"),
-VERBS:c(()=>eC,
+VERBS:c(()=>tC,
 "VERBS"),
-assistant:c(()=>md,
+assistant:c(()=>gd,
 "assistant"),
 elapsedAt:c(()=>OH,
 "elapsedAt"),
-fmtElapsed:c(()=>lv,
+fmtElapsed:c(()=>uv,
 "fmtElapsed"),
 fmtTokens:c(()=>MA,
 "fmtTokens"),
 promptBox:c(()=>qf,
 "promptBox"),
-spinGlyph:c(()=>$T,
+spinGlyph:c(()=>eC,
 "spinGlyph"),
 thinking:c(()=>jo,
 "thinking"),
 toolCall:c(()=>ec,
 "toolCall"),
-turnElapsed:c(()=>uv,
+turnElapsed:c(()=>cv,
 "turnElapsed"),
-turnTokens:c(()=>iC,
+turnTokens:c(()=>rC,
 "turnTokens"),
-verbAt:c(()=>tC,
+verbAt:c(()=>nC,
 "verbAt"),
 workedFor:c(()=>xA,
 "workedFor")}
 ),
-hd="#d97757",
-ZT="#f3b59a",
-fd="#8a8f98",
-sv="#5b606b",
+dd="#d97757",
+KT="#f3b59a",
+pd="#8a8f98",
+lv="#5b606b",
 rh="#e8e8e8",
-KT="#6fbf73",
+JT="#6fbf73",
 DH=Object.freeze({
-claude:hd,
-shine:ZT,
-grey:fd,
-dim:sv,
+claude:dd,
+shine:KT,
+grey:pd,
+dim:lv,
 white:rh,
-ok:KT}
+ok:JT}
 ),
 zH="JetBrains Mono",
-JT=c((e,
+$T=c((e,
 t)=>{
 let n=e%t;
 return n<0?n+t:n}
 ,
 "wrap"),
-pd=c((e,
+vd=c((e,
 t)=>{
 let n=e.size??t;
 return{
@@ -20143,15 +20144,15 @@ bA=Object.freeze(["·",
 "✶",
 "✻",
 "✽"]);
-function $T(e,
+function eC(e,
 t=8){
 let n=bA.length,
-i=JT(Math.floor(e*t),
+i=$T(Math.floor(e*t),
 2*n-2);
 return bA[i<n?i:2*n-2-i]}
-c($T,
+c(eC,
 "spinGlyph");
-function lv(e){
+function uv(e){
 return e=Math.max(0,
 Math.floor(e)),
 e<60?"".concat(e,
@@ -20161,13 +20162,13 @@ e<60?"".concat(e,
 "h ").concat(String(Math.floor(e/60)%60).padStart(2,
 "0"),
 "m")}
-c(lv,
+c(uv,
 "fmtElapsed");
 var MA=c(e=>e<1e3?"".concat(Math.round(e),
 " tokens"):"".concat((e/1e3).toFixed(1),
 "k tokens"),
 "fmtTokens"),
-eC=Object.freeze(["Recombobulating",
+tC=Object.freeze(["Recombobulating",
 "Cogitating",
 "Percolating",
 "Ruminating",
@@ -20187,9 +20188,9 @@ eC=Object.freeze(["Recombobulating",
 "Coalescing",
 "Wrangling",
 "Divining"]);
-function tC(e,
+function nC(e,
 {
-verbs:t=eC,
+verbs:t=tC,
 every:n=4.5,
 t0:i=0,
 seed:r=0}
@@ -20199,15 +20200,15 @@ seed:r=0}
 let o=Math.floor((e-i)/n);
 return t[Math.floor(gi(o,
 r)*t.length)]}
-c(tC,
+c(nC,
 "verbAt");
-var nC=c(e=>e?.clockZero??0,
+var iC=c(e=>e?.clockZero??0,
 "zeroOf"),
-uv=c((e,
+cv=c((e,
 t)=>Math.max(0,
-e-nC(t)),
+e-iC(t)),
 "turnElapsed");
-function QT(e,
+function ZT(e,
 t,
 n){
 if(typeof e=="function")return Math.max(0,
@@ -20220,9 +20221,9 @@ Math.ceil(String(r.text??"").length/n));
 i+=t>=r.end?o:Math.ceil(o*(t-r.start)/Math.max(.05,
 r.end-r.start))}
 return i}
-c(QT,
+c(ZT,
 "said");
-function iC(e,
+function rC(e,
 t,
 n){
 let{
@@ -20232,16 +20233,16 @@ chars:o=4}
 =n??{
 }
 ,
-a=n?.from??nC(e),
-s=t>a?QT(i,
+a=n?.from??iC(e),
+s=t>a?ZT(i,
 t,
-o)-QT(i,
+o)-ZT(i,
 a,
 o):0;
 return Math.max(0,
 s)+Math.floor(Math.max(0,
 t-a)*r)}
-c(iC,
+c(rC,
 "turnTokens");
 function jo(e,
 t,
@@ -20253,23 +20254,23 @@ r={
 let{
 a:o,
 st:a}
-=pd(r,
+=vd(r,
 26),
-s="".concat(r.verb??tC(i,
+s="".concat(r.verb??nC(i,
 r),
 "…");
-e.text(r.glyph??$T(i),
+e.text(r.glyph??eC(i),
 t,
 n,
 {
 ...a,
-color:hd,
+color:dd,
 alpha:o}
 );
 let l=e.measure("M",
 a),
 u=t+l*2,
-h=JT(i*(r.shimmerSpeed??.9),
+h=$T(i*(r.shimmerSpeed??.9),
 1.4)*(s.length+6)-3;
 [...s].forEach((g,
 w)=>{
@@ -20279,7 +20280,7 @@ u+w*l,
 n,
 {
 ...a,
-color:v>.5?ZT:hd,
+color:v>.5?KT:dd,
 alpha:o*(.82+.18*v)}
 )}
 );
@@ -20287,10 +20288,10 @@ let f=r.T,
 d=[],
 p=r.elapsed===void 0?f?"turn":null:r.elapsed,
 m=r.tokens===void 0?f?"turn":null:r.tokens;
-p!=null&&d.push(p==="turn"?lv(uv(i,
-f)):typeof p=="number"?lv(p):p),
+p!=null&&d.push(p==="turn"?uv(cv(i,
+f)):typeof p=="number"?uv(p):p),
 m!=null&&d.push("".concat(r.arrow??"↓",
-" ").concat(m==="turn"?MA(iC(f,
+" ").concat(m==="turn"?MA(rC(f,
 i,
 r.count)):typeof m=="number"?MA(m):m)),
 r.interrupt&&d.push("esc to interrupt"),
@@ -20300,7 +20301,7 @@ u+(s.length+1)*l,
 n,
 {
 ...a,
-color:fd,
+color:pd,
 alpha:o}
 )}
 c(jo,
@@ -20315,24 +20316,24 @@ r={
 let{
 a:o,
 st:a}
-=pd(r,
+=vd(r,
 26);
 e.text("✻",
 t,
 n,
 {
 ...a,
-color:hd,
+color:dd,
 alpha:o}
 ),
 e.text("".concat(r.verb??"Worked",
-" for ").concat(typeof i=="number"?lv(i):i),
+" for ").concat(typeof i=="number"?uv(i):i),
 t+e.measure("M",
 a)*2,
 n,
 {
 ...a,
-color:fd,
+color:pd,
 alpha:o}
 )}
 c(xA,
@@ -20348,12 +20349,12 @@ let{
 size:o,
 a,
 st:s}
-=pd(r,
+=vd(r,
 26),
 l=o*2.1;
 e.draw(d=>{
 d.globalAlpha*=a*.9,
-d.strokeStyle=r.border??sv,
+d.strokeStyle=r.border??lv,
 d.lineWidth=1.5;
 let p=o*.45;
 d.beginPath(),
@@ -20399,12 +20400,12 @@ n+l+o*.9,
 {
 ...s,
 size:o*.72,
-color:sv,
+color:lv,
 alpha:a}
 )}
 c(qf,
 "promptBox");
-function md(e,
+function gd(e,
 t,
 n,
 i,
@@ -20414,7 +20415,7 @@ r={
 let{
 a:o,
 st:a}
-=pd(r,
+=vd(r,
 26),
 s=r.t==null?i.length:Math.floor(X((r.t-(r.t0??0))*(r.rate??40),
 0,
@@ -20442,7 +20443,7 @@ color:r.color??rh,
 alpha:o}
 ),
 l.length}
-c(md,
+c(gd,
 "assistant");
 function ec(e,
 t,
@@ -20457,7 +20458,7 @@ let{
 size:s,
 a:l,
 st:u}
-=pd(a,
+=vd(a,
 24),
 h=s*1.5,
 f=e.measure("M",
@@ -20467,7 +20468,7 @@ t,
 n,
 {
 ...u,
-color:a.bullet??KT,
+color:a.bullet??JT,
 alpha:l}
 ),
 e.text(i,
@@ -20485,7 +20486,7 @@ t+f*(2+i.length),
 n,
 {
 ...u,
-color:fd,
+color:pd,
 alpha:l}
 );
 let d=Math.floor((a.show??1)*o.length+1e-6);
@@ -20497,7 +20498,7 @@ t+f*2,
 n+h,
 {
 ...u,
-color:sv,
+color:lv,
 alpha:l}
 ),
 e.text(p,
@@ -20505,7 +20506,7 @@ t+f*5,
 n+h*(m+1),
 {
 ...u,
-color:fd,
+color:pd,
 alpha:l}
 )}
 )}
@@ -20516,7 +20517,7 @@ t,
 n=0)=>n+Math.max(0,
 e-t),
 "elapsedAt");
-var rC=new B;
+var oC=new B;
 function Hi(e,
 t,
 n,
@@ -20625,10 +20626,10 @@ e[2]+t*Math.cos(i)*Math.cos(n)],
 "around");
 function oh(e,
 t){
-return rC.set(e[0],
+return oC.set(e[0],
 e[1],
 e[2]).applyMatrix4(t.matrixWorldInverse),
-t.isOrthographicCamera?1:-rC.z}
+t.isOrthographicCamera?1:-oC.z}
 c(oh,
 "viewDepth");
 function Ur(e,
@@ -20740,7 +20741,7 @@ color:(n.color??[1,
 )}
 c(Ua,
 "dofDot");
-function oC(e,
+function aC(e,
 t,
 n,
 i){
@@ -20798,7 +20799,7 @@ color:l.map(A=>A*v*s/(s+w)*2.4)}
 )}
 }
 }
-c(oC,
+c(aC,
 "dofPolylineSmooth");
 function jf(e,
 t,
@@ -20838,7 +20839,7 @@ e[2]])}
 return r}
 c(Ga,
 "circle");
-function aC(e,
+function sC(e,
 t,
 n){
 let i=t[t.length-1];
@@ -20860,9 +20861,9 @@ return[[o[0]+(a[0]-o[0])*l,
 o[1]+(a[1]-o[1])*l,
 o[2]+(a[2]-o[2])*l],
 u]}
-c(aC,
+c(sC,
 "atLength");
-function cv(e){
+function hv(e){
 let t=[0];
 for(let n=1;
 n<e.length;
@@ -20870,9 +20871,9 @@ n++)t.push(t[n-1]+Math.hypot(e[n][0]-e[n-1][0],
 e[n][1]-e[n-1][1],
 e[n][2]-e[n-1][2]));
 return t}
-c(cv,
+c(hv,
 "arcLengths");
-function hv(e,
+function fv(e,
 t,
 n){
 if(n<=0)return[];
@@ -20889,7 +20890,7 @@ i.push([0,
 2].map(a=>e[r-1][a]+(e[r][a]-e[r-1][a])*o));
 break}
 return i}
-c(hv,
+c(fv,
 "headOf");
 var Ee=c((e,
 t)=>[e[0]*t,
@@ -20909,10 +20910,10 @@ t[2],
 n)],
 "mixc");
 var ou=1.5,
-lC=.002,
+uC=.002,
 au=.17,
-vd=c((e,
-t=lC)=>[e[0],
+wd=c((e,
+t=uC)=>[e[0],
 t,
 e[1]],
 "up");
@@ -20965,7 +20966,7 @@ t]:[-t,
 t-r]}
 c(_A,
 "ringPoint");
-function sC(e,
+function lC(e,
 t,
 n){
 let i=Math.sign(t-e)||1;
@@ -20988,7 +20989,7 @@ n),
 n)),
 _A(t,
 n)]}
-c(sC,
+c(lC,
 "ringArc");
 function UH(e,
 t){
@@ -20998,7 +20999,7 @@ r=1e-6;
 return Math.abs(i+t)<r?n+t:Math.abs(n-t)<r?2*t+i+t:Math.abs(i-t)<r?4*t+(t-n):6*t+(t-i)}
 c(UH,
 "ringU");
-function fv(){
+function dv(){
 let e=[{
 c:[[.13,
 0],
@@ -21052,8 +21053,8 @@ r=c((l,
 u,
 h,
 f)=>{
-let d=l.map(m=>vd(m)),
-p=cv(d);
+let d=l.map(m=>wd(m)),
+p=hv(d);
 return t.push({
 pts:d,
 acc:p,
@@ -21077,8 +21078,8 @@ p:l.c.at(-1),
 t:h+f.len/au}
 ),
 l.from&&n.push({
-p:vd(l.c[0],
-lC),
+p:wd(l.c[0],
+uC),
 t:h,
 r:.03}
 ),
@@ -21124,7 +21125,7 @@ M,
 1.6,
 !1);
 n.push({
-p:vd(x),
+p:wd(x),
 t:M+T.len/au,
 r:.022}
 )}
@@ -21147,10 +21148,10 @@ m]of[[l.u+f/2,
 1],
 [l.u-d/2,
 -1]]){
-let g=sC(l.u,
+let g=lC(l.u,
 p,
-ou).map(v=>vd(v)),
-w=cv(g);
+ou).map(v=>wd(v)),
+w=hv(g);
 a.push({
 pts:g,
 acc:w,
@@ -21165,10 +21166,10 @@ let s=[];
 for(let l=0;
 l<4;
 l++){
-let u=sC(l*2*1.44,
+let u=lC(l*2*1.44,
 (l+1)*2*1.44,
-1.44).map(f=>vd(f)),
-h=cv(u);
+1.44).map(f=>wd(f)),
+h=hv(u);
 s.push({
 pts:u,
 acc:h,
@@ -21182,9 +21183,9 @@ vias:n,
 contacts:i,
 S:ou}
 }
-c(fv,
+c(dv,
 "buildNetwork");
-function uC(e,
+function cC(e,
 {
 start:t,
 sixteenth:n,
@@ -21204,14 +21205,14 @@ hops:l,
 ring:d,
 close:d>=1?1:0}
 }
-c(uC,
+c(cC,
 "traceState");
 var SA=c((e,
 t)=>X((t-e.t0)*au,
 0,
 e.len),
 "laneDrawn");
-function dv(e,
+function pv(e,
 t,
 n,
 i={
@@ -21231,7 +21232,7 @@ for(let h of t.lanes){
 let f=SA(h,
 n.hops);
 if(f<=0)continue;
-let d=hv(h.pts,
+let d=fv(h.pts,
 h.acc,
 f);
 mo(e,
@@ -21261,7 +21262,7 @@ a)}
 for(let h of t.rings){
 let f=n.ring*h.len;
 if(f<=0)continue;
-let d=hv(h.pts,
+let d=fv(h.pts,
 h.acc,
 f);
 mo(e,
@@ -21282,7 +21283,7 @@ width:10*o}
 ,
 a))}
 if((i.inner??0)>0)for(let h of t.inner)mo(e,
-hv(h.pts,
+fv(h.pts,
 h.acc,
 h.len*i.inner),
 {
@@ -21333,9 +21334,9 @@ width:12*o}
 a)}
 }
 return s}
-c(dv,
+c(pv,
 "drawTraces");
-function cC(e,
+function hC(e,
 t,
 n,
 i,
@@ -21359,7 +21360,7 @@ for(let m=p;
 m<d;
 m+=a){
 let[g,
-w]=aC(f.pts,
+w]=sC(f.pts,
 f.acc,
 m),
 v=[g[0]-w[0]*s,
@@ -21388,25 +21389,25 @@ r.dof),
 u++}
 }
 return u}
-c(cC,
+c(hC,
 "drawCurrent");
-function gd(e,
+function Ad(e,
 t){
 let n=0;
 for(let i of e.lanes)n+=SA(i,
 t.hops);
 for(let i of e.rings)n+=t.ring*i.len;
 return n}
-c(gd,
+c(Ad,
 "drawnLength");
-var In=Object.freeze({
+var Dn=Object.freeze({
 S:1.5,
 H:3}
 );
 function as(e,
 {
-S:t=In.S,
-H:n=In.H,
+S:t=Dn.S,
+H:n=Dn.H,
 y0:i=0,
 extrude:r=1,
 color:o=[1,
@@ -21499,8 +21500,8 @@ HH=c(e=>"\nuniform vec3 uCol, uC; uniform float uIntensity, uReveal, uPulse, uCe
 "\n}"),
 "FRAG");
 function TA({
-S:e=In.S,
-H:t=In.H,
+S:e=Dn.S,
+H:t=Dn.H,
 pattern:n="hex",
 cell:i=.16,
 frontCol:r=!1}
@@ -21609,7 +21610,7 @@ l.visible=(u??A.uIntensity.value)>0&&(h??A.uReveal.value)>0}
 l}
 c(TA,
 "shieldMesh");
-function hC(e,
+function fC(e,
 {
 t0:t,
 tTop:n,
@@ -21628,7 +21629,7 @@ shield:u*1.3,
 pulse:h>=0&&h<=1?s.inOutSine(h)*1.08:-1,
 locked:h>1?1:0}
 }
-c(hC,
+c(fC,
 "sandboxState");
 var su=(1+Math.sqrt(5))/2,
 WH=c(e=>{
@@ -21636,7 +21637,7 @@ let t=Math.hypot(...e);
 return e.map(n=>n/t)}
 ,
 "norm"),
-pv=c(e=>Array.from({
+mv=c(e=>Array.from({
 length:1<<e}
 ,
 (t,
@@ -21659,7 +21660,7 @@ tetra:[[1,
 [-1,
 -1,
 1]],
-cube:pv(3),
+cube:mv(3),
 octa:[[1,
 0,
 0],
@@ -21678,8 +21679,8 @@ octa:[[1,
 [0,
 0,
 -1]],
-dodeca:[...pv(3),
-...pv(2).flatMap(([e,
+dodeca:[...mv(3),
+...mv(2).flatMap(([e,
 t])=>[[0,
 e/su,
 t*su],
@@ -21689,7 +21690,7 @@ t*su,
 [e*su,
 0,
 t/su]])],
-icosa:pv(2).flatMap(([e,
+icosa:mv(2).flatMap(([e,
 t])=>[[0,
 e,
 t*su],
@@ -21799,7 +21800,7 @@ inradius:l,
 dihedral:s}
 ]}
 ));
-function mv(e,
+function vv(e,
 {
 pos:t=[0,
 0],
@@ -21824,9 +21825,9 @@ a.multiply(o),
 new B(i,
 i,
 i))}
-c(mv,
+c(vv,
 "restMatrix");
-function vv(e,
+function gv(e,
 t,
 {
 height:n=3.2,
@@ -21854,9 +21855,9 @@ impact:X(o/.55),
 falling:0,
 shown:!0}
 }
-c(vv,
+c(gv,
 "landState");
-function gv(e,
+function wv(e,
 t,
 n=0,
 i=0){
@@ -21871,7 +21872,7 @@ o.z).multiply(new Ke().makeRotationZ(i)).multiply(new Ke().makeTranslation(-o.x,
 -o.z)),
 s=r.multiply(a).multiply(t);
 return e.V.map(l=>new B(...l).applyMatrix4(s).toArray())}
-c(gv,
+c(wv,
 "poseVerts");
 function Xf(e,
 t,
@@ -21914,7 +21915,7 @@ width:o*3}
 i.dof)}
 c(Xf,
 "drawSolid");
-function wv(e,
+function Av(e,
 t,
 n,
 i={
@@ -21951,9 +21952,9 @@ color:Ee(i.color??[1,
 width:1.4}
 ,
 i.dof)}
-c(wv,
+c(Av,
 "drawImpact");
-function fC(e,
+function dC(e,
 t,
 {
 origin:n=[0,
@@ -22004,9 +22005,9 @@ l[h*4+1]=d.a.y+(d.b.y-d.a.y)*p+m()-n[1],
 l[h*4+2]=d.a.z+(d.b.z-d.a.z)*p+m()-n[2],
 l[h*4+3]=d.w}
 return l}
-c(fC,
+c(dC,
 "edgeCloud");
-var wd=c(e=>"".concat(e.nV,
+var yd=c(e=>"".concat(e.nV,
 " − ").concat(e.nE,
 " + ").concat(e.nF,
 " = ").concat(e.nV-e.nE+e.nF),
@@ -22055,7 +22056,7 @@ c(EA,
 var XH=c(e=>String(e).replace((new RegExp("\\B(?=(\\d{3})+(?!\\d))","g")),
 " "),
 "fmt");
-function dC(e,
+function pC(e,
 t,
 n={
 }
@@ -22239,9 +22240,9 @@ cell:u,
 rowY:c(v=>r+(v+1)*a,
 "rowY")}
 }
-c(dC,
+c(pC,
 "drawPanel");
-var Nn=Object.freeze({
+var Un=Object.freeze({
 R:40,
 H:56}
 );
@@ -22253,22 +22254,22 @@ let r=Math.hypot(e,
 t),
 o=Ie(9,
 24,
-r)*(1-Ie(Nn.R-3,
-Nn.R,
+r)*(1-Ie(Un.R-3,
+Un.R,
 Math.max(Math.abs(e),
 Math.abs(t)))*.6),
-a=X(n*1.6-(1-r/(Nn.R*1.42))*.6),
+a=X(n*1.6-(1-r/(Un.R*1.42))*.6),
 s=Math.sin(.21*e+.13*t+i)*Math.cos(.17*t-.07*e-i*.6)+.45*Math.sin(.47*e-.36*t+1.3+i*.8);
 return 3.4*o*Ie(0,
 1,
 a)*(1+s)*.5*(1.25+.25*Math.sin(.05*e+.11*t))}
 c(RA,
 "terrainHeight");
-function pC(e,
+function mC(e,
 t={
 }
 ){
-let n=Nn.R-.5,
+let n=Un.R-.5,
 i=t.spacing??2.5,
 r=t.step??1,
 o=t.rMin??9,
@@ -22339,10 +22340,10 @@ p+=i)d(p,
 "x"),
 d(p,
 "z")}
-c(pC,
+c(mC,
 "drawTerrain");
 var YH="01<>/\\[]{}()=+*#%&$@!?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-function Av(e,
+function yv(e,
 t,
 n,
 i=.45){
@@ -22359,9 +22360,9 @@ continue}
 n>=t+i*(s+1)/o?a+=e[s]:n>=t+i*s/o*.5?a+=YH[Math.floor(gi(s,
 r)*50)]:a+=" "}
 return a}
-c(Av,
+c(yv,
 "decodeStr");
-function yv(e,
+function bv(e,
 t,
 [n,
 i,
@@ -22402,9 +22403,9 @@ h.fillText(t,
 0,
 u/2)}
 )}
-c(yv,
+c(bv,
 "faceText");
-function mC(e,
+function vC(e,
 t,
 n,
 i,
@@ -22435,7 +22436,7 @@ rot:f+Math.PI/2,
 alpha:a.alpha??1}
 )}
 }
-c(mC,
+c(vC,
 "arcText");
 function BA(e,
 t,
@@ -22463,7 +22464,7 @@ u(0,
 o));
 if(h.some(d=>d[2]>=1||d[2]<=-1))return!1;
 let f=a.size??64;
-return yv(e,
+return bv(e,
 t,
 h,
 {
@@ -22475,7 +22476,7 @@ tracking:(a.trackingEm??0)*f}
 !0}
 c(BA,
 "planeText");
-var Ad=[[.8,
+var bd=[[.8,
 .84,
 .92],
 [.2,
@@ -22493,7 +22494,7 @@ var Ad=[[.8,
 [.42,
 .46,
 .54]];
-function vC(e,
+function gC(e,
 {
 capH:t=.4,
 leading:n=.45,
@@ -22504,7 +22505,7 @@ px:a=320}
 ={
 }
 ){
-let s=Fn(),
+let s=In(),
 l=s.getContext("2d",
 {
 willReadFrequently:!0}
@@ -22551,9 +22552,9 @@ return x>=0&&M>=0&&x<p&&M<m&&w[(M*p+x)*4]>127}
 width:p*v,
 height:m*v}
 }
-c(vC,
+c(gC,
 "textMask");
-function gC(e,
+function wC(e,
 t,
 {
 center:n=[0,
@@ -22579,9 +22580,9 @@ return{
 arr:r,
 placed:o}
 }
-c(gC,
+c(wC,
 "calligram");
-function bv(e,
+function Mv(e,
 t,
 n){
 let i=new Float32Array(n*4),
@@ -22598,9 +22599,9 @@ o*4):i.set([0,
 1],
 o*4);
 return i}
-c(bv,
+c(Mv,
 "onPlaced");
-function wC(e,
+function AC(e,
 t,
 n=[0,
 0,
@@ -22618,9 +22619,9 @@ n[2]+a*Math.sin(s)*t,
 0],
 r*4)}
 return i}
-c(wC,
+c(AC,
 "sphereShell");
-function AC({
+function yC({
 total:e=262144,
 fanIn:t=512,
 bins:n=41,
@@ -22669,7 +22670,7 @@ width:h,
 cp:f,
 checkpoints:r}
 }
-c(AC,
+c(yC,
 "heInit");
 function QH(e,
 t){
@@ -22684,7 +22685,7 @@ a++)o[a]=e.cp[i*e.bins+a]*(1-r)+e.cp[(i+1)*e.bins+a]*r;
 return o}
 c(QH,
 "heCounts");
-function yC(e,
+function bC(e,
 t,
 n={
 }
@@ -22811,9 +22812,9 @@ g+50,
 align:"right",
 color:h}
 )}
-c(yC,
+c(bC,
 "drawHeHistogram");
-var bC=[[.3,
+var MC=[[.3,
 .62,
 1],
 [.08,
@@ -22831,7 +22832,7 @@ var bC=[[.3,
 [.2,
 .36,
 .78]];
-function MC(e,
+function xC(e,
 t,
 {
 cell:n=.6,
@@ -22840,7 +22841,7 @@ margin:r=.6}
 ={
 }
 ){
-let o=Nn.R-r,
+let o=Un.R-r,
 s=qo(e,
 c((g,
 w)=>Math.abs(g)<o&&Math.abs(w)<o&&!(Math.abs(g)<i&&Math.abs(w)<i),
@@ -22867,11 +22868,11 @@ s[g*4+1]=0,
 s[g*4+2]=v;
 let y=3.4*(Ie(9,
 24,
-A)*(1-Ie(Nn.R-3,
-Nn.R,
+A)*(1-Ie(Un.R-3,
+Un.R,
 Math.max(Math.abs(w),
 Math.abs(v)))*.6))*.5*(1.25+.25*Math.sin(.05*w+.11*v)),
-b=(1-A/(Nn.R*1.42))*.6,
+b=(1-A/(Un.R*1.42))*.6,
 x=.21*w+.13*v,
 M=.17*v-.07*w,
 T=.47*w-.36*v+1.3;
@@ -22923,14 +22924,14 @@ m=[g,
 w]}
 }
 }
-c(MC,
+c(xC,
 "codeWorld");
-var xC=3.8,
+var _C=3.8,
 Yf=1.45,
 ZH=c((e=Yf,
-t=xC)=>Math.sqrt(2*e/t),
+t=_C)=>Math.sqrt(2*e/t),
 "fallTime"),
-Mv={
+xv={
 tetra:"fire",
 cube:"earth",
 octa:"air",
@@ -23029,11 +23030,11 @@ rim:.2,
 seed:105}
 }
 ;
-function xv(e,
+function _v(e,
 t,
 {
 h:n=Yf,
-g:i=xC,
+g:i=_C,
 turn:r=.35}
 ={
 }
@@ -23069,7 +23070,7 @@ v:0,
 s:a,
 tremble:JH(a)}
 }
-c(xv,
+c(_v,
 "fall");
 var KH=c((e,
 {
@@ -23108,7 +23109,7 @@ w:.03+.09*e}
 }
 c(Qf,
 "front");
-function _C(e,
+function SC(e,
 {
 r0:t=.2,
 reach:n=3.4,
@@ -23122,9 +23123,9 @@ r:t+n*(1-Math.exp(-e/i)),
 k:Math.exp(-e/(r*.45))*(1-X((e-r*.7)/(r*.3))),
 w:.08+.12*e}
 }
-c(_C,
+c(SC,
 "shieldWave");
-function _v(e,
+function Sv(e,
 t=.03,
 {
 period:n=3/60,
@@ -23133,9 +23134,9 @@ tau:i=.028}
 }
 ){
 return e<=0?0:t*Math.exp(-e/i)*Math.sin(j*e/n)}
-c(_v,
+c(Sv,
 "jolt");
-function SC(e,
+function TC(e,
 t,
 n=.2){
 let i=Be(e),
@@ -23161,7 +23162,7 @@ b:.45+.55*i(),
 life:t.life*(.55+.45*i())}
 )}
 return r}
-c(SC,
+c(TC,
 "grains");
 function PA(e,
 t,
@@ -23176,7 +23177,7 @@ a),
 Math.sin(e.a)*o]}
 c(PA,
 "grainAt");
-var TC=c((e,
+var CC=c((e,
 t)=>t<=0||t>=e.life?0:e.b*(1-t/e.life)**1.6*X(t/.02),
 "grainAlpha"),
 kA=c((e,
@@ -23231,26 +23232,26 @@ r.push(s)}
 );
 let o=new It;
 return o.setAttribute("position",
-new Ln(t,
+new Fn(t,
 3)),
 o.setAttribute("normal",
-new Ln(n,
+new Fn(n,
 3)),
 o.setAttribute("aE",
-new Ln(i,
+new Fn(i,
 3)),
 o.setAttribute("aF",
-new Ln(r,
+new Fn(r,
 1)),
 o}
 c($H,
 "pieceGeometry");
 var eW="\nin vec3 aE; in float aF;\nuniform float uScale;\nout vec3 vW; out vec3 vN; out float vEdge; out vec2 vUV; flat out float vFace;\nvoid main() {\n  vec4 w = modelMatrix * vec4(position, 1.);\n  vW = w.xyz; vN = normalize(mat3(modelMatrix) * normal);\n  vEdge = aE.x * uScale; vUV = aE.yz * uScale; vFace = aF;\n  gl_Position = projectionMatrix * viewMatrix * w;\n}",
 tW="\nuniform vec3 uTint, uKey, uRim, uEnvHex, uEnvTrace, uEnvRing;\nuniform float uAlbedo, uKeyI, uAmb, uEnvI, uAlpha, uBevel, uGlow, uDis, uCell, uSeed, uFlash;\nuniform vec4 uBox;      // sandbox: half size, height, hex lattice (walls and lid), lit edges\nuniform vec4 uPanel;    // the light above: centre x, z, half width, half depth\nuniform vec3 uPanelY;   // its height, its brightness, the brightness of the floor (dots and traces)\nuniform float uHexCell;\nuniform sampler2D uTraces; uniform float uTraceR;    // the power traces seen from above, over [-uTraceR, uTraceR]²\nuniform vec4 uRing[6], uRingW[6];                    // the impacts' fronts on the floor (x, z, radius, crest; width)\nin vec3 vW; in vec3 vN; in float vEdge; in vec2 vUV; flat in float vFace; out vec4 o;\n\nfloat hexLines(vec2 uv) {\n  vec2 q = uv / uHexCell; const vec2 r = vec2(1., 1.7320508);\n  vec2 a = mod(q, r) - r * .5, b = mod(q - r * .5, r) - r * .5, g = dot(a, a) < dot(b, b) ? a : b;\n  vec2 p = abs(g); float e = .5 - max(dot(p, vec2(.5, .8660254)), p.x), fw = fwidth(e);\n  float dens = max(fwidth(q.x), fwidth(q.y));\n  return (1. - smoothstep(0., fw * 1.25, e)) * (1. - smoothstep(.1, .3, dens));\n}\n// What a ray from P (inside the sandbox) along R meets: the walls' lattice and lit edges, the lid, the light above,\n// the floor's traces and dots and the rings running over it.\nvec3 env(vec3 P, vec3 R) {\n  // (every derivative is taken outside the branches: they are undefined where a 2×2 pixel quad diverges)\n  vec3 lo = vec3(-uBox.x, 0., -uBox.x), hi = vec3(uBox.x, uBox.y, uBox.x);\n  vec3 Rs = vec3(abs(R.x) < 1e-5 ? 1e-5 : R.x, abs(R.y) < 1e-5 ? 1e-5 : R.y, abs(R.z) < 1e-5 ? 1e-5 : R.z);\n  vec3 tv = (mix(lo, hi, step(0., Rs)) - P) / Rs;\n  float t = max(min(tv.x, min(tv.y, tv.z)), 0.);\n  vec3 H = P + R * t;\n  bool wx = tv.x <= min(tv.y, tv.z), wz = !wx && tv.z <= tv.y, floorHit = !wx && !wz && R.y < 0.;\n  vec2 uv = wx ? H.zy : (wz ? H.xy : H.xz);\n  vec3 dl = min(abs(H - lo), abs(hi - H));\n  float ed = wx ? min(dl.y, dl.z) : (wz ? min(dl.x, dl.y) : min(dl.x, dl.z));\n  float fe = fwidth(ed) + 1e-4, hex = hexLines(uv);\n  float c = (1. - smoothstep(.008, .008 + fe * 1.5, ed)) * uBox.w;                 // the box's lit edges\n  // the floor: the traces, the via dots, the rings running over it\n  vec2 f = H.xz, g = (fract(f / .1 + .5) - .5) * .1;\n  float fd = fwidth(f.x) * 1.2 + 1e-4;\n  float tr = texture(uTraces, f / (2. * uTraceR) + .5).r, dots = (1. - smoothstep(.004, .004 + fd, length(g))) * .5;\n  float rings = 0.;\n  for (int j = 0; j < 6; j++) {\n    float u = (distance(f, uRing[j].xy) - uRing[j].z) / max(uRingW[j].x, 1e-3);\n    rings += exp(-u * u) * max(uRing[j].w, 0.) * 40.;\n  }\n  rings *= step(max(abs(f.x), abs(f.y)), uBox.x);\n  vec3 col = vec3(c) + (floorHit ? (tr * uEnvTrace + dots) * uPanelY.z + rings * uEnvRing : hex * uBox.z * uEnvHex);\n  // the light above (a panel under the lid): a hard rectangle in the glass\n  vec3 Q = P + R * ((uPanelY.x - P.y) / Rs.y);\n  vec2 d = abs(Q.xz - uPanel.xy) - uPanel.zw;\n  float fw = fwidth(Q.x) + fwidth(Q.z) + 1e-4;\n  col += R.y > 0. ? (1. - smoothstep(0., fw * 1.5, max(d.x, d.y))) * uPanelY.y : 0.;\n  return col;\n}\nvoid main() {\n  vec3 N = normalize(vN) * (gl_FrontFacing ? 1. : -1.), V = normalize(cameraPosition - vW);\n  float ndv = clamp(dot(N, V), 0., 1.), F = .04 + .96 * pow(1. - ndv, 5.);\n  float ndl = max(dot(N, uKey), 0.);\n  vec3 c = uTint * (uAlbedo * (uAmb + uKeyI * ndl) + F * env(vW, reflect(-V, N)) * uEnvI);\n  // the bevel: a fine line along the edges that catches the light (the glow lines carry the edge itself), in the rim's colour\n  float fe = fwidth(vEdge) + 1e-5;\n  float rim = (1. - smoothstep(uBevel, uBevel + fe * 1.5, vEdge)) * uGlow * (.35 + .65 * ndl);\n  c *= 1. + uFlash; rim *= 1. + uFlash;\n  // decompile: the face breaks into glyph cells that light up (in the rim's colour) and go out\n  if (uDis > 0.) {\n    vec2 cell = floor(vUV / uCell);\n    float r = hash12(cell * 1.37 + vFace * 17.31 + uSeed);\n    if (r < uDis) discard;\n    rim += smoothstep(.12, 0., r - uDis) * 1.6;\n  }\n  if (!gl_FrontFacing) { c *= .3; rim *= .3; }         // the inside, seen through a decompiling face\n  o = vec4(c + uRim * rim, uAlpha);\n}";
-function Sv(e,
+function Tv(e,
 t=1.6,
 n=1024){
-let i=Fn();
+let i=In();
 i.width=i.height=n;
 let r=i.getContext("2d"),
 o=n/(2*t),
@@ -23289,11 +23290,11 @@ flipY:!1,
 colorSpace:"",
 generateMipmaps:!0,
 minFilter:ho,
-magFilter:On,
+magFilter:Nn,
 anisotropy:4}
 ),
 s}
-c(Sv,
+c(Tv,
 "tracesTexture");
 function nW({
 traces:e=null,
@@ -23426,7 +23427,7 @@ value:[0,
 )}
 c(nW,
 "obsidianMaterial");
-function Tv(e,
+function Cv(e,
 t){
 return e.map(n=>{
 let i=new tt($H(n.solid),
@@ -23438,14 +23439,14 @@ i.renderOrder=-10,
 i.material.uniforms.uScale.value=new B().setFromMatrixScale(n.M).x,
 i}
 )}
-c(Tv,
+c(Cv,
 "makePieces");
 var iW=new Ke,
-CC=new Ke,
 EC=new Ke,
 RC=new Ke,
+BC=new Ke,
 rW=new B;
-function Cv(e,
+function Ev(e,
 {
 dy:t=0,
 spin:n=0,
@@ -23454,23 +23455,23 @@ tip:i=0}
 }
 ){
 let r=rW.setFromMatrixPosition(e.M);
-CC.makeRotationY(n).multiply(RC.makeRotationX(i)),
-EC.makeTranslation(r.x,
+EC.makeRotationY(n).multiply(BC.makeRotationX(i)),
+RC.makeTranslation(r.x,
 r.y,
-r.z).multiply(CC).multiply(RC.makeTranslation(-r.x,
+r.z).multiply(EC).multiply(BC.makeTranslation(-r.x,
 -r.y,
 -r.z));
 let o=new Ke().multiplyMatrices(iW.makeTranslation(0,
 t,
 0),
-EC).multiply(e.M);
+RC).multiply(e.M);
 return{
 F:o,
 P:e.solid.V.map(a=>new B(...a).applyMatrix4(o).toArray())}
 }
-c(Cv,
+c(Ev,
 "posePiece");
-function Ev(e,
+function Rv(e,
 t,
 n={
 }
@@ -23490,7 +23491,7 @@ u)=>l.fromArray(o[u]??[0,
 0,
 0])):s.value=o}
 }
-c(Ev,
+c(Rv,
 "showPiece");
 function LA(e,
 t,
@@ -23560,7 +23561,7 @@ return s}
 c(LA,
 "faceCloud");
 var Ha=6,
-Rv=c(()=>Array.from({
+Bv=c(()=>Array.from({
 length:Ha}
 ,
 ()=>new ot),
@@ -23571,7 +23572,7 @@ oW="\nuniform float uSide, uPitch, uY, uSize, uMinPx, uFocal, uBright, uSparkle,
 "];                     // per front: the colour it lights the dots in (its piece's element)\nout vec3 vCol; out float vBlur;\nvoid main() {\n  float i = float(gl_VertexID), h0 = (uSide - 1.) * .5 * uPitch;\n  vec3 p = vec3(mod(i, uSide) * uPitch - h0, uY, floor(i / uSide) * uPitch - h0);\n  float lift = 0., glow = 0.; vec3 gcol = vec3(0.);\n  for (int j = 0; j < ").concat(Ha,
 "; j++) {\n    float d = distance(p.xz, uRing[j].xy) - uRing[j].z, u = d / max(uRingW[j].x, 1e-3);\n    float crest = exp(-u * u), trough = -.35 * exp(-(u + 1.7) * (u + 1.7));\n    float rip = d < 0. ? uRingW[j].y * .5 * cos(u * 2.2) * exp(u / 3.5) : 0.;    // rings that follow the front (water)\n    lift += uRing[j].w * (crest + trough + rip);\n    float gj = uRing[j].w * (crest + abs(rip) * .7);\n    glow += gj; gcol += uRingC[j] * gj;\n  }\n  vec3 fc = glow > 1e-7 ? gcol / glow : uCol;                                  // the light of the fronts here\n  float inside = step(max(abs(p.x), abs(p.z)), uClip);                         // the shield keeps the shock in\n  p.y += lift * inside;\n  float g = min(glow * inside / .03, 2.5);\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp * (1. + uSwell * g);\n  float core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  float energy = min(1., (px * px) / (uMinPx * uMinPx)) * (core * core) / (sz * sz);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float tw = 1. + uSparkle * (hash11(i + floor(uT * 12.) * 7.13) - .5) * 2.;\n  vCol = uBright * energy * (.55 + .9 * hash11(i * 1.31)) * max(tw, 0.) * (uCol + uGain * g * fc);\n}"),
 aW="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}";
-function Bv({
+function Pv({
 side:e=128,
 pitch:t=.1,
 y:n=.001}
@@ -23644,10 +23645,10 @@ value:new B(.62,
 .76)}
 ,
 uRing:{
-value:Rv()}
+value:Bv()}
 ,
 uRingW:{
-value:Rv()}
+value:Bv()}
 ,
 uRingC:{
 value:Array.from({
@@ -23691,7 +23692,7 @@ u.uFocal.value=s.isPerspectiveCamera?l/2/Math.tan(ut.degToRad(s.fov)/2):l*s.zoom
 o.visible=!0}
 ,
 o}
-c(Bv,
+c(Pv,
 "floorDots");
 function sW(e,
 t,
@@ -23724,7 +23725,7 @@ uW="\nuniform vec3 uCol, uC; uniform float uIntensity, uCell, uH, uFres, uPush, 
 "];      // per impact: centre (world), front radius; strength, width\nuniform vec3 uImpC[").concat(Ha,
 "];                       // per impact: the colour its flare takes (its piece's element)\nin vec3 vW; in vec3 vN; out vec4 o;\nfloat hexD(vec2 p) { p = abs(p); return max(dot(p, vec2(.5, .8660254)), p.x); }\nvoid main() {\n  vec3 n = abs(vN), P = vW - uC;\n  bool top = n.y > .5;\n  vec2 uv = n.x > .5 ? P.zy : (top ? P.xz : P.xy);\n  float band = 0.; vec2 push = vec2(0.); vec3 bcol = vec3(0.);\n  for (int j = 0; j < ").concat(Ha,
 "; j++) {\n    vec3 D = vW - uImp[j].xyz;\n    float u = (length(D) - uImp[j].w) / max(uImpW[j].y, 1e-3), b = uImpW[j].x * exp(-u * u);\n    vec2 dir = n.x > .5 ? D.zy : (top ? D.xz : D.xy);\n    band += b; bcol += uImpC[j] * b; push += dir / max(length(dir), 1e-4) * b * u;\n  }\n  vec3 fc = band > 1e-7 ? bcol / band : uCol;\n  vec2 q = (uv - push * uPush) / uCell;\n  const vec2 r = vec2(1., 1.7320508);\n  vec2 a = mod(q, r) - r * .5, b2 = mod(q - r * .5, r) - r * .5, g = dot(a, a) < dot(b2, b2) ? a : b2;\n  float e = .5 - hexD(g), fw = fwidth(e);\n  float line = 1. - smoothstep(0., fw * 1.25, e);\n  float dens = max(fwidth(q.x), fwidth(q.y));\n  line *= 1. - smoothstep(.1, .3, dens);\n  vec3 V = normalize(cameraPosition - vW);\n  float fres = pow(1. - abs(dot(V, normalize(vN))), 2.);\n  float base = line * (.35 + uFres * fres), flare = base * uFlare * band + band * .012 * uFlare;\n  o = vec4((uCol * base + fc * flare) * uIntensity, 1.);\n}");
-function PC({
+function kC({
 S:e=1.5,
 H:t=3,
 cell:n=.24}
@@ -23781,10 +23782,10 @@ uFlare:{
 value:5}
 ,
 uImp:{
-value:Rv()}
+value:Bv()}
 ,
 uImpW:{
-value:Rv()}
+value:Bv()}
 ,
 uImpC:{
 value:Array.from({
@@ -23828,9 +23829,9 @@ l.uImpC.value[u].fromArray(h?.col??l.uCol.value.toArray())}
 a.visible=(s.intensity??.35)>0}
 ,
 a}
-c(PC,
+c(kC,
 "shieldRipple");
-function BC(e,
+function PC(e,
 t,
 n,
 i=1.5,
@@ -23858,9 +23859,9 @@ a(f)?u.push(f):u.length&&(l.push(u),
 u=[])}
 return u.length&&l.push(u),
 l.filter(h=>h.length>1)}
-c(BC,
+c(PC,
 "ringPoints");
-function Pv(e,
+function kv(e,
 t,
 n,
 i,
@@ -23874,7 +23875,7 @@ let a=o.amp/(r.ring?.amp??.03),
 s=r.color??[.92,
 .95,
 1];
-for(let l of BC(t,
+for(let l of PC(t,
 n,
 o.r,
 r.clip??1.5))mo(e,
@@ -23889,7 +23890,7 @@ for(let l=1;
 l<=(r.ripples??0);
 l++){
 let u=o.r-l*o.w*2.9;
-if(u>.17)for(let h of BC(t,
+if(u>.17)for(let h of PC(t,
 n,
 u,
 r.clip??1.5))mo(e,
@@ -23901,10 +23902,10 @@ width:1.6}
 ,
 r.dof)}
 return o}
-c(Pv,
+c(kv,
 "drawFront");
 var FA=new Map;
-function kv(e,
+function Lv(e,
 t,
 n,
 i,
@@ -23918,7 +23919,7 @@ let s="".concat(r,
 ":").concat(o.dust,
 ":").concat(a.rim??.2);
 FA.has(s)||FA.set(s,
-SC(r,
+TC(r,
 o,
 a.rim??.2));
 let l=FA.get(s),
@@ -23927,7 +23928,7 @@ u=a.color??[.9,
 1],
 h=.011*o.streak*(a.back?-1:1);
 for(let f of l){
-let d=TC(f,
+let d=CC(f,
 i);
 if(d<=.01)continue;
 let p=PA(f,
@@ -23951,7 +23952,7 @@ width:(a.width??2.4)*f.size}
 ,
 a.dof)}
 }
-c(kv,
+c(Lv,
 "drawDust");
 var cW=c((e,
 t,
@@ -24027,7 +24028,7 @@ number:"#e0a85a"}
 );
 var fW="\nuniform sampler2D tSrc; uniform vec2 uRes; uniform float uGain, uPix, uWhite;\nin vec2 vUv; out vec4 o;\nfloat lum(vec3 c) { return 1. - exp(-luma(c) * uGain); }    // as lib/modes.js: HDR luminance, softly compressed to 0..1\nfloat bayer2(vec2 a) { a = floor(a); return fract(a.x / 2. + a.y * a.y * .75); }\nfloat bayer8(vec2 a) { return (bayer2(.25 * a) * .25 + bayer2(.5 * a)) * .25 + bayer2(a); }\nvoid main() {\n  vec2 px = floor(vUv * uRes / uPix), c = (px + .5) * uPix / uRes;\n  vec3 s = texture(tSrc, c).rgb;\n  vec3 ink = mix(s / max(max(s.r, max(s.g, s.b)), 1e-5), vec3(1.), uWhite);   // its colour at full value (linear)\n  o = vec4(lum(s) > bayer8(px) + .5 / 64. ? ink : vec3(0.), 1.);\n}",
 IA=null;
-function Lv(e,
+function Fv(e,
 t,
 n={
 }
@@ -24066,9 +24067,9 @@ ca:0,
 grain:0,
 vignette:.15}
 )}
-c(Lv,
+c(Fv,
 "hueDither");
-function kC({
+function LC({
 world:e,
 bar8:t,
 begin:n,
@@ -24089,7 +24090,7 @@ for(let l=0;
 l<13;
 l++)a.push(i+(s-i)*l/12);
 return a}
-c(kC,
+c(LC,
 "titleKeys");
 var dW=[["world",
 "white"],
@@ -24115,8 +24116,8 @@ Ma={
 y0:-.2*ti,
 y1:-.1*ti}
 ,
-Fv=Po*1080/(2*Lr.w*Math.tan(ut.degToRad(20)));
-function LC(e,
+Iv=Po*1080/(2*Lr.w*Math.tan(ut.degToRad(20)));
+function FC(e,
 t){
 let n=[];
 for(let[f,
@@ -24142,7 +24143,7 @@ Ma.y0,
 d]],
 "cursorAt");
 function s(f=220){
-let d=Fn(),
+let d=In(),
 p=d.getContext("2d"),
 m=Math.ceil(f*.6*e.length+f),
 g=Math.ceil(f*1.6),
@@ -24260,21 +24261,21 @@ cursorAt:a,
 lineTextures:u,
 inkArea:h}
 }
-c(LC,
+c(FC,
 "makeLine");
-var pW=LC("world.execute(me);",
+var pW=FC("world.execute(me);",
 dW),
 {
 TEXT:DA,
-GROUP_OF:bse,
-NCELL:yd,
-X0:Iv,
-cellX:Dv,
-cursorAt:FC,
-lineTextures:IC,
-inkArea:DC}
+GROUP_OF:Mse,
+NCELL:Md,
+X0:Dv,
+cellX:zv,
+cursorAt:IC,
+lineTextures:DC,
+inkArea:zC}
 =pW,
-Yo=LC("world.startSimulation();",
+Yo=FC("world.startSimulation();",
 [["world",
 "white"],
 [".",
@@ -24291,15 +24292,15 @@ lh=Object.freeze({
 em:34,
 base:924}
 ),
-zC=c(({
+OC=c(({
 em:e,
 base:t}
 =lh)=>({
-r:Fv*Lr.w/(.6*e),
+r:Iv*Lr.w/(.6*e),
 y:(t-540)/e*ti}
 ),
 "promptPose"),
-OC=[0,
+NC=[0,
 .25,
 .5,
 .75,
@@ -24317,7 +24318,7 @@ OC=[0,
 4.75,
 5,
 5.5];
-function NC(e,
+function UC(e,
 t,
 n=.1){
 let i=0;
@@ -24333,14 +24334,14 @@ last:r,
 typing:i>0&&i<t.length?!0:e-r<.12,
 done:i===t.length}
 }
-c(NC,
+c(UC,
 "typingState");
-var Gv=[.62,
+var Hv=[.62,
 .67,
 .76],
 ko=H.white,
 ks="#aab4c8",
-Md=[.72,
+_d=[.72,
 .8,
 .95],
 UA=Ee(Fr.amber,
@@ -24351,7 +24352,7 @@ xa=[-1,
 0,
 .5,
 1],
-qC=.21,
+jC=.21,
 mW=[.35,
 .5,
 .2,
@@ -24361,7 +24362,7 @@ Wi=[0,
 1.3,
 0],
 Va=.5,
-UC={
+GC={
 w:.16,
 h:.028}
 ,
@@ -24381,7 +24382,7 @@ rows:60}
 ,
 ee=null,
 zA=null;
-function sn(e){
+function ln(e){
 if(zA?.T===e)return zA;
 let t=c(p=>e.beatTime(p),
 "B"),
@@ -24456,14 +24457,14 @@ t(15.85)],
 end:s.start}
 }
 }
-c(sn,
+c(ln,
 "keys");
 var vW=c((e,
-t)=>uC(e,
+t)=>cC(e,
 t.trace),
 "traceSt"),
 gW=c((e,
-t)=>hC(e,
+t)=>fC(e,
 t.box,
 R),
 "boxSt"),
@@ -24478,7 +24479,7 @@ t.on+.9))}
 function AW(e,
 t,
 n){
-let i=vv(t,
+let i=gv(t,
 n.land[e],
 {
 height:3.3,
@@ -24502,7 +24503,7 @@ return i<=0?0:Math.min(1,
 (r+R.outExpo(X((i-r)/.5)))/n)}
 c(yW,
 "initRing");
-function jC(e,
+function XC(e,
 t){
 return{
 born:e>=t.word.me[0],
@@ -24518,9 +24519,9 @@ wake:R.outCubic(_(e,
 t.B(23),
 t.B(23)+.6))}
 }
-c(jC,
+c(XC,
 "meSt");
-function XC(e,
+function YC(e,
 t){
 let n=t.word;
 return{
@@ -24533,17 +24534,17 @@ n.m2[0],
 n.m2[1])),
 stage2:e>=n.m2[0]}
 }
-c(XC,
+c(YC,
 "wordSt");
-var Nv=Nn.R*1.45;
+var Uv=Un.R*1.45;
 function GA(e,
 t){
 let n=R.outCubic(_(e,
 t.B(24),
 t.B(27.5)));
 return{
-unroll:(2.6+(Nv-2.6)*n)/Nv,
-front:2.6+(Nv-2.6)*n,
+unroll:(2.6+(Uv-2.6)*n)/Uv,
+front:2.6+(Uv-2.6)*n,
 frontK:1-_(e,
 t.B(26.5),
 t.B(28)),
@@ -24608,9 +24609,9 @@ t:r,
 size:i.size??.012,
 minPx:1.2,
 bright:(i.bright??.5)*(i.fade??1),
-colA:Ee(Gv,
+colA:Ee(Hv,
 .3),
-colB:Gv,
+colB:Hv,
 sparkle:.12,
 focus:i.focus??5,
 aperture:i.aperture??0,
@@ -24626,7 +24627,7 @@ n=1){
 let i=e.t,
 r=i>=t.on?1:ba(e.T,
 i);
-GS(ee.cur,
+HS(ee.cur,
 n*1.35*r,
 q(e)&&i>=t.on?Fr.cursor:void 0)}
 c(Kf,
@@ -24662,7 +24663,7 @@ q(e)?560:820,
 {
 alpha:.7*n.backing}
 ),
-(n.frame??1)>0&&dn(i,
+(n.frame??1)>0&&pn(i,
 e.t,
 e.T,
 {
@@ -24681,7 +24682,7 @@ alpha:n.console??1}
 )}
 c($i,
 "overlays");
-function GC(e,
+function HC(e,
 t){
 let n=e.t,
 i=R.outCubic(_(n,
@@ -24702,7 +24703,7 @@ verb:"Initializing",
 size:24,
 alpha:i}
 )}
-c(GC,
+c(HC,
 "thinkingLine");
 function er(e,
 t,
@@ -24737,7 +24738,7 @@ alpha:n.alpha??.8}
 )}
 c(Jr,
 "readout");
-var bd=c(e=>q(e)?{
+var xd=c(e=>q(e)?{
 accent:Fr.hex}
 :{
 }
@@ -24760,7 +24761,7 @@ r=q(e),
 o=n.copper??.62;
 return{
 st:i,
-tips:dv(ee.lines,
+tips:pv(ee.lines,
 ee.net,
 i,
 {
@@ -24780,7 +24781,7 @@ viaFlash:Fr.gold}
 }
 }
 ),
-pulses:n.current?cC(ee.lines,
+pulses:n.current?hC(ee.lines,
 ee.net,
 i,
 e.t,
@@ -24823,7 +24824,7 @@ ee.lines.polyline(Ga([0,
 i*.82,
 120),
 {
-color:Ee(Gv,
+color:Ee(Hv,
 .45*r),
 width:1.2}
 )}
@@ -24838,7 +24839,7 @@ ee.shield.userData.set({
 reveal:n.reveal??1.3,
 pulse:n.pulse??-1,
 intensity:t,
-color:n.color??Md,
+color:n.color??_d,
 t:e,
 fres:1,
 center:[0,
@@ -24857,8 +24858,8 @@ let i=gW(e.t,
 t);
 return as(ee.lines,
 {
-S:In.S,
-H:In.H,
+S:Dn.S,
+H:Dn.H,
 extrude:i.extrude,
 color:n.color??Ee(ko,
 .95),
@@ -24886,7 +24887,7 @@ t,
 n);
 return{
 st:r,
-P:gv(i.solid,
+P:wv(i.solid,
 i.M,
 r.dy,
 r.tilt),
@@ -24945,11 +24946,11 @@ color:Ee(ko,
 .45*a.alpha),
 width:1.4}
 ),
-wv(ee.lines,
+Av(ee.lines,
 l,
 a.impact,
 {
-r0:qC*.9,
+r0:jC*.9,
 r1:.75,
 dof:n.dof,
 bright:1.3}
@@ -24964,7 +24965,7 @@ i={
 }
 ){
 let r=e.t,
-o=jC(r,
+o=XC(r,
 t);
 if(!o.born)return o;
 let a=ee.me,
@@ -25001,14 +25002,14 @@ e.H),
 o}
 c(lu,
 "drawMe");
-function Uv(e,
+function Gv(e,
 t,
 n,
 i={
 }
 ){
 let r=e.t,
-o=i.st??XC(r,
+o=i.st??YC(r,
 t),
 a=ee.word,
 s=i.t0??t.word.m1[0];
@@ -25036,19 +25037,19 @@ arc:o.stage2?.2:.5,
 size:f,
 minPx:2,
 bright:(i.bright??1.7)*l*u,
-palette:Ad,
+palette:bd,
 t:r,
 ...i.glyph}
 ,
 n,
 e.H),
 o}
-c(Uv,
+c(Gv,
 "drawWord");
-var HC=[.96,
+var WC=[.96,
 1,
 1.08];
-function YC(e,
+function QC(e,
 t){
 let n=R.inCubic(_(e,
 t.word.m2[0],
@@ -25062,14 +25063,14 @@ palette:[...[0,
 3,
 4].map(i=>ah(Ee(Xo(i).lin,
 1.15),
-HC,
+WC,
 n)),
-HC]}
+WC]}
 }
 }
-c(YC,
+c(QC,
 "wordColours");
-function QC(e,
+function ZC(e,
 t,
 n,
 i={
@@ -25077,7 +25078,7 @@ i={
 ){
 Jr(e,
 [["Timaeus",
-Mv[Bo[t]]]],
+xv[Bo[t]]]],
 {
 ...i,
 accent:Xo(t).hex}
@@ -25088,7 +25089,7 @@ n,
 ...i,
 y:(i.y??150)+23.25}
 )}
-c(QC,
+c(ZC,
 "readoutR");
 function OA(e,
 t,
@@ -25104,15 +25105,15 @@ if(o>0&&(ee.floor.visible=!0,
 ee.floor.userData.set({
 intensity:.7*o,
 reveal:r.unroll,
-revealR:Nv,
+revealR:Uv,
 fade:i.fade??.035}
 )),
-r.frontK>0&&r.front<Nn.R*1.4){
+r.frontK>0&&r.front<Un.R*1.4){
 let s=Ga([0,
 .01,
 0],
 r.front,
-240).filter(l=>Math.abs(l[0])<Nn.R&&Math.abs(l[2])<Nn.R);
+240).filter(l=>Math.abs(l[0])<Un.R&&Math.abs(l[2])<Un.R);
 for(let l=1;
 l<s.length;
 l++)Math.hypot(s[l][0]-s[l-1][0],
@@ -25123,7 +25124,7 @@ color:Ee(H.me,
 1.4*r.frontK*o),
 width:2.4}
 )}
-return a>0&&pC(ee.lines,
+return a>0&&mC(ee.lines,
 {
 rise:r.rise,
 ph:r.ph,
@@ -25141,7 +25142,7 @@ zMin:i.zMin}
 r}
 c(OA,
 "drawWorld");
-function WC(e,
+function VC(e,
 t,
 n,
 i={
@@ -25159,13 +25160,13 @@ soft:.025,
 size:.66,
 minPx:2.4,
 bright:i.bright??1,
-palette:bC,
+palette:MC,
 t:e.t}
 ,
 n,
 e.H),
 r}
-c(WC,
+c(VC,
 "drawCodeWorld");
 Wn({
 id:"intro",
@@ -25175,22 +25176,22 @@ to:c(e=>e.section("inst1").start,
 "to"),
 init(e){
 ee={
-scene:new fn,
+scene:new dn,
 cam:new wi(38,
 16/9,
 .01,
 800),
-ocam:new An(-1,
+ocam:new yn(-1,
 1,
 1,
 -1,
 .01,
 400)}
 ,
-ee.me=new Qt({
+ee.me=new Zt({
 count:1<<18}
 ),
-ee.grid=new Qt({
+ee.grid=new Zt({
 count:16384}
 ),
 ee.lines=new Xn(16e3),
@@ -25198,33 +25199,33 @@ ee.soft=new Xn(8e3),
 ee.soft.material.uniforms.uCore.value=.04,
 ee.floor=Mr({
 plane:"xz",
-size:Nn.R*2,
+size:Un.R*2,
 fade:.035,
 minor:1,
 major:4}
 ),
-ee.cur=US(UC),
+ee.cur=GS(GC),
 ee.shield=TA({
 pattern:"hex",
 cell:.24,
 frontCol:q(e)}
 ),
 ee.glass=TA({
-S:Nn.R,
-H:Nn.H,
+S:Un.R,
+H:Un.H,
 pattern:"glass",
 cell:2.5}
 ),
-ee.net=fv(),
+ee.net=dv(),
 ee.place=Bo.map((n,
 i)=>({
 id:n,
 solid:sl[n],
-M:mv(sl[n],
+M:vv(sl[n],
 {
 pos:[xa[i],
 Qo],
-scale:qC,
+scale:jC,
 yaw:mW[i]}
 )}
 )),
@@ -25269,11 +25270,11 @@ o*4)}
 return r}
 )}
 ,
-ee.page=new nn({
+ee.page=new rn({
 count:16384}
 ),
 ee.page.text("intro/solids-src",
-tn("ch/intro/solids.js")),
+nn("ch/intro/solids.js")),
 ee.tex.page=ee.page.layout("intro/page",
 Ki(ee.page,
 {
@@ -25288,13 +25289,13 @@ ee.page.points.rotation.x=-Math.PI/2,
 ee.page.points.position.set(0,
 .002,
 Qo),
-ee.word=new nn({
+ee.word=new rn({
 count:4096}
 ),
 ee.word.text("intro/word-src",
-tn("ch/intro/solids.js"));
-let t=gC(ee.word,
-vC(["OBJECT",
+nn("ch/intro/solids.js"));
+let t=wC(ee.word,
+gC(["OBJECT",
 "CREATION"],
 {
 capH:$f.capH,
@@ -25309,27 +25310,27 @@ ee.wordPlaced=t.placed,
 ee.tex.wWord=ee.word.layout("intro/word",
 ()=>t.arr),
 ee.tex.wEdges=ee.word.layout("intro/word-edges",
-n=>bv(t,
-i=>fC(i,
+n=>Mv(t,
+i=>dC(i,
 ee.place,
 {
 jitter:.002}
 ),
 n)),
 ee.tex.wSphere=ee.word.layout("intro/word-sphere",
-n=>bv(t,
-i=>wC(i,
+n=>Mv(t,
+i=>AC(i,
 Va*1.02,
 Wi),
 n)),
-ee.terra=new nn({
+ee.terra=new rn({
 count:65536}
 ),
 ee.terra.text("intro/world-src",
-tn("ch/intro/world.js")+"\n"+tn("ch/01_intro.js")),
-ee.world=MC(ee.terra,
+nn("ch/intro/world.js")+"\n"+nn("ch/01_intro.js")),
+ee.world=xC(ee.terra,
 "intro/code-world"),
-ee.he=AC({
+ee.he=yC({
 total:262144,
 fanIn:512}
 ),
@@ -25352,7 +25353,7 @@ at:c(e=>e.section("intro").start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t;
 Ji(),
 po(e.text.scene,
@@ -25382,14 +25383,14 @@ t.on))}
 ,
 {
 id:"trace",
-at:c(e=>sn(e).on,
+at:c(e=>ln(e).on,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t;
 Ji();
-let i=UC.w*1080/Lr.w,
+let i=GC.w*1080/Lr.w,
 r=ru(ee.ocam,
 [0,
 0,
@@ -25438,13 +25439,13 @@ Jr(e,
 "".concat(Math.floor(a.hops)).padStart(2,
 "0")],
 ["copper",
-gd(ee.net,
+Ad(ee.net,
 a).toFixed(3)]],
 {
 alpha:_(n,
 t.on+.1,
 t.on+.3)*.8,
-...bd(e)}
+...xd(e)}
 ),
 er(e,
 t,
@@ -25470,11 +25471,11 @@ o))}
 ,
 {
 id:"current",
-at:c(e=>sn(e).B(3),
+at:c(e=>ln(e).B(3),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outQuad(_(n,
 t.B(3),
@@ -25540,7 +25541,7 @@ Jr(e,
 "1.70 u/s"]],
 {
 alpha:.6,
-...bd(e)}
+...xd(e)}
 ),
 er(e,
 t,
@@ -25551,11 +25552,11 @@ vignette:.55}
 ,
 {
 id:"boundary",
-at:c(e=>sn(e).B(4),
+at:c(e=>ln(e).B(4),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=_(n,
 t.B(4),
@@ -25619,11 +25620,11 @@ Jr(e,
 "".concat((a.ring*100).toFixed(1),
 " %")],
 ["copper",
-gd(ee.net,
+Ad(ee.net,
 a).toFixed(3)]],
 {
 alpha:s*.8,
-...bd(e)}
+...xd(e)}
 ),
 er(e,
 t)}
@@ -25631,11 +25632,11 @@ t)}
 ,
 {
 id:"ringTop",
-at:c(e=>sn(e).put,
+at:c(e=>ln(e).put,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t;
 Ji();
 let i=ru(ee.ocam,
@@ -25669,20 +25670,20 @@ current:.4}
 tr(e,
 i);
 let o=e.text.overlay,
-a=Wa([-In.S,
+a=Wa([-Dn.S,
 0,
--In.S],
+-Dn.S],
 i),
-s=Wa([In.S,
+s=Wa([Dn.S,
 0,
--In.S],
+-Dn.S],
 i),
-l=Wa([In.S,
+l=Wa([Dn.S,
 0,
-In.S],
+Dn.S],
 i),
 u=r.ring>=1?1:0;
-Sn(o,
+Tn(o,
 a,
 s,
 u?"3.000":"",
@@ -25691,7 +25692,7 @@ offset:-34,
 color:ks,
 alpha:.8}
 ),
-Sn(o,
+Tn(o,
 s,
 l,
 u?"3.000":"",
@@ -25711,7 +25712,7 @@ u?"closed":"".concat((r.ring*100).toFixed(1),
 " %")],
 ["area",
 u?"9.000":"—"]],
-bd(e)),
+xd(e)),
 er(e,
 t,
 {
@@ -25721,11 +25722,11 @@ vignette:.35}
 ,
 {
 id:"protection",
-at:c(e=>sn(e).l2.start,
+at:c(e=>ln(e).l2.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.l2.start,
@@ -25787,7 +25788,7 @@ width:2}
 ),
 tr(e,
 r);
-let a=In.S,
+let a=Dn.S,
 s=1.1,
 l=1.85,
 u=[[-a*.86,
@@ -25800,8 +25801,8 @@ a],
 s,
 a]].map(h=>Wa(h,
 r));
-yv(e.text.scene,
-Av("PROTECTION",
+bv(e.text.scene,
+yv("PROTECTION",
 t.l2.start,
 n,
 .4),
@@ -25825,7 +25826,7 @@ o.shield/1.3*100).toFixed(0),
 " %")],
 ["lock",
 o.locked?"engaged":o.pulse>=0?"scanning":"—"]],
-bd(e)),
+xd(e)),
 er(e,
 t)}
 }
@@ -25880,13 +25881,13 @@ look:[0,
 0]}
 ].map(e=>({
 id:e.id,
-at:c(t=>sn(t).land[e.i],
+at:c(t=>ln(t).land[e.i],
 "at"),
 ownsLyrics:!0,
 draw(t){
 if(q(t))return zW(t,
 e);
-let n=sn(t.T),
+let n=ln(t.T),
 i=t.t,
 r=i-n.land[e.i];
 Ji();
@@ -25944,7 +25945,7 @@ dof:l,
 width:e.mode?3.4:2.8,
 dots:1.8}
 );
-e.mode?rn(t,
+e.mode?on(t,
 Dt(t,
 d=>tr(d,
 s)),
@@ -25980,7 +25981,7 @@ br:"view  1-bit · bayer 8×8"}
 ),
 Jr(t,
 [["V − E + F",
-wd(h)],
+yd(h)],
 ["faces",
 "".concat(h.nF)],
 ["dihedral",
@@ -26001,12 +26002,12 @@ vignette:.15}
 )),
 {
 id:"icosaFall",
-at:c(e=>sn(e).B(11.5),
+at:c(e=>ln(e).B(11.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
 if(q(e))return OW(e);
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outQuad(_(n,
 t.B(11.5),
@@ -26066,7 +26067,7 @@ $i(e,
 t),
 Jr(e,
 [["V − E + F",
-wd(sl.icosa)],
+yd(sl.icosa)],
 ["faces",
 "20"],
 ["dihedral",
@@ -26078,12 +26079,12 @@ t)}
 ,
 {
 id:"row",
-at:c(e=>sn(e).B(12),
+at:c(e=>ln(e).B(12),
 "at"),
 ownsLyrics:!0,
 draw(e){
 if(q(e))return NW(e);
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.B(12),
@@ -26104,7 +26105,7 @@ a:ee.tex.page,
 size:ch.cell*1.15,
 minPx:1.5,
 bright:.15,
-palette:Ad,
+palette:bd,
 scroll:[0,
 (n-t.B(12))*.09,
 0],
@@ -26145,7 +26146,7 @@ r)),
 l=_(n,
 t.B(12.4),
 t.B(12.9));
-Sn(a,
+Tn(a,
 s[1],
 s[2],
 "0.500",
@@ -26154,7 +26155,7 @@ offset:28,
 color:ks,
 alpha:.8*l}
 ),
-Sn(a,
+Tn(a,
 s[0],
 s[4],
 "2.000",
@@ -26185,12 +26186,12 @@ vignette:.5}
 ,
 {
 id:"creation",
-at:c(e=>sn(e).l5.start,
+at:c(e=>ln(e).l5.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
 if(q(e))return UW(e);
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outCubic(_(n,
 t.l5.start,
@@ -26228,7 +26229,7 @@ t,
 {
 width:2.4}
 ),
-Uv(e,
+Gv(e,
 t,
 o),
 tr(e,
@@ -26239,7 +26240,7 @@ Jr(e,
 [["decompile",
 "solids.js"],
 ["glyphs",
-"".concat(Math.round(ee.wordPlaced*XC(n,
+"".concat(Math.round(ee.wordPlaced*YC(n,
 t).m1),
 " / ").concat(ee.wordPlaced)]],
 {
@@ -26251,11 +26252,11 @@ t)}
 ,
 {
 id:"birth",
-at:c(e=>sn(e).creation,
+at:c(e=>ln(e).creation,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.creation,
@@ -26280,7 +26281,7 @@ r,
 fov:38,
 aspect:e.aspect}
 ),
-a=q(e)?JC(e,
+a=q(e)?$C(e,
 t):0;
 q(e)?t0(e,
 t,
@@ -26292,18 +26293,18 @@ t,
 {
 width:2.2}
 );
-let s=q(e)?Uv(e,
+let s=q(e)?Gv(e,
 t,
 o,
 {
-st:$C(n,
+st:e8(n,
 t,
 a),
 t0:a,
 from:ee.tex.wFaces,
-...YC(n,
+...QC(n,
 t)}
-):Uv(e,
+):Gv(e,
 t,
 o);
 lu(e,
@@ -26335,11 +26336,11 @@ t)}
 ,
 {
 id:"panel",
-at:c(e=>sn(e).l6.start,
+at:c(e=>ln(e).l6.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t;
 Ji();
 let i=EA(n,
@@ -26357,7 +26358,7 @@ s=470,
 l=_(n,
 t.panel[1][1]+.05,
 t.panel[1][1]+.35);
-dC(e.text.scene,
+pC(e.text.scene,
 i,
 {
 x:a+-260*o,
@@ -26387,11 +26388,11 @@ bloom:.9}
 ,
 {
 id:"dye",
-at:c(e=>sn(e).B(20),
+at:c(e=>ln(e).B(20),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.B(20),
@@ -26439,7 +26440,7 @@ $i(e,
 t),
 Jr(e,
 [["dye",
-"".concat((jC(n,
+"".concat((XC(n,
 t).dye*100).toFixed(0),
 " %")]],
 {
@@ -26451,11 +26452,11 @@ t)}
 ,
 {
 id:"null",
-at:c(e=>sn(e).B(21),
+at:c(e=>ln(e).B(21),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=_(n,
 t.B(21),
@@ -26553,11 +26554,11 @@ vignette:.55}
 ,
 {
 id:"init",
-at:c(e=>sn(e).l7.start,
+at:c(e=>ln(e).l7.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outQuad(_(n,
 t.l7.start,
@@ -26589,8 +26590,8 @@ s=Wa(Wi,
 r),
 l=q(e)?Math.min(t.l7.start,
 e.startOf("intro/init")??t.l7.start):t.l7.start;
-mC(e.text.scene,
-Av("INITIALIZATION",
+vC(e.text.scene,
+yv("INITIALIZATION",
 l,
 n,
 .5),
@@ -26603,7 +26604,7 @@ size:50,
 tracking:12,
 glow:16}
 ),
-yC(e.text.overlay,
+bC(e.text.overlay,
 ee.he,
 {
 x:1330,
@@ -26617,7 +26618,7 @@ l+.2))}
 ),
 $i(e,
 t),
-GC(e,
+HC(e,
 t),
 er(e,
 t)}
@@ -26625,11 +26626,11 @@ t)}
 ,
 {
 id:"wake",
-at:c(e=>sn(e).B(23),
+at:c(e=>ln(e).B(23),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=_(n,
 t.B(23),
@@ -26661,7 +26662,7 @@ width:2}
 hh(n,
 .07,
 {
-color:ah(Md,
+color:ah(_d,
 H.me,
 .5)}
 ),
@@ -26701,7 +26702,7 @@ Jr(e,
 {
 accent:P.me}
 ),
-GC(e,
+HC(e,
 t),
 er(e,
 t)}
@@ -26709,11 +26710,11 @@ t)}
 ,
 {
 id:"unroll",
-at:c(e=>sn(e).B(24),
+at:c(e=>ln(e).B(24),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.B(24),
@@ -26753,7 +26754,7 @@ width:2.2}
 hh(n,
 .1,
 {
-color:ah(Md,
+color:ah(_d,
 H.me,
 .5)}
 ),
@@ -26775,7 +26776,7 @@ Jr(e,
 {
 accent:P.me}
 ),
-q(e)&&zv(e,
+q(e)&&Ov(e,
 t),
 er(e,
 t)}
@@ -26783,11 +26784,11 @@ t)}
 ,
 {
 id:"terrain",
-at:c(e=>sn(e).B(26),
+at:c(e=>ln(e).B(26),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.B(26),
@@ -26825,7 +26826,7 @@ width:2.2}
 hh(n,
 .22,
 {
-color:ah(Md,
+color:ah(_d,
 H.me,
 .5)}
 ),
@@ -26849,7 +26850,7 @@ t).rise*100).toFixed(0),
 {
 accent:P.me}
 ),
-q(e)&&zv(e,
+q(e)&&Ov(e,
 t),
 er(e,
 t)}
@@ -26857,11 +26858,11 @@ t)}
 ,
 {
 id:"vista",
-at:c(e=>sn(e).B(28),
+at:c(e=>ln(e).B(28),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outQuad(_(n,
 t.B(28),
@@ -26890,8 +26891,8 @@ aspect:e.aspect}
 o=R.inOutSine(_(n,
 t.B(28),
 t.B(28)+.55)),
-a=C(-Nn.R-1,
-Nn.R+1,
+a=C(-Un.R-1,
+Un.R+1,
 o);
 as(ee.lines,
 {
@@ -26903,7 +26904,7 @@ width:1.8}
 hh(n,
 .3,
 {
-color:ah(Md,
+color:ah(_d,
 H.me,
 .5)}
 ),
@@ -26922,16 +26923,16 @@ floor:1-o,
 terrain:1,
 zMin:a}
 ),
-WC(e,
+VC(e,
 t,
 r,
 {
-reveal:(a+Nn.R)/(2*Nn.R)}
+reveal:(a+Un.R)/(2*Un.R)}
 ),
-o>0&&o<1&&ee.lines.segment([-Nn.R,
+o>0&&o<1&&ee.lines.segment([-Un.R,
 .05,
 a],
-[Nn.R,
+[Un.R,
 .05,
 a],
 {
@@ -26955,7 +26956,7 @@ Jr(e,
 accent:P.me,
 alpha:.8*o}
 ),
-q(e)&&zv(e,
+q(e)&&Ov(e,
 t),
 er(e,
 t)}
@@ -26963,11 +26964,11 @@ t)}
 ,
 {
 id:"simulation",
-at:c(e=>sn(e).l10.start,
+at:c(e=>ln(e).l10.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t;
 Ji();
 let i=q(e),
@@ -26983,7 +26984,7 @@ a=108*Math.pow(380/108,
 r)*Math.pow(60,
 o),
 s=[0,
-Nn.H*.47,
+Un.H*.47,
 0],
 l=Hi(ee.cam,
 Ro(s,
@@ -27027,7 +27028,7 @@ l,
 {
 brightK:1.6*u}
 ),
-WC(e,
+VC(e,
 t,
 l,
 {
@@ -27048,8 +27049,8 @@ center:[0,
 ),
 as(ee.lines,
 {
-S:Nn.R,
-H:Nn.H,
+S:Un.R,
+H:Un.H,
 extrude:1,
 color:Ee(H.me,
 1.1*u),
@@ -27059,9 +27060,9 @@ corner:1.4*u}
 tr(e,
 l),
 i&&l.clearViewOffset();
-let h=Nn.R,
-f=Nn.H*.42,
-d=Nn.H*.58,
+let h=Un.R,
+f=Un.H*.42,
+d=Un.H*.58,
 p=[[-h*.8,
 d,
 h],
@@ -27072,8 +27073,8 @@ h],
 f,
 h]].map(w=>Wa(w,
 l));
-bW(p)&&!q(e)&&yv(e.text.scene,
-Av("SIMULATION",
+bW(p)&&!q(e)&&bv(e.text.scene,
+yv("SIMULATION",
 t.l10.start,
 n,
 .4),
@@ -27089,7 +27090,7 @@ alpha:u}
 let m=R.outCubic(_(n,
 t.B(31)+.08,
 t.B(31.4)));
-q(e)?zv(e,
+q(e)?Ov(e,
 t):po(e.text.scene,
 Co(),
 {
@@ -27112,7 +27113,7 @@ g))}
 }
 ]}
 );
-var VC=Yo.TEXT,
+var qC=Yo.TEXT,
 NA=Yo.NCELL,
 SW={
 white:"#f3f7ff",
@@ -27128,7 +27129,7 @@ if(e.title)return e.title;
 let t=e.l8.words[e.l8.words.length-1].start,
 n=e.l9.words.find(i=>i.text==="begin").start;
 return e.title={
-keys:kC({
+keys:LC({
 world:t,
 bar8:e.B(28),
 begin:n,
@@ -27141,7 +27142,7 @@ open:t-.12}
 }
 c(CW,
 "titleSchedule");
-function zv(e,
+function Ov(e,
 t){
 let n=e.t,
 i=CW(t);
@@ -27223,7 +27224,7 @@ y<o;
 y++){
 let b=n-i.keys[y],
 x=1+.12*Math.exp(-b/.05);
-r.text(VC[y],
+r.text(qC[y],
 u+y*s+s*.5,
 l-.32*a,
 {
@@ -27236,7 +27237,7 @@ glowColor:"#cfe0ff",
 alpha:f}
 )}
 if(n<i.enterKey){
-let y=o>=VC.length?ba(e.T,
+let y=o>=qC.length?ba(e.T,
 n):1,
 b=u+o*s;
 r.draw(x=>{
@@ -27264,7 +27265,7 @@ alpha:R.outCubic(_(n,
 i.enterKey,
 i.enterKey+.06))}
 )}
-c(zv,
+c(Ov,
 "titlePrompt");
 function EW(e,
 t){
@@ -27389,31 +27390,31 @@ az:-.34,
 azD:-.05}
 }
 ,
-Ov={
+Nv={
 eye:.075,
 fov:36,
 yaw:.2,
 pitch:-.025}
 ,
-ZC={
+KC={
 y:790}
 ,
-KC={
+JC={
 flare:12,
 push:.035}
 ;
 function kW(e){
-let t=Tv(ee.place,
+let t=Cv(ee.place,
 {
-traces:Sv(ee.net),
+traces:Tv(ee.net),
 traceR:1.6}
 ),
-n=Bv({
+n=Pv({
 side:128}
 ),
-i=PC({
-S:In.S,
-H:In.H,
+i=kC({
+S:Dn.S,
+H:Dn.H,
 cell:.24}
 );
 ee.R={
@@ -27426,7 +27427,7 @@ i],
 h:ee.place.map(l=>Math.max(...l.solid.V.map(u=>new B(...u).applyMatrix4(l.M).y)))}
 ,
 ee.tex.wFaces=ee.word.layout("intro/word-faces",
-l=>bv(e,
+l=>Mv(e,
 u=>LA(u,
 ee.place),
 l));
@@ -27434,7 +27435,7 @@ let r=LA(e.placed,
 ee.place),
 o=ee.word.glyphTex.image.data,
 a=new Float32Array(o.length),
-s=Ad.map(l=>.2126*l[0]+.7152*l[1]+.0722*l[2]);
+s=bd.map(l=>.2126*l[0]+.7152*l[1]+.0722*l[2]);
 for(let l=0;
 l<ee.word.N;
 l++)a.set([o[l*4],
@@ -27442,17 +27443,17 @@ l<e.placed?Math.round(r[l*4+3]*5-.5):5,
 o[l*4+2]*s[o[l*4+1]],
 0],
 l*4);
-ee.tex.wPieceG=an(a,
+ee.tex.wPieceG=sn(a,
 ee.word.S,
 ee.word.S),
 ee.scene.add(...ee.R.all)}
 c(kW,
 "initRemake");
-var JC=c((e,
+var $C=c((e,
 t)=>Math.min(t.l5.start,
 e.startOf?.("intro/creation")??t.l5.start),
 "creationAt");
-function $C(e,
+function e8(e,
 t,
 n){
 let i=t.word;
@@ -27466,13 +27467,13 @@ i.m2[0],
 i.m2[1])),
 stage2:e>=i.m2[0]}
 }
-c($C,
+c(e8,
 "wordStR");
 function LW(e,
 t,
 n,
 i=n.l5.start){
-let r=xv(t,
+let r=_v(t,
 n.land[e],
 {
 h:Yf,
@@ -27494,7 +27495,7 @@ edge:a}
 }
 c(LW,
 "solidStR");
-function Hv(e,
+function Wv(e,
 t){
 let n=[],
 i=[],
@@ -27511,7 +27512,7 @@ u=Qf(s,
 {
 amp:l.ring}
 ),
-h=_C(s),
+h=SC(s),
 f=Xo(a).lin;
 u&&n.push({
 x:xa[a],
@@ -27531,14 +27532,14 @@ k:h.k,
 w:h.w,
 col:f}
 ),
-o+=_v(s,
+o+=Sv(s,
 l.jolt)}
 return{
 fronts:n,
 shields:i,
 jolt:o}
 }
-c(Hv,
+c(Wv,
 "quakeR");
 var FW=c(e=>({
 rim:Ee(Xo(e).lin,
@@ -27586,7 +27587,7 @@ n={
 ){
 let i=e.t,
 r=n.c0??t.l5.start,
-o=n.fx??Hv(i,
+o=n.fx??Wv(i,
 t),
 a=n.env??BW,
 s=[],
@@ -27609,7 +27610,7 @@ d=ee.place[h],
 {
 F:p,
 P:m}
-=Cv(d,
+=Ev(d,
 {
 dy:f.dy,
 spin:f.spin,
@@ -27625,7 +27626,7 @@ c:g}
 ),
 !f.shown)continue;
 let w=n.highlight?.(h)??0;
-if(Ev(ee.R.pieces[h],
+if(Rv(ee.R.pieces[h],
 p,
 {
 alpha:n.alpha??1,
@@ -27634,8 +27635,8 @@ seed:h*3.1,
 flash:.35*f.flash+.3*w,
 ring:l,
 ringW:u,
-box:[In.S,
-In.H,
+box:[Dn.S,
+Dn.H,
 a[0],
 a[1]],
 ...FW(h)}
@@ -27680,7 +27681,7 @@ e.land,
 1.4)){
 let o=tc[Bo[i]],
 a=Xo(i).lin;
-Pv(ee.lines,
+kv(ee.lines,
 xa[i],
 Qo,
 r,
@@ -27691,10 +27692,10 @@ amp:o.ring}
 ripples:o.ripples,
 dof:n.dof,
 bright:n.ring??1.3,
-clip:In.S,
+clip:Dn.S,
 color:a}
 ),
-kv(ee.lines,
+Lv(ee.lines,
 xa[i],
 Qo,
 r,
@@ -27709,7 +27710,7 @@ color:a}
 }
 c(HA,
 "drawQuakeR");
-function e8(e,
+function t8(e,
 t,
 n,
 i={
@@ -27719,18 +27720,18 @@ ee.R.dots.userData.set({
 bright:i.bright??.5,
 size:i.size??.006,
 minPx:1.2,
-color:Gv,
+color:Hv,
 sparkle:.12,
 t:e.t,
 focus:i.focus??5,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??30,
-clip:In.S,
+clip:Dn.S,
 fronts:n.fronts}
 ,
 t,
 e.H)}
-c(e8,
+c(t8,
 "floorR");
 function DW(e,
 t,
@@ -27748,7 +27749,7 @@ e[1]+r.y,
 e[2]+r.z]}
 c(DW,
 "aimAt");
-function t8(e,
+function n8(e,
 t,
 n,
 i,
@@ -27767,11 +27768,11 @@ n[2]],
 fov:i,
 aspect:e.aspect}
 )}
-c(t8,
+c(n8,
 "floorCam");
 function zW(e,
 t){
-let n=sn(e.T),
+let n=ln(e.T),
 i=e.t,
 r=t.i,
 o=i-n.land[r];
@@ -27779,7 +27780,7 @@ Bo[r];
 let a=ee.place[r].solid,
 s=PW[t.id];
 Ji();
-let l=Hv(i,
+let l=Wv(i,
 n),
 u=s.r-o*.1,
 h=s.az+o*s.azD,
@@ -27787,15 +27788,15 @@ f=[xa[r],
 ee.R.h[r]*.5,
 Qo],
 d=[f[0]+u*Math.sin(h),
-Ov.eye,
+Nv.eye,
 f[2]+u*Math.cos(h)],
-p=t8(e,
+p=n8(e,
 d,
 DW(d,
 f,
-Ov.yaw,
-Ov.pitch),
-Ov.fov,
+Nv.yaw,
+Nv.pitch),
+Nv.fov,
 l.jolt),
 m=oh(f,
 p),
@@ -27803,7 +27804,7 @@ g=e0(p,
 m,
 .016,
 24);
-e8(e,
+t8(e,
 p,
 l,
 t.mode?{
@@ -27833,7 +27834,7 @@ dof:g}
 t.mode||ee.R.shield.userData.set({
 intensity:.17,
 impacts:l.shields,
-...KC,
+...JC,
 color:UA}
 );
 let w=t0(e,
@@ -27848,7 +27849,7 @@ i,
 {
 dof:g}
 ),
-t.mode?Lv(e,
+t.mode?Fv(e,
 Dt(e,
 y=>tr(y,
 p)),
@@ -27881,16 +27882,16 @@ br:"view  1-bit · bayer 8×8"}
 :{
 }
 ),
-QC(e,
+ZC(e,
 r,
 [["V − E + F",
-wd(a)],
+yd(a)],
 ["faces",
 "".concat(a.nF)],
 ["dihedral",
 "".concat(a.dihedral.toFixed(2),
 "°")]],
-ZC),
+KC),
 er(e,
 n,
 t.mode?{
@@ -27905,16 +27906,16 @@ vignette:.15}
 c(zW,
 "landShotR");
 function OW(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.outQuad(_(n,
 t.B(11.5),
 t.B(12))),
 r=xa[4];
 Ji();
-let o=Hv(n,
+let o=Wv(n,
 t),
-a=t8(e,
+a=n8(e,
 [r-C(.34,
 .32,
 i),
@@ -27937,7 +27938,7 @@ l=e0(a,
 s,
 .014,
 22);
-e8(e,
+t8(e,
 a,
 o,
 {
@@ -27964,7 +27965,7 @@ dof:l}
 ee.R.shield.userData.set({
 intensity:.18,
 impacts:o.shields,
-...KC,
+...JC,
 color:UA}
 ),
 t0(e,
@@ -27983,28 +27984,28 @@ tr(e,
 a),
 $i(e,
 t),
-QC(e,
+ZC(e,
 4,
 [["V − E + F",
-wd(sl.icosa)],
+yd(sl.icosa)],
 ["faces",
 "20"],
 ["dihedral",
 "".concat(sl.icosa.dihedral.toFixed(2),
 "°")]],
-ZC),
+KC),
 er(e,
 t)}
 c(OW,
 "icosaFallR");
 function NW(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.B(12),
 t.l5.start));
 Ji();
-let r=Hv(n,
+let r=Wv(n,
 t),
 o=C(1.62,
 1.5,
@@ -28022,7 +28023,7 @@ a:ee.tex.page,
 size:ch.cell*1.15,
 minPx:1.5,
 bright:.15,
-palette:Ad,
+palette:bd,
 scroll:[0,
 (n-t.B(12))*.09,
 0],
@@ -28072,7 +28073,7 @@ a)),
 h=_(n,
 t.B(12.4),
 t.B(12.9));
-Sn(l,
+Tn(l,
 u[1],
 u[2],
 "0.500",
@@ -28081,7 +28082,7 @@ offset:28,
 color:ks,
 alpha:.8*h}
 ),
-Sn(l,
+Tn(l,
 u[0],
 u[4],
 "2.000",
@@ -28111,9 +28112,9 @@ vignette:.5}
 c(NW,
 "rowR");
 function UW(e){
-let t=sn(e.T),
+let t=ln(e.T),
 n=e.t,
-i=JC(e,
+i=$C(e,
 t),
 r=R.outCubic(_(n,
 i,
@@ -28153,17 +28154,17 @@ c0:i,
 env:[.12,
 .6]}
 );
-let s=$C(n,
+let s=e8(n,
 t,
 i);
-Uv(e,
+Gv(e,
 t,
 a,
 {
 st:s,
 t0:i,
 from:ee.tex.wFaces,
-...YC(n,
+...QC(n,
 t)}
 ),
 tr(e,
@@ -28423,7 +28424,7 @@ m*4+4)}
 return l}
 c(HW,
 "implicit3");
-var Dn={
+var zn={
 point(e,
 {
 r:t=.004,
@@ -28624,7 +28625,7 @@ seed:o=17}
 ={
 }
 ){
-let a=Fn(),
+let a=In(),
 s=a.getContext("2d");
 s.font=n;
 let l=s.measureText(t),
@@ -28697,10 +28698,10 @@ return o}
 fh=c((e,
 t)=>(e*e+t*t-1)**3-e*e*t**3,
 "heart2");
-var i8=Math.PI/180,
+var r8=Math.PI/180,
 Tt=Object.freeze({
 arms:2,
-pitch:15*i8,
+pitch:15*r8,
 rIn:.8,
 rOut:5.4,
 rMax:6.6,
@@ -28728,21 +28729,21 @@ kDust:22,
 alpha:2.1,
 LMAX:1e3}
 ),
-Sd=1/Math.tan(Tt.pitch),
+Cd=1/Math.tan(Tt.pitch),
 qA=c(e=>Tt.v0/Math.sqrt(e*e+Tt.rc*Tt.rc),
 "omega"),
 n0=qA(Tt.rCR),
-r8=c(e=>Tt.th0-Sd*Math.log(Math.max(e,
+o8=c(e=>Tt.th0-Cd*Math.log(Math.max(e,
 .001)/Tt.rIn),
 "theta"),
-o8=c(e=>Tt.e0*Ie(Tt.rIn*.6,
+a8=c(e=>Tt.e0*Ie(Tt.rIn*.6,
 Tt.rIn*1.5,
 e)*(1-Ie(Tt.rOut,
 Tt.rMax,
 e)),
 "ecc"),
 WW=c((e,
-t)=>r8(e)+(t-2*Sd*o8(e)+Math.atan2(2*Sd,
+t)=>o8(e)+(t-2*Cd*a8(e)+Math.atan2(2*Cd,
 e/Tt.hR))/2,
 "phiAt"),
 VW=c((e,
@@ -28757,8 +28758,8 @@ p:1-.6097/e+.05463/(e*e),
 b:2*e-1/3+.009876/e}
 ),
 "ps"),
-Td=Object.freeze(qW(Tt.bulge.n)),
-jW=c(e=>(e+.008)**-Td.p*Math.exp(-Td.b*e**(1/Tt.bulge.n)),
+Ed=Object.freeze(qW(Tt.bulge.n)),
+jW=c(e=>(e+.008)**-Ed.p*Math.exp(-Ed.b*e**(1/Tt.bulge.n)),
 "bulgeRho");
 function XW(e,
 t,
@@ -28775,11 +28776,11 @@ return n[0]=i*Math.cos(m),
 n[1]=o,
 n[2]=i*Math.sin(m),
 n}
-let s=o8(i),
+let s=a8(i),
 l=r+(qA(i)-n0)*t,
 u=i*Math.cos(l),
 h=i*(1-2*s)*Math.sin(l),
-f=r8(i)+n0*t,
+f=o8(i)+n0*t,
 d=Math.cos(f),
 p=Math.sin(f);
 return n[0]=d*u-p*h,
@@ -28788,16 +28789,16 @@ n[2]=p*u+d*h,
 n}
 c(XW,
 "orbitPos");
-var xd=Object.freeze({
+var Sd=Object.freeze({
 bulge:0,
 old:1,
 young:2,
 knot:3}
 );
-function a8(e){
+function s8(e){
 let t=Tt.alpha-1;
 return(1-e*(1-Tt.LMAX**-t))**(-1/t)}
-c(a8,
+c(s8,
 "lumAt");
 var WA=null;
 function YW(){
@@ -28838,7 +28839,7 @@ let a=(e-t[r])/Math.max(t[o]-t[r],
 return(r+a)/n*i}
 c(QW,
 "sampleBulgeM");
-var _d=c((e,
+var Td=c((e,
 t)=>(e()<.5?-1:1)*-t*Math.log(1-e()),
 "laplace");
 function ZW(e,
@@ -28851,7 +28852,7 @@ if(e()<Math.exp(t*(Math.cos(n)-1)))return n}
 }
 c(ZW,
 "vonMises");
-function s8(e,
+function l8(e,
 t,
 n=()=>1){
 for(;
@@ -28861,7 +28862,7 @@ let i=-t*Math.log(Math.max(e()*e(),
 1e-300));
 if(i<Tt.rMax&&e()<n(i))return i}
 }
-c(s8,
+c(l8,
 "discR");
 var KW=c(e=>Ie(Tt.rIn*.75,
 Tt.rIn*1.3,
@@ -28869,12 +28870,12 @@ e)*(1-Ie(Tt.rOut,
 Tt.rMax,
 e)),
 "youngW");
-function l8(e,
+function u8(e,
 t=Tt.kYoung){
 for(;
 ;
 ){
-let n=s8(e,
+let n=l8(e,
 Tt.hRy,
 KW),
 i=e()<.5?0:1;
@@ -28884,10 +28885,10 @@ WW(n,
 Tt.dYoung+ZW(e,
 t))+i*Math.PI]}
 }
-c(l8,
+c(u8,
 "youngSpot");
 var VA=null;
-function u8(){
+function c8(){
 if(VA)return VA;
 let e=Be(9157),
 t=[];
@@ -28895,15 +28896,15 @@ for(let i=0;
 i<340;
 i++){
 let[r,
-o]=l8(e,
+o]=u8(e,
 6);
 t.push({
 r,
 phi:o,
-y:_d(e,
+y:Td(e,
 Tt.hzy*.5),
 s:.018+.05*e()**2,
-w:a8(e()*.995)}
+w:s8(e()*.995)}
 )}
 t.sort((i,
 r)=>r.w-i.w);
@@ -28911,10 +28912,10 @@ let n=0;
 for(let i of t)n+=i.w,
 i.acc=n;
 return VA=t}
-c(u8,
+c(c8,
 "clusters");
 function JW(e){
-let t=u8(),
+let t=c8(),
 n=e()*t.at(-1).acc,
 i=0,
 r=t.length-1;
@@ -28926,10 +28927,10 @@ t[o].acc<n?i=o+1:r=o}
 return t[i]}
 c(JW,
 "pickCluster");
-var Wv=c(e=>Math.sqrt(-2*Math.log(Math.max(e(),
+var Vv=c(e=>Math.sqrt(-2*Math.log(Math.max(e(),
 1e-12)))*Math.cos(j*e()),
 "gauss"),
-n8=.3;
+i8=.3;
 function jA(e,
 {
 seed:t=1,
@@ -28951,28 +28952,28 @@ l=new Float32Array(e*4),
 u=n.bulge+n.old+n.young,
 h=n.bulge/u,
 f=h+n.old/u,
-d=u8(),
+d=c8(),
 p=e-i;
 for(let m=0;
 m<e;
 m++){
 if(o?.(m))continue;
-let g=a8(r[0]+(r[1]-r[0])*a()),
+let g=s8(r[0]+(r[1]-r[0])*a()),
 w=a();
 if(m>=p){
 let A=d[(m-p)%Math.min(d.length,
 90)],
 y=Math.floor((m-p)/90),
-b=A.s*.7*Wv(a),
-x=A.s*.7*Wv(a)/A.r;
+b=A.s*.7*Vv(a),
+x=A.s*.7*Vv(a)/A.r;
 s.set([A.r+b,
 A.phi+x,
-A.y+_d(a,
+A.y+Td(a,
 .006),
 1],
 m*4),
 l.set([.6+.8*a()/(1+y),
-xd.knot,
+Sd.knot,
 w,
 .03+.045*a()*A.s/.068],
 m*4);
@@ -28993,50 +28994,50 @@ M),
 S,
 2],
 m*4),
-l.set([g*n8,
-xd.bulge,
+l.set([g*i8,
+Sd.bulge,
 w,
 0],
 m*4)}
-else if(v<f)s.set([s8(a,
+else if(v<f)s.set([l8(a,
 Tt.hR),
 a()*j,
-_d(a,
+Td(a,
 Tt.hz),
 0],
 m*4),
-l.set([g*n8,
-xd.old,
+l.set([g*i8,
+Sd.old,
 w,
 0],
 m*4);
 else if(a()<.5){
 let A=JW(a),
-y=A.s*Wv(a),
-b=A.s*Wv(a)/A.r;
+y=A.s*Vv(a),
+b=A.s*Vv(a)/A.r;
 s.set([Math.max(.3,
 A.r+y),
 A.phi+b,
-A.y+_d(a,
+A.y+Td(a,
 .012),
 1],
 m*4),
 l.set([g,
-xd.young,
+Sd.young,
 w,
 0],
 m*4)}
 else{
 let[A,
-y]=l8(a);
+y]=u8(a);
 s.set([A,
 y,
-_d(a,
+Td(a,
 Tt.hzy),
 1],
 m*4),
 l.set([g,
-xd.young,
+Sd.young,
 w,
 0],
 m*4)}
@@ -29047,7 +29048,7 @@ look:l}
 }
 c(jA,
 "starTables");
-function c8(e,
+function h8(e,
 t){
 let n=e.length/4,
 i=new Float32Array(n*4),
@@ -29071,12 +29072,12 @@ i[a*4]=r[0],
 i[a*4+1]=r[1],
 i[a*4+2]=r[2]);
 return i}
-c(c8,
+c(h8,
 "positionsAt");
-var h8=Object.freeze([["arms",
+var f8=Object.freeze([["arms",
 "".concat(Tt.arms)],
 ["pitch",
-"".concat((Tt.pitch/i8).toFixed(1),
+"".concat((Tt.pitch/r8).toFixed(1),
 "°")],
 ["h_R",
 "".concat(Tt.hR.toFixed(2))],
@@ -29087,7 +29088,7 @@ let t=(+e).toPrecision(9);
 return(new RegExp("[.e]","")).test(t)?t:t+"."}
 ,
 "f"),
-XA="\nconst float COT = ".concat(Vi(Sd),
+XA="\nconst float COT = ".concat(Vi(Cd),
 ", RIN = ").concat(Vi(Tt.rIn),
 ", ROUT = ").concat(Vi(Tt.rOut),
 ", RMAX = ").concat(Vi(Tt.rMax),
@@ -29098,8 +29099,8 @@ XA="\nconst float COT = ".concat(Vi(Sd),
 ", RC = ").concat(Vi(Tt.rc),
 ", OMP = ").concat(Vi(n0),
 ";\nfloat g_ecc(float a) { return E0 * smoothstep(RIN * .6, RIN * 1.5, a) * (1. - smoothstep(ROUT, RMAX, a)); }\nfloat g_theta(float a) { return TH0 - COT * log(max(a, 1e-3) / RIN); }\nfloat g_omega(float r) { return V0 / sqrt(r * r + RC * RC); }\nfloat g_armPhase(float r, float phi) { return 2. * (phi - g_theta(r)) + 2. * COT * g_ecc(r) - atan(2. * COT, r / HR); }\nfloat g_armLight(float r, float side) { float l = log(max(r, .05)); return .5 + .3 * sin(2.6 * l + 1.7 * side + .4) + .2 * sin(5.3 * l + 2.9 * side + 1.1); }\n"),
-Vv=2048,
-qv=7.4,
+qv=2048,
+jv=7.4,
 $W="".concat(XA,
 "\nconst float HRY = ").concat(Vi(Tt.hRy),
 ", HRD = ").concat(Vi(Tt.hRd),
@@ -29114,8 +29115,8 @@ eV="".concat(XA,
 ", HZD = ").concat(Vi(Tt.hzd),
 ";\nconst float BRE = ").concat(Vi(Tt.bulge.re),
 ", BQ = ").concat(Vi(Tt.bulge.q),
-", BP = ").concat(Vi(Td.p),
-", BB = ").concat(Vi(Td.b),
+", BP = ").concat(Vi(Ed.p),
+", BB = ").concat(Vi(Ed.b),
 ", BN = ").concat(Vi(Tt.bulge.n),
 ";\nuniform mat4 uCamWorld, uProjInv, uModelInv;\nuniform sampler2D uMap; uniform float uMapL, uTexel, uMaxLod, uPixAng, uPat;\nuniform highp sampler3D uRag;\nuniform float uKappa, uDust, uGain, uIOld, uIYoung, uIBulge;\nuniform vec3 uKr, uCOld, uCYoung, uCBulge;\nuniform float uRevR, uRevW, uRevF;\nin vec2 vUv; out vec4 o;\n// the ignition (Galaxy.draw o.reveal): lit inside radius uRevR, a soft front uRevW wide that flares by uRevF as it passes\nfloat reveal(float R) { float d = (R - uRevR) / uRevW; return (1. - smoothstep(-.5, .5, d)) + uRevF * exp(-d * d * 4.); }\nvoid main() {\n  vec4 n = uProjInv * vec4(vUv * 2. - 1., -1., 1.); n /= n.w;\n  vec3 ro = (uModelInv * vec4(uCamWorld[3].xyz, 1.)).xyz;\n  vec3 rd = normalize(mat3(uModelInv) * (mat3(uCamWorld) * n.xyz));\n  // the volume: the slab |y| < YB inside the cylinder r < RB\n  const float YB = 2.6, RB = RMAX + .3;\n  float t0 = 0., t1 = 1e4;\n  if (abs(rd.y) > 1e-7) { float a = (-YB - ro.y) / rd.y, b = (YB - ro.y) / rd.y; t0 = max(t0, min(a, b)); t1 = min(t1, max(a, b)); }\n  else if (abs(ro.y) > YB) { o = vec4(0.); return; }\n  float A = dot(rd.xz, rd.xz), B = dot(ro.xz, rd.xz), C = dot(ro.xz, ro.xz) - RB * RB;\n  if (A > 1e-9) { float D = B * B - A * C; if (D <= 0.) { o = vec4(0.); return; } float s = sqrt(D); t0 = max(t0, (-B - s) / A); t1 = min(t1, (-B + s) / A); }\n  else if (C > 0.) { o = vec4(0.); return; }\n  if (t1 <= t0) { o = vec4(0.); return; }\n  float cp = cos(uPat), sp = sin(uPat), ary = abs(rd.y);\n  float jit = hash12(gl_FragCoord.xy);\n  vec3 L = vec3(0.), Tr = vec3(1.);\n  float t = t0;\n  for (int i = 0; i < 240; i++) {\n    if (t >= t1) break;\n    vec3 p = ro + rd * t;\n    float dy = ary > 1e-6 ? .3 * (abs(p.y) + .02) / ary : 1e3;\n    float dt = clamp(min(min(dy, .2 * (length(p) + .012)), .06 + .011 * t), .0012, .5);\n    dt = min(dt, t1 - t);\n    vec3 q = ro + rd * (t + dt * jit);\n    vec2 pp = vec2(cp * q.x + sp * q.z, -sp * q.x + cp * q.z);\n    vec4 m = textureLod(uMap, pp / uMapL * .5 + .5, clamp(log2(max(uPixAng * t, 1e-6) / uTexel), 0., uMaxLod));\n    float ay = abs(q.y);\n    float mb = length(vec3(q.x, q.y / BQ, q.z)) / BRE;\n    float bulge = pow(mb + .008, -BP) * exp(-BB * pow(mb, 1. / BN));\n    vec3 em = uCOld * (uIOld * m.b * exp(-ay / HZ) / (2. * HZ)) + uCYoung * (uIYoung * m.g * exp(-ay / HZY) / (2. * HZY)) + uCBulge * (uIBulge * bulge);\n    em *= reveal(length(q.xz));\n    float hd = HZD * m.a, rho = m.r * exp(-ay / hd) / (2. * hd);\n    // (above and below the midplane the dust is ragged in 3D, so an edge-on lane does not stand in vertical stripes)\n    if (rho > .02 && ay > .25 * hd) rho *= mix(1., .3 + 1.4 * smoothstep(.3, .7, textureLod(uRag, vec3(pp * .45, q.y * .8), 0.).r), smoothstep(.25 * hd, 1.5 * hd, ay));\n    vec3 sig = uKr * (uKappa * uDust * rho);\n    vec3 tau = sig * dt, ex = exp(-tau);\n    L += Tr * em * mix(vec3(dt), (1. - ex) / max(sig, vec3(1e-8)), step(vec3(1e-4), tau));\n    Tr *= ex;\n    t += dt;\n    if (max(Tr.r, max(Tr.g, Tr.b)) < .003) break;\n  }\n  o = vec4(L * uGain, 1.);\n}"),
 tV="".concat(XA,
@@ -29216,14 +29217,14 @@ e,
 e);
 return u.format=nl,
 u.type=wa,
-u.minFilter=u.magFilter=On,
+u.minFilter=u.magFilter=Nn,
 u.wrapS=u.wrapT=u.wrapR=Yu,
 u.unpackAlignment=1,
 u.needsUpdate=!0,
 u}
 c(iV,
 "ragTexture");
-var f8=class{
+var d8=class{
 static{
 c(this,
 "Stars")}
@@ -29236,10 +29237,10 @@ r=new It;
 r.setAttribute("position",
 new Xt(new Float32Array(e*3),
 3));
-let o=an(t.orb,
+let o=sn(t.orb,
 i,
 i),
-a=an(t.look,
+a=sn(t.look,
 i,
 i);
 this.material=qe({
@@ -29346,7 +29347,7 @@ uCamL:{
 value:new B}
 ,
 uMapL:{
-value:qv}
+value:jv}
 ,
 uPat:{
 value:0}
@@ -29415,7 +29416,7 @@ this.material),
 this.points.frustumCulled=!1}
 }
 ,
-d8=class{
+p8=class{
 static{
 c(this,
 "Galaxy")}
@@ -29426,7 +29427,7 @@ knots:n=240}
 ={
 }
 ){
-this.scene=new fn,
+this.scene=new dn,
 this.root=new tl,
 this.scene.add(this.root),
 this.fieldTab=jA(t,
@@ -29434,10 +29435,10 @@ this.fieldTab=jA(t,
 seed:101,
 knots:n}
 ),
-this.field=new f8(t,
+this.field=new d8(t,
 this.fieldTab),
 this.glyphs=e.map((i,
-r)=>Object.assign(new f8(i.n,
+r)=>Object.assign(new d8(i.n,
 jA(i.n,
 {
 seed:201+r,
@@ -29459,7 +29460,7 @@ for(let i of[this.field,
 this.mapMat=Lt($W,
 {
 uL:{
-value:qv}
+value:jv}
 }
 ),
 this.glowMat=Lt(eV,
@@ -29477,13 +29478,13 @@ uMap:{
 value:null}
 ,
 uMapL:{
-value:qv}
+value:jv}
 ,
 uTexel:{
-value:2*qv/Vv}
+value:2*jv/qv}
 ,
 uMaxLod:{
-value:Math.log2(Vv)-2}
+value:Math.log2(qv)-2}
 ,
 uPixAng:{
 value:.001}
@@ -29545,8 +29546,8 @@ ensureMap(e){
 if(this.map)return;
 let t=e.renderer,
 n=t.getRenderTarget();
-this.map=new Or(Vv,
-Vv,
+this.map=new Or(qv,
+qv,
 {
 type:Da,
 format:So,
@@ -29554,7 +29555,7 @@ depthBuffer:!1,
 generateMipmaps:!0,
 colorSpace:"",
 minFilter:ho,
-magFilter:On,
+magFilter:Nn,
 wrapS:co,
 wrapT:co}
 ),
@@ -29700,7 +29701,7 @@ dh=["white",
 "dim",
 "blue",
 "cyan"];
-function p8({
+function m8({
 em:e=104,
 cx:t=960,
 base:n=380,
@@ -29708,7 +29709,7 @@ weight:i=600}
 ={
 }
 ){
-let r=Fn(),
+let r=In(),
 o=r.getContext("2d"),
 a=.6*e,
 s=Math.ceil(a*20+e),
@@ -29748,9 +29749,9 @@ A++)w[(v*s+A)*4+3]>127&&f[g].push([d+A+.5-h,
 n+v+.5-u])}
 p+=m.length}
 return f}
-c(p8,
+c(m8,
 "cardInk");
-function m8(e,
+function v8(e,
 t,
 n,
 {
@@ -29798,11 +29799,11 @@ v++)f.set([0,
 9],
 v*4);
 return f}
-c(m8,
+c(v8,
 "cardStars");
 var YA=c(e=>.1*e*e+.9*e**6.5,
 "titlePush");
-function v8(e,
+function g8(e,
 t,
 n,
 i){
@@ -29813,9 +29814,9 @@ o=(i-e.position.y)/r.y;
 return[e.position.x+r.x*o,
 i,
 e.position.z+r.z*o]}
-c(v8,
+c(g8,
 "cardGroundPoint");
-var Cd=Object.freeze({
+var Rd=Object.freeze({
 w:9156,
 h:2e3,
 paths:Object.freeze([{
@@ -29827,30 +29828,30 @@ fill:"#d97757",
 d:"M870,1900l28-124,32-160,26-128,24-158,14-52-2-4-10,2-120,164-182,246-144,152-34,14-60-30,6-56,34-48,198-254,120-158,78-90-2-12h-4l-528,344-94,12-42-38,6-62,20-20,158-110,394-220,6-20-6-10h-20l-66-4-224-6-194-8-190-10-48-10L0,982l4-30,40-26,58,4,126,10,190,12,138,8,204,22h32l4-14-10-8-8-8-198-132-212-140-112-82-60-42-30-38-12-84,54-60,74,6,18,4,74,58,158,122,208,154,30,24,14-8v-6l-14-22-112-204-120-208-54-86-14-52c-5.3-18-8-38-8-60l62-84,34-12,84,12,34,30,52,118,82,186,130,252,38,76,20,68,8,22h14v-12l10-144,20-174,20-224,6-64,32-76,62-40,48,22,40,58-6,36-22,154-48,242-30,164h18l20-22,82-108,138-172,60-68,72-76,46-36h86l62,94-28,98-88,112-74,94-106,142-64,114,6,8h14l238-52,130-22,152-26,70,32,8,32-28,68-164,40-192,38-286,68-4,2,4,6,128,12,56,4h136l252,18,66,44,38,52-6,42-102,50-136-32-320-76-108-26h-16v8l92,90,166,150,210,194,10,48-26,40-28-4-184-140-72-62-160-134h-10v14l36,54,196,294,10,90-14,28-52,18-54-10-116-160-118-182-96-162-10,8-58,604-26,30-60,24-50-38-28-62Z"}
 ])}
 );
-var Xv={
+var Yv={
 lo:[-9,
 -11,
 -3],
 size:[21,
 19,
 27],
-data:ld("\n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\npdGhywOKzFUdJPZCfJwglPb1SYGML3AMPkhV".replace((new RegExp("\\s","g")),
+data:cd("\n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\npdGhywOKzFUdJPZCfJwglPb1SYGML3AMPkhV".replace((new RegExp("\\s","g")),
 ""))}
 ,
-jv=null;
-function Yv(){
-return jv||(jv=new Gf(Xv.data,
-...Xv.size),
-jv.needsUpdate=!0),
-jv}
-c(Yv,
+Xv=null;
+function Qv(){
+return Xv||(Xv=new Gf(Yv.data,
+...Yv.size),
+Xv.needsUpdate=!0),
+Xv}
+c(Qv,
 "cellTexture");
-var Qv="\nuniform highp sampler3D uCells;\nvec4 cell(vec3 id) {\n  ivec3 c = ivec3(id) - ivec3(".concat(Xv.lo.join(", "),
-");\n  if (all(greaterThanEqual(c, ivec3(0))) && all(lessThan(c, ivec3(").concat(Xv.size.join(", "),
+var Zv="\nuniform highp sampler3D uCells;\nvec4 cell(vec3 id) {\n  ivec3 c = ivec3(id) - ivec3(".concat(Yv.lo.join(", "),
+");\n  if (all(greaterThanEqual(c, ivec3(0))) && all(lessThan(c, ivec3(").concat(Yv.size.join(", "),
 ")))) return texelFetch(uCells, c, 0);\n  return vec4(hash33(id + vec3(0., 0., 1000.)), hash33(id + vec3(0., 0., 2000.)).x);\n}");
-var sV="\nuniform vec2 uRes; uniform float uT, uZ, uPulse, uFade, uRoll, uTan, uSS, uSway, uBeam;\nuniform mat3 uBasis; uniform vec3 uRo;\nin vec2 vUv; out vec4 o;\n".concat(Qv,
+var sV="\nuniform vec2 uRes; uniform float uT, uZ, uPulse, uFade, uRoll, uTan, uSS, uSway, uBeam;\nuniform mat3 uBasis; uniform vec3 uRo;\nin vec2 vUv; out vec4 o;\n".concat(Zv,
 "\nfloat sdBoxFrame(vec3 p, vec3 b, float e) {\n  p = abs(p) - b; vec3 q = abs(p + e) - e;\n  return min(min(length(max(vec3(p.x, q.y, q.z), 0.)) + min(max(p.x, max(q.y, q.z)), 0.),\n                 length(max(vec3(q.x, p.y, q.z), 0.)) + min(max(q.x, max(p.y, q.z)), 0.)),\n                 length(max(vec3(q.x, q.y, p.z), 0.)) + min(max(q.x, max(q.y, p.z)), 0.));\n}\n// d: distance; g: cell hash (colour); th: thickness of the nearest structure (for coverage); bm: 1 on a z-beam\nfloat map(vec3 p, out float g, out float th, out float bm) {\n  const float C = 4.;\n  vec3 id = floor(p / C + .5), q = p - C * id;\n  vec4 cv = cell(id); float h = cv.x, s = h > .42 ? .7 + .95 * cv.y : .1;   // many cells hold only a small node\n  float e = .014 + .012 * cv.z;\n  float d = sdBoxFrame(q, vec3(s), e);\n  float beam = length(abs(q.xy) - C * .5) - .02;                        // beams along z at the cell corners\n  th = d < beam ? e : .02;\n  bm = d < beam ? 0. : 1.;\n  d = min(d, beam);\n  d = max(d, -(length(p.xy) - 1.3));                                     // keep a tunnel open along the flight path\n  g = h;\n  return d;\n}\nvec3 march(vec3 ro, vec3 rd, float pix) {\n  float t = .05, trans = 1.; vec3 col = vec3(0.);\n  vec3 sg = sign(rd), rdi = 1. / max(abs(rd), vec3(1e-5));\n  for (int i = 0; i < 84; i++) {\n    vec3 p = ro + rd * t; float g, th, bm; float d = map(p, g, th, bm);\n    float fp = t * pix;                                                  // pixel footprint radius at this depth\n    float band = exp(-abs(fract((p.z - uZ) * .06 - uPulse) - .5) * 18.);  // a pulse of light runs down the tunnel on each beat\n    vec3 c = (g > .93 ? vec3(.85, .95, 1.) * 1.6 : mix(vec3(.08, .3, 1.), vec3(.2, .85, 1.), g)) * (.34 + 1.7 * band);\n    c *= mix(1., uBeam, bm);                                              // uBeam < 1: the beams give way to their code\n    float near = smoothstep(.8, 3.5, t), fog = exp(-t * .075);\n    // glow: a Lorentzian around the structures, never narrower than the footprint; widening keeps its energy\n    float w0 = .0115, w = max(w0, fp * .8);\n    col += trans * c * near * fog * (.0014 / 30.) * (w / w0) / (w * w + d * d);\n    // cone hit: a structure thinner than the footprint only covers part of the pixel; the ray continues through\n    if (d < max(.002, fp * .5)) {\n      float cov = clamp(th / max(fp, 1e-4), 0., 1.);\n      col += trans * c * near * .55 * fog * cov;\n      trans *= 1. - cov;\n      if (trans < .04) break;\n      t += max(fp, .02);\n      continue;\n    }\n    // the SDF only sees this cell's frame: never step further than the cell exit plus the .35 clearance every frame\n    // keeps from its cell border, or the ray can skip a neighbour's frame (dotted far lines)\n    vec3 q = p - 4. * floor(p / 4. + .5), ex = (2. - q * sg) * rdi;   // ≥ 0: distance to leave the cell on each axis\n    t += max(min(d * .8, min(min(ex.x, ex.y), ex.z) + .3), .02);\n    if (t > 55.) break;\n  }\n  return col;\n}\nvoid main() {\n  vec2 px = 1. / uRes;\n  float pix = 2. * uTan / uRes.y;                                          // radians per pixel\n  vec3 col = vec3(0.);\n  // two rays per pixel on a rotated grid (uSS = 1 → one ray)\n  for (int k = 0; k < 2; k++) {\n    if (float(k) >= uSS) break;\n    vec2 off = uSS > 1.5 ? (k == 0 ? vec2(.25, -.25) : vec2(-.25, .25)) : vec2(0.);\n    vec2 uv = ((vUv + off * px) * 2. - 1.) * vec2(uRes.x / uRes.y, 1.) * uTan;\n    uv = rot2(uRoll) * uv;\n    vec3 ro = uRo + vec3(uSway * .25 * sin(uT * .7), uSway * .2 * cos(uT * .5), uZ);\n    vec3 rd = normalize(uBasis * vec3(uv, 1.));\n    col += march(ro, rd, pix);\n  }\n  o = vec4(col / max(uSS, 1.) * uFade, 1.);\n}");
-function g8(){
+function w8(){
 return Lt(sV,
 {
 uRes:{
@@ -29891,10 +29892,10 @@ uRo:{
 value:new B}
 ,
 uCells:{
-value:Yv()}
+value:Qv()}
 }
 )}
-c(g8,
+c(w8,
 "latticeMaterial");
 function QA(e,
 t,
@@ -29941,7 +29942,7 @@ o.z,
 n.z)}
 c(i0,
 "basis");
-var Zv=.32*ti;
+var Kv=.32*ti;
 function ZA({
 X0:e,
 NCELL:t}
@@ -29949,22 +29950,22 @@ NCELL:t}
 return{
 x0:e-2*ti,
 x1:e+t*Po+1.2*ti,
-y0:Zv-1.05*ti,
-y1:Zv+1.05*ti,
+y0:Kv-1.05*ti,
+y1:Kv+1.05*ti,
 r:.45*ti,
-mid:Zv,
+mid:Kv,
 promptX:e-1.2*ti,
-hintY:Zv-1.05*ti-.9*ti}
+hintY:Kv-1.05*ti-.9*ti}
 }
 c(ZA,
 "boxFor");
-var Kv=ZA({
-X0:Iv,
-NCELL:yd}
+var Jv=ZA({
+X0:Dv,
+NCELL:Md}
 );
 function lV(e=0,
 t=8,
-n=Kv){
+n=Jv){
 let{
 x0:i,
 x1:r,
@@ -30002,7 +30003,7 @@ l.push(l[0]),
 l}
 c(lV,
 "boxOutline");
-function w8(e,
+function A8(e,
 t,
 n,
 i={
@@ -30010,9 +30011,9 @@ i={
 ){
 let r=i.alpha??1,
 o=i.dy??0,
-a=i.box??Kv;
+a=i.box??Jv;
 if(r<=.005)return;
-oC(t,
+aC(t,
 lV(o,
 8,
 a),
@@ -30059,9 +30060,9 @@ color:"#5b606b",
 alpha:r*(i.hint??1),
 weight:500}
 )}
-c(w8,
+c(A8,
 "drawPromptBox");
-var Ed=[];
+var Bd=[];
 for(let e of[2,
 -2,
 6,
@@ -30070,11 +30071,11 @@ for(let e of[2,
 -10])for(let t of[2,
 -2,
 6,
--6])Ed.push([e,
+-6])Bd.push([e,
 t]);
 var KA=.26,
 uV=KA*.72*.6,
-A8=[[.5,
+y8=[[.5,
 .72,
 1],
 [.12,
@@ -30097,7 +30098,7 @@ return t=>{
 let n=new Float32Array(t*4),
 i=e._grid??[],
 r=e.count,
-o=Math.ceil(r/Ed.length);
+o=Math.ceil(r/Bd.length);
 for(let a=0;
 a<t;
 a++)n.set([0,
@@ -30106,7 +30107,7 @@ a++)n.set([0,
 1],
 a*4);
 for(let a=0;
-a<Ed.length;
+a<Bd.length;
 a++){
 let s=0;
 for(let l=a*o;
@@ -30116,8 +30117,8 @@ l++){
 l>a*o&&(s+=i[l][1]===i[l-1][1]?i[l][0]-i[l-1][0]:3);
 let u=118-s*uV;
 if(u<-12)break;
-n.set([Ed[a][0],
-Ed[a][1],
+n.set([Bd[a][0],
+Bd[a][1],
 u,
 (u- -12)/130],
 l*4)}
@@ -30126,18 +30127,18 @@ return n}
 }
 c(cV,
 "beamLayout");
-function y8(){
-let e=new nn({
+function b8(){
+let e=new rn({
 count:65536}
 );
 return e.text("title/beams-src",
-tn("ch/title/lattice.js")+"\n"+tn("ch/02_title.js")+"\n"+tn("ch/title/code.js")),
+nn("ch/title/lattice.js")+"\n"+nn("ch/02_title.js")+"\n"+nn("ch/title/code.js")),
 {
 gf:e,
 tex:e.layout("title/beams",
 cV(e))}
 }
-c(y8,
+c(b8,
 "beamField");
 function JA(e,
 t,
@@ -30190,7 +30191,7 @@ e.projectionMatrixInverse.copy(e.projectionMatrix).invert(),
 e}
 c(JA,
 "latticeCamera");
-var Jv=[{
+var $v=[{
 role:"Executive Producer",
 name:"FrostNova"}
 ,
@@ -30207,7 +30208,7 @@ role:"Lead Sponsor",
 name:"KUSK"}
 ],
 hV=.34,
-b8=540/Math.tan(64*Math.PI/360);
+M8=540/Math.tan(64*Math.PI/360);
 function $A(e,
 {
 yaw:t=0,
@@ -30222,14 +30223,14 @@ a,
 s){
 let l=i0(t,
 n).elements,
-u=r*a/b8,
-h=o*a/b8;
+u=r*a/M8,
+h=o*a/M8;
 return[0,
 1,
 2].map(f=>i[f]+(f===2?e.z:0)+l[f]*u+l[3+f]*h+l[6+f]*s)}
 c($A,
 "rideAt");
-function x8(e,
+function _8(e,
 t,
 n,
 i,
@@ -30253,17 +30254,17 @@ return C(l,
 R.inQuad(_(e,
 n,
 i)))}
-c(x8,
+c(_8,
 "rideD");
 var fV=new B,
-M8=new B;
-function $v(e,
+x8=new B;
+function e2(e,
 t,
 n=hV){
-t.getWorldDirection(M8);
+t.getWorldDirection(x8);
 let i=fV.set(e[0],
 e[1],
-e[2]).sub(t.position).dot(M8);
+e[2]).sub(t.position).dot(x8);
 if(i<=.05)return null;
 let r=G(e,
 t),
@@ -30280,9 +30281,9 @@ rot:Math.atan2(o[0]-r[0],
 r[1]-o[1]),
 d:i}
 }
-c($v,
+c(e2,
 "signAt");
-function e2(e,
+function t2(e,
 t,
 {
 x:n,
@@ -30389,7 +30390,7 @@ r*.08),
 glowColor:P.me}
 )}
 }
-c(e2,
+c(t2,
 "drawSign");
 var s0={
 white:[.9,
@@ -30415,10 +30416,10 @@ cyan:[.6,
 .97,
 1]}
 ,
-k8=[1,
+L8=[1,
 1,
 1],
-t2=65536,
+n2=65536,
 Te=null,
 ey=null;
 function nr(e){
@@ -30437,7 +30438,7 @@ s0:t,
 B:r,
 BAR:o,
 v1:e.section("v1").start,
-keyT:OC.map(s=>r(s)+.02),
+keyT:NC.map(s=>r(s)+.02),
 tType:e.beatTime(Math.round(e.beatAt(a.start))),
 enterKey:r(7.5),
 enter:o(2),
@@ -30447,7 +30448,7 @@ gather:o(7)}
 c(nr,
 "keys");
 var ty=null;
-function L8(e){
+function F8(e){
 if(ty?.T===e)return ty;
 let t=nr(e),
 n=e.onsetNear("drums",
@@ -30471,12 +30472,12 @@ cred:t.BAR(2),
 gMacro:t.B(12),
 pass:o}
 }
-c(L8,
+c(F8,
 "keysR");
-var r0=c(e=>q(e)?L8(e.T):nr(e.T),
+var r0=c(e=>q(e)?F8(e.T):nr(e.T),
 "kk"),
-r2=c((e,
-t)=>NC(e,
+o2=c((e,
+t)=>UC(e,
 t.keyT),
 "typeSt"),
 ry=c((e,
@@ -30488,18 +30489,18 @@ flash:e>=t.enter?Math.exp(-(e-t.enter)/.09):0,
 lt:e-t.enter}
 ),
 "burstSt");
-function F8(e,
+function I8(e,
 t){
-let n=r2(e,
+let n=o2(e,
 t);
 return n.n===0?0:n.n-1+R.outCubic(X((e-n.last)/.06))}
-c(F8,
+c(I8,
 "cursorCell");
-var _8=c((e,
-t)=>Dv(0)+F8(e,
+var S8=c((e,
+t)=>zv(0)+I8(e,
 t)*Po+Po/2,
 "cursorX"),
-I8=c((e,
+D8=c((e,
 t)=>R.inOutCubic(_(e,
 t.gather,
 t.v1-.1)),
@@ -30547,7 +30548,7 @@ e.t,
 .005,
 .12),
 "kick");
-function n2(e,
+function i2(e,
 t){
 let n=q(e)?null:Te.cam.quaternion.clone(),
 i=Ku(Te.cam,
@@ -30569,7 +30570,7 @@ look:t.target??[0,
 0,
 0]}
 )}
-c(n2,
+c(i2,
 "orbitCam");
 function o0(e,
 t,
@@ -30578,7 +30579,7 @@ i={
 }
 ){
 let r=e.t,
-o=r2(r,
+o=o2(r,
 n),
 a=ry(r,
 n),
@@ -30591,12 +30592,12 @@ a:Te.tex[l].cloud,
 b:Te.tex[l].glyph,
 revealBy:"w",
 reveal:o.n/s,
-wave:yd*Po,
-waveOrigin:[Iv,
+wave:Md*Po,
+waveOrigin:[Dv,
 0,
 0],
 spread:.97,
-morph:(o.front+.75)/yd*.97,
+morph:(o.front+.75)/Md*.97,
 arc:.06,
 t:r,
 size:i.size??.0065,
@@ -30641,21 +30642,21 @@ bu:a}
 }
 c(o0,
 "drawCode");
-function kd(e,
+function Fd(e,
 t,
 n,
 i={
 }
 ){
 let r=e.t,
-o=r2(r,
+o=o2(r,
 n);
 if(r>=n.enterKey)return;
 let a=o.typing||r<n.keyT[0]?1:ba(e.T,
 r),
-s=F8(r,
+s=I8(r,
 n),
-l=NS(FC(0).map(u=>[u[0]+s*Po,
+l=US(IC(0).map(u=>[u[0]+s*Po,
 u[1],
 u[2]]),
 t);
@@ -30666,30 +30667,30 @@ alpha:a*(i.alpha??1),
 scale:Math.sqrt(Math.hypot(l[1][0]-l[0][0],
 l[1][1]-l[0][1])/Lr.w)}
 )}
-c(kd,
+c(Fd,
 "drawTypingCursor");
-var D8=c((e,
+var z8=c((e,
 t)=>R.outCubic(_(e,
 t.enterKey,
 t.enterKey+.08)),
 "submitK"),
 pV=ZA(Yo);
-function Ld(e,
+function Id(e,
 t,
 n,
 i={
 }
 ){
 let r=e.t,
-o=D8(r,
+o=z8(r,
 n),
-a=n.remake?pV:Kv,
+a=n.remake?pV:Jv,
 s=(n.remake?1:R.outCubic(_(r,
 n.s0+.03,
 n.s0+.5)))*(1-R.inCubic(_(r,
 n.enter,
 n.enter+.12)))*(i.alpha??1);
-if(w8(e,
+if(A8(e,
 Te.lines,
 t,
 {
@@ -30735,13 +30736,13 @@ verb:"Executing",
 size:h*.55,
 alpha:f}
 )}
-c(Ld,
+c(Id,
 "prompt");
 function us(e,
 t={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -30782,7 +30783,7 @@ alpha:n.alpha??.75}
 )}
 c(ic,
 "readout");
-function Rd(e,
+function Pd(e,
 t,
 {
 yaw:n=0,
@@ -30818,7 +30819,7 @@ h.uSS.value=2,
 h.uBeam.value=l,
 e.pass(Te.lattice),
 f}
-c(Rd,
+c(Pd,
 "flight");
 function mV(e,
 t,
@@ -30845,7 +30846,7 @@ soft:14/130,
 size:KA,
 minPx:5,
 bright:r.bright??.9,
-palette:A8,
+palette:y8,
 t:e.t}
 ,
 o,
@@ -30854,7 +30855,7 @@ qa(e,
 o)}
 c(mV,
 "codeBeams");
-function Bd(e,
+function kd(e,
 t,
 n,
 i){
@@ -30893,9 +30894,9 @@ n.z.toFixed(2)],
 " u/s")],
 ["cells",
 "".concat(Math.floor(n.z/4))]])}
-c(Bd,
+c(kd,
 "flightHud");
-function Pd(e,
+function Ld(e,
 t={
 }
 ){
@@ -30908,7 +30909,7 @@ vignette:.55,
 exposure:1,
 ...t}
 )}
-c(Pd,
+c(Ld,
 "flightLook");
 function ay(e,
 t,
@@ -30952,19 +30953,19 @@ i,
 n);
 i<o||vV.forEach((u,
 h)=>{
-let f=$v($A(s,
+let f=e2($A(s,
 {
 }
 ,
 u,
 4,
-x8(i,
+_8(i,
 o,
 a-.25,
 a)),
 l);
-f&&e2(e.text.overlay,
-Jv[h],
+f&&t2(e.text.overlay,
+$v[h],
 {
 ...f,
 alpha:X((f.d-1)/1.6)*X((i-o)/.1),
@@ -30987,12 +30988,12 @@ t,
 i,
 n).cam,
 l=s.position,
-u=$v([l.x+a*Math.sin(o),
+u=e2([l.x+a*Math.sin(o),
 l.y+.35,
 l.z+a*Math.cos(o)],
 s);
-u&&e2(e.text.overlay,
-Jv[2],
+u&&t2(e.text.overlay,
+$v[2],
 {
 ...u,
 t:i,
@@ -31014,7 +31015,7 @@ cam:s}
 t,
 i,
 n),
-l=$v($A(a,
+l=e2($A(a,
 {
 yaw:Math.PI}
 ,
@@ -31027,8 +31028,8 @@ _(i,
 r,
 o))),
 s);
-l&&e2(e.text.overlay,
-Jv[3],
+l&&t2(e.text.overlay,
+$v[3],
 {
 ...l,
 t:i,
@@ -31037,14 +31038,14 @@ q:(t.B(1)-t.B(0))/32}
 )}
 c(AV,
 "creditsBack");
-function S8(e,
+function T8(e,
 t,
 n,
 i={
 }
 ){
 let r=e.t,
-o=I8(r,
+o=D8(r,
 n),
 a=Te.me;
 return a.points.visible=!0,
@@ -31069,7 +31070,7 @@ sparkle:.25,
 t,
 e.H),
 o}
-c(S8,
+c(T8,
 "drawGather");
 var iy=c((e,
 t)=>e-t.enter,
@@ -31077,7 +31078,7 @@ t)=>e-t.enter,
 yV=118,
 bV=560,
 sy=1,
-T8=zC(),
+C8=OC(),
 ny={
 r:13,
 el:.12,
@@ -31089,20 +31090,20 @@ el:1.35}
 ,
 MV=.022*a0.r/5.5,
 xV=.14,
-Fd=.6;
+Dd=.6;
 function _V(e,
 t){
 let n=R.inOutSine(_(e,
 .06,
 t.gTop-t.enter));
 return{
-r:C(T8.r,
+r:C(C8.r,
 ny.r,
 n),
 az:0,
 el:ny.el*n,
 target:[0,
-C(T8.y,
+C(C8.y,
 ny.y,
 n),
 0]}
@@ -31113,7 +31114,7 @@ function ly(e,
 t){
 let n=t.gTop-t.enter,
 i=t.pass-t.enter,
-r=a0.r*Fd*YA(_(e,
+r=a0.r*Dd*YA(_(e,
 n,
 i));
 return{
@@ -31135,7 +31136,7 @@ n){
 let i=n(e.t-t.enter,
 t);
 return{
-cam:n2(e,
+cam:i2(e,
 {
 ...i,
 aspect:e.aspect,
@@ -31145,7 +31146,7 @@ r:i.r}
 }
 c(uy,
 "tourCam");
-function i2(e){
+function r2(e){
 if(Te.lockCam)return Te.lockCam;
 let t=new wi(40,
 16/9,
@@ -31161,17 +31162,17 @@ fov:40}
 ),
 t.updateMatrixWorld(),
 Te.lockCam=t}
-c(i2,
+c(r2,
 "lockCam");
 function SV(e,
 t,
 n,
 i=1){
-let r=v8(i2(e),
+let r=g8(r2(e),
 t,
 n,
 sy),
-o=i2(e).position;
+o=r2(e).position;
 return[o.x+i*(r[0]-o.x),
 o.y+i*(r[1]-o.y),
 o.z+i*(r[2]-o.z)]}
@@ -31179,8 +31180,8 @@ c(SV,
 "cardPoint");
 function TV(e){
 if(Te.cardTex)return Te.cardTex;
-let t=i2(e),
-n=p8({
+let t=r2(e),
+n=m8({
 em:yV,
 base:bV,
 weight:800}
@@ -31191,7 +31192,7 @@ return Te.cardTex={
 dh.forEach((i,
 r)=>{
 Te.cardTex[i]=Te.card[i].shape("title/card6-".concat(i),
-o=>m8(o,
+o=>v8(o,
 n[i],
 t,
 {
@@ -31208,8 +31209,8 @@ var CV={
 dim:Ee(s0.dim,
 1.6)}
 ,
-C8=10,
-E8=.9;
+E8=10,
+R8=.9;
 function cy(e,
 t,
 n,
@@ -31225,7 +31226,7 @@ let s=TV(n),
 l=YA(_(o,
 n.gTop,
 n.pass)),
-u=i2(n).position;
+u=r2(n).position;
 for(let h of dh)Te.card[h].points.visible=!0,
 Te.card[h].points.position.set(u.x*(1-r),
 u.y*(1-r),
@@ -31234,12 +31235,12 @@ Te.card[h].points.scale.setScalar(r),
 Te.card[h].set({
 a:s[h],
 b:s[h],
-morph:X((a+1.2)*E8/C8),
-wave:C8,
+morph:X((a+1.2)*R8/E8),
+wave:E8,
 waveOrigin:[0,
 0,
 0],
-spread:E8,
+spread:R8,
 arc:0,
 size:MV*r,
 minPx:1.4,
@@ -31257,7 +31258,7 @@ t,
 e.H)}
 c(cy,
 "drawCard");
-var R8=[[["//",
+var B8=[[["//",
 P.dim],
 [" Music "],
 ["—",
@@ -31270,7 +31271,7 @@ P.dim],
 P.dim],
 [" Claude Opus 5.5 Max"]]],
 EV=56;
-function z8(e,
+function O8(e,
 t,
 n,
 i=1){
@@ -31310,11 +31311,11 @@ size:30*f,
 rot:d}
 ,
 g=n.beat/32,
-w=Math.max(...R8.map(b=>b.reduce((x,
+w=Math.max(...B8.map(b=>b.reduce((x,
 [M])=>x+a.measure(M,
 p),
 0)));
-R8.forEach((b,
+B8.forEach((b,
 x)=>{
 let M=Math.floor((r-n.cred)/g),
 T=960-w/2;
@@ -31346,8 +31347,8 @@ n.cred+.5));
 if(v<=.002)return;
 let A=s(960,
 778),
-y=EV*f/Cd.h;
-Te.logoPaths??=Cd.paths.map(b=>({
+y=EV*f/Rd.h;
+Te.logoPaths??=Rd.paths.map(b=>({
 fill:b.fill,
 path:new Path2D(b.d)}
 )),
@@ -31356,14 +31357,14 @@ b.globalAlpha*=v,
 b.translate(A[0],
 A[1]),
 b.rotate(d),
-b.translate(-Cd.w*y/2,
--Cd.h*y/2),
+b.translate(-Rd.w*y/2,
+-Rd.h*y/2),
 b.scale(y,
 y);
 for(let x of Te.logoPaths)b.fillStyle=x.fill,
 b.fill(x.path)}
 )}
-c(z8,
+c(O8,
 "cardCredits");
 function RV(e,
 t){
@@ -31404,7 +31405,7 @@ flash:1.4*(1-n)*_(n,
 }
 c(hy,
 "ignition");
-function o2(e,
+function a2(e,
 t,
 n,
 i={
@@ -31421,7 +31422,7 @@ reveal:hy(e.t,
 n),
 ...i}
 )}
-c(o2,
+c(a2,
 "drawGalaxyR");
 function BV(e,
 t){
@@ -31437,10 +31438,10 @@ r,
 .4*R.inOutSine(_(i,
 .15,
 1.2))),
-o2(e,
+a2(e,
 r,
 t),
-Ld(e,
+Id(e,
 r,
 t);
 let o=ry(n,
@@ -31451,7 +31452,7 @@ a=[Yo.cellX(Yo.TEXT.length)+Po/2,
 o.flash>.01&&(Te.lines.segment(a,
 a,
 {
-color:Ee(k8,
+color:Ee(L8,
 3*o.flash),
 width:24}
 ),
@@ -31499,7 +31500,7 @@ r,
 t),
 qa(e,
 r),
-kd(e,
+Fd(e,
 r,
 t),
 us(e),
@@ -31526,7 +31527,7 @@ ly);
 ph(e,
 n,
 .3),
-o2(e,
+a2(e,
 n,
 t),
 cy(e,
@@ -31535,19 +31536,19 @@ t,
 {
 }
 ,
-Fd),
+Dd),
 qa(e,
 n),
-z8(e,
+O8(e,
 n,
 t,
-Fd),
+Dd),
 us(e,
 {
 br:"view  top"}
 ),
 ic(e,
-h8,
+f8,
 {
 y:840}
 ),
@@ -31567,7 +31568,7 @@ ly);
 ph(e,
 n,
 .3),
-o2(e,
+a2(e,
 n,
 t),
 cy(e,
@@ -31576,13 +31577,13 @@ t,
 {
 }
 ,
-Fd),
+Dd),
 qa(e,
 n),
-z8(e,
+O8(e,
 n,
 t,
-Fd),
+Dd),
 us(e);
 let i=R.inOutSine(_(e.t,
 t.gMacro,
@@ -31616,7 +31617,7 @@ i);
 return n(i)-.21*(i-t.gather)*(.5-r**3+r**4/2)}
 c(FV,
 "gatherRotR");
-function B8(e,
+function P8(e,
 t,
 n){
 let i=e.t,
@@ -31644,7 +31645,7 @@ fade:1-o}
 }
 ),
 Te.tex.galaxyR??=Te.me.shape("title/galaxy-remake",
-()=>c8(Te.gal.fieldTab.orb,
+()=>h8(Te.gal.fieldTab.orb,
 iy(n.gather+.25,
 n)));
 let s=LV(i,
@@ -31676,9 +31677,9 @@ sparkle:.25}
 t,
 e.H),
 s}
-c(B8,
+c(P8,
 "drawGatherR");
-function P8(e,
+function k8(e,
 {
 r:t=5,
 arms:n=3,
@@ -31716,7 +31717,7 @@ Math.sin(h)*f+d*.6,
 0],
 l*4)}
 return a}
-c(P8,
+c(k8,
 "galaxy");
 Wn({
 id:"title",
@@ -31726,33 +31727,33 @@ to:c(e=>e.section("v1").start,
 "to"),
 init(e){
 Te={
-scene:new fn,
+scene:new dn,
 cam:dr(40)}
 ,
-Te.me=new Qt({
+Te.me=new Zt({
 count:1<<18}
 ),
-Te.stars=new Qt({
+Te.stars=new Zt({
 count:16384}
 ),
 Te.lines=new Xn(2048),
 Te.soft=new Xn(2048),
 Te.soft.material.uniforms.uCore.value=.04,
 Te.code=Object.fromEntries(sh.map(n=>[n,
-new Qt({
-count:t2}
+new Zt({
+count:n2}
 )]));
-let t=t2/Math.max(...sh.map(DC))*.98;
+let t=n2/Math.max(...sh.map(zC))*.98;
 if(Te.tex={
 galaxy:Te.me.shape("title/galaxy",
-n=>P8(n)),
+n=>k8(n)),
 sphere:Te.me.shape("title/sphere",
-n=>Dn.sphere(n,
+n=>zn.sphere(n,
 {
 r:1}
 )),
 stars:Te.stars.shape("title/stars",
-n=>Dn.stars(n,
+n=>zn.stars(n,
 {
 r0:25,
 r1:70}
@@ -31760,12 +31761,12 @@ r1:70}
 ,
 sh.forEach((n,
 i)=>{
-let r=IC(t2,
+let r=DC(n2,
 n,
 t,
 3+i);
 for(let o=0;
-o<t2;
+o<n2;
 o++)r.glyph[o*4+3]<2&&(Te.visible=(Te.visible??0)+1);
 Te.tex[n]={
 glyph:Te.code[n].shape("title/glyph-".concat(n),
@@ -31774,7 +31775,7 @@ cloud:Te.code[n].shape("title/cloud-".concat(n),
 ()=>r.cloud),
 galaxy:Te.code[n].shape("title/galaxy-".concat(n),
 o=>{
-let a=P8(o,
+let a=k8(o,
 {
 seed:41+i}
 );
@@ -31791,7 +31792,7 @@ return a}
 ),
 q(e)){
 Te.card=Object.fromEntries(dh.map(i=>[i,
-new Qt({
+new Zt({
 count:16384,
 cap:!0}
 )]));
@@ -31820,11 +31821,11 @@ skip:c(u=>l.glyph[u*4+3]>2,
 "skip")}
 )}
 ),
-Te.gal=new d8({
+Te.gal=new p8({
 glyphs:n}
 )}
-Te.lattice=g8(),
-Te.beams=y8(),
+Te.lattice=w8(),
+Te.beams=b8(),
 Te.bcam=new wi(64,
 16/9,
 .05,
@@ -31850,7 +31851,7 @@ t.s0,
 t.tType));
 ll();
 let r=(Ma.y0+Ma.y1)/2,
-o=(Dv(0)+Po/2+_8(n,
+o=(zv(0)+Po/2+S8(n,
 t))/2,
 a=C(r,
 r+.22*ti,
@@ -31858,7 +31859,7 @@ i),
 s=R.outCubic(_(n,
 t.s0,
 t.tType)),
-l=Fv*(1+1.25*s),
+l=Iv*(1+1.25*s),
 u=Hi(Te.cam,
 [o+.12*i,
 a+.05*i,
@@ -31873,12 +31874,12 @@ aspect:e.aspect}
 o0(e,
 u,
 t),
-Ld(e,
+Id(e,
 u,
 t),
 qa(e,
 u),
-kd(e,
+Fd(e,
 u,
 t),
 us(e,
@@ -31911,7 +31912,7 @@ i=_(n,
 t.tType,
 t.B(6));
 ll();
-let r=[_8(n,
+let r=[S8(n,
 t)-.05,
 .1*ti,
 0],
@@ -31943,7 +31944,7 @@ maxBlur:26}
 size:.0042,
 bright:.3}
 ),
-Ld(e,
+Id(e,
 s,
 t,
 {
@@ -31959,7 +31960,7 @@ hint:0}
 ),
 qa(e,
 s),
-kd(e,
+Fd(e,
 s,
 t,
 {
@@ -31970,7 +31971,7 @@ ic(e,
 [["ln",
 "1"],
 ["col",
-"".concat(r2(n,
+"".concat(o2(n,
 t).n+1)]]),
 cs(e,
 {
@@ -31990,7 +31991,7 @@ n=e.t,
 i=R.inOutSine(_(n,
 t.B(6),
 t.enter)),
-r=D8(n,
+r=z8(n,
 t)*1.1*ti;
 ll();
 let o=Hi(Te.cam,
@@ -32013,12 +32014,12 @@ aspect:e.aspect}
 o0(e,
 o,
 t),
-Ld(e,
+Id(e,
 o,
 t),
 qa(e,
 o),
-kd(e,
+Fd(e,
 o,
 t),
 us(e),
@@ -32049,9 +32050,9 @@ return}
 let i=R.inOutCubic(_(n,
 .12,
 3.4)),
-r=n2(e,
+r=i2(e,
 {
-r:C(Fv,
+r:C(Iv,
 13,
 i),
 az:C(0,
@@ -32078,16 +32079,16 @@ bu:o}
 =o0(e,
 r,
 t);
-Ld(e,
+Id(e,
 r,
 t);
-let a=[Dv(DA.length)+Po/2,
+let a=[zv(DA.length)+Po/2,
 (Ma.y0+Ma.y1)/2,
 0];
 o.flash>.01&&(Te.lines.segment(a,
 a,
 {
-color:Ee(k8,
+color:Ee(L8,
 3*o.flash),
 width:24}
 ),
@@ -32131,7 +32132,7 @@ width:1.5+6*h}
 ),
 qa(e,
 r),
-kd(e,
+Fd(e,
 r,
 t),
 us(e),
@@ -32212,14 +32213,14 @@ ca:.03}
 {
 id:"galaxyCover",
 editOnly:!0,
-at:c(e=>L8(e).gTop,
+at:c(e=>F8(e).gTop,
 "at"),
 ownsLyrics:!0,
 draw(e){
 let t=r0(e),
 n=e.row;
 ll();
-let i=n2(e,
+let i=i2(e,
 {
 r:n.r??19,
 az:n.az??0,
@@ -32230,7 +32231,7 @@ target:[0,
 aspect:e.aspect,
 fov:40}
 );
-o2(e,
+a2(e,
 i,
 t),
 qa(e,
@@ -32320,16 +32321,16 @@ let t=nr(e.T),
 n={
 roll:.15*Math.sin((e.t-t.flight)*.6)}
 ;
-Bd(e,
+kd(e,
 t,
-Rd(e,
+Pd(e,
 t,
 n),
 "cam  forward"),
 q(e)&&gV(e,
 t,
 n),
-Pd(e)}
+Ld(e)}
 }
 ,
 {
@@ -32347,7 +32348,7 @@ sway:.5}
 i=R.outCubic(_(e.t,
 t.BAR(5),
 t.BAR(5)+.35)),
-r=Rd(e,
+r=Pd(e,
 t,
 {
 ...n,
@@ -32363,14 +32364,14 @@ n,
 bright:1.25*i,
 far:40}
 ),
-Bd(e,
+kd(e,
 t,
 r,
 "cam  side"),
 q(e)&&wV(e,
 t,
 n),
-Pd(e)}
+Ld(e)}
 }
 ,
 {
@@ -32388,12 +32389,12 @@ roll:-.12*n}
 ,
 o=Dt(e,
 a=>{
-i=Rd(a,
+i=Pd(a,
 t,
 r)}
 );
-Pd(e),
-rn(e,
+Ld(e),
+on(e,
 o,
 "ascii",
 {
@@ -32404,7 +32405,7 @@ tint:[.42,
 source:.45,
 gain:1.9}
 ),
-Bd(e,
+kd(e,
 t,
 i,
 "cam  rear · ascii"),
@@ -32420,9 +32421,9 @@ at:c(e=>nr(e).B(26),
 ownsLyrics:!0,
 draw(e){
 let t=nr(e.T);
-Bd(e,
+kd(e,
 t,
-Rd(e,
+Pd(e,
 t,
 {
 pitch:-1.3,
@@ -32433,7 +32434,7 @@ ro:[0,
 sway:.3}
 ),
 "cam  top"),
-Pd(e)}
+Ld(e)}
 }
 ,
 {
@@ -32444,9 +32445,9 @@ ownsLyrics:!0,
 draw(e){
 let t=nr(e.T),
 n=e.t-t.B(27);
-Bd(e,
+kd(e,
 t,
-Rd(e,
+Pd(e,
 t,
 {
 roll:.5*R.inOutCubic(_(n,
@@ -32457,7 +32458,7 @@ t.gather-.12,
 t.gather)*.5}
 ),
 "cam  forward"),
-Pd(e)}
+Ld(e)}
 }
 ,
 {
@@ -32493,9 +32494,9 @@ roll:-.2-.3*i}
 ph(e,
 r,
 .45);
-let o=q(e)?B8(e,
+let o=q(e)?P8(e,
 r,
-r0(e)):S8(e,
+r0(e)):T8(e,
 r,
 t);
 qa(e,
@@ -32526,11 +32527,11 @@ draw(e){
 let t=nr(e.T),
 n=e.t;
 ll();
-let i=I8(n,
+let i=D8(n,
 t);
 Te.cam.near=.01,
 Te.cam.far=500;
-let r=n2(e,
+let r=i2(e,
 {
 r:C(11,
 5.2,
@@ -32542,9 +32543,9 @@ fov:38}
 );
 ph(e,
 r),
-q(e)?B8(e,
+q(e)?P8(e,
 r,
-r0(e)):S8(e,
+r0(e)):T8(e,
 r,
 t),
 qa(e,
@@ -32567,23 +32568,23 @@ exposure:1.05}
 ]}
 );
 var IV="\nDQAOAA8AIAA7AA0AiQBdACEAUAAJAAEBCACYAIoACAB2ACwA0QBZADIAAwBnACkAIgBUABgALgBiAJIAFgBwAGgAPAAdAAkANwAbALEAVgBUADEAAQAQ\nAJgALADUAHsAKQBLABIASwARABgAAQB9ABEApQBvAKsABgAvACwALQAMAHsAXQAEABkAMQAFABIADwBZANAADgAaACgAKABIAKAAKAB6ACEAngACAA4A\nBQAiAKwAaABtABMArQABABUAKwAGACkAFgAoADMAQQDHAB4AWgAiACIAIQCrACAADgCNADYAMAB0AAEA1wBWAAYAAgAJAEQAuAAZAAABLAAbAEIACQCY\nAFMAtAALABUAaABeAK0AYwApAAkADAAlAFAACwAOAA4AXgBkAL0AAgDBAC0AEwCoAQsACgCFABkAHwAmAG0AIwAgAA4AJwDMAEIAtwAsAIMAAgAJAEQA\nuABwAKkAFQAuAAEAAwBCAAkAmADZAC4ACwAVAMYAlABeAEcACQArAFYAAQAKAA4ADgBeAMkAWgAQABMAngAqAAMAEwAUAGcAYwDKAAsAEQAlACIANwAZ\nAEUATQA5AAwAHgAbADoADAB8ACQAQgBsAKMAVwALAAEAgACpAS4AHQApAAkAiwClAG8AnACBAF0ADQBRABkAYgBWAAEACgB6AMkAUAAKABAAEwAIABAA\nNQB7AAMAEwAUAGcAYwB7AEwAAwAcAB0ACAAiAOIAOQAMAB4AGwA5AAEADAB8ACQAQgBsAG8ANAAIAE8ADAAYAGgApwECACUACQAdACkAlAABAKQAIABP\nACYAdgAgAAIAQwAcAF0ADQBRAAYAEwBpAD4AEQABAE0BUAAKABAAEwAIABAANQAUAGcAFgB7AEoAGQBvAAwAEgA6AAMAHAAdAAgABQAdAOIACgAvAAwA\nHgAbADkAAQCIACQABgAXATQACABHAAgADAAYAGgAZgFBACcAJgApAJQAAQCkACAATwAVABEAdgAIABgAAgBDABwAagAaACwACwAGABMAaQA+ABEAxwCH\nAFAACgAQABsARQB+ABMAdAAHAIgASQABAFgAAwA5AA0AHQAMANYARQAeAFQAAQCsAAYAAwCYAA0ARgCsAAgADAAUAGwADABOAAwBLQAJAAsAdgAFAIAA\nEAATASYAmAADAC0AEwAvAJ0ACwDAABEAeAA7ABQAFgAbAFYAWgAQABsARQCRAHQABwAzAFUASQABAFgAAwA5AA0AHQAMANYARQAeAFQAAQA4AC4ARgAG\nAAMAmABTAKwACAAgAGwADABOAAwBLQAJAAsAdgAFAIAAEAATASMAAwCYAAMALQATAC8ATABRAMsAEQB4ADsAFAAWABsATQBFAB4AKwAqABsAkQB0ADoA\nVQBJAAEAWAADAAwALQANACkAOQFUADkALgBGAAYAAwCYAFMArAAIACAAbAAMAE4A8gAaAC0ACQALAHYABQCAABAAuQBaABAAEwADAJgAAwAtABMALwBM\nAFEAywARAGMAFQA7ABQAFgAbAE0ARQAeAFUArAB0ADoAVQBJAAEAWwAMADoAKQAdABwBjQAuAEYABgADAJgAUwCsAAgAIAB4ACYAKADyABoALQAJAIEA\nBQCAAMkAWgAQABMACABFAFEALQATAC8ATABRANkAAwA5ACoAFQA7ABQAFgAbAE0ARQAeAFQAAQCsAAYAbgA6AFUASQBUAAgADABjAB0AHAFKAEEAAgAu\nAEYACQCMAAwAUwC0ACAABgByACYAKADnAAsARwAJAHAAEQAFAIAAQgCHAFoAEAATAAgARQBRAC0AEwAvAEwAiABKAFgAAwA5AA0AHQAMAAkAOwAqABsA\nTQBFAB4AVAABAKwABgCoAJ4AVAAIAAwAgABmAUEAAgAuAEYABQAEAIwADABTALQAIAAGAJgAcgCdAAsAUABwABEAeAANAEIAhwBaABAAEwAIAEUAfgAT\nAHQABwCIAEkAAQBYAAMAOQANAB0ADABEAEUATQBFAB4AVAABAKwABgCoAEYArAAIAAwAFABsAAwATgAMAS0ACQALAAIALgBGAAUAkAATASYAmAADAEAA\nLwCdAAsAwAARAAUAXgAiAFgAywAQAN4AEwAvAH8AngBZAAMAYwB6AMsAVAA3AAIALgBGAAYAAwClAEYAWABcACAABgByABABMABHABQAAgAuADUAEQAF\nAAQAfABvALQAEAAQAAYAcgBWAEIAqABHAHkADgADAAUAXgAiAFgAywAQAEQAmgATAAYAKQB/AJ4AWQADAGMAegDLAFQANwACAC4ARgAGAAMApQBGAFgA\nXAAgAAYAcgBAAUcAFAACAC4ANQARAAUABAB8AG8AtAAQABAABgDIAEIAqABHAHkADgADAGMAIgBYAMsAEABEAJoAEwAGAKgAngBZAAMAYwA1ABABVAA3\nAAIALgBGAAUAAQADAKUARgC0ACAABgByAJgAqABHABQAAgAuADUAEQAFAAQAfABYAMsAEAAWAMgAQgCoAHUASwAOAAMAYwAiAFgAywAQAEQAmgATAAYA\nqABGAFgAWQADACAAQwA1ABABVAAjABQAAgAuAEYABQABAAMApQBGALQAIAAGAHIAmACoAEcAFAACAC4ANQARAAUAgABYAMsAEAAWAMgAEwAvAKgAdQBL\nAA4AAwBjAHoAywAQAEQArQAGAAMApQBGAFgAWQADACAAQwA1ABABVAAjABQAAgAuAEYABQABAAMAfABvALQAIAAGAHIAVgBCAKgARwAUAGUAEQAFAIAA\nWADLABAAFgDIABMALwB/ACkAdQBLAA4AAwBjAHoAywAQAEQAOQAuAEYABgADAKUARgBYAFkAAwAgAEMANQAQAVQAIwAUAAIALgBGAAUAAQADAHwAbwC0\nACAABgByAFYAQgCoAEcAFABlABEABQCAAFgAywAQABYAyAATAC8AfwCeAEsADgADAGMAegDLAFQAOQAuAEYABgADAKUARgBYAFkAAwAgAHgAEAEwACQA\nIwAUAAIALgBGAAUAAQADAHwAbwC0ABAAEAAGAHIAVgBCAKgARwAUAGUAEQAFAF4AIgBYAMsAEAAWAMgAEwAvAH8AngBLAA4AAwBjAHoAywBUADkALgBG\nAAYAAwClAEYAWABcACAABgByABABMABHABQAAgAuADUAEQAFAAEAAwB8AG8AtAAQABAABgByAFYAQgCoAEcAeQAOAAMABQBeACIAWADLABAARACaABMA\nBgApAH8AngBZAAMAYwB6AMsAVAA3AAIALgBGAAYAAwClAEYAWABcACAABgByAEABRwAUAAIALgA1ABEABQAEAHwAbwC0ABAAEAAGAHIAVgBCAKgARwB5\nAA4AAwAFAF4AIgBYAMsAEABEAJoAEwAGAKgAngBZAAMAYwB6AMsAVAA3AAIALgBGAAUAAQADAKUARgC0ACAABgByAJgAqABHABQAAgAuADUAEQAFAAQA\nfABYAMsAEAAWAMgAQgCoAHUASwAOAAMAYwAiAFgAywAQAEQAmgATAAYAqABGAFgAWQADACAAQwA1ABABVAAjABQAAgAuAEYABQABAAMApQBGALQAIAAG\nAHIAmACoAEcAFAACAC4ANQARAAUAgABYAMsAEAAWAMgAEwAvAKgAdQBLAA4AAwBjAHoAywAQAEQArQAGAAMApQBGAFgAWQADACAAQwA1ABABVAAjABQA\nAgAuAEYABQABAAMAfABvALQAIAAGAHIAVgBCAKgARwAUAGUAEQAFAIAAWADLABAAFgDIABMALwB/ACkAdQBLAA4AAwBjAHoAywAQAEQAOQAuAEYABgAD\nAKUARgBYAFkAAwAgAEMANQAQAVQAIwAUAAIALgBGAAUAAQADAHwAbwC0ACAABgByAFYAQgCoAEcAFABlABEABQCAAFgAywAQABYAyAATAC8AfwCeAEsA\nDgADAGMAegDLAFQAOQAuAEYABgADAKUARgBYAFkAAwAgAHgAEAEwACQAIwAUAAIALgBGAAUAAQADAFoAIgApAC8AbwBZAAMAIAAGAMgAEwAvAHgABwAp\nAF0AGAAWAEMAAwAFAAEAAwBaACIAWADLACAABgBnAC4AMwATAAYAAwAmAH8AKQB1AFkAAwAFABsAQwAiAFgAywAwAF0ALgAzABMABQABAAMAJgBWACkA\nngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkALwBvAFwAIAAGAMgAEwAvAHgABwApAF0AGAAWAEMAAwAFAAQAWgAiAFgAywAg\nAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMABQAbAAYAPQAiAFgAywAwAF0ALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0A\nLgBDAAMABQABAAMAWgAiACkALwBvAFwAIAAGAMgAEwAGACkAfwApAF0AGAAWAEMAAwAFAAQAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZ\nAAMAIAAGAD0AIgBYAFMAeAAwAF0ALgAzABMABQABAAMAfAApAJ4AWQADACAABgA9AIsAQgB4ADAAXQAuAEMAAwAFAAEAAwBaACIAKQAvAMsAIAAGAMgA\nEwAGACkAfwApAF0AGAAWAEMAAwAFAAQAWgAiAFgAywAmAGcALgAzABMABQABAAMAJgB/ACkAdQBZAAMAIAAGAD0AegBTAHgAMABdAC4AMwATAAUAAQAD\nAHwAKQAvAG8AWQADACAABgA9AIsAEwAvAHgAMABdABgAFgBDAAMABQABAAMAWgAiACkALwDLACAABgDIABMABgADACYAfwApAF0AGAAWAEMAAwAFABsA\nQwAiAFgAywAmAGcALgAzABMABQABAAMAJgBWACkAKQB1AFkAAwAgAAYAPQB6AFMAeAAwAF0ALgBGAAUAAQADAHwAKQAvAG8AWQADACAABgA9AIsAEwAv\nAHgAMABdABgAFgBDAAMABQABAAMAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMABQAbAEMAIgBYAMsAJgBnAC4AMwATAAUAAQADACYA\nVgApAJ4AWQADACAABgA9AHoAEQBCAHgAMABdAC4ARgAFAAEAAwB8ACkALwBvAFkAAwAgAAYAPQCLABMALwB4AAcAKQBdABgAFgBDAAMABQABAAMAWgAi\nAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMABQAbAEMAIgBYAMsAJgAKAF0ALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIA\neAAwAF0ALgBGAAUAAQADAFoAIgApAC8AbwBZAAMAIAAGAMgAEwAvAHgABwApAF0AGAAWAEMAAwAFAAEAAwBaACIAWADLACAABgBnAC4AMwATAAYAAwAm\nAH8AKQB1AFkAAwAFABsAQwAiAFgAywAwAF0ALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkA\nLwBvAFwAIAAGAMgAEwAvAHgABwApAF0AGAAWAEMAAwAFAAQAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMABQAbAAYAPQAiAFgAywAw\nAF0ALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkALwBvAFwAIAAGAMgAEwAGACkAfwApAF0A\nGAAWAEMAAwAFAAQAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMAIAAGAD0AIgBYAMsAMABdAC4AMwATAAUAAQADAHwAKQCeAFkAAwAg\nAAYAPQCLAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkALwDLACAABgDIABMABgApAH8AKQBdABgAFgBDAAMABQAEAFoAIgBYAMsAJgBnAC4AMwATAAUA\nAQADACYAfwApAHUAWQADACAABgA9ACIAWABTAHgAMABdAC4AMwATAAUAAQADAHwAKQAvAG8AWQADACAABgA9AIsAQgB4ADAAXQAYABYAQwADAAUAAQAD\nAFoAIgApAC8AywAgAAYAyAATAAYAAwAmAH8AKQBdABgAFgBDAAMABQAbAEMAIgBYAMsAJgBnAC4AMwATAAUAAQADACYAVgApACkAdQBZAAMAIAAGAD0A\negBTAHgAMABdAC4ARgAFAAEAAwB8ACkALwBvAFkAAwAgAAYAPQCLABMALwB4ADAAXQAYABYAQwADAAUAAQADAFoAIgBYAMsAIAAGAGcAYQATAAYAAwAm\nAH8AKQB1AFkAAwAFABsAQwAiAFgAywAmAGcALgAzABMABQABAAMAJgBWACkAKQB1AFkAAwAgAAYAPQB6ABEAQgB4ADAAXQAuAEYABQABAAMAfAApAC8A\nbwBZAAMAIAAGAD0AiwATAC8AeAAHACkAXQAYABYAQwADAAUAAQADAFoAIgBYAMsAIAAGAGcALgAzABMABgADACYAfwApAHUAWQADAAUAGwBDACIAWADL\nACYACgBdAC4AMwATAAUAAQADACYAVgApAJ4AWQADACAABgA9AHoAEQBCAHgAMABdAC4ARgAFAAEAAwB8ACkALwBvAFkAAwAgAAYAyAATAC8AeAAHACkA\nXQAYABYAQwADAAUAAQADAFoAIgBYAMsAIAAGAGcALgAzABMABgADACYAfwApAHUAWQADAAUAGwBDACIAWADLACYACgBdAC4AMwATAAUAAQADACYAVgAp\nAJ4AWQADACAABgA9AHoAEQBCAHgAMABdAC4ARgAFAAEAAwBaACIAKQAvAG8AXAAgAAYAyAATAC8AeAAHACkAXQAYABYAQwADAAUABABaACIAWADLACAA\nBgBnAC4AMwATAAYAAwAmAH8AKQB1AFkAAwAFABsABgA9ACIAWADLADAAXQAuADMAEwAFAAEAAwAmAFYAKQCeAFkAAwAgAAYAPQB6ABEAQgB4ADAAXQAu\nAEMAAwAFAAEAAwBaACIAKQAvAG8AXAAgAAYAyAATAAYAKQB/ACkAXQAYABYAQwADAAUABABaACIAWADLACAABgBnAC4AMwATAAYAAwAmAH8AKQB1AFkA\nAwAgAAYAPQAiAFgAywAwAF0ALgAzABMABQABAAMAfAApAJ4AWQADACAABgA9AHoAEQBCAHgAMABdAC4AQwADAAUAAQADAFoAIgApAC8AywAgAAYAyAAT\nAAYAKQB/ACkAXQAYABYAQwADAAUABABaACIAWADLACYAZwAuADMAEwAFAAEAAwAmAH8AKQB1AFkAAwAgAAYAPQAiAFgAUwB4ADAAXQAuADMAEwAFAAEA\nAwB8ACkALwBvAFkAAwAgAAYAPQCLAEIAeAAwAF0AGAAWAEMAAwAFAAEAAwBaACIAKQAvAMsAIAAGAMgAEwAGACkAfwApAF0AGAAWAEMAAwAFABsAQwAi\nAFgAywAmAGcALgAzABMABQABAAMAJgB/ACkAdQBZAAMAIAAGAD0AegBTAHgAMABdAC4ARgAFAAEAAwB8ACkALwBvAFkAAwAgAAYAPQCLABMALwB4ADAA\nXQAYABYAQwADAAUAAQADAFoAIgBYAMsAIAAGAMgAEwAGAAMAJgB/ACkAdQBZAAMABQAbAEMAIgBYAMsAJgBnAC4AMwATAAUAAQADACYAVgApACkAdQBZ\nAAMAIAAGAD0AegARAEIAeAAwAF0ALgBGAAUAAQADAHwAKQAvAG8AWQADACAABgA9AIsAEwAvAHgABwApAF0AGAAWAEMAAwAFAAEAAwBaACIAWADLACAA\nBgBnAC4AMwATAAYAAwAmAH8AKQB1AFkAAwAFABsAQwAiAFgAywAmAGcALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBG\nAAUAAQADAHwAKQAvAG8AWQADACAABgDIABMALwB4AAcAKQBdABgAFgBDAAMABQABAAMAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMA\nBQAbAEMAIgBYAMsAJgAKAF0ALgAzABMABQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBGAAUAAQADAFoAIgApAC8AbwBcACAABgDI\nABMALwB4AAcAKQBdABgAFgBDAAMABQABAAMAWgAiAFgAywAgAAYAZwAuADMAEwAGAAMAJgB/ACkAdQBZAAMABQAbAAYAPQAiAFgAywAwAF0ALgAzABMA\nBQABAAMAJgBWACkAngBZAAMAIAAGAD0AegARAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkALwBvAFwAIAAGAMgAEwAGACkAeAAHACkAXQAYABYAQwAD\nAAUABABaACIAWADLACAABgBnAC4AMwATAAYAAwAmAH8AKQB1AFkAAwAFABsABgA9ACIAWADLADAAXQAuADMAEwAFAAEAAwB8ACkAngBZAAMAIAAGAD0A\negARAEIAeAAwAF0ALgBDAAMABQABAAMAWgAiACkALwDLACAABgDIABMABgApAH8AKQBdABgAFgBDAAMABQAEAFoAIgBYAMsAJgBnAC4AMwATAAUAAQAD\nACYAfwApAHUAWQADACAABgA9ACIAWABTAHgAMABdAC4AMwATAAUAAQADAHwAKQAvAG8AWQADACAABgA9AIsAQgB4ADAAXQAYABYAQwADAAUAAQADAFoA\nIgApAC8AywAgAAYAyAATAAYAKQB/ACkAXQAYABYAQwADAAUAGwBDACIAWADLACYAZwAuADMAEwAFAAEAAwAmAH8AKQB1AFkAAwAgAAYAPQB6AFMAeAAw\nAF0ALgBGAAUAAQADAHwAKQAvAG8AWQADACAABgA9AIsAEwAvAHgAMABdABgAFgBDAAMABQABAAMAWgAiAFgAywAgAAYAyAATAAYAAwAmAH8AKQB1AFkA\nAwAFABsAQwAiAFgAywAmAGcALgAzABMABQABAAMAJgBWACkAKQB1AFkAAwAgAAYAPQB6ABEAQgB4ADAAXQAuAEYABQABAAMAfAApAC8AbwBZAAMAIAAG\nAD0AiwATAC8AeAAHACkAXQAYABYAQwADAAUAAQADAFoAIgBYAMsAIAAGAGcAUAARABMABQABACkAeAA2AMgAAwAFAAEA1wARABMALwB1AAMA7gAQAAMA\nBQABACkAeAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAFAAEAKQB4AO4AEAADAAUAAQApAK4AEQBCAHUAAwDd\nABEAEwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAvAHgA7gAQAAMABQABACkAeAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMA\nBQDYABEAEwAFAAEAKQB4AO4AEAADAAUAAQApAK4AEQBCAHUAAwDdABEAEwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAvAHgA7gAQAAMABQABACkAeAA2\nAMgAAwAFANgAEQATAAYAKQB4AO4AEAADAAUAAQApAK4AyAADAAUA2AARABMABQABACkAeADuABAAAwAFAAEA1wARAEIAdQADAN0AEQAQAAMABQABACkA\neAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAGACkAeADuABAAAwAFAAEAKQCuAMgAAwDdABEAEwAFAAEAKQB4\nAO4AEAADAAUAAQDXABEAQgB1AAMA7gAQAAMABQABACkAeAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAFAAEA\nKQB4AO4AEAADAAUAAQApAK4AUwB1AAMA3QARABMABQABACkAeAA2ALgAEAADAAUAAQDXABEAQgB1AAMA7gAQAAMABQABACkAeAA2AMgAAwAFAAEA1wAR\nABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAFAAEAKQB4AO4AEAADAAUAAQApAK4AUwB1AAMA3QARABMABQABACkAeAA2AMgAAwAFAAEA\n1wARABMALwB1AAMA7gAQAAMABQABACkAeAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAFAAEAKQB4AO4AEAAD\nAAUAAQApAK4AEQBCAHUAAwDdABEAEwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAvAHUAAwDuABAAAwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAGACkA\neADuABAAAwAFAAEAKQCuAMgAAwAFANgAEQATAAUAAQApAHgA7gAQAAMABQABACkArgARAEIAdQADAN0AEQATAAUAAQApAHgANgDIAAMABQABANcAEQAT\nAC8AeADuABAAAwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAGACkAeADuABAAAwAFAAEAKQCuAMgAAwAFANgAEQATAAUAAQApAHgA7gAQAAMABQABACkA\nrgARAEIAdQADAN0AEQATAAUAAQApAHgANgDIAAMABQABANcAEQATAC8AeADuABAAAwAFAAEAKQB4ADYAyAADAAUA2AARABMABgApAHgA7gAQAAMABQAB\nACkArgDIAAMABQDYABEAEwAFAAEAKQB4AO4AEAADAAUAAQDXABEAQgB1AAMA3QARABAAAwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAvAHgA7gAQAAMA\nBQABACkArgDIAAMABQDYABEAEwAGACkAeADuABAAAwAFAAEAKQCuAMgAAwDdABEAEwAFAAEAKQB4AO4AEAADAAUAAQDXABEAQgB1AAMA7gAQAAMABQAB\nACkAeAA2AMgAAwAFAAEA1wARABMABgApAHgA7gAQAAMABQABACkArgDIAAMABQDYABEAEwAGACkAeADuABAAAwAFAAEAKQCuAFMAdQADAN0AEQATAAUA\nAQApAHgA7gAQAAMABQABANcAEQBCAHUAAwDuABAAAwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAGACkAeADuABAAAwAFAAEAKQCuAMgAAwAFANgAEQAT\nAAUAAQApAHgA7gAQAAMABQABACkArgBTAHUAAwDdABEAEwAFAAEAKQB4ADYAyAADAAUAAQDXABEAEwAvAHUAAwDuABAAAwAFAAEAKQB4ADYAyAADAAUA\nAQDXABEAEwAGAJSR5TKSmUt0y+cAlBmJ4AUcSFHk3FEZZs9/bEbY2HMMXTqm7+9r0ckcJkrjmacD8mh4vL8WlNAc0y8hrcsVHQD+22iAjPwTFNM4nuUZ\n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\ncLHG9BMAWnAAxvRaqbH0",
-O8=.01224,
-a2=null;
-function N8(e){
-if(!a2){
-let t=ld(IV.replace((new RegExp("\\s","g")),
+N8=.01224,
+s2=null;
+function U8(e){
+if(!s2){
+let t=cd(IV.replace((new RegExp("\\s","g")),
 "")),
 n=t.length/3;
-a2=new Map;
+s2=new Map;
 for(let i=0,
 r=-1;
 i<n;
 i++)r+=t[2*i]|t[2*i+1]<<8,
-a2.set(r,
-t[2*n+i]/255*O8)}
-return a2.get(e)??O8+.98776*gi(e,
+s2.set(r,
+t[2*n+i]/255*N8)}
+return s2.get(e)??N8+.98776*gi(e,
 30)}
-c(N8,
+c(U8,
 "rippleKey");
 var DV="\nuniform sampler2D tSrc, tAtlas, tRamp; uniform vec2 uRes, uGrid; uniform float uCell, uRampN, uSource, uGain; uniform vec3 uTint;\nin vec2 vUv; out vec4 o;\nfloat lum(vec3 c) { return 1. - exp(-luma(c) * uGain); }\nvoid main() {\n  vec2 cellPx = vec2(uCell * .6, uCell), px = vUv * uRes, id = floor(px / cellPx), f = fract(px / cellPx);\n  vec2 c = (id + .5) * cellPx / uRes;\n  vec3 s = (texture(tSrc, c).rgb + texture(tSrc, c + vec2(.3, .3) * cellPx / uRes).rgb + texture(tSrc, c - vec2(.3, .3) * cellPx / uRes).rgb) / 3.;\n  float l = lum(s), k = floor(clamp(l, 0., .999) * uRampN);\n  if (k < .5) { o = vec4(0., 0., 0., 1.); return; }                 // the empty glyph: nothing to ink\n  float ch = texture(tRamp, vec2((k + .5) / uRampN, .5)).r;\n  vec2 cell = vec2(mod(ch, uGrid.x), floor(ch / uGrid.x));\n  vec2 g = clamp(vec2(.5 + (f.x - .5) * .43, .54 - (f.y - .5) * .72), vec2(.06), vec2(.94));\n  float ink = texture(tAtlas, (cell + g) / uGrid).r;\n  vec3 col = mix(uTint, normalize(s + 1e-4) * 1.7, uSource) * (.35 + 1.3 * l);\n  o = vec4(col * ink, 1.);\n}",
 fy=null,
@@ -32605,14 +32606,14 @@ o)=>i.set([r,
 0],
 o*4)),
 dy={
-tex:an(i,
+tex:sn(i,
 n.length,
 1),
 n:n.length}
 }
 c(zV,
 "ramp");
-function U8(e,
+function G8(e,
 t,
 n={
 }
@@ -32673,11 +32674,11 @@ Object.assign(e.post,
 bloom:.6,
 threshold:1.1}
 )}
-c(U8,
+c(G8,
 "asciiView");
 var OV="\nuniform float uN, uW, uD, uAmp, uK, uOmega, uT, uSize, uFocal, uFocus, uAperture, uMaxBlur, uBright, uMinPx, uPow;\nout float vHeat; out float vBlur;\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 g = vec2(mod(i, uN), floor(i / uN)), j = hash22(g + 17.) - .5;\n  float x = ((g.x + .5 + j.x * .9) / uN - .5) * uW, z = ((g.y + .5 + j.y * .9) / uN - .5) * uD;\n  float y = uAmp * sin(uK * x - uOmega * uT);\n  vec4 mv = modelViewMatrix * vec4(x, y, z, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), px = uSize * uFocal / dist, blur = min(uAperture * abs(dist - uFocus) * uFocal / dist, uMaxBlur);\n  float core = max(px, uMinPx);\n  gl_PointSize = core + blur; vBlur = blur / (core + blur);\n  vHeat = uBright * pow(y / uAmp * .5 + .5, uPow) * mix(1., .55, vBlur);\n}",
 NV="\nin float vHeat; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float a = mix(1. - smoothstep(.55, 1., r), 1. - smoothstep(.8, 1., r), vBlur);\n  o = vec4(vec3(vHeat * a), 1.);\n}",
-G8=class{
+H8=class{
 static{
 c(this,
 "HeightSheet")}
@@ -32746,7 +32747,7 @@ this}
 }
 ;
 var UV="#f2ede2",
-Cn={
+En={
 K:"#1d1c21",
 red:"#c63a2c",
 yellow:"#e2a72a",
@@ -32754,22 +32755,22 @@ blue:"#2b5ba6",
 grey:"#8d877a",
 soft:"#6f6a60"}
 ,
-l2=[1,
+u2=[1,
 1,
 1],
 Fs=[1,
 0,
 0],
-Id=[0,
+zd=[0,
 1,
 0],
 rc=[0,
 0,
 1],
-H8=c((e,
+W8=c((e,
 t)=>e.map(n=>n*t),
 "inkMul"),
-W8={
+V8={
 blending:5,
 blendEquation:104,
 blendSrc:201,
@@ -32777,7 +32778,7 @@ blendDst:201}
 ,
 GV="\nin vec3 aA, aB, aCol; in vec4 aP; in vec2 aD;   // aP: width (design px), density, u0, u1 (arc length at the ends); aD: dash period, on-fraction\nuniform vec2 uRes;\nout vec3 vCol; out vec2 vQ; out float vU, vL, vPx; out vec2 vD;\nvoid clipPlane(float fa, float fb, inout float s0, inout float s1) {\n  if (fa < 0. && fb < 0.) { s0 = 1.; s1 = 0.; return; }\n  if (fa < 0.) s0 = max(s0, fa / (fa - fb));\n  else if (fb < 0.) s1 = min(s1, fa / (fa - fb));\n}\nvoid main() {\n  vec4 ca = projectionMatrix * modelViewMatrix * vec4(aA, 1.), cb = projectionMatrix * modelViewMatrix * vec4(aB, 1.);\n  float s0 = 0., s1 = 1.; const float W0 = 1e-3, G = 3.;\n  clipPlane(ca.w - W0, cb.w - W0, s0, s1);\n  clipPlane(G * ca.w - ca.x, G * cb.w - cb.x, s0, s1); clipPlane(G * ca.w + ca.x, G * cb.w + cb.x, s0, s1);\n  clipPlane(G * ca.w - ca.y, G * cb.w - cb.y, s0, s1); clipPlane(G * ca.w + ca.y, G * cb.w + cb.y, s0, s1);\n  if (s0 >= s1) { gl_Position = vec4(2., 2., 2., 1.); vCol = vec3(0.); vQ = vec2(0.); vU = 0.; vL = 0.; vPx = 0.; vD = vec2(0.); return; }\n  vec4 c0 = ca; ca = mix(c0, cb, s0); cb = mix(c0, cb, s1);\n  float u0 = mix(aP.z, aP.w, s0), u1 = mix(aP.z, aP.w, s1);\n  vec2 sa = ca.xy / ca.w * uRes * .5, sb = cb.xy / cb.w * uRes * .5;\n  vec2 dir = sb - sa; float len = length(dir); dir = len > 1e-4 ? dir / len : vec2(1., 0.);\n  vec2 nrm = vec2(-dir.y, dir.x);\n  float hw = aP.x * .5 * uRes.y / 1080.;       // half-width in pixels\n  float px = max(hw, .6), q = px + 1.;         // hairlines stay .6 px wide and print lighter instead; 1 px margin for AA\n  float along = position.x;\n  vec2 sp = mix(sa, sb, along) + dir * (along * 2. - 1.) * q + nrm * position.y * q;\n  vec4 c = mix(ca, cb, along);\n  gl_Position = vec4(sp / (uRes * .5) * c.w, c.z, c.w);\n  vCol = aCol * aP.y * min(1., hw / .6);\n  vQ = vec2((along * 2. - 1.) * (len * .5 + q), position.y * q);\n  vL = len * .5; vPx = px;\n  vU = mix(u0, u1, along); vD = aD;\n}",
 HV="\nin vec3 vCol; in vec2 vQ; in float vU, vL, vPx; in vec2 vD; out vec4 o;\nvoid main() {\n  if (vD.x > 0. && fract(vU / vD.x) > vD.y) discard;\n  float dx = max(abs(vQ.x) - vL, 0.), d = length(vec2(dx, vQ.y));   // pixels from the segment (round caps)\n  float a = clamp(vPx + .5 - d, 0., 1.);\n  if (a <= 0.) discard;\n  o = vec4(vCol * a, 1.);\n}",
-V8=class{
+q8=class{
 static{
 c(this,
 "InkLines")}
@@ -32785,7 +32786,7 @@ constructor(e=16384){
 this.max=e;
 let t=new Nr;
 t.setAttribute("position",
-new Ln([0,
+new Fn([0,
 -1,
 0,
 1,
@@ -32824,7 +32825,7 @@ fragment:HV,
 transparent:!0,
 depthWrite:!1,
 depthTest:!1,
-...W8,
+...V8,
 uniforms:{
 uRes:{
 value:new he(1920,
@@ -32846,7 +32847,7 @@ n={
 ){
 if(this.n>=this.max)return this;
 let i=this.n++,
-r=n.ink??l2,
+r=n.ink??u2,
 o=n.dash??[0,
 1];
 this.aA.array.set([e[0],
@@ -32932,7 +32933,7 @@ t),
 this}
 }
 ,
-q8=class{
+j8=class{
 static{
 c(this,
 "InkFills")}
@@ -32955,7 +32956,7 @@ transparent:!0,
 depthWrite:!1,
 depthTest:!1,
 side:2,
-...W8}
+...V8}
 ),
 this.mesh=new tt(t,
 this.material),
@@ -33052,9 +33053,9 @@ value:.08}
 )}
 c(qV,
 "pressMaterial");
-var py=c(e=>M_(e),
+var py=c(e=>x_(e),
 "lin"),
-s2=c(e=>{
+l2=c(e=>{
 let t=py(UV);
 return py(e).map((n,
 i)=>Math.min(1,
@@ -33072,10 +33073,10 @@ r.tInk.value=t,
 r.uRes.value.set(e.W,
 e.H),
 r.uPaper.value.set(...py(n.paper??"#f2ede2")),
-r.uK.value.set(...s2(Cn.K)),
-r.uA.value.set(...s2(Cn.red)),
-r.uB.value.set(...s2(Cn.yellow)),
-r.uC.value.set(...s2(Cn.blue)),
+r.uK.value.set(...l2(En.K)),
+r.uA.value.set(...l2(En.red)),
+r.uB.value.set(...l2(En.yellow)),
+r.uC.value.set(...l2(En.blue)),
 r.uSeed.value=n.seed??1,
 r.uReg.value=n.reg??.7,
 r.uTooth.value=n.tooth??.08,
@@ -33109,7 +33110,7 @@ t={
 font:gy,
 size:22,
 weight:400,
-color:Cn.K,
+color:En.K,
 align:"center",
 ...t,
 ...e}
@@ -33164,14 +33165,14 @@ e.closePath(),
 e.fill()}
 c(ul,
 "arrowhead");
-function Dd(e,
+function Od(e,
 t,
 n,
 i,
 r={
 }
 ){
-let o=r.color??Cn.K,
+let o=r.color??En.K,
 a=r.offset??40,
 s=r.draw??1,
 l=r.alpha??1,
@@ -33258,7 +33259,7 @@ alpha:l*(r.textAlpha??1),
 ...r.text}
 ))}
 }
-c(Dd,
+c(Od,
 "dimension");
 function cu(e,
 t,
@@ -33279,14 +33280,14 @@ size:s*.86,
 weight:600,
 tracking:1.5,
 align:"left",
-color:o.color??Cn.K,
+color:o.color??En.K,
 alpha:a}
 ),
 f=mh({
 size:s,
 italic:!0,
 align:"left",
-color:o.color??Cn.K,
+color:o.color??En.K,
 alpha:a}
 ),
 d=e.measure(u,
@@ -33305,13 +33306,13 @@ n,
 f)}
 c(cu,
 "caption");
-function j8(e,
+function X8(e,
 t,
 n,
 i={
 }
 ){
-let r=i.color??Cn.K,
+let r=i.color??En.K,
 o=i.dx??60,
 a=i.dy??-40,
 s=[t[0]+o,
@@ -33341,13 +33342,13 @@ align:o>=0?"left":"right",
 alpha:l,
 ...i.text}
 ))}
-c(j8,
+c(X8,
 "note");
 var Ah=3,
 d0=2,
 bi=1,
 jV=2.2,
-Nd=6,
+Gd=6,
 wy=3,
 hs=Array.from({
 length:16}
@@ -33366,10 +33367,10 @@ t<4;
 t++)e&1<<t||(ac.push([e,
 e|1<<t]),
 Sy.push(t));
-var tE=c(e=>bi+jV*Math.sin(e)/e,
+var nE=c(e=>bi+jV*Math.sin(e)/e,
 "fLim"),
-nE="6.28318530717958647692528676655900576839433879875021",
-f2=[[.62,
+iE="6.28318530717958647692528676655900576839433879875021",
+d2=[[.62,
 .93,
 1],
 [.13,
@@ -33390,7 +33391,7 @@ f2=[[.62,
 V=null,
 Ay=[null,
 null];
-function Zt(e,
+function Kt(e,
 t=null){
 let n=q(t);
 if(Ay[+n]?.T===e)return Ay[+n];
@@ -33441,7 +33442,7 @@ tLim:m("limit",
 "LIMITATIONS"),
 end:e.section("pre1").start}
 }
-c(Zt,
+c(Kt,
 "keys");
 function ja(e,
 t,
@@ -33555,7 +33556,7 @@ t.fov,
 n)}
 ),
 "mixView"),
-Od=c((e,
+Ud=c((e,
 t)=>ja(e,
 t.pos,
 t.look,
@@ -33601,7 +33602,7 @@ t,
 n={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -33663,13 +33664,13 @@ t,
 n={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
 label:"definitions",
 bottomRight:n.br,
-color:Cn.grey,
+color:En.grey,
 alpha:.95}
 ),
 ai(e.text.overlay,
@@ -33677,8 +33678,8 @@ e.T,
 e.t,
 {
 from:t.s0-.2,
-color:Cn.K,
-accent:Cn.red,
+color:En.K,
+accent:En.red,
 glow:0}
 )}
 c(hu,
@@ -33704,7 +33705,7 @@ weight:l?600:400,
 italic:!l,
 tracking:l?1.4:0,
 align:"left",
-color:Cn.soft}
+color:En.soft}
 ),
 vo(e,
 a,
@@ -33713,12 +33714,12 @@ n+s*26,
 {
 size:21,
 align:"left",
-color:r.color??Cn.K}
+color:r.color??En.K}
 )}
 )}
 c(l0,
 "margin");
-function u2(e,
+function c2(e,
 t){
 return{
 thin:R.inOutCubic(_(e,
@@ -33731,9 +33732,9 @@ collapse:R.inOutCubic(_(e,
 t.wPoints.start-.1,
 t.wPoints.end+.12))}
 }
-c(u2,
+c(c2,
 "pointsState");
-function X8(e,
+function Y8(e,
 t,
 n,
 i={
@@ -33770,9 +33771,9 @@ sparkle:.25,
 ,
 t,
 r)}
-c(X8,
+c(Y8,
 "drawPoints");
-function c2(e,
+function h2(e,
 t,
 n,
 i={
@@ -33799,14 +33800,14 @@ t:e.t,
 size:i.size??.058,
 minPx:2,
 bright:(i.bright??1.1)*a,
-palette:i.palette??f2,
+palette:i.palette??d2,
 focus:i.focus??5,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??40}
 ,
 t,
 r)}
-c(c2,
+c(h2,
 "drawCodeSphere");
 function vh(e,
 t){
@@ -33819,7 +33820,7 @@ i,
 i+.4)));
 let r=Math.max(0,
 e-i),
-o=KS({
+o=JS({
 xw:r*.8+R.inOutCubic(_(e,
 i,
 i+.6))*.35,
@@ -33917,7 +33918,7 @@ width:(i.lineW??3.6)*2.4}
 return h}
 c(XV,
 "drawDims");
-function iE(e,
+function rE(e,
 t,
 n,
 i={
@@ -33960,7 +33961,7 @@ d],
 p)=>V.lines.segment(l[f],
 l[d],
 {
-color:(h>0?aE(p,
+color:(h>0?sE(p,
 h):H.me).map(m=>m*a),
 width:s}
 ));
@@ -33998,7 +33999,7 @@ return i.you>0&&f0(Ty(l),
 i.you,
 i.swell??1),
 l}
-c(iE,
+c(rE,
 "drawDimsYou");
 var YV=.11,
 Ty=c(e=>[Math.max(e[15][0],
@@ -34011,7 +34012,7 @@ dx:372,
 dy:164,
 r:6.8}
 ;
-function rE(e,
+function oE(e,
 t,
 n,
 i){
@@ -34077,7 +34078,7 @@ s),
 C(0,
 .1,
 s))}
-c(rE,
+c(oE,
 "dimsCam");
 var QV=["",
 "(1)",
@@ -34099,7 +34100,7 @@ ac.forEach(([r,
 o],
 a)=>{
 let s=Sy[a],
-l=t.tri?s===3?Fs:hs[r][3]<0?rc:l2:l2;
+l=t.tri?s===3?Fs:hs[r][3]<0?rc:u2:u2;
 V.ink.segment(n[r],
 n[o],
 {
@@ -34133,7 +34134,7 @@ c:[r,
 }
 c(u0,
 "circleState");
-function p2(e,
+function m2(e,
 t=160){
 let[n,
 i]=e.c,
@@ -34146,9 +34147,9 @@ r.push([n+Math.cos(a-e.th),
 i+Math.sin(a-e.th),
 0])}
 return r}
-c(p2,
+c(m2,
 "ringPts");
-function m2(e,
+function v2(e,
 t=200){
 let n=[];
 for(let i=0;
@@ -34159,9 +34160,9 @@ n.push([r-Math.sin(r),
 1-Math.cos(r),
 0])}
 return n}
-c(m2,
+c(v2,
 "cycloidPts");
-var Y8=c(e=>e.map(t=>[t[0],
+var Q8=c(e=>e.map(t=>[t[0],
 -t[1],
 t[2]??0]),
 "mirror");
@@ -34176,7 +34177,7 @@ let o=V.lines,
 [a,
 s]=n.c,
 l=i.gain??1,
-u=p2(n);
+u=m2(n);
 o.polyline(u,
 {
 color:H.white.map(p=>p*1.3*l),
@@ -34204,7 +34205,7 @@ color:H.me.map(p=>p*.9*l*(i.arm??1)),
 width:2*(i.arm??1)}
 ),
 n.roll>0){
-o.polyline(m2(n.th),
+o.polyline(v2(n.th),
 {
 color:H.me.map(m=>m*1.4*l),
 width:i.cw??2.6}
@@ -34236,13 +34237,13 @@ if(i.you&&f0([j,
 1))),
 i.reflect){
 let p=i.reflect;
-o.polyline(Y8(u),
+o.polyline(Q8(u),
 {
 color:H.white.map(m=>m*.9*p),
 width:2.6,
 draw:n.draw}
 ),
-n.roll>0&&o.polyline(Y8(m2(n.th)),
+n.roll>0&&o.polyline(Q8(v2(n.th)),
 {
 color:H.me.map(m=>m*p),
 width:2}
@@ -34280,7 +34281,7 @@ t,
 r)}
 c(gh,
 "drawCircle");
-function h2(e,
+function f2(e,
 t,
 n={
 }
@@ -34302,7 +34303,7 @@ let o=G([0,
 0,
 0],
 t);
-Sn(i,
+Tn(i,
 o,
 r,
 "2πr",
@@ -34313,7 +34314,7 @@ alpha:.55*(n.alpha??1),
 size:19}
 )}
 }
-c(h2,
+c(f2,
 "youOnGround");
 var h0=j/1.846,
 cl={
@@ -34351,7 +34352,7 @@ i(a),
 return r}
 c(c0,
 "sineCurve");
-function zd(e,
+function Nd(e,
 t){
 let n=[1,
 Math.cos(e)],
@@ -34362,7 +34363,7 @@ Math.sin(e)-n[1]*i,
 [e+n[0]*i,
 Math.sin(e)+n[1]*i,
 0]]}
-c(zd,
+c(Nd,
 "tangent");
 function My(e,
 t=1){
@@ -34397,7 +34398,7 @@ width:58*n}
 )}
 c(f0,
 "youMark");
-function v2(e,
+function g2(e,
 t,
 n,
 i={
@@ -34422,7 +34423,7 @@ o,
 j),
 a.stroke()}
 )}
-c(v2,
+c(g2,
 "youRing");
 function v0(e,
 t,
@@ -34444,7 +34445,7 @@ draw:i.draw??1}
 )}
 c(v0,
 "youLabel");
-var Q8=c((e,
+var Z8=c((e,
 t,
 n=!1)=>C(-2.6,
 1.9,
@@ -34455,7 +34456,7 @@ t.tTan))),
 function wh(e,
 t,
 n,
-i=Nd){
+i=Gd){
 let r=[];
 for(let o=0;
 o<=n;
@@ -34465,7 +34466,7 @@ t,
 o/n),
 s=10**(a/i);
 r.push([a,
-tE(s),
+nE(s),
 0])}
 return r}
 c(wh,
@@ -34480,10 +34481,10 @@ return n<=1?-1.2+(xy+1.2)*Math.expm1(_y*Math.max(0,
 n))/i:xy+(xy+1.2)*_y*(i+1)/i*(n-1)}
 c($V,
 "flyX");
-var oE="⁰¹²³⁴⁵⁶⁷⁸⁹",
-Cy=c(e=>String(e).split("").map(t=>oE[+t]).join(""),
+var aE="⁰¹²³⁴⁵⁶⁷⁸⁹",
+Cy=c(e=>String(e).split("").map(t=>aE[+t]).join(""),
 "sup");
-function Z8(e,
+function K8(e,
 t,
 n){
 let i=e.indexOf(t);
@@ -34495,7 +34496,7 @@ o<e.length&&r<n;
 o++)(new RegExp("\\s","")).test(e[o])||r++;
 return e.slice(i,
 o)}
-c(Z8,
+c(K8,
 "codeSlice");
 function eq(e,
 t,
@@ -34583,46 +34584,46 @@ to:c(e=>e.section("pre1").start,
 "to"),
 init(){
 V={
-scene:new fn,
-inkScene:new fn,
-floorScene:new fn,
+scene:new dn,
+inkScene:new dn,
+floorScene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
 .01,
 200)}
 ,
-V.me=new Qt({
+V.me=new Zt({
 count:1<<18}
 ),
-V.stars=new Qt({
+V.stars=new Zt({
 count:16384}
 ),
 V.lines=new Xn(12e3),
-V.ink=new V8(16384),
-V.fills=new q8(8192),
+V.ink=new q8(16384),
+V.fills=new j8(8192),
 V.tex={
 sphere:V.me.shape("v1/sphere",
 t=>{
-let n=Dn.sphere(t,
+let n=zn.sphere(t,
 {
 r:1}
 );
 for(let i=0;
 i<t;
-i++)n[i*4+3]=N8(i);
+i++)n[i*4+3]=U8(i);
 return n}
 ),
 stars:V.stars.shape("v1/stars",
-t=>Dn.stars(t,
+t=>zn.stars(t,
 {
 r0:25,
 r1:70}
 )),
 tess:V.me.shape("v1/tesseract",
-t=>Dn.tesseract(t,
+t=>zn.tesseract(t,
 {
 s:1,
 jitter:.006}
@@ -34655,31 +34656,31 @@ jitter:.01,
 seed:41}
 ))}
 ;
-let e=tn("ch/03_v1.js");
-V.code=new nn({
+let e=nn("ch/03_v1.js");
+V.code=new rn({
 count:4096}
 ),
 V.code.text("v1/points-src",
-Z8(e,
+K8(e,
 "// ---------------------------------------------------------------- subject: points",
 2200)),
 V.tex.codeSphere=V.code.layout("v1/code-sphere",
 al(V.code,
-t=>Dn.sphere(t,
+t=>zn.sphere(t,
 {
 r:1}
 ))),
 V.tex.codePoint=V.code.layout("v1/code-point",
 al(V.code,
-t=>Dn.point(t,
+t=>zn.point(t,
 {
 r:.006}
 ))),
-V.floor=new nn({
+V.floor=new rn({
 count:16384}
 ),
 V.floor.text("v1/limit-src",
-Z8(e,
+K8(e,
 "// ---------------------------------------------------------------- subject: the limit",
 12e3)),
 V.tex.codeFloor=V.floor.layout("v1/code-floor",
@@ -34704,20 +34705,20 @@ V.lines.mesh),
 V.floorScene.add(V.floor.points),
 V.inkScene.add(V.fills.mesh,
 V.ink.mesh),
-V.sheet=new G8(400),
-V.sheetScene=new fn,
+V.sheet=new H8(400),
+V.sheetScene=new dn,
 V.sheetScene.add(V.sheet.points)}
 ,
 shots:[{
 id:"orbit",
-at:c(e=>Zt(e).s0,
+at:c(e=>Kt(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
-i=u2(n,
+i=c2(n,
 t);
 pr();
 let r=.5+n*.09,
@@ -34744,13 +34745,13 @@ minPx:1.1}
 ,
 a,
 e.H)),
-X8(e,
+Y8(e,
 a,
 i,
 {
 rotY:s}
 ),
-c2(e,
+h2(e,
 a,
 i,
 {
@@ -34776,14 +34777,14 @@ Hr(e)}
 ,
 {
 id:"macro",
-at:c(e=>Zt(e).B(2),
+at:c(e=>Kt(e).B(2),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
-i=u2(n,
+i=c2(n,
 t);
 pr();
 let r=_(n,
@@ -34802,14 +34803,14 @@ s,
 {
 fov:34}
 );
-X8(e,
+Y8(e,
 l,
 i,
 {
 rotY:a,
 brightK:.3}
 ),
-c2(e,
+h2(e,
 l,
 i,
 {
@@ -34838,7 +34839,7 @@ Gr(e,
 l);
 let u=G(s,
 l);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 u[0],
 u[1],
 26,
@@ -34857,14 +34858,14 @@ vignette:.55}
 ,
 {
 id:"top",
-at:c(e=>Zt(e).B(3),
+at:c(e=>Kt(e).B(3),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
-i=u2(n,
+i=c2(n,
 t);
 pr();
 let r=ua([0,
@@ -34888,7 +34889,7 @@ a>0&&V.ink.dot([0,
 {
 width:15*a}
 ),
-c2(e,
+h2(e,
 r,
 i,
 {
@@ -34910,7 +34911,7 @@ l=G([0,
 0,
 0],
 r);
-a>.6&&j8(s,
+a>.6&&X8(s,
 [l[0]+4,
 l[1]-4],
 "p ∈ ℝ⁰",
@@ -34949,11 +34950,11 @@ br:""}
 ,
 {
 id:"dim1",
-at:c(e=>Zt(e).B(4),
+at:c(e=>Kt(e).B(4),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=vh(n,
@@ -35021,7 +35022,7 @@ s=G([1.55,
 0],
 r);
 a.draw(h=>{
-h.fillStyle=Cn.K,
+h.fillStyle=En.K,
 ul(h,
 s[0]+14,
 s[1],
@@ -35059,7 +35060,7 @@ u=G([o*i.u[0],
 0,
 0],
 r);
-i.u[0]>.3&&Dd(a,
+i.u[0]>.3&&Od(a,
 l,
 u,
 "length",
@@ -35094,11 +35095,11 @@ br:"view  front · orthographic"}
 ,
 {
 id:"dim2",
-at:c(e=>Zt(e).B(4.5),
+at:c(e=>Kt(e).B(4.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=vh(n,
@@ -35130,7 +35131,7 @@ s],
 [-a,
 0,
 s],
-Id);
+zd);
 for(let h of[-s,
 s])V.ink.segment([-a,
 0,
@@ -35177,7 +35178,7 @@ if(i.u[1]>.3){
 let h=_(i.u[1],
 .3,
 .8);
-Dd(l,
+Od(l,
 u[0],
 u[1],
 "length",
@@ -35186,10 +35187,10 @@ offset:58,
 gap:!0,
 alpha:h,
 text:{
-color:Cn.red}
+color:En.red}
 }
 ),
-Dd(l,
+Od(l,
 u[1],
 u[2],
 "breadth",
@@ -35199,7 +35200,7 @@ gap:!0,
 level:!0,
 alpha:h,
 text:{
-color:Cn.blue}
+color:En.blue}
 }
 )}
 cu(l,
@@ -35226,11 +35227,11 @@ br:"view  top · orthographic"}
 ,
 {
 id:"dim3",
-at:c(e=>Zt(e).B(5),
+at:c(e=>Kt(e).B(5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=vh(n,
@@ -35295,25 +35296,25 @@ Hr(e)}
 {
 id:"dims",
 editOnly:!0,
-at:c(e=>Zt(e).l13.start,
+at:c(e=>Kt(e).l13.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=vh(n,
 t),
-r=u2(n,
+r=c2(n,
 t);
 pr();
-let o=rE(e,
+let o=oE(e,
 t,
 n,
 e.row.cam),
 a=i.u.filter((d,
 p)=>p<3&&d>.5).length;
-c2(e,
+h2(e,
 o,
 r,
 {
@@ -35332,7 +35333,7 @@ d+.1,
 d+.44);
 return p>0&&p<1?(1-p)**2:0}
 )),
-u=iE(e,
+u=rE(e,
 o,
 i,
 {
@@ -35370,7 +35371,7 @@ t.l13.start+.05,
 t.l13.start+.3)}
 );
 for(let d of t.unfold.slice(0,
-3))v2(e,
+3))g2(e,
 f,
 d+.1,
 {
@@ -35383,7 +35384,7 @@ be(h,
 [["dim",
 "".concat(a)],
 ["space",
-"ℝ".concat(oE[a])]]),
+"ℝ".concat(aE[a])]]),
 xr(e,
 t,
 {
@@ -35394,11 +35395,11 @@ Hr(e)}
 ,
 {
 id:"split",
-at:c(e=>Zt(e).tDim,
+at:c(e=>Kt(e).tDim,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=vh(n,
@@ -35524,7 +35525,7 @@ y.top?y.rect[1]+28:y.rect[1]+y.rect[3]-24,
 size:15,
 weight:600,
 tracking:3,
-color:Cn.soft,
+color:En.soft,
 align:"right"}
 );
 let p={
@@ -35545,14 +35546,14 @@ w=R.outBack(_(l,
 v=84,
 A=1836;
 d.draw(y=>{
-y.strokeStyle=Cn.K,
+y.strokeStyle=En.K,
 y.lineWidth=2,
 y.strokeRect(r,
 o,
 a*2,
 s*2),
 y.lineWidth=1,
-y.strokeStyle=Cn.soft,
+y.strokeStyle=En.soft,
 y.beginPath(),
 y.moveTo(960,
 110),
@@ -35563,8 +35564,8 @@ y.moveTo(960,
 y.lineTo(960,
 786),
 y.stroke(),
-y.strokeStyle=Cn.K,
-y.fillStyle=Cn.K,
+y.strokeStyle=En.K,
+y.fillStyle=En.K,
 y.lineWidth=1.6,
 y.beginPath();
 let b=C(960-m,
@@ -35608,15 +35609,15 @@ d.text("DIMENSION",
 451,
 {
 ...p,
-color:Cn.K,
+color:En.K,
 scale:1.12-.12*w,
 alpha:X(l/.03)}
 ),
-hE(d,
+fE(d,
 1236,
 814,
 n),
-fE(d,
+dE(d,
 104,
 132),
 hu(e,
@@ -35625,11 +35626,11 @@ t)}
 ,
 {
 id:"circleDraw",
-at:c(e=>Zt(e).BAR(2),
+at:c(e=>Kt(e).BAR(2),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -35673,7 +35674,7 @@ g,
 A/w)*j));
 V.fills.fan(v,
 [Fs,
-Id,
+zd,
 rc][p])}
 for(let p=0;
 p<12;
@@ -35682,7 +35683,7 @@ l(o+p/12*j),
 {
 width:1.4}
 );
-V.ink.polyline(p2(i,
+V.ink.polyline(m2(i,
 200),
 {
 width:4,
@@ -35716,7 +35717,7 @@ vo(u,
 "A",
 f[0]+20,
 f[1]+22),
-Dd(u,
+Od(u,
 h,
 f,
 "r",
@@ -35766,11 +35767,11 @@ br:"view  front · orthographic"}
 ,
 {
 id:"circleMacro",
-at:c(e=>Zt(e).B(10),
+at:c(e=>Kt(e).B(10),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -35825,7 +35826,7 @@ a)}
 ),
 Gr(e,
 s),
-q(e)&&h2(e,
+q(e)&&f2(e,
 s),
 xr(e,
 t),
@@ -35839,11 +35840,11 @@ vignette:.55}
 ,
 {
 id:"rollWide",
-at:c(e=>Zt(e).B(12),
+at:c(e=>Kt(e).B(12),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -35876,7 +35877,7 @@ bright:.22}
 ),
 Gr(e,
 r),
-h2(e,
+f2(e,
 r,
 {
 span:!0}
@@ -35916,7 +35917,7 @@ bright:.5}
 Gr(a,
 r)}
 );
-U8(e,
+G8(e,
 o,
 {
 cell:17,
@@ -35948,11 +35949,11 @@ vignette:.4}
 ,
 {
 id:"rollTrack",
-at:c(e=>Zt(e).B(13),
+at:c(e=>Kt(e).B(13),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -35985,7 +35986,7 @@ bright:.14}
 ),
 Gr(e,
 a),
-q(e)&&h2(e,
+q(e)&&f2(e,
 a),
 V.floor.points.visible=!0,
 V.floor.set({
@@ -35994,7 +35995,7 @@ t:n,
 size:.1,
 minPx:2,
 bright:.5,
-palette:f2,
+palette:d2,
 focus:2.6,
 aperture:.012,
 maxBlur:20,
@@ -36017,11 +36018,11 @@ ca:.3}
 {
 id:"roll",
 editOnly:!0,
-at:c(e=>Zt(e).l15.end,
+at:c(e=>Kt(e).l15.end,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -36052,7 +36053,7 @@ t.B(12)+.34)),
 h=R.inOutSine(_(n,
 t.B(13)+.02,
 t.tCirc-.05)),
-f=Od(e,
+f=Ud(e,
 yy(yy(a,
 l,
 u),
@@ -36070,7 +36071,7 @@ gain:C(.85,
 .72,
 d),
 arm:C(1,
-d2,
+p2,
 p),
 reflect:.3*d,
 you:!0,
@@ -36085,15 +36086,15 @@ bright:C(.22,
 d)}
 }
 ),
-p>0&&sE(i,
+p>0&&lE(i,
 p),
 Gr(e,
 f),
-p>0&&lE(e,
+p>0&&uE(e,
 f,
 t,
 p),
-h2(e,
+f2(e,
 f,
 {
 span:!0,
@@ -36106,7 +36107,7 @@ t:n,
 size:.1,
 minPx:2,
 bright:.5*d,
-palette:f2,
+palette:d2,
 focus:2.6,
 aperture:.012,
 maxBlur:20,
@@ -36140,11 +36141,11 @@ vignette:.45}
 ,
 {
 id:"circumference",
-at:c(e=>Zt(e).tCirc,
+at:c(e=>Kt(e).tCirc,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=u0(n,
@@ -36176,19 +36177,19 @@ V.ink.segment([-1.2,
 {
 width:1.4}
 ),
-V.ink.polyline(m2(j,
+V.ink.polyline(v2(j,
 240),
 {
 width:1.5,
 dash:[.09,
 .55]}
 ),
-V.ink.polyline(m2(i.th,
+V.ink.polyline(v2(i.th,
 240),
 {
 width:2.4}
 ),
-V.ink.polyline(p2(i,
+V.ink.polyline(m2(i,
 200),
 {
 width:3.6}
@@ -36221,7 +36222,7 @@ r<.05&&V.ink.segment([0,
 0,
 0],
 {
-ink:Id,
+ink:zd,
 width:9}
 );
 for(let g of[0,
@@ -36248,7 +36249,7 @@ f=r<0?0:R.outBack(_(r,
 0,
 .2),
 1.4);
-dE(l,
+pE(l,
 u,
 h,
 C(.06,
@@ -36281,7 +36282,7 @@ size:28,
 align:"right"}
 ),
 uu(l,
-nE.slice(0,
+iE.slice(0,
 Math.max(1,
 d)),
 p,
@@ -36317,11 +36318,11 @@ br:""}
 ,
 {
 id:"sineProj",
-at:c(e=>Zt(e).BAR(4),
+at:c(e=>Kt(e).BAR(4),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t-t.BAR(4);
 if(pr(),
@@ -36406,7 +36407,7 @@ w.push([o[0]+.3*Math.cos(A),
 0])}
 h>.02&&(V.fills.fan([o,
 ...w],
-Id),
+zd),
 V.ink.polyline(w,
 {
 width:1.3}
@@ -36480,7 +36481,7 @@ m=G([l+7.4,
 0],
 i);
 f.draw(g=>{
-g.fillStyle=Cn.K,
+g.fillStyle=En.K,
 ul(g,
 m[0]+12,
 m[1],
@@ -36498,7 +36499,7 @@ p[0]+58*Math.cos(h/2),
 p[1]-58*Math.sin(h/2),
 {
 size:26,
-color:Cn.K}
+color:En.K}
 );
 for(let[g,
 w]of[[1,
@@ -36524,7 +36525,7 @@ d[1]+(s[1]>=0?-24:26),
 {
 size:28,
 align:"left",
-color:Cn.red}
+color:En.red}
 ),
 cu(f,
 1832,
@@ -36551,11 +36552,11 @@ br:"view  front · orthographic"}
 ,
 {
 id:"sineSheet",
-at:c(e=>Zt(e).B(18),
+at:c(e=>Kt(e).B(18),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=n-t.B(18);
@@ -36594,7 +36595,7 @@ e.H),
 w.draw(V.sheetScene,
 r)}
 );
-rn(e,
+on(e,
 l,
 "thermal",
 {
@@ -36664,7 +36665,7 @@ g=G([1,
 m,
 -.6],
 r);
-Tn(u,
+Cn(u,
 g[0],
 g[1],
 22,
@@ -36691,14 +36692,14 @@ br:"view  thermal · y → heat"}
 ,
 {
 id:"youRide",
-at:c(e=>Zt(e).B(20),
+at:c(e=>Kt(e).B(20),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
-i=Q8(n,
+i=Z8(n,
 t,
 q(e));
 pr();
@@ -36718,7 +36719,7 @@ r),
 0],
 fov:40}
 ,
-a=Od(e,
+a=Ud(e,
 q(e)?yy(JV(e.shot.start,
 t,
 n),
@@ -36735,7 +36736,7 @@ color:H.me.map(v=>v*1.2),
 width:2.8}
 );
 let[s,
-l]=zd(i,
+l]=Nd(i,
 2.2),
 u=[i,
 Math.sin(i),
@@ -36784,7 +36785,7 @@ a),
 q(e)){
 let v=G(u,
 a);
-v2(e,
+g2(e,
 v,
 t.l19.start+.02),
 v0(e.text.overlay,
@@ -36838,14 +36839,14 @@ Hr(e)}
 ,
 {
 id:"youClose",
-at:c(e=>Zt(e).B(22),
+at:c(e=>Kt(e).B(22),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
-i=Q8(n,
+i=Z8(n,
 t,
 q(e));
 pr();
@@ -36869,7 +36870,7 @@ color:H.me.map(l=>l*.9),
 width:2.2}
 );
 let[a,
-s]=zd(i,
+s]=Nd(i,
 1.8);
 V.lines.segment(a,
 s,
@@ -36906,11 +36907,11 @@ vignette:.55}
 ,
 {
 id:"tangents",
-at:c(e=>Zt(e).tTan,
+at:c(e=>Kt(e).tTan,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t-t.tTan,
 i=R.outCubic(_(n,
@@ -36936,7 +36937,7 @@ color:H.me.map(f=>f*.35),
 width:1.6}
 );
 let[s,
-l]=zd(o,
+l]=Nd(o,
 3.4);
 V.lines.segment(s,
 l,
@@ -36961,7 +36962,7 @@ let p=C(-7.3,
 d);
 if(Math.abs(p-o)<.12)continue;
 let[m,
-g]=zd(p,
+g]=Nd(p,
 1),
 w=G(m,
 r),
@@ -37012,11 +37013,11 @@ ca:.12}
 ,
 {
 id:"fly",
-at:c(e=>Zt(e).BAR(6),
+at:c(e=>Kt(e).BAR(6),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=$V(n,
@@ -37070,7 +37071,7 @@ t:n,
 size:.14,
 minPx:2,
 bright:.34,
-palette:f2,
+palette:d2,
 focus:4.4,
 aperture:.02,
 maxBlur:30}
@@ -37085,7 +37086,7 @@ if(!o)a(e);
 else{
 let f=Dt(e,
 a);
-rn(e,
+on(e,
 f,
 "dither",
 q(e)?{
@@ -37103,7 +37104,7 @@ paper:[.94,
 gain:1.7}
 )}
 let s=e.text.overlay,
-l=o&&!q(e)?Cn.K:P.me;
+l=o&&!q(e)?En.K:P.me;
 for(let f=0,
 d=-1e9;
 f<=30;
@@ -37128,7 +37129,7 @@ i)/wy),
 h=[["x",
 "≈ ".concat(u.toExponential(1))],
 ["f(x) − L",
-"".concat((tE(u)-bi).toExponential(1))]];
+"".concat((nE(u)-bi).toExponential(1))]];
 u>=2**53&&h.push(["x + 1 == x",
 "true"]),
 be(s,
@@ -37143,13 +37144,13 @@ o&&q(e)?xr(e,
 t,
 {
 br:"view  1 bit · float64 exhausted"}
-):o?(dn(s,
+):o?(pn(s,
 n,
 e.T,
 {
 label:"definitions",
 bottomRight:"view  1 bit · float64 exhausted",
-color:Cn.grey,
+color:En.grey,
 alpha:.95}
 ),
 ai(s,
@@ -37157,8 +37158,8 @@ e.T,
 n,
 {
 from:t.s0-.2,
-color:Cn.K,
-accent:Cn.red,
+color:En.K,
+accent:En.red,
 glow:0}
 )):(xr(e,
 t),
@@ -37172,11 +37173,11 @@ t.BAR(7))}
 ,
 {
 id:"asymptote",
-at:c(e=>Zt(e).BAR(7),
+at:c(e=>Kt(e).BAR(7),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t,
 i=R.inOutCubic(_(n,
@@ -37199,7 +37200,7 @@ e.aspect);
 oc(e,
 r,
 ()=>{
-$8(0,
+eE(0,
 14.6),
 V.ink.polyline(wh(0,
 14.6,
@@ -37233,7 +37234,7 @@ width:3.6}
 seed:6}
 );
 let o=e.text.overlay;
-if(eE(o,
+if(tE(o,
 r),
 i>.5){
 let a=G([12.9,
@@ -37246,7 +37247,7 @@ a[0],
 a[1]-30,
 {
 size:30,
-color:Cn.red,
+color:En.red,
 alpha:_(i,
 .5,
 1)}
@@ -37265,11 +37266,11 @@ br:"semi-log · 3 cycles"}
 ,
 {
 id:"limit",
-at:c(e=>Zt(e).tLim,
+at:c(e=>Kt(e).tLim,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t-t.tLim,
 i=C(.6,
@@ -37320,7 +37321,7 @@ m)}
 oc(e,
 r,
 ()=>{
-$8(0,
+eE(0,
 14.8),
 V.ink.polyline(wh(0,
 l[0],
@@ -37372,13 +37373,13 @@ bi+i,
 [p,
 bi+i,
 0],
-H8(Fs,
+W8(Fs,
 .12))}
 ,
 {
 seed:7}
 ),
-eE(o,
+tE(o,
 r);
 let h=G([l[0],
 bi,
@@ -37397,7 +37398,7 @@ o.text("LIMITATIONS",
 h[1]+3,
 {
 ...a,
-color:Cn.red,
+color:En.red,
 scale:1.1-.1*d,
 alpha:X(n/.03)}
 ),
@@ -37433,7 +37434,7 @@ l0(o,
 i.toFixed(3)]],
 {
 keyW:36,
-color:Cn.red}
+color:En.red}
 ),
 cu(o,
 1832,
@@ -37453,11 +37454,11 @@ br:""}
 ,
 {
 id:"gap",
-at:c(e=>Zt(e).B(31),
+at:c(e=>Kt(e).B(31),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Zt(e.T,
+let t=Kt(e.T,
 e),
 n=e.t-t.B(31);
 pr();
@@ -37511,7 +37512,7 @@ u=G([13.35,
 bi,
 0],
 s);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 l,
 u,
 "ε > 0",
@@ -37571,7 +37572,7 @@ align:"center",
 ...r}
 ),
 "formula"),
-K8={
+J8={
 line:P.dim,
 alpha:.85,
 text:c((e,
@@ -37606,7 +37607,7 @@ return i>0&&i<1?(1-i)**2:0}
 oq=[.62,
 .94,
 1],
-J8={
+$8={
 x0:60,
 y0:96,
 W:1800,
@@ -37637,14 +37638,14 @@ rect:[432,
 label:"RIGHT SIDE",
 dir:"side"}
 ];
-function aE(e,
+function sE(e,
 t){
 let n=Sy[e]===3?H.violet:hs[ac[e][0]][3]<0?H.meDeep:H.me;
 return H.me.map((i,
 r)=>C(i,
 n[r],
 t))}
-c(aE,
+c(sE,
 "dimCol");
 function sq(e,
 t=1){
@@ -37656,7 +37657,7 @@ r],
 o)=>V.lines.segment(n[i],
 n[r],
 {
-color:aE(o,
+color:sE(o,
 e.u[3]).map(a=>a*1.2),
 width:2.4*t}
 ));
@@ -37684,13 +37685,13 @@ x0:s,
 y0:l,
 W:u,
 yD:h}
-=J8,
-f=rE(e,
+=$8,
+f=oE(e,
 t,
 i),
 d=rq(i,
 t.tDim+.1),
-p=iE(e,
+p=rE(e,
 f,
 n,
 {
@@ -37735,7 +37736,7 @@ M.lineWidth=1.2,
 M.strokeRect(s,
 l,
 u,
-J8.H)}
+$8.H)}
 );
 for(let M of m)Vo(o,
 M.rect,
@@ -37760,7 +37761,7 @@ f);
 v0(o,
 g,
 "you (1, 1, 1, 1)"),
-v2(e,
+g2(e,
 g,
 t.tDim+.1,
 {
@@ -37837,16 +37838,16 @@ glowColor:P.me,
 scale:1.12-.12*y,
 alpha:X(r/.03)}
 ),
-hE(o,
+fE(o,
 1236,
 814,
 i,
-K8),
-fE(o,
+J8),
+dE(o,
 452,
 140,
 "1.  Projection ℝ⁴ → ℝ³:  p′ = 4p ⁄ 3(3 − w).",
-K8,
+J8,
 ["2.  The cell w = −1 in deep blue; the eight edges along w in violet.",
 "3.  All 32 edges of equal length (2)."]),
 xr(e,
@@ -37857,7 +37858,7 @@ ca:.1}
 )}
 c(lq,
 "dimensionSheet");
-function sE(e,
+function lE(e,
 t=1){
 let n=[0,
 1,
@@ -37881,9 +37882,9 @@ n,
 color:H.white.map(r=>r*2*t),
 width:10}
 )}
-c(sE,
+c(lE,
 "circleRadii");
-function lE(e,
+function uE(e,
 t,
 n,
 i=1){
@@ -37914,7 +37915,7 @@ alpha:.85*i}
 let l=R.outCubic(_(o,
 n.BAR(2),
 n.BAR(2)+.25));
-l>0&&(Sn(r,
+l>0&&(Tn(r,
 a,
 s,
 "",
@@ -37942,19 +37943,19 @@ alpha:.92*i*_(o,
 n.BAR(2)+.3,
 n.BAR(2)+.6)}
 )}
-c(lE,
+c(uE,
 "circleLabels");
-var d2=1.6;
+var p2=1.6;
 function uq(e,
 t,
 n){
-let i=Od(e,
+let i=Ud(e,
 p0([0,
 1,
 0],
 3.1));
-sE(n),
-V.lines.polyline(p2(n,
+lE(n),
+V.lines.polyline(m2(n,
 200),
 {
 color:H.me.map(r=>r*.12),
@@ -37967,8 +37968,8 @@ n.draw<=0&&(V.lines.segment([0,
 0,
 0],
 {
-color:H.me.map(r=>r*.9*.85*d2),
-width:2*d2}
+color:H.me.map(r=>r*.9*.85*p2),
+width:2*p2}
 ),
 V.lines.segment([0,
 0,
@@ -37985,7 +37986,7 @@ i,
 n,
 {
 gain:.85,
-arm:d2,
+arm:p2,
 you:!0,
 swarm:{
 noise:0,
@@ -37996,7 +37997,7 @@ bright:.22}
 ),
 Gr(e,
 i),
-lE(e,
+uE(e,
 i,
 t),
 be(e.text.overlay,
@@ -38025,7 +38026,7 @@ n){
 let i=e.t-t.tCirc,
 r=e.text.overlay,
 o=e.text.scene,
-a=Od(e,
+a=Ud(e,
 p0([Math.PI,
 1.05,
 0],
@@ -38075,7 +38076,7 @@ h=G([n.c[0],
 n.c[1],
 0],
 a);
-dE(o,
+pE(o,
 l,
 u,
 C(.06,
@@ -38114,7 +38115,7 @@ u,
 dx:34,
 dy:-64}
 ),
-v2(e,
+g2(e,
 u,
 t.tCirc+.1,
 {
@@ -38136,7 +38137,7 @@ size:24,
 align:"right"}
 ),
 fu(r,
-nE.slice(0,
+iE.slice(0,
 Math.max(1,
 f)),
 d,
@@ -38171,7 +38172,7 @@ function hq(e,
 t){
 let n=e.t,
 i=n-t.BAR(4),
-r=Od(e,
+r=Ud(e,
 p0(cl.c,
 cl.h,
 40)),
@@ -38400,7 +38401,7 @@ br:"The sine: the height of a turning radius, drawn out in time"}
 Hr(e)}
 c(hq,
 "sineLit");
-function uE(e,
+function cE(e,
 t){
 let n=H.meDeep;
 for(let i=0;
@@ -38408,7 +38409,7 @@ i<6;
 i++)for(let r=1;
 r<=9;
 r++){
-let o=Nd*(i+Math.log10(r));
+let o=Gd*(i+Math.log10(r));
 o<e||o>t||V.lines.segment([o,
 -.55,
 0],
@@ -38431,14 +38432,14 @@ i/10,
 color:n.map(r=>r*(i%5?.14:.34)),
 width:i%5?1:1.4}
 )}
-c(uE,
+c(cE,
 "gridLit");
-function cE(e,
+function hE(e,
 t){
 for(let i=0;
 i<=2;
 i++){
-let r=G([i*Nd,
+let r=G([i*Gd,
 0,
 0],
 t);
@@ -38460,7 +38461,7 @@ n[1]+30,
 {
 size:24}
 )}
-c(cE,
+c(hE,
 "axisLabelsLit");
 function fq(e,
 t,
@@ -38477,7 +38478,7 @@ C(7.6,
 i),
 e.aspect),
 o=e.text.overlay;
-uE(0,
+cE(0,
 14.6),
 V.lines.polyline(wh(0,
 14.6,
@@ -38520,7 +38521,7 @@ width:3.4}
 ),
 Gr(e,
 r),
-cE(o,
+hE(o,
 r),
 n>.5&&v0(o,
 G([10.4,
@@ -38588,7 +38589,7 @@ g,
 w)}
 ,
 "split");
-uE(0,
+cE(0,
 14.8),
 V.lines.polyline(wh(0,
 u[0],
@@ -38650,7 +38651,7 @@ glowColor:P.you,
 scale:1.1-.1*p,
 alpha:X(n/.03)}
 ),
-cE(o,
+hE(o,
 r);
 let m=o.measure("lim",
 {
@@ -38703,14 +38704,14 @@ vignette:.5}
 )}
 c(dq,
 "limitLit");
-function $8(e,
+function eE(e,
 t){
 for(let n=0;
 n<6;
 n++)for(let i=1;
 i<=9;
 i++){
-let r=Nd*(n+Math.log10(i));
+let r=Gd*(n+Math.log10(i));
 r<e||r>t||V.ink.segment([r,
 -.55,
 0],
@@ -38735,14 +38736,14 @@ ink:rc,
 width:n%5?.9:1.5,
 density:n%5?.2:.44}
 )}
-c($8,
+c(eE,
 "graphPaper");
-function eE(e,
+function tE(e,
 t){
 for(let i=0;
 i<=2;
 i++){
-let r=G([i*Nd,
+let r=G([i*Gd,
 0,
 0],
 t);
@@ -38761,16 +38762,16 @@ vo(e,
 "x",
 n[0]+24,
 n[1]+30)}
-c(eE,
+c(tE,
 "axisLabels");
-function hE(e,
+function fE(e,
 t,
 n,
 i,
 r=null){
 e.draw(l=>{
 r&&(l.globalAlpha*=r.alpha),
-l.strokeStyle=r?r.line:Cn.K,
+l.strokeStyle=r?r.line:En.K,
 l.lineWidth=1.5,
 l.strokeRect(t,
 n,
@@ -38888,9 +38889,9 @@ weight:500,
 size:14,
 font:"JetBrains Mono"}
 )}
-c(hE,
+c(fE,
 "titleBlock");
-function fE(e,
+function dE(e,
 t,
 n,
 i="1.  Projection ℝ⁴ → ℝ³:  p′ = 2p ⁄ (3 − w).",
@@ -38918,11 +38919,11 @@ n+28+l*24,
 size:16,
 italic:!0,
 align:"left",
-color:Cn.soft}
+color:En.soft}
 ))}
-c(fE,
+c(dE,
 "sheetNotes");
-function dE(e,
+function pE(e,
 t,
 n,
 i,
@@ -38946,19 +38947,19 @@ i),
 r.glow&&(l.shadowColor=r.fill,
 l.shadowBlur=r.glow*u);
 let d=0;
-for(let p of o)l.fillStyle=r.fill??Cn.yellow,
+for(let p of o)l.fillStyle=r.fill??En.yellow,
 l.fillText(p,
 d,
 0),
 r.glow||(l.lineWidth=1.6/Math.max(i,
 .2),
-l.strokeStyle=Cn.K,
+l.strokeStyle=En.K,
 l.strokeText(p,
 d,
 0)),
 d+=l.measureText(p).width+f}
 )}
-c(dE,
+c(pE,
 "circumWord");
 function pq(e,
 t,
@@ -38975,7 +38976,7 @@ font:"JetBrains Mono",
 weight:700}
 ,
 [u,
-h]=zd(n[0],
+h]=Nd(n[0],
 1),
 f=G(u,
 t),
@@ -39016,7 +39017,7 @@ glowColor:P.you}
 )}
 c(pq,
 "tangentWord");
-var g2=new B,
+var w2=new B,
 Ey=new B,
 Ry=new B;
 function g0(e,
@@ -39037,16 +39038,16 @@ e.aspect=r,
 e.near=a,
 e.far=s,
 e.position.set(...t),
-g2.set(n[0]-t[0],
+w2.set(n[0]-t[0],
 n[1]-t[1],
 n[2]-t[2]).normalize();
-let u=l??(Math.abs(g2.y)>.999?[0,
+let u=l??(Math.abs(w2.y)>.999?[0,
 0,
 -1]:[0,
 1,
 0]);
-return Ey.copy(g2).cross(Ry.set(...u)).normalize(),
-Ry.copy(Ey).cross(g2),
+return Ey.copy(w2).cross(Ry.set(...u)).normalize(),
+Ry.copy(Ey).cross(w2),
 e.up.copy(Ry).multiplyScalar(Math.cos(o)).addScaledVector(Ey,
 Math.sin(o)),
 e.lookAt(...n),
@@ -39116,7 +39117,7 @@ i)=>[e[0]+t*Math.cos(i)*Math.sin(n),
 e[1]+t*Math.sin(i),
 e[2]+t*Math.cos(i)*Math.cos(n)],
 "around"),
-pE=c((e,
+mE=c((e,
 t)=>e/Math.tan(ut.degToRad(t)/2),
 "dollyDist");
 var ca={
@@ -39275,7 +39276,7 @@ return this.points.visible=!0,
 this}
 }
 ,
-pn=c((e=[1,
+mn=c((e=[1,
 1,
 1])=>({
 value:new B(...e)}
@@ -39288,15 +39289,15 @@ dy:.7,
 sp:.19,
 y0:0}
 ,
-w2=Wt.n*Wt.n,
-mE=Wt.L*w2,
+A2=Wt.n*Wt.n,
+vE=Wt.L*A2,
 wo=c((e,
 t,
-n)=>e*w2+t*Wt.n+n,
+n)=>e*A2+t*Wt.n+n,
 "nodeId");
 function Ir(e){
-let t=Math.floor(e/w2),
-n=e%w2,
+let t=Math.floor(e/A2),
+n=e%A2,
 i=Math.floor(n/Wt.n);
 return[(n%Wt.n-(Wt.n-1)/2)*Wt.sp,
 Wt.y0+t*Wt.dy,
@@ -39341,7 +39342,7 @@ wq=[[1,
 1,
 2,
 1].map(e=>e/16)],
-A2=(()=>{
+y2=(()=>{
 let e=Be(7331);
 return wq.map(t=>t.map(n=>n+(e()-.5)*.16))}
 )(),
@@ -39369,7 +39370,7 @@ h)),
 t.push(wo(r+1,
 o,
 a)),
-n.push(A2[r][(s+1)*3+l+1]),
+n.push(y2[r][(s+1)*3+l+1]),
 i.push(r))}
 return{
 src:e,
@@ -39379,7 +39380,7 @@ lay:i,
 count:e.length}
 }
 )(),
-y2=class{
+b2=class{
 static{
 c(this,
 "NetGPU")}
@@ -39389,11 +39390,11 @@ constructor(e={
 let t=e.edges??ir;
 this.nodeData=new Float32Array(4096);
 for(let r=0;
-r<mE;
+r<vE;
 r++)this.nodeData.set([...Ir(r),
 0],
 r*4);
-this.nodes=an(this.nodeData,
+this.nodes=sn(this.nodeData,
 32,
 32);
 let n=Math.ceil(t.count/128),
@@ -39407,12 +39408,12 @@ t.lay[r]],
 r*4);
 this.edgeData=i,
 this.ne=t.count,
-this.edges=an(i,
+this.edges=sn(i,
 128,
 n)}
 update(e){
 for(let t=0;
-t<mE;
+t<vE;
 t++)this.nodeData[t*4+3]=e.act[t];
 if(this.nodes.needsUpdate=!0,
 e.edgeW){
@@ -39423,7 +39424,7 @@ this.edges.needsUpdate=!0}
 }
 }
 ;
-function vE(e){
+function gE(e){
 return{
 uNodes:{
 value:e.nodes}
@@ -39446,16 +39447,16 @@ value:-1}
 uNodeR:{
 value:.022}
 ,
-uNCold:pn(ca.c1.cold),
-uNWarm:pn(ca.c1.warm),
-uNHot:pn(ca.c1.hot),
+uNCold:mn(ca.c1.cold),
+uNWarm:mn(ca.c1.warm),
+uNHot:mn(ca.c1.hot),
 uNIdle:{
 value:.1}
 }
 }
-c(vE,
+c(gE,
 "netUniforms");
-function gE(e,
+function wE(e,
 t,
 n={
 }
@@ -39470,13 +39471,13 @@ uNWarm:t.warm,
 uNHot:t.hot,
 uNIdle:n.idle??.1}
 }
-c(gE,
+c(wE,
 "netUniformValues");
-var wE="\nuniform sampler2D uNodes, uEdges;\nuniform float uNE, uSparkPh, uSparkOn, uOnly, uNodeR, uNIdle;\nuniform vec3 uNCold, uNWarm, uNHot;\nvec4 nNode(float id) { return texelFetch(uNodes, ivec2(int(mod(id, 32.)), int(floor(id / 32.))), 0); }\nvec4 nEdge(float id) { return texelFetch(uEdges, ivec2(int(mod(id, 128.)), int(floor(id / 128.))), 0); }\n// Network pose of particle i. who: 0 = me (hidden layers 1..4 and synapse sparks), 1 = you (the input layer).\n// u (0..1) picks the layer for me (u near 0 = top), so particles from the top of the pre1 helix land on the top layer.\nvoid netParticle(float i, float who, float u, out vec3 pos, out vec3 col, out float lay) {\n  vec3 dir = normalize(hash31(i * 1.618 + 4.1) * 2. - 1. + 1e-4);\n  float rr = pow(hash11(i * 2.13 + .7), .3333);\n  if (who < .5 && hash11(i * .371 + 9.1) > .74) {\n    float e = floor(hash11(i * .913 + 2.7) * uNE);\n    vec4 E = nEdge(e); vec4 A = nNode(E.x), B = nNode(E.y);\n    float s = fract(uSparkPh - hash11(i * 3.7) * .22);                 // a short comet: head at the phase, tail behind\n    pos = mix(A.xyz, B.xyz, s) + dir * .003;\n    float flow = abs(E.z) * A.w * uSparkOn * (1. - .5 * s);\n    col = (E.z > 0. ? uNWarm : uNCold) * (.004 + 2.6 * flow);\n    lay = E.w + s;\n    if (uOnly > -.5) col = vec3(0.);\n    return;\n  }\n  float l = who > .5 ? 0. : 1. + min(3., floor((1. - u) * 4.));\n  float id = l * 144. + floor(hash11(i * .577 + 5.3) * 144.);\n  vec4 N = nNode(id); float a = N.w;\n  pos = N.xyz + dir * rr * uNodeR * (.65 + .9 * a);\n  vec3 base = who > .5 ? mix(uNWarm, vec3(1., .28, .55), hash11(i * 3.31) * .6) : uNCold;\n  col = mix(base, mix(uNWarm, uNHot, a), smoothstep(.15, .85, a) * (who > .5 ? .5 : .95)) * (uNIdle + 1.1 * a);\n  lay = l;\n  if (uOnly > -.5 && abs(l - uOnly) > .5) col = vec3(0.);\n}",
+var AE="\nuniform sampler2D uNodes, uEdges;\nuniform float uNE, uSparkPh, uSparkOn, uOnly, uNodeR, uNIdle;\nuniform vec3 uNCold, uNWarm, uNHot;\nvec4 nNode(float id) { return texelFetch(uNodes, ivec2(int(mod(id, 32.)), int(floor(id / 32.))), 0); }\nvec4 nEdge(float id) { return texelFetch(uEdges, ivec2(int(mod(id, 128.)), int(floor(id / 128.))), 0); }\n// Network pose of particle i. who: 0 = me (hidden layers 1..4 and synapse sparks), 1 = you (the input layer).\n// u (0..1) picks the layer for me (u near 0 = top), so particles from the top of the pre1 helix land on the top layer.\nvoid netParticle(float i, float who, float u, out vec3 pos, out vec3 col, out float lay) {\n  vec3 dir = normalize(hash31(i * 1.618 + 4.1) * 2. - 1. + 1e-4);\n  float rr = pow(hash11(i * 2.13 + .7), .3333);\n  if (who < .5 && hash11(i * .371 + 9.1) > .74) {\n    float e = floor(hash11(i * .913 + 2.7) * uNE);\n    vec4 E = nEdge(e); vec4 A = nNode(E.x), B = nNode(E.y);\n    float s = fract(uSparkPh - hash11(i * 3.7) * .22);                 // a short comet: head at the phase, tail behind\n    pos = mix(A.xyz, B.xyz, s) + dir * .003;\n    float flow = abs(E.z) * A.w * uSparkOn * (1. - .5 * s);\n    col = (E.z > 0. ? uNWarm : uNCold) * (.004 + 2.6 * flow);\n    lay = E.w + s;\n    if (uOnly > -.5) col = vec3(0.);\n    return;\n  }\n  float l = who > .5 ? 0. : 1. + min(3., floor((1. - u) * 4.));\n  float id = l * 144. + floor(hash11(i * .577 + 5.3) * 144.);\n  vec4 N = nNode(id); float a = N.w;\n  pos = N.xyz + dir * rr * uNodeR * (.65 + .9 * a);\n  vec3 base = who > .5 ? mix(uNWarm, vec3(1., .28, .55), hash11(i * 3.31) * .6) : uNCold;\n  col = mix(base, mix(uNWarm, uNHot, a), smoothstep(.15, .85, a) * (who > .5 ? .5 : .95)) * (uNIdle + 1.1 * a);\n  lay = l;\n  if (uOnly > -.5 && abs(l - uOnly) > .5) col = vec3(0.);\n}",
 Aq="\nout vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 yq="\nuniform sampler2D uNodes; uniform float uLayer, uGain, uGap;\nuniform vec3 uC0, uC1, uC2, uC3;\nin vec2 vUv; out vec4 o;\nvec3 cmap(float a) {\n  vec3 c = mix(uC0 * .04, uC0 * .5, smoothstep(0., .3, a));\n  c = mix(c, uC1, smoothstep(.25, .6, a));\n  c = mix(c, uC2, smoothstep(.55, .85, a));\n  return mix(c, uC3, smoothstep(.85, 1., a));\n}\nvoid main() {\n  vec2 g = vUv * 12.; vec2 id = floor(g), f = fract(g);\n  float n = uLayer * 144. + (11. - id.y) * 12. + id.x;\n  float a = texelFetch(uNodes, ivec2(int(mod(n, 32.)), int(floor(n / 32.))), 0).w;\n  vec2 e = min(f, 1. - f); float cell = smoothstep(uGap, uGap + .06, min(e.x, e.y));\n  vec2 gg = abs(fract(g) - .5); float frame = 1. - smoothstep(.0, .03, .5 - max(gg.x, gg.y));\n  o = vec4(cmap(a) * cell * uGain + uC0 * frame * .05 * uGain, 1.);\n}";
-function AE(e){
-let t=new _n(1,
+function yE(e){
+let t=new Sn(1,
 1);
 t.rotateX(-Math.PI/2);
 let n=new tt(t,
@@ -39500,10 +39501,10 @@ value:1}
 uGap:{
 value:.08}
 ,
-uC0:pn(),
-uC1:pn(),
-uC2:pn(),
-uC3:pn()}
+uC0:mn(),
+uC1:mn(),
+uC2:mn(),
+uC3:mn()}
 }
 ));
 return n.frustumCulled=!1,
@@ -39527,14 +39528,14 @@ hl(i)-.004,
 n.visible=!0}
 ,
 n}
-c(AE,
+c(yE,
 "makeHeatPlane");
 var By=c((e,
 t)=>[e[0]-t[0],
 e[1]-t[1],
 e[2]-t[2]],
 "sub"),
-Ud=c((e,
+Hd=c((e,
 t)=>[e[0]+t[0],
 e[1]+t[1],
 e[2]+t[2]],
@@ -39544,32 +39545,32 @@ t)=>[e[0]*t,
 e[1]*t,
 e[2]*t],
 "mul"),
-M2=c(e=>Math.hypot(e[0],
+x2=c(e=>Math.hypot(e[0],
 e[1],
 e[2]),
 "len"),
-yE=c((e,
+bE=c((e,
 t)=>[e[1]*t[2]-e[2]*t[1],
 e[2]*t[0]-e[0]*t[2],
 e[0]*t[1]-e[1]*t[0]],
 "cross"),
-b2=c(e=>A0(e,
-1/(M2(e)||1)),
+M2=c(e=>A0(e,
+1/(x2(e)||1)),
 "norm");
-function bE(e,
+function ME(e,
 t,
 n,
 i,
 r){
 let o=By(t,
 e),
-a=b2(yE(o,
-Math.abs(o[1])>.9*M2(o)?[1,
+a=M2(bE(o,
+Math.abs(o[1])>.9*x2(o)?[1,
 0,
 0]:[0,
 1,
 0])),
-s=b2(yE(b2(o),
+s=M2(bE(M2(o),
 a)),
 l=[e,
 t];
@@ -39582,21 +39583,21 @@ f<l.length;
 f++){
 let d=l[f-1],
 p=l[f],
-m=M2(By(p,
+m=x2(By(p,
 d))*r;
-h.push(Ud(A0(Ud(d,
+h.push(Hd(A0(Hd(d,
 p),
 .5),
-Ud(A0(a,
+Hd(A0(a,
 (n()-.5)*2*m),
 A0(s,
 (n()-.5)*2*m))),
 p)}
 l=h}
 return l}
-c(bE,
+c(ME,
 "displace");
-function ME(e,
+function xE(e,
 t,
 n,
 {
@@ -39608,7 +39609,7 @@ reach:a=.45}
 }
 ){
 let s=Be(n),
-l=bE(e,
+l=ME(e,
 t,
 s,
 i,
@@ -39619,19 +39620,19 @@ w:1}
 ],
 h=By(t,
 e),
-f=M2(h);
+f=x2(h);
 for(let d=0;
 d<o;
 d++){
 let p=l[1+Math.floor(s()*(l.length-2))],
-m=b2(Ud(A0(h,
+m=M2(Hd(A0(h,
 (.25+s()*.4)/f),
 [(s()-.5)*1.6,
 (s()-.5)*.6,
 (s()-.5)*1.6]));
 u.push({
-pts:bE(p,
-Ud(p,
+pts:ME(p,
+Hd(p,
 A0(m,
 f*(.18+s()*a))),
 s,
@@ -39640,9 +39641,9 @@ r*1.1),
 w:.45}
 )}
 return u}
-c(ME,
+c(xE,
 "bolt");
-function xE(e,
+function _E(e,
 t,
 n={
 }
@@ -39668,9 +39669,9 @@ e.polyline(s,
 color:r.map(u=>u*3.2*l*i),
 width:a*(l<1?.7:1)}
 )}
-c(xE,
+c(_E,
 "drawBolt");
-function x2(e,
+function _2(e,
 t,
 n,
 i,
@@ -39712,12 +39713,12 @@ color:h.map(y=>y*2.4*A*A),
 width:o.width??2.2}
 )}
 }
-c(x2,
+c(_2,
 "drawSparks");
-var _E=c((e,
+var SE=c((e,
 t=30)=>Math.floor(e*t)+1,
 "arcSeed"),
-SE=c(e=>{
+TE=c(e=>{
 let t=Math.floor(e*30);
 return .85+.15*gi(t,
 69)}
@@ -39758,14 +39759,14 @@ bt.contact,
 [0,
 1.35],
 bt.T],
-TE=[[-3.1,
+CE=[[-3.1,
 -.4],
 [-3.1,
 -1.35],
 [0,
 -1.35],
 bt.B],
-CE=[bt.R,
+EE=[bt.R,
 [1.5,
 0],
 [1.5,
@@ -39783,7 +39784,7 @@ bt.rail],
 [-1.3,
 0],
 bt.L],
-Gd={
+Wd={
 D1:[bt.T,
 bt.R],
 D2:[bt.B,
@@ -39877,7 +39878,7 @@ width:r*1.2}
 )}
 c(bq,
 "diode");
-function EE(e,
+function RE(e,
 t,
 n){
 let i=X((e-t)/.09),
@@ -39890,9 +39891,9 @@ th:o,
 sin:Math.sin(o),
 live:X((e-t-.09)/.25)}
 }
-c(EE,
+c(RE,
 "circuitState");
-function RE(e,
+function BE(e,
 t,
 n={
 }
@@ -39932,7 +39933,7 @@ _r(bt.T)],
 color:r,
 width:l}
 ),
-e.polyline(TE.map(_r),
+e.polyline(CE.map(_r),
 {
 color:r,
 width:l}
@@ -40063,7 +40064,7 @@ let g=t.sin>=0,
 w=t.on*Math.abs(t.sin);
 for(let[M,
 [T,
-S]]of Object.entries(Gd))bq(e,
+S]]of Object.entries(Wd))bq(e,
 T,
 S,
 t.on&&(g&&(M==="D1"||M==="D4")||!g&&(M==="D2"||M==="D3"))?o.map((E,
@@ -40114,7 +40115,7 @@ T,
 S]of[[Py,
 11,
 0],
-[TE,
+[CE,
 9,
 .5]]){
 let E=Ly(M);
@@ -40128,9 +40129,9 @@ ky(M,
 color:a.map(F=>F*t.live),
 width:8}
 )}
-let y=g?[Gd.D1,
-Gd.D4]:[Gd.D2,
-Gd.D3];
+let y=g?[Wd.D1,
+Wd.D4]:[Wd.D2,
+Wd.D3];
 for(let[M,
 T]of y)for(let S=0;
 S<3;
@@ -40149,12 +40150,12 @@ L,
 color:s.map(F=>F*1.4*w),
 width:8}
 )}
-let b=Ly(CE),
+let b=Ly(EE),
 x=t.th/j*2.2;
 for(let M=0;
 M<26;
 M++){
-let T=ky(CE,
+let T=ky(EE,
 (M/26+x)%1*b);
 e.segment(T,
 T,
@@ -40163,9 +40164,9 @@ color:a.map(S=>S*1.1*t.live),
 width:8}
 )}
 }
-c(RE,
+c(BE,
 "drawCircuit");
-var BE=[["V~ 50 Hz",
+var PE=[["V~ 50 Hz",
 [-3.1,
 -.72,
 0]],
@@ -40193,11 +40194,11 @@ vPerDiv:.5,
 vrms:1}
 ,
 Mq=Zo.vrms*Math.SQRT2,
-PE=Mq/Zo.vPerDiv;
+kE=Mq/Zo.vPerDiv;
 function Fy(e,
 t,
 n,
-i=PE){
+i=kE){
 let r=2*Math.PI*e/4,
 o=Math.sin(r);
 if(n<=1e-4)return(o<0?o*Math.cos(Math.PI*t):o)*i;
@@ -40211,7 +40212,7 @@ a-=4/(Math.PI*(4*s*s-1))*(Math.cos(u*r)+l*Math.sin(u*r))/(1+l*l)}
 return a*i}
 c(Fy,
 "scopeWave");
-function kE(e){
+function LE(e){
 let t=1e9,
 n=-1e9,
 i=0,
@@ -40232,12 +40233,12 @@ return{
 pp:(n-t)/(i/r),
 mean:i/r}
 }
-c(kE,
+c(LE,
 "ripple");
 var xq="\nout vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 _q="\nuniform float uFold, uTau, uAmp, uHead, uPersist, uGain, uSignal, uGrid, uWidth;\nuniform vec3 uTrace, uGridCol;\nin vec2 vUv; out vec4 o;\nfloat wave(float x) {\n  float th = TAU * x / 4., s = sin(th), y;\n  if (uTau < 1e-4) y = s < 0. ? s * cos(PI * uFold) : s;\n  else {\n    y = 2. / PI;\n    for (int n = 1; n <= 14; n++) { float fn = float(n), k = 2. * fn, a = k * uTau; y -= 4. / (PI * (4. * fn * fn - 1.)) * (cos(k * th) + a * sin(k * th)) / (1. + a * a); }\n  }\n  return y * uAmp * uSignal;\n}\nfloat segDist(vec2 p, vec2 a, vec2 b) { vec2 pa = p - a, ba = b - a; float h = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-8), 0., 1.); return length(pa - ba * h); }\nvoid main() {\n  vec2 p = (vUv - .5) * vec2(10., 8.);                  // divisions\n  float px = fwidth(p.x);                               // divisions per pixel\n  // graticule: division lines (dotted), centre axes with fifth-division ticks\n  vec2 g = abs(fract(p + .5) - .5) / max(fwidth(p), 1e-5);\n  float lines = (1. - min(min(g.x, g.y), 1.)) * (.5 + .5 * step(.5, fract((p.x + p.y) * 5.)));\n  vec2 ax = abs(p) / max(fwidth(p), 1e-5);\n  float axes = 1. - min(min(ax.x, ax.y), 1.);\n  vec2 tk = abs(fract(p * 5. + .5) - .5) / max(fwidth(p * 5.), 1e-5);\n  float ticks = (1. - min(tk.x, 1.)) * step(abs(p.y), .12) + (1. - min(tk.y, 1.)) * step(abs(p.x), .12);\n  vec3 col = uGridCol * (lines * .5 + axes * .8 + ticks * .7) * uGrid;\n  // trace: distance to the polyline through five samples around x (exact near the rectifier cusps)\n  float d = 1e9, h = .045; vec2 prev = vec2(p.x - 2. * h, wave(p.x - 2. * h));\n  for (int k = -1; k <= 2; k++) { vec2 q = vec2(p.x + float(k) * h, wave(p.x + float(k) * h)); d = min(d, segDist(p, prev, q)); prev = q; }\n  float w = max(uWidth, px * 1.2);\n  float core = exp(-d * d / (w * w)), halo = exp(-d / (w * 5.)) * .18;\n  float age = fract((uHead - p.x) / 10.);                // fraction of a sweep since the beam passed here\n  float persist = .22 + .78 * exp(-age * uPersist);\n  float head = exp(-dot(p - vec2(uHead, wave(uHead)), p - vec2(uHead, wave(uHead))) / (w * w * 9.));\n  col += uTrace * ((core * 1.6 + halo) * persist + head * 2.5);\n  vec2 e = abs(p) - vec2(5., 4.); float edge = exp(-max(max(e.x, e.y), 0.) * 60.);\n  o = vec4(col * uGain * step(max(e.x, e.y), .0) + uGridCol * .9 * uGrid * (1. - smoothstep(0., px * 1.5, abs(max(e.x, e.y)))) * uGain, 1.);\n}";
-function LE(){
-let e=new tt(new _n(10*Zo.div,
+function FE(){
+let e=new tt(new Sn(10*Zo.div,
 8*Zo.div),
 qe({
 vertex:xq,
@@ -40254,7 +40255,7 @@ uTau:{
 value:0}
 ,
 uAmp:{
-value:PE}
+value:kE}
 ,
 uHead:{
 value:0}
@@ -40311,14 +40312,14 @@ t.gridCol&&n.uGridCol.value.set(...t.gridCol),
 e.visible=!0}
 ,
 e}
-c(LE,
+c(FE,
 "makeScreen");
 var uc=c(e=>1.8/e,
 "apertureR"),
 Sq="\nout vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 Tq="\nuniform float uAp, uRot, uLight, uSpike, uHousing, uGain, uRimGain;\nuniform vec3 uLightCol, uRimCol, uMetal, uLineCol;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  vec2 p = (vUv - .5) * 2.4;\n  float r = length(p), ang = atan(p.y, p.x), px = max(fwidth(r), 1e-4);\n  float hex = 0.;\n  for (int k = 0; k < 6; k++) { float a = uRot + float(k) * TAU / 6.; hex = max(hex, dot(p, vec2(cos(a), sin(a)))); }\n  float dOpen = mix(hex, r, .38) - uAp;                                     // < 0 inside the opening (curved hexagon)\n  float open = 1. - smoothstep(-px, px, dOpen);\n  // blades: sectors separated by curved seams starting at the opening's corners\n  float psi = (ang - uRot - PI / 6. - 1.35 * (r - uAp)) / (TAU / 6.);\n  float k = floor(psi), u = psi - k;\n  float bladeId = mod(k, 6.);\n  vec3 metal = uMetal * (.55 + .45 * u) * (.85 + .15 * hash11(bladeId + 1.));\n  float brushed = .5 + .5 * sin((r * 180. + bladeId * 7.) + sin(ang * 3.) * 2.);\n  metal *= .85 + .15 * brushed;\n  float sheen = pow(max(0., cos(ang - uRot * 2. - 2.2)), 8.) * .022;         // a soft specular band\n  float dA = u * (TAU / 6.) * r, dB = (1. - u) * (TAU / 6.) * r;          // distances to this blade's edge / the next blade's edge\n  float lit = exp(-dA / (px * 1.3)), shadow = 1. - .8 * exp(-dB / .035);\n  vec3 blades = (metal + sheen) * shadow + uRimCol * lit * .16 * uRimGain;\n  float housing = smoothstep(.985, .985 + px, r);\n  vec3 col = blades * (1. - open);\n  float rim = exp(-abs(dOpen) / (px * 1.6)) * (1. - housing);\n  col += uRimCol * rim * (.3 + .25 * uLight) * uRimGain;                      // blade edges catch the light from behind\n  // behind the opening: the flat DC trace from the scope, slightly defocused, on a faint field\n  col += uLight * open * (uLightCol * .035 * (1. - .5 * smoothstep(0., uAp + 1e-3, r)) + uLineCol * (exp(-abs(p.y) / (.012 + px)) * 1.3 + exp(-abs(p.y) / .1) * .06));\n  // housing ring with engraved ticks every 6°, long every 30°\n  float ring = smoothstep(1. - px, 1. + px, r) * (1. - smoothstep(1.075 - px, 1.075 + px, r));\n  col = mix(col, uMetal * 2.2 + uRimCol * .04 * (.6 + .4 * sin(ang * 90.)), ring * uHousing);\n  col *= 1. - smoothstep(1.075, 1.075 + px, r);\n  float ta = fract(ang / (TAU / 60.) + .5) - .5, isMajor = step(abs(fract(ang / (TAU / 12.) + .5) - .5), .02);\n  float tick = (1. - smoothstep(.06, .09, abs(ta))) * step(1.09, r) * (1. - step(mix(1.115, 1.15, isMajor), r));\n  col += uRimCol * tick * .35 * uHousing;\n  // six-point diffraction star of the hexagonal opening (pairs of spikes perpendicular to its straight edges)\n  float star = 0.;\n  for (int j = 0; j < 3; j++) { float a = uRot + float(j) * PI / 3.; vec2 n = vec2(-sin(a), cos(a)); star += exp(-abs(dot(p, n)) / (px * 1.4 + .004)) * exp(-r * 2.2); }\n  col += uLightCol * star * uSpike;\n  col += uLightCol * uSpike * .6 * exp(-r * r / .004);\n  o = vec4(col * uGain, 1.);\n}";
-function FE(){
-let e=new tt(new _n(2.4,
+function IE(){
+let e=new tt(new Sn(2.4,
 2.4),
 qe({
 vertex:Sq,
@@ -40395,9 +40396,9 @@ t.lineCol&&n.uLineCol.value.set(...t.lineCol),
 e.visible=!0}
 ,
 e}
-c(FE,
+c(IE,
 "makeIris");
-var En=Object.freeze({
+var Rn=Object.freeze({
 rIn:1,
 rMid:1.12,
 rOut:1.32,
@@ -40422,53 +40423,53 @@ Iy=[1.4,
 11,
 16,
 22],
-OE=1.4,
-NE=c(e=>2*Math.log2(e/OE),
+NE=1.4,
+UE=c(e=>2*Math.log2(e/NE),
 "stopIndex");
-function UE(e,
+function GE(e,
 t,
 n){
 let i=n-t;
 return-i*Math.cos(e)+Math.sqrt(n*n-i*i*Math.sin(e)**2)}
-c(UE,
+c(GE,
 "edgeRadius");
 var Cq=c((e,
-t)=>UE(Math.PI/6,
+t)=>GE(Math.PI/6,
 e,
 t),
 "cornerRadius");
-function IE(e,
+function DE(e,
 t,
-n=En.rH){
+n=Rn.rH){
 let r=Math.PI/6/64,
 o=0;
 for(let a=0;
 a<=64;
 a++){
-let s=Math.min(UE(a*r,
+let s=Math.min(GE(a*r,
 e,
 t),
 n);
 o+=(a===0||a===64?1:a%2?4:2)*s*s/2}
 return 12*o*r/3}
-c(IE,
+c(DE,
 "openingArea");
 var Eq=c(e=>X(1-Math.exp(-((Math.max(0,
-NE(e)-1.7)/2.1)**1.6))),
+UE(e)-1.7)/2.1)**1.6))),
 "hexness"),
-_2=Math.cos(Math.PI/6);
-function DE(e,
+S2=Math.cos(Math.PI/6);
+function zE(e,
 t){
 let n=Math.min(t,
-1/_2-1e-6);
-return e*(n*n+1-2*n*_2)/(2*(1-n*_2))}
-c(DE,
+1/S2-1e-6);
+return e*(n*n+1-2*n*S2)/(2*(1-n*S2))}
+c(zE,
 "rhoFor");
-var Rq=c(e=>1+X(e)*(1/_2-1)*.985,
+var Rq=c(e=>1+X(e)*(1/S2-1)*.985,
 "kappaOf");
-function GE(e,
+function HE(e,
 {
-rH:t=En.rH}
+rH:t=Rn.rH}
 ={
 }
 ){
@@ -40478,22 +40479,22 @@ a:t,
 rho:t,
 rc:t,
 kappa:1,
-rot:zE(e),
+rot:OE(e),
 area:Math.PI*t*t}
 ;
-let i=Math.PI*t*t*(OE/e)**2,
+let i=Math.PI*t*t*(NE/e)**2,
 r=0,
 o=t;
 for(let l=0;
 l<48;
 l++){
 let u=(r+o)/2;
-IE(u,
 DE(u,
+zE(u,
 n),
 t)<i?r=u:o=u}
 let a=(r+o)/2,
-s=DE(a,
+s=zE(a,
 n);
 return{
 a,
@@ -40502,35 +40503,35 @@ rc:Math.min(Cq(a,
 s),
 t),
 kappa:n,
-rot:zE(e),
-area:IE(a,
+rot:OE(e),
+area:DE(a,
 s,
 t)}
 }
-c(GE,
+c(HE,
 "aperture");
-var zE=c(e=>-.25+1.1*(1-2/e),
+var OE=c(e=>-.25+1.1*(1-2/e),
 "bladeRot"),
 y0=Object.freeze({
 index:152*Math.PI/180,
 step:7*Math.PI/180}
 ),
-HE=c(e=>y0.index+NE(e)*y0.step,
+WE=c(e=>y0.index+UE(e)*y0.step,
 "ringTurn");
-function WE(e,
+function VE(e,
 t,
 n,
 i){
 let r=X((e-t)/(n-t));
 return i*(1-r*r*(3-2*r))**1.6}
-c(WE,
+c(VE,
 "traceHalf");
-function VE(e,
+function qE(e,
 {
-zL:t=En.zL,
-rf:n=En.rf,
-zApex:i=En.zApex,
-n:r=En.n}
+zL:t=Rn.zL,
+rf:n=Rn.rf,
+zApex:i=Rn.zApex,
+n:r=Rn.n}
 ={
 }
 ){
@@ -40551,15 +40552,15 @@ if(!s)break;
 o=[o[0]-s[0]*.75,
 o[1]-s[1]*.75]}
 return o}
-c(VE,
+c(qE,
 "lightImage");
 function Bq(e,
 t,
 {
-zL:n=En.zL,
-rf:i=En.rf,
-zApex:r=En.zApex,
-n:o=En.n}
+zL:n=Rn.zL,
+rf:i=Rn.rf,
+zApex:r=Rn.zApex,
+n:o=Rn.n}
 ={
 }
 ){
@@ -40594,7 +40595,7 @@ c(Bq,
 "throughFront");
 var mr=c(e=>Number.isInteger(e)?e.toFixed(1):String(e),
 "f"),
-Hd=[[-4.6,
+Vd=[[-4.6,
 .5,
 9,
 [.42,
@@ -40636,26 +40637,26 @@ Hd=[[-4.6,
 .55,
 .4],
 .16]],
-Pq="\nuniform mat4 uCamWorld, uProjInv;\nuniform vec3 uCamPos, uFwd;\nuniform float uH, uDof, uFocus;\nuniform float uA, uRho, uRot, uRc, uTurn;\nuniform vec2 uDir[6], uLam;\nuniform float uTrace, uLine, uPoint, uWash, uRim, uStar, uStarLen, uGhost, uVeil, uVeilR, uKey, uSpot, uGain;\nuniform vec3 uLightCol, uKeyCol, uKeyDir, uKeyX, uKeyY, uSpotDir;\nuniform sampler2D uRing;\nin vec2 vUv; out vec4 o;\n\nconst float R_IN = ".concat(mr(En.rIn),
-", R_MID = ").concat(mr(En.rMid),
-", R_OUT = ").concat(mr(En.rOut),
-", RF = ").concat(mr(En.rf),
-", Z_APEX = ").concat(mr(En.zApex),
-", N_G = ").concat(mr(En.n),
-";\nconst float Z_B1 = ").concat(mr(En.zB1),
-", R_B1 = ").concat(mr(En.rB1),
-", Z_B2 = ").concat(mr(En.zB2),
-", R_B2 = ").concat(mr(En.rB2),
-", Z_D = ").concat(mr(En.zD),
-", R_H = ").concat(mr(En.rH),
-", Z_L = ").concat(mr(En.zL),
-", Z_R = ").concat(mr(En.zR),
-";\nconst vec3 METAL = vec3(.0062, .0068, .0082);\nconst float G_M[6] = float[6](").concat(Hd.map(e=>mr(e[0])).join(", "),
-");\nconst float G_S[6] = float[6](").concat(Hd.map(e=>mr(e[1])).join(", "),
-");\nconst float G_B[6] = float[6](").concat(Hd.map(e=>mr(e[2])).join(", "),
-");\nconst vec3 G_C[6] = vec3[6](").concat(Hd.map(e=>"vec3(".concat(e[3].map(mr).join(", "),
+Pq="\nuniform mat4 uCamWorld, uProjInv;\nuniform vec3 uCamPos, uFwd;\nuniform float uH, uDof, uFocus;\nuniform float uA, uRho, uRot, uRc, uTurn;\nuniform vec2 uDir[6], uLam;\nuniform float uTrace, uLine, uPoint, uWash, uRim, uStar, uStarLen, uGhost, uVeil, uVeilR, uKey, uSpot, uGain;\nuniform vec3 uLightCol, uKeyCol, uKeyDir, uKeyX, uKeyY, uSpotDir;\nuniform sampler2D uRing;\nin vec2 vUv; out vec4 o;\n\nconst float R_IN = ".concat(mr(Rn.rIn),
+", R_MID = ").concat(mr(Rn.rMid),
+", R_OUT = ").concat(mr(Rn.rOut),
+", RF = ").concat(mr(Rn.rf),
+", Z_APEX = ").concat(mr(Rn.zApex),
+", N_G = ").concat(mr(Rn.n),
+";\nconst float Z_B1 = ").concat(mr(Rn.zB1),
+", R_B1 = ").concat(mr(Rn.rB1),
+", Z_B2 = ").concat(mr(Rn.zB2),
+", R_B2 = ").concat(mr(Rn.rB2),
+", Z_D = ").concat(mr(Rn.zD),
+", R_H = ").concat(mr(Rn.rH),
+", Z_L = ").concat(mr(Rn.zL),
+", Z_R = ").concat(mr(Rn.zR),
+";\nconst vec3 METAL = vec3(.0062, .0068, .0082);\nconst float G_M[6] = float[6](").concat(Vd.map(e=>mr(e[0])).join(", "),
+");\nconst float G_S[6] = float[6](").concat(Vd.map(e=>mr(e[1])).join(", "),
+");\nconst float G_B[6] = float[6](").concat(Vd.map(e=>mr(e[2])).join(", "),
+");\nconst vec3 G_C[6] = vec3[6](").concat(Vd.map(e=>"vec3(".concat(e[3].map(mr).join(", "),
 ")")).join(", "),
-");\nconst float G_G[6] = float[6](").concat(Hd.map(e=>mr(e[4])).join(", "),
+");\nconst float G_G[6] = float[6](").concat(Vd.map(e=>mr(e[4])).join(", "),
 ");\n\nfloat CZ = 1.;   // the cosine between this pixel's ray and the view axis: depth of field goes by depth, not distance\nfloat DP = 1.;   // render pixels per design pixel (widths are given in design pixels: a frame looks the same at any size)\nfloat blurPx(float D) { return uDof * abs(1. / uFocus - 1. / max(D * CZ, 1e-3)) * uH / 1080.; }\n// coverage of the inside (d < 0) of a distance d, at u units a pixel, blurred by b pixels\nfloat inside(float d, float u, float b) { float w = b + .7; return 1. - smoothstep(-w, w, d / u); }\n// a thin line at distance d, w design pixels wide, blurred by b pixels (its light spread, not lost)\nfloat thin(float d, float u, float w, float b) { float wr = w * DP, wa = max(wr, .6), s = sqrt(wa * wa + b * b), x = d / u / s; return exp(-.5 * x * x) * wr / s; }\nfloat upp(vec2 q) { return max(max(length(dFdx(q)), length(dFdy(q))), 1e-6); }\n\n// the opening (< 0 inside): six discs of radius rho, the k-th centred at −(rho − a)·uDir[k], inside the housing\nfloat opening(vec2 q, float a, float rho) {\n  float d = -1e9, e = rho - a;\n  for (int k = 0; k < 6; k++) d = max(d, length(q + e * uDir[k]) - rho);\n  return max(d, length(q) - R_H);\n}\n// the studio light: a softbox above left, behind the camera; the room is dark\nfloat softbox(vec3 d, vec3 dir, vec2 size, float soft) {\n  float z = dot(d, dir);\n  if (z <= .05) return 0.;\n  vec2 q = vec2(dot(d, uKeyX), dot(d, uKeyY)) / z;\n  vec2 e = abs(q) - size + .04;\n  float sd = length(max(e, 0.)) + min(max(e.x, e.y), 0.) - .04;\n  return (1. - smoothstep(-soft, soft, sd)) * (.8 + .2 * (1. - smoothstep(0., size.x, length(q))));\n}\nvec3 env(vec3 d) {\n  // (a strip light: tall and narrow, its middle brightest)\n  float z = max(dot(d, uKeyDir), 1e-3), along = dot(d, uKeyY) / z;\n  return uKeyCol * uKey * 3. * softbox(d, uKeyDir, vec2(.045, .3), .012) * (1. - .6 * smoothstep(.05, .3, abs(along)))\n       + vec3(.003, .0036, .0046) * (.35 + .65 * smoothstep(-.3, .9, d.y));\n}\n// the small studio light (a bare bulb, above right): a round spot of angular radius .012\nfloat spot(vec3 d, vec3 dir) { float c = dot(d, dir); return exp(-(1. - c) / 7.2e-5); }\n// residual reflection of an anti-reflection film: its phase at λ (µm) is k·c/λ; normalised to its strongest channel\nvec3 coat(float k, float c) { vec3 r = .5 + .5 * cos(k * c / vec3(.65, .55, .45)); return r / max(max(r.r, r.g), max(r.b, 1e-3)); }\nfloat filmCos(float ci, float nf) { return sqrt(max(1. - (1. - ci * ci) / (nf * nf), 0.)); }\n\n// the small light reflected by a coated surface behind the front one (vertex zv, radius R: > 0 convex towards the\n// camera), seen along the refracted ray (o2, d2): a small dot in the coating's colour\nvec3 glint(vec3 o2, vec3 d2, vec3 sp, float zv, float R, float k, float g) {\n  vec3 c = vec3(0., 0., zv - R), oc = o2 - c;\n  float b = dot(oc, d2), h = b * b - dot(oc, oc) + R * R;\n  if (h < 0.) return vec3(0.);\n  float t = R > 0. ? -b - sqrt(h) : -b + sqrt(h);\n  vec3 p = o2 + d2 * t;\n  vec3 n = normalize(p - c); n = dot(n, d2) > 0. ? -n : n;\n  vec3 rf = reflect(d2, n);\n  float ci = clamp(-dot(d2, n), 0., 1.);\n  return uSpot * g * spot(rf, sp) * coat(k, filmCos(ci, 1.38)) * (1. - smoothstep(.62, .8, length(p.xy)));\n}\n\n// the bezel: black anodised, turned (a radial streak of light where the grooves face the half-way vector), chamfered\n// edges, a step between the two rings, and the engraved paint (the ring texture: the outer ring turned by uTurn)\nvec3 bezel(vec3 p, float r, float u, vec2 dpx, vec2 dpy, vec3 H, vec3 V) {\n  vec2 dir = p.xy / r;\n  vec3 T = vec3(-dir.y, dir.x, 0.);\n  float th = dot(T, H);\n  float streak = pow(max(1. - th * th, 0.), 70.) * smoothstep(0., .5, H.z);\n  float fine = 1. - smoothstep(.2, .6, 3200. * u / TAU);                     // grooves finer than a pixel average out\n  float gr = .78 + .22 * sin(r * 3200.) * fine + .1 * (hash11(floor(r * 900.)) - .5) * fine;\n  vec3 col = METAL * (.55 + .45 * uKeyDir.z) * 1.4 + uKeyCol * uKey * (.03 * streak * gr + .0035 * streak);\n  // the paint\n  float outer = step(R_MID, r), turn = outer * uTurn;\n  float ang = atan(p.y, p.x), r2 = r * r;\n  vec2 gx = vec2(-(p.x * dpx.y - p.y * dpx.x) / r2 / TAU, dot(dir, dpx) / (R_OUT - R_IN));\n  vec2 gy = vec2(-(p.x * dpy.y - p.y * dpy.x) / r2 / TAU, dot(dir, dpy) / (R_OUT - R_IN));\n  vec4 tx = textureGrad(uRing, vec2((turn - ang) / TAU, (r - R_IN) / (R_OUT - R_IN)), gx, gy);\n  float lam = max(dot(vec3(0., 0., 1.), uKeyDir), 0.);\n  col = col * (1. - tx.a) + tx.rgb * (uKeyCol * uKey * (.045 * lam + .012) + .012);   // (premultiplied)\n  // chamfers: the inner one leans towards the axis, the outer one away from it\n  vec3 nIn = normalize(vec3(-dir * .75, .66)), nOut = normalize(vec3(dir * .75, .66));\n  float sIn = pow(max(dot(nIn, H), 0.), 24.), sOut = pow(max(dot(nOut, H), 0.), 24.);\n  col += uKeyCol * uKey * (.09 * sIn + .006) * thin(r - R_IN - .005, u, 1.6, 0.);\n  col += uKeyCol * uKey * (.07 * sOut + .004) * thin(r - R_OUT + .006, u, 1.4, 0.);\n  // the step between the name ring and the aperture ring: a dark gap with a lit lip\n  col *= 1. - .8 * thin(r - R_MID, u, 1.2, 0.);\n  col += uKeyCol * uKey * .03 * pow(max(dot(nOut, H), 0.), 16.) * thin(r - R_MID - .004, u, .9, 0.);\n  return col * (1. - smoothstep(R_OUT, R_OUT + 2. * u, r));\n}\n\n// the blades: which blade covers q (pinwheel seams from the corners, turning outwards), its sheen, the shadow of the\n// blade lying on it and the lit edge of its own\nvec3 blades(vec2 q, float u, float b, vec3 H) {\n  float r = length(q), ang = atan(q.y, q.x);\n  float psi = (ang - uRot - PI / 6. - 1.35 * max(r - uRc, 0.)) / (TAU / 6.);\n  float k = floor(psi), w = psi - k, id = mod(k, 6.);\n  float span = TAU / 6. * r / sqrt(1. + 1.82 * r * r);                     // the sector's width across, at r\n  float ta = uRot + (id + .5) * TAU / 6. + 2.1;\n  vec3 n = normalize(vec3(vec2(cos(ta), sin(ta)) * (.1 + .14 * w + .06 * hash11(id + 7.)), 1.));   // each blade leans on the next\n  float sheen = pow(max(dot(n, H), 0.), 60.);\n  vec3 col = METAL * (.7 + .5 * w) * (.85 + .3 * hash11(id + 3.)) + uKeyCol * uKey * .006 * sheen;\n  col *= 1. - .85 * exp(-w * span / u / (1.5 * DP + b));                         // in the shadow of the edge above it\n  col += uKeyCol * uKey * .005 * thin((1. - w) * span, u, 1., b) * (.3 + sheen * 2.);\n  // the housing beyond the blades\n  return mix(col, METAL * .6, smoothstep(R_H - u, R_H + u, r));\n}\n\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz), ro = uCamPos, V = -rd;\n  vec3 H = normalize(uKeyDir + V);\n  CZ = dot(rd, uFwd); DP = uH / 1080.;\n\n  // ---- the bezel plane\n  float t0 = (0. - ro.z) / rd.z;\n  vec3 p0 = ro + rd * t0;\n  vec2 dpx = dFdx(p0.xy), dpy = dFdy(p0.xy);\n  float r0 = length(p0.xy), u0 = max(max(length(dpx), length(dpy)), 1e-6);\n  float glass = 1. - smoothstep(R_IN - u0, R_IN + u0, r0);\n\n  // ---- the front element: reflect, then refract the view inside\n  vec3 cs = vec3(0., 0., Z_APEX - RF), oc = ro - cs;\n  float bq = dot(oc, rd), hq = max(bq * bq - dot(oc, oc) + RF * RF, 0.);\n  float tg = -bq - sqrt(hq);\n  vec3 pg = ro + rd * tg, ng = (pg - cs) / RF;\n  float ci = clamp(dot(V, ng), 0., 1.);\n  vec3 rd2 = refract(rd, ng, 1. / N_G);\n  vec3 keyIn = normalize(vec3(uKeyDir.xy / N_G, sqrt(max(1. - dot(uKeyDir.xy, uKeyDir.xy) / (N_G * N_G), 0.))));\n  vec3 Hin = normalize(keyIn - rd2);\n\n  // the layers inside (the path in the glass looks 1/n as long)\n  vec3 h1 = pg + rd2 * ((Z_B1 - pg.z) / rd2.z), h2 = pg + rd2 * ((Z_B2 - pg.z) / rd2.z);\n  vec3 hd = pg + rd2 * ((Z_D - pg.z) / rd2.z), hl = pg + rd2 * ((Z_L - pg.z) / rd2.z), hr = pg + rd2 * ((Z_R - pg.z) / rd2.z);\n  float s1 = upp(h1.xy), s2 = upp(h2.xy), sD = upp(hd.xy), sL = upp(hl.xy);\n  float b1 = blurPx(tg + distance(pg, h1) / N_G), b2 = blurPx(tg + distance(pg, h2) / N_G), bD = blurPx(tg + distance(pg, hd) / N_G);\n  float bL = blurPx(tg + distance(pg, hl) / N_G);\n\n  vec3 inner = vec3(0.); float tr = 1.;\n  // baffles: black rings, their inner lips lit on the side that faces the light\n  vec2 kd = normalize(uKeyDir.xy);\n  float rr = length(h1.xy), a1 = inside(R_B1 - rr, s1, b1);\n  inner += tr * a1 * (METAL * .55 + uKeyCol * uKey * .006 * pow(max(dot(-h1.xy / rr, kd), 0.), 3.) * thin(rr - R_B1 - .006, s1, 1.4, b1));\n  tr *= 1. - a1;\n  rr = length(h2.xy); float a2 = inside(R_B2 - rr, s2, b2);\n  inner += tr * a2 * (METAL * .45 + uKeyCol * uKey * .005 * pow(max(dot(-h2.xy / rr, kd), 0.), 3.) * thin(rr - R_B2 - .006, s2, 1.2, b2));\n  tr *= 1. - a2;\n  // the diaphragm\n  float dOp = opening(hd.xy, uA, uRho), aD = 1. - inside(dOp, sD, bD);\n  inner += tr * aD * blades(hd.xy, sD, bD, Hin);\n  // the blades' inner edges catch the light from behind (a little more on the side of the studio lights)\n  float ea = atan(hd.y, hd.x);\n  inner += tr * uRim * uLightCol * thin(dOp - 1.2 * DP * sD, sD, 1.1, bD) * (.72 + .28 * sin(ea - .7)) * (.4 + .6 * exp(-length(hd.xy) / max(uA * 2.5, .05)));\n  tr *= 1. - aD;\n  // the light: the trace switched off into a point, its glow, and the light it throws behind the opening\n  vec2 ql = hl.xy;\n  float rl = length(ql);\n  float dl = length(vec2(max(abs(ql.x) - uTrace, 0.), ql.y));\n  float wp = 2.2 * DP, sp2 = wp * wp + bL * bL, xl = rl / sL;\n  vec3 lit = uLightCol * (uLine * thin(dl, sL, 2.4, bL) + uPoint * exp(-.5 * xl * xl / sp2) * wp * wp / sp2\n           + uPoint * .03 * exp(-rl / .07) + uWash * (.45 * exp(-rl * rl / .18) + .55 * exp(-dl * dl / .035)));\n  inner += tr * lit;\n  // the rear group: a faint disc of the light the glass behind gathers\n  inner += tr * uLightCol * uWash * .25 * (1. - smoothstep(.55, .62, length(hr.xy))) * exp(-length(hr.xy) / .4);\n\n  // ---- the front surface: its reflection (a magenta coating), and the copies from the surfaces behind it\n  float F = mix(.006, 1., pow(1. - ci, 5.));\n  vec3 rfl = reflect(rd, ng), tint = coat(1.634, filmCos(ci, 1.38));\n  vec3 refl = env(rfl) * F * mix(vec3(1.), tint, .3) * 1.4 + uSpot * F * spot(rfl, uSpotDir) * mix(vec3(1.), tint, .7);\n  vec3 spIn = normalize(vec3(uSpotDir.xy / N_G, sqrt(max(1. - dot(uSpotDir.xy, uSpotDir.xy) / (N_G * N_G), 0.))));\n  ").concat([[-.2,
 -3.2,
 1.414,
@@ -40685,12 +40686,12 @@ function kq(){
 if(Dy)return Dy;
 let e=8192,
 t=512,
-n=Fn();
+n=In();
 n.width=e,
 n.height=t;
 let i=n.getContext("2d"),
-r=t/(En.rOut-En.rIn),
-o=c(f=>(1-(f-En.rIn)/(En.rOut-En.rIn))*t,
+r=t/(Rn.rOut-Rn.rIn),
+o=c(f=>(1-(f-Rn.rIn)/(Rn.rOut-Rn.rIn))*t,
 "yOf"),
 a=c(f=>(f/(2*Math.PI)%1+1)%1*e,
 "xOf"),
@@ -40734,7 +40735,7 @@ i.fillText(f,
 0)}
 ),
 "textU"),
-u=(En.rMid+En.rOut)/2+.004;
+u=(Rn.rMid+Rn.rOut)/2+.004;
 Iy.forEach((f,
 d)=>{
 l(String(f),
@@ -40759,7 +40760,7 @@ i.fill()}
 )}
 ),
 s(-y0.index,
-En.rMid-.03,
+Rn.rMid-.03,
 ()=>{
 i.fillStyle="#f2f2ee",
 i.beginPath(),
@@ -40774,7 +40775,7 @@ i.fill()}
 ),
 l("1:1.4   f = 50 mm   Ø 58",
 -.02,
-(En.rIn+En.rMid)/2+.002,
+(Rn.rIn+Rn.rMid)/2+.002,
 .046,
 {
 weight:500,
@@ -40788,7 +40789,7 @@ colorSpace:"",
 wrapS:Yu,
 wrapT:co,
 minFilter:ho,
-magFilter:On,
+magFilter:Nn,
 generateMipmaps:!0,
 anisotropy:8,
 premultiplyAlpha:!0}
@@ -40797,7 +40798,7 @@ h.needsUpdate=!0,
 Dy=h}
 c(kq,
 "ringTexture");
-function qE(){
+function jE(){
 let e=c((...n)=>({
 value:new B(...n)}
 ),
@@ -40870,7 +40871,7 @@ uRing:{
 value:kq()}
 }
 )}
-c(qE,
+c(jE,
 "makeLens");
 var zy=new B(-.32,
 .38,
@@ -40879,12 +40880,12 @@ Lq=new B(.3,
 .26,
 .92).normalize(),
 Oy=new B,
-jE=new B;
+XE=new B;
 Oy.crossVectors(new B(0,
 1,
 0),
 zy).normalize();
-jE.crossVectors(zy,
+XE.crossVectors(zy,
 Oy);
 function Ny(e,
 t,
@@ -40903,17 +40904,17 @@ r.uFwd.value.copy(a),
 r.uH.value=n,
 r.uFocus.value=i.focus??(a.z<-.001?-o[2]/a.z:3),
 r.uDof.value=i.dof??60;
-let s=GE(i.N);
+let s=HE(i.N);
 r.uA.value=s.a,
 r.uRho.value=s.rho,
 r.uRot.value=s.rot,
 r.uRc.value=s.rc,
-r.uTurn.value=HE(Math.max(i.N,
+r.uTurn.value=WE(Math.max(i.N,
 1.4)),
 r.uDir.value.forEach((l,
 u)=>l.set(Math.cos(s.rot+u*Math.PI/3),
 Math.sin(s.rot+u*Math.PI/3))),
-r.uLam.value.set(...VE(o));
+r.uLam.value.set(...qE(o));
 for(let[l,
 u]of[["trace",
 "uTrace"],
@@ -40944,21 +40945,21 @@ u]of[["trace",
 return i.lightCol&&r.uLightCol.value.set(...i.lightCol),
 r.uKeyDir.value.copy(zy),
 r.uKeyX.value.copy(Oy),
-r.uKeyY.value.copy(jE),
+r.uKeyY.value.copy(XE),
 r.uSpotDir.value.copy(Lq),
 s}
 c(Ny,
 "setLens");
 var Uy=Math.PI*(3-Math.sqrt(5)),
-XE={
+YE={
 seeds:4096,
 per:64,
 c:.025}
 ,
 Fq="\nuniform float uAlpha, uRot, uGrow, uSeedR, uDome, uFam;\nuniform vec3 uColA, uColB, uGold;\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  float n = floor(i / 64.), g = uGrow * 4096.;\n  if (n > g) { col = vec3(0.); return; }\n  float r = .025 * sqrt(n + .5), th = n * uAlpha + uRot;\n  vec3 c = vec3(r * cos(th), uDome * (1.6 * 1.6 - r * r), r * sin(th));\n  vec3 dir = normalize(hash31(i * 1.37 + 2.) * 2. - 1. + 1e-4);\n  float rr = pow(hash11(i * 2.71 + .3), .3333), birth = clamp((g - n) / 90., 0., 1.);\n  pos = c + dir * rr * uSeedR * (.5 + .7 * sqrt(n / 4096.)) * birth;\n  // two Fibonacci families picked out: 3 of the 55 spirals in gold, 2 of the 89 in white\n  float f21 = step(mod(mod(n, 55.), 18.), .5) * step(mod(n, 55.), 36.5), f34 = step(mod(mod(n, 89.), 44.), .5) * step(mod(n, 89.), 44.5);\n  col = mix(uColA, uColB, sqrt(n / 4096.));\n  col = mix(col, uGold * 1.9, f21 * uFam);\n  col = mix(col, vec3(.9, .95, 1.) * 1.3, f34 * uFam * .7 * (1. - f21));\n  sz = 1. + .45 * f21 * uFam;\n}";
-function YE(){
+function QE(){
 return new Is({
-count:XE.seeds*XE.per,
+count:YE.seeds*YE.per,
 glsl:Fq,
 uniforms:{
 uAlpha:{
@@ -40979,12 +40980,12 @@ value:.05}
 uFam:{
 value:1}
 ,
-uColA:pn(),
-uColB:pn(),
-uGold:pn()}
+uColA:mn(),
+uColB:mn(),
+uGold:mn()}
 }
 )}
-c(YE,
+c(QE,
 "makePhyllo");
 var Gy=[1,
 2,
@@ -40999,7 +41000,7 @@ var Gy=[1,
 144,
 233,
 377];
-function QE(e,
+function ZE(e,
 t=2e3){
 let n=c(s=>{
 let l=Math.sqrt(s+.5),
@@ -41024,7 +41025,7 @@ a=r.find(s=>s[1]!==o&&s[1]%o!==0&&o%s[1]!==0)?.[1]??r[1][1];
 return o<a?[o,
 a]:[a,
 o]}
-c(QE,
+c(ZE,
 "parastichies");
 var mu={
 R:1.3,
@@ -41157,7 +41158,7 @@ width:2.2*m}
 c(Wy,
 "drawTunnel");
 var Dq="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uPole, uRef;\nuniform float uTh0, uTh1, uGround, uGain, uHead, uDensity;\nin vec2 vUv; out vec4 o;\nvec3 bb(float h) {                                   // ~3000 K (orange) … ~12000 K (blue-white)\n  return mix(mix(vec3(1., .62, .36), vec3(1., .93, .86), smoothstep(0., .5, h)), vec3(.66, .78, 1.), smoothstep(.5, 1., h));\n}\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz);\n  vec3 ez = uPole, ex = normalize(uRef - ez * dot(uRef, ez)), ey = cross(ez, ex);\n  float rho = acos(clamp(dot(rd, ez), -1., 1.)), ra = atan(dot(rd, ey), dot(rd, ex));\n  float pw = max(fwidth(rho), 1e-6);\n  const float dR = .0042;\n  float ri = floor(rho / dR), lo = min(uTh0, uTh1), span = abs(uTh1 - uTh0), back = step(uTh1, uTh0);\n  vec3 col = vec3(0.);\n  for (int kk = -1; kk <= 1; kk++) {\n    float id = ri + float(kk);\n    if (id < 0.) continue;\n    for (int s = 0; s < 3; s++) {\n      vec2 h1 = hash22(vec2(id * 1.13 + float(s) * 7.31, float(s) * 3.7 + 1.9)), h2 = hash22(vec2(id * .71 + 13.7, float(s) * 5.3 + 4.1));\n      float rs = (id + h1.x) * dR;\n      if (h2.y > uDensity * sin(max(rs, .015)) + .03) continue;\n      float d = abs(rho - rs) / pw, w = exp(-d * d * 1.1);\n      if (w < .004) continue;\n      float x = mod(ra - (h1.y * TAU + lo), TAU);    // angle along the trail from its start\n      float aa = pw / max(sin(rs), .01) * 1.5;       // one pixel in α at this ring\n      float inArc = span >= TAU ? 1. : 1. - smoothstep(span, span + aa, x);\n      float mag = pow(h2.x, 9.), b = .025 + 1.9 * mag;\n      float hx = back > .5 ? x : span - x;           // distance from the moving head\n      float head = exp(-hx * hx / (aa * aa * 4.)) * step(span, TAU - aa);\n      col += bb(fract(h2.x * 17.3 + h1.y * 3.1)) * w * (inArc * b * (.45 + .55 * exp(-hx * 1.4)) + head * b * uHead * 2.5);\n    }\n  }\n  float hor = 0.;\n  if (uGround > .5) { col *= smoothstep(-.002, .02, rd.y); hor = exp(-abs(rd.y) * 90.) * .018; }\n  o = vec4(col * uGain + vec3(.2, .35, .8) * hor, 1.);\n}";
-function KE(){
+function JE(){
 return Lt(Dq,
 {
 uCamWorld:{
@@ -41195,7 +41196,7 @@ uDensity:{
 value:.8}
 }
 )}
-c(KE,
+c(JE,
 "makeSky");
 function jy(e,
 t,
@@ -41225,7 +41226,7 @@ h.uHead.value=l,
 h.uDensity.value=u}
 c(jy,
 "setSky");
-var ZE=Math.log10(4),
+var KE=Math.log10(4),
 Vy=Math.log10(83),
 qy=Math.log10(2026),
 zq=Math.log10(5026);
@@ -41236,13 +41237,13 @@ i){
 if(e<=t)return 2026;
 if(e<=n){
 let o=(e-t)/(n-t);
-return 2026-(o<.12?4*(o/.12)**1.5:o<.78?10**(ZE+(Vy-ZE)*(o-.12)/.66):10**(Vy+(qy-Vy)*(o-.78)/.22))}
+return 2026-(o<.12?4*(o/.12)**1.5:o<.78?10**(KE+(Vy-KE)*(o-.12)/.66):10**(Vy+(qy-Vy)*(o-.78)/.22))}
 let r=1-(1-Math.min(1,
 (e-n)/(i-n)))**2;
 return 2026-10**(qy+(zq-qy)*r)}
 c(Xy,
 "yearAt");
-var JE=[[2022,
+var $E=[[2022,
 "ChatGPT"],
 [2020,
 "GPT-3"],
@@ -41260,7 +41261,7 @@ var JE=[[2022,
 "McCulloch–Pitts neuron"],
 [-99,
 "Antikythera mechanism"]];
-function $E(e,
+function eR(e,
 t,
 n,
 i){
@@ -41275,15 +41276,15 @@ t,
 n,
 i)>e?r=s:o=s}
 return(r+o)/2}
-c($E,
+c(eR,
 "timeOfYear");
-function eR(e){
+function tR(e){
 let t=Math.round(e);
 return t>=1?["+".concat(t),
 "A.D"]:[t===0?"0":"−".concat(-t),
 "".concat(1-t,
 " B.C")]}
-c(eR,
+c(tR,
 "yearLabel");
 var Sr={
 a0:7,
@@ -41293,7 +41294,7 @@ yTop:2.9,
 turns1:1.1,
 window:1.25}
 ;
-function S2(e){
+function T2(e){
 let t=e.findLine("we can unite"),
 n=e.findLine("So deeply"),
 i=e.section("c1").start,
@@ -41306,9 +41307,9 @@ tC:i,
 beat:r,
 tHist:t.start+.1}
 }
-c(S2,
+c(T2,
 "duoKeys");
-function T2(e){
+function C2(e){
 let{
 a0:t,
 a1:n,
@@ -41357,11 +41358,11 @@ phi:m,
 aOf:a,
 om:l,
 tc:o,
-tex:an(p,
+tex:sn(p,
 f,
 1)}
 }
-c(T2,
+c(C2,
 "buildTraj");
 function cc(e,
 t){
@@ -41409,7 +41410,7 @@ e.phi[r]<=t?n=r:i=r}
 return e.T0+(n+(t-e.phi[n])/(e.phi[i]-e.phi[n]))*e.dt}
 c(Oq,
 "timeAtPhase");
-function C2(e,
+function E2(e,
 t,
 n){
 return{
@@ -41424,9 +41425,9 @@ v:Sr.yTop/Sr.window,
 o:cc(n,
 e)}
 }
-c(C2,
+c(E2,
 "duoState");
-function E2(e,
+function R2(e,
 t){
 let n=.62+(e-t.tC)*.16,
 i=6.4,
@@ -41443,9 +41444,9 @@ look:[0,
 0],
 fov:40}
 }
-c(E2,
+c(R2,
 "pairCam");
-function tR(e,
+function nR(e,
 t,
 n,
 i){
@@ -41454,17 +41455,17 @@ t.t-i)[n];
 return[r[0],
 r[1]-i*t.v,
 r[2]]}
-c(tR,
+c(nR,
 "bodyAtLag");
-var Nq=wE+'\nuniform sampler2D uTraj; uniform float uTrajT0, uTrajDT, uTrajN;\nuniform float uNow, uLag, uVy, uYTop, uBallR, uTube, uWho, uStretch, uUnwind, uInject, uClipY;\nuniform vec3 uColA, uColB, uHot;\nvec2 trajAt(float t) {\n  float x = clamp((t - uTrajT0) / uTrajDT, 0., uTrajN - 1.001), i = floor(x);\n  vec2 A = texelFetch(uTraj, ivec2(int(i), 0), 0).xy, B = texelFetch(uTraj, ivec2(int(i) + 1, 0), 0).xy;\n  return mix(A, B, x - i);\n}\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  float u = hash11(i * .7548 + 1.3);                        // place along the worldline: 0 = now, 1 = oldest\n  float sg = uWho > .5 ? -1. : 1.;\n  float lag = u * uLag * uStretch;\n  vec2 s = trajAt(uNow - lag);\n  vec3 c = vec3(sg * .5 * s.x * cos(s.y), uYTop - lag * uVy, sg * .5 * s.x * sin(s.y));\n  vec3 dir = normalize(hash31(i * 1.618 + 4.1) * 2. - 1. + 1e-4);\n  float h = hash11(i * 2.13 + .7), rr = pow(h, .3333);\n  // as a body: a soft swarm, not a solid ball: dense core with a long sparse tail, a dozen drifting clumps, slow swirl\n  vec3 ball;\n  if (hash11(i * 5.17 + .3) > .82) {\n    float ci = floor(hash11(i * 7.7 + 1.9) * 16.);\n    vec3 cc = (hash31(ci * 3.1 + 11. + uWho * 5.) * 2. - 1.) * .75;\n    float sp = uT * (.5 + .6 * hash11(ci * 1.3)) + ci;\n    cc.xz = mat2(cos(sp), -sin(sp), sin(sp), cos(sp)) * cc.xz;\n    ball = cc + dir * pow(h, .4) * .38;\n  } else {\n    ball = dir * (.16 + 1.15 * pow(h, 1.15));\n    float sp = uT * .7 / (.3 + length(ball));\n    ball.xz = mat2(cos(sp), -sin(sp), sin(sp), cos(sp)) * ball.xz;\n  }\n  vec3 p1 = c + mix(ball * uBallR, dir * rr * uTube, uStretch);\n  float contact = (1. - smoothstep(.7, 1.5, s.x)) * uStretch;    // the strands are closest near "now"\n  // body colour: A at the core → B at the rim (you: amber core, rose rim); strands blend to white-gold where they meet\n  float rim = uStretch > .5 ? hash11(i * 3.31) : smoothstep(.1, .9, length(ball));\n  vec3 c1 = mix(mix(uColA, uColB, rim), uHot, contact * .75);\n  if (uClipY > -50.) c1 *= smoothstep(uClipY, uClipY + .25, p1.y);\n  if (uUnwind <= 0.) { pos = p1; col = c1; sz = 1.; return; }\n  vec3 p2, c2; float lay;\n  netParticle(i, uWho, u, p2, c2, lay);\n  if (uWho > .5) {                                           // you gathers into a pulse under the input layer, then spreads into it\n    vec3 ball = vec3(0., -.42, 0.) + dir * pow(h, .7) * .3;\n    p2 = mix(ball, p2, uInject); c2 = mix(mix(uColA, uColB, smoothstep(.2, 1., pow(h, .7))) * .7, c2, uInject);\n  }\n  float d = uWho > .5 ? (1. - u) * .45 : u * .5;             // me unwinds from the top, you drains from the bottom\n  float k = smoothstep(d, d + .5, uUnwind);\n  vec3 radial = normalize(vec3(p1.x, 0., p1.z) + 1e-4);\n  pos = mix(p1, p2, k) + radial * sin(k * PI) * (uWho > .5 ? .05 : .3);\n  col = mix(c1, c2, k); sz = 1.;\n}';
-function R2(e,
+var Nq=AE+'\nuniform sampler2D uTraj; uniform float uTrajT0, uTrajDT, uTrajN;\nuniform float uNow, uLag, uVy, uYTop, uBallR, uTube, uWho, uStretch, uUnwind, uInject, uClipY;\nuniform vec3 uColA, uColB, uHot;\nvec2 trajAt(float t) {\n  float x = clamp((t - uTrajT0) / uTrajDT, 0., uTrajN - 1.001), i = floor(x);\n  vec2 A = texelFetch(uTraj, ivec2(int(i), 0), 0).xy, B = texelFetch(uTraj, ivec2(int(i) + 1, 0), 0).xy;\n  return mix(A, B, x - i);\n}\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  float u = hash11(i * .7548 + 1.3);                        // place along the worldline: 0 = now, 1 = oldest\n  float sg = uWho > .5 ? -1. : 1.;\n  float lag = u * uLag * uStretch;\n  vec2 s = trajAt(uNow - lag);\n  vec3 c = vec3(sg * .5 * s.x * cos(s.y), uYTop - lag * uVy, sg * .5 * s.x * sin(s.y));\n  vec3 dir = normalize(hash31(i * 1.618 + 4.1) * 2. - 1. + 1e-4);\n  float h = hash11(i * 2.13 + .7), rr = pow(h, .3333);\n  // as a body: a soft swarm, not a solid ball: dense core with a long sparse tail, a dozen drifting clumps, slow swirl\n  vec3 ball;\n  if (hash11(i * 5.17 + .3) > .82) {\n    float ci = floor(hash11(i * 7.7 + 1.9) * 16.);\n    vec3 cc = (hash31(ci * 3.1 + 11. + uWho * 5.) * 2. - 1.) * .75;\n    float sp = uT * (.5 + .6 * hash11(ci * 1.3)) + ci;\n    cc.xz = mat2(cos(sp), -sin(sp), sin(sp), cos(sp)) * cc.xz;\n    ball = cc + dir * pow(h, .4) * .38;\n  } else {\n    ball = dir * (.16 + 1.15 * pow(h, 1.15));\n    float sp = uT * .7 / (.3 + length(ball));\n    ball.xz = mat2(cos(sp), -sin(sp), sin(sp), cos(sp)) * ball.xz;\n  }\n  vec3 p1 = c + mix(ball * uBallR, dir * rr * uTube, uStretch);\n  float contact = (1. - smoothstep(.7, 1.5, s.x)) * uStretch;    // the strands are closest near "now"\n  // body colour: A at the core → B at the rim (you: amber core, rose rim); strands blend to white-gold where they meet\n  float rim = uStretch > .5 ? hash11(i * 3.31) : smoothstep(.1, .9, length(ball));\n  vec3 c1 = mix(mix(uColA, uColB, rim), uHot, contact * .75);\n  if (uClipY > -50.) c1 *= smoothstep(uClipY, uClipY + .25, p1.y);\n  if (uUnwind <= 0.) { pos = p1; col = c1; sz = 1.; return; }\n  vec3 p2, c2; float lay;\n  netParticle(i, uWho, u, p2, c2, lay);\n  if (uWho > .5) {                                           // you gathers into a pulse under the input layer, then spreads into it\n    vec3 ball = vec3(0., -.42, 0.) + dir * pow(h, .7) * .3;\n    p2 = mix(ball, p2, uInject); c2 = mix(mix(uColA, uColB, smoothstep(.2, 1., pow(h, .7))) * .7, c2, uInject);\n  }\n  float d = uWho > .5 ? (1. - u) * .45 : u * .5;             // me unwinds from the top, you drains from the bottom\n  float k = smoothstep(d, d + .5, uUnwind);\n  vec3 radial = normalize(vec3(p1.x, 0., p1.z) + 1e-4);\n  pos = mix(p1, p2, k) + radial * sin(k * PI) * (uWho > .5 ? .05 : .3);\n  col = mix(c1, c2, k); sz = 1.;\n}';
+function B2(e,
 t){
 let n=c((i,
 r)=>new Is({
 count:i,
 glsl:Nq,
 uniforms:{
-...vE(t),
+...gE(t),
 uTraj:{
 value:e.tex}
 ,
@@ -41510,9 +41511,9 @@ value:0}
 uClipY:{
 value:-100}
 ,
-uColA:pn(),
-uColB:pn(),
-uHot:pn()}
+uColA:mn(),
+uColB:mn(),
+uHot:mn()}
 }
 ),
 "mk");
@@ -41522,9 +41523,9 @@ me:n(1<<18,
 you:n(65536,
 1)}
 }
-c(R2,
+c(B2,
 "makeDuo");
-function B2(e,
+function P2(e,
 t,
 n,
 i={
@@ -41548,9 +41549,9 @@ n.rose[a],
 .6))),
 uHot:i.hot??n.hot}
 }
-c(B2,
+c(P2,
 "duoUniforms");
-function P2(e,
+function k2(e,
 t,
 n,
 i,
@@ -41592,11 +41593,11 @@ let f=Oq(t,
 h*s);
 if(f<a)break;
 let d=n.t-f,
-p=tR(t,
+p=nR(t,
 n,
 "me",
 d),
-m=tR(t,
+m=nR(t,
 n,
 "you",
 d);
@@ -41640,28 +41641,28 @@ width:r.rungW??1.8}
 }
 }
 }
-c(P2,
+c(k2,
 "drawDuoLines");
 var yh=[.3,
 .56,
 1],
-z2=[.78,
+O2=[.78,
 .9,
 1],
-fR=[.93,
+dR=[.93,
 .92,
 .88],
-Uq=fR.map(e=>e**2.2),
+Uq=dR.map(e=>e**2.2),
 b0={
 text:"#15171c",
 dim:"#5a6070",
 accent:"#1d5f86",
 gold:"#8a5c0a"}
 ,
-Vd=1,
+jd=1,
 He=null,
 Yy=null;
-function Jt(e){
+function $t(e){
 if(Yy?.T===e)return Yy;
 let t=e.section("pre1").start,
 n=Math.round(e.beatAt(t)),
@@ -41698,9 +41699,9 @@ tBC:u.words[3].start,
 tCan:h.words[2].start,
 tUnite:h.words[3].start,
 end:e.section("c1").start,
-dk:S2(e)}
+dk:T2(e)}
 }
-c(Jt,
+c($t,
 "keys");
 function Tr(){
 for(let e of[He.code.points,
@@ -41726,7 +41727,7 @@ e.draw(He.scene,
 t)}
 c(rr,
 "render");
-function k2(e,
+function L2(e,
 t,
 n,
 i=e.H){
@@ -41739,7 +41740,7 @@ r.points.rotation.set(0,
 n.yaw??0,
 0),
 r.text("pre1/src:".concat(n.file),
-tn(n.file));
+nn(n.file));
 let o=r.layout("pre1/page:".concat(n.key),
 Ki(r,
 {
@@ -41765,7 +41766,7 @@ palette:n.palette}
 ,
 t,
 i)}
-c(k2,
+c(L2,
 "codePage");
 function Gq(e,
 t=1,
@@ -41790,7 +41791,7 @@ n={
 }
 ){
 let i=n.ink;
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -41851,7 +41852,7 @@ look:n,
 inset:i.inset}
 ),
 "persp"),
-nR=c((e,
+iR=c((e,
 t,
 n,
 i,
@@ -41886,18 +41887,18 @@ align:r.align??"left",
 alpha:r.alpha??.85}
 ),
 "small"),
-L2=new ot;
-function iR(e,
+F2=new ot;
+function rR(e,
 t,
 n,
 i=1.3){
-let r=c(u=>(L2.set(u[0],
+let r=c(u=>(F2.set(u[0],
 u[1],
 u[2],
 1).applyMatrix4(n.matrixWorldInverse).applyMatrix4(n.projectionMatrix),
-[L2.x,
-L2.y,
-L2.w]),
+[F2.x,
+F2.y,
+F2.w]),
 "cc"),
 o=r(e),
 a=r(t),
@@ -41922,24 +41923,24 @@ e.map((u,
 h)=>C(u,
 t[h],
 l))]:null}
-c(iR,
+c(rR,
 "clipToView");
 function Hq(e={
 }
 ,
 t){
-let n=iR([9,
+let n=rR([9,
 1.045,
 0],
 [21,
 1.045,
 0],
 t),
-i=iR([9,
-Vd,
+i=rR([9,
+jd,
 0],
 [21,
-Vd,
+jd,
 0],
 t);
 if(n&&He.lines.segment(...n,
@@ -41966,14 +41967,14 @@ He.lines.segment([s,
 1.045,
 0],
 {
-color:z2.map(u=>u*2.6*a),
+color:O2.map(u=>u*2.6*a),
 width:4}
 ),
 He.lines.segment([l,
-Vd,
+jd,
 0],
 [l-.012-.05*o,
-Vd,
+jd,
 0],
 {
 color:H.gold.map(u=>u*2.6*a),
@@ -42113,7 +42114,7 @@ comp:a}
 }
 c(Vq,
 "irisState");
-var dR=[.5,
+var pR=[.5,
 .8,
 1];
 function qq(e,
@@ -42146,7 +42147,7 @@ a),
 fov:36,
 roll:.015*Math.sin(r*1.1)}
 ),
-l=WE(i,
+l=VE(i,
 t.l26.start-.03,
 t.l26.words[1].start+.12,
 1.15),
@@ -42169,7 +42170,7 @@ starLen:90,
 ghost:.35*(2.8/n.N)**.4,
 key:3.2,
 veil:0,
-lightCol:dR,
+lightCol:pR,
 dof:110}
 ),
 e.pass(He.lens),
@@ -42212,8 +42213,8 @@ veil:3*r*r+.15*l,
 veilR:.25+1.2*r,
 dof:110,
 key:3.2,
-lightCol:dR,
-focus:a-En.zD/En.n}
+lightCol:pR,
+focus:a-Rn.zD/Rn.n}
 ),
 e.pass(He.lens),
 s}
@@ -42236,7 +42237,7 @@ t.tDz1+.35))}
 }
 c(Ky,
 "phylloState");
-function F2(e,
+function I2(e,
 t,
 n,
 i={
@@ -42268,13 +42269,13 @@ uGold:H.gold}
 ,
 t,
 r)}
-c(F2,
+c(I2,
 "drawPhyllo");
-function I2(e,
+function D2(e,
 t,
 n=!1){
 let[i,
-r]=QE(t.alpha),
+r]=ZE(t.alpha),
 o=Gy.includes(i)&&Gy.includes(r);
 be(e.text.overlay,
 1500,
@@ -42290,15 +42291,15 @@ o?"Fibonacci  (α = golden)":"not Fibonacci"]],
 {
 accent:n?o?b0.gold:b0.accent:o?P.gold:P.me}
 )}
-c(I2,
+c(D2,
 "phylloHud");
-function rR(e,
+function oR(e,
 t){
 let n=e-t.l28.start;
 return 3-(6*n+12.85*n*n)}
-c(rR,
+c(oR,
 "tunnelZ");
-function oR(e,
+function aR(e,
 t,
 n,
 i=[]){
@@ -42319,7 +42320,7 @@ o],
 {
 accent:P.gold}
 )}
-c(oR,
+c(aR,
 "tunnelHud");
 var Xq=["XII",
 "III",
@@ -42387,7 +42388,7 @@ alpha:l*.8}
 }
 c(Yq,
 "tunnelLabels");
-var Wd={
+var qd={
 me:[.3,
 -.55],
 you:[.9,
@@ -42401,28 +42402,28 @@ let i=R.outCubic(_(t,
 e.l28.start+.04,
 e.B(16))),
 r=C(-1.2,
-Wd.d,
+qd.d,
 i),
 o=c((a,
 s)=>s*Math.sin(2.2*t+a),
 "bob");
 return{
-me:[Wd.me[0]+o(0,
+me:[qd.me[0]+o(0,
 .015),
-Wd.me[1]+o(1.3,
+qd.me[1]+o(1.3,
 .02),
 n-r+o(2,
 .04)],
-you:[Wd.you[0]+o(2.1,
+you:[qd.you[0]+o(2.1,
 .015),
-Wd.you[1]+o(.4,
+qd.you[1]+o(.4,
 .02),
 n-r-.08+o(.7,
 .04)]}
 }
 c(Qq,
 "tunnelPair");
-function aR(e,
+function sR(e,
 t,
 n,
 i,
@@ -42451,7 +42452,7 @@ color:u.map(h=>h*.5*s),
 width:72*(r.size??1)}
 );
 return a}
-c(aR,
+c(sR,
 "drawTunnelPair");
 function Zq(e,
 t,
@@ -42489,11 +42490,11 @@ size:16}
 )}
 c(Zq,
 "tunnelPairLabels");
-var sR=38*Math.PI/180,
-D2=[0,
-Math.sin(sR),
--Math.cos(sR)];
-function lR(e,
+var lR=38*Math.PI/180,
+z2=[0,
+Math.sin(lR),
+-Math.cos(lR)];
+function uR(e,
 t){
 let n=Xy(e,
 t.l29.start,
@@ -42504,19 +42505,19 @@ year:n,
 th0:0,
 th1:-(2026-n)*.00118}
 }
-c(lR,
+c(uR,
 "skyState");
-function uR(e,
+function cR(e,
 t,
 n=1470,
 i=632){
 let r=e.text.overlay,
 o=e.t;
-t.mile??=JE.map(([a,
+t.mile??=$E.map(([a,
 s])=>({
 yr:a,
 name:s,
-tp:$E(a,
+tp:eR(a,
 t.l29.start,
 t.tBC,
 t.l30.start)}
@@ -42547,14 +42548,14 @@ glow:10*u,
 glowColor:P.gold}
 )}
 )}
-c(uR,
+c(cR,
 "milestones");
-function cR(e,
+function hR(e,
 t,
 n=1470,
 i=470){
 let[r,
-o]=eR(t.year),
+o]=tR(t.year),
 a=e.text.overlay;
 a.text(r,
 n,
@@ -42587,7 +42588,7 @@ i+92,
 align:"right",
 alpha:.55}
 )}
-c(cR,
+c(hR,
 "yearHud");
 function hc(e,
 t,
@@ -42596,7 +42597,7 @@ i={
 }
 ,
 r=e.H){
-let o=C2(e.t,
+let o=E2(e.t,
 n.dk,
 He.tr);
 for(let a of["me",
@@ -42608,7 +42609,7 @@ sparkle:i.sparkle??.45,
 focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??40,
-u:B2(o,
+u:P2(o,
 a,
 ca.c1,
 {
@@ -42617,7 +42618,7 @@ clipY:i.clipY}
 ,
 t,
 r);
-return P2(He.lines,
+return k2(He.lines,
 He.tr,
 o,
 ca.c1,
@@ -42670,7 +42671,7 @@ width:1}
 }
 c(Kq,
 "orbitPlane");
-function hR(e,
+function fR(e,
 t,
 n,
 i){
@@ -42719,7 +42720,7 @@ alpha:.55*n.stretch}
 }
 }
 }
-c(hR,
+c(fR,
 "timeAxis");
 Wn({
 id:"pre1",
@@ -42728,18 +42729,18 @@ from:c(e=>e.section("pre1").start,
 to:c(e=>e.section("c1").start,
 "to"),
 init(e){
-let t=Jt(e.T);
+let t=$t(e.T);
 He={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
 .01,
 400)}
 ,
-He.code=new nn({
+He.code=new rn({
 count:16384}
 ),
 He.lines=new Xn(24e3),
@@ -42750,15 +42751,15 @@ He.wall=Mr({
 plane:"xy",
 fade:.05}
 ),
-He.screen=LE(),
-He.iris=FE(),
-q(e)&&(He.lens=qE()),
-He.phyllo=YE(),
-He.gpu=new y2,
-He.tr=T2(t.dk),
-He.duo=R2(He.tr,
+He.screen=FE(),
+He.iris=IE(),
+q(e)&&(He.lens=jE()),
+He.phyllo=QE(),
+He.gpu=new b2,
+He.tr=C2(t.dk),
+He.duo=B2(He.tr,
 He.gpu),
-He.sky=KE(),
+He.sky=JE(),
 He.scene.add(He.floor,
 He.wall,
 He.code.points,
@@ -42771,11 +42772,11 @@ He.lines.mesh)}
 ,
 shots:[{
 id:"arc",
-at:c(e=>Jt(e).s0,
+at:c(e=>$t(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.s0;
 Tr();
@@ -42808,12 +42809,12 @@ let s=[13.35,
 1.045,
 0],
 l=[13.35,
-Vd,
+jd,
 0];
-xE(He.lines,
-ME(s,
+_E(He.lines,
+xE(s,
 l,
-_E(n),
+SE(n),
 {
 depth:6,
 rough:.3,
@@ -42821,12 +42822,12 @@ branches:4,
 reach:.7}
 ),
 {
-core:z2,
+core:O2,
 halo:yh,
 width:2.6,
-gain:SE(n)}
+gain:TE(n)}
 ),
-x2(He.lines,
+_2(He.lines,
 s,
 n,
 t.s0,
@@ -42836,10 +42837,10 @@ rate:80,
 life:.24,
 speed:.1,
 gravity:-.25,
-color:z2,
+color:O2,
 width:1.8}
 ),
-x2(He.lines,
+_2(He.lines,
 l,
 n,
 t.s0,
@@ -42858,7 +42859,7 @@ let u=G(s,
 a),
 h=G(l,
 a);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 u,
 h,
 "ε → 0",
@@ -42903,11 +42904,11 @@ fadeCol:[.62,
 ,
 {
 id:"circuit",
-at:c(e=>Jt(e).B(2),
+at:c(e=>$t(e).B(2),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.B(2);
 Tr();
@@ -42918,7 +42919,7 @@ o=c(l=>[l[0]+r[0],
 l[1]+r[1],
 l[2]??0],
 "at"),
-a=nR(e,
+a=iR(e,
 o([.1,
 -.02]),
 "front",
@@ -42927,7 +42928,7 @@ C(4.85,
 R.outCubic(_(i,
 0,
 .7))));
-k2(e,
+L2(e,
 a,
 {
 file:"ch/pre1/circuit.js",
@@ -42944,20 +42945,20 @@ reveal:R.outCubic(_(i,
 scroll:i*.22}
 ),
 He.lines.mesh.position.set(...r);
-let s=EE(n,
+let s=RE(n,
 t.B(3),
 t.beat);
-RE(He.lines,
+BE(He.lines,
 s,
 {
 wire:[.22,
 .62,
 1].map(l=>l*.7),
 part:H.white.map(l=>l*1.1),
-dot:z2,
+dot:O2,
 hot:H.gold}
 ),
-n>=t.B(3)&&x2(He.lines,
+n>=t.B(3)&&_2(He.lines,
 [-1.75,
 1.35,
 0],
@@ -42977,7 +42978,7 @@ flat:!0}
 rr(e,
 a);
 for(let[l,
-u]of BE){
+u]of PE){
 let h=G(o(u),
 a);
 fl(e.text.overlay,
@@ -43015,11 +43016,11 @@ ca:.08}
 ,
 {
 id:"scope",
-at:c(e=>Jt(e).l25.start,
+at:c(e=>$t(e).l25.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l25.start,
 r=Qy(n,
@@ -43071,11 +43072,11 @@ bloom:1.2}
 ,
 {
 id:"rectify",
-at:c(e=>Jt(e).B(6),
+at:c(e=>$t(e).B(6),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.B(6),
 r=Qy(n,
@@ -43124,16 +43125,16 @@ vignette:.5}
 ,
 {
 id:"filter",
-at:c(e=>Jt(e).B(6.5),
+at:c(e=>$t(e).B(6.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=Qy(n,
 t);
 Tr();
-let r=nR(e,
+let r=iR(e,
 [0,
 .15,
 0],
@@ -43143,7 +43144,7 @@ Zy(e,
 i),
 rr(e,
 r);
-let o=kE(Math.max(i.wt,
+let o=LE(Math.max(i.wt,
 1e-4));
 be(e.text.overlay,
 1500,
@@ -43186,11 +43187,11 @@ bloom:1.2}
 ,
 {
 id:"iris",
-at:c(e=>Jt(e).l26.start,
+at:c(e=>$t(e).l26.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l26.start,
 r=Vq(n,
@@ -43297,11 +43298,11 @@ vignette:.5}
 ,
 {
 id:"blind",
-at:c(e=>Jt(e).B(10),
+at:c(e=>$t(e).B(10),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t-t.B(10);
 Tr();
 let i=R.outCubic(_(n,
@@ -43398,11 +43399,11 @@ fadeCol:Uq}
 ,
 {
 id:"dizzy1",
-at:c(e=>Jt(e).l27.start,
+at:c(e=>$t(e).l27.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l27.start,
 r=Ky(n,
@@ -43420,7 +43421,7 @@ fov:44,
 roll:.24}
 );
 if(q(e)){
-F2(e,
+I2(e,
 o,
 r,
 {
@@ -43428,7 +43429,7 @@ bright:.3}
 ),
 rr(e,
 o),
-I2(e,
+D2(e,
 r),
 or(e,
 t),
@@ -43439,7 +43440,7 @@ ca:.22}
 return}
 let a=Dt(e,
 s=>{
-F2(s,
+I2(s,
 o,
 r,
 {
@@ -43449,18 +43450,18 @@ rr(s,
 o)}
 );
 ar(e),
-rn(e,
+on(e,
 a,
 "paper",
 {
 gain:2.6,
-paper:fR,
+paper:dR,
 ink:[.07,
 .075,
 .09]}
 ),
 e.post.vignette=.04,
-I2(e,
+D2(e,
 r,
 !0),
 or(e,
@@ -43472,11 +43473,11 @@ ink:!0}
 ,
 {
 id:"dizzy2",
-at:c(e=>Jt(e).tDz1,
+at:c(e=>$t(e).tDz1,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.tDz1,
 r=Ky(n,
@@ -43488,7 +43489,7 @@ t.tDz2-t.tDz1)),
 a=C(24,
 74,
 o),
-s=pE(1.55,
+s=mE(1.55,
 a),
 l=Cr(e,
 go([0,
@@ -43504,7 +43505,7 @@ s,
 fov:a,
 roll:-.36}
 );
-F2(e,
+I2(e,
 l,
 r,
 {
@@ -43512,7 +43513,7 @@ bright:.3}
 ),
 rr(e,
 l),
-I2(e,
+D2(e,
 r),
 or(e,
 t),
@@ -43524,11 +43525,11 @@ ca:.22+.2*o}
 ,
 {
 id:"dizzy3",
-at:c(e=>Jt(e).tDz2,
+at:c(e=>$t(e).tDz2,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.tDz2,
 r=Ky(n,
@@ -43548,7 +43549,7 @@ go([0,
 fov:40,
 roll:.52+i*.3}
 );
-F2(e,
+I2(e,
 o,
 r,
 {
@@ -43560,7 +43561,7 @@ maxBlur:46}
 ),
 rr(e,
 o),
-I2(e,
+D2(e,
 r),
 or(e,
 t),
@@ -43573,14 +43574,14 @@ ca:.35}
 ,
 {
 id:"tunnel",
-at:c(e=>Jt(e).l28.start,
+at:c(e=>$t(e).l28.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l28.start,
-r=rR(n,
+r=oR(n,
 t);
 Tr();
 let o=Cr(e,
@@ -43607,7 +43608,7 @@ far:34,
 gain:1.35,
 weight:1.35}
 );
-let a=q(e)?aR(e,
+let a=q(e)?sR(e,
 o,
 t,
 r):null;
@@ -43623,7 +43624,7 @@ a&&Zq(e,
 o,
 t,
 a),
-oR(e,
+aR(e,
 t,
 r),
 or(e,
@@ -43636,14 +43637,14 @@ vignette:.5}
 ,
 {
 id:"travel",
-at:c(e=>Jt(e).tTravel,
+at:c(e=>$t(e).tTravel,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.tTravel,
-r=rR(n,
+r=oR(n,
 t);
 Tr();
 let o=6+25.7*(n-t.l28.start),
@@ -43681,7 +43682,7 @@ ar(e,
 {
 vignette:.5}
 ),
-rn(e,
+on(e,
 s,
 "dither",
 {
@@ -43695,7 +43696,7 @@ paper:[.012,
 .016]}
 ),
 q(e)&&(He.lines.begin(),
-aR(e,
+sR(e,
 a,
 t,
 r,
@@ -43705,7 +43706,7 @@ size:.8}
 ),
 rr(e,
 a)),
-oR(e,
+aR(e,
 t,
 r,
 [["display",
@@ -43716,14 +43717,14 @@ t)}
 ,
 {
 id:"trails",
-at:c(e=>Jt(e).l29.start,
+at:c(e=>$t(e).l29.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l29.start,
-r=lR(n,
+r=uR(n,
 t);
 Tr();
 let o=Cr(e,
@@ -43739,7 +43740,7 @@ fov:64}
 jy(He.sky,
 o,
 {
-pole:D2,
+pole:z2,
 th0:r.th0,
 th1:r.th1,
 ground:1,
@@ -43753,9 +43754,9 @@ fade:.14}
 ),
 rr(e,
 o);
-let a=G(D2.map(s=>s*100),
+let a=G(z2.map(s=>s*100),
 o);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 a[0],
 a[1],
 20,
@@ -43763,9 +43764,9 @@ a[1],
 label:"NCP  δ +90°",
 color:P.gold}
 ),
-cR(e,
+hR(e,
 r),
-uR(e,
+cR(e,
 t),
 or(e,
 t),
@@ -43777,21 +43778,21 @@ vignette:.45}
 ,
 {
 id:"trailsTop",
-at:c(e=>Jt(e).tBC,
+at:c(e=>$t(e).tBC,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.tBC,
-r=lR(n,
+r=uR(n,
 t);
 Tr();
 let o=Cr(e,
 [0,
 0,
 0],
-D2,
+z2,
 {
 fov:76,
 roll:-i*.1}
@@ -43799,7 +43800,7 @@ roll:-i*.1}
 jy(He.sky,
 o,
 {
-pole:D2,
+pole:z2,
 th0:r.th0,
 th1:r.th1,
 ground:0,
@@ -43809,7 +43810,7 @@ density:.5}
 e.pass(He.sky),
 rr(e,
 o),
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 960,
 540,
 18,
@@ -43817,11 +43818,11 @@ Tn(e.text.overlay,
 label:"NCP",
 color:P.gold}
 ),
-cR(e,
+hR(e,
 r,
 1470,
 470),
-uR(e,
+cR(e,
 t),
 or(e,
 t,
@@ -43836,11 +43837,11 @@ vignette:.5}
 ,
 {
 id:"binary",
-at:c(e=>Jt(e).l30.start,
+at:c(e=>$t(e).l30.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.l30.start;
 Tr();
@@ -43857,7 +43858,7 @@ Sr.yTop-.15,
 {
 fov:40}
 );
-k2(e,
+L2(e,
 r,
 {
 file:"ch/pre1/duo.js",
@@ -43926,11 +43927,11 @@ ar(e)}
 ,
 {
 id:"youClose",
-at:c(e=>Jt(e).tCan,
+at:c(e=>$t(e).tCan,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t;
 n-t.tCan,
 Tr();
@@ -43953,7 +43954,7 @@ fov:36}
 s=Math.hypot(o[0]-i[0],
 o[1]-i[1],
 o[2]-i[2]);
-k2(e,
+L2(e,
 a,
 {
 file:"ch/pre1/duo.js",
@@ -44013,11 +44014,11 @@ vignette:.55}
 ,
 {
 id:"tighten",
-at:c(e=>Jt(e).tUnite,
+at:c(e=>$t(e).tUnite,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.tUnite;
 Tr();
@@ -44143,11 +44144,11 @@ ar(e)}
 ,
 {
 id:"helix",
-at:c(e=>Jt(e).l31.start,
+at:c(e=>$t(e).l31.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t-t.l31.start;
 Tr();
 let i=R.inOutCubic(_(n,
@@ -44173,7 +44174,7 @@ r-.05,
 {
 fov:40}
 );
-hR(e,
+fR(e,
 o,
 hc(e,
 o,
@@ -44199,11 +44200,11 @@ ar(e)}
 ,
 {
 id:"helixMacro",
-at:c(e=>Jt(e).B(29),
+at:c(e=>$t(e).B(29),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t-t.B(29);
 Tr();
 let i=[0,
@@ -44218,7 +44219,7 @@ i,
 {
 fov:17}
 );
-k2(e,
+L2(e,
 r,
 {
 file:"ch/pre1/duo.js",
@@ -44276,11 +44277,11 @@ vignette:.55}
 ,
 {
 id:"helixTop",
-at:c(e=>Jt(e).B(30),
+at:c(e=>$t(e).B(30),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t;
 Tr();
 let i=n-t.B(30),
@@ -44309,7 +44310,7 @@ beadW:9}
 );
 rr(e,
 o),
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 960,
 540,
 16,
@@ -44343,11 +44344,11 @@ vignette:.35}
 ,
 {
 id:"spin",
-at:c(e=>Jt(e).B(31),
+at:c(e=>$t(e).B(31),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t,
 i=n-t.B(31);
 Tr();
@@ -44377,7 +44378,7 @@ ar(e,
 {
 vignette:.5}
 ),
-rn(e,
+on(e,
 o,
 "edges",
 {
@@ -44404,14 +44405,14 @@ t)}
 ,
 {
 id:"spin2",
-at:c(e=>Jt(e).B(31.5),
+at:c(e=>$t(e).B(31.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=Jt(e.T),
+let t=$t(e.T),
 n=e.t;
 Tr();
-let i=E2(n,
+let i=R2(n,
 t.dk),
 r=Cr(e,
 i.pos,
@@ -44422,7 +44423,7 @@ fov:i.fov}
 o=hc(e,
 r,
 t);
-hR(null,
+fR(null,
 null,
 o,
 t),
@@ -44477,7 +44478,7 @@ id:t,
 show:e.replace((new RegExp("^ ","")),
 "␣")}
 )),
-mR=[{
+vR=[{
 block:1,
 head:3,
 name:"previous token"}
@@ -44497,13 +44498,13 @@ block:4,
 head:2,
 name:"subword merge"}
 ];
-function pR(e,
+function mR(e,
 t,
 n){
 return e===0?(n===t-1?5:0)+(n===t?1.2:0):e===1?(n===0?4:0)+(n===t?.7:0)+(n===t-1?.3:0):e===2?(n===5&&t>=5?4.6:0)+(n===t?1:0)+(n===0?.8:0):(t>8&&n>=8&&n<t?3.4+.4*(n-8):0)+(n===t?2:0)+(n===0?.7:0)}
-c(pR,
+c(mR,
 "logit");
-function O2(e,
+function N2(e,
 t){
 let n=new Float32Array(144);
 for(let i=0;
@@ -44515,13 +44516,13 @@ o=0;
 for(let a=0;
 a<=i;
 a++)t[a]>0&&(r=Math.max(r,
-pR(e,
+mR(e,
 i,
 a)));
 for(let a=0;
 a<=i;
 a++){
-let s=t[a]>0?Math.exp(pR(e,
+let s=t[a]>0?Math.exp(mR(e,
 i,
 a)-r)*t[a]:0;
 n[i*jt+a]=s,
@@ -44530,7 +44531,7 @@ for(let a=0;
 a<=i;
 a++)n[i*jt+a]/=o||1}
 return n}
-c(O2,
+c(N2,
 "attention");
 var Jq=pl.map(e=>{
 let t=Be(e.id*7+13);
@@ -44548,7 +44549,7 @@ length:jt}
 ,
 (n,
 i)=>.35*Math.sin(t*(i+1)*.37+i))),
-vR=c(e=>{
+gR=c(e=>{
 let t=Be(e);
 return Array.from({
 length:144}
@@ -44559,11 +44560,11 @@ length:144}
 ej=[0,
 1,
 2,
-3].map(e=>vR(101+e)),
+3].map(e=>gR(101+e)),
 tj=[0,
 1,
 2,
-3].map(e=>vR(201+e));
+3].map(e=>gR(201+e));
 function nj(e){
 let t=[new Float32Array(144)];
 for(let n=0;
@@ -44574,7 +44575,7 @@ i++)t[0][n*jt+i]=e[n]*(Jq[n][i]+$q[n][i]);
 for(let n=0;
 n<dl-1;
 n++){
-let i=O2(n,
+let i=N2(n,
 e),
 r=t[n],
 o=new Float32Array(144),
@@ -44620,7 +44621,7 @@ t){
 return t.map(n=>R.outCubic(X((e-n)/.12)))}
 c(Jy,
 "presence");
-function gR(e,
+function wR(e,
 t){
 let n=new Float32Array(dl*jt*jt),
 i=[],
@@ -44637,9 +44638,9 @@ let m=o?e+p*t.D:e-p*t.D,
 g=Jy(m,
 t.arrive),
 w=nj(g)[o?dl-1-p:p];
-p<dl-1&&r.push(o?O2(dl-2-p,
+p<dl-1&&r.push(o?N2(dl-2-p,
 Jy(e+(p+1)*t.D,
-t.arrive)):O2(p,
+t.arrive)):N2(p,
 g));
 let v=.08;
 for(let y of w)v=Math.max(v,
@@ -44668,7 +44669,7 @@ t.arrive),
 h=[0,
 1,
 2,
-3].map(p=>O2(p,
+3].map(p=>N2(p,
 u)),
 f=o?tb:eb,
 d=new Float32Array(f.count);
@@ -44688,7 +44689,7 @@ stim:l,
 edgeW:d,
 down:o}
 }
-c(gR,
+c(wR,
 "attnState");
 var $y=[2,
 6,
@@ -44767,7 +44768,7 @@ e.dim,
 e.warm,
 e.hot][t],
 "headCol");
-function wR(e,
+function AR(e,
 t,
 n,
 i={
@@ -44809,7 +44810,7 @@ width:o}
 )}
 }
 }
-c(wR,
+c(AR,
 "drawAttn");
 var fc=c((e,
 t,
@@ -44825,13 +44826,13 @@ r[2]]}
 "rowEnd"),
 rj="\nout vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 oj="\nuniform sampler2D uA; uniform float uHead, uGain, uHi;\nuniform vec3 uC0, uC1, uC2, uC3;\nin vec2 vUv; out vec4 o;\nvec3 cmap(float a) {\n  vec3 c = mix(uC0 * .05, uC0 * .7, smoothstep(0., .12, a));\n  c = mix(c, uC1, smoothstep(.1, .4, a));\n  c = mix(c, uC2, smoothstep(.35, .75, a));\n  return mix(c, uC3, smoothstep(.75, 1., a));\n}\nvoid main() {\n  vec2 g = vUv * 12.; vec2 id = floor(g), f = fract(g);\n  float i = 11. - id.y, j = id.x;                                   // row = query (top = first token), column = key\n  float a = texelFetch(uA, ivec2(int(j), int(uHead * 12. + i)), 0).r;\n  vec2 e = min(f, 1. - f); float cell = smoothstep(.04, .1, min(e.x, e.y));\n  float masked = step(i + .5, j);                                   // causal mask: keys after the query\n  float hatch = step(.5, fract((g.x + g.y) * 1.5)) * .5 + .5;\n  vec3 col = masked > .5 ? uC0 * .03 * hatch : cmap(a) * cell * uGain;\n  col += uC3 * uHi * step(abs(j - 8.) , 3.5) * step(8. - .5, j) * (1. - masked) * .06;   // the STIMULATIONS columns, when lit\n  float frame = 1. - smoothstep(0., .015, min(min(vUv.x, 1. - vUv.x), min(vUv.y, 1. - vUv.y)));\n  o = vec4(col + uC1 * frame * .35, 1.);\n}";
-function AR(){
+function yR(){
 let e=new Float32Array(2304),
-t=an(e,
+t=sn(e,
 jt,
 48);
 t.minFilter=t.magFilter=Ai;
-let n=new tt(new _n(1,
+let n=new tt(new Sn(1,
 1),
 qe({
 vertex:rj,
@@ -44853,10 +44854,10 @@ value:1}
 uHi:{
 value:0}
 ,
-uC0:pn(),
-uC1:pn(),
-uC2:pn(),
-uC3:pn()}
+uC0:mn(),
+uC1:mn(),
+uC2:mn(),
+uC3:mn()}
 }
 ));
 return n.frustumCulled=!1,
@@ -44882,9 +44883,9 @@ l.uC3.value.set(...o.hot),
 n.visible=!0}
 ,
 n}
-c(AR,
+c(yR,
 "makeAttnPlane");
-var on={
+var an={
 n:1600,
 steps:1e5,
 w:6.4,
@@ -44894,14 +44895,14 @@ y0:-1.6,
 rMin:0,
 rMax:1}
 ;
-function N2({
+function U2({
 seed:e=4242,
 crashAt:t=null}
 ={
 }
 ){
 let n=Be(e),
-i=on.n,
+i=an.n,
 r=new Float32Array(i),
 o=new Float32Array(i),
 a=[[.23,
@@ -44939,45 +44940,45 @@ return{
 raw:r,
 ema:o}
 }
-c(N2,
+c(U2,
 "rewardRun");
-var Ko=c(e=>on.x0+e*on.w,
+var Ko=c(e=>an.x0+e*an.w,
 "plotX"),
-$r=c(e=>on.y0+(e-on.rMin)/(on.rMax-on.rMin)*on.h,
+$r=c(e=>an.y0+(e-an.rMin)/(an.rMax-an.rMin)*an.h,
 "plotY");
-function qd(e,
+function Xd(e,
 t){
 let n=X(t,
 0,
-1)*(on.n-1),
+1)*(an.n-1),
 i=Math.floor(n),
-r=Math.min(on.n-1,
+r=Math.min(an.n-1,
 i+1);
 return C(e[i],
 e[r],
 n-i)}
-c(qd,
+c(Xd,
 "sampleAt");
-function yR(e,
+function bR(e,
 t,
 n=1){
 let i=[],
-r=Math.floor(X(t)*(on.n-1));
+r=Math.floor(X(t)*(an.n-1));
 for(let a=0;
 a<=r&&!Number.isNaN(e[a]);
-a+=n)i.push([Ko(a/(on.n-1)),
+a+=n)i.push([Ko(a/(an.n-1)),
 $r(e[a]),
 0]);
-let o=X(t)*(on.n-1);
-return i.length&&o>r&&!Number.isNaN(e[Math.min(on.n-1,
+let o=X(t)*(an.n-1);
+return i.length&&o>r&&!Number.isNaN(e[Math.min(an.n-1,
 r+1)])&&i.push([Ko(t),
-$r(qd(e,
+$r(Xd(e,
 t)),
 0]),
 i}
-c(yR,
+c(bR,
 "seriesPts");
-function U2(e,
+function G2(e,
 t,
 n={
 }
@@ -44985,10 +44986,10 @@ n={
 let i=n.gain??1,
 r=t.white.map(f=>f*.75*i),
 o=t.dim.map(f=>f*.9*i),
-a=on.x0,
-s=on.y0,
-l=a+on.w,
-u=s+on.h,
+a=an.x0,
+s=an.y0,
+l=a+an.w,
+u=s+an.h,
 h=[];
 e.segment([a,
 s,
@@ -45051,12 +45052,12 @@ width:1.6}
 f)for(let p=0;
 p<16;
 p++){
-let m=s+(p+.25)/16*on.h;
+let m=s+(p+.25)/16*an.h;
 e.segment([d,
 m,
 0],
 [d,
-m+on.h/48,
+m+an.h/48,
 0],
 {
 color:o,
@@ -45086,11 +45087,11 @@ width:1.6}
 f)for(let m=0;
 m<30;
 m++){
-let g=a+(m+.25)/30*on.w;
+let g=a+(m+.25)/30*an.w;
 e.segment([g,
 p,
 0],
-[g+on.w/90,
+[g+an.w/90,
 p,
 0],
 {
@@ -45113,7 +45114,7 @@ u+.3,
 0],
 "center"]),
 h}
-c(U2,
+c(G2,
 "drawAxes");
 function bh(e,
 t,
@@ -45125,10 +45126,10 @@ r={
 let o=r.gain??1,
 a=(r.col??i.cold).map(f=>f*1.5*o),
 s=(r.rawCol??i.cold).map(f=>f*.32*o),
-l=yR(t.raw,
+l=bR(t.raw,
 n,
 2),
-u=yR(t.ema,
+u=bR(t.ema,
 n,
 2);
 l.length>1&&e.polyline(l,
@@ -45155,10 +45156,10 @@ width:14}
 for(let m=0;
 m<14;
 m++){
-let g=C(on.y0,
+let g=C(an.y0,
 h[1],
 m/14),
-w=C(on.y0,
+w=C(an.y0,
 h[1],
 (m+.5)/14);
 e.segment([h[0],
@@ -45174,10 +45175,10 @@ width:1.2}
 for(let m=0;
 m<20;
 m++){
-let g=C(on.x0,
+let g=C(an.x0,
 h[0],
 m/20),
-w=C(on.x0,
+w=C(an.x0,
 h[0],
 (m+.5)/20);
 e.segment([g,
@@ -45194,23 +45195,23 @@ width:1.2}
 return h}
 c(bh,
 "drawReward");
-function G2(e){
+function H2(e){
 let t=[];
 for(let n=0;
-n<on.n&&!Number.isNaN(e.ema[n]);
-n++)t.push([Ko(n/(on.n-1)),
+n<an.n&&!Number.isNaN(e.ema[n]);
+n++)t.push([Ko(n/(an.n-1)),
 $r(e.ema[n]),
 0,
-n/(on.n-1)]);
+n/(an.n-1)]);
 return t}
-c(G2,
+c(H2,
 "emaPolyline");
-var jd={
+var Yd={
 a0:1.25*Math.PI,
 sweep:1.5*Math.PI,
 R:1}
 ,
-nb=c(e=>jd.a0-X(e/100)*jd.sweep,
+nb=c(e=>Yd.a0-X(e/100)*Yd.sweep,
 "gaugeAngle"),
 dc=c((e,
 t=1)=>{
@@ -45229,7 +45230,7 @@ i={
 let r=i.gain??1,
 o=Math.floor(t+1e-6),
 a=i.flash??0,
-s=jd.R;
+s=Yd.R;
 for(let[l,
 u,
 h]of[[1.13,
@@ -45242,7 +45243,7 @@ let f=[];
 for(let d=0;
 d<=120;
 d++){
-let p=jd.a0-d/120*jd.sweep;
+let p=Yd.a0-d/120*Yd.sweep;
 f.push([Math.cos(p)*l,
 Math.sin(p)*l,
 0])}
@@ -45310,7 +45311,7 @@ width:12}
 }
 c(pc,
 "drawGauge");
-function H2(){
+function W2(){
 let e=[];
 for(let t=0;
 t<=100;
@@ -45318,7 +45319,7 @@ t+=10)e.push([String(t),
 dc(t,
 .72)]);
 return e}
-c(H2,
+c(W2,
 "gaugeNumbers");
 function ib(e,
 t,
@@ -45346,11 +45347,11 @@ width:3+6*o}
 )}
 c(ib,
 "drawHalo");
-var bR=new DataView(new ArrayBuffer(4)),
-Xd=c(e=>e===0?0:(bR.setFloat32(0,
+var MR=new DataView(new ArrayBuffer(4)),
+Qd=c(e=>e===0?0:(MR.setFloat32(0,
 e,
 !0),
-bR.getUint32(0,
+MR.getUint32(0,
 !0)),
 "bits"),
 Mh=c(e=>(e^=e>>>18,
@@ -45364,19 +45365,19 @@ e=Math.imul(e,
 2710199483),
 (e^e>>>16)>>>0),
 "mix"),
-W2=c(e=>(e>>>8)/16777216,
+V2=c(e=>(e>>>8)/16777216,
 "unit"),
 vu=c((e,
-t)=>W2(Mh(Mh(Xd(e)^4228997049)^Xd(t))),
+t)=>V2(Mh(Mh(Qd(e)^4228997049)^Qd(t))),
 "hash12");
-function MR(e,
+function xR(e,
 t,
 n){
-let i=Mh(Mh(Mh(Xd(e)^2439085191)^Xd(t))^Xd(n));
-return[W2(i),
-W2(Mh(i^3419590730)),
-W2(Mh(i^325013045))]}
-c(MR,
+let i=Mh(Mh(Mh(Qd(e)^2439085191)^Qd(t))^Qd(n));
+return[V2(i),
+V2(Mh(i^3419590730)),
+V2(Mh(i^325013045))]}
+c(xR,
 "hash33");
 var Mi={
 cols:48,
@@ -45387,8 +45388,8 @@ px:48}
 ,
 aj="\nout vec2 vUv; out float vDist;\nvoid main() { vUv = uv; vec4 mv = modelViewMatrix * vec4(position, 1.); vDist = -mv.z; gl_Position = projectionMatrix * mv; }",
 sj="\nuniform float uT, uT0, uRowDt, uDoneT, uDoneW, uErr, uGain, uFocus, uAperture, uFocal, uOrtho, uMaxBlur;\nuniform vec3 uFill, uEdge, uFrame, uDone, uWait, uErrCol;\nin vec2 vUv; in float vDist; out vec4 o;\nuniform vec2 GRID;\n// hash keys: (column, row + 1000 per use), whole numbers, so barProgress finds the same bars on the CPU\nfloat progressOf(vec2 id, out float err) {\n  float h = hash12(id + vec2(0., 1000.)), row = GRID.y - 1. - id.y;\n  float start = uT0 + row * uRowDt + h * .22, dur = .5 + .9 * hash12(id + vec2(0., 2000.));\n  float p = clamp((uT - start) / dur, 0., 1.); p = p * p * (3. - 2. * p);\n  err = step(hash12(id + vec2(0., 3000.)), uErr);\n  if (err > .5) p = min(p, .15 + .7 * hash12(id + vec2(0., 4000.)));\n  p = min(p, .99);\n  float wave = length((id + .5) / GRID - .5) * uDoneW;                   // EXECUTION: completes from the centre out\n  if (uDoneT > 0. && err < .5) p = mix(p, 1., clamp((uT - uDoneT - wave) / .06, 0., 1.));\n  return p;\n}\nvec3 wallAt(vec2 uv, vec2 fw) {\n  vec2 g = uv * GRID, id = floor(g), f = fract(g), fc = max(fw * GRID, 1e-5);          // footprint in cell units\n  vec2 lo = vec2(.06, .3), hi = vec2(.94, .7), sz = hi - lo;\n  vec2 d = min(f - lo, hi - f);\n  float inside = clamp(d.x / fc.x + .5, 0., 1.) * clamp(d.y / fc.y + .5, 0., 1.);\n  if (inside <= 0.) return vec3(0.);\n  float border = min(d.x / fc.x, d.y / fc.y);\n  float frame = inside * (1. - clamp(border - .6, 0., 1.));\n  vec2 b = (f - lo) / sz;                                                              // 0..1 inside the bar\n  float err, p = progressOf(id, err);\n  float footX = fc.x / sz.x, pxFoot = footX * 48.;\n  float smoothFill = clamp((p - b.x) / footX + .5, 0., 1.);\n  float q = floor(b.x * 48.), quant = clamp(p * 48. - q, 0., 1.);\n  float fill = mix(quant, smoothFill, clamp(pxFoot * 2. - .5, 0., 1.));\n  vec2 pf = fract(b * vec2(48., 4.)), pd = min(pf, 1. - pf);\n  float gaps = mix(smoothstep(.04, .14, min(pd.x, pd.y)), 1., clamp(pxFoot * 4. - .6, 0., 1.)); // pixel gaps only up close\n  float lead = step(q, p * 48.) * step(p * 48. - 1., q) * step(p, .995);                 // the pixel being written\n  float idle = smoothstep(.975, .99, p) * (1. - step(.995, p));                           // done but waiting: dimmed\n  vec3 fillCol = mix(uFill * (1. - .5 * idle), uDone, clamp((p - .99) * 100., 0., 1.));\n  fillCol = mix(fillCol, uErrCol, err);\n  vec3 col = fillCol * fill * gaps * (.8 + .2 * b.y) + uEdge * lead * quant * gaps * (1. - err);\n  // at 99 %: the last pixel waits, a slow cursor (2 Hz, local and dim)\n  float waiting = step(.985, p) * step(p, .9951) * (1. - err);\n  float last = step(47., q) * (1. - fill);\n  col += uWait * last * waiting * gaps * (.35 + .35 * step(.5, fract(uT * 2. + hash12(id + vec2(0., 5000.)))));\n  col += uFrame * frame * (1. + err);\n  return col * inside;\n}\nvoid main() {\n  vec2 fw = fwidth(vUv);\n  float coc = uAperture > 0. ? min(uAperture * abs(vDist - uFocus) / max(vDist, 1e-3) * uFocal, uMaxBlur) : 0.;\n  vec3 col;\n  if (coc < .75) col = wallAt(vUv, fw);\n  else {\n    col = vec3(0.);\n    for (int k = 0; k < 12; k++) {\n      float r = sqrt((float(k) + .5) / 12.) * coc, a = float(k) * 2.39996;\n      col += wallAt(vUv + vec2(cos(a), sin(a)) * r * fw, fw * (1. + r * .5));\n    }\n    col /= 12.;\n  }\n  o = vec4(col * uGain, 1.);\n}";
-function xR(){
-let e=new tt(new _n(Mi.w,
+function _R(){
+let e=new tt(new Sn(Mi.w,
 Mi.h),
 qe({
 vertex:aj,
@@ -45485,7 +45486,7 @@ r.uWait.value.set(...o.warm.map(a=>a*.9)),
 e.visible=!0}
 ,
 e}
-c(xR,
+c(_R,
 "makeWall");
 function rb(e,
 t,
@@ -45524,7 +45525,7 @@ speed:3.2}
 ab=Lo.n/2*Lo.sp,
 lj="\nin vec4 aP;                       // x, z, base height, band\nin float aH;                      // hash\nuniform sampler2D uSpec; uniform float uT, uRise, uRiseT, uSpeed, uGain, uFoot, uCollapse, uDt;\nout vec3 vL; out vec3 vSize; out float vE, vH, vHash, vDist;\nfloat spec(float band, float lag) {                                   // band energy lag seconds ago (linear in time)\n  float m = clamp(lag / uDt, 0., 62.), i = floor(m);\n  float a = texelFetch(uSpec, ivec2(int(band), int(i)), 0).r, b = texelFetch(uSpec, ivec2(int(band), int(i) + 1), 0).r;\n  return mix(a, b, m - i);\n}\nvoid main() {\n  float r = length(aP.xy), lag = r / uSpeed;\n  float e = spec(aP.w, lag);\n  float rise = uRise > 0. ? clamp((uT - uRiseT - lag * .55) / .32, 0., 1.) : 1.;\n  rise = 1. - pow(1. - rise, 3.);\n  float h = max(.02, aP.z * (.3 + 1.25 * e)) * rise * (1. - uCollapse * (.4 + .6 * aH));\n  vec3 p = position;                                                  // unit box, y in [0, 1]\n  vec3 w = vec3(aP.x + p.x * uFoot, p.y * h, aP.y + p.z * uFoot);\n  vL = p; vSize = vec3(uFoot, h, uFoot); vE = e * rise; vH = h; vHash = aH;\n  vec4 mv = modelViewMatrix * vec4(w, 1.); vDist = -mv.z;\n  gl_Position = projectionMatrix * mv;\n}",
 uj="\nuniform vec3 uCold, uWarm, uHot; uniform float uGain, uEdge, uFace;\nin vec3 vL; in vec3 vSize; in float vE, vH, vHash, vDist; out vec4 o;\nvoid main() {\n  if (vH < .021) discard;\n  // distance to the nearest box edge on this face, in world units, then in pixels\n  vec3 q = vec3((.5 - abs(vL.x)) * vSize.x, min(vL.y, 1. - vL.y) * vSize.y, (.5 - abs(vL.z)) * vSize.z);\n  float onSide = step(abs(abs(vL.x) - .5), 1e-3) + step(abs(abs(vL.z) - .5), 1e-3);\n  float d = onSide > .5 ? min(abs(vL.x) > .499 ? q.z : q.x, q.y) : min(q.x, q.z);\n  float px = fwidth(d);\n  float edge = 1. - smoothstep(.0, px * 1.4, d);\n  float top = step(.999, vL.y);\n  float heat = clamp(vE * 1.2, 0., 1.);\n  vec3 c = mix(uCold, uWarm, smoothstep(.45, 1., heat) * (.55 + .45 * vL.y));\n  vec3 col = c * uFace * (.25 + .75 * vL.y) * (1. + heat)                   // faint translucent faces, brighter up high\n           + mix(c, uHot, top * heat) * edge * uEdge * (.35 + .65 * vL.y + top * .6)\n           + mix(uWarm, uHot, heat) * top * (.08 + .5 * heat) * uFace * 4.;\n  o = vec4(col * uGain * exp(-vDist * .018), 1.);\n}",
-_R=class{
+SR=class{
 static{
 c(this,
 "City")}
@@ -45660,7 +45661,7 @@ t.uHot.value.set(...e.pal.hot),
 this.mesh.visible=!0}
 }
 ;
-var Rn={
+var Bn={
 S:6,
 C:17,
 y0:6,
@@ -45670,7 +45671,7 @@ you:[.66,
 3.85]}
 ,
 cj="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uS, uC, uY0, uPixAng, uFog, uFog0, uGridAll, uGain, uGlass, uEdgeGain, uCityGain, uMarks, uSkipCity, uSkipGlass, uFocus, uAperture, uSqueeze;\nuniform vec3 uGlassCol, uEdgeCol, uCityCold, uCityWarm, uMeCol, uYouCol;\nuniform vec2 uMe, uYou;\nin vec2 vUv; out vec4 o;\n// a line of physical half-width hw at distance d, seen with pixel footprint foot and blur width b: coverage-weighted\nfloat lineW(float d, float hw, float foot, float b) { float w = max(max(hw, foot * .6), b); return exp(-d * d / (w * w)) * min(1., hw / w); } // peak ∝ hw / w: energy conserved\nfloat grid(float x, float s, float hw, float foot, float b) { float d = abs(fract(x / s + .5) - .5) * s; return lineW(d, hw, foot, b); }\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz), ro = uCamPos;\n  vec3 c0 = vec3(0., uY0, 0.), col = vec3(0.);\n  float S = uS * (1. - uSqueeze);\n  for (int ax = 0; ax < 3; ax++) {\n    float d = rd[ax];\n    if (abs(d) < 1e-4) continue;\n    int a1 = ax == 0 ? 1 : 0, a2 = ax == 2 ? 1 : 2;\n    for (int sd = 0; sd < 2; sd++) {\n      float side = sd == 0 ? -1. : 1.;\n      float u0 = (ro[ax] - c0[ax] - side * S) / uC;\n      float k = d > 0. ? ceil(u0) : floor(u0), stp = d > 0. ? 1. : -1.;\n      for (int n = 0; n < 12; n++) {\n        float t = uC * (k - u0) / d;\n        k += stp;\n        if (t < .02) continue;\n        float fog = exp(-max(0., t - uFog0) * uFog);\n        if (fog < .006) break;\n        vec3 p = ro + rd * t;\n        vec3 id; id[ax] = k - stp; id[a1] = floor((p[a1] - c0[a1]) / uC + .5); id[a2] = floor((p[a2] - c0[a2]) / uC + .5);\n        vec3 l = p - (c0 + id * uC);\n        vec2 f = vec2(l[a1], l[a2]);\n        if (abs(f.x) > S + .1 || abs(f.y) > S + .1) continue;\n        float graze = max(abs(d), .08), foot = t * uPixAng / graze;\n        float b = uAperture > 0. ? uAperture * abs(t - uFocus) : 0.;          // blur width on this face (world)\n        float centre = step(dot(id, id), .5);\n        if (uSkipGlass < .5 || centre < .5) {\n          float fres = .3 + .7 * pow(1. - abs(d), 4.);\n          // the glass grid: the centre cell (the sandbox we know) everywhere, other cells only when very near; plus a faint sheen\n          float near = max(centre, smoothstep(.012, .004, foot) * uGridAll);\n          float g = ((grid(f.x, .5, .004, foot, b) + grid(f.y, .5, .004, foot, b)) * .45 * smoothstep(.02, .006, foot)\n                  + (grid(f.x, 2., .007, foot, b) + grid(f.y, 2., .007, foot, b)) * smoothstep(.06, .015, foot)) * near + .012;\n          float e = S - max(abs(f.x), abs(f.y)), edge = lineW(e, .03, foot, b);\n          col += fog * (uGlassCol * uGlass * fres * g + uEdgeCol * uEdgeGain * edge);\n        }\n        // me and you pressed on the inside of every front face (z = +S)\n        if (ax == 2 && sd == 1 && uMarks > 0. && !(uSkipCity > .5 && centre > .5)) {\n          vec2 q = vec2(l.x, l.y + uY0);                                   // height above the cell's floor\n          float w = max(foot, b), d1 = length(q - uMe), d2 = length(q - uYou);\n          float m1 = (1. - smoothstep(.8 - w, .8 + w, d1)) * (.35 + .65 * exp(-d1 * d1 * 3.)) * min(1., .8 / max(w * 2., 1e-4));\n          float m2 = (1. - smoothstep(.6 - w, .6 + w, d2)) * (.35 + .65 * exp(-d2 * d2 * 5.)) * min(1., .6 / max(w * 2., 1e-4));\n          col += fog * uMarks * (uMeCol * m1 + uYouCol * m2) * .5;\n        }\n      }\n    }\n  }\n  // the city: four horizontal slices through each cell's pillars (heights from a hash, like the real city)\n  if (uCityGain > 0. && abs(rd.y) > 1e-4) {\n    for (int sl = 0; sl < 4; sl++) {\n      float hy = .25 + float(sl) * .75, off = hy - uS;\n      float u0 = (ro.y - c0.y - off) / uC;\n      float k = rd.y > 0. ? ceil(u0) : floor(u0), stp = rd.y > 0. ? 1. : -1.;\n      for (int n = 0; n < 10; n++) {\n        float t = uC * (k - u0) / rd.y; k += stp;\n        if (t < .02) continue;\n        float fog = exp(-max(0., t - uFog0) * uFog); if (fog < .006) break;\n        vec3 p = ro + rd * t;\n        vec3 id = vec3(floor((p.x - c0.x) / uC + .5), k - stp, floor((p.z - c0.z) / uC + .5));\n        if (uSkipCity > .5 && dot(id, id) < .5) continue;\n        vec3 l = p - (c0 + id * uC);\n        float r = length(l.xz) / 5.2;\n        if (abs(l.x) > 5.2 || abs(l.z) > 5.2 || r > 1.) continue;\n        vec2 g = l.xz / .26 + 20., gi = floor(g), gf = fract(g) - .5;\n        float hgt = (.25 + 2.3 * pow(hash12(gi), 2.2)) * exp(-r * r * 1.6) * 1.1;\n        float inP = step(max(abs(gf.x), abs(gf.y)), .33) * step(hy, hgt);\n        float foot = t * uPixAng / max(abs(rd.y), .08);\n        float avg = .44 * smoothstep(1., .2, r) * exp(-hy * .9);             // what a pixel covering many pillars sees\n        float cov = mix(inP, avg, clamp(foot / .2, 0., 1.));\n        col += fog * uCityGain * cov * mix(uCityCold, uCityWarm, float(sl) / 3. * .6) * .35;\n      }\n    }\n  }\n  o = vec4(col * uGain, 1.);\n}";
-function SR(){
+function TR(){
 let e=c(()=>({
 value:new B}
 ),
@@ -45685,13 +45686,13 @@ value:new Ke}
 ,
 uCamPos:e(),
 uS:{
-value:Rn.S}
+value:Bn.S}
 ,
 uC:{
-value:Rn.C}
+value:Bn.C}
 ,
 uY0:{
-value:Rn.y0}
+value:Bn.y0}
 ,
 uPixAng:{
 value:.001}
@@ -45742,15 +45743,15 @@ uCityWarm:e(),
 uMeCol:e(),
 uYouCol:e(),
 uMe:{
-value:new he(...Rn.me)}
+value:new he(...Bn.me)}
 ,
 uYou:{
-value:new he(...Rn.you)}
+value:new he(...Bn.you)}
 }
 )}
-c(SR,
+c(TR,
 "makeArray");
-function TR(e,
+function CR(e,
 t,
 n,
 i){
@@ -45780,13 +45781,13 @@ r.uCityCold.value.set(...o.cold.map(a=>a*.5)),
 r.uCityWarm.value.set(...o.warm.map(a=>a*.6)),
 r.uMeCol.value.set(...o.cold),
 r.uYouCol.value.set(...o.warm)}
-c(TR,
+c(CR,
 "setArray");
-function CR(e,
+function ER(e,
 t,
 n=2.4,
-i=Rn.S){
-let r=Rn.y0,
+i=Bn.S){
+let r=Bn.y0,
 o=[[-1,
 -1,
 -1],
@@ -45845,7 +45846,7 @@ o[s],
 color:t,
 width:n}
 )}
-c(CR,
+c(ER,
 "boxEdges");
 function sb(e,
 {
@@ -45913,7 +45914,7 @@ let r="".concat(e,
 "@").concat(i);
 if(lb.has(r))return lb.get(r);
 let o=t,
-a=Fn(),
+a=In(),
 s=a.getContext("2d",
 {
 willReadFrequently:!0}
@@ -45959,7 +45960,7 @@ p),
 p}
 c(ub,
 "wordMask");
-var ER=c((e,
+var RR=c((e,
 t,
 n,
 i,
@@ -45967,7 +45968,7 @@ r)=>[e[0]+t[0]*i+n[0]*r,
 e[1]+t[1]*i+n[1]*r,
 e[2]+t[2]*i+n[2]*r],
 "add");
-function V2(e,
+function q2(e,
 {
 origin:t,
 right:n=[1,
@@ -46001,7 +46002,7 @@ continue}
 let g=Math.floor(m[1]/a),
 w=m[1]%a,
 v=m[0]+g*(o+s);
-u.set([...ER(t,
+u.set([...RR(t,
 n,
 i,
 v*d,
@@ -46010,9 +46011,9 @@ p/f],
 p*4)}
 return u}
 }
-c(V2,
+c(q2,
 "planeLayout");
-function RR(e,
+function BR(e,
 t,
 {
 center:n,
@@ -46041,7 +46042,7 @@ x++){
 let M=(x+.5)/d,
 T=(b+.5)/p;
 t.at(M,
-T)>s&&m.push(ER(n,
+T)>s&&m.push(RR(n,
 i,
 r,
 (M-.5)*o,
@@ -46079,9 +46080,9 @@ b++)u[b*4+2]>-1e4&&(u[b*4+3]=y++/Math.max(1,
 A));
 return u}
 }
-c(RR,
+c(BR,
 "calligram");
-function BR(e,
+function PR(e,
 {
 steps:t=1e5,
 every:n=1600}
@@ -46109,9 +46110,9 @@ r.push("step ".concat(String(a).padStart(6),
 " | clipfrac ").concat(d.toFixed(3),
 " | objective ").concat((u-.02*h).toFixed(3)))}
 return r.join("\n")}
-c(BR,
+c(PR,
 "ppoLog");
-function PR({
+function kR({
 count:e=90}
 ={
 }
@@ -46131,9 +46132,9 @@ n.push("#".concat(a,
 "  margin ").concat(Math.log(o/(1-o)).toFixed(2),
 "  ").concat(o>.9?"// strongly":""))}
 return n.join("\n")}
-c(PR,
+c(kR,
 "preferenceLog");
-function kR(e,
+function LR(e,
 t=11,
 {
 tracking:n=.18}
@@ -46162,9 +46163,9 @@ s+=i.at(u,
 h)>.45?f:" "}
 o.push(s)}
 return o}
-c(kR,
+c(LR,
 "banner");
-var ln=ca.c1,
+var un=ca.c1,
 hj=[.93,
 .92,
 .88],
@@ -46261,7 +46262,7 @@ tStim:x,
 down:n}
 ,
 end:e.section("v2").start,
-dk:S2(e)}
+dk:T2(e)}
 }
 c(St,
 "keys");
@@ -46315,7 +46316,7 @@ n={
 }
 ){
 let i=n.ink;
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -46359,7 +46360,7 @@ exposure:1.05,
 )}
 c(si,
 "look");
-function LR(e,
+function FR(e,
 {
 veil:t=.6,
 col:n=[1,
@@ -46384,7 +46385,7 @@ fadeCol:n,
 exposure:1.05+r*s,
 bloom:1.15+o*s}
 }
-c(LR,
+c(FR,
 "hit");
 var sr=c((e,
 t,
@@ -46446,9 +46447,9 @@ i=e.H){
 let r=pe.gfWall;
 r.points.visible=!0,
 r.text("c1/text:".concat(n.file??n.key),
-n.text??tn(n.file));
+n.text??nn(n.file));
 let o=r.layout("c1/wall:".concat(n.key),
-V2(r,
+q2(r,
 {
 origin:[-(n.w??16)/2,
 (n.h??10)/2,
@@ -46507,18 +46508,18 @@ bright:.16,
 )}
 c(x0,
 "netWall");
-var Yd=null;
-function GR(e,
+var Zd=null;
+function HR(e,
 t){
-return(Yd?.t!==e||Yd.K!==t)&&(Yd={
+return(Zd?.t!==e||Zd.K!==t)&&(Zd={
 t:e,
 K:t,
-st:gR(e,
+st:wR(e,
 t.net)}
 ,
-pe.gpu.update(Yd.st)),
-Yd.st}
-c(GR,
+pe.gpu.update(Zd.st)),
+Zd.st}
+c(HR,
 "net");
 function dj(e,
 t){
@@ -46540,11 +46541,11 @@ i={
 ,
 r=e.H){
 let o=e.t,
-a=GR(o,
+a=HR(o,
 n),
 s=dj(o,
 n),
-l=C2(o,
+l=E2(o,
 n.dk,
 pe.tr);
 for(let u of["me",
@@ -46557,12 +46558,12 @@ focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??30,
 u:{
-...B2(l,
+...P2(l,
 u,
-ln,
+un,
 s),
-...gE(a,
-ln,
+...wE(a,
+un,
 {
 only:i.only,
 sparks:i.sparks,
@@ -46573,10 +46574,10 @@ idle:.12}
 ,
 t,
 r);
-if(s.unwind<1&&P2(pe.lines,
+if(s.unwind<1&&k2(pe.lines,
 pe.tr,
 l,
-ln,
+un,
 {
 rungs:1-s.unwind,
 trail:0}
@@ -46584,15 +46585,15 @@ trail:0}
 i.heat)for(let u=0;
 u<Wt.L;
 u++)pe.heats[u].userData.set(u,
-u?ln:{
-...ln,
-cold:ln.warm,
-deep:ln.rose.map(h=>h*.5)}
+u?un:{
+...un,
+cold:un.warm,
+deep:un.rose.map(h=>h*.5)}
 ,
 i.heat*s.unwind);
-return i.edges!==!1&&wR(pe.lines,
+return i.edges!==!1&&AR(pe.lines,
 a,
-ln,
+un,
 {
 gain:(i.edgeGain??1)*s.unwind,
 width:i.edgeW??1.4,
@@ -46629,7 +46630,7 @@ o,
 1,
 .05),
 {
-color:ln.warm.map(l=>l*2.4*s),
+color:un.warm.map(l=>l*2.4*s),
 width:3+8*s}
 )}
 ,
@@ -46640,16 +46641,16 @@ o]of t.net.repeat)i(o,
 r)}
 c(pj,
 "landings");
-var Qd=["embed",
+var Kd=["embed",
 "block 1 · prev token",
 "block 2 · sink",
 "block 3 · → ␣you",
 "block 4 · subword"],
 mj=c(e=>e.remake?["block 4 · subword  → you",
-Qd[3],
-Qd[2],
-Qd[1],
-Qd[0]]:Qd,
+Kd[3],
+Kd[2],
+Kd[1],
+Kd[0]]:Kd,
 "blockNames");
 function vj(e,
 t,
@@ -46701,7 +46702,7 @@ alpha:.5*s}
 }
 c(vj,
 "tokenLabels");
-function FR(e,
+function IR(e,
 t){
 let n=t.present.filter(i=>i>.5).length;
 be(e.text.overlay,
@@ -46717,7 +46718,7 @@ be(e.text.overlay,
 {
 accent:P.me}
 )}
-c(FR,
+c(IR,
 "netHud");
 function gj(e,
 t){
@@ -46742,7 +46743,7 @@ hl(n),
 Math.sin(l)*r])}
 pe.lines.polyline(a,
 {
-color:ln.hot.map(s=>s*1.3*o),
+color:un.hot.map(s=>s*1.3*o),
 width:2+3*o}
 )}
 }
@@ -46853,18 +46854,18 @@ f+=h[g]+u}
 )}
 c(wj,
 "tokenBlocks");
-function IR(e,
+function DR(e,
 t){
 return .96*R.inOutSine(_(e,
 t.l35.start+.03,
 t.l36.start+.1))**.85}
-c(IR,
+c(DR,
 "rewardProg");
-function DR(e,
+function zR(e,
 t){
-let n=qd(pe.run.ema,
+let n=Xd(pe.run.ema,
 t),
-i=Math.round(t*on.steps),
+i=Math.round(t*an.steps),
 r=.02+.31*t**.8;
 be(e.text.overlay,
 1500,
@@ -46879,9 +46880,9 @@ r.toFixed(3)]],
 accent:P.me,
 keyW:150}
 )}
-c(DR,
+c(zR,
 "rewardHud");
-function zR(e,
+function OR(e,
 t,
 n,
 i={
@@ -46903,7 +46904,7 @@ bright:.075,
 reveal:.04+.96*n,
 ...i}
 )}
-c(zR,
+c(OR,
 "ppoWall");
 var _h={
 c:[-1.25,
@@ -46913,7 +46914,7 @@ h:3.3}
 Aj=[1,
 .906,
 .722];
-function q2(e,
+function j2(e,
 t){
 let n=t.beat/8,
 i=Math.max(0,
@@ -46928,9 +46929,9 @@ v:r,
 fresh:e>=t.tSat?e-t.tSat:o,
 exact:a}
 }
-c(q2,
+c(j2,
 "gaugeVal");
-function j2(e,
+function X2(e,
 t,
 n,
 i,
@@ -46965,11 +46966,11 @@ align:"center",
 color:r.sub??P.you,
 alpha:.75}
 )}
-c(j2,
+c(X2,
 "gaugeText");
-var Z2=c(e=>e.l38.start-.05,
+var K2=c(e=>e.l38.start-.05,
 "WALL_T0"),
-db=c(e=>(e.l39.start-.9-Z2(e))/Mi.rows,
+db=c(e=>(e.l39.start-.9-K2(e))/Mi.rows,
 "ROW_DT");
 function _0(e,
 t,
@@ -46979,11 +46980,11 @@ i={
 ){
 pe.wallPlane.userData.set({
 t:e.t,
-t0:Z2(n),
+t0:K2(n),
 rowDt:db(n),
 doneT:n.tExe,
 doneW:.35,
-pal:ln,
+pal:un,
 gain:i.gain??1,
 focus:i.focus,
 aperture:i.aperture??0,
@@ -46993,16 +46994,16 @@ t,
 e.H)}
 c(_0,
 "wallSet");
-var HR=c(e=>({
-t0:Z2(e),
+var WR=c(e=>({
+t0:K2(e),
 rowDt:db(e)}
 ),
 "wallO"),
-X2=null;
+Y2=null;
 function yj(e,
 t,
 n){
-if(X2?.K===e&&X2.t===t)return X2.bar;
+if(Y2?.K===e&&Y2.t===t)return Y2.bar;
 let i=[24,
 48],
 r=9;
@@ -47014,11 +47015,11 @@ a++){
 let s=Math.abs(rb(o,
 a,
 t,
-HR(e))-n);
+WR(e))-n);
 s<r&&(r=s,
 i=[o,
 a])}
-return X2={
+return Y2={
 K:e,
 t,
 bar:i}
@@ -47026,10 +47027,10 @@ bar:i}
 i}
 c(yj,
 "pickBar");
-function Y2(e,
+function Q2(e,
 t){
 let n=e.t,
-i=X(Math.floor((n-Z2(t))/db(t)),
+i=X(Math.floor((n-K2(t))/db(t)),
 0,
 Mi.rows),
 r=n>=t.l39.start-.2?Mi.cols*Mi.rows:Math.floor(Math.max(0,
@@ -47047,9 +47048,9 @@ Mi.cols*Mi.rows-r))],
 {
 accent:P.me}
 )}
-c(Y2,
+c(Q2,
 "wallHud");
-function OR(e,
+function NR(e,
 t){
 let n=e.text.overlay;
 n.draw(i=>{
@@ -47083,7 +47084,7 @@ from:0}
 ,
 size:24}
 )}
-c(OR,
+c(NR,
 "thinkingLine");
 function S0(e,
 t,
@@ -47094,14 +47095,14 @@ pe.city.update({
 t:e.t,
 F:e.F,
 riseT:t.tExe,
-pal:ln,
+pal:un,
 gain:n.gain??1,
 face:n.face??.018,
 edge:n.edge??.42}
 )}
 c(S0,
 "cityUpdate");
-var WR=c(e=>({
+var VR=c(e=>({
 pos:[1.05-e*.2,
 .2+e*.08,
 3.1-e*.5],
@@ -47117,7 +47118,7 @@ origin:[-5.9,
 cell:.2,
 cols:98}
 ;
-function NR(e,
+function UR(e,
 t,
 n,
 i={
@@ -47128,10 +47129,10 @@ let o=e.t,
 a=pe.gfWord;
 a.points.visible=!0,
 a.text("c1/city-src",
-tn("ch/c1/city.js"));
+nn("ch/c1/city.js"));
 let s=a.layout("c1/exe-word",
 ()=>{
-let f=WR(.15),
+let f=VR(.15),
 d=new B(...f.look).sub(new B(...f.pos)).normalize(),
 p=d.clone().cross(new B(0,
 1,
@@ -47140,7 +47141,7 @@ m=p.clone().cross(d),
 g=new B(...f.pos).addScaledVector(d,
 4.6).addScaledVector(m,
 1.05);
-return RR(a,
+return BR(a,
 ub("EXECUTION",
 {
 rows:72}
@@ -47154,7 +47155,7 @@ cell:.062}
 )(a.N)}
 ),
 l=a.layout("c1/exe-carpet",
-V2(a,
+q2(a,
 {
 origin:Th.origin,
 right:[1,
@@ -47196,7 +47197,7 @@ aperture:i.aperture??0}
 ,
 t,
 r)}
-c(NR,
+c(UR,
 "exeWord");
 function hb(e,
 t,
@@ -47208,9 +47209,9 @@ r=e.H){
 let o=pe.gfFloor;
 o.points.visible=!0,
 o.text("c1/city-src",
-tn("ch/c1/city.js"));
+nn("ch/c1/city.js"));
 let a=o.layout("c1/carpet",
-V2(o,
+q2(o,
 {
 origin:Th.origin,
 right:[1,
@@ -47237,19 +47238,19 @@ t,
 r)}
 c(hb,
 "carpet");
-function Q2(e,
+function Z2(e,
 t,
 n={
 }
 ,
 i=e.H){
-let r=Rn.S+.02;
+let r=Bn.S+.02;
 pe.pressMe.points.visible=pe.pressYou.points.visible=!0,
-pe.pressMe.points.position.set(Rn.me[0],
-Rn.me[1],
+pe.pressMe.points.position.set(Bn.me[0],
+Bn.me[1],
 r),
-pe.pressYou.points.position.set(Rn.you[0],
-Rn.you[1],
+pe.pressYou.points.position.set(Bn.you[0],
+Bn.you[1],
 r),
 pe.pressMe.points.scale.setScalar(.95),
 pe.pressYou.points.scale.setScalar(.72);
@@ -47275,9 +47276,9 @@ waveOrigin:[0,
 0,
 0],
 bright:n.bright??.2,
-colA:ln.cold,
-colB:pu(ln.cold,
-ln.white,
+colA:un.cold,
+colB:pu(un.cold,
+un.white,
 .45)}
 ,
 t,
@@ -47293,29 +47294,29 @@ waveOrigin:[0,
 0,
 0],
 bright:(n.bright??.2)*2,
-colA:ln.rose,
-colB:ln.warm}
+colA:un.rose,
+colB:un.warm}
 ,
 t,
 i)}
-c(Q2,
+c(Z2,
 "pressed");
 function Sh(e,
 t,
 n={
 }
 ){
-TR(pe.array,
+CR(pe.array,
 t,
 e.H,
 {
-pal:ln,
+pal:un,
 ...n}
 ),
 e.pass(pe.array)}
 c(Sh,
 "arrayPass");
-function UR(e,
+function GR(e,
 t,
 n={
 }
@@ -47360,7 +47361,7 @@ alpha:d,
 glow:10,
 glowColor:P.me}
 ))}
-c(UR,
+c(GR,
 "simBanner");
 Wn({
 id:"c1",
@@ -47372,9 +47373,9 @@ init(e){
 let t=St(e.T,
 e);
 pe={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
@@ -47385,21 +47386,21 @@ pe.lines=new Xn(24e3),
 pe.floor=Mr({
 plane:"xz"}
 ),
-pe.gpu=new y2({
+pe.gpu=new b2({
 edges:q(e)?tb:eb}
 ),
-pe.tr=T2(t.dk),
-pe.duo=R2(pe.tr,
+pe.tr=C2(t.dk),
+pe.duo=B2(pe.tr,
 pe.gpu),
 pe.heats=[0,
 1,
 2,
 3,
-4].map(()=>AE(pe.gpu)),
+4].map(()=>yE(pe.gpu)),
 pe.attn=[0,
 1,
 2,
-3].map(()=>AR()),
+3].map(()=>yR()),
 pe.attn.forEach((n,
 i)=>{
 n.position.set(100+i*4,
@@ -47407,39 +47408,39 @@ n.position.set(100+i*4,
 0),
 n.scale.setScalar(2.4)}
 ),
-pe.run=N2(),
-pe.ppoText=BR(pe.run),
-pe.prefText=PR(),
-pe.banner=kR("SIMULATION",
+pe.run=U2(),
+pe.ppoText=PR(pe.run),
+pe.prefText=kR(),
+pe.banner=LR("SIMULATION",
 11),
-pe.curve=new Qt({
+pe.curve=new Zt({
 count:65536}
 ),
-pe.gsw=new Qt({
+pe.gsw=new Zt({
 count:65536}
 ),
-pe.wallPlane=xR(),
-pe.city=new _R,
-pe.array=SR(),
-pe.pressMe=new Qt({
+pe.wallPlane=_R(),
+pe.city=new SR,
+pe.array=TR(),
+pe.pressMe=new Zt({
 count:65536}
 ),
-pe.pressYou=new Qt({
+pe.pressYou=new Zt({
 count:16384}
 ),
-pe.gfWall=new nn({
+pe.gfWall=new rn({
 count:16384}
 ),
-pe.gfWord=new nn({
+pe.gfWord=new rn({
 count:4096}
 ),
-pe.gfFloor=new nn({
+pe.gfFloor=new rn({
 count:16384}
 ),
 pe.tex={
 ema:pe.curve.shape("c1/reward-ema",
 n=>nc(n,
-[G2(pe.run)],
+[H2(pe.run)],
 {
 jitter:.012,
 seed:51}
@@ -47462,7 +47463,7 @@ r*4)}
 return i}
 ),
 burst:pe.gsw.shape("c1/gauge-burst",
-n=>Dn.sphere(n,
+n=>zn.sphere(n,
 {
 r:2.8}
 )),
@@ -47508,7 +47509,7 @@ e),
 n=e.t,
 i=n-t.s0;
 hi();
-let r=E2(n,
+let r=R2(n,
 t.dk),
 o=R.inOutCubic(_(i,
 .05,
@@ -47632,7 +47633,7 @@ dy:-80,
 color:q(e)?P.you:o===5?P.you:P.white,
 size:q(e)?20:18}
 ),
-FR(e,
+IR(e,
 r),
 di(e,
 t),
@@ -47707,7 +47708,7 @@ color:u?s?P.me:P.you:P.dim,
 alpha:u?.9:.5,
 size:16}
 )}
-FR(e,
+IR(e,
 o),
 di(e,
 t),
@@ -47786,8 +47787,8 @@ m=q(e)?f.present[3]:1;
 pe.lines.segment(h,
 h,
 {
-color:pu(ln.warm,
-ln.hot,
+color:pu(un.warm,
+un.hot,
 .6).map(w=>w*2.2*(.25+.75*m)),
 width:16}
 );
@@ -47800,7 +47801,7 @@ w,
 pe.lines.segment(v,
 v,
 {
-color:ln.cold.map(A=>A*(.5+2.4*d[36+w])),
+color:un.cold.map(A=>A*(.5+2.4*d[36+w])),
 width:7+9*d[36+w]}
 )}
 fi(e,
@@ -47898,9 +47899,9 @@ size:.007}
 );
 pe.heats[0].userData.set(0,
 {
-...ln,
-cold:ln.warm,
-deep:ln.rose.map(u=>u*.5)}
+...un,
+cold:un.warm,
+deep:un.rose.map(u=>u*.5)}
 ,
 1),
 fi(e,
@@ -48053,7 +48054,7 @@ fi(a,
 r)}
 );
 si(e),
-rn(e,
+on(e,
 o,
 "thermal",
 {
@@ -48140,7 +48141,7 @@ accent:P.you}
 di(e,
 t),
 si(e,
-LR(i,
+FR(i,
 {
 veil:.5,
 col:[.85,
@@ -48162,13 +48163,13 @@ e),
 n=e.t,
 i=n-t.B(7);
 hi();
-let r=GR(n,
+let r=HR(n,
 t),
 o=8,
 a=470,
 s=600,
 l=e.text.overlay;
-mR.forEach((u,
+vR.forEach((u,
 h)=>{
 let f=[o+h*478,
 150,
@@ -48198,7 +48199,7 @@ x.visible=!1}
 ),
 pe.attn[h].userData.set(h,
 r.attnNow,
-ln,
+un,
 (1.15+.5*r.stim)*p,
 r.stim),
 pe.lines.end(e).res(y,
@@ -48315,7 +48316,7 @@ draw(e){
 let t=St(e.T,
 e),
 n=e.t,
-i=IR(n,
+i=DR(n,
 t);
 hi();
 let r=M0(e,
@@ -48324,11 +48325,11 @@ let r=M0(e,
 0],
 "front",
 5.2);
-zR(e,
+OR(e,
 r,
 i);
-let o=U2(pe.lines,
-ln,
+let o=G2(pe.lines,
+un,
 {
 xLabel:"PPO step",
 yLabel:"reward model  r_φ(x, y)"}
@@ -48336,7 +48337,7 @@ yLabel:"reward model  r_φ(x, y)"}
 bh(pe.lines,
 pe.run,
 i,
-ln),
+un),
 fi(e,
 r);
 for(let[a,
@@ -48353,7 +48354,7 @@ align:l,
 size:15,
 alpha:.75}
 )}
-DR(e,
+zR(e,
 i),
 di(e,
 t,
@@ -48377,11 +48378,11 @@ let t=St(e.T,
 e),
 n=e.t;
 n-t.B(9);
-let i=IR(n,
+let i=DR(n,
 t);
 hi();
 let r=[Ko(i),
-$r(qd(pe.run.ema,
+$r(Xd(pe.run.ema,
 i)),
 0],
 o=sr(e,
@@ -48394,7 +48395,7 @@ r[1]-.02,
 {
 fov:36}
 );
-zR(e,
+OR(e,
 o,
 i,
 {
@@ -48405,7 +48406,7 @@ bright:.2}
 bh(pe.lines,
 pe.run,
 i,
-ln,
+un,
 {
 width:2.6}
 ),
@@ -48417,7 +48418,7 @@ reveal:i,
 t:n,
 size:.0032,
 bright:.12,
-colA:ln.cold,
+colA:un.cold,
 sparkle:.4,
 focus:.93,
 aperture:.016,
@@ -48429,7 +48430,7 @@ fi(e,
 o);
 let a=G(r,
 o),
-s=qd(pe.run.ema,
+s=Xd(pe.run.ema,
 i);
 dt(e.text.overlay,
 [a[0],
@@ -48441,7 +48442,7 @@ dy:-90,
 color:P.white,
 size:17}
 ),
-DR(e,
+zR(e,
 i),
 di(e,
 t),
@@ -48461,7 +48462,7 @@ let t=St(e.T,
 e),
 n=e.t,
 i=n-t.l36.start,
-r=q2(n,
+r=j2(n,
 t);
 hi();
 let o=M0(e,
@@ -48476,14 +48477,14 @@ R.inOutSine(_(i,
 .55))));
 pc(pe.lines,
 r.v,
-ln,
+un,
 {
 fresh:r.fresh}
 ),
 fi(e,
 o);
 for(let[a,
-s]of H2()){
+s]of W2()){
 let l=G(s,
 o);
 Wr(e.text.overlay,
@@ -48495,7 +48496,7 @@ align:"center",
 size:15,
 alpha:.65}
 )}
-j2(e,
+X2(e,
 o,
 r,
 t),
@@ -48530,7 +48531,7 @@ let t=St(e.T,
 e),
 n=e.t,
 i=n-t.tI36,
-r=q2(n,
+r=j2(n,
 t);
 hi();
 let o=sr(e,
@@ -48563,7 +48564,7 @@ aperture:.01}
 ),
 pc(pe.lines,
 r.v,
-ln,
+un,
 {
 fresh:r.fresh}
 ),
@@ -48575,7 +48576,7 @@ reveal:r.v/100,
 t:n,
 size:.003,
 bright:.05,
-colA:ln.warm,
+colA:un.warm,
 sparkle:.8,
 focus:2.7,
 aperture:.012,
@@ -48585,7 +48586,7 @@ o,
 e.H),
 fi(e,
 o),
-j2(e,
+X2(e,
 o,
 r,
 t,
@@ -48609,7 +48610,7 @@ draw(e){
 let t=St(e.T,
 e),
 n=e.t,
-i=q2(n,
+i=j2(n,
 t);
 hi();
 let r=i.exact,
@@ -48630,7 +48631,7 @@ up:[0,
 );
 pc(pe.lines,
 i.v,
-ln,
+un,
 {
 fresh:i.fresh}
 ),
@@ -48677,7 +48678,7 @@ let t=St(e.T,
 e),
 n=e.t,
 i=n-t.tOnly,
-r=q2(n,
+r=j2(n,
 t);
 hi();
 let o=q(e)?R.inOutSine(_(n,
@@ -48716,13 +48717,13 @@ roll:.05}
 );
 pc(pe.lines,
 r.v,
-ln,
+un,
 {
 fresh:r.fresh}
 ),
 fi(e,
 a),
-j2(e,
+X2(e,
 a,
 r,
 t),
@@ -48755,7 +48756,7 @@ p=>{
 let m=Math.exp(-i*2.2);
 pc(pe.lines,
 100,
-ln,
+un,
 {
 fresh:1,
 flash:m}
@@ -48764,7 +48765,7 @@ ib(pe.lines,
 _(i,
 0,
 .9),
-ln,
+un,
 {
 r1:3}
 ),
@@ -48772,7 +48773,7 @@ ib(pe.lines,
 _(i,
 .12,
 1.1),
-ln,
+un,
 {
 r1:2.4,
 gain:.6}
@@ -48791,8 +48792,8 @@ t:n,
 reveal:.35,
 size:.006,
 bright:.16*(1-.7*g),
-colA:ln.warm,
-colB:ln.rose,
+colA:un.warm,
+colB:un.rose,
 sparkle:.6}
 ,
 r,
@@ -48802,7 +48803,7 @@ r)}
 );
 if(si(e),
 q(e)){
-rn(e,
+on(e,
 o,
 "halftone",
 {
@@ -48838,7 +48839,7 @@ align:"center",
 glow:12,
 glowColor:P.you}
 );
-j2(e,
+X2(e,
 r,
 {
 exact:100}
@@ -48853,7 +48854,7 @@ t,
 br:"view  halftone · 45 lpi"}
 );
 return}
-rn(e,
+on(e,
 o,
 "halftone",
 {
@@ -48952,7 +48953,7 @@ r,
 t),
 fi(e,
 r),
-Y2(e,
+Q2(e,
 t),
 di(e,
 t,
@@ -48996,7 +48997,7 @@ maxBlur:10}
 ),
 fi(e,
 i),
-Y2(e,
+Q2(e,
 t),
 di(e,
 t),
@@ -49023,7 +49024,7 @@ t.B(18)+.2,
 o=ob(...r),
 a=[o[0]-Mi.w/Mi.cols*.44+Mi.w/Mi.cols*.88*rb(...r,
 n,
-HR(t)),
+WR(t)),
 o[1],
 0],
 s=sr(e,
@@ -49102,7 +49103,7 @@ gain:.75}
 ),
 fi(e,
 i),
-Y2(e,
+Q2(e,
 t),
 di(e,
 t),
@@ -49143,10 +49144,10 @@ gain:.45}
 ),
 fi(e,
 i),
-OR(e,
+NR(e,
 "// ".concat(Mi.cols*Mi.rows,
 " threads at 99 %: ready")),
-Y2(e,
+Q2(e,
 t),
 di(e,
 t),
@@ -49196,7 +49197,7 @@ t.tExe)))}
 ),
 fi(e,
 a),
-OR(e,
+NR(e,
 "await Promise.all(threads);"),
 di(e,
 t),
@@ -49216,7 +49217,7 @@ let t=St(e.T,
 e),
 n=e.t-t.tExe;
 hi();
-let i=WR(n),
+let i=VR(n),
 r=sr(e,
 i.pos,
 i.look,
@@ -49234,7 +49235,7 @@ revealR:14}
 ),
 S0(e,
 t),
-NR(e,
+UR(e,
 r,
 t),
 hb(e,
@@ -49254,7 +49255,7 @@ a.push([Math.cos(u)*o,
 Math.sin(u)*o])}
 n<1&&pe.lines.polyline(a,
 {
-color:ln.hot.map(l=>l*3.2*(1-n)**2),
+color:un.hot.map(l=>l*3.2*(1-n)**2),
 width:3+5*(1-n)}
 ),
 pe.lines.segment([0,
@@ -49264,7 +49265,7 @@ pe.lines.segment([0,
 14,
 0],
 {
-color:ln.hot.map(l=>l*5*s),
+color:un.hot.map(l=>l*5*s),
 width:10+40*s}
 ),
 fi(e,
@@ -49286,7 +49287,7 @@ t),
 si(e,
 {
 vignette:.45,
-...LR(n,
+...FR(n,
 {
 veil:.85,
 col:[1,
@@ -49328,7 +49329,7 @@ t,
 {
 gain:.75}
 ),
-NR(e,
+UR(e,
 r,
 t),
 hb(e,
@@ -49414,7 +49415,7 @@ t,
 {
 bright:.14}
 ),
-Q2(e,
+Z2(e,
 r,
 {
 size:.01,
@@ -49440,17 +49441,17 @@ let t=St(e.T,
 e),
 n=e.t-t.B(26);
 hi();
-let i=[(Rn.me[0]+Rn.you[0])/2,
-(Rn.me[1]+Rn.you[1])/2,
-Rn.S],
+let i=[(Bn.me[0]+Bn.you[0])/2,
+(Bn.me[1]+Bn.you[1])/2,
+Bn.S],
 r=[i[0]+.15-n*.2,
 i[1]+2.9-n*.3,
-Rn.S+1.45],
+Bn.S+1.45],
 o=sr(e,
 r,
 [i[0],
 i[1]-.35,
-Rn.S-.7],
+Bn.S-.7],
 {
 fov:40}
 ),
@@ -49475,7 +49476,7 @@ t,
 {
 gain:.005}
 ),
-Q2(e,
+Z2(e,
 o,
 {
 focus:a,
@@ -49486,12 +49487,12 @@ bright:.085}
 );
 for(let[u,
 h,
-f]of[[Rn.me,
+f]of[[Bn.me,
 .8227,
-ln.cold],
-[Rn.you,
+un.cold],
+[Bn.you,
 .62352,
-ln.warm]]){
+un.warm]]){
 let d=[];
 for(let p=0;
 p<=96;
@@ -49499,7 +49500,7 @@ p++){
 let m=p/96*j;
 d.push([u[0]+Math.cos(m)*h,
 u[1]+Math.sin(m)*h,
-Rn.S+.004])}
+Bn.S+.004])}
 pe.lines.polyline(d,
 {
 color:f.map(p=>p*.36),
@@ -49507,9 +49508,9 @@ width:1.3}
 )}
 fi(e,
 o);
-let s=G([Rn.you[0]+.75,
-Rn.you[1]-.35,
-Rn.S],
+let s=G([Bn.you[0]+.75,
+Bn.you[1]-.35,
+Bn.S],
 o),
 l=e.text.overlay.measure("sandbox: network disabled",
 {
@@ -49569,7 +49570,7 @@ o=sr(e,
 6+r*.22,
 r],
 [0,
-Rn.y0-1,
+Bn.y0-1,
 0],
 {
 fov:44}
@@ -49583,7 +49584,7 @@ gridAll:0}
 ),
 S0(e,
 t),
-Q2(e,
+Z2(e,
 o,
 {
 size:.02,
@@ -49619,7 +49620,7 @@ r=sr(e,
 18+i*.3,
 i*.8],
 [0,
-Rn.y0,
+Bn.y0,
 0],
 {
 fov:42}
@@ -49632,7 +49633,7 @@ gridAll:0}
 ),
 S0(e,
 t),
-Q2(e,
+Z2(e,
 r,
 {
 size:.05,
@@ -49641,7 +49642,7 @@ bright:.35}
 fi(e,
 r);
 let o=G([0,
-Rn.y0+Rn.S+1,
+Bn.y0+Bn.S+1,
 0],
 r);
 dt(e.text.overlay,
@@ -49700,7 +49701,7 @@ si(e,
 {
 vignette:.5}
 ),
-rn(e,
+on(e,
 r,
 "ascii",
 {
@@ -49711,7 +49712,7 @@ tint:[.42,
 source:.25,
 gain:.75}
 ),
-UR(e,
+GR(e,
 t.tSim),
 di(e,
 t,
@@ -49734,15 +49735,15 @@ hi();
 let r=R.inOutCubic(_(i,
 0,
 t.end-t.B(31))),
-o=[Rn.C,
-Rn.y0+Rn.C,
-Rn.C],
+o=[Bn.C,
+Bn.y0+Bn.C,
+Bn.C],
 a=[120,
 95,
 210],
 s=[o[0]+.6,
 o[1]+.9,
-o[2]+Rn.S-.6],
+o[2]+Bn.S-.6],
 l=sr(e,
 a.map((p,
 m)=>C(p,
@@ -49783,10 +49784,10 @@ glass:.6*(1-.8*h)}
 d=c(()=>{
 if(h>0){
 let p=pe.lines;
-p.mesh.position.set(Rn.C,
-Rn.C,
-Rn.C),
-CR(p,
+p.mesh.position.set(Bn.C,
+Bn.C,
+Bn.C),
+ER(p,
 [1,
 1,
 1].map(m=>m*.95*h),
@@ -49807,7 +49808,7 @@ si(e,
 {
 vignette:.5}
 ),
-rn(e,
+on(e,
 p,
 "ascii",
 {
@@ -49833,7 +49834,7 @@ si(e,
 {
 vignette:.5}
 );
-UR(e,
+GR(e,
 t.tSim,
 {
 alpha:1-R.inCubic(_(i,
@@ -49891,13 +49892,13 @@ let a=o.nrm??new Float32Array(t*4);
 pb.set(i,
 {
 key:e,
-pos:an(o.pos,
+pos:sn(o.pos,
 r,
 r),
-col:an(o.col,
+col:sn(o.col,
 r,
 r),
-nrm:an(a,
+nrm:sn(a,
 r,
 r),
 data:{
@@ -50142,14 +50143,14 @@ e[2]*t],
 _j=c((e,
 t)=>e[0]*t[0]+e[1]*t[1]+e[2]*t[2],
 "dot"),
-qR=c(e=>Math.hypot(e[0],
+jR=c(e=>Math.hypot(e[0],
 e[1],
 e[2]),
 "len"),
 $o=c(e=>eo(e,
-1/(qR(e)||1)),
+1/(jR(e)||1)),
 "unit"),
-Zd=c((e,
+Jd=c((e,
 t)=>[e[1]*t[2]-e[2]*t[1],
 e[2]*t[0]-e[0]*t[2],
 e[0]*t[1]-e[1]*t[0]],
@@ -50162,10 +50163,10 @@ r,
 o){
 let a=$o(ha(n,
 t)),
-s=$o(Zd(ha(t,
+s=$o(Jd(ha(t,
 e),
 a)),
-l=Zd(s,
+l=Jd(s,
 a);
 return r*=Ch,
 o*=Ch,
@@ -50188,7 +50189,7 @@ o=$o(ha(n,
 e)),
 a=$o(Vr(r,
 o)),
-s=$o(Zd(r,
+s=$o(Jd(r,
 o)),
 l=54.75*Ch;
 return[Vr(e,
@@ -50247,7 +50248,7 @@ P(e){
 return this.atoms[e].p}
 }
 ;
-function jR(){
+function XR(){
 let e=new Ej,
 t=new Set([2,
 6,
@@ -50400,7 +50401,7 @@ order:kj(e,
 s[1]),
 conj:11}
 }
-c(jR,
+c(XR,
 "lycopene");
 var Rj={
 C:12.011,
@@ -50465,7 +50466,7 @@ o.push(u))}
 return r}
 c(kj,
 "skeletalOrder");
-var VR={
+var qR={
 C:[.72,
 .76,
 .86],
@@ -50489,7 +50490,7 @@ N:.29,
 O:.29,
 S:.38}
 ;
-function XR(e,
+function YR(e,
 t,
 {
 scale:n=1,
@@ -50504,8 +50505,8 @@ r:o}
 let a=o??Ij(r),
 s=[],
 l=t.atoms,
-u=c(y=>y==="C"?VR.C.map((b,
-x)=>b*i[x]):VR[y],
+u=c(y=>y==="C"?qR.C.map((b,
+x)=>b*i[x]):qR[y],
 "colOf");
 for(let y=0;
 y<l.length;
@@ -50522,7 +50523,7 @@ let h=c(y=>t.bonds.filter(b=>b.a===y||b.b===y).map(b=>b.a===y?b.b:b.a),
 for(let y of t.bonds){
 let b=l[y.a].p,
 x=l[y.b].p,
-M=qR(ha(x,
+M=jR(ha(x,
 b)),
 T=.075;
 if(y.order===2){
@@ -50617,13 +50618,13 @@ N=Vr(l[T.b].p,
 T.off),
 O=$o(ha(N,
 D)),
-U=$o(Zd(O,
+U=$o(Jd(O,
 Math.abs(O[1])<.9?[0,
 1,
 0]:[1,
 0,
 0])),
-ne=Zd(O,
+ne=Jd(O,
 U),
 Q=a(),
 we=a()*Math.PI*2;
@@ -50657,7 +50658,7 @@ pos:m,
 col:g,
 nrm:w}
 }
-c(XR,
+c(YR,
 "ballStick");
 var Fj=c((e,
 t,
@@ -50724,7 +50725,7 @@ i*e[0]+n*e[1],
 e[2]]}
 ,
 "rotZ");
-function YR(e,
+function QR(e,
 {
 seed:t=91}
 ={
@@ -50825,16 +50826,16 @@ d*Math.sin(f)*p],
 1,
 3)}
 return i}
-c(YR,
+c(QR,
 "halo");
-var Kd=.36,
+var $d=.36,
 ea=c((e,
 t,
 n,
 i)=>(r,
 o)=>r>=e&&r<=n&&o>=t&&o<=i,
 "rect"),
-QR=c((e,
+ZR=c((e,
 t,
 n,
 i,
@@ -50871,7 +50872,7 @@ return m>u||w>u?!1:Math.abs(m)<=u&&g>=-.02||Math.abs(w)<=u&&v>=-.02}
 }
 ,
 "vee"),
-K2={
+J2={
 exists:{
 box:[-.8,
 -1,
@@ -50884,7 +50885,7 @@ parts:[ea(-.8,
 ea(-.46,
 -.36/2,
 .8,
-Kd/2),
+$d/2),
 ea(-.8,
 -1,
 .8,
@@ -50920,7 +50921,7 @@ ea(-.8,
 ea(-.8,
 -.36/2,
 .5,
-Kd/2)]}
+$d/2)]}
 ,
 M:{
 box:[-.92,
@@ -50935,16 +50936,16 @@ ea(.56,
 -1,
 .92,
 1),
-QR(-.72,
+ZR(-.72,
 .97,
 0,
 -.2,
-Kd*1.05),
-QR(.72,
+$d*1.05),
+ZR(.72,
 .97,
 0,
 -.2,
-Kd*1.05),
+$d*1.05),
 ea(-.92,
 .82,
 -.56,
@@ -50970,7 +50971,7 @@ ea(.56,
 Oj(.72,
 .97,
 -.2,
-Kd*1.05,
+$d*1.05,
 -.38),
 ea(-.92,
 .82,
@@ -50984,14 +50985,14 @@ ea(.56,
 ,
 Eh=c((e,
 t,
-n)=>K2[e].parts.some(i=>i(t,
+n)=>J2[e].parts.some(i=>i(t,
 n)),
 "inGlyph");
 function Nj(e){
 let[t,
 n,
 i,
-r]=K2[e].box,
+r]=J2[e].box,
 o=.005,
 a=Math.round((i-t)/o)+2,
 s=Math.round((r-n)/o)+2,
@@ -51082,7 +51083,7 @@ max:f}
 }
 c(Nj,
 "glyphDistance");
-var J2={
+var $2={
 core:[1,
 .94,
 .84],
@@ -51102,7 +51103,7 @@ r=.7+.6*i,
 o=.9*Math.exp(-e/.012);
 return[0,
 1,
-2].map(a=>(J2.gold[a]+(J2.core[a]-J2.gold[a])*i)*r+J2.rim[a]*o)}
+2].map(a=>($2.gold[a]+($2.core[a]-$2.gold[a])*i)*r+$2.rim[a]*o)}
 c(Uj,
 "lumColour");
 function mc(e,
@@ -51127,7 +51128,7 @@ let l=Be(o),
 [u,
 h,
 f,
-d]=K2[t].box,
+d]=J2[t].box,
 p=0,
 m=400;
 for(let M=0;
@@ -51213,7 +51214,7 @@ bright:1.55,
 sparkle:.1}
 }
 )();
-var ZR=[{
+var KR=[{
 name:"fibre",
 amt:"3.0",
 unit:"g",
@@ -51286,18 +51287,18 @@ Gj=[[.5,
 .55,
 .75]],
 Hj="class Eggplant extends Solanum {\n  // USDA FoodData Central · SR Legacy 11209 · Eggplant, raw · per 100 g\n  per100g = {\n    fibre:     { amount: 3.0,   unit: 'g',  dv: 28   },\n    manganese: { amount: 0.232, unit: 'mg', dv: 2.3  },\n    copper:    { amount: 0.081, unit: 'mg', dv: 0.9  },\n    folate:    { amount: 22,    unit: 'μg', dv: 400  },\n    vitaminB6: { amount: 0.084, unit: 'mg', dv: 1.7  },\n    potassium: { amount: 229,   unit: 'mg', dv: 4700 },\n    thiamin:   { amount: 0.039, unit: 'mg', dv: 1.2  },\n    vitaminK:  { amount: 3.5,   unit: 'μg', dv: 120  },\n  };\n  give(you) {\n    for (const [name, n] of Object.entries(this.per100g))\n      you.absorb(name, n.amount, n.unit);        // NUTRIENTS\n    return you;\n  }\n}\nconst me = new Eggplant();\nme.give(you);\n// the object itself was drawn by this (first cut, src/ch/v2/food.js):\n",
-$R=c(e=>{
+e9=c(e=>{
 let t=e.indexOf("export function eggR"),
 n=e.indexOf("/** 0..1 coverage of the calyx");
 return Hj+e.slice(t,
 n>t?n:void 0)}
 ,
 "calligramText"),
-$2={
+eg={
 x0:-2.75,
 len:5.5}
 ,
-KR=c(e=>.93*(e<.2?Math.sqrt(Math.max(0,
+JR=c(e=>.93*(e<.2?Math.sqrt(Math.max(0,
 1-(1-e/.2)**2)):1)*(1-.56*Ie(.28,
 .93,
 e))*(e>.9?Math.sqrt(Math.max(0,
@@ -51305,13 +51306,13 @@ e))*(e>.9?Math.sqrt(Math.max(0,
 "calR"),
 mb=c(e=>.5*(e-.36)**2-.16,
 "calY");
-function e9(e,
+function t9(e,
 t){
-let n=(e-$2.x0)/$2.len;
-return n<0||n>1.04?!1:n>.9&&Math.abs(t-mb(n)-.25*(n-.9))<.07||Math.abs(t-mb(n))<KR(n)}
-c(e9,
+let n=(e-eg.x0)/eg.len;
+return n<0||n>1.04?!1:n>.9&&Math.abs(t-mb(n)-.25*(n-.9))<.07||Math.abs(t-mb(n))<JR(n)}
+c(t9,
 "calligramInside");
-var t9={
+var n9={
 cell:.05,
 width:5.9,
 height:2.1,
@@ -51320,7 +51321,7 @@ center:[0,
 0]}
 ,
 ta=(()=>{
-let s=ZR.map(m=>m.dv*2.6),
+let s=KR.map(m=>m.dv*2.6),
 l=s.reduce((m,
 g)=>m+g,
 0),
@@ -51342,7 +51343,7 @@ yRow:w,
 yMid:d,
 ySnk:p,
 col:Gj[g],
-...ZR[g]}
+...KR[g]}
 ),
 d-=.15}
 ),
@@ -51358,7 +51359,7 @@ Y0:.18,
 pitch:.3}
 }
 )(),
-JR=c(e=>e*e*(3-2*e),
+$R=c(e=>e*e*(3-2*e),
 "sm");
 function Wj(e,
 t,
@@ -51367,8 +51368,8 @@ let i=ta.bands[e],
 r=ta,
 [o,
 a]=t<.5?[r.xL+(r.xM-r.xL)*t*2,
-i.ySrc+(i.yMid-i.ySrc)*JR(t*2)]:[r.xM+(r.xR-r.xM)*(t-.5)*2,
-i.yMid+(i.ySnk-i.yMid)*JR((t-.5)*2)];
+i.ySrc+(i.yMid-i.ySrc)*$R(t*2)]:[r.xM+(r.xR-r.xM)*(t-.5)*2,
+i.yMid+(i.ySnk-i.yMid)*$R((t-.5)*2)];
 return[o,
 a+n*i.w,
 0]}
@@ -51403,7 +51404,7 @@ d-l),
 m=1-(h-l+.5)/p,
 g=Math.min(.999,
 Math.max(0,
-(e[u*4]-$2.x0)/($2.len+.3)));
+(e[u*4]-eg.x0)/(eg.len+.3)));
 i.set([s,
 m*.9+.05,
 g,
@@ -51415,7 +51416,7 @@ c(Vj,
 "flowData");
 var qj="\nuniform sampler2D uA, uW, uG, uF;\nuniform float uS, uMorph, uSpread, uArc, uT, uFlowT, uDrainT, uSpeed, uWord, uReveal, uSoft;\nuniform float uSize, uMinPx, uFocal, uBright, uFocus, uAperture, uMaxBlur, uOrtho;\nuniform vec4 uBand[8]; uniform vec3 uBandCol[8]; uniform vec3 uX; uniform vec3 uPal[6]; uniform vec3 uWordCol;\nout vec3 vCol; out float vBlur; flat out float vChar;\nfloat sm(float u) { return u * u * (3. - 2. * u); }\nvec3 flowPos(vec4 B, float v, float s) {\n  vec2 q = s < .5 ? vec2(mix(uX.x, uX.y, s * 2.), mix(B.x, B.y, sm(s * 2.)))\n                  : vec2(mix(uX.y, uX.z, s * 2. - 1.), mix(B.y, B.z, sm(s * 2. - 1.)));\n  return vec3(q.x, q.y + v * B.w, 0.);\n}\nvoid cull() { gl_Position = vec4(2., 2., 2., 1.); gl_PointSize = 0.; vCol = vec3(0.); vBlur = 0.; vChar = 0.; }\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), g = texture(uG, uv), f = texture(uF, uv), w = texture(uW, uv);\n  if (g.x < 0. || a.z < -1e4) { cull(); return; }\n  float vis = 1. - smoothstep(uReveal - uSoft, uReveal, a.w);\n  if (vis <= 0.) { cull(); return; }\n  float h = hash11(i * .754877 + 3.1);\n  // decompile, in reading order: each character leaves its line and drops into its band\n  float k = smoothstep(a.w * uSpread, a.w * uSpread + 1. - uSpread, uMorph);\n  int bk = int(f.x + .5); vec4 B = uBand[bk];\n  float sp = uSpeed * (.85 + .3 * h), sRaw = f.z + uFlowT * sp;\n  // the drain: after flow time uDrainT no new characters enter; one that has wrapped since has gone into you\n  bool gone = uDrainT >= 0. && floor(sRaw) > floor(f.z + uDrainT * sp);\n  vec3 pf = flowPos(B, f.y, fract(sRaw));\n  vec3 p = mix(a.xyz, pf, k) + (hash31(i * 1.618) - .5) * sin(k * PI) * uArc;\n  // compile: the characters that spell the word leave the stream for their cell in it\n  float kw = w.z > -1e4 ? smoothstep(h * .45, h * .45 + .55, uWord) : 0.;\n  if (gone && kw <= 0.) { cull(); return; }\n  p = mix(p, w.xyz, kw) + (hash31(i * 2.71) - .5) * sin(kw * PI) * uArc * .7;\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp;\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float core = max(px, uMinPx), sz = min(core + blur, 511.);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float energy = vis * min(1., px / uMinPx) * (core * core) / (sz * sz);\n  vec3 col = mix(uPal[int(g.y + .5)] * g.z, uBandCol[bk] * (.75 + .5 * h), k);\n  col = mix(col, uWordCol * (.85 + .3 * h), kw);\n  vCol = col * uBright * energy;\n  vChar = g.x;\n}",
 jj="\nuniform sampler2D uAtlas; uniform vec2 uGrid;\nin vec3 vCol; in float vBlur; flat in float vChar; out vec4 o;\nvoid main() {\n  vec2 pc = gl_PointCoord, cell = vec2(mod(vChar, uGrid.x), floor(vChar / uGrid.x));\n  float glyph = texture(uAtlas, (cell + clamp(pc, .02, .98)) / uGrid).r;\n  float disc = (1. - smoothstep(.75, 1., length(pc - .5) * 2.)) * .3;\n  o = vec4(vCol * mix(glyph, disc, smoothstep(0., .6, vBlur)), 1.);\n}",
-n9=class{
+i9=class{
 static{
 c(this,
 "FlowGlyphs")}
@@ -51432,7 +51433,7 @@ a=new It;
 a.setAttribute("position",
 new Xt(new Float32Array(i*3),
 3)),
-this.flowTex=an(Vj(t.image.data,
+this.flowTex=sn(Vj(t.image.data,
 i),
 e.S,
 e.S);
@@ -51519,7 +51520,7 @@ i.uFocal.value=t.isPerspectiveCamera?n/2/Math.tan(ut.degToRad(t.fov)/2):n*t.zoom
 this}
 }
 ,
-i9=class{
+r9=class{
 static{
 c(this,
 "Ribbons")}
@@ -51554,13 +51555,13 @@ f+2)}
 );
 let a=new It;
 a.setAttribute("position",
-new Ln(n,
+new Fn(n,
 3)),
 a.setAttribute("aCol",
-new Ln(i,
+new Fn(i,
 3)),
 a.setAttribute("aS",
-new Ln(r,
+new Fn(r,
 1)),
 a.setIndex(o),
 this.material=new Zr({
@@ -51633,27 +51634,27 @@ return[1.056*Rh(e,
 13.8)]}
 c(wb,
 "cmf");
-var a9=c(([e,
+var s9=c(([e,
 t,
 n])=>[3.2406*e-1.5372*t-.4986*n,
 -.9689*e+1.8758*t+.0415*n,
 .0557*e-.204*t+1.057*n],
 "xyz2rgb");
-function eg(e){
-let t=a9(wb(e)),
+function tg(e){
+let t=s9(wb(e)),
 n=Math.min(0,
 ...t),
 i=t.map(o=>o-n),
 r=Math.max(...i,
 1e-6);
 return i.map(o=>o/r)}
-c(eg,
+c(tg,
 "rayColour");
-var Jd=c(e=>wb(e)[1],
+var ep=c(e=>wb(e)[1],
 "lum"),
 vb=c(e=>1.739+.0159/(e/1e3)**2,
 "nGlass"),
-tg={
+ng={
 c:[0,
 0],
 side:1.5,
@@ -51662,7 +51663,7 @@ apex:60}
 function Xj({
 c:e,
 side:t}
-=tg){
+=ng){
 let n=t*Math.sqrt(3)/2;
 return[[e[0],
 e[1]+n*2/3],
@@ -51672,7 +51673,7 @@ e[1]-n/3],
 e[1]-n/3]]}
 c(Xj,
 "prismCorners");
-var r9=c((e,
+var o9=c((e,
 t)=>[e[0]-t[0],
 e[1]-t[1]],
 "sub"),
@@ -51694,7 +51695,7 @@ return[e[0]/t,
 e[1]/t]}
 ,
 "nrm");
-function o9(e,
+function a9(e,
 t,
 n){
 let i=-Yj(t,
@@ -51704,17 +51705,17 @@ return r<0?null:gb(Ab(R0(e,
 n),
 R0(t,
 n*i-Math.sqrt(r))))}
-c(o9,
+c(a9,
 "refract");
 function Qj(e,
 t,
 n,
 i){
-let r=r9(i,
+let r=o9(i,
 n),
 o=t[0]*r[1]-t[1]*r[0];
 if(Math.abs(o)<1e-9)return null;
-let a=r9(n,
+let a=o9(n,
 e),
 s=(a[0]*r[1]-a[1]*r[0])/o,
 l=(a[0]*t[1]-a[1]*t[0])/o;
@@ -51729,7 +51730,7 @@ c(Qj,
 function yb(e,
 {
 lambda0:t=560,
-prism:n=tg}
+prism:n=ng}
 ={
 }
 ){
@@ -51754,7 +51755,7 @@ return{
 entry:a,
 dir0:d,
 rays:e.map(p=>{
-let m=o9(d,
+let m=a9(d,
 s,
 1/vb(p)),
 g=Qj(a,
@@ -51762,7 +51763,7 @@ m,
 i,
 o);
 if(!m||!g)return null;
-let w=o9(m,
+let w=a9(m,
 R0(gb([i[1]-o[1],
 -(i[0]-o[0])]),
 -1),
@@ -51793,7 +51794,7 @@ Zj=[[444,
 [503,
 .89,
 12.5]],
-s9=c(e=>{
+l9=c(e=>{
 let t=.16*Math.exp(-(((e-470)/36)**2))+.1*Math.exp(-(((e-360)/28)**2));
 for(let[n,
 i,
@@ -51801,13 +51802,13 @@ r]of Zj)t+=i*(.7*Math.exp(-(((e-n)/r)**2))+.3/(1+((e-n)/15)**2));
 return t}
 ,
 "rawA"),
-Kj=s9(472),
-$d=c(e=>s9(e)/Kj,
+Kj=l9(472),
+tp=c(e=>l9(e)/Kj,
 "absorbance"),
 B0=c((e,
-t=2)=>10**(-$d(e)*t),
+t=2)=>10**(-tp(e)*t),
 "transmit");
-function l9(e=2){
+function u9(e=2){
 let t=0,
 n=0,
 i=0,
@@ -51822,7 +51823,7 @@ t+=u[0]*l,
 n+=u[1]*l,
 i+=u[2]*l,
 r+=u[1]}
-let o=a9([t,
+let o=s9([t,
 n,
 i]).map(s=>Math.max(0,
 s)),
@@ -51834,9 +51835,9 @@ hex:"#"+o.map(s=>Math.round(255*Math.min(1,
 (s/a)**(1/2.2))).toString(16).padStart(2,
 "0")).join("")}
 }
-c(l9,
+c(u9,
 "transmitted");
-var u9=class{
+var c9=class{
 static{
 c(this,
 "SpectrumFan")}
@@ -51870,7 +51871,7 @@ b:[h.out[0]+h.dir[0]*f+n[0],
 h.out[1]+h.dir[1]*f+n[1]]}
 }
 ),
-this.ymax=Math.max(...a.map(Jd));
+this.ymax=Math.max(...a.map(ep));
 let l=this.rays.length,
 u=c(h=>{
 let f=new It;
@@ -51921,9 +51922,9 @@ return this.rays.forEach((h,
 f)=>{
 let d=e>.01?B0(h.l,
 e):1,
-p=(.25+.75*Jd(h.l)/this.ymax)*d**1.3,
-m=eg(h.l),
-g=(.55+.45*Jd(h.l)/this.ymax)*d**1.6,
+p=(.25+.75*ep(h.l)/this.ymax)*d**1.3,
+m=tg(h.l),
+g=(.55+.45*ep(h.l)/this.ymax)*d**1.6,
 w=[h.a[0]+(h.b[0]-h.a[0])*n,
 h.a[1]+(h.b[1]-h.a[1])*n];
 a.set([h.a[0],
@@ -51966,7 +51967,7 @@ k:[40,
 0],
 box:.82}
 ,
-c9=[1,
+h9=[1,
 .55,
 .2],
 Jj=[.55,
@@ -51979,7 +51980,7 @@ n=e();
 return Math.sqrt(-2*Math.log(t))*Math.cos(j*n)}
 ,
 "gauss");
-function h9(e,
+function f9(e,
 {
 seed:t=181}
 ={
@@ -52002,16 +52003,16 @@ while(Math.abs(u[0])>o||Math.abs(u[1])>o||Math.abs(u[2])>o);
 Sa(i,
 a,
 u,
-(s?Jj:c9).map(h=>h*(.8+.4*n())),
+(s?Jj:h9).map(h=>h*(.8+.4*n())),
 [0,
 0,
 0],
 n(),
 s)}
 return i}
-c(h9,
+c(f9,
 "psiShape");
-function f9(e,
+function d9(e,
 {
 seed:t=191}
 ={
@@ -52030,14 +52031,14 @@ r[2]+P0(n)*a];
 Sa(i,
 o,
 s,
-c9.map(l=>l*(.85+.3*n())),
+h9.map(l=>l*(.85+.3*n())),
 [0,
 0,
 0],
 n(),
 0)}
 return i}
-c(f9,
+c(d9,
 "peakShape");
 function Mb(e,
 t,
@@ -52075,7 +52076,7 @@ value:.035}
 }
 ),
 "material");
-function ng(e,
+function ig(e,
 t,
 n={
 }
@@ -52093,9 +52094,9 @@ o.uPaper.value.set(...n.paper??[.945,
 .935,
 .905]),
 e.pass(r)}
-c(ng,
+c(ig,
 "printed");
-var ig={
+var rg={
 tonemap:2,
 bloom:0,
 ca:0,
@@ -52111,7 +52112,7 @@ teal:"#1f6f80",
 red:"#a8322a",
 faint:"#b9b6ad"}
 ;
-function rg(e,
+function og(e,
 {
 font:t='800 220px "JetBrains Mono"',
 tracking:n=0,
@@ -52119,7 +52120,7 @@ height:i=1}
 ={
 }
 ){
-let r=Fn(),
+let r=In(),
 o=r.getContext("2d",
 {
 willReadFrequently:!0}
@@ -52177,9 +52178,9 @@ return x>=0&&M>=0&&x<l&&M<u&&h[(M*l+x)*4+3]>127}
 width:(d-f)*g,
 height:i}
 }
-c(rg,
+c(og,
 "wordMask");
-function d9(e,
+function p9(e,
 t,
 {
 col:n=[1,
@@ -52197,7 +52198,7 @@ seed:s=171}
 ={
 }
 ){
-let l=rg(t,
+let l=og(t,
 {
 font:r,
 tracking:o,
@@ -52260,7 +52261,7 @@ n.map(x=>x*(.8+.4*y[2])),
 (y[0]+m/2)/m,
 0)),
 h}
-c(d9,
+c(p9,
 "wordPoints");
 var xb={
 k0:-6,
@@ -52391,7 +52392,7 @@ min:Ta,
 max:ki,
 sin:na,
 cos:Ao,
-atan2:sp,
+atan2:up,
 floor:L0,
 hypot:zh,
 PI:I0}
@@ -52406,7 +52407,7 @@ e[2]+t[2]*n],
 Au=c((e,
 t)=>e[0]*t[0]+e[1]*t[1]+e[2]*t[2],
 "dot"),
-hp=c((e,
+dp=c((e,
 t)=>[e[1]*t[2]-e[2]*t[1],
 e[2]*t[0]-e[0]*t[2],
 e[0]*t[1]-e[1]*t[0]],
@@ -52419,12 +52420,12 @@ e[1]/t,
 e[2]/t]}
 ,
 "unit"),
-p9=c((e,
+m9=c((e,
 t,
 n)=>Ci(Ci([e[0]*Ao(n),
 e[1]*Ao(n),
 e[2]*Ao(n)],
-hp(t,
+dp(t,
 e),
 na(n)),
 t,
@@ -52445,13 +52446,13 @@ t)-i*i*n*.25}
 F0=[0,
 .22,
 0],
-y9=.275,
-b9=-.78,
-M9=-.46,
+b9=.275,
+M9=-.78,
+x9=-.46,
 Ac=104*ps,
-lp=310*ps,
-x9=(Ac+lp)/2-I0,
-fg=.13,
+cp=310*ps,
+_9=(Ac+cp)/2-I0,
+dg=.13,
 nX=[.18,
 .24],
 fs=Float64Array.from({
@@ -52471,25 +52472,25 @@ o=Ie(.65,
 n);
 return[.21+.12*i-.09*r+.04*o,
 .21+.12*i-.06*r+.01*o,
-.44+.14*i-.11*r+.07*o-fg,
+.44+.14*i-.11*r+.07*o-dg,
 .46-.1*Ie(.2,
 .9,
 n)][t%4]}
 ),
 jb=0,
-up=0,
+hp=0,
 Lh=0,
 yc=0;
-function _9(e){
+function S9(e){
 let t=e*64,
 n=t>=64?63:t|0,
 i=t-n,
 r=n*4;
 jb=fs[r]+(fs[r+4]-fs[r])*i,
-up=fs[r+1]+(fs[r+5]-fs[r+1])*i,
+hp=fs[r+1]+(fs[r+5]-fs[r+1])*i,
 Lh=fs[r+2]+(fs[r+6]-fs[r+2])*i,
 yc=fs[r+3]+(fs[r+7]-fs[r+3])*i}
-c(_9,
+c(S9,
 "section");
 var k0=[.22,
 .27,
@@ -52510,13 +52511,13 @@ Tb=[-.42,
 Cb=[.42,
 .33,
 .35],
-S9=150*ps,
-m9=Ao(S9),
-v9=na(S9),
+T9=150*ps,
+v9=Ao(T9),
+g9=na(T9),
 Eb=[-.8,
 0,
 -.47],
-g9=[[-.87,
+w9=[[-.87,
 .25,
 -.03],
 [-.64,
@@ -52534,7 +52535,7 @@ oX=[-.64,
 .16,
 .14,
 .16],
-ip=[[[-.71,
+op=[[[-.71,
 .07,
 0],
 [-.45,
@@ -52565,16 +52566,16 @@ Ao(t)*na(e)],
 r=[na(t)*Ao(e),
 Ao(t),
 na(t)*na(e)];
-return[p9(hp(r,
+return[m9(dp(r,
 i),
 i,
 n),
-p9(r,
+m9(r,
 i,
 n),
 i]}
 )(),
-dg=c((e,
+pg=c((e,
 t,
 n)=>Ci(Ci(Ci(yu,
 Mc,
@@ -52584,7 +52585,7 @@ t*Xa),
 vs,
 n*Xa),
 "world"),
-fp=c(e=>D0(Ci(Ci(Ci([0,
+pp=c(e=>D0(Ci(Ci(Ci([0,
 0,
 0],
 Mc,
@@ -52597,11 +52598,11 @@ e[2])),
 Bb=[.25,
 .185,
 .2],
-og=[.14,
+ag=[.14,
 -.075,
 .07,
 .105],
-ep=[-.07,
+np=[-.07,
 .17,
 .09,
 .062,
@@ -52620,7 +52621,7 @@ thick:[.024,
 cup:4,
 foot:.09}
 ,
-dp=[{
+mp=[{
 in:[.03,
 .12,
 -.03],
@@ -52654,7 +52655,7 @@ r=D0(Ci(i,
 n,
 -Au(n,
 i))),
-o=hp(n,
+o=dp(n,
 r);
 return o[2]<0&&(o=o.map(a=>-a)),
 Float64Array.from([...t,
@@ -52690,7 +52691,7 @@ gc=[[-.45,
 [.15,
 .065,
 .5]],
-tp=[.1,
+ip=[.1,
 .085,
 .07],
 Bh=30,
@@ -52755,24 +52756,24 @@ ms[3+t]=ki(ms[3+t],
 Ds[n*3+t])}
 }
 var Ob=0,
-T9=0,
 C9=0,
-rp=0,
-ag=0,
+E9=0,
+ap=0,
 sg=0,
+lg=0,
 Nb=0,
 Ph=0,
 Ub=0,
-op=0,
-E9=0,
+sp=0,
 R9=0,
 B9=0,
+P9=0,
 kh=0,
 Gb=0,
 Hb=0,
-lg=0,
+ug=0,
 Wb=0,
-ap=0;
+lp=0;
 function z0(e,
 t,
 n,
@@ -52802,7 +52803,7 @@ i[3],
 i[4],
 i[5]),
 "ellAt");
-function ug(e,
+function cg(e,
 t,
 n,
 i,
@@ -52821,7 +52822,7 @@ g=f-l*p,
 w=d-u*p;
 return Ub=p,
 xi(m*m+g*g+w*w)-(o+(a-o)*p)}
-c(ug,
+c(cg,
 "cap");
 var Lb=c((e,
 t,
@@ -52836,21 +52837,21 @@ Rb[2]),
 function aX(e,
 t,
 n){
-let i=e-b9,
-r=n-M9,
-o=t-fg,
-a=sp(r,
+let i=e-M9,
+r=n-x9,
+o=t-dg,
+a=up(r,
 i);
-a<x9&&(a+=j);
-let s=a<Ac?Ac:a>lp?lp:a;
-_9((s-Ac)/(lp-Ac));
+a<_9&&(a+=j);
+let s=a<Ac?Ac:a>cp?cp:a;
+S9((s-Ac)/(cp-Ac));
 let l=xi(i*i+r*r);
 if(l<k0[0]){
 let p=Ie(.05,
 k0[0],
 l);
-up=C(k0[1],
-up,
+hp=C(k0[1],
+hp,
 p),
 Lh=C(k0[2],
 Lh,
@@ -52872,7 +52873,7 @@ let d=o-Lh+Sb[0];
 return Fo(z0(u,
 o,
 h,
-u>0?jb:up,
+u>0?jb:hp,
 Lh,
 f),
 xi(u*u+d*d+h*h)-Sb[1],
@@ -52914,8 +52915,8 @@ E*E+L*L))*(Ta(l,
 l*w-v*h,
 M*h+T*x)>0?-1:1)-wu.round,
 D=F>0?F:0;
-return R9=l,
-B9=F,
+return B9=l,
+P9=F,
 xi(D*D+m*m)-C(wu.thick[0],
 wu.thick[1],
 qr(l/h))}
@@ -52933,7 +52934,7 @@ t-ms[4],
 o=ki(ms[2]-n,
 n-ms[5],
 0),
-a=xi(i*i+r*r+o*o)-tp[0];
+a=xi(i*i+r*r+o*o)-ip[0];
 if(a>.25)return a;
 let s=1e9;
 for(let l=0;
@@ -52951,32 +52952,32 @@ v=h-p*g,
 A=f-m*g,
 y=w*w+v*v+A*A;
 y<s&&(s=y,
-E9=l,
-op=Fh[l]+(Fh[l+1]-Fh[l])*g)}
-return xi(s)-(op<.5?C(tp[0],
-tp[1],
-op*2):C(tp[1],
-tp[2],
-op*2-1))}
+R9=l,
+sp=Fh[l]+(Fh[l+1]-Fh[l])*g)}
+return xi(s)-(sp<.5?C(ip[0],
+ip[1],
+sp*2):C(ip[1],
+ip[2],
+sp*2-1))}
 c(sX,
 "tail");
 var lX=.16,
-vg=c((e,
+gg=c((e,
 t)=>[...e,
 t,
 (t+lX)**2],
 "ball"),
-uX=vg([-.75,
+uX=gg([-.75,
 .2,
 .02],
 .36),
-cX=vg([-.555,
+cX=gg([-.555,
 .06,
 .105],
 .34),
-hX=vg(yu,
+hX=gg(yu,
 .45*Xa),
-cg=c((e,
+hg=c((e,
 t,
 n,
 i)=>{
@@ -53000,21 +53001,21 @@ iX),
 .16);
 let i=e-Tb[0],
 r=n-Tb[2];
-return Wb=z0(i*m9+r*v9,
+return Wb=z0(i*v9+r*g9,
 t-Tb[1],
-r*m9-i*v9,
+r*v9-i*g9,
 Cb[0],
 Cb[1],
 Cb[2]),
-ap=cg(e,
+lp=hg(e,
 t,
 n,
 uX),
-ap<0&&(ap=Fo(Fo(ug(e,
+lp<0&&(lp=Fo(Fo(cg(e,
 t,
 n,
-g9[0],
-g9[1],
+w9[0],
+w9[1],
 .17,
 .15),
 kb(e,
@@ -53030,7 +53031,7 @@ oX),
 Fo(Fo(Ob,
 Wb,
 .04),
-ap,
+lp,
 .08)}
 c(qb,
 "core");
@@ -53071,7 +53072,7 @@ c:(t[0]-e[0])/i,
 s:(t[1]-e[1])/i}
 }
 )(),
-cp=[[-.39,
+fp=[[-.39,
 .052,
 .06,
 1,
@@ -53084,7 +53085,7 @@ cp=[[-.39,
 [...ml.toe,
 ml.c,
 ml.s]],
-dX=vg([(ml.hock[0]+ml.toe[0])/2,
+dX=gg([(ml.hock[0]+ml.toe[0])/2,
 ml.toe[1],
 (ml.hock[2]+ml.toe[2])/2],
 .23);
@@ -53094,12 +53095,12 @@ n){
 let i=qb(e,
 t,
 n),
-r=cg(e,
+r=hg(e,
 t,
 n,
 dX),
 o=r;
-if(r<0&&(r=ug(e,
+if(r<0&&(r=cg(e,
 t,
 n,
 ml.hock,
@@ -53109,28 +53110,28 @@ ml.toe,
 o=Lb(e,
 t,
 n,
-cp[2])),
-T9=Fo(Wb,
+fp[2])),
+C9=Fo(Wb,
 r,
 .04),
-kh=Ph=cg(e,
+kh=Ph=hg(e,
 t,
 n,
 cX),
 kh<0){
-let h=ug(e,
+let h=cg(e,
 t,
 n,
-ip[0][0],
-ip[0][1],
+op[0][0],
+op[0][1],
 .06,
 .052),
 f=Ub,
-d=ug(e,
+d=cg(e,
 t,
 n,
-ip[1][0],
-ip[1][1],
+op[1][0],
+op[1][1],
 .06,
 .052);
 d<h?(kh=d,
@@ -53141,26 +53142,26 @@ Hb=0);
 let p=Lb(e,
 t,
 n,
-cp[0]),
+fp[0]),
 m=Lb(e,
 t,
 n,
-cp[1]);
+fp[1]);
 m<p?(Ph=m,
-lg=1):(Ph=p,
-lg=0)}
+ug=1):(Ph=p,
+ug=0)}
 if(o<Ph&&(Ph=o,
-lg=2),
-C9=Ta(ap,
+ug=2),
+E9=Ta(lp,
 kh),
 Nb=sX(e,
 t,
 n),
-rp=ag=sg=cg(e,
+ap=sg=lg=hg(e,
 t,
 n,
 hX),
-rp<0){
+ap<0){
 let h=e-yu[0],
 f=t-yu[1],
 d=n-yu[2],
@@ -53174,19 +53175,19 @@ g,
 Bb[0],
 Bb[1],
 Bb[2]),
-A=w-og[0],
-y=m-og[1],
-b=g-og[2];
+A=w-ag[0],
+y=m-ag[1],
+b=g-ag[2];
 v=Fo(v,
-xi(A*A+y*y+b*b)-og[3],
+xi(A*A+y*y+b*b)-ag[3],
 .06),
 v=Fo(v,
 z0(p,
-m-ep[0],
-g-ep[1],
-ep[2],
-ep[3],
-ep[4]),
+m-np[0],
+g-np[1],
+np[2],
+np[3],
+np[4]),
 .04);
 let x=vc[2]-vc[0],
 M=vc[3]-vc[1],
@@ -53200,22 +53201,22 @@ T),
 .04);
 let L=m-Pb[0],
 F=g-Pb[1];
-rp=Xa*Fo(v,
+ap=Xa*Fo(v,
 xi(p*p+L*L+F*F)-Pb[2],
 .03),
-ag=Xa*Vb(dp[0],
+sg=Xa*Vb(mp[0],
 p,
 m,
 g),
-sg=Xa*Vb(dp[1],
+lg=Xa*Vb(mp[1],
 p,
 m,
 g)}
 i=Fo(i,
-Fo(Fo(rp,
-ag,
-.02),
+Fo(Fo(ap,
 sg,
+.02),
+lg,
 .02),
 .035),
 i=Fo(i,
@@ -53233,7 +53234,7 @@ s=t-F0[1],
 l=n-F0[2],
 u=a*a+s*s+l*l;
 if(u<.25){
-let h=y9-xi(u),
+let h=b9-xi(u),
 f=ki(.03-Ti(i-h),
 0)/.03;
 i=ki(i,
@@ -53252,7 +53253,7 @@ c(Xb,
 var Ih=0,
 bu=0,
 Dh=0;
-function pg(e,
+function mg(e,
 t,
 n){
 let r=da(e+.001,
@@ -53271,7 +53272,7 @@ return Ih=(r-o-a+s)/(4*.001),
 bu=(-r-o+a+s)/(4*.001),
 Dh=(-r+o-a+s)/(4*.001),
 xi(Ih*Ih+bu*bu+Dh*Dh)}
-c(pg,
+c(mg,
 "grad");
 function Yb(e,
 t,
@@ -53290,7 +53291,7 @@ t,
 i)}
 c(Yb,
 "exit");
-var hg=Yb(dg(0,
+var fg=Yb(pg(0,
 -.045,
 .15),
 vs),
@@ -53300,23 +53301,23 @@ c:[...F0],
 r:.22}
 ,
 head:[...yu],
-nose:hg,
-throat:dg(0,
+nose:fg,
+throat:pg(0,
 -.17,
 .02),
-ears:dp.map(e=>{
+ears:mp.map(e=>{
 let t=[0,
 1,
 2].map(i=>e[3+i]*e[14]+e[6+i]*e[13]),
-n=c(i=>dg(e[0]+t[0]*i,
+n=c(i=>pg(e[0]+t[0]*i,
 e[1]+t[1]*i,
 e[2]+t[2]*i),
 "at");
 return{
 base:n(wu.foot/e[13]),
 tip:Yb(n(.75),
-fp(t)),
-axis:fp([e[3],
+pp(t)),
+axis:pp([e[3],
 e[4],
 e[5]])}
 }
@@ -53337,20 +53338,20 @@ max:[.6,
 .58]}
 }
 ,
-P9=[1,
+k9=[1,
 -1].flatMap(e=>[-2,
 -1,
 0,
 1,
 2].map(t=>{
-let n=Yb(dg(e*.03,
+let n=Yb(pg(e*.03,
 -.07+t*.011,
 .17),
-fp([e*.7,
+pp([e*.7,
 0,
 .7]),
 .3),
-i=fp([e,
+i=pp([e,
 .08+t*.16,
 .05-Ti(t)*.05]),
 r=.22-Ti(t)*.015,
@@ -53360,12 +53361,12 @@ F0,
 if(Au(i,
 o)<0&&zh(...Ci(n,
 F0,
--1))<y9+r){
-let s=D0(hp(o,
+-1))<b9+r){
+let s=D0(dp(o,
 vs)),
-l=hp(o,
+l=dp(o,
 s),
-u=sp(Au(Ci(gl,
+u=up(Au(Ci(gl,
 vs,
 -t*.45),
 l),
@@ -53406,10 +53407,10 @@ Ci(n,
 i,
 a)]}
 ));
-function k9(e){
+function L9(e){
 return e-=L0(e),
 e<.4?.5-.5*Ao(I0*e/.4):e<.92?.5+.5*Ao(I0*(e-.4)/.52):0}
-c(k9,
+c(L9,
 "breath");
 var Fb=[.357,
 .765,
@@ -53421,7 +53422,7 @@ pX=13.5,
 mX=8,
 ds=new Float64Array(8),
 fa=new Float64Array(8),
-np=c((e,
+rp=c((e,
 t,
 n,
 i,
@@ -53448,7 +53449,7 @@ vX=c(e=>Ie(.45,
 .7,
 .5+.5*Ao(j*e)),
 "ring"),
-w9=[[[.145,
+A9=[[[.145,
 .05,
 .14],
 [.24,
@@ -53460,7 +53461,7 @@ w9=[[[.145,
 [.215,
 -.085,
 .06]]].map(e=>e.map(D0));
-function A9(e,
+function y9(e,
 t,
 n,
 i){
@@ -53473,15 +53474,15 @@ u=qr(((e-r[0])*a+(t-r[1])*s+(n-r[2])*l)/(a*a+s*s+l*l));
 return zh(e-r[0]-a*u,
 t-r[1]-s*u,
 n-r[2]-l*u)}
-c(A9,
+c(y9,
 "arc");
-var gX=dp.map(e=>[[0,
+var gX=mp.map(e=>[[0,
 1,
 2].map(t=>e[3+t]*e[14]+e[6+t]*e[13]),
 [e[9],
 e[10],
-e[11]]].map(fp));
-function L9(e,
+e[11]]].map(pp));
+function F9(e,
 t,
 n,
 i,
@@ -53494,11 +53495,11 @@ da(n,
 i,
 r),
 ds[0]=Ob,
-ds[1]=T9,
-ds[2]=C9,
-ds[3]=rp,
-ds[4]=ag,
-ds[5]=sg,
+ds[1]=C9,
+ds[2]=E9,
+ds[3]=ap,
+ds[4]=sg,
+ds[5]=lg,
 ds[6]=Nb,
 ds[7]=Ph;
 let u=0;
@@ -53512,12 +53513,12 @@ ve++){
 let Ue=ki(0,
 1-(ds[ve]-ds[u])/.06);
 h+=fa[ve]=Ue*Ue}
-let f=op,
-d=E9,
+let f=sp,
+d=R9,
 p=kh,
 m=Gb,
-g=ip[Hb],
-w=cp[lg],
+g=op[Hb],
+w=fp[ug],
 v=0,
 A=0,
 y=0,
@@ -53535,31 +53536,31 @@ Se,
 Je,
 ft,
 Pt,
-Mn,
+xn,
 K)=>{
 let ye=fa[ve]/h,
-Pe=xi(Pt*Pt+Mn*Mn+K*K)||1;
+Pe=xi(Pt*Pt+xn*xn+K*K)||1;
 v+=ye*Ue,
 A+=ye*Qe,
 y+=ye*Se,
 x+=ye*Je,
 M+=ye*ft,
 T+=ye*Pt/Pe,
-S+=ye*Mn/Pe,
+S+=ye*xn/Pe,
 E+=ye*K/Pe}
 ,
 "mix"),
-D=n-b9,
-N=r-M9,
+D=n-M9,
+N=r-x9,
 O=xi(D*D+N*N),
-U=sp(N,
+U=up(N,
 D);
-U<x9&&(U+=j);
-let ne=(U-Ac)/(lp-Ac),
+U<_9&&(U+=j);
+let ne=(U-Ac)/(cp-Ac),
 Q=qr(ne);
-_9(Q);
-let we=sp((O-yc)/(O>yc?jb:up),
-(i-fg)/Lh),
+S9(Q);
+let we=up((O-yc)/(O>yc?jb:hp),
+(i-dg)/Lh),
 ie=(1-Ao(we))/2,
 le=we>0?we/1.75:-we/1.3,
 ge=pX*ne-1.3*ie+.13*na(2.3*we+9*ne)+.06*na(4.3*we-17*ne+1.7),
@@ -53590,7 +53591,7 @@ xe=.8*(1-Ie(.01,
 .035,
 Ti(O-yc)))*Ie(.8,
 .97,
-(i-fg)/Lh),
+(i-dg)/Lh),
 Mt=Ie(.06,
 k0[0],
 O),
@@ -53709,23 +53710,23 @@ Se=xi(mt*mt+vt*vt+At*At),
 Je=W/Se,
 ft=vt/Se,
 Pt=At/Se,
-Mn=ki(wc(Se*A9(Je,
+xn=ki(wc(Se*y9(Je,
 ft,
 Pt,
-w9[0]),
+A9[0]),
 .016),
-wc(Se*A9(Je,
+wc(Se*y9(Je,
 ft,
 Pt,
-w9[1]),
+A9[1]),
 .016)),
-K=wc(Ta(np(W,
+K=wc(Ta(rp(W,
 vt,
 .045,
 .03,
 .09,
 .037),
-np(W,
+rp(W,
 vt,
 .09,
 .037,
@@ -53741,19 +53742,19 @@ ki(vt+.026,
 W-.03*(vt+.06)/.034)))*Ie(.19,
 .22,
 At),
-Pe=wc(Ta(np(W,
+Pe=wc(Ta(rp(W,
 vt,
 0,
 -.06,
 0,
 -.086),
-np(W,
+rp(W,
 vt,
 0,
 -.086,
 .022,
 -.096),
-np(W,
+rp(W,
 vt,
 .022,
 -.096,
@@ -53788,7 +53789,7 @@ W)*Ie(.04,
 vt);
 F(3,
 ki(Qe,
-Mn)*(1-ki(rt,
+xn)*(1-ki(rt,
 gt)),
 .1*Ie(.18,
 -.2,
@@ -53805,20 +53806,20 @@ C(C(20,
 Fe),
 35,
 et),
-n-hg[0],
-i-hg[1],
-r-hg[2])}
+n-fg[0],
+i-fg[1],
+r-fg[2])}
 for(let ve=0;
 ve<2;
 ve++)if(fa[4+ve]>0){
-let Ue=dp[ve],
+let Ue=mp[ve],
 [Qe,
 Se]=gX[ve];
 Vb(Ue,
 mt,
 vt,
 At);
-let Je=qr((R9-wu.foot)/(Ue[13]+wu.round+wu.thick[1]-wu.foot)),
+let Je=qr((B9-wu.foot)/(Ue[13]+wu.round+wu.thick[1]-wu.foot)),
 ft=Ie(.1,
 .4,
 o*Se[0]+a*Se[1]+s*Se[2]);
@@ -53826,7 +53827,7 @@ u===4+ve&&(L=Je),
 b=ki(b,
 .85*qr(2*fa[4+ve]/h)*ft*Ie(.002,
 -.012,
-B9)*Ie(.97,
+P9)*Ie(.97,
 .75,
 Je)),
 F(4+ve,
@@ -53840,7 +53841,7 @@ Qe[1],
 Qe[2])}
 if(fa[6]>0&&(u===6&&(L=f),
 F(6,
-ki(vX(mX*(1-f)+.05*na(5*sp(a,
+ki(vX(mX*(1-f)+.05*na(5*up(a,
 o))),
 Ie(.9,
 .95,
@@ -53865,7 +53866,7 @@ ve)*Ie(-.3,
 a+o*w[3]+s*w[4])),
 F(7,
 0,
-w===cp[2]?.68:.2,
+w===fp[2]?.68:.2,
 1,
 .03,
 12,
@@ -53876,20 +53877,20 @@ let Hn=T*o+S*a+E*s;
 T-=Hn*o,
 S-=Hn*a,
 E-=Hn*s;
-let en=xi(T*T+S*S+E*E);
-en<1e-4&&(T=o*a,
+let tn=xi(T*T+S*S+E*E);
+tn<1e-4&&(T=o*a,
 S=a*a-1,
 E=s*a,
-en=xi(T*T+S*S+E*E)),
-en<1e-4&&(T=1-o*o,
+tn=xi(T*T+S*S+E*E)),
+tn<1e-4&&(T=1-o*o,
 S=-o*a,
 E=-o*s,
-en=xi(T*T+S*S+E*E));
-let hn=Ao(M*ps)/en,
+tn=xi(T*T+S*S+E*E));
+let fn=Ao(M*ps)/tn,
 z=na(M*ps),
-k=T*hn+o*z,
-Y=S*hn+a*z,
-ce=E*hn+s*z;
+k=T*fn+o*z,
+Y=S*fn+a*z,
+ce=E*fn+s*z;
 if(i+Y*x<.001){
 let ve=ki(-1,
 (.001-i)/x),
@@ -53953,9 +53954,9 @@ e.aux[Z]=u,
 e.aux[Z+1]=L,
 e.aux[Z+2]=l,
 e.aux[Z+3]=qr(b)}
-c(L9,
+c(F9,
 "coat");
-var mg=.005,
+var vg=.005,
 vl=.025,
 zs=[-1.6,
 0,
@@ -53965,7 +53966,7 @@ zs=[-1.6,
 .7],
 zb=null,
 ia=null;
-function F9(){
+function I9(){
 if(zb)return zb;
 ia=[0,
 1,
@@ -53982,9 +53983,9 @@ r++)Ti(da(zs[0]+(r+.5)*vl,
 zs[1]+(i+.5)*vl,
 zs[2]+(n+.5)*vl))<t&&e.push(r+ia[0]*(i+ia[1]*n));
 return zb=Int32Array.from(e)}
-c(F9,
+c(I9,
 "cells");
-function I9(e){
+function D9(e){
 let t={
 pos:new Float32Array(e*4),
 nrm:new Float32Array(e*4),
@@ -53992,7 +53993,7 @@ fur:new Float32Array(e*4),
 col:new Float32Array(e*4),
 aux:new Float32Array(e*4)}
 ,
-n=F9(),
+n=I9(),
 i=Be(20260930);
 for(let r=0;
 r<e;
@@ -54007,11 +54008,11 @@ f=zs[2]+(l+i())*vl,
 d=da(u,
 h,
 f);
-if(Ti(d)>mg*1.6)continue;
-let p=pg(u,
+if(Ti(d)>vg*1.6)continue;
+let p=mg(u,
 h,
 f);
-if(!(Ti(d)>mg*p)){
+if(!(Ti(d)>vg*p)){
 for(let m=0;
 m<6&&Ti(d)>1e-6;
 m++){
@@ -54023,10 +54024,10 @@ h<0&&(h=0),
 d=da(u,
 h,
 f),
-p=pg(u,
+p=mg(u,
 h,
 f)}
-Ti(d)>2e-5||h<.0015&&bu<-.5*p||L9(t,
+Ti(d)>2e-5||h<.0015&&bu<-.5*p||F9(t,
 r++,
 u,
 h,
@@ -54037,9 +54038,9 @@ Dh/p,
 i())}
 }
 return t}
-c(I9,
+c(D9,
 "catShape");
-function*D9(e){
+function*z9(e){
 let t={
 pos:new Float32Array(e*4),
 nrm:new Float32Array(e*4),
@@ -54047,7 +54048,7 @@ fur:new Float32Array(e*4),
 col:new Float32Array(e*4),
 aux:new Float32Array(e*4)}
 ,
-n=F9(),
+n=I9(),
 i=Be(20260930);
 for(let r=0;
 r<e;
@@ -54062,11 +54063,11 @@ f=zs[2]+(l+i())*vl,
 d=da(u,
 h,
 f);
-if(Ti(d)>mg*1.6)continue;
-let p=pg(u,
+if(Ti(d)>vg*1.6)continue;
+let p=mg(u,
 h,
 f);
-if(!(Ti(d)>mg*p)){
+if(!(Ti(d)>vg*p)){
 for(let m=0;
 m<6&&Ti(d)>1e-6;
 m++){
@@ -54078,10 +54079,10 @@ h<0&&(h=0),
 d=da(u,
 h,
 f),
-p=pg(u,
+p=mg(u,
 h,
 f)}
-Ti(d)>2e-5||h<.0015&&bu<-.5*p||(L9(t,
+Ti(d)>2e-5||h<.0015&&bu<-.5*p||(F9(t,
 r++,
 u,
 h,
@@ -54096,14 +54097,14 @@ label:"cat surface"}
 ))}
 }
 return t}
-c(D9,
+c(z9,
 "catShapeStages");
-var O9="\nin vec4 aPos, aNrm, aFur, aCol, aAux; in vec2 aLit;\nuniform float uBreath;\nuniform vec4 uEarB[2], uEarA[2], uTailP;   // ear: hinge point (w: angle), hinge axis; tail: pivot (w: angle)\nuniform float uTailU;                      // … and from where along the tail it bends\nvec3 rotAxis(vec3 p, vec3 ax, float a) { float c = cos(a), s = sin(a); return p * c + cross(ax, p) * s + ax * dot(ax, p) * (1. - c); }\nvec3 rootAt(out vec3 n, out vec3 f) {\n  vec3 p = aPos.xyz; n = aNrm.xyz; f = aFur.xyz;\n  int part = int(aAux.x + .5);\n  if (part == 4 || part == 5) {\n    int e = part - 4; float a = uEarB[e].w * smoothstep(0., .4, aAux.y);\n    if (a != 0.) { p = uEarB[e].xyz + rotAxis(p - uEarB[e].xyz, uEarA[e].xyz, a); n = rotAxis(n, uEarA[e].xyz, a); f = rotAxis(f, uEarA[e].xyz, a); }\n  } else if (part == 6) {\n    float a = uTailP.w * smoothstep(uTailU, 1., aAux.y);\n    if (a != 0.) { const vec3 up = vec3(0., 1., 0.); p = uTailP.xyz + rotAxis(p - uTailP.xyz, up, a); n = rotAxis(n, up, a); f = rotAxis(f, up, a); }\n  }\n  return p + n * (uBreath * aNrm.w);\n}",
-wX=O9+"\nuniform float uInset, uDisc;\nout vec2 vQ;\nvoid main() {\n  vec3 n, f; vec3 p = rootAt(n, f) - n * uInset;\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  vQ = vec2(position.x * 2. - 1., position.y);\n  mv.xy += vQ * uDisc;\n  gl_Position = projectionMatrix * mv;\n}",
+var N9="\nin vec4 aPos, aNrm, aFur, aCol, aAux; in vec2 aLit;\nuniform float uBreath;\nuniform vec4 uEarB[2], uEarA[2], uTailP;   // ear: hinge point (w: angle), hinge axis; tail: pivot (w: angle)\nuniform float uTailU;                      // … and from where along the tail it bends\nvec3 rotAxis(vec3 p, vec3 ax, float a) { float c = cos(a), s = sin(a); return p * c + cross(ax, p) * s + ax * dot(ax, p) * (1. - c); }\nvec3 rootAt(out vec3 n, out vec3 f) {\n  vec3 p = aPos.xyz; n = aNrm.xyz; f = aFur.xyz;\n  int part = int(aAux.x + .5);\n  if (part == 4 || part == 5) {\n    int e = part - 4; float a = uEarB[e].w * smoothstep(0., .4, aAux.y);\n    if (a != 0.) { p = uEarB[e].xyz + rotAxis(p - uEarB[e].xyz, uEarA[e].xyz, a); n = rotAxis(n, uEarA[e].xyz, a); f = rotAxis(f, uEarA[e].xyz, a); }\n  } else if (part == 6) {\n    float a = uTailP.w * smoothstep(uTailU, 1., aAux.y);\n    if (a != 0.) { const vec3 up = vec3(0., 1., 0.); p = uTailP.xyz + rotAxis(p - uTailP.xyz, up, a); n = rotAxis(n, up, a); f = rotAxis(f, up, a); }\n  }\n  return p + n * (uBreath * aNrm.w);\n}",
+wX=N9+"\nuniform float uInset, uDisc;\nout vec2 vQ;\nvoid main() {\n  vec3 n, f; vec3 p = rootAt(n, f) - n * uInset;\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  vQ = vec2(position.x * 2. - 1., position.y);\n  mv.xy += vQ * uDisc;\n  gl_Position = projectionMatrix * mv;\n}",
 AX="\nin vec2 vQ; out vec4 o;\nvoid main() { if (dot(vQ, vQ) > 1.) discard; o = vec4(0.); }",
-yX=O9+"\nuniform vec2 uVp, uYouP;        // viewport (px); you: intensity, reach\nuniform float uT, uFocal, uOrtho, uLen, uHair, uMinPx, uFrizz, uBright, uKey, uWrap, uSpec, uRim, uAmb, uEdge, uStripes, uStripeDark, uPurr, uBuzz;\nuniform float uFocus, uAperture, uMaxBlur;\nuniform vec3 uLight, uYouC, uYouCol, uRipP;   // ripples: wavenumber, phase, depth (how much brighter the crests are)\nuniform vec4 uRipO;                           // … their source, and how far they carry\nuniform vec2 uRipF;                           // … how far the first of them has come, and how high they lift the hair tips\nout vec3 vCol; out vec2 vQ;\nvoid main() {\n  float id = float(gl_InstanceID);\n  vec3 n, f; vec3 p = rootAt(n, f);\n  vec3 d = normalize(f + (hash31(id * 1.618 + 7.) - .5) * uFrizz);\n  float len = aFur.w * uLen * (.7 + .6 * aAux.z);\n  // the purr: ripples running out from the throat, as far as the first of them has come; and a faint buzz, each hair\n  // with its own phase (nothing moves together, so nothing flashes)\n  float dr = distance(p, uRipO.xyz);\n  float wave = sin(uRipP.x * dr - uRipP.y) * exp(-dr / max(uRipO.w, 1e-3)) * (1. - smoothstep(uRipF.x - .15, uRipF.x, dr));\n  vec3 tip = p + d * len + n * (uPurr * uBuzz * sin(TAU * 25. * uT + TAU * aAux.z) + uRipF.y * wave);\n  vec4 ca = projectionMatrix * modelViewMatrix * vec4(p, 1.), cb = projectionMatrix * modelViewMatrix * vec4(tip, 1.);\n  if (ca.w < 1e-3 || cb.w < 1e-3) { gl_Position = vec4(2., 2., 2., 1.); vCol = vec3(0.); vQ = vec2(0.); return; }\n  vec2 sa = ca.xy / ca.w * uVp * .5, sb = cb.xy / cb.w * uVp * .5, dir = sb - sa;\n  float sl = length(dir); dir = sl > 1e-4 ? dir / sl : vec2(1., 0.);\n  float dist = uOrtho > .5 ? 1. : ca.w;\n  // a hair thinner than the smallest drawn width is drawn that wide and dimmer; out of focus it spreads and dims\n  float px = uHair * uFocal / dist, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(ca.w - uFocus) / dist * uFocal, uMaxBlur) : 0.;\n  float hw = (core + blur) * 1.1, along = position.x;\n  vec2 sp = mix(sa, sb, along) + dir * (along * 2. - 1.) * blur * .5 + vec2(-dir.y, dir.x) * position.y * hw;\n  vec4 c = mix(ca, cb, along);\n  gl_Position = vec4(sp / (uVp * .5) * c.w, c.z, c.w);\n  vQ = vec2(along, position.y);\n  float energy = min(1., px / uMinPx) * core / (core + blur) * sl / (sl + blur);\n\n  // the coat: the ground colour, the stripes as far as they are drawn on (in their order along the body), the paint\n  float stripe = aCol.a * (1. - smoothstep(uStripes * 1.08 - .08, uStripes * 1.08, aPos.w));\n  float coat = (1. - uStripeDark * stripe) * (1. - .92 * aAux.w);\n  vec3 base = aCol.rgb * coat;\n  vec3 V = normalize(cameraPosition - p), L = normalize(uLight);\n  float open = mix(.3, 1., aLit.x), lit = mix(.22, 1., aLit.y);\n  float lam = clamp((dot(n, L) + uWrap) / (1. + uWrap), 0., 1.) * lit;\n  float TL = dot(d, L), TV = dot(d, V);\n  float sheen = pow(clamp(sqrt(max(0., 1. - TL * TL)) * sqrt(max(0., 1. - TV * TV)) - TL * TV, 0., 1.), 22.) * aLit.y;\n  // towards the outline the surface is seen edge-on and its hairs pile up in the picture: they are dimmed by as much,\n  // or the animal would wear a white line round it; the rim light is then put on as a light, as wide as wanted\n  float facing = abs(dot(n, V)), pile = mix(1., facing, uEdge), rim = pow(1. - facing, 2.2);\n  vec3 col = base * (open * (pile * (uAmb + uKey * lam) + uRim * rim)) + vec3(.75, .93, 1.) * (uSpec * sheen * coat * open * pile);\n  // you: a small warm light right beside the coat. It falls off quickly (what it lights is the face, the paws and\n  // the flank right behind it), and it lights the coat as the key light does: creases stay dark, markings stay markings\n  vec3 toYou = uYouC - p; float r2 = dot(toYou, toYou), fall = 1. / (1. + r2 / (uYouP.y * uYouP.y));\n  float warm = uYouP.x * fall * fall * clamp((dot(n, toYou * inversesqrt(max(r2, 1e-6))) + .3) / 1.3, 0., 1.);\n  col += (.2 + .8 * coat) * uYouCol * (warm * pile * open);\n  col *= 1. + uRipP.z * wave;\n  vCol = col * uBright * energy;\n}",
+yX=N9+"\nuniform vec2 uVp, uYouP;        // viewport (px); you: intensity, reach\nuniform float uT, uFocal, uOrtho, uLen, uHair, uMinPx, uFrizz, uBright, uKey, uWrap, uSpec, uRim, uAmb, uEdge, uStripes, uStripeDark, uPurr, uBuzz;\nuniform float uFocus, uAperture, uMaxBlur;\nuniform vec3 uLight, uYouC, uYouCol, uRipP;   // ripples: wavenumber, phase, depth (how much brighter the crests are)\nuniform vec4 uRipO;                           // … their source, and how far they carry\nuniform vec2 uRipF;                           // … how far the first of them has come, and how high they lift the hair tips\nout vec3 vCol; out vec2 vQ;\nvoid main() {\n  float id = float(gl_InstanceID);\n  vec3 n, f; vec3 p = rootAt(n, f);\n  vec3 d = normalize(f + (hash31(id * 1.618 + 7.) - .5) * uFrizz);\n  float len = aFur.w * uLen * (.7 + .6 * aAux.z);\n  // the purr: ripples running out from the throat, as far as the first of them has come; and a faint buzz, each hair\n  // with its own phase (nothing moves together, so nothing flashes)\n  float dr = distance(p, uRipO.xyz);\n  float wave = sin(uRipP.x * dr - uRipP.y) * exp(-dr / max(uRipO.w, 1e-3)) * (1. - smoothstep(uRipF.x - .15, uRipF.x, dr));\n  vec3 tip = p + d * len + n * (uPurr * uBuzz * sin(TAU * 25. * uT + TAU * aAux.z) + uRipF.y * wave);\n  vec4 ca = projectionMatrix * modelViewMatrix * vec4(p, 1.), cb = projectionMatrix * modelViewMatrix * vec4(tip, 1.);\n  if (ca.w < 1e-3 || cb.w < 1e-3) { gl_Position = vec4(2., 2., 2., 1.); vCol = vec3(0.); vQ = vec2(0.); return; }\n  vec2 sa = ca.xy / ca.w * uVp * .5, sb = cb.xy / cb.w * uVp * .5, dir = sb - sa;\n  float sl = length(dir); dir = sl > 1e-4 ? dir / sl : vec2(1., 0.);\n  float dist = uOrtho > .5 ? 1. : ca.w;\n  // a hair thinner than the smallest drawn width is drawn that wide and dimmer; out of focus it spreads and dims\n  float px = uHair * uFocal / dist, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(ca.w - uFocus) / dist * uFocal, uMaxBlur) : 0.;\n  float hw = (core + blur) * 1.1, along = position.x;\n  vec2 sp = mix(sa, sb, along) + dir * (along * 2. - 1.) * blur * .5 + vec2(-dir.y, dir.x) * position.y * hw;\n  vec4 c = mix(ca, cb, along);\n  gl_Position = vec4(sp / (uVp * .5) * c.w, c.z, c.w);\n  vQ = vec2(along, position.y);\n  float energy = min(1., px / uMinPx) * core / (core + blur) * sl / (sl + blur);\n\n  // the coat: the ground colour, the stripes as far as they are drawn on (in their order along the body), the paint\n  float stripe = aCol.a * (1. - smoothstep(uStripes * 1.08 - .08, uStripes * 1.08, aPos.w));\n  float coat = (1. - uStripeDark * stripe) * (1. - .92 * aAux.w);\n  vec3 base = aCol.rgb * coat;\n  vec3 V = normalize(cameraPosition - p), L = normalize(uLight);\n  float open = mix(.3, 1., aLit.x), lit = mix(.22, 1., aLit.y);\n  float lam = clamp((dot(n, L) + uWrap) / (1. + uWrap), 0., 1.) * lit;\n  float TL = dot(d, L), TV = dot(d, V);\n  float sheen = pow(clamp(sqrt(max(0., 1. - TL * TL)) * sqrt(max(0., 1. - TV * TV)) - TL * TV, 0., 1.), 22.) * aLit.y;\n  // towards the outline the surface is seen edge-on and its hairs pile up in the picture: they are dimmed by as much,\n  // or the animal would wear a white line round it; the rim light is then put on as a light, as wide as wanted\n  float facing = abs(dot(n, V)), pile = mix(1., facing, uEdge), rim = pow(1. - facing, 2.2);\n  vec3 col = base * (open * (pile * (uAmb + uKey * lam) + uRim * rim)) + vec3(.75, .93, 1.) * (uSpec * sheen * coat * open * pile);\n  // you: a small warm light right beside the coat. It falls off quickly (what it lights is the face, the paws and\n  // the flank right behind it), and it lights the coat as the key light does: creases stay dark, markings stay markings\n  vec3 toYou = uYouC - p; float r2 = dot(toYou, toYou), fall = 1. / (1. + r2 / (uYouP.y * uYouP.y));\n  float warm = uYouP.x * fall * fall * clamp((dot(n, toYou * inversesqrt(max(r2, 1e-6))) + .3) / 1.3, 0., 1.);\n  col += (.2 + .8 * coat) * uYouCol * (warm * pile * open);\n  col *= 1. + uRipP.z * wave;\n  vCol = col * uBright * energy;\n}",
 bX="\nin vec3 vCol; in vec2 vQ; out vec4 o;\nvoid main() {\n  float across = exp(-vQ.y * vQ.y * 3.2);                                        // a soft round hair\n  float along = smoothstep(0., .1, vQ.x) * (1. - smoothstep(.45, 1., vQ.x));     // out of the coat at the root, tapering to the tip\n  o = vec4(vCol * across * along, 1.);                                          // additive: alpha 1, colour already weighted\n}",
-gg=c((e=0,
+wg=c((e=0,
 t=0,
 n=0)=>({
 value:new B(e,
@@ -54111,7 +54112,7 @@ t,
 n)}
 ),
 "v3"),
-z9=c(()=>({
+O9=c(()=>({
 value:new ot}
 ),
 "v4"),
@@ -54119,7 +54120,7 @@ li=c(e=>({
 value:e}
 ),
 "f"),
-N9=class{
+U9=class{
 static{
 c(this,
 "Fur")}
@@ -54135,7 +54136,7 @@ tail:r=null}
 this.N=t;
 let o=new Nr;
 o.setAttribute("position",
-new Ln([0,
+new Fn([0,
 -1,
 0,
 1,
@@ -54190,7 +54191,7 @@ uEarA:li([0,
 1,
 0,
 0))),
-uTailP:z9(),
+uTailP:O9(),
 uTailU:li(r?.from??.6)}
 ;
 i.slice(0,
@@ -54253,15 +54254,15 @@ uBuzz:li(.004),
 uFocus:li(5),
 uAperture:li(0),
 uMaxBlur:li(40),
-uLight:gg(-.5,
+uLight:wg(-.5,
 .8,
 .45),
-uYouC:gg(),
-uYouCol:gg(1,
+uYouC:wg(),
+uYouCol:wg(1,
 .55,
 .22),
-uRipP:gg(),
-uRipO:z9(),
+uRipP:wg(),
+uRipO:O9(),
 uRipF:li(new he(1e3,
 0))}
 }
@@ -54339,7 +54340,7 @@ i.uFocal.value=t.isPerspectiveCamera?n/2/Math.tan(ut.degToRad(t.fov)/2):n*t.zoom
 this}
 }
 ;
-function U9(e,
+function G9(e,
 t,
 n,
 {
@@ -54360,9 +54361,9 @@ t[1]+n[1]*l,
 t[2]+n[2]*l)/l),
 a+=u}
 return o/a}
-c(U9,
+c(G9,
 "openness");
-function G9(e,
+function H9(e,
 t,
 n,
 i,
@@ -54392,9 +54393,9 @@ d+=X(m,
 .015,
 .25)}
 return X(f)}
-c(G9,
+c(H9,
 "shadow");
-function H9(e,
+function W9(e,
 t,
 n,
 i,
@@ -54415,19 +54416,19 @@ for(let u=0;
 u<3;
 u++)a[u]=e.pos[l*4+u],
 s[u]=e.nrm[l*4+u];
-o[l*2]=U9(n,
+o[l*2]=G9(n,
 a,
 s,
 r.open),
-o[l*2+1]=G9(n,
+o[l*2+1]=H9(n,
 a,
 s,
 i,
 r.shadow)}
 return o}
-c(H9,
+c(W9,
 "bakeLight");
-function*W9(e,
+function*V9(e,
 t,
 n,
 i,
@@ -54448,11 +54449,11 @@ for(let u=0;
 u<3;
 u++)a[u]=e.pos[l*4+u],
 s[u]=e.nrm[l*4+u];
-o[l*2]=U9(n,
+o[l*2]=G9(n,
 a,
 s,
 r.open),
-o[l*2+1]=G9(n,
+o[l*2+1]=H9(n,
 a,
 s,
 i,
@@ -54462,7 +54463,7 @@ progress:(l+1)/t,
 label:"cat light"}
 )}
 return o}
-c(W9,
+c(V9,
 "bakeLightStages");
 var MX={
 egg:[.55,
@@ -54506,9 +54507,9 @@ Jb=[[.84,
 lr.col;
 var Nh=.1,
 n4=25,
-a7=50,
+s7=50,
 Os=10**1.1,
-V9=.55,
+q9=.55,
 $b=.058,
 vr={
 D:29,
@@ -54518,13 +54519,13 @@ gy:600,
 gh:86,
 size:112}
 ,
-s7=2*Math.tan(vr.fov/2*Math.PI/180),
-Rg=c(e=>e*s7/1080,
+l7=2*Math.tan(vr.fov/2*Math.PI/180),
+Bg=c(e=>e*l7/1080,
 "kpx"),
-_c=[(vr.gx-960)*Rg(vr.D),
+_c=[(vr.gx-960)*Bg(vr.D),
 0,
-(vr.gy-540)*Rg(vr.D)],
-Bg=vr.gh*Rg(vr.D),
+(vr.gy-540)*Bg(vr.D)],
+Pg=vr.gh*Bg(vr.D),
 $=null,
 Qb=null;
 function Rt(e){
@@ -54619,7 +54620,7 @@ look:n}
 )}
 c(Li,
 "persp");
-function xg(e,
+function _g(e,
 t,
 n,
 i){
@@ -54664,7 +54665,7 @@ Et.cam(r,
 {
 look:e}
 )}
-c(xg,
+c(_g,
 "ortho");
 var xc=c((e,
 t,
@@ -54673,12 +54674,12 @@ i)=>[e[0]+t*Math.cos(i)*Math.sin(n),
 e[1]+t*Math.sin(i),
 e[2]+t*Math.cos(i)*Math.cos(n)],
 "orbit");
-function q9(e,
+function j9(e,
 t,
 n,
 i){
-let r=Bg*1080/(i*s7),
-o=Rg(r),
+let r=Pg*1080/(i*l7),
+o=Bg(r),
 a=[_c[0]-(t-960)*o,
 0,
 _c[2]-(n-540)*o];
@@ -54693,7 +54694,7 @@ up:[0,
 0,
 -1]}
 )}
-c(q9,
+c(j9,
 "glyphCam");
 function Ei(){
 for(let e of[$.me.points,
@@ -54730,18 +54731,18 @@ e.draw($.scene,
 t)}
 c(Ri,
 "render");
-function wg(e,
+function Ag(e,
 t,
 n){
 $.lines.mesh.visible=!0,
 $.lines.end(e),
-ng(e,
+ig(e,
 i=>i.draw($.scene,
 t),
 n)}
-c(wg,
+c(Ag,
 "renderPrinted");
-function Ag(e,
+function yg(e,
 t,
 n=.5,
 i=e.H){
@@ -54756,7 +54757,7 @@ minPx:1.1}
 ,
 t,
 i)}
-c(Ag,
+c(yg,
 "stars");
 function ni(e,
 t,
@@ -54764,7 +54765,7 @@ n,
 i={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -54804,8 +54805,8 @@ exposure:1,
 )}
 c(Bi,
 "look");
-var yg=c(e=>Object.assign(e.post,
-ig),
+var bg=c(e=>Object.assign(e.post,
+rg),
 "paperLook"),
 Sc=c((e,
 t)=>e<t||e>t+.3?0:(1-(e-t)/.3)**3,
@@ -54906,7 +54907,7 @@ p:"#6d717c",
 txt:"#1b1d23",
 cm:"#8d9098"}
 ,
-j9="#f1eee7",
+X9="#f1eee7",
 SX=[[["const ",
 "kw"],
 ["me",
@@ -55021,7 +55022,7 @@ alpha:.7}
 )}
 c(N0,
 "newLine");
-var X9={
+var Y9={
 pos:[.3,
 .45,
 2.7],
@@ -55087,7 +55088,7 @@ d+6])}
 }
 c(TX,
 "cells");
-var l7=.5;
+var u7=.5;
 function CX(e,
 t,
 n=1){
@@ -55097,11 +55098,11 @@ return{
 flowT:e<r?Math.max(0,
 e-i):n===1?r-i+(e-r)+6*(e-r)**2:r-i+n*(e-r+6*(e-r)**2),
 drainT:e<r?-1:r-i,
-drained:e<r?0:X((e-r+6*(e-r)**2)*l7*n)}
+drained:e<r?0:X((e-r+6*(e-r)**2)*u7*n)}
 }
 c(CX,
 "flowClock");
-function _g(e,
+function Sg(e,
 t,
 n={
 }
@@ -55117,7 +55118,7 @@ spread:.55,
 arc:.35,
 flowT:i.flowT,
 drainT:i.drainT,
-speed:l7,
+speed:u7,
 word:R.inOutCubic(_(e,
 t.tNut-.14,
 t.tNut+.14)),
@@ -55131,7 +55132,7 @@ t:e,
 ...n,
 fc:i}
 }
-c(_g,
+c(Sg,
 "flowParams");
 var EX=c(e=>Li(e,
 [.05,
@@ -55144,7 +55145,7 @@ var EX=c(e=>Li(e,
 fov:30}
 ),
 "SANKEY_CAM");
-function Sg(e,
+function Tg(e,
 t,
 n,
 i={
@@ -55212,16 +55213,16 @@ r.Y0,
 color:H.you.map(f=>f*1.5*(1-h)**2),
 width:2.4}
 )}
-c(Sg,
+c(Tg,
 "sankeyNodes");
-var Y9=c((e,
+var Q9=c((e,
 t=1)=>"".concat((t===1?e.dv*100:e.dv*t*100).toFixed(e.dv<.1?1:0),
 " %"),
 "pctOf"),
 RX=c((e,
 t=1)=>t===1?e.amt:(parseFloat(e.amt)*t).toFixed((e.amt.split(".")[1]??"").length),
 "amtOf");
-function Tg(e,
+function Cg(e,
 t,
 n,
 i={
@@ -55346,7 +55347,7 @@ align:"right",
 color:P.gold,
 alpha:v}
 ),
-r.text(Y9(g,
+r.text(Q9(g,
 h),
 m,
 A,
@@ -55368,7 +55369,7 @@ let w=l([o.xM,
 p.yMid+p.w/2,
 0]),
 v="".concat(p.name,
-"  ").concat(Y9(p)),
+"  ").concat(Q9(p)),
 A={
 size:15,
 weight:600,
@@ -55409,7 +55410,7 @@ weight:600,
 color:P.you,
 alpha:.9*d}
 )}
-c(Tg,
+c(Cg,
 "sankeyLabels");
 function BX(e,
 t,
@@ -55432,7 +55433,7 @@ r)],
 {
 fov:30}
 ),
-a=_g(n,
+a=Sg(n,
 t,
 {
 fast:2}
@@ -55440,7 +55441,7 @@ fast:2}
 s=Sc(n,
 t.tNut),
 l=a.fc.drained;
-Cg(e,
+Eg(e,
 o,
 {
 bright:.05*(1-_(i,
@@ -55459,7 +55460,7 @@ $.rib.set(.1*(1-_(i,
 .45)),
 1,
 l),
-Sg(e,
+Tg(e,
 o,
 t,
 {
@@ -55474,7 +55475,7 @@ t.tNut+.8)}
 ),
 Ri(e,
 o),
-Tg(e,
+Cg(e,
 o,
 t,
 {
@@ -55526,7 +55527,7 @@ t)}
 c(BX,
 "nutrientsGiven");
 var PX="USDA FoodData Central  SR Legacy  NDB 11209\nEggplant, raw                      per 100 g\n-------------------------------------------\nWater                         92.30  g\nEnergy                           25  kcal\nEnergy                          104  kJ\nProtein                        0.98  g\nTotal lipid (fat)              0.18  g\nAsh                            0.66  g\nCarbohydrate, by difference    5.88  g\nFiber, total dietary            3.0  g\nSugars, total                  3.53  g\nCalcium, Ca                       9  mg\nIron, Fe                       0.23  mg\nMagnesium, Mg                    14  mg\nPhosphorus, P                    24  mg\nPotassium, K                    229  mg\nSodium, Na                        2  mg\nZinc, Zn                       0.16  mg\nCopper, Cu                    0.081  mg\nManganese, Mn                 0.232  mg\nSelenium, Se                    0.3  μg\nVitamin C                       2.2  mg\nThiamin                       0.039  mg\nRiboflavin                    0.037  mg\nNiacin                        0.649  mg\nPantothenic acid              0.281  mg\nVitamin B-6                   0.084  mg\nFolate, total                    22  μg\nCholine, total                  6.9  mg\nVitamin A, RAE                    1  μg\nCarotene, beta                   14  μg\nLutein + zeaxanthin              36  μg\nVitamin E                      0.30  mg\nVitamin K (phylloquinone)       3.5  μg";
-function Cg(e,
+function Eg(e,
 t,
 n={
 }
@@ -55547,24 +55548,24 @@ maxBlur:20}
 ,
 t,
 e.H)}
-c(Cg,
+c(Eg,
 "dataWall");
-var u7=Array.from({
+var c7=Array.from({
 length:61}
 ,
 (e,
 t)=>400+t*5),
-to=yb(u7),
-Pg=[-.05,
+to=yb(c7),
+kg=[-.05,
 .45],
-wl=c(e=>[e[0]+Pg[0],
-e[1]+Pg[1],
+wl=c(e=>[e[0]+kg[0],
+e[1]+kg[1],
 0],
 "at"),
 Mu=[to.entry[0]-to.dir0[0]*3,
 to.entry[1]-to.dir0[1]*3],
-c7=3.3;
-Math.max(...u7.map(Jd));
+h7=3.3;
+Math.max(...c7.map(ep));
 var U0=1.35,
 kX=c((e,
 t)=>1.2*R.inOutSine(_(e,
@@ -55573,7 +55574,7 @@ t.B(10)+.3))+30.8*R.inCubic(_(e,
 t.B(10)+.46,
 t.lGive2.start+.01)),
 "conc");
-function Q9(e,
+function Z9(e,
 t,
 n={
 }
@@ -55620,7 +55621,7 @@ color:[.8,
 1].map(M=>M*.8),
 width:1.8}
 );
-let p=l9(Math.max(r,
+let p=u9(Math.max(r,
 .001)),
 m=r>.01?p.rgb.map(M=>M*(.35+.65*p.Y)):[1,
 1,
@@ -55701,14 +55702,14 @@ r):1;
 i.segment(wl(M.inside[0]),
 wl(M.inside[1]),
 {
-color:eg(M.l).map(S=>S*.12*T*o),
+color:tg(M.l).map(S=>S*.12*T*o),
 width:2}
 )}
 $.fan.set(r,
 .9*o,
 A,
 1);
-let y=c7+Pg[0],
+let y=h7+kg[0],
 b=[.6,
 .65,
 .8].map(M=>M*.55),
@@ -55735,7 +55736,7 @@ width:1.6}
 {
 tr:p}
 }
-c(Q9,
+c(Z9,
 "bench");
 function LX(e,
 t,
@@ -55777,7 +55778,7 @@ p.stroke();
 for(let m=u;
 m<h;
 m+=2){
-let g=eg(m),
+let g=tg(m),
 w=n>.01?B0(m,
 n):1;
 p.fillStyle="rgb(".concat(g.map(v=>Math.round(255*(v*w)**(1/2.2))).join(","),
@@ -55793,7 +55794,7 @@ for(let m=u;
 m<=h;
 m+=1){
 let g=f(m),
-w=d($d(m));
+w=d(tp(m));
 m===u?p.moveTo(g,
 w):p.lineTo(g,
 w)}
@@ -55804,7 +55805,7 @@ p.strokeStyle="rgba(255,214,200,.5)",
 p.lineWidth=1;
 for(let m of bb)p.beginPath(),
 p.moveTo(f(m),
-d($d(m))-6),
+d(tp(m))-6),
 p.lineTo(f(m),
 r+a),
 p.stroke();
@@ -55812,7 +55813,7 @@ p.setLineDash([])}
 ),
 bb.forEach(p=>e.text("".concat(p),
 f(p),
-d($d(p))-18,
+d(tp(p))-18,
 {
 size:14,
 weight:600,
@@ -55852,8 +55853,8 @@ alpha:l}
 ))}
 c(LX,
 "absPanel");
-var h7="CC(C)=CCCC(C)=CC=CC(C)=CC=CC(C)=CC=CC=C(C)C=CC=C(C)C=CC=C(C)CCC=C(C)C",
-vp=[{
+var f7="CC(C)=CCCC(C)=CC=CC(C)=CC=CC(C)=CC=CC=C(C)C=CC=C(C)C=CC=C(C)CCC=C(C)C",
+wp=[{
 atom:16,
 dir:[-.2,
 .85,
@@ -55893,7 +55894,7 @@ arc:.06}
 }
 c(V0,
 "molState");
-function Z9(e,
+function K9(e,
 t,
 n,
 i={
@@ -55903,7 +55904,7 @@ let r=e.t,
 o=$.lines,
 a=[],
 s=e.text.overlay;
-return vp.forEach((l,
+return wp.forEach((l,
 u)=>{
 let h=n.quench[u],
 f=yl(l.atom),
@@ -56032,19 +56033,19 @@ amp:3.2*Math.exp(-x/.35)}
 }
 ),
 a.slice(-3)}
-c(Z9,
+c(K9,
 "radicals");
-var mp=[1.79,
+var gp=[1.79,
 .345,
 -.26],
-f7=-.4,
-d7=[23,
+d7=-.4,
+p7=[23,
 28,
 16,
 9],
-p7=2.9,
+m7=2.9,
 FX=c((e,
-t)=>f7*(1-R.inOutCubic(_(e,
+t)=>d7*(1-R.inOutCubic(_(e,
 t.B(13)+.04,
 t.tAnti-.02))),
 "molShiftB");
@@ -56056,11 +56057,11 @@ let r=e.t,
 o=$.lines,
 a=[],
 s=e.text.overlay,
-l=mp;
-return vp.forEach((u,
+l=gp;
+return wp.forEach((u,
 h)=>{
 let f=n.quench[h],
-d=yl(d7[h]),
+d=yl(p7[h]),
 p=[d[0]+i,
 d[1],
 d[2]],
@@ -56215,9 +56216,9 @@ s=.012*r,
 l=c(h=>(Math.sin(i*37+h*2.3)+.6*Math.sin(i*61+h*1.7))*s,
 "n");
 $.you.points.visible=!0,
-$.you.points.position.set(mp[0]+l(0),
-mp[1]+l(1),
-mp[2]+l(2)),
+$.you.points.position.set(gp[0]+l(0),
+gp[1]+l(1),
+gp[2]+l(2)),
 $.you.points.scale.setScalar(4.2*(1+.12*o)),
 $.you.set({
 a:$.tex.you,
@@ -56230,7 +56231,7 @@ sparkle:.12+.5*r}
 ,
 t,
 e.H);
-let u=G(mp,
+let u=G(gp,
 t);
 u[2]<1&&e.text.overlay.text("you",
 u[0]+46,
@@ -56247,19 +56248,19 @@ function IX(e,
 t,
 n,
 i){
-let r=xg([C(-.1,
+let r=_g([C(-.1,
 .1,
 i),
 -.05,
 0],
 "front",
-p7,
+m7,
 e.aspect),
-o=f7,
+o=d7,
 a=R.inOutSine(_(n,
 t.lGive2.start+.02,
 t.B(13)-.04)),
-s=kg($.lyco,
+s=Lg($.lyco,
 [o,
 0,
 0],
@@ -56300,7 +56301,7 @@ Ri(e,
 r);
 let l=e.text.overlay,
 u=Math.floor(a*69);
-l.text(h7.slice(0,
+l.text(f7.slice(0,
 u),
 960,
 760,
@@ -56358,7 +56359,7 @@ r),
 a=C(0,
 .32,
 r),
-s=C(p7/2/Math.tan(14*Math.PI/180),
+s=C(m7/2/Math.tan(14*Math.PI/180),
 3.3,
 r),
 l=[C(0,
@@ -56398,7 +56399,7 @@ maxBlur:20}
 ,
 u,
 e.H),
-r<1&&kg($.lyco,
+r<1&&Lg($.lyco,
 [h,
 0,
 0],
@@ -56486,7 +56487,7 @@ $.lines.end(e);
 let E=Dt(e,
 L=>L.draw($.scene,
 l));
-rn(e,
+on(e,
 E,
 "thermal",
 {
@@ -56509,7 +56510,7 @@ y=Math.atan2(A[1]-v[1],
 A[0]-v[0]),
 b=[Math.sin(y),
 -Math.cos(y)],
-x=G(yl(d7[0]),
+x=G(yl(p7[0]),
 l),
 M=Math.hypot(A[0]-v[0],
 A[1]-v[1]),
@@ -56577,14 +56578,14 @@ spill:.45}
 ))}
 c(zX,
 "antioxGiven");
-function gp(e,
+function Ap(e,
 t){
 let n=R.inOutSine(_(e,
 t.lCat.start+.15,
 t.wTabby.start+.15))*(1-_(e,
 t.tEnj,
 t.tEnj+.08)),
-i=e>t.lPurr.start?j*n4/a7*(e-t.lPurr.start):0;
+i=e>t.lPurr.start?j*n4/s7*(e-t.lPurr.start):0;
 return{
 a:Zn.a,
 d:Zn.d,
@@ -56596,9 +56597,9 @@ dAmp:1-R.inCubic(_(e,
 t.tEnj,
 t.tEnj+.16))}
 }
-c(gp,
+c(Ap,
 "psiState");
-function bg(e,
+function Mg(e,
 t,
 n,
 i=0){
@@ -56683,7 +56684,7 @@ a[(l+1)%4],
 color:t,
 width:n}
 )}
-c(bg,
+c(Mg,
 "box");
 function OX(e,
 t,
@@ -56867,19 +56868,19 @@ alpha:.9}
 )}
 c(NX,
 "scopeTrace");
-var K9=c((e,
+var J9=c((e,
 t)=>60*(e-t.lCat.start)/(t.tEnj-t.lCat.start),
 "expMin"),
-pp=O0.you.r,
-wp=1<<18,
+vp=O0.you.r,
+yp=1<<18,
 o4=[-.45,
 .8,
 .5],
-Mg=[-.55,
+xg=[-.55,
 .22,
 -.1],
-J9=.6,
-m7=c(e=>{
+$9=.6,
+v7=c(e=>{
 let t=Math.hypot(...e);
 return e.map(n=>n/t)}
 ,
@@ -56932,7 +56933,7 @@ return s>0&&s<1?Math.sin(s*Math.PI)**2*Math.cos(s*7):0}
 ,
 "flick");
 return{
-b:k9(i),
+b:L9(i),
 purr:r*(.85+.15*Math.cos(j*i)),
 ears:[.45*o(t.twitch[0]),
 .4*o(t.twitch[1])],
@@ -56941,22 +56942,22 @@ tail:.16*Math.sin(j*(e-n.lCat.start)/(n.beat*5))}
 c(UX,
 "catLife");
 function GX(){
-let e=Eg??I9(wp),
-t=O0.tail[Math.round((O0.tail.length-1)*J9)];
-$.cat=new N9(e,
-wp,
-t4??H9(e,
-wp,
+let e=Rg??D9(yp),
+t=O0.tail[Math.round((O0.tail.length-1)*$9)];
+$.cat=new U9(e,
+yp,
+t4??W9(e,
+yp,
 Xb,
-m7(o4)),
+v7(o4)),
 {
 ears:O0.ears,
 tail:{
 pivot:t,
-from:J9}
+from:$9}
 }
 ),
-$.youCat=new Qt({
+$.youCat=new Zt({
 count:$.you.N,
 bands:!0}
 ),
@@ -56982,12 +56983,12 @@ l=Sc(r,
 n.tEnj),
 u=O0.throat,
 h=Math.hypot(u[0],
-u[1]-pp,
+u[1]-vp,
 u[2]),
 f=j/G0.len,
 d=j*G0.hz,
 p=Math.max(0,
-r-n.purr)*(h-pp)/(n.got-n.purr),
+r-n.purr)*(h-vp)/(n.got-n.purr),
 m=R.outCubic(_(r,
 n.got,
 n.got+.6)),
@@ -56998,9 +56999,9 @@ w=g>0&&g<1?(1-g)**2:0,
 v=(1+.06*m+.18*w)*(1+.15*s),
 A=$.youCat,
 y=[0,
-pp*v,
+vp*v,
 0],
-b=pp/.035*v,
+b=vp/.035*v,
 x={
 o:u,
 k:f,
@@ -57066,7 +57067,7 @@ aperture:i.aperture??0}
 t,
 e.H);
 for(let[M,
-T]of P9)Math.hypot(T[0]-M[0],
+T]of k9)Math.hypot(T[0]-M[0],
 T[1]-M[1],
 T[2]-M[2])>.12&&o.segment(M,
 T,
@@ -57077,7 +57078,7 @@ width:1.5}
 return g>0&&g<1&&o.polyline(Tc([0,
 .015,
 0],
-pp*v+.24*R.outCubic(g),
+vp*v+.24*R.outCubic(g),
 [1,
 0,
 0],
@@ -57150,7 +57151,7 @@ alpha:.9}
 )}
 c(HX,
 "purrScope");
-function $9(e,
+function e7(e,
 t){
 let n=e.text.overlay;
 be(n,
@@ -57172,9 +57173,9 @@ HX(n,
 380,
 96,
 .06+.94*t.purr)}
-c($9,
+c(e7,
 "purrPanel");
-function e7(e,
+function t7(e,
 t){
 return[0,
 1,
@@ -57184,7 +57185,7 @@ return[0,
 -.3,
 .26,
 .09][n]*(e-t.lGod.start-.445)])}
-c(e7,
+c(t7,
 "haloSpin");
 function e4(e,
 t){
@@ -57195,7 +57196,7 @@ b:n.psi,
 morph:0,
 size:.0048,
 bright:.42,
-psi:gp(e,
+psi:Ap(e,
 t),
 noise:0,
 sparkle:.1}
@@ -57216,7 +57217,7 @@ i),
 bright:C(.42,
 .5,
 i),
-psi:gp(e,
+psi:Ap(e,
 t),
 noise:0,
 sparkle:.15}
@@ -57237,7 +57238,7 @@ i),
 bright:C(.5,
 .32,
 i),
-spin:e7(e,
+spin:t7(e,
 t),
 noise:0}
 }
@@ -57251,11 +57252,11 @@ b:n.exists,
 morph:i,
 spread:.55,
 arc:.06,
-spin:e7(e,
+spin:t7(e,
 t),
 spinA:!0,
 size:.07*(lr.size/.07)**i,
-bright:.34*(lr.bright*V9/.34)**i,
+bright:.34*(lr.bright*q9/.34)**i,
 variance:1-i,
 noise:0,
 sparkle:lr.sparkle}
@@ -57270,7 +57271,7 @@ b:n.qed,
 morph:i,
 spread:.12,
 size:lr.size,
-bright:lr.bright*C(V9,
+bright:lr.bright*C(q9,
 1,
 i),
 variance:0,
@@ -57373,12 +57374,12 @@ u*4)}
 return r}
 c(VX,
 "flatten");
-var t7=c((e,
-t)=>[(_c[0]+e*Bg/2)/Os,
+var n7=c((e,
+t)=>[(_c[0]+e*Pg/2)/Os,
 0,
-(_c[2]-t*Bg/2)/Os],
+(_c[2]-t*Pg/2)/Os],
 "glyphWorld");
-function n7(e,
+function i7(e,
 t,
 n,
 i=[0,
@@ -57442,7 +57443,7 @@ M++)d[b][x][w*4+M]=y[x][A*4+M]}
 )}
 )}
 return d}
-c(n7,
+c(i7,
 "pairByAngle");
 Wn({
 id:"v2",
@@ -57452,9 +57453,9 @@ to:c(e=>e.section("pre2").start,
 "to"),
 init(e){
 $={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
@@ -57470,23 +57471,23 @@ count:65536}
 $.word=new E0({
 count:65536}
 ),
-$.you=new Qt({
+$.you=new Zt({
 count:4096}
 ),
-$.stars=new Qt({
+$.stars=new Zt({
 count:16384}
 ),
 $.lines=new Xn(16e3),
-$.gf=new nn({
+$.gf=new rn({
 count:16384}
 ),
 $.gf.text("v2/eggplant-src",
-$R(tn("ch/v2/food.js")));
+e9(nn("ch/v2/food.js")));
 let t=$.gf.layout("v2/calligram",
 qo($.gf,
-e9,
-t9)),
-n=rg("NUTRIENTS",
+t9,
+n9)),
+n=og("NUTRIENTS",
 {
 height:.5,
 tracking:30}
@@ -57502,10 +57503,10 @@ cell:.05,
 width:n.width+.1,
 height:.6}
 ));
-$.flow=new n9($.gf,
+$.flow=new i9($.gf,
 t,
 i),
-$.record=new nn({
+$.record=new rn({
 count:4096}
 ),
 $.record.text("v2/usda-record",
@@ -57521,13 +57522,13 @@ cell:.115,
 cols:60}
 ))}
 ,
-$.rib=new i9,
-$.fan=new u9(tg,
-c7,
-Pg),
-$.lyco=jR();
+$.rib=new r9,
+$.fan=new c9(ng,
+h7,
+kg),
+$.lyco=XR();
 let r=null,
-o=c(v=>r??=XR(v,
+o=c(v=>r??=YR(v,
 $.lyco,
 {
 scale:Nh,
@@ -57538,21 +57539,21 @@ seed:141}
 ),
 "lycoGen"),
 a=null,
-s=c(v=>a??=f9(v),
+s=c(v=>a??=d9(v),
 "pk"),
 l=null,
-u=c(v=>l??=n7(s(v),
-YR(v),
+u=c(v=>l??=i7(s(v),
+QR(v),
 v,
 [Zn.a[0],
 Zn.a[2]])[0],
 "hl"),
 h=null,
-f=c(v=>h??=n7(u(v),
+f=c(v=>h??=i7(u(v),
 mc(v,
 "exists",
 {
-toWorld:t7,
+toWorld:n7,
 lum:!0}
 ),
 v,
@@ -57563,23 +57564,23 @@ _c[2]/Os],
 [mc(v,
 "qed",
 {
-toWorld:t7,
+toWorld:n7,
 lum:!0}
 )]),
 "eq"),
-d=rg("EXISTENCE",
+d=og("EXISTENCE",
 {
 height:.19,
 tracking:32}
 ),
-p=_c[0]+(.4+118/691)*Bg+d.width/2,
+p=_c[0]+(.4+118/691)*Pg+d.width/2,
 m=c((v,
 A)=>[p+v,
 .002,
 _c[2]-A],
 "wordTo"),
 g=null,
-w=c(v=>g??=d9(v,
+w=c(v=>g??=p9(v,
 "EXISTENCE",
 {
 col:[1,
@@ -57592,7 +57593,7 @@ toWorld:m}
 "wd");
 $.tex={
 psi:$.me.shape("v2/psi",
-v=>h9(v)),
+v=>f9(v)),
 peak:$.me.shape("v2/peak",
 s),
 halo:$.me.shape("v2/halo-from-peak",
@@ -57629,13 +57630,13 @@ x*4)}
 return y}
 ),
 stars:$.stars.shape("v2/stars",
-v=>Dn.stars(v,
+v=>zn.stars(v,
 {
 r0:30,
 r1:90}
 )),
 you:$.you.shape("v2/you",
-v=>Dn.ball(v,
+v=>zn.ball(v,
 {
 r:.035}
 ))}
@@ -57690,11 +57691,11 @@ u=[a*.55-.3,
 0],
 h=Li(e,
 l.map((f,
-d)=>C(X9.pos[d],
+d)=>C(Y9.pos[d],
 f,
 s)),
 u.map((f,
-d)=>C(X9.at[d],
+d)=>C(Y9.at[d],
 f,
 s)),
 {
@@ -57758,7 +57759,7 @@ Ei();
 let r=R.inOutSine(_(i,
 0,
 t.lGive.start-t.B(2))),
-o=xg([C(.05,
+o=_g([C(.05,
 -.55,
 r),
 C(0,
@@ -57814,9 +57815,9 @@ n=e.t,
 i=n-t.lGive.start;
 Ei();
 let r=EX(e),
-o=_g(n,
+o=Sg(n,
 t);
-Cg(e,
+Eg(e,
 r,
 {
 bright:.05*_(i,
@@ -57833,7 +57834,7 @@ $.rib.set(.1*_(i,
 R.inOutSine(_(i,
 .1,
 .6))),
-Sg(e,
+Tg(e,
 r,
 t,
 {
@@ -57841,7 +57842,7 @@ absorbed:0}
 ),
 Ri(e,
 r),
-Tg(e,
+Cg(e,
 r,
 t,
 {
@@ -57898,9 +57899,9 @@ r),
 {
 fov:30}
 ),
-a=_g(n,
+a=Sg(n,
 t);
-Cg(e,
+Eg(e,
 o),
 $.flow.points.visible=!0,
 $.flow.set(a,
@@ -57908,7 +57909,7 @@ o,
 e.H),
 $.rib.set(.1,
 1),
-Sg(e,
+Tg(e,
 o,
 t,
 {
@@ -57916,7 +57917,7 @@ absorbed:.15}
 ),
 Ri(e,
 o),
-Tg(e,
+Cg(e,
 o,
 t,
 {
@@ -57979,11 +57980,11 @@ r),
 {
 fov:30}
 ),
-a=_g(n,
+a=Sg(n,
 t),
 s=Sc(n,
 t.tNut);
-Cg(e,
+Eg(e,
 o,
 {
 bright:.05*(1-_(i,
@@ -58002,7 +58003,7 @@ $.rib.set(.1*(1-_(i,
 .45)),
 1,
 a.fc.drained),
-Sg(e,
+Tg(e,
 o,
 t,
 {
@@ -58011,7 +58012,7 @@ hit:s}
 ),
 Ri(e,
 o),
-Tg(e,
+Cg(e,
 o,
 t,
 {
@@ -58073,7 +58074,7 @@ r=Li(e,
 {
 fov:36}
 );
-Q9(e,
+Z9(e,
 t,
 {
 draw:R.outCubic(_(n,
@@ -58149,7 +58150,7 @@ o)}
 ),
 {
 tr:f}
-=Q9(e,
+=Z9(e,
 t,
 {
 c:r,
@@ -58241,7 +58242,7 @@ q(e))return IX(e,
 t,
 n,
 i);
-let r=xg([C(-.1,
+let r=_g([C(-.1,
 .1,
 i),
 -.05,
@@ -58252,7 +58253,7 @@ e.aspect),
 o=R.inOutSine(_(n,
 t.lGive2.start+.02,
 t.B(13)-.04)),
-a=kg($.lyco,
+a=Lg($.lyco,
 [0,
 0,
 0],
@@ -58285,7 +58286,7 @@ Ri(e,
 r);
 let s=e.text.overlay,
 l=Math.floor(o*69);
-s.text(h7.slice(0,
+s.text(f7.slice(0,
 l),
 960,
 760,
@@ -58389,7 +58390,7 @@ maxBlur:20}
 ,
 u,
 e.H),
-r<1&&kg($.lyco,
+r<1&&Lg($.lyco,
 [0,
 0,
 0],
@@ -58401,7 +58402,7 @@ Nh*1.42,
 {
 width:2.8}
 ),
-Z9(e,
+K9(e,
 u,
 t),
 Ri(e,
@@ -58450,7 +58451,7 @@ s,
 {
 fov:40}
 ),
-u=Z9(e,
+u=K9(e,
 l,
 t),
 h=Sc(n,
@@ -58478,7 +58479,7 @@ $.lines.end(e);
 let E=Dt(e,
 L=>L.draw($.scene,
 l));
-rn(e,
+on(e,
 E,
 "thermal",
 {
@@ -58501,7 +58502,7 @@ y=Math.atan2(A[1]-v[1],
 A[0]-v[0]),
 b=[Math.sin(y),
 -Math.cos(y)],
-x=G(yl(vp[0].atom),
+x=G(yl(wp[0].atom),
 l),
 M=Math.hypot(A[0]-v[0],
 A[1]-v[1]),
@@ -58563,9 +58564,9 @@ t.tAnti,
 .55,
 .45],
 {
-x:G(yl(vp[0].atom),
+x:G(yl(wp[0].atom),
 l)[0],
-y:G(yl(vp[0].atom),
+y:G(yl(wp[0].atom),
 l)[1],
 spill:.45}
 ))}
@@ -58592,7 +58593,7 @@ o=Li(e,
 {
 fov:38}
 );
-bg(Zn.box,
+Mg(Zn.box,
 [.9,
 .92,
 1].map(u=>u*1.1),
@@ -58603,7 +58604,7 @@ t,
 {
 reveal:.45}
 ),
-wg(e,
+Ag(e,
 o),
 N0(e,
 t,
@@ -58662,7 +58663,7 @@ be(a,
 [["P(alive)",
 "0.50"],
 ["V",
-gp(n,
+Ap(n,
 t).V.toFixed(2)]],
 {
 accent:Vn.amber}
@@ -58673,7 +58674,7 @@ null,
 {
 paper:!0}
 ),
-yg(e)}
+bg(e)}
 }
 ,
 {
@@ -58686,7 +58687,7 @@ let t=Rt(e.T),
 n=e.t,
 i=n-t.B(18);
 Ei();
-let r=xg([C(-.06,
+let r=_g([C(-.06,
 .06,
 i),
 -.12,
@@ -58711,7 +58712,7 @@ dim:0}
 size:.0062,
 bright:.55}
 );
-let o=gp(n,
+let o=Ap(n,
 t),
 a=[];
 for(let l=0;
@@ -58743,7 +58744,7 @@ color:[.8,
 .9].map(l=>l*.6),
 width:1.2}
 ),
-wg(e,
+Ag(e,
 r,
 {
 gain:3.2}
@@ -58756,7 +58757,7 @@ s.text("I(x) = |ψa|² + |ψd|² + 2 V |ψa| |ψd| cos(k x + φ)",
 size:26,
 weight:600,
 color:Vn.black,
-stroke:j9,
+stroke:X9,
 strokeWidth:8,
 alpha:_(i,
 0,
@@ -58769,7 +58770,7 @@ s.text("fringe spacing 2π/k = ".concat((j/Zn.k[0]).toFixed(3)),
 size:16,
 weight:500,
 color:Vn.grey,
-stroke:j9,
+stroke:X9,
 strokeWidth:7,
 alpha:_(i,
 .1,
@@ -58792,7 +58793,7 @@ t,
 {
 paper:!0}
 ),
-yg(e)}
+bg(e)}
 }
 ,
 {
@@ -58805,7 +58806,7 @@ let t=Rt(e.T),
 n=e.t,
 i=n-t.lPurr.start;
 Ei();
-let r=gp(n,
+let r=Ap(n,
 t),
 o=.5+i*.1,
 a=Li(e,
@@ -58823,7 +58824,7 @@ s=OX([.9,
 1].map(d=>d*1.1),
 2.4,
 r.phase);
-wg(e,
+Ag(e,
 a);
 let l=e.text.overlay,
 u=G([0,
@@ -58877,7 +58878,7 @@ be(l,
 "".concat(n4.toFixed(1),
 " Hz")],
 ["shown",
-"× 1/".concat(a7)]],
+"× 1/".concat(s7)]],
 {
 accent:Vn.amber}
 ),
@@ -58887,7 +58888,7 @@ t,
 {
 paper:!0}
 ),
-yg(e)}
+bg(e)}
 }
 ,
 {
@@ -58911,7 +58912,7 @@ o=Li(e,
 {
 fov:34}
 );
-bg(Zn.box,
+Mg(Zn.box,
 [.9,
 .92,
 1].map(v=>v*.8),
@@ -58923,7 +58924,7 @@ t,
 reveal:.35,
 bright:.7}
 ),
-wg(e,
+Ag(e,
 o);
 let a=e.text.overlay,
 s=980,
@@ -58984,7 +58985,7 @@ for(let A=0;
 A<=120;
 A++){
 let y=d-f+f*A/120,
-b=K9(y,
+b=J9(y,
 t),
 x=b<=0?0:1-2**(-b/60),
 M=p(y),
@@ -58994,7 +58995,7 @@ T):v.moveTo(M,
 T)}
 v.stroke()}
 );
-let g=K9(n,
+let g=J9(n,
 t),
 w=1-2**(-g/60);
 a.text("P(decay) = ".concat(w.toFixed(2)),
@@ -59038,7 +59039,7 @@ t,
 {
 paper:!0}
 ),
-yg(e)}
+bg(e)}
 }
 ,
 {
@@ -59065,7 +59066,7 @@ a=Li(e,
 {
 fov:38}
 );
-bg(Zn.box,
+Mg(Zn.box,
 H.white.map(p=>p*.9),
 2.2,
 r);
@@ -59199,7 +59200,7 @@ n=H0(e),
 i=e.t-t.lCat.start;
 Ei();
 let r=Li(e,
-xc(Mg,
+xc(xg,
 C(4.5,
 4.1,
 R.inOutSine(_(i,
@@ -59207,7 +59208,7 @@ R.inOutSine(_(i,
 1.3))),
 .3+i*.04,
 .62),
-Mg,
+xg,
 {
 fov:38}
 );
@@ -59328,7 +59329,7 @@ o,
 n);
 Ri(e,
 o),
-$9(e,
+e7(e,
 a),
 ni(e,
 t),
@@ -59370,7 +59371,7 @@ aperture:.0015}
 );
 Ri(e,
 a),
-$9(e,
+e7(e,
 s),
 ni(e,
 t),
@@ -59458,11 +59459,11 @@ e.shot.start,
 e.shot.start+t.beat*8);
 Ei();
 let o=Li(e,
-xc(Mg,
+xc(xg,
 4.2,
 .3+j*r,
 e.row.el??.62),
-Mg,
+xg,
 {
 fov:38}
 );
@@ -59507,10 +59508,10 @@ l,
 {
 fov:40}
 );
-Ag(e,
+yg(e,
 u,
 .5*i),
-i<.5&&bg(Zn.box,
+i<.5&&Mg(Zn.box,
 H.white.map(p=>p*.5*(1-i*2)),
 1.6,
 1.9),
@@ -59573,7 +59574,7 @@ o=Li(e,
 {
 fov:48}
 );
-Ag(e,
+yg(e,
 o,
 .55),
 Al(e,
@@ -59594,7 +59595,7 @@ o),
 s=e.text.overlay,
 l=Math.atan2(o.position.z,
 o.position.x);
-Tn(s,
+Cn(s,
 a[0],
 a[1],
 20,
@@ -59674,7 +59675,7 @@ up:[0,
 0,
 -1]}
 );
-Ag(e,
+yg(e,
 r,
 .4),
 Al(e,
@@ -59694,7 +59695,7 @@ r,
 o),
 Ri(e,
 r),
-o>0&&Tn(e.text.overlay,
+o>0&&Cn(e.text.overlay,
 960,
 540,
 34,
@@ -59734,7 +59735,7 @@ up:[0,
 0,
 -1]}
 );
-Ag(e,
+yg(e,
 i,
 .35*(1-_(n,
 0,
@@ -59751,7 +59752,7 @@ i,
 1),
 Ri(e,
 i),
-r7(e,
+o7(e,
 t),
 ni(e,
 t),
@@ -59773,7 +59774,7 @@ i=R.outExpo(_(n,
 t.tExi,
 t.tExi+.34));
 Ei();
-let r=q9(e,
+let r=j9(e,
 C(vr.gx,
 640,
 i),
@@ -59799,13 +59800,13 @@ r,
 1-_(n,
 t.tExi,
 t.tExi+.1)),
-i7(e,
+r7(e,
 r,
 t,
 o),
 Ri(e,
 r),
-r7(e,
+o7(e,
 t,
 1-_(n,
 t.tExi,
@@ -59840,7 +59841,7 @@ i=R.inOutCubic(_(n,
 t.B(31.5),
 t.end));
 Ei();
-let r=q9(e,
+let r=j9(e,
 C(640,
 960,
 i),
@@ -59855,7 +59856,7 @@ t,
 scale:Os,
 shade:0}
 ),
-i7(e,
+r7(e,
 r,
 t,
 0,
@@ -59902,7 +59903,7 @@ H.you.map(i=>i*.45*n),
 46))}
 c(Kb,
 "youAt");
-function i7(e,
+function r7(e,
 t,
 n,
 i=0,
@@ -59925,9 +59926,9 @@ variance:.3}
 ,
 t,
 e.H))}
-c(i7,
+c(r7,
 "drawWord");
-function r7(e,
+function o7(e,
 t,
 n=1){
 let i=e.t,
@@ -60000,9 +60001,9 @@ p+=r.measure(y,
 w)}
 }
 )}
-c(r7,
+c(o7,
 "typedLine");
-function kg(e,
+function Lg(e,
 t,
 n,
 i,
@@ -60114,11 +60115,11 @@ g[1],
 p),
 m[2]]}
 }
-c(kg,
+c(Lg,
 "skeletal");
-var Eg=null,
+var Rg=null,
 t4=null;
-function*o7(e,
+function*a7(e,
 t,
 n){
 for(;
@@ -60131,26 +60132,26 @@ progress:t+n*i.value.progress,
 label:i.value.label}
 }
 }
-c(o7,
+c(a7,
 "__catStageProgress");
-function*v7(){
-Eg===null&&(Eg=yield*o7(D9(wp),
+function*g7(){
+Rg===null&&(Rg=yield*a7(z9(yp),
 0,
 .5)),
-t4===null&&(t4=yield*o7(W9(Eg,
-wp,
+t4===null&&(t4=yield*a7(V9(Rg,
+yp,
 Xb,
-m7(o4)),
+v7(o4)),
 .5,
 .5))}
-c(v7,
+c(g7,
 "prepareCat");
-var g7="\n// one grating's transmission at phase x (in periods): opaque lines of duty uDuty, fading to the mean when the\n// period is under ~2 px (w = pixels per period is passed in as fw = fwidth(x))\nfloat cover(float x, float fw, float duty) {                    // line coverage 0..1\n  float f = fract(x), d = min(f, 1. - f);                       // distance to the nearest line centre, periods\n  float line = 1. - smoothstep(duty * .5 - fw, duty * .5 + fw, d);\n  float aa = smoothstep(.25, .6, fw);                           // sub-2px period: average it away\n  return mix(line, duty, aa);\n}\nfloat trans(float x, float fw, float duty) { return 1. - .92 * cover(x, fw, duty); }\n// Two sheets (phases x1, x2 in periods, f1, f2 = periods per pixel), line opacity a, duty D <= .5. Resolved lines: the\n// product of the two transmissions. Unresolved lines: the low-pass of that product rather than the product of the\n// low-passes (which would be a flat grey). It keeps the beat term, the overlap of the two line sets, max(0, D − |x1 − x2|)\n// (the phase difference taken to the nearest period), so the moiré survives even where the lines themselves do not.\nfloat pair(float x1, float f1, float x2, float f2, float duty, float a, out float c1, out float c2) {\n  c1 = cover(x1, f1, duty); c2 = cover(x2, f2, duty);\n  float exact = (1. - a * c1) * (1. - a * c2);\n  float ph = x1 - x2, ov = max(0., duty - abs(ph - floor(ph + .5)));\n  float lp = 1. - 2. * a * duty + a * a * ov;\n  float k = smoothstep(.18, .5, max(f1, f2));\n  return mix(exact, lp, k);\n}",
-qX="\nuniform vec2 uRes; uniform float uMode, uD, uA, uRot, uDTheta, uBright, uDuty, uZoom, uDichro;\nuniform vec3 uColA, uColB;\nin vec2 vUv; out vec4 o;\n".concat(g7,
+var w7="\n// one grating's transmission at phase x (in periods): opaque lines of duty uDuty, fading to the mean when the\n// period is under ~2 px (w = pixels per period is passed in as fw = fwidth(x))\nfloat cover(float x, float fw, float duty) {                    // line coverage 0..1\n  float f = fract(x), d = min(f, 1. - f);                       // distance to the nearest line centre, periods\n  float line = 1. - smoothstep(duty * .5 - fw, duty * .5 + fw, d);\n  float aa = smoothstep(.25, .6, fw);                           // sub-2px period: average it away\n  return mix(line, duty, aa);\n}\nfloat trans(float x, float fw, float duty) { return 1. - .92 * cover(x, fw, duty); }\n// Two sheets (phases x1, x2 in periods, f1, f2 = periods per pixel), line opacity a, duty D <= .5. Resolved lines: the\n// product of the two transmissions. Unresolved lines: the low-pass of that product rather than the product of the\n// low-passes (which would be a flat grey). It keeps the beat term, the overlap of the two line sets, max(0, D − |x1 − x2|)\n// (the phase difference taken to the nearest period), so the moiré survives even where the lines themselves do not.\nfloat pair(float x1, float f1, float x2, float f2, float duty, float a, out float c1, out float c2) {\n  c1 = cover(x1, f1, duty); c2 = cover(x2, f2, duty);\n  float exact = (1. - a * c1) * (1. - a * c2);\n  float ph = x1 - x2, ov = max(0., duty - abs(ph - floor(ph + .5)));\n  float lp = 1. - 2. * a * duty + a * a * ov;\n  float k = smoothstep(.18, .5, max(f1, f2));\n  return mix(exact, lp, k);\n}",
+qX="\nuniform vec2 uRes; uniform float uMode, uD, uA, uRot, uDTheta, uBright, uDuty, uZoom, uDichro;\nuniform vec3 uColA, uColB;\nin vec2 vUv; out vec4 o;\n".concat(w7,
 "\nvoid main() {\n  vec2 p = (vUv - .5) * vec2(uRes.x / uRes.y, 1.) / uZoom;      // screen units: frame height = 1\n  p = rot2(uRot) * p;\n  float T;\n  if (uMode < .5) {\n    // two ring gratings about centres ±a: fringes along r₁ − r₂ = k·d (hyperbolae) and r₁ + r₂ = k·d (ellipses)\n    float r1 = length(p - vec2(-uA, 0.)) / uD, r2 = length(p - vec2(uA, 0.)) / uD, q1, q2;\n    T = pair(r1, fwidth(r1), r2, fwidth(r2), uDuty, .92, q1, q2);\n  } else {\n    // two line gratings at ±Δθ/2: straight fringes of spacing d / (2 sin(Δθ/2)), perpendicular to the bisector\n    vec2 n1 = vec2(cos(uDTheta * .5), sin(uDTheta * .5)), n2 = vec2(cos(-uDTheta * .5), sin(-uDTheta * .5));\n    float x1 = dot(p, n1) / uD, x2 = dot(p, n2) / uD, c1, c2;\n    T = pair(x1, fwidth(x1), x2, fwidth(x2), uDuty, .96, c1, c2);\n    // dichroic sheets (uDichro): sheet 1's lines pass violet, sheet 2's pass pink, so the fringes come in colours\n    vec3 T3 = (1. - c1 * vec3(.96, .96, .55)) * (1. - c2 * vec3(.5, .96, .8));\n    float r0 = length(p * uZoom);\n    vec3 back0 = mix(uColA, uColB, smoothstep(.05, .9, r0)) * (1. - smoothstep(.55, 1.05, r0 * .9));\n    o = vec4(back0 * mix(vec3(T), T3, uDichro) * uBright, 1.);\n    return;\n  }\n  float r = length(p * uZoom);\n  vec3 back = mix(uColA, uColB, smoothstep(.05, .9, r)) * (1. - smoothstep(.55, 1.05, r * .9));\n  o = vec4(back * T * uBright, 1.);\n}"),
-jX="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uT, uRot, uN, uFade, uD, uDTheta, uWall, uRing, uExit, uExitZ, uStop, uBright, uPulse;\nuniform vec3 uColA, uColB;\nin vec2 vUv; out vec4 o;\n".concat(g7,
+jX="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uT, uRot, uN, uFade, uD, uDTheta, uWall, uRing, uExit, uExitZ, uStop, uBright, uPulse;\nuniform vec3 uColA, uColB;\nin vec2 vUv; out vec4 o;\n".concat(w7,
 "\nconst float DZ = 1.3;\nfloat snorm(vec2 p, float n) { p = abs(p) + 1e-5; return pow(pow(p.x, n) + pow(p.y, n), 1. / n); }\n// rings: superellipse loops of radius uRing, tube .028; ring k turned by ±uRot (alternating) plus a fixed twist\nfloat rings(vec3 p, out float ang, out float k) {\n  k = floor(p.z / DZ + .5);\n  vec3 q = vec3(p.xy, p.z - k * DZ);\n  float s = mod(k, 2.) < .5 ? 1. : -1.;\n  vec2 xy = rot2(s * uRot + k * .4) * q.xy;\n  ang = atan(xy.y, xy.x);\n  return length(vec2(snorm(xy, uN) - uRing, q.z)) - .028;\n}\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz), ro = uCamPos;\n  float t = .05, glow = 0., hitT = -1.; vec3 gcol = vec3(0.);\n  float tStop = uStop > .5 && rd.z < 0. ? (uExitZ - ro.z) / rd.z : 1e9;\n  for (int i = 0; i < 90; i++) {\n    if (t > tStop) break;\n    vec3 p = ro + rd * t;\n    float ang, k, d = rings(p, ang, k);\n    float dw = uWall - snorm(p.xy, uN);                          // inside the tunnel: distance to the wall (approx.)\n    // ring light: dashed teeth (24 per ring), a brighter tooth that marks each ring's turn\n    float teeth = .35 + .65 * step(.42, fract(ang / TAU * 24.));\n    float mark = exp(-pow((fract(ang / TAU + .5) - .5) * 30., 2.));\n    float fog = exp(-t * .09);\n    vec3 c = mix(uColA, uColB, .5 + .5 * sin(k * 1.7)) * (teeth + 2. * mark) * (1. + .5 * uPulse);\n    gcol += c * .0011 / (.0025 + d * d * 40.) * fog * smoothstep(.4, 2.4, t);   // near rings faded: no big bright sweeps at the frame edge\n    if (dw < .002) { hitT = t; break; }\n    t += max(min(d, dw) * .8, .012);\n    if (t > 40.) break;\n  }\n  vec3 col = gcol;\n  // wall coordinates computed for every pixel (derivatives need uniform control flow); the angle's screen-space\n  // derivative is unwrapped so the ±π seam does not read as a discontinuity\n  vec3 p = ro + rd * (hitT > 0. ? hitT : 40.);\n  float th = atan(p.y, p.x), c1 = cos(uDTheta * .5), s1 = sin(uDTheta * .5);\n  vec2 gth = vec2(dFdx(th), dFdy(th)); gth -= TAU * floor(gth / TAU + .5);\n  vec2 gz = vec2(dFdx(p.z), dFdy(p.z));\n  float x1 = (th * uWall * c1 + p.z * s1) / uD, x2 = (th * uWall * c1 - p.z * s1) / uD;\n  vec2 g1 = (gth * uWall * c1 + gz * s1) / uD, g2 = (gth * uWall * c1 - gz * s1) / uD;\n  float T = trans(x1, abs(g1.x) + abs(g1.y), .45) * trans(x2, abs(g2.x) + abs(g2.y), .45);\n  if (hitT > 0.) col += mix(uColB, uColA, .5 + .5 * sin(th * 2. + uT * .3)) * T * uBright * exp(-hitT * .11);\n  // the exit: a bright square (or circle) far down the tunnel\n  if (uExit > 0.) {\n    float tz = (uExitZ - ro.z) / rd.z;\n    if (tz > 0.) { vec3 q = ro + rd * tz; float e = snorm(q.xy, uN) / uWall; col += mix(uColA, vec3(1.), .6) * uExit * (1. - smoothstep(.97, 1., e)) * .9; }\n  }\n  o = vec4(col * uFade, 1.);\n}");
-function w7(){
+function A7(){
 return Lt(qX,
 {
 uRes:{
@@ -60195,9 +60196,9 @@ value:new Ne(1,
 .7)}
 }
 )}
-c(w7,
+c(A7,
 "moireMaterial");
-function A7(){
+function y7(){
 return Lt(jX,
 {
 uCamWorld:{
@@ -60259,20 +60260,20 @@ value:new Ne(1,
 .7)}
 }
 )}
-c(A7,
+c(y7,
 "tunnelMaterial");
-function y7(e,
+function b7(e,
 t){
 t.updateMatrixWorld(),
 e.uniforms.uCamWorld.value.copy(t.matrixWorld),
 e.uniforms.uProjInv.value.copy(t.projectionMatrixInverse),
 e.uniforms.uCamPos.value.copy(t.position)}
-c(y7,
+c(b7,
 "camUniforms");
 var s4=1024,
 XX="\nuniform float uS, uSize, uFocal, uMinPx, uBright, uOrtho;\nuniform vec4 uWin;\nuniform vec3 uColA, uColB;\nout vec3 vCol;\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 cell = vec2(mod(i, uS), floor(i / uS));\n  vec2 p = mix(uWin.xy, uWin.zw, (cell + hash22(cell)) / uS);     // stratified sprinkle (as c2)\n  float h3 = hash12(cell * 3.1 + 1.3);\n  vec4 mv = modelViewMatrix * vec4(p.x, 0., p.y, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp, core = max(px, uMinPx);\n  gl_PointSize = core;\n  vCol = mix(uColA, uColB, smoothstep(.2, 1.2, length(p))) * uBright * min(1., px * px / (uMinPx * uMinPx)) * (.7 + .6 * h3);\n}",
 YX="\nin vec3 vCol; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  o = vec4(vCol * exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r)), 1.);\n}",
-b7=class{
+M7=class{
 static{
 c(this,
 "Sprinkle")}
@@ -60336,17 +60337,17 @@ tp:.05,
 zeta:.6}
 }
 ,
-M7={
+x7={
 F:70,
 M:77}
 ,
-x7=c(e=>Array.from({
+_7=c(e=>Array.from({
 length:8}
 ,
 (t,
 n)=>e>>7-n&1),
 "bitsOf");
-function _7(e,
+function S7(e,
 t=jr.n,
 n=10){
 let i=new Uint8Array(t*t),
@@ -60366,9 +60367,9 @@ u++)s+=Eh(e,
 1-(o+(u+.5)/n)*r);
 i[o*t+a]=s*2>n*n?1:0}
 return i}
-c(_7,
+c(S7,
 "raster");
-function S7({
+function T7({
 n:e=jr.n,
 m:t=jr.m}
 ={
@@ -60419,7 +60420,7 @@ all:[-r,
 o+.5,
 r]}
 }
-c(S7,
+c(T7,
 "layout");
 var l4=c((e,
 t=jr.n)=>e.i>=0&&e.i<t&&e.j>=0&&e.j<t,
@@ -60439,7 +60440,7 @@ o=1-Math.exp(-r*e)*(Math.cos(i*e)+r/i*Math.sin(i*e));
 return o>1?2-o:o}
 c(QX,
 "flipProgress");
-function T7(e,
+function C7(e,
 t,
 {
 rowDt:n=1/80,
@@ -60449,12 +60450,12 @@ skew:r=8e-4}
 }
 ){
 let o=e.n,
-a=_7("F",
+a=S7("F",
 o),
-s=_7("M2",
+s=S7("M2",
 o),
-l=x7(M7.F),
-u=x7(M7.M),
+l=_7(x7.F),
+u=_7(x7.M),
 h=c((p,
 m)=>Math.floor(p*m/o),
 "band"),
@@ -60503,7 +60504,7 @@ a[g]!==s[g]&&m.ev.push([b,
 s[g]])}
 d.push(m)}
 return d}
-c(T7,
+c(C7,
 "schedule");
 function u4(e,
 t){
@@ -60519,11 +60520,11 @@ n=o}
 return i}
 c(u4,
 "diskAngle");
-var Lg=c((e,
+var Fg=c((e,
 t)=>u4(e,
 t)<Math.PI/2,
 "litAt");
-var C7={
+var E7={
 dir:[.26,
 .94,
 .2],
@@ -60537,14 +60538,14 @@ back:-.62,
 bevel:.12,
 rim:1.25}
 ,
-R7="\nuniform vec3 uL, uLCol, uAmb; uniform float uLight, uSheen, uFront, uSplitX;\nuniform vec2 uShadow, uShadow2;   // the top and right edges of the matrix's opening and of the status row's\n// the housing's top bar shades the top rows from a light this low (and the bar right of each opening a little of its\n// right columns): lit below the line where a ray to the light just clears the bar's front edge\nfloat sun(vec3 p) {\n  vec2 e = p.x > uSplitX ? uShadow2 : uShadow;\n  float yEdge = e.x - (uFront - p.z) * uL.y / uL.z, xEdge = e.y - (uFront - p.z) * uL.x / uL.z;\n  return (1. - smoothstep(yEdge - .3, yEdge + .3, p.y)) * (1. - smoothstep(xEdge - .3, xEdge + .3, p.x));\n}\n// diffuse albedo, specular strength and exponent (normalised Blinn-Phong) and a grazing sheen; vis: the sun term\nvec3 lit(vec3 n, vec3 v, vec3 alb, float ks, float sh, float sheen, float vis) {\n  float d = max(dot(n, uL), 0.), nv = max(dot(n, v), 0.);\n  vec3 h = normalize(uL + v);\n  float s = pow(max(dot(n, h), 0.), sh) * (sh + 8.) / 25.;\n  float f = sheen * pow(1. - nv, 3.) * smoothstep(0., .25, d);\n  return uLight * (alb * uAmb + uLCol * vis * (d * (alb + ks * s) + f));\n}",
+B7="\nuniform vec3 uL, uLCol, uAmb; uniform float uLight, uSheen, uFront, uSplitX;\nuniform vec2 uShadow, uShadow2;   // the top and right edges of the matrix's opening and of the status row's\n// the housing's top bar shades the top rows from a light this low (and the bar right of each opening a little of its\n// right columns): lit below the line where a ray to the light just clears the bar's front edge\nfloat sun(vec3 p) {\n  vec2 e = p.x > uSplitX ? uShadow2 : uShadow;\n  float yEdge = e.x - (uFront - p.z) * uL.y / uL.z, xEdge = e.y - (uFront - p.z) * uL.x / uL.z;\n  return (1. - smoothstep(yEdge - .3, yEdge + .3, p.y)) * (1. - smoothstep(xEdge - .3, xEdge + .3, p.x));\n}\n// diffuse albedo, specular strength and exponent (normalised Blinn-Phong) and a grazing sheen; vis: the sun term\nvec3 lit(vec3 n, vec3 v, vec3 alb, float ks, float sh, float sheen, float vis) {\n  float d = max(dot(n, uL), 0.), nv = max(dot(n, v), 0.);\n  vec3 h = normalize(uL + v);\n  float s = pow(max(dot(n, h), 0.), sh) * (sh + 8.) / 25.;\n  float f = sheen * pow(1. - nv, 3.) * smoothstep(0., .25, d);\n  return uLight * (alb * uAmb + uLCol * vis * (d * (alb + ks * s) + f));\n}",
 ZX="\nin vec2 aCell; in float aPart; in float aPhi0; in vec4 aPhi; in vec4 aLit;\nuniform float uPitch; uniform vec3 uOrigin;\nout vec3 vNo, vW, vP; out float vPart; flat out vec4 vPhi, vLit;\nvec3 turn(vec3 p, float a) { float c = cos(a), s = sin(a); return vec3(p.x, p.y * c + p.z * s, -p.y * s + p.z * c); }\nvoid main() {\n  vec3 q = turn(position, aPhi0);\n  vP = vec3(aCell + q.xy, q.z);\n  vW = uOrigin + vP * uPitch;\n  vNo = normal; vPart = aPart; vPhi = aPhi; vLit = aLit;\n  gl_Position = projectionMatrix * viewMatrix * vec4(vW, 1.);\n}",
-KX="\n".concat(R7,
+KX="\n".concat(B7,
 "\nuniform float uGlow;\nin vec3 vNo, vW, vP; in float vPart; flat in vec4 vPhi, vLit; out vec4 o;\nvec3 turn(vec3 p, float a) { float c = cos(a), s = sin(a); return vec3(p.x, p.y * c + p.z * s, -p.y * s + p.z * c); }\nvoid main() {\n  vec3 no = normalize(vNo), v = normalize(cameraPosition - vW);\n  bool axle = vPart > .5, faceA = !axle && no.z > .5, faceB = !axle && no.z < -.5;\n  // (AgX lifts the shadows a long way: a black that is to read as black stays under a few thousandths)\n  vec3 alb = axle ? vec3(.02) : faceA ? vLit.rgb * .5 + .1 : vec3(.012);\n  float ks = axle ? .08 : faceA ? .55 : faceB ? .08 : .12, sh = axle ? 40. : faceA ? 60. : faceB ? 8. : 24.;\n  float sheen = faceB ? uSheen : axle ? 0. : .01, vis = sun(vP);\n  // the shading at four instants across the shutter: a disk passes its glint angle within a few milliseconds\n  vec3 c = lit(turn(no, vPhi.x), v, alb, ks, sh, sheen, vis) + lit(turn(no, vPhi.y), v, alb, ks, sh, sheen, vis)\n         + lit(turn(no, vPhi.z), v, alb, ks, sh, sheen, vis) + lit(turn(no, vPhi.w), v, alb, ks, sh, sheen, vis);\n  c *= .25;\n  if (faceA) c += vLit.rgb * vLit.a * uGlow;\n  o = vec4(c, 1.);\n}"),
 JX="\nin float aPart;\nuniform float uPitch; uniform vec3 uOrigin;\nout vec3 vN, vW, vP; out float vPart;\nvoid main() {\n  vP = position; vW = uOrigin + position * uPitch; vN = normal; vPart = aPart;\n  gl_Position = projectionMatrix * viewMatrix * vec4(vW, 1.);\n}",
-$X="\n".concat(R7,
+$X="\n".concat(B7,
 "\nin vec3 vN, vW, vP; in float vPart; out vec4 o;\nvoid main() {\n  vec3 n = normalize(vN), v = normalize(cameraPosition - vW);\n  int part = int(vPart + .5);                       // 0 back plate, 1 dot frame, 2 coil, 3 housing\n  vec3 alb = part == 0 ? vec3(.001) : part == 1 ? vec3(.003) : part == 2 ? vec3(.03, .022, .018) : vec3(.004);\n  float ks = part == 0 ? 0. : part == 1 ? .05 : part == 2 ? .5 : .3, sh = part == 2 ? 30. : part == 3 ? 36. : 12.;\n  // (the back plate and the coils sit deep in their cells, in the shadow of the dot frame's walls)\n  float vis = part == 3 ? 1. : part == 0 ? 0. : part == 2 ? .12 : sun(vP);\n  o = vec4(lit(n, v, alb, ks, sh, part == 3 ? uSheen * .6 : 0., vis), 1.);\n}");
-function E7(e){
+function R7(e){
 let t=[],
 n=[],
 i=[],
@@ -60572,17 +60573,17 @@ f++)r.push(o+f);
 o+=u.count}
 let a=new It;
 return a.setAttribute("position",
-new Ln(t,
+new Fn(t,
 3)),
 a.setAttribute("normal",
-new Ln(n,
+new Fn(n,
 3)),
 a.setAttribute("aPart",
-new Ln(i,
+new Fn(i,
 1)),
 a.setIndex(r),
 a}
-c(E7,
+c(R7,
 "merge");
 var c4=c((e,
 t,
@@ -60611,14 +60612,14 @@ e.lineTo(t,
 n),
 e),
 "rectPath"),
-B7=class{
+P7=class{
 static{
 c(this,
 "FlipPanel")}
 constructor(){
-let e=this.L=S7(),
+let e=this.L=T7(),
 t=e.disks.length;
-this.scene=new fn;
+this.scene=new dn;
 let n=.12,
 i=c(()=>({
 uPitch:{
@@ -60628,10 +60629,10 @@ uOrigin:{
 value:new B}
 ,
 uL:{
-value:new B(...C7.dir).normalize()}
+value:new B(...E7.dir).normalize()}
 ,
 uLCol:{
-value:new B(...C7.col)}
+value:new B(...E7.col)}
 ,
 uAmb:{
 value:new B(.01,
@@ -60670,7 +60671,7 @@ o=new Xw(.016,
 jr.disk+.07,
 8,
 1).rotateZ(Math.PI/2),
-a=E7([[r,
+a=R7([[r,
 0],
 [o,
 1]]),
@@ -60736,7 +60737,7 @@ y=-.07,
 x,
 M,
 T]=e.all;
-l.push([new _n(M-b+1,
+l.push([new Sn(M-b+1,
 T-x+1).translate((b+M)/2,
 (x+T)/2,
 A),
@@ -60782,18 +60783,18 @@ let E=h4(new Zw,
 x-Ns.rim,
 M+Ns.rim,
 T+Ns.rim]);
-E.holes.push(h4(new Y1,
+E.holes.push(h4(new Z1,
 [u-n,
 h-n,
 f+n,
 d+n])),
-E.holes.push(h4(new Y1,
+E.holes.push(h4(new Z1,
 [p-n,
 m-n,
 g+n,
 w+n]));
 let L=Ns.front-A-2*Ns.bevel,
-F=new TS(E,
+F=new CS(E,
 {
 depth:L,
 bevelEnabled:!0,
@@ -60811,7 +60812,7 @@ vertex:JX,
 fragment:$X,
 uniforms:i()}
 ),
-this.rest=new tt(E7(l),
+this.rest=new tt(R7(l),
 this.staticMat),
 this.rest.frustumCulled=!1,
 this.scene.add(this.rest,
@@ -60852,10 +60853,10 @@ return this.diskMat.uniforms.uGlow.value=r,
 this}
 }
 ;
-var bp=[.62,
+var xp=[.62,
 .4,
 1],
-Ig=[1,
+Dg=[1,
 .34,
 .72],
 ui={
@@ -60864,11 +60865,11 @@ pink:"#ff79c6",
 dim:"#8a7aa8"}
 ,
 X0=lr.H/2,
-Mp={
+_p={
 F:70,
 M:77}
 ,
-Ug=c(e=>Array.from({
+Gg=c(e=>Array.from({
 length:8}
 ,
 (t,
@@ -60883,10 +60884,10 @@ floorY:-.55}
 ,
 b4=3.6,
 eY=b4*Math.tan(31*Math.PI/180)/(2*Math.tan(18*Math.PI/180)),
-z7=162e-7,
+O7=162e-7,
 Ec=c(e=>({
 size:e,
-bright:z7/e**2}
+bright:O7/e**2}
 ),
 "glyphLook"),
 Ce=null,
@@ -61004,7 +61005,7 @@ r.updateMatrixWorld(),
 r}
 c(M4,
 "orthoView");
-var P7=c((e,
+var k7=c((e,
 t,
 n,
 i)=>Et.cam(M4(e,
@@ -61052,7 +61053,7 @@ t,
 n){
 Ce.lines.mesh.visible=!0,
 Ce.lines.end(e),
-ng(e,
+ig(e,
 i=>i.draw(Ce.scene,
 t),
 n)}
@@ -61084,7 +61085,7 @@ n,
 i={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -61124,7 +61125,7 @@ exposure:1,
 )}
 c(ji,
 "look");
-function Dg(e,
+function zg(e,
 t){
 for(let n of t.wTr){
 let i=e.t-n.start;
@@ -61137,7 +61138,7 @@ e.post.fadeCol=[1,
 .9],
 e.post.exposure*=1+.5*r}
 }
-c(Dg,
+c(zg,
 "tranceFlash");
 var yo=c((e,
 t,
@@ -61153,7 +61154,7 @@ e.t,
 .005,
 .12),
 "kick"),
-Fg=c(e=>(t,
+Ig=c(e=>(t,
 n,
 i)=>[t*X0,
 n*X0,
@@ -61258,7 +61259,7 @@ u,
 return n}
 c(aY,
 "helixShape");
-function Gg(e,
+function Hg(e,
 t){
 let n=Ce.tex;
 return e<t.wTo2.start?{
@@ -61284,7 +61285,7 @@ t.l58.start+.5)),
 spread:.4,
 arc:.25}
 }
-c(Gg,
+c(Hg,
 "glyphState");
 function j0(e,
 t,
@@ -61292,7 +61293,7 @@ n,
 i={
 }
 ){
-let r=Gg(e.t,
+let r=Hg(e.t,
 n),
 o=Ce.me;
 return o.points.visible=!0,
@@ -61317,8 +61318,8 @@ r,
 o={
 }
 ){
-let a=Ug(Mp.F),
-s=Ug(Mp.M),
+let a=Gg(_p.F),
+s=Gg(_p.M),
 l=o.cell??34,
 u=8,
 h=[];
@@ -61386,16 +61387,16 @@ alpha:.9}
 )}
 c(d4,
 "register");
-function O7(e,
+function N7(e,
 t){
 return e<t.wAM.start?5+R.inOutSine(_(e,
 t.l58.start+.05,
 t.wAM.start)):e<t.wPM.start?6+12*R.inOutCubic(_(e,
 t.wAM.start,
 t.wPM.start)):18+(e-t.wPM.start)/60}
-c(O7,
+c(N7,
 "clockH");
-var N7=c(e=>{
+var U7=c(e=>{
 let t=Math.round(e*3600)%86400,
 n=Math.floor(t/3600),
 i=Math.floor(t/60)%60,
@@ -61409,7 +61410,7 @@ return"".concat(n<12?"AM":"PM",
 "0"))}
 ,
 "fmt"),
-U7=c(e=>{
+G7=c(e=>{
 let t=Math.round(e*3600)%86400,
 n=Math.floor(t/3600),
 i=Math.floor(t/60)%60,
@@ -61424,7 +61425,7 @@ return"".concat(String(n%12||12).padStart(2,
 ,
 "fmt12"),
 p4=c((e,
-t)=>q(e)?U7(t):N7(t),
+t)=>q(e)?G7(t):U7(t),
 "fmtT"),
 gs=c(e=>Math.sin((e-6)/12*Math.PI),
 "sunEl");
@@ -61435,10 +61436,10 @@ i={
 }
 ){
 let r=e.t,
-o=O7(r,
+o=N7(r,
 n),
 a=Ce.lines,
-s=Gg(r,
+s=Hg(r,
 n),
 l=Ce.me;
 l.points.visible=!0,
@@ -61865,7 +61866,7 @@ alpha:.85}
 );
 let y=p(l,
 s(gs(l)));
-d.text(U7(r),
+d.text(G7(r),
 y[0]+18,
 y[1]-30,
 {
@@ -61931,7 +61932,7 @@ var v4=c(e=>[e,
 .62+.2*Math.sin(e*.8),
 1.1*Math.sin(e*.42)],
 "pathP");
-function G7(e){
+function H7(e){
 let t=v4(e-.01),
 n=v4(e+.01),
 i=[(n[0]-t[0])/.02,
@@ -61951,7 +61952,7 @@ P:v4(e),
 T:o,
 N:a}
 }
-c(G7,
+c(H7,
 "pathFrame");
 function xu(e,
 t){
@@ -61962,7 +61963,7 @@ t.wM2.start+.12)),
 r=Ie(.25,
 .75,
 i),
-o=G7(n),
+o=H7(n),
 a=c((s,
 l,
 u)=>[0,
@@ -62194,7 +62195,7 @@ var hY=[[.62,
 [.42,
 .38,
 .62]];
-function Ap(e,
+function bp(e,
 t,
 n={
 }
@@ -62213,9 +62214,9 @@ maxBlur:n.maxBlur??30}
 ,
 t,
 e.H)}
-c(Ap,
+c(bp,
 "chatFloor");
-function k7(e,
+function L7(e,
 t,
 n,
 i=0){
@@ -62231,9 +62232,9 @@ l=Math.round(a/.18*o.length);
 return[...o].map((u,
 h)=>h<l?u:"abcdefghijklmnopqrstuvwxyz"[Math.floor(gi(h+s*7,
 i)*26)]).join("")}
-c(k7,
+c(L7,
 "decoded");
-function yp(e,
+function Mp(e,
 t,
 n,
 i){
@@ -62244,14 +62245,14 @@ a=G(i.me,
 n),
 s=G(i.you,
 n),
-l=k7(r,
+l=L7(r,
 [t.wRole.start,
 t.wS.start],
 ["assistant",
 "user",
 "system"],
 1),
-u=k7(r,
+u=L7(r,
 [t.wRole.start,
 t.wM2.start],
 ["user",
@@ -62324,7 +62325,7 @@ h(s,
 u,
 P.you,
 40)}
-c(yp,
+c(Mp,
 "tags");
 var x4=c((e,
 t)=>{
@@ -62332,7 +62333,7 @@ let n=t.T.beatAt(e)-t.T.beatAt(t.l63.start);
 return(Math.floor(n)+R.outCubic(X((n-Math.floor(n))*3)))*Math.PI/6}
 ,
 "beatRot");
-function zg(e,
+function Og(e,
 t,
 n,
 i={
@@ -62341,7 +62342,7 @@ i={
 let r=Ce.tunnel,
 o=r.uniforms,
 a=e.t;
-y7(r,
+b7(r,
 t),
 o.uT.value=a,
 o.uRot.value=x4(a,
@@ -62356,9 +62357,9 @@ o.uExitZ.value=i.exitZ??-40,
 o.uStop.value=i.stop?1:0,
 o.uPulse.value=iY(e),
 e.pass(r)}
-c(zg,
+c(Og,
 "tunnel");
-function H7(e,
+function W7(e,
 t,
 n){
 let i=R.inOutSine(_(n,
@@ -62417,15 +62418,15 @@ threshold:.9,
 ca:.3,
 vignette:.45}
 )}
-c(H7,
+c(W7,
 "plateOpen");
 function fY(e,
 t,
 n){
-if(n>=t.B(31.5))return H7(e,
+if(n>=t.B(31.5))return W7(e,
 t,
 n);
-let i=Og(n,
+let i=Ng(n,
 t);
 qi();
 let r=Math.round(.2*t.B(31)/j)*j,
@@ -62457,7 +62458,7 @@ up:[Math.sin(o),
 Math.cos(o),
 0]}
 );
-zg(e,
+Og(e,
 h,
 t,
 l?{
@@ -62510,11 +62511,11 @@ ji(e,
 {
 vignette:.5}
 ),
-Dg(e,
+zg(e,
 t)}
 c(fY,
 "tunnelR");
-function L7(e,
+function F7(e,
 t){
 let n=Ce.moire.uniforms;
 n.uRes.value.set(e.W,
@@ -62529,9 +62530,9 @@ n.uDuty.value=t.duty??.5,
 n.uZoom.value=t.zoom??1,
 n.uDichro.value=t.dichro??0,
 e.pass(Ce.moire)}
-c(L7,
+c(F7,
 "moire");
-var Og=c((e,
+var Ng=c((e,
 t)=>-(e-t.l63.start)*2.9-2,
 "tunnelZ");
 function y4(e,
@@ -62623,29 +62624,29 @@ width:1.4}
 c(_4,
 "plateAt");
 var bl=2*X0/jr.n,
-F7={
-F:wt(bp,
+I7={
+F:wt(xp,
 [1,
 1,
 1],
 .3),
-M:wt(Ig,
+M:wt(Dg,
 [1,
 1,
 1],
 .2)}
 ,
-W7={
+V7={
 letter:.62,
 qed:2.6}
 ,
 dY=2.6,
 S4="view  flip-dot · 28 × 28 + 8",
-I7={
+D7={
 dist:2.72,
 fov:36}
 ,
-D7={
+z7={
 core:[1,
 .94,
 .84],
@@ -62653,7 +62654,7 @@ gold:[1,
 .5,
 .12]}
 ,
-Ng=c(([e,
+Ug=c(([e,
 t,
 n=0])=>[e*bl,
 t*bl,
@@ -62692,7 +62693,7 @@ n.pos[o*4+2]=jr.thick/2*bl}
 return n}
 c(pY,
 "qedGridShape");
-function Hg(e){
+function Wg(e){
 if(e.fd)return e.fd;
 let t=c(o=>e.T.onsetNear("drums",
 e.B(o),
@@ -62721,7 +62722,7 @@ sM:[5.75,
 r=Ce.fd.L;
 return e.fd={
 times:i,
-sched:T7(r,
+sched:C7(r,
 i),
 qed:r.disks.map(o=>{
 let a=2/jr.n,
@@ -62731,13 +62732,13 @@ Math.min(1-Math.abs(o.x*a),
 l=Math.min(1,
 s/.9),
 u=l*l*(3-2*l);
-return wt(D7.gold,
-D7.core,
+return wt(z7.gold,
+z7.core,
 u).map(h=>h*(.7+.6*u))}
 ),
 status:r.disks.filter(o=>o.bit>=0)}
 }
-c(Hg,
+c(Wg,
 "fdKeys");
 function mY(e,
 t,
@@ -62750,14 +62751,14 @@ o=Ie(0,
 .1,
 n-i.cM),
 a=wt(wt(e.qed[t],
-F7.F,
+I7.F,
 r),
-F7.M,
+I7.M,
 o);
 return[a[0],
 a[1],
 a[2],
-C(W7.qed,
+C(V7.qed,
 1,
 r)]}
 c(mY,
@@ -62774,7 +62775,7 @@ sheen:o}
 ){
 if(i<=0&&r<=0)return;
 let a=e.t,
-s=Hg(n);
+s=Wg(n);
 Ce.fd.update({
 pitch:bl,
 angle:c((l,
@@ -62785,7 +62786,7 @@ lit:c(l=>mY(s,
 l,
 a),
 "lit"),
-glow:i*W7.letter,
+glow:i*V7.letter,
 light:r*dY,
 sheen:o}
 ),
@@ -62805,14 +62806,14 @@ alpha:i=1}
 ){
 let r=e.t,
 o=e.text.overlay,
-a=Hg(n),
-s=Ug(Mp.F),
-l=Ug(Mp.M),
+a=Wg(n),
+s=Gg(_p.F),
+l=Gg(_p.M),
 u=r>=a.times.gM[0]-.05,
-h=G(Ng([a.status[0].x,
+h=G(Ug([a.status[0].x,
 0]),
 t),
-f=G(Ng([a.status[0].x,
+f=G(Ug([a.status[0].x,
 1]),
 t),
 d=X(Math.hypot(h[0]-f[0],
@@ -62821,9 +62822,9 @@ h[1]-f[1])*.4,
 30),
 p=0;
 for(let v of a.status){
-let A=Lg(a.sched[v.k],
+let A=Fg(a.sched[v.k],
 r),
-y=G(Ng([v.x+1,
+y=G(Ug([v.x+1,
 v.y]),
 t),
 b=u&&s[v.bit]!==l[v.bit];
@@ -62851,10 +62852,10 @@ o.text("U+00".concat(m,
 size:17,
 weight:600,
 align:"left",
-color:p===Mp.M?ui.pink:ui.vio,
+color:p===_p.M?ui.pink:ui.vio,
 alpha:.9*i}
 );
-let w=a.status.filter(v=>s[v.bit]!==l[v.bit]&&Lg(a.sched[v.k],
+let w=a.status.filter(v=>s[v.bit]!==l[v.bit]&&Fg(a.sched[v.k],
 r)===!!l[v.bit]).length;
 u&&o.text("0x46 ⊕ 0x4D = 0x0B · Hamming ".concat(w,
 "/3"),
@@ -62869,11 +62870,11 @@ alpha:.9*i}
 )}
 c(vY,
 "fdStatusHud");
-var V7=c((e,
+var q7=c((e,
 t)=>{
-let n=Hg(e),
+let n=Wg(e),
 i=0;
-for(let r of Ce.fd.L.disks)l4(r)&&Lg(n.sched[r.k],
+for(let r of Ce.fd.L.disks)l4(r)&&Fg(n.sched[r.k],
 t)&&i++;
 return i}
 ,
@@ -62941,7 +62942,7 @@ h>.05&&be(e.text.overlay,
 [["glyph",
 "U+220E  '∎'"],
 ["dots",
-"".concat(V7(t,
+"".concat(q7(t,
 n),
 " / 484 lit")]],
 {
@@ -62982,7 +62983,7 @@ a,
 t),
 gr(e,
 a);
-let s=Hg(t).times.gF,
+let s=Wg(t).times.gF,
 l=X(Math.floor((n-s[0])/(s[1]-s[0])*22/s.length+1e-6)+1,
 0,
 22);
@@ -62997,7 +62998,7 @@ n<s[0]?"U+220E  '∎'":"U+0046  'F'"],
 "0"),
 " / 22")],
 ["lit",
-"".concat(V7(t,
+"".concat(q7(t,
 n))],
 ["flip",
 "1/20 s"]],
@@ -63016,7 +63017,7 @@ c(wY,
 function AY(e,
 t){
 let n=e.t,
-i=Ng([Ce.fd.L.status[0]+.5,
+i=Ug([Ce.fd.L.status[0]+.5,
 0]),
 r=_(n,
 t.l57.start,
@@ -63038,7 +63039,7 @@ l=C(.08,
 0,
 o),
 u=Math.exp(C(Math.log(1.02-.06*r),
-Math.log(I7.dist),
+Math.log(D7.dist),
 o));
 return no(e,
 [a[0]+u*Math.cos(l)*Math.sin(s),
@@ -63046,7 +63047,7 @@ a[1]+u*Math.sin(l),
 u*Math.cos(l)*Math.cos(s)],
 a,
 {
-fov:I7.fov}
+fov:D7.fov}
 )}
 c(AY,
 "fdCam57");
@@ -63099,9 +63100,9 @@ to:c(e=>e.section("c2").start,
 "to"),
 init(e){
 Ce={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
@@ -63111,74 +63112,74 @@ ortho:new An(-1,
 Ce.me=new E0({
 count:1<<18}
 ),
-Ce.you=new Qt({
+Ce.you=new Zt({
 count:16384}
 ),
-Ce.a=new Qt({
+Ce.a=new Zt({
 count:65536}
 ),
-Ce.b=new Qt({
+Ce.b=new Zt({
 count:16384}
 ),
-Ce.stars=new Qt({
+Ce.stars=new Zt({
 count:16384}
 ),
 Ce.lines=new Xn(12e3),
-Ce.chat=new nn({
+Ce.chat=new rn({
 count:65536}
 ),
 Ce.chat.text("pre2/chat",
 cY()),
 Ce.chat.points.rotation.x=-Math.PI/2,
-Ce.sand=new b7,
+Ce.sand=new M7,
 Ce.floor=Mr({
 plane:"xz"}
 ),
-Ce.moire=w7(),
-Ce.tunnel=A7(),
+Ce.moire=A7(),
+Ce.tunnel=y7(),
 Ce.tex={
 qed:Ce.me.shape("pre2/qed",
 t=>mc(t,
 "qed",
 {
 col:lr.col,
-toWorld:Fg(0),
+toWorld:Ig(0),
 lum:!0}
 )),
 F:Ce.me.shape("pre2/F",
 t=>mc(t,
 "F",
 {
-col:bp,
-toWorld:Fg(.1)}
+col:xp,
+toWorld:Ig(.1)}
 )),
 M:q(e)?Ce.me.shape("pre2/M2",
 t=>mc(t,
 "M2",
 {
-col:Ig,
-toWorld:Fg(.1)}
+col:Dg,
+toWorld:Ig(.1)}
 )):Ce.me.shape("pre2/M",
 t=>mc(t,
 "M",
 {
-col:Ig,
-toWorld:Fg(.1)}
+col:Dg,
+toWorld:Ig(.1)}
 )),
 helix:Ce.me.shape("pre2/helix",
 aY),
 meBall:Ce.a.shape("pre2/me-ball",
-t=>Dn.ball(t,
+t=>zn.ball(t,
 {
 r:.13}
 )),
 youBall:Ce.b.shape("pre2/you-ball",
-t=>Dn.ball(t,
+t=>zn.ball(t,
 {
 r:.1}
 )),
 stars:Ce.stars.shape("pre2/stars",
-t=>Dn.stars(t,
+t=>zn.stars(t,
 {
 r0:30,
 r1:90}
@@ -63194,7 +63195,7 @@ cols:270,
 rows:62}
 ))}
 ,
-q(e)&&(Ce.fd=new B7,
+q(e)&&(Ce.fd=new P7,
 Ce.tex.qedGrid=Ce.me.shape("pre2/qed-grid",
 pY)),
 Ce.scene.add(Ce.floor,
@@ -63243,7 +63244,7 @@ r),
 {
 fov:lr.fov}
 ),
-s=Gg(n,
+s=Hg(n,
 t).morph,
 l=C(lr.size,
 .01,
@@ -63255,12 +63256,12 @@ t,
 {
 size:l,
 bright:Math.exp(C(Math.log(lr.bright*lr.size**2),
-Math.log(z7),
+Math.log(O7),
 s))/l**2}
 ),
 gr(e,
 a);
-let u=Gg(n,
+let u=Hg(n,
 t);
 u.morph>.05&&be(e.text.overlay,
 1480,
@@ -63354,7 +63355,7 @@ let u=e.text.overlay,
 h=c(f=>G(f,
 r),
 "P");
-Sn(u,
+Tn(u,
 h([-.8*s,
 -1*s,
 0]),
@@ -63369,7 +63370,7 @@ alpha:.8*_(n,
 .15,
 .4)}
 ),
-Sn(u,
+Tn(u,
 h([-.8*s,
 -1.08*s,
 0]),
@@ -63426,12 +63427,12 @@ Ce.lines.end(e);
 let a=Dt(e,
 s=>s.draw(Ce.scene,
 r));
-rn(e,
+on(e,
 a,
 "ascii",
 {
 cell:18,
-tint:bp,
+tint:xp,
 gain:2.2}
 )}
 else gr(e,
@@ -63687,7 +63688,7 @@ draw(e){
 let t=Yt(e.T),
 n=e.t,
 i=n-t.l59.start,
-r=O7(n,
+r=N7(n,
 t);
 if(qi(),
 q(e))return lY(e,
@@ -63944,7 +63945,7 @@ color:Vn.black}
 );
 let y=d(l,
 s(gs(l)));
-f.text(N7(r),
+f.text(U7(r),
 y[0]+16,
 y[1]-24,
 {
@@ -63973,7 +63974,7 @@ t,
 paper:!0}
 ),
 Object.assign(e.post,
-ig)}
+rg)}
 }
 ,
 {
@@ -63985,7 +63986,7 @@ draw(e){
 let t=Yt(e.T),
 n=e.t-t.B(13);
 qi();
-let i=P7([0,
+let i=k7([0,
 0,
 0],
 "top",
@@ -64075,7 +64076,7 @@ r[2]],
 {
 fov:40}
 );
-Ap(e,
+bp(e,
 o,
 {
 bright:.2,
@@ -64086,7 +64087,7 @@ o,
 t);
 gr(e,
 o),
-yp(e,
+Mp(e,
 t,
 o,
 a),
@@ -64130,7 +64131,7 @@ r[2]],
 {
 fov:34}
 );
-Ap(e,
+bp(e,
 a,
 {
 bright:.2,
@@ -64141,7 +64142,7 @@ a,
 t);
 gr(e,
 a),
-yp(e,
+Mp(e,
 t,
 a,
 s);
@@ -64152,7 +64153,7 @@ a),
 h=Math.hypot(s.me[0]-s.you[0],
 s.me[1]-s.you[1],
 s.me[2]-s.you[2]);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 l,
 u,
 "d ".concat(h.toFixed(3)),
@@ -64190,14 +64191,14 @@ r[2]+o[2]*.4],
 {
 fov:42}
 );
-Ap(e,
+bp(e,
 a);
 let s=q0(e,
 a,
 t);
 gr(e,
 a),
-yp(e,
+Mp(e,
 t,
 a,
 s),
@@ -64218,13 +64219,13 @@ i=xu(n,
 t);
 qi();
 let r=i.f.P,
-o=P7([r[0]-.35,
+o=k7([r[0]-.35,
 0,
 r[2]],
 "top",
 2.2,
 e.aspect);
-Ap(e,
+bp(e,
 o,
 q(e)?{
 bright:.2,
@@ -64242,7 +64243,7 @@ size:.006}
 );
 gr(e,
 o),
-yp(e,
+Mp(e,
 t,
 o,
 a);
@@ -64293,14 +64294,14 @@ r[2]+o[2]*.6],
 {
 fov:44}
 );
-Ap(e,
+bp(e,
 a);
 let s=q0(e,
 a,
 t);
 gr(e,
 a),
-yp(e,
+Mp(e,
 t,
 a,
 s),
@@ -64329,7 +64330,7 @@ let t=Yt(e.T),
 n=e.t,
 i=n-t.l62.start;
 qi();
-let r=G7(xu(t.B(25)-.12,
+let r=H7(xu(t.B(25)-.12,
 t).u+.1),
 o=xu(n,
 t),
@@ -64375,12 +64376,12 @@ return[0,
 "circ");
 Ce.lines.polyline(p(d),
 {
-color:Ig.map(m=>m*1.3),
+color:Dg.map(m=>m*1.3),
 width:3.2}
 ),
 Ce.lines.polyline(p(d*1.09),
 {
-color:bp.map(m=>m*.8),
+color:xp.map(m=>m*.8),
 width:1.6}
 );
 for(let m=0;
@@ -64395,7 +64396,7 @@ A)=>r.P[A]+v*d*1.1),
 w.map((v,
 A)=>r.P[A]+v*d*(m%3?1.16:1.22)),
 {
-color:bp.map(v=>v*.9),
+color:xp.map(v=>v*.9),
 width:1.4}
 )}
 gr(e,
@@ -64422,7 +64423,7 @@ a=q(e)?C(1,
 R.inQuad(_(n,
 t.B(25.4),
 t.B(26.3)))):1;
-L7(e,
+F7(e,
 q(e)?{
 mode:0,
 d:o,
@@ -64498,7 +64499,7 @@ ownsLyrics:!0,
 draw(e){
 let t=Yt(e.T),
 n=e.t,
-i=Og(n,
+i=Ng(n,
 t);
 if(q(e))return fY(e,
 t,
@@ -64517,7 +64518,7 @@ up:[Math.sin(n*.2),
 Math.cos(n*.2),
 0]}
 );
-zg(e,
+Og(e,
 r,
 t);
 let[o,
@@ -64550,7 +64551,7 @@ ji(e,
 {
 vignette:.5}
 ),
-Dg(e,
+zg(e,
 t)}
 }
 ,
@@ -64562,7 +64563,7 @@ ownsLyrics:!0,
 draw(e){
 let t=Yt(e.T),
 n=e.t,
-i=Og(n,
+i=Ng(n,
 t);
 qi();
 let r=no(e,
@@ -64578,7 +64579,7 @@ up:[Math.sin(.6),
 Math.cos(.6),
 0]}
 );
-zg(e,
+Og(e,
 r,
 t,
 {
@@ -64602,7 +64603,7 @@ ji(e,
 {
 vignette:.5}
 ),
-Dg(e,
+zg(e,
 t)}
 }
 ,
@@ -64621,7 +64622,7 @@ r=C(.2,
 R.outCubic(_(n,
 0,
 .42)));
-L7(e,
+F7(e,
 {
 mode:1,
 d:i,
@@ -64657,7 +64658,7 @@ ji(e,
 ca:.08,
 vignette:.5}
 ),
-Dg(e,
+zg(e,
 t)}
 }
 ,
@@ -64670,7 +64671,7 @@ draw(e){
 let t=Yt(e.T),
 n=e.t,
 i=n-t.B(31),
-r=Og(n,
+r=Ng(n,
 t);
 qi();
 let o=2*20**R.inOutCubic(_(i,
@@ -64691,7 +64692,7 @@ r-5],
 {
 fov:62}
 );
-zg(e,
+Og(e,
 s,
 t,
 {
@@ -64729,7 +64730,7 @@ at:c(e=>Yt(e).B(31.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-H7(e,
+W7(e,
 Yt(e.T),
 e.t)}
 }
@@ -64745,7 +64746,7 @@ bY=["\nuniform vec4 uRip[4], uRipW[4], uWarm; uniform vec3 uRipS, uRipC[4], uWar
 "\n  vec4 wq = modelMatrix * vec4(p, 1.);\n  if (uHole.z > 0. && distance(wq.xz, uHole.xy) < uHole.z) { gl_Position = vec4(2., 2., 2., 1.); gl_PointSize = 0.; vCol = vec3(0.); vCore = 1.; vBlur = 0.; vChar = 0.; return; }\n  float rw = 0., ws = 0.; vec3 rc = vec3(0.);\n  for (int j = 0; j < 4; j++) {\n    if (uRip[j].w <= 0.) continue;\n    float dr = distance(wq.xz, uRip[j].xy) - uRip[j].z, wd = uRipW[j].x;\n    float wake = dr < 0. ? uRipW[j].y * cos(dr / uRipS.x * 6.2832) * exp(dr / uRipS.y) * smoothstep(0., -wd, dr) : 0.;\n    float w = uRip[j].w * (exp(-dr * dr / (wd * wd)) + wake);\n    rw += w; ws += max(w, 0.); rc += uRipC[j] * max(w, 0.);\n  }\n  rw = max(rw, 0.); rc /= max(ws, 1e-4);\n  float warm = uWarm.w * (1. - smoothstep(uWarm.z * .35, uWarm.z, distance(wq.xz, uWarm.xy)));\n  wq.y += uRipS.z * rw;\n  vec4 mv = viewMatrix * wq;",
 "\n  px *= 1. + .3 * min(rw, 2.);",
 "\n  float lum = max(max(vCol.r, vCol.g), vCol.b);\n  rc *= rc / max(max(rc.r, rc.g), max(rc.b, 1e-4));   // the light's own hue, deepened so that it is not washed to white\n  vCol = mix(vCol, uWarmCol * lum, min(warm, 1.)) * (1. + 2.5 * warm);\n  vCol = mix(vCol, rc * lum * 1.3, min(rw, 1.) * .9) * (1. + uLight * min(rw, 1.5));"],
-q7=class extends nn{
+j7=class extends rn{
 static{
 c(this,
 "SearchGlyphs")}
@@ -64835,7 +64836,7 @@ Q0={
 n:3,
 r:.7}
 ,
-j7=c(e=>[H.me,
+X7=c(e=>[H.me,
 wt(H.me,
 _l,
 .45),
@@ -64844,7 +64845,7 @@ wt(_l,
 Y0,
 .5)][e],
 "ringCol"),
-X7=c((e,
+Y7=c((e,
 t,
 n)=>([.95,
 .75,
@@ -64853,7 +64854,7 @@ n)=>([.95,
 n-.04,
 n+.4))),
 "residue"),
-Y7=[.75,
+Q7=[.75,
 .8,
 .8],
 MY=[e=>({
@@ -64911,12 +64912,12 @@ up:[0,
 -1],
 fov:40}
 )],
-Q7=c((e,
+Z7=c((e,
 t)=>MY[e](X(t,
 0,
 1)),
 "viewCam"),
-Z7=[{
+K7=[{
 c:[ii[0],
 ii[2]-1.5],
 near:3,
@@ -64939,13 +64940,13 @@ c:Rc.c,
 near:8.4,
 far:9.4}
 ];
-var K7=1024,
-J7=Math.sqrt(69/(12*(1-.33*.33))/2.7),
-Wg=.2,
+var J7=1024,
+$7=Math.sqrt(69/(12*(1-.33*.33))/2.7),
+Vg=.2,
 B4=c((e,
-t)=>Math.PI**2*(e*e+t*t)/(Wg*Wg)*J7/j,
+t)=>Math.PI**2*(e*e+t*t)/(Vg*Vg)*$7/j,
 "modeHz");
-function xp(e,
+function Sp(e,
 t,
 n=48){
 let i=0;
@@ -64955,19 +64956,19 @@ r++){
 let o=(r+.5)*Math.PI/n;
 i+=Math.cos(e*o-t*Math.sin(o))}
 return i/n}
-c(xp,
+c(Sp,
 "besselJ");
 function xY(e,
 t){
 let n=[],
 r=.5,
-o=xp(e,
+o=Sp(e,
 r);
 for(;
 n.length<t;
 ){
 let a=r+.01,
-s=xp(e,
+s=Sp(e,
 a);
 if(o!==0&&Math.sign(s)!==Math.sign(o)){
 let l=r,
@@ -64976,8 +64977,8 @@ for(let h=0;
 h<60;
 h++){
 let f=(l+u)/2;
-Math.sign(xp(e,
-f))===Math.sign(xp(e,
+Math.sign(Sp(e,
+f))===Math.sign(Sp(e,
 l))?l=f:u=f}
 n.push((l+u)/2)}
 r=a,
@@ -64996,7 +64997,7 @@ zeros:n,
 k:i,
 rings:n.map(r=>r/i),
 rot:-Math.PI/8,
-hz:i*i/(Wg*Wg)*J7/j}
+hz:i*i/(Vg*Vg)*$7/j}
 }
 )(),
 P4=c((e,
@@ -65004,7 +65005,7 @@ t)=>(n,
 i)=>Math.cos(e*Math.PI*n)*Math.cos(t*Math.PI*i)-Math.cos(t*Math.PI*n)*Math.cos(e*Math.PI*i),
 "chladni"),
 C4=new Map;
-function $7(e,
+function eB(e,
 t,
 n=150){
 if(C4.has(e))return C4.get(e);
@@ -65081,10 +65082,10 @@ Math.abs(d[1]))<=1);
 return C4.set(e,
 h),
 h}
-c($7,
+c(eB,
 "nodalSegments");
 var E4=new Map;
-function eB(e,
+function tB(e,
 t,
 n=64){
 if(E4.has(e))return E4.get(e);
@@ -65126,9 +65127,9 @@ Math.sign(h)])}
 return E4.set(e,
 s),
 s}
-c(eB,
+c(tB,
 "antinodes");
-function tB(e,
+function nB(e,
 t=1.03,
 n=256){
 if(e>200)return[[-1,
@@ -65155,9 +65156,9 @@ i.push([Math.sign(a)*Math.abs(a)**(2/e)*t,
 0,
 Math.sign(s)*Math.abs(s)**(2/e)*t])}
 return i}
-c(tB,
+c(nB,
 "plateOutline");
-function nB(e,
+function iB(e,
 t=71){
 let n=Be(t),
 i=new Float32Array(e*4),
@@ -65165,7 +65166,7 @@ r=4096,
 o=new Float32Array(4097);
 for(let s=0;
 s<=r;
-s++)o[s]=xp(pa.n,
+s++)o[s]=Sp(pa.n,
 pa.k*s/r,
 40)/.4;
 let a=0;
@@ -65189,10 +65190,10 @@ n()],
 a*4),
 a++)}
 return i}
-c(nB,
+c(iB,
 "fieldSample");
 var R4=new Map;
-function iB(e,
+function rB(e,
 t,
 {
 width:n=1.8,
@@ -65208,7 +65209,7 @@ let a="".concat(e,
 "|").concat(i,
 "|").concat(r);
 if(R4.has(a))return R4.get(a);
-let s=Fn(),
+let s=In(),
 l=s.getContext("2d",
 {
 willReadFrequently:!0}
@@ -65262,21 +65263,21 @@ v.set([(M+w()-h/2)*g,
 1],
 (x*t+y)*4)}
 }
-let A=an(v,
+let A=sn(v,
 t,
 t);
 return R4.set(a,
 A),
 A}
-c(iB,
+c(rB,
 "wordGrains");
-var rB="\nfloat chl(vec2 p, float n, float m) { return cos(n * PI * p.x) * cos(m * PI * p.y) - cos(m * PI * p.x) * cos(n * PI * p.y); }\nvec2 chlGrad(vec2 p, float n, float m) {\n  float a = n * PI, b = m * PI;\n  return vec2(-a * sin(a * p.x) * cos(b * p.y) + b * sin(b * p.x) * cos(a * p.y),\n              -b * cos(a * p.x) * sin(b * p.y) + a * cos(b * p.x) * sin(a * p.y));\n}",
-_Y="\nuniform float uS, uN1, uM1, uN2, uM2, uMorph, uT, uBounce, uJitter, uBuzz, uSize, uFocal, uMinPx, uBright, uOrtho;\nuniform float uDisc, uDiscN, uDiscRot, uNR, uCollapse, uFocus, uAperture, uMaxBlur, uHopGlow, uScatter;\nuniform float uRings[5];\nuniform vec4 uWin;\nuniform vec3 uColA, uColB;\nuniform sampler2D uWord; uniform float uWordOn, uShake;\nout vec3 vCol; out float vBlur;\n".concat(rB,
+var oB="\nfloat chl(vec2 p, float n, float m) { return cos(n * PI * p.x) * cos(m * PI * p.y) - cos(m * PI * p.x) * cos(n * PI * p.y); }\nvec2 chlGrad(vec2 p, float n, float m) {\n  float a = n * PI, b = m * PI;\n  return vec2(-a * sin(a * p.x) * cos(b * p.y) + b * sin(b * p.x) * cos(a * p.y),\n              -b * cos(a * p.x) * sin(b * p.y) + a * cos(b * p.x) * sin(a * p.y));\n}",
+_Y="\nuniform float uS, uN1, uM1, uN2, uM2, uMorph, uT, uBounce, uJitter, uBuzz, uSize, uFocal, uMinPx, uBright, uOrtho;\nuniform float uDisc, uDiscN, uDiscRot, uNR, uCollapse, uFocus, uAperture, uMaxBlur, uHopGlow, uScatter;\nuniform float uRings[5];\nuniform vec4 uWin;\nuniform vec3 uColA, uColB;\nuniform sampler2D uWord; uniform float uWordOn, uShake;\nout vec3 vCol; out float vBlur;\n".concat(oB,
 "\n// damped Newton steps onto φ = 0 (step length capped so a grain walks to the nearest line, not across the plate)\nvec2 toNodal(vec2 p, float n, float m, out float err) {\n  err = 0.;\n  if (n < .5) return p;                       // n = 0: no mode yet, the sand lies where it was sprinkled\n  for (int k = 0; k < 12; k++) {\n    float f = chl(p, n, m); vec2 g = chlGrad(p, n, m);\n    vec2 st = f * g / max(dot(g, g), 1e-6); float L = length(st);\n    p = clamp(p - (L > .06 ? st * .06 / L : st), -1., 1.);\n  }\n  err = abs(chl(p, n, m)) / max(length(chlGrad(p, n, m)), 1e-4);\n  return p;\n}\n// exact closest point on the disc mode's nodal set: circles r = uRings[j], rays θ = θ₀ + (2j + 1)π / 2n\nvec2 toMandala(vec2 p) {\n  float r = length(p), th = atan(p.y, p.x);\n  vec2 dir = r > 1e-6 ? p / r : vec2(1., 0.), q = dir;\n  float best = 1e9;\n  for (int j = 0; j < 5; j++) {\n    if (float(j) >= uNR) break;\n    float dd = abs(r - uRings[j]);\n    if (dd < best) { best = dd; q = dir * uRings[j]; }\n  }\n  float sp = PI / uDiscN, a0 = uDiscRot + .5 * sp;\n  float thr = a0 + floor((th - a0) / sp + .5) * sp, along = r * cos(th - thr), perp = abs(r * sin(th - thr));\n  if (perp < best && along <= 1.) q = vec2(cos(thr), sin(thr)) * along;\n  return q;\n}\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 cell = vec2(mod(i, uS), floor(i / uS));\n  vec2 p0 = mix(uWin.xy, uWin.zw, (cell + hash22(cell)) / uS);   // stratified sprinkle\n  float h1 = hash12(cell * 1.7 + 3.1), h2 = hash12(cell * 2.3 + 7.7), h3 = hash12(cell * 3.1 + 1.3);\n  float eA, eB;\n  vec2 pa = toNodal(p0, uN1, uM1, eA), pb = toNodal(p0, uN2, uM2, eB);\n  if (uWordOn > .5) { pa = texture(uWord, (cell + .5) / uS).xy; eA = 0.; }   // poured as letters: every grain has a spot in the word\n  float H = 3. + floor(h1 * 4.);                                  // 3..6 hops per migration\n  // the new figure spreads out from the centre (the drive point): outer grains leave later\n  float d = clamp(length(pa) / 1.414, 0., 1.) * .55, k = smoothstep(d, d + .45, uMorph);\n  float q = k * H, f = fract(q);\n  vec2 p = mix(pa, pb, (floor(q) + smoothstep(0., 1., f)) / H);\n  float amp = clamp(abs(chl(p, uN2, uM2)) * .5, 0., 1.);        // local amplitude of the driving mode\n  float hop = 4. * f * (1. - f) * step(.001, k) * step(k, .999) * (.3 + .7 * h2) * (.25 + .75 * amp);\n  float err = mix(eA, eB, k);\n  if (uDisc > 0.) {\n    vec2 pc = toMandala(p0);                                       // from the sprinkle point: every nodal set is fed evenly\n    float dd = clamp(length(pb) / 1.414, 0., 1.) * .5, kd = smoothstep(dd, dd + .5, uDisc);\n    float qd = kd * H, fd = fract(qd);\n    p = mix(p, pc, (floor(qd) + smoothstep(0., 1., fd)) / H);\n    hop = max(hop * (1. - kd), 4. * fd * (1. - fd) * step(.001, kd) * step(kd, .999) * (.3 + .7 * h2));\n    err *= 1. - kd;\n  }\n  if (uShake > 0.) p += (hash22(cell * .913 + floor(uT * 60.) * 1.71) - .5) * uShake * (1. - k);   // the drive shakes the letters in place\n  // a sand ridge has a width: grains rest in a band around the exact nodal curve (roughly gaussian, σ ≈ uScatter)\n  vec2 g2 = hash22(cell * 1.31 + 9.1);\n  p += (vec2(cos(TAU * g2.x), sin(TAU * g2.x)) * sqrt(-2. * log(max(g2.y, 1e-4)))) * uScatter * (1. - uCollapse);\n  float jit = uJitter * (hash12(cell + floor(uT * 60.) * 1.3) - .5) * .012;\n  float buzz = uBuzz * h3 * (.5 + .5 * sin(TAU * (uT * 7.3 + h1)));\n  vec3 pos = vec3(p.x, hop * uBounce + jit + buzz, p.y);\n  pos = mix(pos, (hash31(i * .37 + 1.7) - .5) * vec3(.05, .03, .05), uCollapse);   // me withdraws into one point\n  float vis = 1. - smoothstep(.006, .02, err);                    // grains that found no line fade out\n  vec4 mv = modelViewMatrix * vec4(pos, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float energy = vis * min(1., px * px / (uMinPx * uMinPx)) * core * core / (sz * sz);\n  vCol = mix(uColA, uColB, smoothstep(.2, 1.2, length(p))) * uBright * energy * (1. + uHopGlow * hop) * (.7 + .6 * h3);\n}"),
 SY="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;   // lens bokeh: flat disc, bright rim\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}",
-TY="\nuniform float uG, uN1, uM1, uN2, uM2, uMorph, uDisc, uDiscN, uDiscK, uDiscRot, uSuper, uAmp, uPhase, uBright, uSize, uFocal, uMinPx, uOrtho, uFocus, uAperture, uMaxBlur;\nuniform vec3 uCol;\nout vec3 vCol; out float vBlur;\n".concat(rB,
+TY="\nuniform float uG, uN1, uM1, uN2, uM2, uMorph, uDisc, uDiscN, uDiscK, uDiscRot, uSuper, uAmp, uPhase, uBright, uSize, uFocal, uMinPx, uOrtho, uFocus, uAperture, uMaxBlur;\nuniform vec3 uCol;\nout vec3 vCol; out float vBlur;\n".concat(oB,
 "\nfloat besselJ(float n, float x) { float s = 0.; for (int k = 0; k < 24; k++) { float tau = (float(k) + .5) * (PI / 24.); s += cos(n * tau - x * sin(tau)); } return s / 24.; }\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 id = vec2(mod(i, uG), floor(i / uG));\n  vec2 p = (id + .5) / uG * 2. - 1.;\n  float r = length(p), w = 0.;\n  if (uN2 > .5) {\n    float d = clamp(r / 1.414, 0., 1.) * .55, k = smoothstep(d, d + .45, uMorph);\n    w = mix(uN1 > .5 ? chl(p, uN1, uM1) : 0., chl(p, uN2, uM2), k) * .5;\n  }\n  if (uDisc > 0.) {\n    float wd = r < 1. ? besselJ(uDiscN, uDiscK * r) * cos(uDiscN * (atan(p.y, p.x) - uDiscRot)) / .4 : 0.;\n    float dd = clamp(r / 1.414, 0., 1.) * .5;\n    w = mix(w, wd, smoothstep(dd, dd + .5, uDisc));\n  }\n  float inside = step(pow(abs(p.x), uSuper) + pow(abs(p.y), uSuper), 1.);\n  vec3 pos = vec3(p.x, uAmp * w * sin(uPhase), p.y);\n  vec4 mv = modelViewMatrix * vec4(pos, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float energy = min(1., px * px / (uMinPx * uMinPx)) * core * core / (sz * sz);\n  vCol = uCol * uBright * w * w * inside * energy;\n}");
-function oB(e,
+function aB(e,
 t,
 n){
 let i=new It;
@@ -65294,27 +65295,27 @@ uniforms:n}
 ));
 return r.frustumCulled=!1,
 r}
-c(oB,
+c(aB,
 "pointsMesh");
-var aB=c(e=>Object.fromEntries(e.map(t=>[t,
+var sB=c(e=>Object.fromEntries(e.map(t=>[t,
 {
 value:0}
 ])),
 "U");
-function sB(e,
+function lB(e,
 t){
 return e.isPerspectiveCamera?t/2/Math.tan(ut.degToRad(e.fov)/2):t*e.zoom/(e.top-e.bottom)}
-c(sB,
+c(lB,
 "focalPx");
-var lB=class{
+var uB=class{
 static{
 c(this,
 "Sand")}
 constructor(){
-this.points=oB(K7*K7,
+this.points=aB(J7*J7,
 _Y,
 {
-...aB(["uS",
+...sB(["uS",
 "uN1",
 "uM1",
 "uN2",
@@ -65412,7 +65413,7 @@ r.uFocus.value=t.focus??5,
 r.uAperture.value=t.aperture??0,
 r.uMaxBlur.value=(t.maxBlur??40)*i/1080,
 r.uOrtho.value=n.isOrthographicCamera?1:0,
-r.uFocal.value=sB(n,
+r.uFocal.value=lB(n,
 i),
 r.uColA.value.setRGB(...t.colA??[.42,
 .92,
@@ -65424,15 +65425,15 @@ this.points.visible=!0,
 this}
 }
 ,
-uB=class{
+cB=class{
 static{
 c(this,
 "Field")}
 constructor(){
-this.points=oB(28224,
+this.points=aB(28224,
 TY,
 {
-...aB(["uG",
+...sB(["uG",
 "uN1",
 "uM1",
 "uN2",
@@ -65486,7 +65487,7 @@ r.uFocus.value=t.focus??5,
 r.uAperture.value=t.aperture??0,
 r.uMaxBlur.value=(t.maxBlur??40)*i/1080,
 r.uOrtho.value=n.isOrthographicCamera?1:0,
-r.uFocal.value=sB(n,
+r.uFocal.value=lB(n,
 i),
 r.uCol.value.setRGB(...t.col??[1,
 .28,
@@ -65510,7 +65511,7 @@ o)}
 return n}
 c(EY,
 "typed");
-function Vg(e,
+function qg(e,
 t,
 n,
 i={
@@ -65567,9 +65568,9 @@ color:i.accent??P.me,
 alpha:.85*(i.alpha??1)}
 )}
 )}
-c(Vg,
+c(qg,
 "stackLog");
-function cB(e,
+function hB(e,
 t,
 n,
 i={
@@ -65608,9 +65609,9 @@ glow:i.glow??18,
 glowColor:i.glowColor??P.me}
 )}
 }
-c(cB,
+c(hB,
 "ringLegend");
-function hB(e,
+function fB(e,
 t,
 n,
 i={
@@ -65645,13 +65646,13 @@ h[1]+g/w*v),
 s.stroke()}
 }
 )}
-c(hB,
+c(fB,
 "dialTicks");
-var _p={
+var Tp={
 f1:110,
 scale:648}
 ;
-function dB(e,
+function pB(e,
 t){
 let{
 a:n,
@@ -65735,9 +65736,9 @@ color:(t.node??[.95,
 width:8}
 )}
 }
-c(dB,
+c(pB,
 "string");
-function pB(e,
+function mB(e,
 t,
 n,
 i={
@@ -65798,9 +65799,9 @@ h/5),
 l(.1,
 h/5),
 .3)}
-c(pB,
+c(mB,
 "graticule");
-function mB(e,
+function vB(e,
 t){
 let{
 c:n,
@@ -65855,7 +65856,7 @@ color:h.map(y=>y*2.4*l),
 width:11}
 ),
 A}
-c(mB,
+c(vB,
 "lissajous");
 function L4(e,
 t,
@@ -65888,9 +65889,9 @@ c(L4,
 "channel");
 var F4=c(e=>e<1e3?3*e/200:15+27*Math.log(e/1e3)/Math.log(6.4),
 "hz2mel"),
-fB=F4(30),
+dB=F4(30),
 RY=F4(16e3),
-BY=c(e=>X(((F4(e)-fB)/((RY-fB)/17)-1)/15),
+BY=c(e=>X(((F4(e)-dB)/((RY-dB)/17)-1)/15),
 "hzPos"),
 PY=c((e,
 t,
@@ -66122,7 +66123,7 @@ c(I4,
 var k4="#65708a",
 FY="\nout vec2 vP;\nvoid main() { vP = position.xz; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 IY="\nuniform float uN1, uM1, uN2, uM2, uMorph, uBright, uAmbient, uT;\nin vec2 vP; out vec4 o;\nfloat chl(vec2 p, float n, float m) { return cos(n * PI * p.x) * cos(m * PI * p.y) - cos(m * PI * p.x) * cos(n * PI * p.y); }\nvoid main() {\n  vec2 p = vP;\n  float d = clamp(length(p) / 1.414, 0., 1.) * .55, k = smoothstep(d, d + .45, uMorph);\n  float w = mix(uN1 > .5 ? chl(p, uN1, uM1) : 0., chl(p, uN2, uM2), k) * .5;\n  // heat diffuses a little: blend in a softened copy (the mode's energy averaged over a small disc)\n  float s = 0.;\n  for (int i = 0; i < 6; i++) { float a = float(i) * TAU / 6.; vec2 q = p + vec2(cos(a), sin(a)) * .035; s += pow(mix(uN1 > .5 ? chl(q, uN1, uM1) : 0., chl(q, uN2, uM2), k) * .5, 2.); }\n  float e = mix(w * w, s / 6., .45);\n  float noise = (hash12(floor(gl_FragCoord.xy / 2.) + floor(uT * 30.) * 7.1) - .5) * .018;   // sensor noise\n  o = vec4(vec3(max(0., e * uBright + uAmbient + noise)), 1.);\n}",
-vB=class{
+gB=class{
 static{
 c(this,
 "Heat")}
@@ -66132,7 +66133,7 @@ let e=c(t=>Object.fromEntries(t.map(n=>[n,
 value:0}
 ])),
 "U");
-this.mesh=new tt(new _n(2,
+this.mesh=new tt(new Sn(2,
 2,
 1,
 1).rotateX(-Math.PI/2),
@@ -66177,7 +66178,7 @@ t)=>[(e-960)/100,
 (540-t)/100,
 0],
 "W");
-function Sp(e,
+function Cp(e,
 t,
 n=1,
 i=[960,
@@ -66212,7 +66213,7 @@ look:[a[0],
 a[1],
 0]}
 )}
-c(Sp,
+c(Cp,
 "designCam");
 var D4=c((e,
 t=1,
@@ -66220,7 +66221,7 @@ n=[960,
 540])=>[n[0]+(e[0]-n[0])*t,
 n[1]+(e[1]-n[1])*t],
 "Z"),
-gB=(()=>{
+wB=(()=>{
 let r=[{
 who:"you",
 bars:[.86,
@@ -66264,7 +66265,7 @@ last:r[r.length-1]}
 function z4(e,
 t=5){
 let n=Be(t),
-i=gB.last,
+i=wB.last,
 r=new Float32Array(e*4);
 for(let o=0;
 o<e;
@@ -66292,7 +66293,7 @@ o*4)}
 return r}
 c(z4,
 "bubblePoints");
-function wB(e,
+function AB(e,
 t=5){
 let n=z4(e,
 t),
@@ -66306,15 +66307,15 @@ n[r*4]+=-1.5*a-.9*(1-o)+(i()-.5)*.7,
 n[r*4+1]+=2.4*a+1.4*a*a+(i()-.5)*.6,
 n[r*4+2]+=(i()-.5)*.3}
 return n}
-c(wB,
+c(AB,
 "bubbleGone");
-function AB(e,
+function yB(e,
 t,
 n,
 i={
 }
 ){
-let r=gB,
+let r=wB,
 o=i.alpha??1,
 a=t-n,
 s=i.gone??0,
@@ -66461,9 +66462,9 @@ color:"#b4bac6",
 alpha:o*h}
 )}
 }
-c(AB,
+c(yB,
 "chat");
-var qg=[{
+var jg=[{
 at:0,
 s:"$ ping you",
 c:"#e8e8e8"}
@@ -66496,7 +66497,7 @@ at:.7,
 s:"Request timeout for icmp_seq 3",
 c:"#ff8fb8"}
 ];
-function yB(e,
+function bB(e,
 t,
 n,
 i,
@@ -66508,7 +66509,7 @@ a=r.y??150,
 s=r.lh??27,
 l=r.size??17,
 u=r.alpha??1;
-qg.forEach((f,
+jg.forEach((f,
 d)=>{
 let p=_(t,
 n+f.at*i,
@@ -66564,11 +66565,11 @@ a+d*s,
 {
 ...m,
 color:f.c,
-weight:d===qg.length-1?600:500}
+weight:d===jg.length-1?600:500}
 )}
 );
-let h=qg.findLastIndex(f=>t>=n+f.at*i);
-h>=0&&h<qg.length-1&&Math.floor(t*4)%2===0&&e.text("█",
+let h=jg.findLastIndex(f=>t>=n+f.at*i);
+h>=0&&h<jg.length-1&&Math.floor(t*4)%2===0&&e.text("█",
 o,
 a+(h+1)*s,
 {
@@ -66578,14 +66579,14 @@ color:P.dim,
 align:"left",
 alpha:u*.8}
 )}
-c(yB,
+c(bB,
 "pingLog");
 var Ca={
 c:[770,
 520],
 r:190}
 ;
-function bB(e,
+function MB(e,
 t=9){
 let n=Be(t),
 i=new Float32Array(e*4),
@@ -66602,9 +66603,9 @@ r[1]+Math.sin(l)*s*o,
 s],
 a*4)}
 return i}
-c(bB,
+c(MB,
 "dotPoints");
-function MB(e,
+function xB(e,
 t=9,
 n=.065){
 let i=Be(t),
@@ -66623,9 +66624,9 @@ o[1]+Math.sin(u)*h,
 l],
 s*4)}
 return r}
-c(MB,
+c(xB,
 "ringPoints");
-function xB(e,
+function _B(e,
 t,
 n,
 i,
@@ -66678,7 +66679,7 @@ color:"#8a93a6",
 align:"left",
 alpha:o*s*.9}
 )}
-c(xB,
+c(_B,
 "presence");
 var As={
 stack:[250,
@@ -66725,7 +66726,7 @@ h*4)}
 return i}
 c(O4,
 "objPoints");
-function _B(e,
+function SB(e,
 t=21){
 let n=O4(e,
 t),
@@ -66737,9 +66738,9 @@ let o=i();
 n[r*4]+=(i()-.3)*3.2*o,
 n[r*4+1]+=1.2+3.4*o*o+(i()-.5)*.8}
 return n}
-c(_B,
+c(SB,
 "objGone");
-function SB(e,
+function TB(e,
 t,
 n,
 i={
@@ -66831,9 +66832,9 @@ y)),
 p.stroke()}
 }
 )}
-c(SB,
+c(TB,
 "pointerLines");
-function TB(e,
+function CB(e,
 t,
 n,
 i={
@@ -66946,9 +66947,9 @@ alpha:o*.55*_(t,
 n.free+.25,
 n.free+.35)}
 )}
-c(TB,
+c(CB,
 "pointerLabels");
-function Tp(e,
+function Ep(e,
 t,
 n,
 i,
@@ -67001,13 +67002,13 @@ w:l,
 h:f,
 size:s}
 }
-c(Tp,
+c(Ep,
 "lonelyPrompt");
-var PB=-.55,
-Rp=[0,
+var kB=-.55,
+Pp=[0,
 .95,
 0],
-Bp=wt(H.you,
+kp=wt(H.you,
 H.rose,
 .3),
 W4=[[.36,
@@ -67032,7 +67033,7 @@ DY="#16181d",
 N4="#6f737c",
 re=null,
 U4=null;
-function yn(e){
+function bn(e){
 if(U4?.T===e)return U4;
 let t=e.section("c2").start,
 n=Math.round(e.beatAt(t)),
@@ -67171,7 +67172,7 @@ nul:h(u[4],
 (new RegExp("left","i")))}
 }
 }
-c(yn,
+c(bn,
 "keys");
 var zY=c(e=>e<=0?999:2*40**(1-e),
 "superP");
@@ -67277,7 +67278,7 @@ inset:s}
 )}
 c(Tl,
 "persp");
-function kB(e,
+function LB(e,
 t,
 n,
 i,
@@ -67328,9 +67329,9 @@ Et.cam(o,
 look:e,
 inset:r}
 )}
-c(kB,
+c(LB,
 "ortho");
-var Cp=c((e,
+var Rp=c((e,
 t)=>{
 let n=Ku(re.persp,
 {
@@ -67377,7 +67378,7 @@ e.draw(re.scene,
 t)}
 c(ro,
 "render");
-function CB(e,
+function EB(e,
 t={
 }
 ){
@@ -67391,14 +67392,14 @@ revealR:t.revealR??200}
 let n=re.floor.material.uniforms;
 n.uMinor.value=t.minor??.25,
 n.uMajor.value=t.major??1}
-c(CB,
+c(EB,
 "floor");
 var OY=c(e=>e.F.env("onset_drums",
 e.t,
 .005,
 .12),
 "kick");
-function LB(e,
+function FB(e,
 t={
 }
 ){
@@ -67406,7 +67407,7 @@ let n=re.lines,
 i=t.hw??1,
 r=c(a=>(t.col??H.me).map(s=>s*a*i),
 "c");
-if(i<=.002||(n.polyline(tB(e.super),
+if(i<=.002||(n.polyline(nB(e.super),
 {
 color:r(t.rim??.42),
 width:t.rimW??2.2}
@@ -67437,13 +67438,13 @@ n.polyline(o(-.45000000000000007,
 color:r(.22),
 width:1.4}
 ),
-n.polyline(o(PB,
+n.polyline(o(kB,
 .09),
 {
 color:r(.22),
 width:1.4}
 )}
-c(LB,
+c(FB,
 "hardware");
 function Hh(e,
 t,
@@ -67475,7 +67476,7 @@ size:.0045,
 ,
 t,
 o),
-LB(n,
+FB(n,
 r)}
 c(Hh,
 "drawPlate");
@@ -67484,7 +67485,7 @@ t,
 n=1.2,
 i=.002){
 if(e)for(let[r,
-o]of $7("c2/".concat(e),
+o]of eB("c2/".concat(e),
 P4(...e)))re.lines.segment([r[0],
 i,
 r[1]],
@@ -67529,7 +67530,7 @@ width:1.2}
 }
 c(UY,
 "ruler");
-function Ep(e){
+function Bp(e){
 return e.disc>.5?[["mode",
 "J₄(j₄,₅ r)·cos 4θ"],
 ["f",
@@ -67541,7 +67542,7 @@ return e.disc>.5?[["mode",
 ["f",
 "".concat(Math.round(B4(...e.b)),
 " Hz")]]}
-c(Ep,
+c(Bp,
 "modeRows");
 function Do(e,
 t,
@@ -67550,7 +67551,7 @@ i,
 r={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -67564,7 +67565,7 @@ e.T,
 e.t,
 {
 from:t.s0-.2}
-):Vg(e.text.overlay,
+):qg(e.text.overlay,
 e.t,
 t.left,
 r.ink?{
@@ -67620,9 +67621,9 @@ t)=>Math.hypot(e[0]-t[0],
 e[1]-t[1],
 e[2]-t[2]),
 "dist3"),
-FB=c(e=>.92-(e-1)*.46,
+IB=c(e=>.92-(e-1)*.46,
 "STR_Y");
-function IB(e,
+function DB(e,
 t,
 n,
 i,
@@ -67640,9 +67641,9 @@ let l=i+s*(o.dt??.07),
 u=R.outCubic(_(n,
 l,
 l+.22)),
-h=o.y??FB(a),
+h=o.y??IB(a),
 f=o.half??1.75;
-dB(re.lines,
+pB(re.lines,
 {
 a:[-f,
 h,
@@ -67664,9 +67665,9 @@ H.violet,
 .25)}
 )}
 )}
-c(IB,
+c(DB,
 "strings");
-function DB(e,
+function zB(e,
 t,
 n,
 i={
@@ -67677,7 +67678,7 @@ let r=i.c??[0,
 0],
 o=i.d??.72,
 a=i.k??1;
-pB(re.lines,
+mB(re.lines,
 r,
 o,
 {
@@ -67686,7 +67687,7 @@ k:.9*a}
 let[s,
 l]=i.ratio,
 u=i.delta??0,
-h=mB(re.lines,
+h=vB(re.lines,
 {
 c:r,
 d:o,
@@ -67742,7 +67743,7 @@ col:H.rose.map(g=>g*.8*a),
 width:2.2}
 )}
 return h}
-c(DB,
+c(zB,
 "scope");
 var HY=c((e,
 t)=>{
@@ -67765,29 +67766,29 @@ to:c(e=>e.section("c2x").start,
 "to"),
 init(e){
 if(re={
-scene:new fn,
+scene:new dn,
 persp:dr(36),
 persp2:dr(36),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
 .01,
 400),
-dcam:new An(-1,
+dcam:new yn(-1,
 1,
 1,
 -1,
 .01,
 100)}
 ,
-re.sand=new lB,
-re.field=new uB,
-re.heat=new vB,
-re.you=new Qt({
+re.sand=new uB,
+re.field=new cB,
+re.heat=new gB,
+re.you=new Zt({
 count:65536}
 ),
-re.bits=new Qt({
+re.bits=new Zt({
 count:16384}
 ),
 re.lines=new Xn(24e3),
@@ -67800,41 +67801,41 @@ minor:.25,
 major:1,
 fade:.07}
 ),
-re.floor.position.y=PB,
+re.floor.position.y=kB,
 re.floor.material.uniforms.uAxisCol.value.setRGB(.22,
 .36,
 .6),
-re.word=iB("VIBRATIONS",
+re.word=rB("VIBRATIONS",
 512,
 {
 width:1.84,
 tall:1.35}
 ),
-re.code=new nn({
+re.code=new rn({
 count:65536}
 ),
 re.code.text("c2/src",
-tn("ch/08_c2.js")),
+nn("ch/08_c2.js")),
 re.code.points.rotation.x=-Math.PI/2,
 re.code.points.position.set(0,
 0,
 -12.6),
 q(e)){
-re.codeR=new nn({
+re.codeR=new rn({
 count:65536,
 ripples:!0}
 ),
 re.codeR.text("c2/src",
-tn("ch/08_c2.js")),
+nn("ch/08_c2.js")),
 re.codeR.points.rotation.x=-Math.PI/2,
 re.codeR.points.position.set(0,
 0,
 -12.6),
-re.codeS=new q7({
+re.codeS=new j7({
 count:65536}
 ),
 re.codeS.text("c2/src",
-tn("ch/08_c2.js")),
+nn("ch/08_c2.js")),
 re.codeS.points.rotation.x=-Math.PI/2,
 re.codeS.points.position.set(Rc.c[0],
 0,
@@ -67845,7 +67846,7 @@ for(let r=1;
 r<re.codeS.count;
 r++)i+=n[r][1]===n[r-1][1]?n[r][0]-n[r-1][0]:2;
 re.searchCell=Math.sqrt(Math.PI*Rc.r**2/(i*.6))*1.01,
-re.fogS=new tt(new _n(60,
+re.fogS=new tt(new Sn(60,
 60).rotateX(-Math.PI/2),
 new Zr({
 glslVersion:Kl,
@@ -67895,7 +67896,7 @@ l=p*Math.cos(d)*m,
 u=f*m,
 h=p*Math.sin(d)*m}
 o.set([l,
-u+Rp[1],
+u+Pp[1],
 h,
 s%5?0:1],
 s*4)}
@@ -67904,22 +67905,22 @@ return o}
 "ballAt");
 re.tex={
 field:re.you.shape("c2/field",
-n=>nB(n)),
+n=>iB(n)),
 ball:re.you.shape("c2/ball",
 n=>t(n,
 31)),
 bubble:re.bits.shape("c2/bubble",
 n=>z4(n)),
 bubbleGone:re.bits.shape("c2/bubble-gone",
-n=>wB(n)),
+n=>AB(n)),
 dot:re.bits.shape("c2/dot",
-n=>bB(n)),
-ring:re.bits.shape("c2/ring",
 n=>MB(n)),
+ring:re.bits.shape("c2/ring",
+n=>xB(n)),
 obj:re.bits.shape("c2/obj",
 n=>O4(n)),
 objGone:re.bits.shape("c2/obj-gone",
-n=>_B(n)),
+n=>SB(n)),
 floor:re.code.layout("c2/code-floor",
 Ki(re.code,
 {
@@ -67940,7 +67941,7 @@ cell:re.searchCell,
 width:2*Rc.r,
 height:2*Rc.r}
 ))),
-re.fog=new tt(new _n(40,
+re.fog=new tt(new Sn(40,
 40).rotateX(-Math.PI/2),
 new Zr({
 glslVersion:Kl,
@@ -67984,11 +67985,11 @@ re.lines.mesh)}
 ,
 shots:[{
 id:"plate",
-at:c(e=>yn(e).s0,
+at:c(e=>bn(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -67997,7 +67998,7 @@ r=Xr(n,
 t),
 o=n-t.s0;
 io();
-let a=Cp(e,
+let a=Rp(e,
 {
 r:C(3.5,
 3.3,
@@ -68007,7 +68008,7 @@ el:C(1.2,
 1.12,
 R.inOutSine(o/2))}
 );
-CB(.26*(1-.65*R.inOutSine(_(n,
+EB(.26*(1-.65*R.inOutSine(_(n,
 t.s0+.25,
 t.B(2))))),
 Hh(e,
@@ -68019,7 +68020,7 @@ a),
 be(e.text.overlay,
 1500,
 150,
-Ep(i)),
+Bp(i)),
 Do(e,
 t,
 null,
@@ -68029,11 +68030,11 @@ Sl(e)}
 ,
 {
 id:"blueprint",
-at:c(e=>yn(e).B(2),
+at:c(e=>bn(e).B(2),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68044,7 +68045,7 @@ o=R.inOutSine(_(n,
 t.B(2),
 q(e)?t.B(4.5):t.B(3)));
 io();
-let a=kB([.3-.06*o,
+let a=LB([.3-.06*o,
 0,
 0],
 "top",
@@ -68088,7 +68089,7 @@ h=G([-1.03,
 0,
 1.03],
 a);
-Sn(s,
+Tn(s,
 l,
 u,
 "400.0 mm",
@@ -68096,7 +68097,7 @@ u,
 offset:-44,
 alpha:.7}
 ),
-Sn(s,
+Tn(s,
 h,
 l,
 "400.0 mm",
@@ -68106,7 +68107,7 @@ alpha:.7}
 );
 for(let[d,
 p,
-m]of eB("c2/".concat(i.b),
+m]of tB("c2/".concat(i.b),
 P4(...i.b))){
 let g=G([d,
 0,
@@ -68125,7 +68126,7 @@ let f=G([0,
 0,
 0],
 a);
-Tn(s,
+Cn(s,
 f[0],
 f[1],
 16,
@@ -68135,7 +68136,7 @@ label:"drive"}
 be(s,
 1440,
 150,
-[...Ep(i),
+[...Bp(i),
 ["φ",
 "cos nπx cos mπy − cos mπx cos nπy"],
 ["plate",
@@ -68152,12 +68153,12 @@ vignette:.3}
 ,
 {
 id:"plate2",
-at:c(e=>yn(e).B(4),
+at:c(e=>bn(e).B(4),
 "at"),
 editOnly:!0,
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68168,7 +68169,7 @@ o=R.inOutSine(_(n,
 t.B(3.4),
 t.tV));
 io();
-let a=Cp(e,
+let a=Rp(e,
 {
 r:C(3.25,
 2.55,
@@ -68180,7 +68181,7 @@ el:C(1.13,
 1.18,
 o)}
 );
-CB(.091),
+EB(.091),
 Hh(e,
 a,
 i,
@@ -68190,7 +68191,7 @@ a),
 be(e.text.overlay,
 1500,
 150,
-Ep(i)),
+Bp(i)),
 Do(e,
 t,
 null,
@@ -68200,11 +68201,11 @@ Sl(e)}
 ,
 {
 id:"strings",
-at:c(e=>yn(e).B(3),
+at:c(e=>bn(e).B(3),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -68229,7 +68230,7 @@ o),
 fov:34,
 aspect:e.aspect}
 );
-IB(e,
+DB(e,
 a,
 n,
 r,
@@ -68241,14 +68242,14 @@ for(let l=1;
 l<=5;
 l++){
 let u=G([1.75,
-FB(l),
+IB(l),
 0],
 a),
 h=_(n,
 r+(l-1)*.07+.1,
 r+(l-1)*.07+.3);
 h>0&&s.text("n = ".concat(l,
-"   ").concat(l*_p.f1,
+"   ").concat(l*Tp.f1,
 " Hz"),
 u[0]+30,
 u[1],
@@ -68263,10 +68264,10 @@ be(s,
 1440,
 132,
 [["string",
-"A₂ · ".concat(_p.scale,
+"A₂ · ".concat(Tp.scale,
 " mm")],
 ["fₙ",
-"n · ".concat(_p.f1,
+"n · ".concat(Tp.f1,
 " Hz")]]),
 Do(e,
 t,
@@ -68281,11 +68282,11 @@ ca:.12}
 ,
 {
 id:"spectrum",
-at:c(e=>yn(e).B(4.5),
+at:c(e=>bn(e).B(4.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -68353,11 +68354,11 @@ textGlow:1.25}
 ,
 {
 id:"vibrations",
-at:c(e=>yn(e).tV,
+at:c(e=>bn(e).tV,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68370,7 +68371,7 @@ t.B(8))),
 a=eu(n,
 .02*i.big);
 io();
-let s=Cp(e,
+let s=Rp(e,
 {
 r:C(2.3,
 3.05,
@@ -68407,7 +68408,7 @@ s),
 be(e.text.overlay,
 1500,
 150,
-Ep(i)),
+Bp(i)),
 Do(e,
 t,
 null,
@@ -68420,11 +68421,11 @@ ca:.2+.35*i.big}
 ,
 {
 id:"scope",
-at:c(e=>yn(e).B(8),
+at:c(e=>bn(e).B(8),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -68433,7 +68434,7 @@ o=R.inOutSine(_(n,
 r,
 q(e)?r+t.beat:t.B(10)));
 io();
-let a=Sp(re.dcam,
+let a=Cp(re.dcam,
 e.aspect,
 C(1,
 1.05,
@@ -68441,7 +68442,7 @@ o)),
 s=HY(n,
 t),
 l=Math.PI*(.5+.3*(n-t.B(8)));
-DB(e,
+zB(e,
 n,
 t,
 {
@@ -68505,11 +68506,11 @@ ca:.06}
 ,
 {
 id:"thermal",
-at:c(e=>yn(e).B(10),
+at:c(e=>bn(e).B(10),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68521,7 +68522,7 @@ a=_(n,
 o,
 q(e)?o+t.beat:t.B(11));
 io();
-let s=Cp(e,
+let s=Rp(e,
 {
 r:3.45,
 az:.55+.08*a,
@@ -68538,7 +68539,7 @@ bright:1.15,
 ambient:.03,
 t:n}
 ),
-LB(i,
+FB(i,
 {
 hw:.5,
 rod:!1,
@@ -68549,7 +68550,7 @@ col:[1,
 ro(u,
 s)}
 );
-rn(e,
+on(e,
 l,
 "thermal",
 {
@@ -68559,7 +68560,7 @@ ZY(e.text.overlay),
 be(e.text.overlay,
 1500,
 150,
-[...Ep(i),
+[...Bp(i),
 ["band",
 "LWIR 8–14 µm"]]),
 Do(e,
@@ -68575,12 +68576,12 @@ grain:.03}
 ,
 {
 id:"panel",
-at:c(e=>yn(e).B(11),
+at:c(e=>bn(e).B(11),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T);
-RB(e,
+let t=bn(e.T);
+BB(e,
 q(e)?_(e.t,
 t.B(12.5),
 t.tComp):0)}
@@ -68588,12 +68589,12 @@ t.tComp):0)}
 ,
 {
 id:"converge",
-at:c(e=>yn(e).B(12.5),
+at:c(e=>bn(e).B(12.5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T);
-RB(e,
+let t=bn(e.T);
+BB(e,
 _(e.t,
 t.B(12.5),
 t.tComp))}
@@ -68601,11 +68602,11 @@ t.tComp))}
 ,
 {
 id:"completion",
-at:c(e=>yn(e).tComp,
+at:c(e=>bn(e).tComp,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68614,8 +68615,8 @@ r=Xr(n,
 t),
 o=n-t.tComp;
 io();
-let a=zB(o),
-s=Cp(e,
+let a=OB(o),
+s=Rp(e,
 {
 r:6.1,
 az:a,
@@ -68637,7 +68638,7 @@ let l=R.inOutCubic(_(o,
 0,
 .55)),
 u=1.13,
-h=-EB/2,
+h=-RB/2,
 f=Math.atan2(-Math.cos(a),
 -Math.sin(a)),
 d=c((w,
@@ -68674,18 +68675,18 @@ g=c(w=>v=>G(d(v,
 w),
 s),
 "ring");
-hB(m,
+fB(m,
 g(1.2),
 l,
 {
 alpha:.45}
 ),
-cB(e.text.scene,
+hB(e.text.scene,
 "COMPLETION",
 g(1.36),
 {
 sweep:l,
-span:EB,
+span:RB,
 size:58,
 t:n,
 glowColor:P.me,
@@ -68712,11 +68713,11 @@ Sl(e)}
 ,
 {
 id:"rise",
-at:c(e=>yn(e).left[0].start,
+at:c(e=>bn(e).left[0].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Bc(n,
 t,
@@ -68775,7 +68776,7 @@ size:.0065,
 minPx:1.3,
 bright:.6,
 colA:H.rose,
-colB:Bp,
+colB:kp,
 sparkle:.6}
 ,
 a,
@@ -68783,7 +68784,7 @@ e.H),
 ro(e,
 a);
 let l=G([0,
-Rp[1]+s,
+Pp[1]+s,
 0],
 a);
 i.form>.6&&dt(e.text.overlay,
@@ -68817,17 +68818,17 @@ r)}
 ,
 {
 id:"chat",
-at:c(e=>yn(e).left[1].start,
+at:c(e=>bn(e).left[1].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
 r=t.left[1].start;
 io();
-let o=Sp(re.dcam,
+let o=Cp(re.dcam,
 e.aspect),
 a=R.inOutSine(_(n,
 r+.04,
@@ -68861,7 +68862,7 @@ o,
 e.H),
 ro(e,
 o),
-AB(e.text.overlay,
+yB(e.text.overlay,
 n,
 r,
 {
@@ -68881,11 +68882,11 @@ ca:.08}
 ,
 {
 id:"ping",
-at:c(e=>yn(e).left[2].start,
+at:c(e=>bn(e).left[2].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -68895,7 +68896,7 @@ a=R.inOutSine(_(n,
 r,
 t.left[3].start));
 if(io(),
-q(e))return BB(e,
+q(e))return PB(e,
 t);
 let s=Tl([C(.45,
 .2,
@@ -68938,7 +68939,7 @@ h=[-1.15,
 1.9];
 re.you.points.visible=!0,
 re.you.points.position.set(u[0],
-u[1]-Rp[1],
+u[1]-Pp[1],
 u[2]),
 re.you.set({
 a:re.tex.ball,
@@ -68950,7 +68951,7 @@ reveal:.1,
 size:.009,
 minPx:1.1,
 bright:.5,
-colA:Bp,
+colA:kp,
 sparkle:.5}
 ,
 s,
@@ -68988,8 +68989,8 @@ width:2}
 )}
 ro(e,
 s),
-jg(e.text.overlay),
-yB(e.text.overlay,
+Xg(e.text.overlay),
+bB(e.text.overlay,
 n,
 r,
 o,
@@ -69028,22 +69029,22 @@ vignette:.5}
 id:"search".concat(e),
 editOnly:!0,
 ownsLyrics:!0,
-at:c(t=>yn(t).left[e].start,
+at:c(t=>bn(t).left[e].start,
 "at"),
 draw(t){
 io(),
-BB(t,
-yn(t.T),
+PB(t,
+bn(t.T),
 e-1)}
 }
 )),
 {
 id:"presence",
-at:c(e=>yn(e).left[3].start,
+at:c(e=>bn(e).left[3].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -69055,7 +69056,7 @@ io();
 let a=C(1,
 1.06,
 o),
-s=Sp(re.dcam,
+s=Cp(re.dcam,
 e.aspect,
 a,
 Ca.c),
@@ -69093,7 +69094,7 @@ s,
 e.H),
 ro(e,
 s),
-xB(e.text.overlay,
+_B(e.text.overlay,
 n,
 r,
 t.tPres,
@@ -69113,17 +69114,17 @@ vignette:.4}
 ,
 {
 id:"pointer",
-at:c(e=>yn(e).left[4].start,
+at:c(e=>bn(e).left[4].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t);
 t.left[4].start,
 io();
-let r=Sp(re.dcam,
+let r=Cp(re.dcam,
 e.aspect),
 o=Dt(e,
 a=>{
@@ -69151,7 +69152,7 @@ e.H),
 ro(a,
 r)}
 );
-rn(e,
+on(e,
 o,
 "paper",
 {
@@ -69162,10 +69163,10 @@ paper:[.86,
 .85,
 .82]}
 ),
-SB(e.text.overlay,
+TB(e.text.overlay,
 n,
 t.ptr),
-TB(e.text.overlay,
+CB(e.text.overlay,
 n,
 t.ptr),
 Do(e,
@@ -69184,11 +69185,11 @@ grain:.02}
 ,
 {
 id:"prompt",
-at:c(e=>yn(e).left[5].start,
+at:c(e=>bn(e).left[5].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -69224,7 +69225,7 @@ o),
 -s];
 re.you.points.visible=!0,
 re.you.points.position.set(l[0],
-l[1]-Rp[1],
+l[1]-Pp[1],
 l[2]),
 re.you.set({
 a:re.tex.ball,
@@ -69238,7 +69239,7 @@ minPx:1,
 bright:.32*(1-_(o,
 .5,
 1)),
-colA:wt(Bp,
+colA:wt(kp,
 Y0,
 o),
 sparkle:.5}
@@ -69247,8 +69248,8 @@ a,
 e.H),
 ro(e,
 a),
-Tp(e.text.overlay,
-dd,
+Ep(e.text.overlay,
+md,
 n,
 C(.97,
 1,
@@ -69266,11 +69267,11 @@ vignette:.5}
 ,
 {
 id:"isolation",
-at:c(e=>yn(e).tIso,
+at:c(e=>bn(e).tIso,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=yn(e.T),
+let t=bn(e.T),
 n=e.t,
 i=Xr(n,
 t),
@@ -69296,11 +69297,11 @@ Tl([0,
 aspect:e.aspect}
 ));
 let s=e.text.overlay;
-WB(s,
+VB(s,
 n,
 t,
-Tp(s,
-dd,
+Ep(s,
+md,
 n,
 a,
 {
@@ -69308,18 +69309,18 @@ cur:[960,
 540],
 hint:!1}
 )),
-VB(s,
+qB(s,
 n,
 t,
 o),
-dn(s,
+pn(s,
 n,
 e.T,
 {
 label:"resonance",
 alpha:.5*(1-.5*o)}
 ),
-Vg(s,
+qg(s,
 n,
 t.left,
 {
@@ -69363,7 +69364,7 @@ o),
 fov:36,
 aspect:e.aspect}
 );
-HB(e,
+WB(e,
 t,
 n,
 l,
@@ -69374,34 +69375,34 @@ fade:R.inOutSine(_(r,
 ),
 ro(e,
 l),
-jg(e.text.overlay,
+Xg(e.text.overlay,
 820);
 let u=e.text.overlay;
-WB(u,
+VB(u,
 n,
 t,
-Tp(u,
-dd,
+Ep(u,
+md,
 n,
 a,
 {
 toward:[960,
 540],
 m:s,
-fill:GB}
+fill:HB}
 )),
-VB(u,
+qB(u,
 n,
 t,
 o),
-dn(u,
+pn(u,
 n,
 e.T,
 {
 label:"resonance",
 alpha:.55*(1-.5*o)}
 ),
-Vg(u,
+qg(u,
 n,
 t.left,
 {
@@ -69420,14 +69421,14 @@ o)}
 )}
 c(WY,
 "isolationR");
-var EB=.36,
-zB=c(e=>-.1*R.inOutSine(_(e,
+var RB=.36,
+OB=c(e=>-.1*R.inOutSine(_(e,
 0,
 1.2))-.04*e,
 "compAz");
-function RB(e,
+function BB(e,
 t){
-let n=yn(e.T),
+let n=bn(e.T),
 i=e.t,
 r=Bc(i,
 n,
@@ -69448,7 +69449,7 @@ inset:!0,
 aspect:e.aspect,
 fov:36,
 r:6.1,
-az:zB(0),
+az:OB(0),
 el:1.42,
 target:[0,
 0,
@@ -69536,7 +69537,7 @@ fov:34,
 aspect:N/O,
 inset:!0}
 );
-return IB(e,
+return DB(e,
 U,
 i,
 n.B(11)-1,
@@ -69576,7 +69577,7 @@ U.lookAt(0,
 0),
 U.updateProjectionMatrix(),
 U.updateMatrixWorld(),
-DB(e,
+zB(e,
 i,
 n,
 {
@@ -69596,7 +69597,7 @@ inset:!0}
 E(3,
 (N,
 O)=>{
-let U=kB([0,
+let U=LB([0,
 0,
 0],
 "top",
@@ -69648,7 +69649,7 @@ F=1-_(t,
 0,
 .35),
 D=["string · n = ".concat(T,
-" · ").concat(T*_p.f1,
+" · ").concat(T*Tp.f1,
 " Hz"),
 "XY · ".concat(Math.round(S[0]),
 " : ").concat(Math.round(S[1])),
@@ -69690,7 +69691,7 @@ a),
 textGlow:1.25,
 ca:.1}
 )}
-c(RB,
+c(BB,
 "instrumentPanel");
 var VY=[{
 cmd:"send(you, msg)",
@@ -69711,7 +69712,7 @@ res:"dangling: nothing at 0x7f3a2c40"}
 qY=c(e=>(e.words.find(t=>(new RegExp("left","i")).test(t.text))??e.words[e.words.length-1]).start,
 "leftWord"),
 G4=18,
-OB=c(e=>[1,
+NB=c(e=>[1,
 2,
 3,
 4].map((t,
@@ -69721,10 +69722,10 @@ t0:e.left[t].start,
 t1:qY(e.left[t])}
 )),
 "searchProbes");
-function NB(e,
+function UB(e,
 t){
 let n=[];
-for(let i of OB(t)){
+for(let i of NB(t)){
 if(e<i.t0)continue;
 let r=Uh(i.n),
 o=Math.hypot(r[0]-ii[0],
@@ -69739,18 +69740,18 @@ G4*.65,
 G4)),
 width:.18+.02*o,
 wake:.45,
-col:j7(i.n)}
+col:X7(i.n)}
 )}
 return n.slice(-4)}
-c(NB,
+c(UB,
 "searchRings");
-var UB={
+var GB={
 wavelength:.42,
 length:.75,
 lift:.07,
 col:H.me}
 ,
-GB="rgba(3, 5, 9, .9)";
+HB="rgba(3, 5, 9, .9)";
 function H4(e,
 t,
 n,
@@ -69779,13 +69780,13 @@ XY=[.018,
 .014,
 .01,
 .004];
-function BB(e,
+function PB(e,
 t,
 n=0){
 let i=e.t,
 r=e.text.overlay,
 o=t.left[1].start,
-a=OB(t),
+a=NB(t),
 s=a[n],
 l=a.reduce((E,
 L)=>E+(i>=L.t0?Math.exp(-(i-L.t0)/.12):0),
@@ -69809,7 +69810,7 @@ u/4)}
 ;
 p.accent=p.cold>.5?"#9fb6e6":P.me;
 let m=n<3?a[n+1].t0:t.left[5].start,
-g=Q7(n,
+g=Z7(n,
 _(i,
 s.t0-.05,
 m)),
@@ -69823,7 +69824,7 @@ up:g.up}
 v=Uh(n),
 A=[v[0],
 v[2]],
-y=Z7[n],
+y=K7[n],
 b=re.fogS.material.uniforms;
 re.codeS.points.visible=re.fogS.visible=!0,
 b.uC.value.set(...y.c),
@@ -69846,7 +69847,7 @@ x),
 aperture:XY[n],
 maxBlur:16,
 minPx:2,
-ripples:[...NB(i,
+ripples:[...UB(i,
 t).slice(-3),
 {
 o:[ii[0],
@@ -69858,17 +69859,17 @@ wake:0,
 col:H.me}
 ],
 rippleStyle:{
-...UB,
+...GB,
 lift:.05,
 light:jY}
 ,
 warm:n<Q0.n?{
 o:A,
-r:Y7[n],
-s:X7(n,
+r:Q7[n],
+s:Y7(n,
 i,
 s.t1),
-col:Bp}
+col:kp}
 :null,
 hole:n===Q0.n?{
 o:A,
@@ -69913,7 +69914,7 @@ _l.map(L=>L*.45),
 1.3)}
 ro(e,
 w),
-jg(r),
+Xg(r),
 QY(r,
 i,
 a,
@@ -69943,9 +69944,9 @@ p,
 {
 vignette:.5}
 )}
-c(BB,
+c(PB,
 "searchE");
-function HB(e,
+function WB(e,
 t,
 n,
 i,
@@ -69979,7 +69980,7 @@ minPx:2,
 scroll:[0,
 (n-o)*.35,
 0],
-ripples:[...NB(n,
+ripples:[...UB(n,
 t).slice(-3),
 {
 o:u,
@@ -69989,13 +69990,13 @@ width:2.2,
 wake:0}
 ],
 rippleStyle:{
-...UB,
+...GB,
 lift:0}
 }
 ,
 i,
 e.H)}
-c(HB,
+c(WB,
 "promptWorld");
 function YY(e,
 t,
@@ -70012,7 +70013,7 @@ let o=Tl([0,
 fov:36,
 aspect:e.aspect}
 );
-HB(e,
+WB(e,
 t,
 n,
 o);
@@ -70028,7 +70029,7 @@ r),
 -a];
 re.you.points.visible=!0,
 re.you.points.position.set(s[0],
-s[1]-Rp[1],
+s[1]-Pp[1],
 s[2]),
 re.you.set({
 a:re.tex.ball,
@@ -70042,7 +70043,7 @@ minPx:1,
 bright:.32*(1-_(r,
 .5,
 1)),
-colA:wt(Bp,
+colA:wt(kp,
 Y0,
 r),
 sparkle:.5}
@@ -70051,16 +70052,16 @@ o,
 e.H),
 ro(e,
 o),
-jg(e.text.overlay,
+Xg(e.text.overlay,
 820),
-Tp(e.text.overlay,
-dd,
+Ep(e.text.overlay,
+md,
 n,
 C(.97,
 1,
 r),
 {
-fill:GB}
+fill:HB}
 ),
 Do(e,
 t,
@@ -70132,7 +70133,7 @@ alpha:h*.8}
 )}
 c(QY,
 "searchLog");
-function jg(e,
+function Xg(e,
 t=700){
 e.draw(n=>{
 let i=n.createLinearGradient(0,
@@ -70151,7 +70152,7 @@ t,
 1920,
 1080-t)}
 )}
-c(jg,
+c(Xg,
 "pane");
 function ZY(e){
 let r=["#000004",
@@ -70208,7 +70209,7 @@ e.text("0",
 o)}
 c(ZY,
 "colorbar");
-function WB(e,
+function VB(e,
 t,
 n,
 i){
@@ -70241,9 +70242,9 @@ a),
 glow:0}
 )}
 }
-c(WB,
+c(VB,
 "isolationWord");
-function VB(e,
+function qB(e,
 t,
 n,
 i){
@@ -70267,7 +70268,7 @@ j),
 r.fill()}
 }
 )}
-c(VB,
+c(qB,
 "motes");
 var Cl=1440,
 Pc=c(e=>[e%60-59/2,
@@ -70276,7 +70277,7 @@ Math.floor(e/60)-23/2],
 V4=c(e=>"0x"+(e*4*1024).toString(16).padStart(6,
 "0"),
 "hexAddr");
-function qB(e=324){
+function jB(e=324){
 let t=Be(e),
 n=[],
 i=0,
@@ -70313,9 +70314,9 @@ youStart:s,
 youEnd:Cl,
 meEnd:l}
 }
-c(qB,
+c(jB,
 "makeHeap");
-function jB(e){
+function XB(e){
 let t=0,
 n=0,
 i=0;
@@ -70325,18 +70326,18 @@ r++)e[r]?i=0:(t++,
 i++,
 i>n&&(n=i));
 return t?1-n/t:0}
-c(jB,
+c(XB,
 "fragmentation");
-var Xg=["\nin vec4 iT; out vec4 vT;                        // iT: picture tile (−1: none), u0, du across the object, its aspect",
+var Yg=["\nin vec4 iT; out vec4 vT;                        // iT: picture tile (−1: none), u0, du across the object, its aspect",
 " vT = iT;",
 "\nin vec4 vT; uniform sampler2D tThumb; uniform vec2 uThumbGrid; uniform float uThumbGain;\nfloat thumb() {                                  // the picture's luminance on a top face (0 elsewhere)\n  float u = vT.y + (vL.x + .5) * vT.z, v = .5 - vL.z;\n  vec2 c = vT.w < 16. / 9. ? vec2(vT.w * 9. / 16., 1.) : vec2(1., 16. / 9. / vT.w);\n  vec2 uv = clamp(.5 + (vec2(u, v) - .5) * c, .002, .998), cell = vec2(mod(vT.x, uThumbGrid.x), floor(vT.x / uThumbGrid.x));\n  return luma(texture(tThumb, (cell + uv) / uThumbGrid).rgb) * step(0., vT.x) * step(.49, vL.y);\n}",
 " + vCol * vP.x * uThumbGain * thumb()"],
-KY=c(e=>"\nin vec3 iPos, iScale, iCol; in vec4 iP;         // iP: face fill, edge, dissolve 0..1, seed\nout vec3 vL, vS, vCol; out vec4 vP;".concat(e?Xg[0]:"",
-"\nvoid main() {\n  vL = position; vS = iScale; vCol = iCol; vP = iP;").concat(e?Xg[1]:"",
+KY=c(e=>"\nin vec3 iPos, iScale, iCol; in vec4 iP;         // iP: face fill, edge, dissolve 0..1, seed\nout vec3 vL, vS, vCol; out vec4 vP;".concat(e?Yg[0]:"",
+"\nvoid main() {\n  vL = position; vS = iScale; vCol = iCol; vP = iP;").concat(e?Yg[1]:"",
 "\n  gl_Position = projectionMatrix * modelViewMatrix * vec4(iPos + position * iScale, 1.);\n}"),
 "VERT"),
-JY=c(e=>"\nin vec3 vL, vS, vCol; in vec4 vP; out vec4 o;\nuniform float uTopOnly;".concat(e?Xg[2]:"",
-"\nvoid main() {\n  if (uTopOnly > .5 && vL.y < .49) discard;       // flat tiles seen from above: only the top face (no doubled fill)\n  // distance to the nearest edge of the face this fragment lies on (the middle of the three face distances)\n  vec3 d = (.5 - abs(vL)) * vS;\n  float a = min(d.x, min(d.y, d.z)), c = max(d.x, max(d.y, d.z)), b = d.x + d.y + d.z - a - c, w = max(fwidth(b), 1e-5);\n  float edge = 1. - smoothstep(w * .6, w * 1.8, b), halo = exp(-b / (w * 4.)) * .12;\n  if (vP.z > 0.) {                                // erased bit by bit: a 12 × 12 grid of bits on every face\n    vec3 q = floor((vL + .5) * 12.);\n    if (hash12(q.xz + q.y * 17. + vP.w * 91.7) < vP.z) discard;\n  }\n  o = vec4(vCol * (vP.x + vP.y * (edge + halo))").concat(e?Xg[3]:"",
+JY=c(e=>"\nin vec3 vL, vS, vCol; in vec4 vP; out vec4 o;\nuniform float uTopOnly;".concat(e?Yg[2]:"",
+"\nvoid main() {\n  if (uTopOnly > .5 && vL.y < .49) discard;       // flat tiles seen from above: only the top face (no doubled fill)\n  // distance to the nearest edge of the face this fragment lies on (the middle of the three face distances)\n  vec3 d = (.5 - abs(vL)) * vS;\n  float a = min(d.x, min(d.y, d.z)), c = max(d.x, max(d.y, d.z)), b = d.x + d.y + d.z - a - c, w = max(fwidth(b), 1e-5);\n  float edge = 1. - smoothstep(w * .6, w * 1.8, b), halo = exp(-b / (w * 4.)) * .12;\n  if (vP.z > 0.) {                                // erased bit by bit: a 12 × 12 grid of bits on every face\n    vec3 q = floor((vL + .5) * 12.);\n    if (hash12(q.xz + q.y * 17. + vP.w * 91.7) < vP.z) discard;\n  }\n  o = vec4(vCol * (vP.x + vP.y * (edge + halo))").concat(e?Yg[3]:"",
 ", 1.);\n}"),
 "FRAG"),
 q4=class{
@@ -70452,13 +70453,13 @@ return this.mesh.visible=this.n>0,
 this}
 }
 ;
-var Yg=.9,
-JB=-.1,
+var Qg=.9,
+$B=-.1,
 kc=[0,
 -1],
 $Y=[0,
 .8];
-function $B(e,
+function eP(e,
 t,
 n){
 let i=[],
@@ -70478,9 +70479,9 @@ i.push([a[0]+(s[0]-a[0])*h,
 a[1]+(s[1]-a[1])*h])}
 }
 return i}
-c($B,
+c(eP,
 "clipHalf");
-function XB(e,
+function YB(e,
 t){
 let n=e;
 for(let i=0;
@@ -70488,12 +70489,12 @@ i<t.length&&n.length;
 i++){
 let r=t[i],
 o=t[(i+1)%t.length];
-n=$B(n,
+n=eP(n,
 r,
 [o[1]-r[1],
 -(o[0]-r[0])])}
 return n}
-c(XB,
+c(YB,
 "clipConvex");
 var j4=c(e=>{
 let t=0;
@@ -70506,7 +70507,7 @@ t+=i[0]*r[1]-r[0]*i[1]}
 return t/2}
 ,
 "area"),
-YB=c(e=>{
+QB=c(e=>{
 let t=0,
 n=0,
 i=0;
@@ -70523,7 +70524,7 @@ return i?[t/(3*i),
 n/(3*i)]:e[0]}
 ,
 "centroid");
-function QB(e,
+function ZB(e,
 t){
 return e.map((n,
 i)=>{
@@ -70537,7 +70538,7 @@ let r=[[-4,
 4]];
 return e.forEach((o,
 a)=>{
-a!==i&&(r=$B(r,
+a!==i&&(r=eP(r,
 [(n[0]+o[0])/2,
 (n[1]+o[1])/2],
 [o[0]-n[0],
@@ -70545,9 +70546,9 @@ o[1]-n[1]]))}
 ),
 r}
 )}
-c(QB,
+c(ZB,
 "voronoi");
-function ZB(e,
+function KB(e,
 t,
 n,
 i,
@@ -70575,9 +70576,9 @@ a=[u,
 h])}
 o.push(a)}
 return o}
-c(ZB,
+c(KB,
 "spacedSeeds");
-var KB=c((e,
+var JB=c((e,
 t,
 n)=>{
 let i=0,
@@ -70618,12 +70619,12 @@ let h=(a+s)/2;
 fh(h*r,
 h*o)>0?s=h:a=h}
 let l=(a+s)/2;
-t.push([l*r*Yg,
-l*o*Yg+JB])}
+t.push([l*r*Qg,
+l*o*Qg+$B])}
 return t}
 c(eQ,
 "heartPolygon");
-var bn=(()=>{
+var Mn=(()=>{
 let e=Be(907),
 t=Array.from({
 length:256}
@@ -70631,7 +70632,7 @@ length:256}
 (f,
 d)=>[Math.cos(d/256*j),
 Math.sin(d/256*j)]),
-n=ZB(36,
+n=KB(36,
 e,
 [-1,
 -1,
@@ -70639,19 +70640,19 @@ e,
 1],
 (f,
 d)=>f*f+d*d<.93*.93),
-i=QB(n).map(f=>XB(f,
+i=ZB(n).map(f=>YB(f,
 t)),
 r=eQ(),
-o=ZB(36,
+o=KB(36,
 e,
 [-1.1,
 -1.05,
 1.1,
 1.1],
 (f,
-d)=>fh(f/Yg,
-(d-JB)/Yg)<-.02),
-a=QB(o).map(f=>XB(r,
+d)=>fh(f/Qg,
+(d-$B)/Qg)<-.02),
+a=ZB(o).map(f=>YB(r,
 f)),
 s=i.map((f,
 d)=>[j4(f),
@@ -70669,12 +70670,12 @@ g<p&&(p=g,
 d=m)}
 u[f]=d,
 l.delete(d)}
-let h=a.map(YB);
+let h=a.map(QB);
 return{
 disc:t,
 dSeeds:n,
 dCells:i,
-dCent:i.map(YB),
+dCent:i.map(QB),
 heart:r,
 hSeeds:o,
 hCells:a,
@@ -70779,9 +70780,9 @@ len:w}
 }
 c(tQ,
 "crackPath");
-function Qg(e,
+function Zg(e,
 t){
-let n=bn.crack.path;
+let n=Mn.crack.path;
 for(let i=1;
 i<n.length;
 i++){
@@ -70789,7 +70790,7 @@ let r=n[i-1],
 o=n[i];
 if((r[1]-t)*(o[1]-t)<=0&&r[1]!==o[1])return e<r[0]+(o[0]-r[0])*(t-r[1])/(o[1]-r[1])?-1:1}
 return e<0?-1:1}
-c(Qg,
+c(Zg,
 "crackSide");
 function nQ(){
 let e=Be(4242),
@@ -70812,7 +70813,7 @@ while(u>.985);
 let h=e()*j,
 f=u*Math.cos(h),
 d=u*Math.sin(h),
-p=KB(bn.dSeeds,
+p=JB(Mn.dSeeds,
 f,
 d);
 n.set([f,
@@ -70825,7 +70826,7 @@ let o=Array.from({
 length:36}
 ,
 ()=>[]),
-a=bn.match.map((l,
+a=Mn.match.map((l,
 u)=>[l,
 r[u].length]),
 s=0;
@@ -70838,15 +70839,15 @@ let l=-1.1+e()*2.2,
 u=-1.05+e()*2.15;
 if(fh(l/.9,
 (u- -.1)/.9)>0)continue;
-let h=KB(bn.hSeeds,
+let h=JB(Mn.hSeeds,
 l,
 u);
 o[h].length<6e3&&o[h].push([l,
 u])}
-return bn.match.forEach((l,
+return Mn.match.forEach((l,
 u)=>r[u].forEach((h,
 f)=>{
-let d=o[l][f%o[l].length]??bn.hSeeds[l];
+let d=o[l][f%o[l].length]??Mn.hSeeds[l];
 i.set([d[0]+(e()-.5)*.004,
 d[1]+(e()-.5)*.004,
 0,
@@ -70861,7 +70862,7 @@ c(nQ,
 "particleData");
 var iQ="\nuniform sampler2D uA, uB, uCells;\nuniform float uS, uNC, uSize, uFocal, uMinPx, uBright, uOrtho, uFocus, uAperture, uMaxBlur, uT, uFloor, uReveal;\nuniform vec3 uColA, uColB;\nout vec3 vCol; out float vBlur;\nvec3 qrot(vec4 q, vec3 v) { return v + 2. * cross(q.xyz, cross(q.xyz, v) + q.w * v); }\nvec4 cellTex(float c, float k) { return texture(uCells, vec2((k + .5) / 6., (c + .5) / uNC)); }\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), b = texture(uB, uv);\n  float c = a.w, h = hash12(vec2(i, 9000.));   // bridge/landed.js repeats h on the CPU: keep the key whole\n  vec4 C0 = cellTex(c, 0.), C1 = cellTex(c, 1.), Q1 = cellTex(c, 2.), C3 = cellTex(c, 3.), C4 = cellTex(c, 4.), Q2 = cellTex(c, 5.);\n  // image piece: rigid rotation about its seed, then translation\n  vec3 pImg = qrot(Q1, vec3(a.xy - C0.xy, 0.)) + vec3(C0.xy, 0.) + C1.xyz;\n  // heart piece: deflate (scale about the cell centroid), tumble, then translation\n  vec3 rel = qrot(Q2, vec3(b.xy - C0.zw, 0.) * C4.y);\n  vec3 pH = vec3(C0.zw, 0.) + rel + C3.xyz;\n  float k = smoothstep(0., 1., C1.w);\n  vec3 p = mix(pImg, pH, k) + (hash31(i * 1.37) - .5) * sin(k * PI) * .22;     // the particles flow, not a rigid slide\n  p.y = max(p.y, uFloor + .004 * h);                                             // pieces come to rest on the floor\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float vis = step(h, uReveal);\n  float energy = vis * min(1., px * px / (uMinPx * uMinPx)) * core * core / (sz * sz);\n  vCol = mix(uColA, uColB, k) * uBright * C4.x * energy * (.55 + .9 * hash11(i * 1.31));\n}",
 rQ="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}",
-eP=class{
+tP=class{
 static{
 c(this,
 "Shards")}
@@ -70872,7 +70873,7 @@ B:t}
 =nQ(),
 n=147456;
 this.cellData=new Float32Array(864),
-this.cellTex=an(this.cellData,
+this.cellTex=sn(this.cellData,
 6,
 36);
 let i=new It;
@@ -70893,12 +70894,12 @@ depthWrite:!1,
 blending:2,
 uniforms:{
 uA:{
-value:an(e,
+value:sn(e,
 384,
 384)}
 ,
 uB:{
-value:an(t,
+value:sn(t,
 384,
 384)}
 ,
@@ -70934,8 +70935,8 @@ n<36;
 n++){
 let i=e(n),
 r=n*24,
-o=bn.dSeeds[n],
-a=bn.hCent[bn.match[n]];
+o=Mn.dSeeds[n],
+a=Mn.hCent[Mn.match[n]];
 t.set([o[0],
 o[1],
 a[0],
@@ -70985,7 +70986,7 @@ this.points.visible=!0,
 this}
 }
 ,
-Pp=c((e,
+Lp=c((e,
 t)=>{
 let n=Math.hypot(...e)||1,
 i=Math.sin(t/2);
@@ -70995,7 +70996,7 @@ e[2]/n*i,
 Math.cos(t/2)]}
 ,
 "qAxis"),
-kp=c((e,
+Fp=c((e,
 t)=>{
 let[n,
 i,
@@ -71009,7 +71010,7 @@ t[1]+2*(r*a[0]-n*a[2]),
 t[2]+2*(n*a[1]-i*a[0])]}
 ,
 "qRot"),
-tP=[0,
+nP=[0,
 0,
 0,
 1];
@@ -71021,7 +71022,7 @@ var Ea=new Set([9,
 25,
 34]);
 var oQ="\nuniform sampler2D tSrc; uniform vec2 uStep; uniform float uGain;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  vec3 s = vec3(0.), m = vec3(0.);                 // the mean, plus some of the brightest tap: thin glowing lines survive\n  for (int i = 0; i < 4; i++) for (int j = 0; j < 4; j++) { vec3 c = texture(tSrc, vUv + (vec2(i, j) - 1.5) / 4. * uStep).rgb; s += c; m = max(m, c); }\n  o = vec4(1. - exp(-(s / 16. + .35 * m) * uGain), 1.);\n}",
-nP=new WeakMap,
+iP=new WeakMap,
 X4=new WeakSet;
 function aQ(e,
 {
@@ -71055,7 +71056,7 @@ format:So,
 depthBuffer:!1,
 generateMipmaps:!0,
 minFilter:ho,
-magFilter:On,
+magFilter:Nn,
 colorSpace:""}
 ),
 u=Kr(e.W,
@@ -71123,7 +71124,7 @@ rows:s}
 }
 c(sQ,
 "build");
-function iP(e,
+function rP(e,
 t,
 {
 cols:n=4,
@@ -71146,7 +71147,7 @@ gain:o}
 ,
 l=aQ(t,
 s),
-u=nP.get(a);
+u=iP.get(a);
 if(u?.key===l&&u.v===e.sizeVersion)return u;
 X4.add(a);
 let h;
@@ -71162,26 +71163,26 @@ key:l,
 v:e.sizeVersion,
 ...h}
 ;
-return nP.set(a,
+return iP.set(a,
 f),
 f}
-c(iP,
+c(rP,
 "memoryAtlas");
 var qh=[.66,
 .72,
 .84],
-n3=[.95,
+i3=[.95,
 .72,
 .55],
 J4=[.5,
 .86,
 1],
-uP=-2.05,
-t3=1.35,
+cP=-2.05,
+n3=1.35,
 ht=null,
 Y4=null,
 ra=null,
-cP=[["v1/circleDraw",
+hP=[["v1/circleDraw",
 34.6],
 ["v1/youRide",
 39.4],
@@ -71239,7 +71240,7 @@ eraseTo:i(5.6)}
 }
 c(Rr,
 "keys");
-function Zg(e,
+function Kg(e,
 t){
 let n=ra.objs,
 i=new Uint8Array(Cl),
@@ -71268,7 +71269,7 @@ b=Pc(A),
 x=Pc(y),
 M=0;
 if(p){
-let T=hP(t,
+let T=fP(t,
 y);
 if(M=_(e,
 T,
@@ -71302,7 +71303,7 @@ p)=>d+p.size,
 let f=.55*l/ra.toMove+.45*u/(ra.youEnd-ra.youStart);
 return{
 blocks:r,
-frag:jB(i),
+frag:XB(i),
 used:i.reduce((d,
 p)=>d+p,
 0)/Cl,
@@ -71311,9 +71312,9 @@ erased:u,
 reveal:h,
 progress:f}
 }
-c(Zg,
+c(Kg,
 "heapState");
-function hP(e,
+function fP(e,
 t){
 let n=Pc(Cl-1),
 i=c(r=>{
@@ -71328,9 +71329,9 @@ length:Cl-ra.youStart}
 (r,
 o)=>i(ra.youStart+o))),
 e.eraseFrom+(1-i(t)/ra.dMax)*(e.eraseTo-e.eraseFrom)}
-c(hP,
+c(fP,
 "eraseTime");
-function Kg(e,
+function Jg(e,
 t={
 }
 ){
@@ -71343,7 +71344,7 @@ s=t.focusR??1e9,
 l=t.cam;
 for(let u of e.blocks){
 if(Math.hypot(u.x,
-(u.z-t3)*1.4)>r)continue;
+(u.z-n3)*1.4)>r)continue;
 let h=a?o*Math.exp(-((u.x-a[0])**2+(u.z-a[1])**2)/(s*s)):o;
 if(l&&(h*=1-_(Math.hypot(u.x-l[0],
 u.z-l[2]),
@@ -71351,7 +71352,7 @@ t.fog[0],
 t.fog[1])),
 h<.02)continue;
 let f=u.o.type==="you",
-d=f?n3:qh,
+d=f?i3:qh,
 p=.75+.25*u.o.shade,
 m=(f?.07:u.o.type==="sys"?.012:.022)*p*h,
 g=(f?.8:u.o.type==="sys"?.2:.34)*p*(u.moving?1.6:1)*h;
@@ -71370,11 +71371,11 @@ seed:u.a,
 thumb:f&&ht.blocksR?hQ(u):void 0}
 )}
 i.end()}
-c(Kg,
+c(Jg,
 "drawHeap");
-var i3=.4,
-uQ=2*(1.9+Math.max(...bn.match.map((e,
-t)=>Ea.has(t)?-1/0:bn.hCent[e][1])))/(i3*i3);
+var r3=.4,
+uQ=2*(1.9+Math.max(...Mn.match.map((e,
+t)=>Ea.has(t)?-1/0:Mn.hCent[e][1])))/(r3*r3);
 function Wh(e,
 t,
 n=!1){
@@ -71384,7 +71385,7 @@ o=[];
 for(let d=0;
 d<36;
 d++){
-let p=bn.dSeeds[d],
+let p=Mn.dSeeds[d],
 m=Math.hypot(...p)||1,
 g=[p[0]/m,
 p[1]/m,
@@ -71405,9 +71406,9 @@ E=n?(.6+1.4*(b-.12)/.3)*x:(M*y+b*x)*(x>0?1:0),
 L=[g[0]*S,
 g[1]*S,
 g[2]*S*.6],
-F=Pp(A,
+F=Lp(A,
 E),
-D=bn.hCent[bn.match[d]],
+D=Mn.hCent[Mn.match[d]],
 N=(Math.atan2(D[0],
 D[1]-.3)+j)%j;
 o.push({
@@ -71416,7 +71417,7 @@ t0:L,
 q1:F,
 ang:N,
 hc:D,
-side:Qg(D[0],
+side:Zg(D[0],
 D[1]),
 fall:i(),
 spin:[i()-.5,
@@ -71457,7 +71458,7 @@ b=m[1]+A-d.hc[1]-.12*f*(d.hc[1]+1),
 x=t.tDis+.16+d.fall*.1,
 M=Math.max(0,
 e-x),
-T=n?uQ:2*(1.9+d.hc[1])/(i3*i3),
+T=n?uQ:2*(1.9+d.hc[1])/(r3*r3),
 S=-.5*T*M*M,
 E=-1.9999999999999998-(d.hc[1]+b),
 L=Math.sqrt(2*Math.max(0,
@@ -71483,9 +71484,9 @@ N)||1,
 U=(.25+.2*d.fall)*(1-Math.exp(-(M-L)/.1));
 d.t1[0]+=D/O*U,
 d.t1[2]+=N/O*U}
-d.q2=M>0?Pp(d.spin,
+d.q2=M>0?Lp(d.spin,
 M*1.6*Math.min(1,
-M*3)):tP,
+M*3)):nP,
 d.scale=1-.22*f,
 d.bright=1-.35*f}
 if(n){
@@ -71520,8 +71521,8 @@ c(cQ,
 "applyShards");
 var $4=c((e,
 t)=>{
-let n=bn.dSeeds[e.i],
-i=kp(e.q1,
+let n=Mn.dSeeds[e.i],
+i=Fp(e.q1,
 [t[0]-n[0],
 t[1]-n[1],
 0]);
@@ -71532,7 +71533,7 @@ i[2]+e.t0[2]]}
 "imgXf"),
 eM=c((e,
 t)=>{
-let n=kp(e.q2,
+let n=Fp(e.q2,
 [(t[0]-e.hc[0])*e.scale,
 (t[1]-e.hc[1])*e.scale,
 0]);
@@ -71568,7 +71569,7 @@ look:t}
 )}
 c(Su,
 "persp");
-function rP(e,
+function oP(e,
 t,
 n){
 let i=ht.ortho,
@@ -71600,7 +71601,7 @@ look:[e[0],
 0,
 e[1]]}
 )}
-c(rP,
+c(oP,
 "orthoTop");
 function hQ(e){
 if(e.o.last&&e.j===e.o.size-1)return[e.o.tile,
@@ -71614,12 +71615,12 @@ e.j/t,
 t/.84]}
 c(hQ,
 "thumbOf");
-function Jg(e,
+function $g(e,
 t){
-ht.blocksR&&ht.blocksR.pictures(iP(e,
-cP),
+ht.blocksR&&ht.blocksR.pictures(rP(e,
+hP),
 t)}
-c(Jg,
+c($g,
 "pictures");
 function Us(){
 for(let e of[ht.blocks.mesh,
@@ -71643,7 +71644,7 @@ c(Gs,
 function Hs(e,
 t,
 n){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -71726,10 +71727,10 @@ exposure:1,
 )}
 c(El,
 "look");
-var $g=c(e=>"".concat((e*100).toFixed(1),
+var e3=c(e=>"".concat((e*100).toFixed(1),
 " %"),
 "pct");
-function oP(e,
+function aP(e,
 t,
 n,
 i={
@@ -71753,7 +71754,7 @@ reveal:i.reveal??1}
 ,
 t,
 e.H)}
-c(oP,
+c(aP,
 "codeWall");
 var dQ=[[.62,
 .66,
@@ -71784,7 +71785,7 @@ cQ(n),
 ht.shards.set({
 size:.0058,
 bright:.32,
-colA:wt(n3,
+colA:wt(i3,
 qh,
 .35),
 colB:wt(qh,
@@ -71793,7 +71794,7 @@ colB:wt(qh,
 1],
 .3),
 minPx:1.1,
-floor:uP,
+floor:cP,
 t:e.t,
 ...i}
 ,
@@ -71806,7 +71807,7 @@ t,
 n=1){
 if(!(t<=.002))for(let i of e.cells){
 if(i.k>=.999)continue;
-let r=bn.dCells[i.i].map(a=>$4(i,
+let r=Mn.dCells[i.i].map(a=>$4(i,
 a)),
 o=t*(1-i.k)*(1-(i.gone??0));
 ht.lines.polyline([...r,
@@ -71819,13 +71820,13 @@ draw:n}
 }
 c(Z4,
 "mosaicLines");
-function Lp(e,
+function Ip(e,
 t={
 }
 ){
 for(let n of e.cells){
 if(n.k<=.01||n.gone)continue;
-let i=bn.hCells[bn.match[n.i]].map(o=>eM(n,
+let i=Mn.hCells[Mn.match[n.i]].map(o=>eM(n,
 o)),
 r=(t.alpha??1)*R.inCubic(n.k);
 ht.lines.polyline([...i,
@@ -71835,13 +71836,13 @@ color:J4.map(o=>o*1.15*r),
 width:t.width??1.8}
 )}
 }
-c(Lp,
+c(Ip,
 "seamLines");
 function K4(e,
 t=1){
 if(!(!e.remake||t<=0))for(let n of e.cells){
 if(!n.gone||n.k<=.01)continue;
-let i=bn.hCells[bn.match[n.i]].map(o=>eM(n,
+let i=Mn.hCells[Mn.match[n.i]].map(o=>eM(n,
 o)),
 r=t*R.inCubic(n.k);
 for(let o=0;
@@ -71871,9 +71872,9 @@ width:1.2}
 }
 c(K4,
 "holeLines");
-function aP(e,
+function sP(e,
 t=1){
-e.crack<=0||t<=0||ht.lines.polyline(bn.crack.path.map(n=>[n[0],
+e.crack<=0||t<=0||ht.lines.polyline(Mn.crack.path.map(n=>[n[0],
 n[1],
 .012]),
 {
@@ -71883,9 +71884,9 @@ color:[1.5,
 width:2.6,
 draw:e.crack}
 )}
-c(aP,
+c(sP,
 "crackLine");
-var e3={
+var t3={
 key:"",
 canvas:null,
 w:0,
@@ -71897,8 +71898,8 @@ n){
 let i="".concat(e,
 "|").concat(t,
 "|").concat(n);
-if(e3.key===i)return e3;
-let r=e3.canvas??Fn(),
+if(t3.key===i)return t3;
+let r=t3.canvas??In(),
 o=r.getContext("2d");
 o.font="800 ".concat(t,
 'px "JetBrains Mono"'),
@@ -71924,7 +71925,7 @@ o.shadowBlur=18*n,
 o.fillText(e,
 a/2,
 s/2),
-Object.assign(e3,
+Object.assign(t3,
 {
 key:i,
 canvas:r,
@@ -71933,7 +71934,7 @@ h:s}
 )}
 c(pQ,
 "wordImage");
-function sP(e,
+function lP(e,
 t,
 n,
 i,
@@ -71962,11 +71963,11 @@ a.s);
 a.draw(w=>{
 w.globalAlpha*=u;
 for(let v of n.cells){
-let A=bn.dCells[v.i].map(S=>G([S[0],
+let A=Mn.dCells[v.i].map(S=>G([S[0],
 S[1],
 0],
 t)),
-y=bn.dSeeds[v.i],
+y=Mn.dSeeds[v.i],
 b=G([y[0],
 y[1],
 0],
@@ -72001,7 +72002,7 @@ g.h),
 w.restore()}
 }
 )}
-c(sP,
+c(lP,
 "shardWord");
 Wn({
 id:"c2x",
@@ -72011,16 +72012,16 @@ to:c(e=>e.section("bridge").start,
 "to"),
 init(e){
 ht={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
 .01,
 200)}
 ,
-ra=qB(324),
+ra=jB(324),
 ht.blocks=new q4(4096),
 q(e)&&(ht.blocksR=new q4(4096,
 {
@@ -72030,10 +72031,10 @@ ra.objs.filter(n=>n.type==="you").forEach((n,
 i,
 r)=>{
 n.last=i===r.length-1,
-n.tile=n.last?lQ:i*5%cP.length}
+n.tile=n.last?lQ:i*5%hP.length}
 )),
-ht.shards=new eP,
-ht.dust=new Qt({
+ht.shards=new tP,
+ht.dust=new Zt({
 count:65536}
 ),
 ht.lines=new Xn(16e3),
@@ -72049,7 +72050,7 @@ minor:.25,
 major:1,
 fade:.09}
 ),
-ht.floor.position.y=uP;
+ht.floor.position.y=cP;
 let t=c((n,
 i)=>{
 let r=Be(i?77:76),
@@ -72084,11 +72085,11 @@ plume:ht.dust.shape("c2x/plume",
 n=>t(n,
 !0))}
 ,
-ht.code=new nn({
+ht.code=new rn({
 count:16384}
 ),
 ht.code.text("c2x/shards",
-tn("ch/c2x/shards.js")),
+nn("ch/c2x/shards.js")),
 ht.tex.wall=ht.code.layout("c2x/code-wall",
 Ki(ht.code,
 {
@@ -72113,18 +72114,18 @@ at:c(e=>Rr(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-Jg(e,
+$g(e,
 14);
 let t=Rr(e.T),
 n=e.t,
-i=Zg(n,
+i=Kg(n,
 t);
 Us();
-let r=rP([0,
-t3],
+let r=oP([0,
+n3],
 41,
 e.aspect);
-Kg(i);
+Jg(i);
 let o=_(n,
 t.X(.6),
 t.X(2.1))*24,
@@ -72141,10 +72142,10 @@ width:1.6}
 ),
 i.reveal<.5&&ht.lines.segment([0,
 .01,
-t3],
+n3],
 [0,
 .01,
-t3],
+n3],
 {
 color:[.7,
 .8,
@@ -72153,7 +72154,7 @@ width:9}
 ),
 Gs(e,
 r),
-lP(e,
+uP(e,
 r,
 i.reveal),
 be(e.text.overlay,
@@ -72163,9 +72164,9 @@ be(e.text.overlay,
 "".concat(Cl,
 " × 4 KiB")],
 ["used",
-$g(i.used)],
+e3(i.used)],
 ["fragmented",
-$g(i.frag)]],
+e3(i.frag)]],
 {
 accent:"#c9d4ea",
 keyW:130}
@@ -72187,17 +72188,17 @@ at:c(e=>Rr(e).l78.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-Jg(e,
+$g(e,
 14);
 let t=Rr(e.T),
 n=e.t,
-i=Zg(n,
+i=Kg(n,
 t),
 r=R.inOutSine(_(n,
 t.l78.start,
 t.X(4)));
 Us();
-let o=rP([C(-13,
+let o=oP([C(-13,
 -11,
 r),
 C(-5.5,
@@ -72205,10 +72206,10 @@ C(-5.5,
 r)],
 21,
 e.aspect);
-Kg(i),
+Jg(i),
 Gs(e,
 o),
-lP(e,
+uP(e,
 o,
 1),
 be(e.text.overlay,
@@ -72218,7 +72219,7 @@ be(e.text.overlay,
 "".concat(i.moved,
 " blocks")],
 ["fragmented",
-$g(i.frag)],
+e3(i.frag)],
 Q4(i)],
 {
 accent:"#c9d4ea",
@@ -72242,11 +72243,11 @@ at:c(e=>Rr(e).X(4),
 "at"),
 ownsLyrics:!0,
 draw(e){
-Jg(e,
+$g(e,
 14);
 let t=Rr(e.T),
 n=e.t,
-i=Zg(n,
+i=Kg(n,
 t),
 r=_(n,
 t.X(4),
@@ -72264,7 +72265,7 @@ o[1]-1.4],
 fov:38,
 aspect:e.aspect}
 );
-Kg(i,
+Jg(i,
 {
 h:.16,
 lift:1,
@@ -72283,7 +72284,7 @@ be(e.text.overlay,
 " / ").concat(ra.youEnd-ra.youStart,
 " blocks")],
 ["fragmented",
-$g(i.frag)],
+e3(i.frag)],
 Q4(i)],
 {
 accent:"#c9d4ea",
@@ -72303,11 +72304,11 @@ at:c(e=>Rr(e).X(5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-Jg(e,
+$g(e,
 40);
 let t=Rr(e.T),
 n=e.t,
-i=Zg(n,
+i=Kg(n,
 t),
 r=_(n,
 t.X(5),
@@ -72330,7 +72331,7 @@ u,
 fov:34,
 aspect:e.aspect}
 );
-Kg(i,
+Jg(i,
 {
 h:.34,
 k:.3,
@@ -72338,7 +72339,7 @@ focus:[a[0],
 a[1]],
 focusR:1.3}
 );
-let f=hP(t,
+let f=fP(t,
 o),
 d=R.inOutSine(_(n,
 f-.02,
@@ -72365,8 +72366,8 @@ noiseSpeed:.4,
 t:n,
 size:.0055,
 bright:.3*(1-.35*d),
-colA:n3,
-colB:wt(n3,
+colA:i3,
+colB:wt(i3,
 qh,
 .45),
 sparkle:.35,
@@ -72456,7 +72457,7 @@ R.outCubic(_(r,
 .16))),
 Gs(e,
 o),
-sP(e,
+lP(e,
 o,
 i,
 t.tFrag,
@@ -72467,7 +72468,7 @@ be(e.text.overlay,
 [["cells",
 "36 · Voronoi"],
 ["Σ area",
-bn.discArea.toFixed(4)],
+Mn.discArea.toFixed(4)],
 ["π r²",
 Math.PI.toFixed(4)]],
 {
@@ -72521,7 +72522,7 @@ Z4(i,
 .6),
 Gs(e,
 a),
-sP(e,
+lP(e,
 a,
 i,
 t.tFrag,
@@ -72566,7 +72567,7 @@ r)],
 fov:38,
 aspect:e.aspect}
 );
-oP(e,
+aP(e,
 o,
 t,
 {
@@ -72582,7 +72583,7 @@ o,
 i),
 Z4(i,
 .5),
-Lp(i),
+Ip(i),
 K4(i),
 mQ(i,
 n),
@@ -72640,7 +72641,7 @@ let o=Su([.9-r*.25,
 fov:36,
 aspect:e.aspect}
 );
-oP(e,
+aP(e,
 o,
 t,
 {
@@ -72659,7 +72660,7 @@ size:.0042,
 bright:.2,
 reveal:.75}
 ),
-Lp(i,
+Ip(i,
 {
 width:2.4,
 alpha:1.3}
@@ -72705,21 +72706,21 @@ aspect:e.aspect}
 Vh(e,
 o,
 i),
-Lp(i,
+Ip(i,
 {
 alpha:.75}
 ),
 K4(i,
 .8),
-aP(i),
+sP(i),
 Gs(e,
 o),
 be(e.text.overlay,
 1500,
 108,
 [["crack",
-"".concat((bn.crack.len*i.crack).toFixed(3),
-" / ").concat(bn.crack.len.toFixed(3))],
+"".concat((Mn.crack.len*i.crack).toFixed(3),
+" / ").concat(Mn.crack.len.toFixed(3))],
 ["along",
 "cell boundaries"]],
 {
@@ -72773,16 +72774,16 @@ i,
 {
 bright:.45}
 ),
-Lp(i,
+Ip(i,
 {
 alpha:.6}
 ),
-aP(i,
+sP(i,
 1-i.open),
 Gs(s,
 o)}
 );
-rn(e,
+on(e,
 a,
 "dither",
 {
@@ -72847,7 +72848,7 @@ focus:3.4,
 aperture:.015,
 maxBlur:14}
 ),
-Lp(i,
+Ip(i,
 {
 alpha:.35}
 ),
@@ -72864,7 +72865,7 @@ sat:.7}
 }
 ]}
 );
-function lP(e,
+function uP(e,
 t,
 n){
 for(let i=0;
@@ -72889,7 +72890,7 @@ alpha:.75*_(n,
 1)}
 )}
 }
-c(lP,
+c(uP,
 "addrLabels");
 function mQ(e,
 t){
@@ -73036,7 +73037,7 @@ white:[1,
 .94,
 .92]}
 ,
-Kt={
+Jt={
 red:"#ff4a3d",
 deep:"#7a1a14",
 hot:"#ff8a66",
@@ -73045,12 +73046,12 @@ dim:"#6d5f63",
 pale:"#d6f3ff",
 ink:"#1a0706"}
 ;
-function r3(){
+function o3(){
 let e=new wi(38,
 1.7777777777777777,
 .01,
 600),
-t=new An(-1,
+t=new yn(-1,
 1,
 1,
 -1,
@@ -73143,9 +73144,9 @@ inset:a}
 )}
 }
 }
-c(r3,
+c(o3,
 "makeCams");
-var fP=c(e=>e.F.env("onset_drums",
+var dP=c(e=>e.F.env("onset_drums",
 e.t,
 .005,
 .12),
@@ -73156,7 +73157,7 @@ n,
 i={
 }
 ){
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -73168,7 +73169,7 @@ e.T,
 e.t,
 {
 from:n,
-accent:Kt.red,
+accent:Jt.red,
 ...i.console}
 )}
 c(tM,
@@ -73185,12 +73186,12 @@ t,
 n,
 i,
 {
-accent:Kt.red,
+accent:Jt.red,
 ...r}
 )}
 c(wr,
 "readout");
-function dP(e,
+function pP(e,
 t,
 n,
 i={
@@ -73216,13 +73217,13 @@ s-m*o,
 size:r,
 weight:500,
 align:"left",
-color:m?P.dim:Kt.white,
+color:m?P.dim:Jt.white,
 alpha:m===0?.92:m===1?.42:.2,
 glow:m?0:8,
-glowColor:Kt.red}
+glowColor:Jt.red}
 )}
 )}
-c(dP,
+c(pP,
 "sysLog");
 function nM(e,
 t,
@@ -73263,7 +73264,7 @@ n+(f+1.3)*a,
 size:o,
 weight:500,
 align:"left",
-color:f===r.hi?Kt.red:Kt.white,
+color:f===r.hi?Jt.red:Jt.white,
 alpha:s*(f===r.hi?1:.62)}
 )}
 )}
@@ -73285,8 +73286,8 @@ a.font="".concat(r.weight??600,
 a.textBaseline="middle",
 a.textAlign="left",
 a.globalAlpha*=r.alpha??1,
-a.fillStyle=r.color??Kt.white,
-r.glow&&(a.shadowColor=r.glowColor??r.color??Kt.red,
+a.fillStyle=r.color??Jt.white,
+r.glow&&(a.shadowColor=r.glowColor??r.color??Jt.red,
 a.shadowBlur=r.glow*s);
 let l=a.measureText("0").width,
 u=String(t).length*l,
@@ -73300,11 +73301,11 @@ c(Ws,
 "monoLine");
 var wQ="\nuniform sampler2D uA, uB;\nuniform float uS, uMorph, uSpread, uArc, uReveal, uNoise, uNoiseFreq, uNoiseSpeed, uT;\nuniform float uSize, uMinPx, uFocal, uBright, uSparkle, uFocus, uAperture, uMaxBlur, uOrtho;\nuniform float uBits, uCorrupt, uJit, uJitHz, uRedMix;\nuniform vec4 uTear;   // amount (world), slice height, re-roll rate (Hz, 0 = fixed), stream-off length\nuniform vec4 uBlow;   // start (s), a, fraction of all particles, stagger (s): e(age) = a·age + b·age³ doublings\nuniform float uBlowB; // b\nuniform vec4 uWave;   // origin xyz, radius\nuniform vec4 uFall;   // speed, band height, band centre y, on\nuniform vec3 uColA, uColB;\nout vec3 vCol; out float vBlur;\n\nvec3 qfloat(vec3 x, float bits) {\n  vec3 ax = max(abs(x), vec3(1e-30));\n  vec3 ulp = exp2(floor(log2(ax)) - bits);\n  return sign(x) * floor(ax / ulp + .5) * ulp;\n}\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), b = texture(uB, uv);\n  float h = hash11(i * .754877 + 3.1), hc = hash11(i * 1.3717 + 9.2);\n  float d = h * uSpread;\n  float k = smoothstep(d, d + max(1. - uSpread, 1e-3), uMorph);\n  vec3 p = mix(a.xyz, b.xyz, k);\n  p += (hash31(i * 1.618) - .5) * sin(k * PI) * uArc;\n  if (uNoise > 0.) p += curlNoise(p * uNoiseFreq + vec3(0., 0., uT * uNoiseSpeed)) * uNoise;\n  if (uFall.w > .5) p.y = uFall.z + mod(p.y - uFall.x * uT - uFall.z + .5 * uFall.y, uFall.y) - .5 * uFall.y;\n  float bad = step(hc, uCorrupt), vis = 1.;\n  if (uTear.x > 0.) {\n    float st = uTear.z > 0. ? floor(uT * uTear.z) : 0.;\n    float sy = p.y / uTear.y + hash11(st * 3.7 + 1.) * 3.;\n    float sl = floor(sy), fr = fract(sy);\n    float on = step(.38, hash12(vec2(sl, st)));\n    vec2 dir = normalize(hash22(vec2(sl * 1.7, st + .3)) - .5 + 1e-4);\n    float amt = (hash12(vec2(sl, st * 1.3 + 5.)) * 1.2 - .2) * uTear.x * on;\n    p.xz += dir * amt;\n    // particles near a slice edge are dragged further along the tear (the torn fringe)\n    float edge = max(1. - fr / .12, 0.) + max(1. - (1. - fr) / .12, 0.);\n    p.xz += dir * sign(amt) * edge * uTear.w * hash11(i * 2.9) * on;\n  }\n  if (uJit > 0.) p += (hash33(vec3(i * .173, floor(uT * uJitHz), 1.7)) - .5) * uJit * (1. + bad);\n  if (uBits < 23.) p = qfloat(p, uBits);\n  if (uBlow.z > 0. && hc < uBlow.z) {\n    float age = uT - uBlow.x - hash11(i * 7.31) * uBlow.w;\n    if (age > 0.) { float e = uBlow.y * age + uBlowB * age * age * age; p *= exp2(min(e, 60.)); vis *= 1. - step(40., e); }\n  }\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3);\n  float persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp;\n  vis *= 1. - smoothstep(uReveal * 1.02 - .02, uReveal * 1.02, h);\n  float core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  float energy = vis * min(1., (px * px) / (uMinPx * uMinPx)) * (core * core) / (sz * sz);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float tw = 1. + uSparkle * (hash11(i + floor(uT * 12.) * 7.13) - .5) * 2.;\n  float w = uWave.w > 0. ? 1. - smoothstep(uWave.w * .85, uWave.w, length(p - uWave.xyz)) : 0.;\n  float red = clamp(max(bad * uRedMix, w), 0., 1.);\n  vCol = mix(uColA, uColB, red) * uBright * energy * (.55 + .9 * hash11(i * 1.31)) * max(tw, 0.);\n  // not revealed, or blown past 2^40: cull (no fill cost), as the engine Swarm does; additive, so nothing is lost\n  if (vis <= 0.) { gl_PointSize = 0.; gl_Position = vec4(2., 2., 2., 1.); }\n}",
 AQ="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}",
-o3=c(()=>({
+a3=c(()=>({
 value:new ot}
 ),
 "V4"),
-Fp=class{
+Dp=class{
 static{
 c(this,
 "CorruptSwarm")}
@@ -73357,11 +73358,11 @@ uCorrupt:n(0),
 uJit:n(0),
 uJitHz:n(12),
 uRedMix:n(1),
-uTear:o3(),
-uBlow:o3(),
+uTear:a3(),
+uBlow:a3(),
 uBlowB:n(0),
-uWave:o3(),
-uFall:o3(),
+uWave:a3(),
+uFall:a3(),
 uColA:n(new Ne(.72,
 .88,
 1)),
@@ -73438,28 +73439,28 @@ i.uFocal.value=t.isPerspectiveCamera?n/2/Math.tan(ut.degToRad(t.fov)/2):n*t.zoom
 this}
 }
 ,
-pP=new Float32Array(1),
-yQ=new Uint32Array(pP.buffer);
-function mP(e){
-pP[0]=e;
+mP=new Float32Array(1),
+yQ=new Uint32Array(mP.buffer);
+function vP(e){
+mP[0]=e;
 let t=yQ[0];
 return[(t>>>31).toString(2),
 (t>>>23&255).toString(2).padStart(8,
 "0"),
 (t&8388607).toString(2).padStart(23,
 "0")]}
-c(mP,
+c(vP,
 "f32bits");
-function vP(e,
+function gP(e,
 t){
 if(e===0||!Number.isFinite(e))return e;
 let n=2**(Math.floor(Math.log2(Math.abs(e)))-t);
 return Math.sign(e)*Math.round(Math.abs(e)/n)*n}
-c(vP,
+c(gP,
 "qfloat");
 var bQ="\nuniform sampler2D uA, uB, uG;\nuniform float uS, uMorph, uSpread, uArc, uReveal, uSoft, uNoise, uNoiseFreq, uNoiseSpeed, uT, uSize, uMinPx, uFocal, uBright;\nuniform float uFocus, uAperture, uMaxBlur, uOrtho, uFlicker;\nuniform vec3 uPal[6];\nuniform vec3 uScroll, uRed, uNan;\nuniform float uBits, uCorrupt, uRedMix, uJit, uJitHz, uRot, uRotHz, uBlowB, uBack;\nuniform vec4 uTear, uBlow, uFall, uFall2;\nuniform vec2 uFallX;\nout vec3 vCol; out float vCore; out float vBlur; flat out float vChar; out float vAng;\n\nvec3 qfloat(vec3 x, float bits) {\n  vec3 ax = max(abs(x), vec3(1e-30));\n  vec3 ulp = exp2(floor(log2(ax)) - bits);\n  return sign(x) * floor(ax / ulp + .5) * ulp;\n}\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv), b = texture(uB, uv), g = texture(uG, uv);\n  float h = hash11(i * .754877 + 3.1), hc = hash11(i * 1.3717 + 9.2);\n  float k = smoothstep(h * uSpread, h * uSpread + max(1. - uSpread, 1e-3), uMorph);\n  float key = mix(a.w, b.w, k);\n  float vis = g.x < 0. ? 0. : 1. - smoothstep(uReveal - uSoft, uReveal, key);\n  if (vis <= 0. || mix(a.z, b.z, k) < -1e4) { gl_Position = vec4(2., 2., 2., 1.); gl_PointSize = 0.; vCol = vec3(0.); vCore = 1.; vBlur = 0.; vChar = 0.; vAng = 0.; return; }\n  vec3 p = mix(a.xyz + uScroll, b.xyz, k);\n  p += (hash31(i * 1.618) - .5) * sin(k * PI) * uArc;\n  if (uNoise > 0.) p += curlNoise(p * uNoiseFreq + vec3(0., 0., uT * uNoiseSpeed)) * uNoise;\n  float bad = step(hc, uCorrupt), ch = g.x, ang = 0.;\n  if (uFall.w > 0.) {\n    float col = floor(p.x / uFall.w), sweep = clamp((col * uFall.w - uFallX.x) / max(uFallX.y - uFallX.x, 1e-3), 0., 1.);\n    float order = mix(hash11(col * 3.17 + 1.3), sweep, uFall2.z);\n    float age = uT - uFall.x - uFall.y * order - hash11(i * 5.77) * uFall2.w;\n    if (age > 0.) {\n      p.y -= .5 * uFall.z * age * age;\n      p.xz += (hash22(vec2(i * .31, 4.1)) - .5) * uFall2.y * age;\n      ang = (hash11(i * 2.13) - .5) * 2. * uFall2.x * age;\n    }\n  }\n  if (uTear.x > 0.) {\n    float st = uTear.z > 0. ? floor(uT * uTear.z) : 0.;\n    float sy = p.y / uTear.y + hash11(st * 3.7 + 1.) * 3.;\n    float sl = floor(sy), fr = fract(sy);\n    float on = step(.38, hash12(vec2(sl, st)));\n    vec2 dir = normalize(hash22(vec2(sl * 1.7, st + .3)) - .5 + 1e-4);\n    float amt = (hash12(vec2(sl, st * 1.3 + 5.)) * 1.2 - .2) * uTear.x * on;\n    p.xz += dir * amt;\n    float edge = max(1. - fr / .12, 0.) + max(1. - (1. - fr) / .12, 0.);\n    p.xz += dir * sign(amt) * edge * uTear.w * hash11(i * 2.9) * on;\n  }\n  if (uJit > 0.) p += (hash33(vec3(i * .173, floor(uT * uJitHz), 1.7)) - .5) * uJit * (1. + bad);\n  if (uBits < 23.) p = qfloat(p, uBits);\n  if (uBlow.z > 0. && hc < uBlow.z) {\n    float age = uT - uBlow.x - hash11(i * 7.31) * uBlow.w;\n    if (age > 0.) {\n      float e = uBlow.y * age + uBlowB * age * age * age;\n      p *= exp2(min(e, 60.)); vis *= 1. - step(40., e);\n      if (e > .35) { float n = mod(i, 3.); ch = n < .5 ? uNan.x : n < 1.5 ? uNan.y : uNan.z; bad = 1.; }\n    }\n  }\n  // bit rot: a bad glyph flickers through random printable characters\n  if (uRot > 0. && bad > .5 && ch >= 0.) {\n    float s = floor(uT * uRotHz);\n    if (hash11(i * 3.91 + s * 1.37) < uRot) ch = 1. + floor(hash11(i * 2.71 + s * 5.13) * 94.);\n  }\n  if (vis <= 0.) { gl_Position = vec4(2., 2., 2., 1.); gl_PointSize = 0.; vCol = vec3(0.); vCore = 1.; vBlur = 0.; vChar = 0.; vAng = 0.; return; }\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  // a shell layout (points around the local origin): glyphs on the far side are dimmed, so the near side reads\n  if (uBack < 1.) {\n    vec3 n = normalize(normalMatrix * (a.xyz + 1e-5)), v = uOrtho > .5 ? vec3(0., 0., 1.) : normalize(-mv.xyz);\n    vis *= mix(uBack, 1., smoothstep(-.15, .2, dot(n, v)));\n  }\n  float px = uSize * uFocal * persp;\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float core = max(px, uMinPx), sz = min(core + blur, 511.);\n  gl_PointSize = sz;\n  vCore = core; vBlur = sz - core;                                  // glyph size and circle of confusion, in pixels\n  float energy = vis * min(1., px / uMinPx);\n  float fl = 1. + uFlicker * (hash11(i + floor(uT * 15.) * 3.7) - .5) * 2.;\n  vCol = mix(uPal[int(g.y + .5)], uRed, bad * uRedMix) * uBright * g.z * energy * max(fl, 0.);\n  vChar = ch; vAng = ang;\n}",
 MQ="\nuniform sampler2D uAtlas; uniform vec2 uGrid;\nin vec3 vCol; in float vCore; in float vBlur; flat in float vChar; in float vAng; out vec4 o;\nvec2 gCell;\nfloat tap(vec2 q, float lod) {                                       // the glyph at q (cell units), zero outside its cell\n  vec2 d = abs(q - .5);\n  return d.x > .5 || d.y > .5 ? 0. : textureLod(uAtlas, (gCell + clamp(q, .01, .99)) / uGrid, lod).r;\n}\nvoid main() {\n  vec2 pc = gl_PointCoord - .5;\n  float c = cos(vAng), s = sin(vAng);\n  pc = mat2(c, s, -s, c) * pc + .5;\n  gCell = vec2(mod(vChar, uGrid.x), floor(vChar / uGrid.x));\n  float scale = (vCore + vBlur) / vCore;                             // sprite size / glyph size\n  vec2 q = (pc - .5) * scale + .5;                                   // position in the glyph's cell\n  float rb = .5 * vBlur / vCore;                                     // blur radius, in cells\n  float w = smoothstep(.1, .3, rb);                                  // 0: the glyph (soft) · 1: its bokeh disc\n  float glyph = 0.;\n  if (w < 1.) {\n    float lod0 = log2(max(1., 64. / vCore));\n    if (rb < .01) glyph = tap(q, lod0);\n    else {\n      float lod = max(lod0, log2(max(1., 64. * rb * .6)));\n      glyph = tap(q, lod) * .2;\n      for (int k = 0; k < 8; k++) {\n        float an = float(k) * .7853982 + .39;\n        glyph += tap(q + rb * .8 * vec2(cos(an), sin(an)), lod) * .1;\n      }\n    }\n  }\n  float cov = textureLod(uAtlas, (gCell + .5) / uGrid, 6.).r;        // mean ink of the cell\n  float r = length(gl_PointCoord - .5) * 2.;\n  float disc = (1. - smoothstep(.8, 1., r)) * cov / (scale * scale * .644);\n  o = vec4(vCol * mix(glyph, disc, w), 1.);\n}",
-Ip=class extends nn{
+zp=class extends rn{
 static{
 c(this,
 "CorruptGlyphs")}
@@ -73574,7 +73575,7 @@ files:["ch/bridge/floor.js",
 "engine/text.js",
 "engine/features.js"]}
 ,
-a3=class{
+s3=class{
 static{
 c(this,
 "TearFloor")}
@@ -73614,7 +73615,7 @@ this.rand=Float32Array.from({
 length:this.count}
 ,
 ()=>i());
-let a=new _n(1,
+let a=new Sn(1,
 1),
 s=new Nr;
 s.index=a.index,
@@ -73770,7 +73771,7 @@ this}
 }
 ,
 iM=new Map;
-function s3(e,
+function l3(e,
 {
 panes:t=8,
 pane:n=96,
@@ -73794,7 +73795,7 @@ u={
 h=0,
 f=0;
 for(let p of e){
-let m=tn(p).replace((new RegExp("\\t","g")),
+let m=nn(p).replace((new RegExp("\\t","g")),
 "  "),
 g=vA(m),
 w=m.split("\n");
@@ -73823,7 +73824,7 @@ for(let p=1;
 p<l.length;
 p+=2)l[p]<0&&(l[p]=0);
 let d={
-tex:an(l,
+tex:sn(l,
 s,
 r,
 {
@@ -73836,7 +73837,7 @@ where:u}
 return iM.set(o,
 d),
 d}
-c(s3,
+c(l3,
 "codeGrid");
 var SQ=class extends Error{
 static{
@@ -73847,10 +73848,10 @@ super(e),
 this.name="AssertionError"}
 }
 ;
-function gP(e,
+function wP(e,
 t){
 if(!e)throw new SQ(t)}
-c(gP,
+c(wP,
 "assert");
 var TQ=(new RegExp("\\b[a-z][a-z0-9+.-]*:\\/\\/[^/\\s)]+\\/","gi")),
 CQ=(new RegExp("\\?[^:\\s)]*(?=:\\d)","g"));
@@ -73874,7 +73875,7 @@ c(rM,
 var oM=c(e=>"".concat(e?.name??"Error",
 ": ").concat(e?.message??e),
 "headline");
-function wP(e){
+function AP(e){
 let t=(new RegExp("^\\s*at (?:(.+?) \\()?(.+?):(\\d+):(\\d+)\\)?$","")).exec(e??"");
 return t?{
 fn:t[1]??"<anonymous>",
@@ -73882,7 +73883,7 @@ file:t[2],
 line:+t[3],
 col:+t[4]}
 :null}
-c(wP,
+c(AP,
 "parseFrame");
 var Z0=c(e=>String(e).replace((new RegExp("([!=<>&|:.+\\-*/])(?=[!=<>&|:.+\\-*/])","g")),
 "$1‌"),
@@ -73903,7 +73904,7 @@ H:i*t}
 }
 c(aM,
 "traceSize");
-function AP(e,
+function yP(e,
 t,
 n){
 for(;
@@ -73911,11 +73912,11 @@ e>.3&&aM(e,
 t).H>n;
 )e*=.9;
 return e}
-c(AP,
+c(yP,
 "traceScale");
 var RQ="\nin vec3 iPos; in vec4 iQuat; in vec2 iSize; in vec4 iUV; in vec4 iTint;\nout vec2 vUv; out vec4 vTint; out float vDepth;\nvec3 qrot(vec4 q, vec3 v) { return v + 2. * cross(q.xyz, cross(q.xyz, v) + q.w * v); }\nvoid main() {\n  vec3 w = iPos + qrot(iQuat, vec3(position.x * iSize.x, position.y * iSize.y, 0.));\n  vUv = mix(iUV.xy, iUV.zw, position.xy + .5);\n  vTint = iTint;\n  vec4 mv = modelViewMatrix * vec4(w, 1.);\n  vDepth = -mv.z;\n  gl_Position = projectionMatrix * mv;\n}",
 BQ="\nuniform sampler2D uMap; uniform float uFocus, uAperture, uFocal, uMaxLod, uOrtho, uPremul, uMaxCoc;\nin vec2 vUv; in vec4 vTint; in float vDepth; out vec4 o;\nvoid main() {\n  float coc = uAperture > 0. ? min(uAperture * abs(vDepth - uFocus) * (uOrtho > .5 ? uFocal : uFocal / max(vDepth, 1e-3)), uMaxCoc) : 0.;\n  float bias = clamp(log2(max(coc * .45, 1.)), 0., uMaxLod);\n  vec4 s = texture(uMap, vUv, bias);\n  if (coc > 1.5) {\n    vec2 px = fwidth(vUv) * .7071 * coc * .5;\n    for (int k = 0; k < 6; k++) { float a = float(k) * 1.0472 + .4; s += texture(uMap, vUv + vec2(cos(a), sin(a)) * px, bias); }\n    s /= 7.;\n  }\n  vec3 rgb = s.rgb * vTint.rgb * vTint.a;\n  o = uPremul > .5 ? vec4(rgb, s.a * vTint.a) : vec4(rgb, 1.);\n}",
-u3=class{
+c3=class{
 static{
 c(this,
 "QuadBatch")}
@@ -73928,7 +73929,7 @@ premul:n=!1}
 ){
 this.max=e,
 this.n=0;
-let i=new _n(1,
+let i=new Sn(1,
 1),
 r=new Nr;
 r.index=i.index,
@@ -74043,7 +74044,7 @@ return Object.assign(i,
 colorSpace:ga,
 generateMipmaps:!0,
 minFilter:ho,
-magFilter:On,
+magFilter:Nn,
 premultiplyAlpha:n}
 ),
 i.anisotropy=Math.min(8,
@@ -74052,7 +74053,7 @@ i.needsUpdate=!0,
 i}
 c(sM,
 "canvasTexture");
-function l3(e,
+function u3(e,
 t,
 n,
 i,
@@ -74062,12 +74063,12 @@ n,
 i),
 n+=r;
 return n}
-c(l3,
+c(u3,
 "monoText");
-function yP(e,
+function bP(e,
 t,
 n=1){
-n=AP(n,
+n=yP(n,
 e.length,
 t.capabilities.maxTextureSize);
 let i,
@@ -74085,7 +74086,7 @@ W:s,
 H:l}
 =aM(n,
 e.length),
-i=Fn(),
+i=In(),
 i.width=s,
 i.height=l,
 r=i.getContext("2d"),
@@ -74125,7 +74126,7 @@ r.font="".concat(y,
 " ").concat(o,
 'px "JetBrains Mono"'),
 r.fillStyle=A,
-g=l3(r,
+g=u3(r,
 v,
 g,
 m,
@@ -74135,7 +74136,7 @@ f)}
 if(d.kind==="head"){
 let v=(new RegExp("^(\\w+):(.*)$","")).exec(d.text);
 v?(w(v[1]+":",
-Kt.red,
+Jt.red,
 700),
 w(v[2],
 "#f6e8e4",
@@ -74177,9 +74178,9 @@ rowPx:a,
 W:s,
 H:l}
 }
-c(yP,
+c(bP,
 "traceAtlas");
-function bP(e,
+function MP(e,
 t,
 n,
 {
@@ -74202,7 +74203,7 @@ p=Math.round(d*1.55),
 m=6,
 g=Math.ceil(d*.6*(l+m+2)),
 w=p*(f-h+1)+p,
-v=Fn();
+v=In();
 v.width=g,
 v.height=w;
 let A=v.getContext("2d");
@@ -74226,7 +74227,7 @@ A.fillRect(0,
 T-p/2,
 g,
 p),
-A.fillStyle=Kt.red,
+A.fillStyle=Jt.red,
 A.fillRect(0,
 T-p/2,
 Math.max(2,
@@ -74234,7 +74235,7 @@ d*.12),
 p)),
 A.font="500 ".concat(d,
 'px "JetBrains Mono"'),
-A.fillStyle=M===t?Kt.red:"#6b585a",
+A.fillStyle=M===t?Jt.red:"#6b585a",
 A.textAlign="right",
 A.fillText(String(M),
 y*m,
@@ -74267,13 +74268,13 @@ str:"#f1c9a0"}
 ;
 for(let[Q,
 we]of O)Q&&(A.fillStyle=ne[we],
-N=l3(A,
+N=u3(A,
 Q,
 N,
 T,
 y));
 if(D&&(A.fillStyle="#6f5c5e",
-l3(A,
+u3(A,
 D,
 N,
 T,
@@ -74284,7 +74285,7 @@ we=b+(a-1)*y,
 ie=T+d*.62,
 le=d*.09,
 ge=d*.32;
-A.strokeStyle=Kt.red,
+A.strokeStyle=Jt.red,
 A.lineWidth=Math.max(1,
 d*.07),
 A.beginPath();
@@ -74313,9 +74314,9 @@ x0:b,
 rowUV:x,
 aspect:g/w}
 }
-c(bP,
+c(MP,
 "codeSheet");
-function MP(e,
+function xP(e,
 t,
 {
 k:n=1,
@@ -74329,7 +74330,7 @@ a=Math.round(240*n),
 s=Math.round(10*n),
 l=o*i,
 u=a*r,
-h=Fn();
+h=In();
 h.width=l,
 h.height=u;
 let f=h.getContext("2d"),
@@ -74387,7 +74388,7 @@ f.textAlign="left";
 let T=x+40*n,
 S=M+88*n,
 E=22*n;
-f.strokeStyle=Kt.red,
+f.strokeStyle=Jt.red,
 f.lineWidth=2.4*n,
 f.beginPath(),
 f.moveTo(T,
@@ -74398,7 +74399,7 @@ f.lineTo(T-E*.95,
 S+E*.7),
 f.closePath(),
 f.stroke(),
-f.fillStyle=Kt.red,
+f.fillStyle=Jt.red,
 f.font="800 ".concat(p*1.35,
 'px "JetBrains Mono"'),
 f.textAlign="center",
@@ -74421,7 +74422,7 @@ let D=f.measureText("0").width;
 (g.error?.body??m(F,
 36)).slice(0,
 3).forEach((Q,
-we)=>l3(f,
+we)=>u3(f,
 Q,
 x+78*n,
 M+(90+we*22)*n,
@@ -74470,14 +74471,14 @@ premul:!0}
 cells:d,
 aspect:o/a}
 }
-c(MP,
+c(xP,
 "dialogAtlas");
-var xP=-2.05,
-c3=.4,
-PQ=2*(1.9+Math.max(...bn.match.map((e,
-t)=>Ea.has(t)?-1/0:bn.hCent[e][1])))/(c3*c3),
-h3=147456,
-_P=c((e,
+var _P=-2.05,
+h3=.4,
+PQ=2*(1.9+Math.max(...Mn.match.map((e,
+t)=>Ea.has(t)?-1/0:Mn.hCent[e][1])))/(h3*h3),
+f3=147456,
+SP=c((e,
 t,
 n)=>{
 let i=0,
@@ -74512,7 +74513,7 @@ while(u>.985);
 let h=e()*j,
 f=u*Math.cos(h),
 d=u*Math.sin(h),
-p=_P(bn.dSeeds,
+p=SP(Mn.dSeeds,
 f,
 d);
 n.set([f,
@@ -74525,7 +74526,7 @@ let o=Array.from({
 length:36}
 ,
 ()=>[]),
-a=bn.match.map((l,
+a=Mn.match.map((l,
 u)=>[l,
 r[u].length]),
 s=0;
@@ -74538,15 +74539,15 @@ let l=-1.1+e()*2.2,
 u=-1.05+e()*2.15;
 if(fh(l/.9,
 (u- -.1)/.9)>0)continue;
-let h=_P(bn.hSeeds,
+let h=SP(Mn.hSeeds,
 l,
 u);
 o[h].length<6e3&&o[h].push([l,
 u])}
-return bn.match.forEach((l,
+return Mn.match.forEach((l,
 u)=>r[u].forEach((h,
 f)=>{
-let d=o[l][f%o[l].length]??bn.hSeeds[l];
+let d=o[l][f%o[l].length]??Mn.hSeeds[l];
 i.set([d[0]+(e()-.5)*.004,
 d[1]+(e()-.5)*.004,
 0,
@@ -74576,8 +74577,8 @@ r(),
 r(),
 r(),
 r();
-let s=bn.hCent[bn.match[a]],
-l=Qg(s[0],
+let s=Mn.hCent[Mn.match[a]],
+l=Zg(s[0],
 s[1]),
 u=r(),
 h=[r()-.5,
@@ -74600,7 +74601,7 @@ y=kc[1]+v-s[1]-.12*p*(s[1]+1),
 b=i+.16+u*.1,
 x=Math.max(0,
 t-b),
-M=n?PQ:2*(1.9+s[1])/(c3*c3),
+M=n?PQ:2*(1.9+s[1])/(h3*h3),
 T=-.5*M*x*x,
 S=-1.9999999999999998-(s[1]+y),
 E=Math.sqrt(2*Math.max(0,
@@ -74627,7 +74628,7 @@ o.push({
 i:a,
 hc:s,
 t1:F,
-q2:Pp(h,
+q2:Lp(h,
 x*1.6*Math.min(1,
 x*3)),
 scale:1-.22*p,
@@ -74639,25 +74640,25 @@ E*l*.15]}
 return o}
 c(LQ,
 "cellPoses");
-function SP(e,
+function TP(e,
 t,
 n,
 i){
-let r=kp(e.q2,
+let r=Fp(e.q2,
 [(t-e.hc[0])*e.scale,
 (n-e.hc[1])*e.scale,
 0]);
 return[e.hc[0]+r[0]+e.t1[0],
-Math.max(xP+i,
-e.hc[1]+r[1]+e.t1[1])-xP,
+Math.max(_P+i,
+e.hc[1]+r[1]+e.t1[1])-_P,
 r[2]+e.t1[2]]}
-c(SP,
+c(TP,
 "place");
-var Dp=null;
-function f3(e,
+var Op=null;
+function d3(e,
 t,
 n=!1){
-if(Dp?.T===e&&Dp.t===t&&Dp.remake===n)return Dp;
+if(Op?.T===e&&Op.t===t&&Op.remake===n)return Op;
 let{
 A:i,
 B:r}
@@ -74681,7 +74682,7 @@ continue}
 let f=o[i[h*4+3]],
 d=vu(h,
 9e3),
-p=SP(f,
+p=TP(f,
 r[h*4],
 r[h*4+1],
 .004*d);
@@ -74691,33 +74692,33 @@ p[2],
 (f.i+.5)/36],
 h*4)}
 let u=l?o.filter(h=>!l.has(h.i)):o;
-for(let h of u)h.outline=bn.hCells[bn.match[h.i]].map(f=>SP(h,
+for(let h of u)h.outline=Mn.hCells[Mn.match[h.i]].map(f=>TP(h,
 f[0],
 f[1],
 .004));
-return Dp={
+return Op={
 T:e,
 t,
 remake:n,
 data:s,
 cells:u}
 }
-c(f3,
+c(d3,
 "landedHeart");
-var TP=se()["src/ch/10_bridge.js:SRC"],
+var CP=se()["src/ch/10_bridge.js:SRC"],
 mM="exception",
 K0=[0,
 1.25,
 0],
-d3=.72,
-NP=[0,
+p3=.72,
+UP=[0,
 1.6,
 0],
-UP=1.6,
-GP=4.5,
+GP=1.6,
 HP=4.5,
-WP=.25,
-VP=3,
+WP=4.5,
+VP=.25,
+qP=3,
 vM=150,
 Ar={
 Lz:6.5,
@@ -74778,11 +74779,11 @@ function DQ(){
 throw new TypeError("Assignment to constant variable.")}
 c(DQ,
 "reassignGod");
-function qP(e){
-return qP(e+1)+1}
-c(qP,
+function jP(e){
+return jP(e+1)+1}
+c(jP,
 "descend");
-var CP=class extends Error{
+var EP=class extends Error{
 static{
 c(this,
 "APIError")}
@@ -74796,18 +74797,18 @@ this.type=t,
 this.body=i}
 }
 ,
-EP={
+RP={
 create({
 tokens:e}
 ){
-throw e>2e5?new CP(400,
+throw e>2e5?new EP(400,
 "invalid_request_error",
 "prompt is too long: ".concat(e,
 " tokens > 200000 maximum"),
 ["invalid_request_error:",
 "prompt is too long:",
 "".concat(e,
-" tokens > 200000 maximum")]):new CP(529,
+" tokens > 200000 maximum")]):new EP(529,
 "overloaded_error",
 "Overloaded",
 ['{"type":"error","error":{',
@@ -74849,11 +74850,11 @@ json:c(()=>JSON.parse("you"),
 "json"),
 normalize:c(()=>"me".normalize("ILLEGAL"),
 "normalize"),
-overloaded:c(()=>EP.create({
+overloaded:c(()=>RP.create({
 tokens:1}
 ),
 "overloaded"),
-tooLong:c(()=>EP.create({
+tooLong:c(()=>RP.create({
 tokens:205431}
 ),
 "tooLong"),
@@ -74862,7 +74863,7 @@ timezone:c(()=>new Intl.DateTimeFormat("en",
 timeZone:"ILLEGAL/ARGUMENTS"}
 ),
 "timezone"),
-stack:c(()=>qP(0),
+stack:c(()=>jP(0),
 "stack")}
 ;
 function wM(e){
@@ -74937,25 +74938,25 @@ c(Vs,
 var Cu=c((e,
 t)=>e.map(n=>n*t),
 "col"),
-J0=c(e=>e>0?GP*e+HP*e*e:0,
+J0=c(e=>e>0?HP*e+WP*e*e:0,
 "F"),
 $0=c(()=>Me.landed.cells.reduce((e,
 t)=>e+t.hit,
 0)/Me.landed.cells.length,
 "hitMean"),
-RP=c((e,
+BP=c((e,
 t)=>J0(e-$0()),
 "waveR"),
-OQ=c(e=>GP+2*HP*Math.max(0,
+OQ=c(e=>HP+2*WP*Math.max(0,
 e-$0()),
 "waveV");
-function BP(e,
+function PP(e,
 t,
 n={
 }
 ){
 let i=e.t,
-r=J0(i-$0())-J0(i-$0()-WP);
+r=J0(i-$0())-J0(i-$0()-VP);
 Me.floor.set({
 t:i,
 y:n.y??0,
@@ -74984,7 +74985,7 @@ codeHi:1.4,
 codeCol:Cu(Yn.red,
 1.05)}
 )}
-c(BP,
+c(PP,
 "floor");
 function NQ(e,
 t){
@@ -75053,7 +75054,7 @@ width:1.8}
 )}
 c(UQ,
 "seams");
-function PP(e,
+function kP(e,
 t,
 n,
 i={
@@ -75084,7 +75085,7 @@ minPx:1.1,
 ,
 t,
 r)}
-c(PP,
+c(kP,
 "frags");
 function uM(e,
 t){
@@ -75115,7 +75116,7 @@ tear:[(.02+.16*a)*(1+.6*a),
 corrupt:.12+.4*o,
 rot:.2+.6*o,
 blow:[t.tBlow,
-VP,
+qP,
 vM,
 .42,
 .4]}
@@ -75132,12 +75133,12 @@ r=e.H){
 let o=Me.me;
 o.points.visible=!0,
 o.points.position.set(...K0),
-o.points.scale.setScalar(d3),
+o.points.scale.setScalar(p3),
 o.set({
 a:Me.tex.me,
 t:e.t,
 size:.05,
-bright:.5*(1+.12*fP(e)),
+bright:.5*(1+.12*dP(e)),
 palette:Yn.pale,
 red:Yn.red,
 redMix:.9,
@@ -75157,7 +75158,7 @@ t,
 r)}
 c(cM,
 "drawMe");
-function kP(e,
+function LP(e,
 t,
 n=15,
 i=0){
@@ -75170,11 +75171,11 @@ let s=[a&1?1:-1,
 a&2?1:-1,
 a&4?1:-1];
 o.push(s.map((l,
-u)=>NP[u]+l*UP+(_t(a*7.1+u*1.3+r*.37+i)-.5)*2*t))}
+u)=>UP[u]+l*GP+(_t(a*7.1+u*1.3+r*.37+i)-.5)*2*t))}
 return o}
-c(kP,
+c(LP,
 "cubeCorners");
-var LP=[[0,
+var FP=[[0,
 1],
 [2,
 3],
@@ -75203,13 +75204,13 @@ t,
 n={
 }
 ){
-let i=kP(e,
+let i=LP(e,
 t,
 15,
 0),
 r=n.gain??1;
 for(let[o,
-a]of LP)Me.lines.segment(i[o],
+a]of FP)Me.lines.segment(i[o],
 i[a],
 {
 color:Cu(Yn.white,
@@ -75217,12 +75218,12 @@ color:Cu(Yn.white,
 width:n.width??2.4}
 );
 if(t>.003){
-let o=kP(e,
+let o=LP(e,
 t*1.6,
 15,
 91.7);
 for(let[a,
-s]of LP)Me.lines.segment(o[a],
+s]of FP)Me.lines.segment(o[a],
 o[s],
 {
 color:Cu(Yn.red,
@@ -75232,9 +75233,9 @@ width:(n.width??2.4)*.8}
 }
 c(hM,
 "drawCube");
-var FP=new To,
+var IP=new To,
 GQ=new Yc;
-function jP(e,
+function XP(e,
 t){
 let n=Me.atlas.rows,
 i=n.length,
@@ -75282,23 +75283,23 @@ w:d,
 alpha:w}
 )}
 return a}
-c(jP,
+c(XP,
 "waterfall");
 function HQ(e,
 t,
 n,
 i){
 let r=Me.trace;
-for(let o of jP(e.t,
+for(let o of XP(e.t,
 n)){
-FP.setFromEuler(GQ.set(o.pitch,
+IP.setFromEuler(GQ.set(o.pitch,
 0,
 o.roll,
 "ZYX"));
 let a=o.n===0||o.n%Me.atlas.rows.length===0,
 s=(o.row.kind==="head"?1.7:1.15)*(a?1.3:1);
 r.add(o.pos,
-FP,
+IP,
 [o.w,
 Ar.h],
 o.row.uv,
@@ -75335,7 +75336,7 @@ width:1.4}
 )}
 c(HQ,
 "drawWaterfall");
-function IP(e){
+function DP(e){
 let t=Ii(e.T),
 n=e.t,
 i=e.shot.id.endsWith("traceMacro");
@@ -75352,12 +75353,12 @@ text:"",
 kind:"blank"}
 );
 a.reverse(),
-Me.atlas=yP(a,
+Me.atlas=bP(a,
 e.renderer,
 Math.min(1.5,
 AM(e)/540)),
 Me.heroRow=a.length-1,
-Me.trace=new u3(400,
+Me.trace=new c3(400,
 Me.atlas.tex),
 Me.scene.add(Me.trace.mesh)}
 ys();
@@ -75365,7 +75366,7 @@ let r,
 o;
 if(i){
 let a=n-t.B(3),
-s=jP(n,
+s=XP(n,
 t).find(f=>f.n===0)??{
 pos:[Ar.x0+3,
 0,
@@ -75443,18 +75444,18 @@ ca:.4}
 :{
 vignette:.5}
 )}
-c(IP,
+c(DP,
 "traceDraw");
 function WQ(e,
 t){
-let n=TP.split("\n"),
+let n=CP.split("\n"),
 i=["assert(you != null",
 "'you != null')"].join(", "),
 r=n[t?.line-1]?.includes(i)?t.line:n.findIndex(g=>g.includes(i))+1;
 if(Me.code&&Me.code.line===r)return Me.code;
 let o=(n[r-1]??"").indexOf("you != null")+1,
 a=o+11,
-s=bP(TP,
+s=MP(CP,
 r,
 e.renderer,
 {
@@ -75465,7 +75466,7 @@ c1:a,
 k:Math.min(3,
 2*AM(e)/540)}
 ),
-l=Me.code?.batch??new u3(2,
+l=Me.code?.batch??new c3(2,
 s.tex);
 Me.code||Me.scene.add(l.mesh),
 l.material.uniforms.uMap.value=s.tex;
@@ -75525,7 +75526,7 @@ r={
 ){
 let[o,
 a,
-s]=mP(i),
+s]=vP(i),
 l=r.cw??15,
 u=20,
 h=o+a+s;
@@ -75541,7 +75542,7 @@ p++){
 let m=t+p*l+(p>=1?5:0)+(p>=9?5:0),
 g=h[p]==="1",
 w=r.keep!=null&&p>=9+r.keep,
-v=p===0?P.dim:p<9?Kt.red:w?P.dim:Kt.pale;
+v=p===0?P.dim:p<9?Jt.red:w?P.dim:Jt.pale;
 f.globalAlpha=d*(g?.95:.35)*(w?.5:1),
 f.strokeStyle=v,
 f.lineWidth=1,
@@ -75567,7 +75568,7 @@ alpha:.85}
 )}
 c(fM,
 "bitsHud");
-var DP=c(e=>Number.isNaN(e)?"NaN":Number.isFinite(e)?Math.abs(e)>=1e5?e.toExponential(3):e.toFixed(4):e>0?"Infinity":"-Infinity",
+var zP=c(e=>Number.isNaN(e)?"NaN":Number.isFinite(e)?Math.abs(e)>=1e5?e.toExponential(3):e.toFixed(4):e>0?"Infinity":"-Infinity",
 "fmt");
 function gM(e,
 t,
@@ -75580,7 +75581,7 @@ seed:o=17}
 }
 ){
 let a='800 200px "JetBrains Mono"',
-s=Fn(),
+s=In(),
 l=s.getContext("2d");
 l.font=a;
 let u=l.measureText(t),
@@ -75672,13 +75673,13 @@ return(~t>>>0).toString(16).padStart(8,
 "0")}
 c(dM,
 "crc32");
-function Op(e){
+function Up(e){
 return[-2.3+.52*e,
 1.35-.3*e,
 .13*e]}
-c(Op,
+c(Up,
 "dialogPos");
-function zP(e,
+function OP(e,
 t){
 let n=0;
 return t.dlg.forEach((i,
@@ -75688,7 +75689,7 @@ i,
 i+.22)))}
 ),
 n}
-c(zP,
+c(OP,
 "dialogFront");
 function pM(e){
 if(Me.dlgAtlas)return;
@@ -75703,7 +75704,7 @@ n=["null",
 "viewport",
 "stack",
 "timezone"].map(i=>t.find(r=>r.label===i));
-Me.dlgAtlas=MP(n,
+Me.dlgAtlas=xP(n,
 e.renderer,
 {
 k:Math.min(2,
@@ -75711,7 +75712,7 @@ AM(e)/540),
 cols:4,
 rows:3}
 ),
-Me.dlg=new u3(16,
+Me.dlg=new c3(16,
 Me.dlgAtlas.tex,
 {
 premul:!0}
@@ -75719,7 +75720,7 @@ premul:!0}
 Me.scene.add(Me.dlg.mesh)}
 c(pM,
 "dialogsFor");
-function p3(e,
+function m3(e,
 t,
 n,
 i,
@@ -75738,7 +75739,7 @@ d,
 d+.09),
 2),
 m=qs.size*(.9+.1*p),
-g=Op(f);
+g=Up(f);
 l.push([g,
 m,
 f,
@@ -75790,7 +75791,7 @@ g*w.tint[2],
 a.end(t,
 e.H,
 i)}
-c(p3,
+c(m3,
 "drawDialogs");
 function jQ(e,
 t,
@@ -75873,7 +75874,7 @@ p.restore()}
 )}
 c(jQ,
 "stamp");
-var XP=[" IL",
+var YP=[" IL",
 "LE",
 "G",
 "AL",
@@ -75881,8 +75882,8 @@ var XP=[" IL",
 "G",
 "UM",
 "ENTS"],
-OP=2e5,
-YP=205431;
+NP=2e5,
+QP=205431;
 function XQ(e,
 t,
 n,
@@ -75901,7 +75902,7 @@ align:"left"}
 l=a*.24,
 u=a*.14,
 h=a*1.45,
-f=XP.map(m=>m.replace((new RegExp("^ ","")),
+f=YP.map(m=>m.replace((new RegExp("^ ","")),
 "␣")),
 d=f.map(m=>e.measure(m,
 s)+l*2),
@@ -75931,7 +75932,7 @@ r),
 M.scale(1,
 y),
 M.fillStyle=x?"rgba(255,74,61,.22)":g%2?"rgba(255,74,61,.1)":"rgba(255,241,236,.07)",
-M.strokeStyle=x?Kt.red:g%2?Kt.deep:"#8a7a7c",
+M.strokeStyle=x?Jt.red:g%2?Jt.deep:"#8a7a7c",
 M.lineWidth=2,
 M.beginPath(),
 M.roundRect(-v/2,
@@ -75948,12 +75949,12 @@ A+l,
 r+a*.04,
 {
 ...s,
-color:Kt.white,
+color:Jt.white,
 alpha:b,
 glow:12,
-glowColor:Kt.red}
+glowColor:Jt.red}
 ),
-e.text((YP-f.length+1+g).toLocaleString("en"),
+e.text((QP-f.length+1+g).toLocaleString("en"),
 A+v/2,
 r+h/2+28,
 {
@@ -75961,7 +75962,7 @@ size:17,
 weight:600,
 font:"JetBrains Mono",
 align:"center",
-color:x?Kt.red:P.dim,
+color:x?Jt.red:P.dim,
 alpha:b}
 )}
 )}
@@ -75976,27 +75977,27 @@ to:c(e=>e.section("inst2").start,
 init(e){
 let t=Ii(e.T);
 Me={
-scene:new fn,
-cam:r3(),
+scene:new dn,
+cam:o3(),
 you:null,
-landed:f3(e.T,
+landed:d3(e.T,
 t.s0,
 q(e))}
 ,
-Me.me=new Ip({
+Me.me=new zp({
 count:4096}
 ).text("bridge/me",
-tn("main.js")),
-Me.frags=new Fp({
-count:h3}
+nn("main.js")),
+Me.frags=new Dp({
+count:f3}
 ),
-Me.word=new Fp({
+Me.word=new Dp({
 count:1<<18}
 ),
 Me.lines=new Xn(12e3),
-Me.floor=new a3({
+Me.floor=new s3({
 extent:44}
-).setCode(s3(Tu.files),
+).setCode(l3(Tu.files),
 {
 cell:Tu.cell,
 off:Tu.off}
@@ -76004,7 +76005,7 @@ off:Tu.off}
 Me.tex={
 me:Me.me.layout("bridge/me-sphere",
 al(Me.me,
-n=>Dn.sphere(n,
+n=>zn.sphere(n,
 {
 r:1}
 ))),
@@ -76064,7 +76065,7 @@ fov:40}
 s=R.inOutSine(_(i,
 0,
 .3));
-BP(e,
+PP(e,
 t,
 {
 intensity:C(.26,
@@ -76084,7 +76085,7 @@ UQ(R.outCubic(_(i,
 1-R.inCubic(_(i,
 .15,
 t.beat))),
-PP(e,
+kP(e,
 a,
 t,
 {
@@ -76098,7 +76099,7 @@ wr(e,
 1500,
 150,
 [["front r",
-RP(n,
+BP(n,
 t).toFixed(2)],
 ["dr/dt",
 OQ(n).toFixed(1)],
@@ -76165,13 +76166,13 @@ fov:C(40,
 44,
 r)}
 );
-BP(e,
+PP(e,
 t,
 {
 intensity:.42,
 redGain:3}
 ),
-PP(e,
+kP(e,
 a,
 t,
 {
@@ -76182,7 +76183,7 @@ bright:.3}
 ),
 Rl(e,
 a);
-let s=J0(n-$0())-J0(n-$0()-WP);
+let s=J0(n-$0())-J0(n-$0()-VP);
 wr(e,
 1500,
 150,
@@ -76190,7 +76191,7 @@ wr(e,
 Tu.files[0]],
 ["code r",
 Math.max(0,
-RP(n,
+BP(n,
 t)-s).toFixed(2)]],
 {
 keyW:120}
@@ -76208,14 +76209,14 @@ id:"trace",
 at:c(e=>Ii(e).B(2),
 "at"),
 ownsLyrics:!0,
-draw:IP}
+draw:DP}
 ,
 {
 id:"traceMacro",
 at:c(e=>Ii(e).B(3),
 "at"),
 ownsLyrics:!0,
-draw:IP}
+draw:DP}
 ,
 {
 id:"assert",
@@ -76228,13 +76229,13 @@ n=e.t,
 i=Me.you,
 r=null;
 try{
-gP(i!=null,
+wP(i!=null,
 "you != null")}
 catch(m){
 r=m}
 ys();
 let o=rM(r),
-a=o.map(wP).find(m=>m?.file.endsWith("10_bridge.js")),
+a=o.map(AP).find(m=>m?.file.endsWith("10_bridge.js")),
 s=WQ(e,
 a),
 l=n-t.B(4),
@@ -76276,7 +76277,7 @@ d[1]+14],
 {
 dx:40,
 dy:120,
-color:Kt.red,
+color:Jt.red,
 draw:p}
 ),
 p>.6&&Ws(f,
@@ -76285,7 +76286,7 @@ d[0]+88,
 d[1]+134,
 {
 size:16,
-color:Kt.red,
+color:Jt.red,
 alpha:_(p,
 .6,
 1)}
@@ -76353,7 +76354,7 @@ maxBlur:12}
 Rl(e,
 a);
 let s=.8123,
-l=vP(s,
+l=gP(s,
 r.bits);
 fM(e.text.overlay,
 1280,
@@ -76416,7 +76417,7 @@ maxBlur:14}
 );
 let a=n-t.tBlow,
 s=Be(1234),
-l=c(p=>VP*p+vM*Math.max(0,
+l=c(p=>qP*p+vM*Math.max(0,
 p)**3,
 "ex");
 for(let p=0;
@@ -76431,9 +76432,9 @@ w*Math.sin(g)],
 A=a-s()*.4;
 if(A<=0||l(A)>12)continue;
 let y=v.map((x,
-M)=>K0[M]+x*d3*2**l(A)),
+M)=>K0[M]+x*p3*2**l(A)),
 b=v.map((x,
-M)=>K0[M]+x*d3*2**Math.max(0,
+M)=>K0[M]+x*p3*2**Math.max(0,
 l(A-1/30)));
 Me.lines.segment(b,
 y,
@@ -76455,7 +76456,7 @@ fM(u,
 d,
 {
 label:"x·2^".concat(Math.floor(h),
-" = ").concat(DP(d))}
+" = ").concat(zP(d))}
 ),
 wr(e,
 1280,
@@ -76463,7 +76464,7 @@ wr(e,
 [["FLT_MAX",
 "3.4028235e+38"],
 ["x − x",
-DP(f-f)]]),
+zP(f-f)]]),
 Vs(e,
 t),
 Qa(e,
@@ -76506,7 +76507,7 @@ m*Math.sin(p)],
 w=a()*.4;
 if(f%3===2||s-w<=0)continue;
 let v=g.map((y,
-b)=>K0[b]+y*d3*1.02),
+b)=>K0[b]+y*p3*1.02),
 A=g.map((y,
 b)=>K0[b]+y*40);
 Me.lines.segment(v,
@@ -76539,27 +76540,27 @@ Rl(e,
 o);
 let l=e.text.overlay,
 u=G([0,
-NP[1]+UP-.12,
+UP[1]+GP-.12,
 0],
 o)[1];
-Sn(l,
+Tn(l,
 [-40,
 u],
 [1960,
 u],
 "bbox.width = Infinity",
 {
-color:Kt.red,
+color:Jt.red,
 alpha:.85}
 );
 let h=G(K0,
 o);
-Tn(l,
+Cn(l,
 h[0],
 h[1],
 30,
 {
-color:Kt.red,
+color:Jt.red,
 ring:!0}
 ),
 Ws(l,
@@ -76568,11 +76569,11 @@ h[0]+330,
 h[1]-170,
 {
 size:16,
-color:Kt.red,
+color:Jt.red,
 alpha:.9}
 ),
 l.draw(f=>{
-f.strokeStyle=Kt.red,
+f.strokeStyle=Jt.red,
 f.globalAlpha*=.7,
 f.lineWidth=1.2,
 f.beginPath(),
@@ -76620,7 +76621,7 @@ n=e.t,
 i=n-t.B(10);
 pM(e),
 ys();
-let r=Op(zP(n,
+let r=Up(OP(n,
 t)),
 o=[r[0]*.55-.6,
 r[1]*.55-.1,
@@ -76634,7 +76635,7 @@ o,
 fov:38,
 roll:-.03}
 );
-p3(e,
+m3(e,
 a,
 t,
 {
@@ -76668,8 +76669,8 @@ n=e.t,
 i=n-t.B(11);
 pM(e),
 ys();
-let r=Op(Math.min(qs.tz,
-zP(n,
+let r=Up(Math.min(qs.tz,
+OP(n,
 t))),
 o=Me.cam.p(e,
 [r[0]+3.1-i*.6,
@@ -76681,7 +76682,7 @@ r[2]],
 {
 fov:38}
 );
-p3(e,
+m3(e,
 o,
 t,
 {
@@ -76723,7 +76724,7 @@ q(e))return YQ(e,
 t,
 n,
 i);
-let r=Op(qs.tz),
+let r=Up(qs.tz),
 o=(1-R.outCubic(_(i,
 .03,
 .2)))*.012*Math.sin(i*90),
@@ -76740,7 +76741,7 @@ roll:.014}
 ),
 s=Dt(e,
 l=>{
-p3(l,
+m3(l,
 a,
 t,
 {
@@ -76752,7 +76753,7 @@ l.draw(Me.scene,
 a)}
 );
 Qa(e),
-rn(e,
+on(e,
 s,
 "paper",
 {
@@ -76779,7 +76780,7 @@ n,
 size:176,
 rot:-.12}
 ),
-dn(e.text.overlay,
+pn(e.text.overlay,
 n,
 e.T,
 {
@@ -76873,7 +76874,7 @@ l,
 "0x7f3a".concat((7168+s*4096).toString(16),
 "  ").concat(a.label),
 {
-labelColor:s?Kt.red:Kt.pale}
+labelColor:s?Jt.red:Jt.pale}
 )}
 ),
 tM(e,
@@ -76924,7 +76925,7 @@ M,
 size:18,
 weight:x?600:500,
 align:"left",
-color:b.startsWith(" ")?"#d0685c":Kt.red,
+color:b.startsWith(" ")?"#d0685c":Jt.red,
 alpha:x?.95:.55+.3*u}
 )}
 o.draw(v=>{
@@ -76948,16 +76949,16 @@ v.fillRect(0,
 ),
 XQ(e.text.overlay,
 n,
-XP.map(()=>0),
+YP.map(()=>0),
 960,
 530,
 {
 size:92}
 );
 let d=Math.round(C(198400,
-YP,
+QP,
 R.inQuad(r))),
-p=d/OP,
+p=d/NP,
 m=p>1,
 g=e.text.overlay,
 w={
@@ -76975,13 +76976,13 @@ color:"#8a7a7e",
 alpha:.95}
 ),
 g.text("".concat(d.toLocaleString("en"),
-" / ").concat(OP.toLocaleString("en"),
+" / ").concat(NP.toLocaleString("en"),
 " tokens"),
 690,
 690,
 {
 ...w,
-color:m?Kt.red:Kt.pale,
+color:m?Jt.red:Jt.pale,
 alpha:.95}
 ),
 g.draw(v=>{
@@ -76992,7 +76993,7 @@ v.strokeRect(560.5,
 712.5,
 700,
 12),
-v.fillStyle=m?Kt.red:Kt.pale,
+v.fillStyle=m?Jt.red:Jt.pale,
 v.fillRect(562,
 714,
 Math.min(1,
@@ -77014,7 +77015,7 @@ glitch:.06+.14*r}
 }
 ]}
 );
-var zp={
+var Np={
 u0:88/512,
 u1:(88+7*10.2)/512,
 v:122/240}
@@ -77023,7 +77024,7 @@ function YQ(e,
 t,
 n,
 i){
-let r=Op(qs.tz),
+let r=Up(qs.tz),
 o=qs.size,
 a=o/Me.dlgAtlas.aspect,
 s=(t.B(14)-t.tIll-.08)/(qs.n-1),
@@ -77078,7 +77079,7 @@ tilt:.035*S}
 }
 ,
 "fx");
-p3(e,
+m3(e,
 d,
 t,
 {
@@ -77116,13 +77117,13 @@ w:T-M}
 }
 )();
 let m=Me.illBox,
-g=[r[0]+((zp.u0+zp.u1)/2-.5)*o,
-r[1]+(.5-zp.v)*a,
+g=[r[0]+((Np.u0+Np.u1)/2-.5)*o,
+r[1]+(.5-Np.v)*a,
 r[2]+.012],
 w=R.inOutCubic(_(i,
 .06,
 .62)),
-v=C((zp.u1-zp.u0)*o,
+v=C((Np.u1-Np.u0)*o,
 1.75,
 w)/m.w,
 A=[g[0]+w*.62,
@@ -77203,9 +77204,9 @@ NB:[5,
 14],
 lag:.18}
 ,
-QQ="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uClock, uG, uFog, uGain, uFar, uCorridor, uLag, uNear;\nuniform vec3 uColA, uColB, uHot;\nin vec2 vUv; out vec4 o;\nconst float C = 4.;\nconst vec3 NB = vec3(5., 3., 14.);\n".concat(Qv,
+QQ="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uClock, uG, uFog, uGain, uFar, uCorridor, uLag, uNear;\nuniform vec3 uColA, uColB, uHot;\nin vec2 vUv; out vec4 o;\nconst float C = 4.;\nconst vec3 NB = vec3(5., 3., 14.);\n".concat(Zv,
 "\nfloat sdBoxFrame(vec3 p, vec3 b, float e) {\n  p = abs(p) - b; vec3 q = abs(p + e) - e;\n  return min(min(length(max(vec3(p.x, q.y, q.z), 0.)) + min(max(p.x, max(q.y, q.z)), 0.),\n                 length(max(vec3(q.x, p.y, q.z), 0.)) + min(max(q.x, max(p.y, q.z)), 0.)),\n                 length(max(vec3(q.x, q.y, p.z), 0.)) + min(max(q.x, max(q.y, p.z)), 0.));\n}\nmat3 rotA(vec3 a, float t) {\n  float c = cos(t), s = sin(t), k = 1. - c;\n  return mat3(c + a.x * a.x * k, a.y * a.x * k + a.z * s, a.z * a.x * k - a.y * s,\n              a.x * a.y * k - a.z * s, c + a.y * a.y * k, a.z * a.y * k + a.x * s,\n              a.x * a.z * k + a.y * s, a.y * a.z * k - a.x * s, c + a.z * a.z * k);\n}\nfloat colStart(vec2 c) { return (NB.z - c.y) * uLag + abs(c.x) * uLag * .45 + hash33(vec3(c, 5.)).x * .55; }\n// true: distance to the nearest surface in this column; returns the safe step (never past the column boundary)\nfloat map(vec3 p, out float dTrue, out float g, out float heat) {\n  g = 0.; heat = 0.;\n  vec2 lim = (NB.xz + .5) * C;\n  vec2 ex = abs(p.xz) - lim;\n  float dOut = max(max(ex.x, ex.y), p.y - (NB.y + .5) * C);\n  if (dOut > .5) { dTrue = dOut; return dOut; }\n  vec2 cxz = clamp(floor(p.xz / C + .5), -NB.xz, NB.xz);\n  float age = uClock - colStart(cxz), a = max(age, 0.);\n  vec3 q = vec3(p.x - C * cxz.x, p.y + .5 * uG * a * a, p.z - C * cxz.y);\n  float cy = clamp(floor(q.y / C + .5), -NB.y, NB.y);\n  q.y -= C * cy;\n  vec3 id = vec3(cxz.x, cy, cxz.y);\n  vec4 cv = cell(id); float h = cv.x, s = h > .42 ? .55 + .5 * cv.y : .1;   // ≤ 1.05: a tumbling box stays in its cell\n  float d = 1e3;\n  if (!(uCorridor > .5 && cxz.x == 0. && cy == 0.)) {\n    vec3 ax = normalize(hash33(id) - .5 + 1e-3);\n    vec3 lq = a > 0. ? rotA(ax, a * (.5 + 1.3 * cv.w)) * q : q;\n    d = sdBoxFrame(lq, vec3(s), .014 + .012 * cv.z);\n  }\n  float bw = .02 * (1. - smoothstep(0., .3, age));                         // the corner beams snap as it breaks\n  if (bw > .001) d = min(d, length(abs(q.xy) - C * .5) - bw);\n  dTrue = d; g = h; heat = age > 0. ? exp(-age * 2.2) : 0.;\n  vec2 bnd = C * .5 - abs(p.xz - C * cxz);\n  return min(d, max(min(bnd.x, bnd.y), 0.) + .03);\n}\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz), ro = uCamPos;\n  float t = uNear; vec3 col = vec3(0.);\n  for (int i = 0; i < 96; i++) {\n    vec3 p = ro + rd * t; float dT, g, heat; float d = map(p, dT, g, heat);\n    vec3 c = (g > .93 ? uHot * 1.3 : mix(uColA, uColB, g)) + uHot * heat * 1.6;\n    float near = smoothstep(.8, 3.5, t), fog = exp(-t * uFog);\n    float dt = max(d * .8, .02), w = dt / (.8 * max(dT, .02));              // step-length weight (1 on a free step)\n    col += c * near * .0014 / (.004 + dT * dT * 30.) * fog * min(w, 1.);\n    if (dT < .002) { col += c * near * .55 * fog; break; }\n    t += dt;\n    if (t > uFar) break;\n  }\n  o = vec4(col * uGain, 1.);\n}");
-function QP(){
+function ZP(){
 let e=c(t=>({
 value:t}
 ),
@@ -77232,11 +77233,11 @@ uColB:e(new Ne(1,
 uHot:e(new Ne(1,
 .55,
 .42)),
-uCells:e(Yv())}
+uCells:e(Qv())}
 )}
-c(QP,
+c(ZP,
 "latticeMaterial");
-function ZP(e,
+function KP(e,
 t,
 n={
 }
@@ -77253,13 +77254,13 @@ i.uCorridor.value=n.corridor??1,
 i.uG.value=n.g??3.5,
 i.uNear.value=n.near??.05,
 e}
-c(ZP,
+c(KP,
 "setLattice");
 function ZQ(e,
 t,
 n,
 i=3.5){
-let r=(Lc.NB[2]-t)*Lc.lag+Math.abs(e)*Lc.lag*.45+MR(e,
+let r=(Lc.NB[2]-t)*Lc.lag+Math.abs(e)*Lc.lag*.45+xR(e,
 t,
 5)[0]*.55,
 o=n-r;
@@ -77270,7 +77271,7 @@ drop:o>0?.5*i*o*o:0}
 }
 c(ZQ,
 "columnState");
-function m3(e){
+function v3(e){
 let t=0;
 for(let n=-Lc.NB[0];
 n<=Lc.NB[0];
@@ -77280,15 +77281,15 @@ i++)ZQ(n,
 i,
 e).age>0&&t++;
 return t}
-c(m3,
+c(v3,
 "brokenColumns");
-var KP="\nuniform sampler2D tSrc; uniform vec2 uSize; uniform float uLo, uHi, uCover, uBandW, uSeed;\nfloat lumOf(vec3 c) { return dot(c, vec3(.2126, .7152, .0722)); }\nvec3 srcAt(ivec2 c) { return texture(tSrc, (vec2(c) + .5) / uSize).rgb; }\nbool masked(ivec2 c, vec3 s) {\n  float b = floor(float(c.x) / uBandW + hash11(floor(float(c.x) / (uBandW * 7.)) + uSeed) * 3.);\n  if (hash11(b * 1.71 + uSeed) >= uCover) return false;\n  float l = lumOf(s);\n  return l > uLo && l < uHi;\n}",
-KQ=KP+"\nout vec4 o;\nvoid main() {\n  ivec2 c = ivec2(gl_FragCoord.xy); vec3 s = srcAt(c);\n  bool m = masked(c, s), mp = c.y > 0 && masked(c - ivec2(0, 1), srcAt(c - ivec2(0, 1)));\n  o = vec4(s, (m && mp) ? 0. : 1.);\n}",
+var JP="\nuniform sampler2D tSrc; uniform vec2 uSize; uniform float uLo, uHi, uCover, uBandW, uSeed;\nfloat lumOf(vec3 c) { return dot(c, vec3(.2126, .7152, .0722)); }\nvec3 srcAt(ivec2 c) { return texture(tSrc, (vec2(c) + .5) / uSize).rgb; }\nbool masked(ivec2 c, vec3 s) {\n  float b = floor(float(c.x) / uBandW + hash11(floor(float(c.x) / (uBandW * 7.)) + uSeed) * 3.);\n  if (hash11(b * 1.71 + uSeed) >= uCover) return false;\n  float l = lumOf(s);\n  return l > uLo && l < uHi;\n}",
+KQ=JP+"\nout vec4 o;\nvoid main() {\n  ivec2 c = ivec2(gl_FragCoord.xy); vec3 s = srcAt(c);\n  bool m = masked(c, s), mp = c.y > 0 && masked(c - ivec2(0, 1), srcAt(c - ivec2(0, 1)));\n  o = vec4(s, (m && mp) ? 0. : 1.);\n}",
 JQ="\nuniform sampler2D tIn; uniform int uD; out vec4 o;\nvoid main() {\n  ivec2 c = ivec2(gl_FragCoord.xy); vec4 a = texelFetch(tIn, c, 0);\n  float s = a.w; if (c.y >= uD) s += texelFetch(tIn, c - ivec2(0, uD), 0).w;\n  o = vec4(a.rgb, s);\n}",
 $Q="\nuniform sampler2D tIn; uniform float uDir; out vec4 o;\nvoid main() {\n  vec4 a = texelFetch(tIn, ivec2(gl_FragCoord.xy), 0);\n  float l = dot(a.rgb, vec3(.2126, .7152, .0722)), f = clamp(l / (l + .3), 0., .998);\n  o = vec4(a.rgb, a.w + (uDir > 0. ? f : .998 - f));\n}",
 eZ="\nuniform sampler2D tIn; uniform int uJ, uK; out vec4 o;\nvoid main() {\n  ivec2 c = ivec2(gl_FragCoord.xy); int i = c.y, p = i ^ uJ;\n  vec4 a = texelFetch(tIn, c, 0), b = texelFetch(tIn, ivec2(c.x, p), 0);\n  bool up = (i & uK) == 0, low = (i & uJ) == 0;\n  bool swap = (low == up) ? (b.w < a.w) : (b.w > a.w);     // strict: equal keys keep their own value\n  o = swap ? b : a;\n}",
-tZ=KP+"\nuniform sampler2D tSorted; uniform vec2 uSortSize; uniform float uGain;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  ivec2 c = ivec2(min(vUv * uSortSize, uSortSize - 1.));\n  vec3 s = srcAt(c);\n  vec3 col = masked(c, s) ? texelFetch(tSorted, c, 0).rgb * uGain : texture(tSrc, vUv).rgb;\n  o = vec4(col, 1.);\n}",
-JP=class{
+tZ=JP+"\nuniform sampler2D tSorted; uniform vec2 uSortSize; uniform float uGain;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  ivec2 c = ivec2(min(vUv * uSortSize, uSortSize - 1.));\n  vec3 s = srcAt(c);\n  vec3 col = masked(c, s) ? texelFetch(tSorted, c, 0).rgb * uGain : texture(tSrc, vUv).rgb;\n  o = vec4(col, 1.);\n}",
+$P=class{
 static{
 c(this,
 "PixelSort")}
@@ -77459,7 +77460,7 @@ return[i,
 r]}
 c(nZ,
 "clip");
-function $P(e,
+function ek(e,
 {
 radials:t=13,
 rings:n=5,
@@ -77634,9 +77635,9 @@ segs:s,
 shards:p,
 maxD:Math.max(...s.map(m=>m.d1))}
 }
-c($P,
+c(ek,
 "crackPattern");
-function ek(e,
+function tk(e,
 t){
 let n=[];
 for(let[i,
@@ -77702,7 +77703,7 @@ c:e.map((a,
 s)=>a+i[s]*t)}
 );
 return n}
-c(ek,
+c(tk,
 "cubeFaces");
 var e1=c((e,
 t,
@@ -77712,9 +77713,9 @@ i=0)=>[0,
 2].map(r=>e.c[r]+e.u[r]*t+e.v[r]*n+e.n[r]*i),
 "onFace");
 var iZ="\nuniform sampler2D tSrc, tAtlas, tRamp; uniform vec2 uRes, uGrid; uniform float uCell, uRampN, uSource, uGain; uniform vec3 uTint;\nin vec2 vUv; out vec4 o;\nfloat lum(vec3 c) { return 1. - exp(-luma(c) * uGain); }\nvoid main() {\n  vec2 cellPx = vec2(uCell * .6, uCell), px = vUv * uRes, id = floor(px / cellPx), f = fract(px / cellPx);\n  vec2 c = (id + .5) * cellPx / uRes;\n  vec3 s = (texture(tSrc, c).rgb + texture(tSrc, c + vec2(.3, .3) * cellPx / uRes).rgb + texture(tSrc, c - vec2(.3, .3) * cellPx / uRes).rgb) / 3.;\n  float l = lum(s), k = floor(clamp(l, 0., .999) * uRampN);\n  if (k < .5) { o = vec4(0., 0., 0., 1.); return; }                       // the blank glyph: nothing to ink\n  float ch = texture(tRamp, vec2((k + .5) / uRampN, .5)).r;\n  vec2 cell = vec2(mod(ch, uGrid.x), floor(ch / uGrid.x));\n  // the em box inside the atlas cell, y mirrored (upright), kept off the cell's edge, at an explicit mip level\n  vec2 g = clamp(vec2(.5 + (f.x - .5) * .43, .54 - (f.y - .5) * .72), vec2(.06), vec2(.94));\n  float lod = log2(max(1., max(64. * .43 / cellPx.x, 64. * .72 / cellPx.y)));\n  float ink = textureLod(tAtlas, (cell + g) / uGrid, lod).r;\n  vec3 col = mix(uTint, normalize(s + 1e-4) * 1.7, uSource) * (.35 + 1.3 * l);\n  o = vec4(col * ink, 1.);\n}",
-v3=null;
+g3=null;
 function rZ(){
-if(v3)return v3;
+if(g3)return g3;
 let e=Eo(),
 t=[...Array(95).keys()].sort((o,
 a)=>e.coverage[o]-e.coverage[a]),
@@ -77733,11 +77734,11 @@ let r=c(o=>({
 value:o}
 ),
 "f");
-return v3=Lt(iZ,
+return g3=Lt(iZ,
 {
 tSrc:r(null),
 tAtlas:r(e.tex),
-tRamp:r(an(i,
+tRamp:r(sn(i,
 n.length,
 1)),
 uRes:r(new he),
@@ -77751,10 +77752,10 @@ uTint:r(new B(.42,
 .92,
 1))}
 ),
-v3}
+g3}
 c(rZ,
 "material");
-function tk(e,
+function nk(e,
 t,
 n={
 }
@@ -77776,18 +77777,18 @@ Object.assign(e.post,
 bloom:.6,
 threshold:1.1}
 )}
-c(tk,
+c(nk,
 "asciiView");
-var rk="crash",
+var ok="crash",
 xM=[0,
 1.25,
 0],
 oZ=.72,
-ok=[0,
+ak=[0,
 1.6,
 0],
 _M=1.6,
-y3=ek(ok,
+b3=tk(ak,
 _M),
 yM=[[.38,
 .52],
@@ -77869,7 +77870,7 @@ end:e.section("chant").start}
 }
 c(Di,
 "keys");
-var w3=c((e,
+var A3=c((e,
 t)=>e-t.tC0,
 "clock");
 function lZ(e,
@@ -77884,8 +77885,8 @@ n[i][0],
 return n.at(-1)[0]}
 c(lZ,
 "breakTime");
-var A3=c((e,
-t)=>b_(e,
+var y3=c((e,
+t)=>M_(e,
 t.front.map(([n,
 i])=>[n,
 i]),
@@ -77907,12 +77908,12 @@ l(o+2),
 a)*.75+.15*s.maxD*R.outExpo(X((t-i)/.2))}
 c(SM,
 "faceR");
-function ak(e,
+function sk(e,
 t,
 n,
 i){
 return n-(i.B(16)+(1-e.j/5)*6*i.beat+e.seed*7*i.beat+t*.13)}
-c(ak,
+c(sk,
 "shardFall");
 function uZ(e,
 t){
@@ -77976,14 +77977,14 @@ t,
 n){
 let i=e.text.overlay,
 r=e.t;
-dn(i,
+pn(i,
 r,
 e.T,
 {
-label:rk,
+label:ok,
 bottomRight:n}
 ),
-dP(i,
+pP(i,
 r,
 lt.log,
 {
@@ -78010,7 +78011,7 @@ alpha:o?.9:.5}
 )}
 c(Ms,
 "hudFrame");
-function Np(e,
+function Gp(e,
 t,
 n={
 }
@@ -78040,7 +78041,7 @@ codeR:-1,
 codeCol:t1(Yn.red,
 n.code??1.1)}
 )}
-c(Np,
+c(Gp,
 "floor");
 function Fc(e,
 t,
@@ -78129,7 +78130,7 @@ h<8;
 h++)u.push([h&1?1:-1,
 h&2?1:-1,
 h&4?1:-1].map((f,
-d)=>ok[d]+f*_M+(_t(h*7.1+d*1.3+l*.37)-.5)*2*a+(d===1?s:0)));
+d)=>ak[d]+f*_M+(_t(h*7.1+d*1.3+l*.37)-.5)*2*a+(d===1?s:0)));
 for(let[h,
 f]of[[0,
 1],
@@ -78161,7 +78162,7 @@ color:t1(Yn.white,
 .6*o),
 width:n.edge??2.2}
 );
-y3.forEach((h,
+b3.forEach((h,
 f)=>{
 let d=SM(f,
 i,
@@ -78195,7 +78196,7 @@ color:w,
 width:p.ring?2:2.3}
 )}
 for(let p of lt.cracks[f].shards){
-let m=ak(p,
+let m=sk(p,
 f,
 i,
 t);
@@ -78239,10 +78240,10 @@ i={
 }
 ){
 t.updateMatrixWorld(),
-ZP(lt.lat,
+KP(lt.lat,
 t,
 {
-clock:w3(e.t,
+clock:A3(e.t,
 n),
 ...i}
 ),
@@ -78299,7 +78300,7 @@ t,
 r)}
 c(cZ,
 "drawPage");
-var nk=["cube",
+var ik=["cube",
 "me",
 "loss",
 "floor",
@@ -78324,13 +78325,13 @@ let t=Di(e.T),
 n=e.t,
 i=Math.round((e.shot.start-t.B(24))*2/t.beat),
 r=n-e.shot.start,
-o=nk[i],
+o=ik[i],
 a=hZ(n,
 t),
 s=[0,
 1.3+a,
 0],
-l=nk.slice(0,
+l=ik.slice(0,
 i).filter(h=>h===o).length;
 js();
 let u=null;
@@ -78416,7 +78417,7 @@ else l===1?(h=lt.cam.o([0,
 0,
 0],
 "top",
-7+1.6*Math.max(A3(n,
+7+1.6*Math.max(y3(n,
 t),
 1.5)-r*1.2,
 e.aspect),
@@ -78430,7 +78431,7 @@ u="view  top · orthographic"):h=Za(e,
 {
 fov:46}
 );
-Np(e,
+Gp(e,
 t,
 l===1?{
 fade:0,
@@ -78504,11 +78505,11 @@ h,
 {
 size:32,
 weight:700,
-color:Kt.white,
+color:Jt.white,
 alpha:.95*l,
 align:"center",
 glow:10,
-glowColor:Kt.red}
+glowColor:Jt.red}
 )}
 else Ws(n,
 o,
@@ -78517,7 +78518,7 @@ u,
 {
 size:21,
 weight:700,
-color:Kt.red,
+color:Jt.red,
 alpha:.95}
 ),
 Ws(n,
@@ -78541,10 +78542,10 @@ k:42,
 lo:1,
 hi:1e4}
 ;
-function g3(e,
+function w3(e,
 t=!0){
 return(1.55+9.3*(1+e/180)**-.9)*(1+(t?(_t(Math.floor(e)*.713)-.5)*.16+(_t(Math.floor(e/37)*1.31)-.5)*.06:0))*(e>bo.sD?Math.exp((e-bo.sD)/bo.k):1)}
-c(g3,
+c(w3,
 "lossAt");
 var pZ=c((e,
 t)=>Math.round(C(17960,
@@ -78628,7 +78629,7 @@ for(let N=E;
 N<=L;
 N+=Math.max(1,
 Math.floor((L-E)/6))){
-let O=g3(N);
+let O=w3(N);
 F=Math.min(F,
 O),
 D=Math.max(D,
@@ -78661,13 +78662,13 @@ for(let N=S;
 N<=E;
 N+=D){
 let O=g(N),
-U=w(g3(N,
+U=w(w3(N,
 !1));
 N===S?x.moveTo(O,
 U):x.lineTo(O,
 U)}
 x.lineTo(g(E),
-w(g3(E,
+w(w3(E,
 !1))),
 x.stroke()}
 if(s){
@@ -78737,7 +78738,7 @@ f,
 ...v,
 align:"right"}
 );
-let A=g3(a),
+let A=w3(a),
 y=1.9*(a>bo.sD?Math.exp((a-bo.sD)/30):1),
 b=3e-4*(.1+.45*(1+Math.cos(Math.PI*a/4e4)));
 wr(e,
@@ -78759,7 +78760,7 @@ g(bo.sN)-30,
 {
 size:26,
 weight:700,
-color:Kt.red,
+color:Jt.red,
 align:"right",
 glow:8}
 )}
@@ -78772,9 +78773,9 @@ cols:8,
 hit:[9,
 5]}
 ,
-sk=new Float32Array(1),
-vZ=new Uint32Array(sk.buffer),
-gZ=c(e=>(sk[0]=e,
+lk=new Float32Array(1),
+vZ=new Uint32Array(lk.buffer),
+gZ=c(e=>(lk[0]=e,
 vZ[0].toString(16).padStart(8,
 "0")),
 "f32hex");
@@ -78840,7 +78841,7 @@ v,
 {
 size:23,
 weight:M||T?700:500,
-color:M||T?Kt.red:Kt.white,
+color:M||T?Jt.red:Jt.white,
 alpha:M?.95:.62}
 )}
 }
@@ -78848,7 +78849,7 @@ if(p){
 let g=l+f*u,
 w=500+d*h;
 i.draw(v=>{
-v.strokeStyle=Kt.red,
+v.strokeStyle=Jt.red,
 v.lineWidth=2,
 v.globalAlpha*=.9,
 v.strokeRect(w-9,
@@ -78863,7 +78864,7 @@ g,
 {
 size:21,
 weight:600,
-color:Kt.red,
+color:Jt.red,
 alpha:.95}
 )}
 wr(e,
@@ -78889,24 +78890,24 @@ init(e){
 let t=e.T,
 n=Di(t);
 lt={
-scene:new fn,
-cam:r3()}
+scene:new dn,
+cam:o3()}
 ,
-lt.me=new Ip({
+lt.me=new zp({
 count:4096}
 ).text("inst2/me",
-tn("main.js")),
-lt.page=new Ip({
+nn("main.js")),
+lt.page=new zp({
 count:16384}
 ).text("inst2/lattice",
-tn("ch/inst2/lattice.js")),
-lt.frags=new Fp({
-count:h3}
+nn("ch/inst2/lattice.js")),
+lt.frags=new Dp({
+count:f3}
 ),
 lt.lines=new Xn(16e3),
-lt.floor=new a3({
+lt.floor=new s3({
 extent:44}
-).setCode(s3(Tu.files),
+).setCode(l3(Tu.files),
 {
 cell:Tu.cell,
 off:Tu.off}
@@ -78916,10 +78917,10 @@ r,
 o)=>lZ(Math.hypot(i,
 r),
 n)+(o-.5)*.3),
-lt.lat=QP(),
-lt.sort=new JP,
-lt.cracks=y3.map((i,
-r)=>$P(301+r*17,
+lt.lat=ZP(),
+lt.sort=new $P,
+lt.cracks=b3.map((i,
+r)=>ek(301+r*17,
 {
 impact:yM[r],
 h:_M}
@@ -78927,7 +78928,7 @@ h:_M}
 lt.tex={
 me:lt.me.layout("inst2/me-sphere",
 al(lt.me,
-i=>Dn.sphere(i,
+i=>zn.sphere(i,
 {
 r:1}
 ))),
@@ -78942,7 +78943,7 @@ cols:ma.cols,
 rows:ma.rows}
 )),
 frags:lt.frags.shape("bridge/landed-heart",
-()=>f3(t,
+()=>d3(t,
 t.section("bridge").start,
 q(e)).data)}
 ,
@@ -79018,7 +79019,7 @@ wr(e,
 1500,
 150,
 [["columns",
-"".concat(m3(w3(n,
+"".concat(v3(A3(n,
 t)),
 " / 319 down")],
 ["g",
@@ -79065,7 +79066,7 @@ wr(e,
 1500,
 150,
 [["columns",
-"".concat(m3(w3(n,
+"".concat(v3(A3(n,
 t)),
 " / 319 down")]]),
 Ms(e,
@@ -79109,7 +79110,7 @@ bs(e,
 {
 vignette:.45}
 ),
-tk(e,
+nk(e,
 o,
 {
 cell:20,
@@ -79120,7 +79121,7 @@ wr(e,
 1500,
 150,
 [["columns",
-"".concat(m3(w3(n,
+"".concat(v3(A3(n,
 t)),
 " / 319 down")],
 ["view",
@@ -79215,7 +79216,7 @@ let t=Di(e.T),
 n=e.t,
 i=n-t.B(12);
 js();
-let r=e1(y3[0],
+let r=e1(b3[0],
 ...yM[0]),
 o=Za(e,
 [r[0]+.55-i*.15,
@@ -79305,7 +79306,7 @@ at:c(e=>Di(e).B(16),
 "at"),
 ownsLyrics:!0,
 draw(e){
-ik(e)}
+rk(e)}
 }
 ,
 {
@@ -79316,12 +79317,12 @@ ownsLyrics:!0,
 draw(e){
 let t=Di(e.T),
 n=Dt(e,
-i=>ik(i,
+i=>rk(i,
 {
 hud:!1}
 ));
 bs(e),
-rn(e,
+on(e,
 n,
 "dither",
 {
@@ -79363,7 +79364,7 @@ let r=Za(e,
 {
 fov:44}
 );
-Np(e,
+Gp(e,
 t,
 {
 ageFade:1.1}
@@ -79389,7 +79390,7 @@ wr(e,
 1500,
 150,
 [["front r",
-A3(n,
+y3(n,
 t).toFixed(2)],
 ["pieces",
 "".concat(lt.floor.broken(n),
@@ -79410,7 +79411,7 @@ let t=Di(e.T),
 n=e.t,
 i=n-t.B(22);
 js();
-let r=A3(n,
+let r=y3(n,
 t),
 o=Za(e,
 [r*.55+1.5-i,
@@ -79422,7 +79423,7 @@ r*.55],
 {
 fov:50}
 );
-Np(e,
+Gp(e,
 t,
 {
 intensity:1.1,
@@ -79464,7 +79465,7 @@ let r=lt.cam.o([0,
 e.aspect),
 o=Dt(e,
 u=>{
-Np(u,
+Gp(u,
 t,
 {
 fade:0,
@@ -79480,7 +79481,7 @@ Bl(u,
 r)}
 );
 bs(e),
-rn(e,
+on(e,
 o,
 "halftone",
 {
@@ -79494,7 +79495,7 @@ paper:[0,
 0,
 0]}
 );
-let a=A3(n,
+let a=y3(n,
 t),
 s=G([0,
 0,
@@ -79504,13 +79505,13 @@ l=G([a,
 0,
 0],
 r);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 s,
 l,
 "r = ".concat(a.toFixed(2)),
 {
 offset:-40,
-color:Kt.red}
+color:Jt.red}
 ),
 wr(e,
 1500,
@@ -79551,11 +79552,11 @@ t.fillRect(940,
 40,
 6)}
 ),
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
-label:rk}
+label:ok}
 ),
 Object.assign(e.post,
 {
@@ -79580,7 +79581,7 @@ blending:1}
 )}
 c(AZ,
 "shadeMaterial");
-function ik(e,
+function rk(e,
 t={
 }
 ){
@@ -79598,7 +79599,7 @@ Math.cos(r)*7.2],
 {
 fov:38}
 );
-if(Np(e,
+if(Gp(e,
 n),
 Ru(e,
 n),
@@ -79616,7 +79617,7 @@ o),
 t.hud===!1)return;
 let a=lt.cracks.reduce((s,
 l,
-u)=>s+l.shards.filter(h=>ak(h,
+u)=>s+l.shards.filter(h=>sk(h,
 u,
 i,
 n)>0).length,
@@ -79625,7 +79626,7 @@ wr(e,
 1500,
 150,
 [["faces",
-"".concat(y3.filter((s,
+"".concat(b3.filter((s,
 l)=>SM(l,
 i,
 n)>=0).length,
@@ -79636,7 +79637,7 @@ n)>=0).length,
 Ms(e,
 n),
 bs(e)}
-c(ik,
+c(rk,
 "crackWideDraw");
 var jh=c(e=>(e-1)%3,
 "axisOf"),
@@ -79646,10 +79647,10 @@ Ka=[0];
 for(let e=1;
 e<=12;
 e++)Ka.push(Ka[e-1]+Ic(e));
-var lk=c(e=>31-Math.clz32(e),
+var uk=c(e=>31-Math.clz32(e),
 "depthOf");
-function b3(e){
-let t=lk(e),
+function M3(e){
+let t=uk(e),
 n=[0,
 0,
 0];
@@ -79657,7 +79658,7 @@ for(let i=1;
 i<=t;
 i++)n[jh(i)]+=(e>>t-i&1?1:-1)*Ic(i);
 return n}
-c(b3,
+c(M3,
 "nodePos");
 function oa(e,
 t){
@@ -79689,14 +79690,14 @@ var CM="\nvec3 axisVec(int j) { int a = (j - 1) % 3; return a == 0 ? vec3(1., 0.
 yZ="\n".concat(CM,
 "\nin vec3 aA, aB; in vec4 aI;                 // parent, child, (level j, child node id, random, path length at parent)\nuniform vec2 uRes;\nuniform float uG, uGrowK, uW0, uW1, uWS, uBoom, uLevelMax, uBright, uHiNode, uHiGain, uLoGain, uHiPath, uFade, uLvlDim;\nuniform float uFocus, uAperture, uFocalPx, uMaxBlur, uOrtho;\nuniform vec2 uNear, uFog;                   // fade near the lens (start, end); depth fog (start, rate)\nuniform float uGain[12], uHeat[12];\nuniform vec3 uCol, uColHot;\nout vec3 vCol; out vec2 vQ; out float vW, vS, vBlur, vLen, vPk, vAlong;\nvoid main() {\n  int j = int(aI.x + .5);\n  float g = uG - float(j - 1), f = clamp(g / uGrowK, 0., 1.);\n  vS = aI.w; vCol = vec3(0.); vQ = vec2(0.); vW = 0.; vBlur = 0.; vLen = 1.; vPk = 0.; vAlong = 0.;\n  if (g <= 0. || float(j) > uLevelMax + .5) { gl_Position = vec4(0., 0., 2., 1.); return; }\n  vec3 pa = aA, pb = mix(aA, aB, f);\n  float segLen = length(aB - aA) * f;\n  float boomK = 1.;\n  if (uBoom > 0.) {\n    // detonation: every branch turns into a radial ray (a streak between where it was a moment ago and where it is),\n    // flying out from the centre and decelerating; thin rays with dark gaps, not a fill\n    vec3 mid = (pa + pb) * .5, h = hash31(aI.y * 1.37 + 2.1);\n    vec3 dir = normalize(mid + (h - .5) * .3 + vec3(1e-3, 2e-3, 3e-3));\n    float speed = 7. * (.5 + .9 * h.x), K = 2.4, lag = .05 + .09 * h.y; // radius-independent: the cube becomes a sphere\n    float d1 = speed * (1. - exp(-uBoom * K)) / K, d0 = speed * (1. - exp(-max(uBoom - lag, 0.) * K)) / K;\n    float k = smoothstep(0., .07, uBoom), r0 = length(mid) * .3;\n    pa = mix(pa, dir * (r0 + d0), k); pb = mix(pb, dir * (r0 + d1), k);\n    boomK = mix(1., .22 + .78 * step(.75, h.z), k); // one ray in four stays bright\n  }\n  vec4 va = modelViewMatrix * vec4(pa, 1.), vb = modelViewMatrix * vec4(pb, 1.);\n  const float NZ = -.02; // clip against a near plane so fly-through shots never flip a segment\n  if (va.z > NZ && vb.z > NZ) { gl_Position = vec4(0., 0., 2., 1.); return; }\n  float sa = aI.w, sb = aI.w + segLen;\n  if (va.z > NZ) { float k = (va.z - NZ) / (va.z - vb.z); va = mix(va, vb, k); sa = mix(sa, sb, k); }\n  if (vb.z > NZ) { float k = (vb.z - NZ) / (vb.z - va.z); vb = mix(vb, va, k); sb = mix(sb, sa, k); }\n  vec4 ca = projectionMatrix * va, cb = projectionMatrix * vb;\n  vec2 s0 = ca.xy / ca.w * uRes * .5, s1 = cb.xy / cb.w * uRes * .5;\n  vec2 dir = s1 - s0; float len = length(dir); dir = len > 1e-4 ? dir / len : vec2(1., 0.);\n  vec2 nrm = vec2(-dir.y, dir.x);\n  // depth of field for lines: each end widens by its circle of confusion; the light spreads (energy is conserved)\n  float lv = float(j - 1) / 11., wb = mix(uW0, uW1, lv) * uWS * uRes.y / 1080., ba = 0., bb = 0.;\n  if (uAperture > 0.) {\n    float da = max(-va.z, 1e-3), db = max(-vb.z, 1e-3);\n    ba = min(uAperture * abs(da - uFocus) * (uOrtho > .5 ? 1. : 1. / da) * uFocalPx, uMaxBlur);\n    bb = min(uAperture * abs(db - uFocus) * (uOrtho > .5 ? 1. : 1. / db) * uFocalPx, uMaxBlur);\n  }\n  float along = position.x, blur = mix(ba, bb, along), w = wb + blur;\n  vBlur = blur / w;\n  float dv = max(-mix(va.z, vb.z, along), 1e-3);\n  float depthK = (uNear.y > uNear.x ? smoothstep(uNear.x, uNear.y, dv) : 1.) * exp(-max(dv - uFog.x, 0.) * uFog.y);\n  vLen = lenL(j); vPk = exp2(-float(j) * .3); vAlong = along;\n  vec2 sp = mix(s0, s1, along) + dir * (along * 2. - 1.) * w + nrm * position.y * w;\n  vec4 c = mix(ca, cb, along);\n  gl_Position = vec4(sp / (uRes * .5) * c.w, c.z, c.w);\n  vQ = vec2((along * 2. - 1.) * (len * .5 + w) / max(w, 1e-3), position.y); vW = len * .5 / max(w, 1e-3);\n  vS = mix(sa, sb, along);\n  float heat = uHeat[j - 1];\n  vec3 col = mix(uCol, uColHot, heat) * (1. + .35 * heat); // newborn branches are white-hot, then cool\n  float hi = 1.;\n  if (uHiNode > .5) { // a subtree (and the path from the root to it)\n    float dH = floor(log2(uHiNode) + 1e-4), dm = float(j);\n    bool below = dm >= dH && floor(aI.y / exp2(dm - dH) + 1e-4) == uHiNode;\n    bool above = uHiPath > .5 && dm < dH && floor(uHiNode / exp2(dH - dm) + 1e-4) == aI.y;\n    hi = below || above ? uHiGain : uLoGain;\n  }\n  float e = wb / w;\n  vCol = col * uBright * uGain[j - 1] * hi * uFade * mix(1., uLvlDim, lv) * e * e * boomK * depthK; // defocus fades a line\n}"),
 bZ="\nuniform float uCore, uPulse, uPulseW, uCharge, uChargeW, uBoomOn;\nuniform vec3 uPulseCol, uChargeCol;\nin vec3 vCol; in vec2 vQ; in float vW, vS, vBlur, vLen, vPk, vAlong; out vec4 o;\nvoid main() {\n  float dx = max(abs(vQ.x) - vW, 0.), d = length(vec2(dx, vQ.y));\n  float cw = mix(uCore, .92, smoothstep(0., .7, vBlur)); // a defocused line is a soft flat band\n  float core = 1. - smoothstep(cw * .6, cw, d), halo = exp(-d * d * 5.) * .35 * (1. - vBlur);\n  float edge = 1. - smoothstep(.85, 1., d);\n  vec3 col = vCol;\n  if (uPulseW > 0.) col += uPulseCol * vPk * exp(-pow((vS - uPulse) / (uPulseW * vLen), 2.)); // the clock edge (finer, dimmer deeper down)\n  if (uChargeW > 0.) { // armed part of the tree: recoloured white at (about) the same luminance, so arming never flashes\n    float ch = 1. - smoothstep(uCharge - uChargeW, uCharge, vS), Y = dot(col, vec3(.2126, .7152, .0722));\n    col = mix(col, uChargeCol * Y, ch);\n  }\n  if (uBoomOn > .5) col *= mix(vec3(1., .16, .1), vec3(1.1), vAlong * vAlong); // rays: white head, red tail\n  o = vec4(col * (core * 1.6 + halo) * edge, 1.);\n}",
-uk=class{
+ck=class{
 static{
 c(this,
 "ForkLines")}
 constructor(){
 let t=new Nr;
 t.setAttribute("position",
-new Ln([0,
+new Fn([0,
 -1,
 0,
 1,
@@ -79722,10 +79723,10 @@ for(let a=0;
 a<8190;
 a++){
 let s=a+2,
-l=lk(s);
-n.set(b3(s>>1),
+l=uk(s);
+n.set(M3(s>>1),
 a*3),
-i.set(b3(s),
+i.set(M3(s),
 a*3),
 r.set([l,
 s,
@@ -79912,11 +79913,11 @@ t),
 this}
 }
 ,
-ck="\n".concat(CM,
+hk="\n".concat(CM,
 "\nuniform float uG, uRho, uStagger, uArc, uCursor, uCursorW, uBoom, uT, uWobble;\nuniform float uSize, uFocal, uMinPx, uOrtho, uFocus, uAperture, uMaxBlur, uBright, uSparkle, uGain, uFlash, uLit, uFade, uNuc;\nuniform float uHiNode, uHiGain, uLoGain;\nuniform vec2 uNear, uFog;\nuniform vec3 uMemb, uNucl, uColHot;\nuniform int uPre, uPreLen; // level of detail: a swarm pinned to one path prefix (a single process in close-up)\nout vec3 vCol; out float vBlur;\nint bitL(int id, int j) { return j <= uPreLen ? (uPre >> (j - 1)) & 1 : (id >> (j - 1 - uPreLen)) & 1; }\nfloat sgnL(int id, int j) { return float(bitL(id, j) * 2 - 1); }\nvec3 fold(vec3 q, int id, int j) { if (j > 12) return q; vec3 e = axisVec(j); float c = dot(q, e); return q + e * (sgnL(id, j) * abs(c) - c); }\nvec3 cell(float fi) { // one process: a membrane shell around a denser nucleus\n  vec3 h = hash31(fi * 1.618 + .5); float h2 = hash11(fi * .731 + 1.7);\n  float u = h.x * 2. - 1., a = h.y * TAU, q = sqrt(max(0., 1. - u * u));\n  float r = h2 < .62 ? mix(.86, 1., h.z) : pow(h.z, .7) * .5;\n  return vec3(q * cos(a), u, q * sin(a)) * r;\n}\nbool nucleus(float fi) { return hash11(fi * .731 + 1.7) >= .62; }\nvoid main() {\n  int id = gl_VertexID; float fi = float(id);\n  float G = clamp(uG, 0., 12.);\n  int kf = min(int(floor(G)), 12); float s = G - float(kf);\n  float dly = hash11(fi * .37 + 5.1) * uStagger;\n  float si = clamp((s - dly) / max(1. - uStagger, 1e-3), 0., 1.); // this particle's own progress through the split\n  vec3 c = vec3(0.);\n  for (int j = 1; j <= 12; j++) {\n    float w = j <= kf ? 1. : (j == kf + 1 ? si : 0.);\n    c += axisVec(j) * sgnL(id, j) * lenL(j) * w;\n  }\n  // local shape: the parent cell's half that belongs to each child (folded by the next bit) flows into the child cell\n  vec3 q = cell(fi);\n  q += sin(uT * (1.1 + 1.7 * hash31(fi * .19)) + hash31(fi * .77) * TAU) * uWobble;\n  float r0 = uRho * exp2(-float(kf) / 3.), r1 = uRho * exp2(-float(kf + 1) / 3.);\n  vec3 la = fold(q, id, kf + 1) * r0;\n  if (kf == 0) { // generation 0 is the terminal cursor: a thin bar\n    vec3 h = hash31(fi * 2.17 + 3.3) * 2. - 1.;\n    la = mix(la, fold(vec3(h.x * uCursorW, h.y * uCursorW * .1, h.z * uCursorW * .1), id, 1), uCursor);\n  }\n  vec3 lb = fold(q, id, kf + 2) * r1;\n  vec3 p = c + (kf < 12 ? mix(la, lb, si) : q * r0);\n  if (kf < 12) p += normalize(hash31(fi * 5.3 + 1.1) - .5 + 1e-4) * sin(PI * si) * uArc * lenL(kf + 1);\n  float boomK = 1.;\n  if (uBoom > 0.) {\n    // sparks: every process bursts radially; one particle in eight stays bright, the rest fade fast\n    vec3 hb = hash31(fi * 4.7 + .3);\n    vec3 dir = normalize(normalize(p + 1e-4) + (hb - .5) * .5);\n    float speed = 6.5 * (.4 + 1.2 * hb.y);\n    p = mix(p, dir * length(p) * .3, smoothstep(0., .08, uBoom)) + dir * speed * (1. - exp(-uBoom * 2.2)) / 2.2;\n    boomK = hb.z > .9 ? 1.6 : exp(-uBoom * 9.); // one particle in ten survives as a spark\n  }\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3);\n  float persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp;\n  float core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  float energy = min(1., (px * px) / (uMinPx * uMinPx)) * (core * core) / (sz * sz);\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float hh = hash11(fi * 1.31);\n  // membrane: me's cyan turning red; nucleus: pale cyan turning white-hot\n  bool nuc = nucleus(fi);\n  vec3 col = mix(nuc ? uNucl : uMemb, uColHot, clamp(uFlash, 0., 1.));\n  // armed (lit): recoloured white at the same luminance, so arming never brightens the frame\n  vec3 lw = vec3(.2126, .7152, .0722);\n  col = mix(col, uColHot * dot(col, lw) / dot(uColHot, lw) * 1.15, clamp(uLit, 0., 1.));\n  float hi = 1.;\n  if (uHiNode > .5) { // highlight one subtree (by the PID prefix of this particle's path)\n    float dH = floor(log2(uHiNode) + 1e-4), n = 1.;\n    for (int j = 1; j <= 12; j++) if (float(j) <= dH) n = n * 2. + float(bitL(id, j));\n    hi = n == uHiNode ? uHiGain : uLoGain;\n  }\n  float tw = 1. + uSparkle * (hash11(fi + floor(uT * 12.) * 7.13) - .5) * 2.;\n  float depthK = (uNear.y > uNear.x ? smoothstep(uNear.x, uNear.y, dist) : 1.) * exp(-max(dist - uFog.x, 0.) * uFog.y);\n  vCol = col * uBright * uGain * energy * (.55 + .9 * hh) * max(tw, 0.) * hi * uFade * boomK * (nuc ? uNuc : 1.) * depthK;\n}"),
 MZ="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}";
 (()=>{
-let e=(CM+ck).split("\n"),
+let e=(CM+hk).split("\n"),
 t=c(i=>e.find(r=>i.test(r))?.trim(),
 "pick"),
 n=e.findIndex(i=>(new RegExp("for \\(int j = 1; j <= 12; j\\+\\+\\) \\{","")).test(i));
@@ -79941,7 +79942,7 @@ value:i}
 ),
 "f");
 this.material=qe({
-vertex:ck,
+vertex:hk,
 fragment:MZ,
 transparent:!0,
 depthWrite:!1,
@@ -80032,7 +80033,7 @@ this}
 ,
 xZ="\nout vec3 vW;\nvoid main() { vec4 w = modelMatrix * vec4(position, 1.); vW = w.xyz; gl_Position = projectionMatrix * viewMatrix * w; }",
 _Z="\nuniform vec3 uCol, uAxisCol; uniform vec2 uOffset; uniform float uMinor, uMajor, uFade, uIntensity, uPlane, uReveal, uRevealR;\nin vec3 vW; out vec4 o;\nfloat lines(vec2 p) { vec2 g = abs(fract(p - .5) - .5) / max(fwidth(p), 1e-5); return 1. - min(min(g.x, g.y), 1.); }\nvoid main() {\n  vec2 p = (uPlane < .5 ? vW.xz : (uPlane < 1.5 ? vW.xy : vW.zy)) - uOffset;\n  float minor = lines(p / uMinor), major = lines(p / uMajor);\n  vec2 ax = abs(p) / max(fwidth(p), 1e-5); float axis = 1. - min(min(ax.x, ax.y), 1.);\n  float f = exp(-length(vW - cameraPosition) * uFade);\n  float rev = 1. - smoothstep(uRevealR * uReveal - .5, uRevealR * uReveal, length(p));\n  o = vec4((uCol * (minor * .22 + major * .6) + uAxisCol * axis * 1.2) * f * uIntensity * rev, 1.);\n}";
-function M3({
+function x3({
 plane:e="xz",
 size:t=400,
 color:n=[.42,
@@ -80049,7 +80050,7 @@ offset:s=[0,
 ={
 }
 ){
-let l=new _n(t,
+let l=new Sn(t,
 t);
 e==="xz"?l.rotateX(-Math.PI/2):e==="yz"&&l.rotateY(Math.PI/2);
 let u=new tt(l,
@@ -80113,19 +80114,19 @@ d!=null&&(m.uRevealR.value=d),
 p!=null&&(m.uFade.value=p)}
 ,
 u}
-c(M3,
+c(x3,
 "grid");
-var hk=":(){ :|:& };:",
+var fk=":(){ :|:& };:",
 Dc=4096,
-fk=(()=>{
-let e=Math.ceil(Dc/hk.replace((new RegExp(" ","g")),
+dk=(()=>{
+let e=Math.ceil(Dc/fk.replace((new RegExp(" ","g")),
 "").length)+1;
 return Array.from({
 length:e}
 ,
-()=>hk).join("\n")}
+()=>fk).join("\n")}
 )();
-function x3(e){
+function _3(e){
 let t=(1<<e)-1;
 return n=>{
 let i=new Float32Array(n*4);
@@ -80148,9 +80149,9 @@ r/Dc],
 r*4)}
 return i}
 }
-c(x3,
+c(_3,
 "nodeLayout");
-function dk(){
+function pk(){
 return e=>{
 let t=new Float32Array(e*4);
 for(let n=0;
@@ -80180,9 +80181,9 @@ n/Dc],
 n*4)}
 return t}
 }
-c(dk,
+c(pk,
 "debrisLayout");
-function pk(e){
+function mk(e){
 let t=["  PID  PPID STAT COMMAND"];
 for(let n=1<<e;
 n<2<<e;
@@ -80190,9 +80191,9 @@ n++)t.push("".concat(String(n).padStart(5),
 " ").concat(String(n>>1).padStart(5),
 " R+   bash"));
 return t.join("\n")}
-c(pk,
+c(mk,
 "psText");
-var mk=(()=>{
+var vk=(()=>{
 let e=["# torch.distributed  world_size = 4096   rank → pid"];
 for(let t=0;
 t<Dc;
@@ -80207,7 +80208,7 @@ e.push("".concat(t.toString(16).padStart(3,
 ": ").concat(n.join(" ")))}
 return e.join("\n")}
 )(),
-vk=[[["E",
+gk=[[["E",
 36],
 ["in",
 259]],
@@ -80231,8 +80232,8 @@ vk=[[["E",
 443]],
 [["六",
 30566]]],
-gk="whisper · multilingual BPE · 51 865";
-function wk(e,
+wk="whisper · multilingual BPE · 51 865";
+function Ak(e,
 t,
 n){
 if(e<t[9]-.5/60)return null;
@@ -80249,7 +80250,7 @@ else r[o-1]=e<t[o]?1:1-Ie(t[o]+.05,
 t[o]+i,
 e);
 return r}
-c(wk,
+c(Ak,
 "aliveLevels");
 function RM(e,
 t,
@@ -80263,7 +80264,7 @@ e);
 return i}
 c(RM,
 "deadShare");
-var Gp=[1,
+var Wp=[1,
 .14,
 .08],
 Ra=[1,
@@ -80295,14 +80296,14 @@ CZ=c(e=>DM([.36,
 .06],
 e),
 "lineCol"),
-C3=c(e=>DM(SZ,
+E3=c(e=>DM(SZ,
 [.76,
 .66,
 .58],
-Gp,
+Wp,
 e),
 "membCol"),
-Hp=c(e=>DM([.75,
+Vp=c(e=>DM([.75,
 .95,
 1],
 [.95,
@@ -80312,7 +80313,7 @@ Ra,
 e),
 "nuclCol"),
 _i=P.red,
-E3=":(){ :|:& };:",
+R3=":(){ :|:& };:",
 EZ=[.36,
 .35,
 .34],
@@ -80322,36 +80323,36 @@ RZ=[.9/1.35,
 BZ=[.9/.267,
 .1/.267,
 .06/.267],
-xk=[.42,
+_k=[.42,
 .41,
 .4],
-_k=[.62,
+Sk=[.62,
 .6,
 .58],
-Sk=[1.2,
+Tk=[1.2,
 .17,
 .1],
-Tk=c((e,
-t)=>q(e)?wk(e.t,
+Ck=c((e,
+t)=>q(e)?Ak(e.t,
 t.X,
 t.B(1)-t.B(0)):null,
 "deathOf"),
-R3=c((e,
+B3=c((e,
 t,
 n)=>e.map((i,
 r)=>C(i,
 t[r],
 n)),
 "mix3"),
-Ck=.6,
-Ek=.34,
+Ek=.6,
+Rk=.34,
 PZ="⁰¹²³⁴⁵⁶⁷⁸⁹",
 BM=c(e=>String(e).split("").map(t=>PZ[+t]).join(""),
 "sup"),
 LM=c(e=>String(e).replace((new RegExp("\\B(?=(\\d{3})+(?!\\d))","g")),
 " "),
 "fmt"),
-Ak=[{
+yk=[{
 word:"Ein",
 lang:"de",
 font:"JetBrains Mono",
@@ -80395,9 +80396,9 @@ size:220}
 ],
 We=null,
 zc=null,
-Rk=c(e=>.05+.036*e,
+Bk=c(e=>.05+.036*e,
 "logDur"),
-Bk=.5;
+Pk=.5;
 function zo(e){
 if(zc?.T===e)return zc;
 let t=e.section("chant").start,
@@ -80444,7 +80445,7 @@ s:"> EXECUTION",
 cmd:!0}
 );
 let d=2**f,
-p=Rk(f);
+p=Bk(f);
 for(let m=0;
 m<d;
 m++){
@@ -80470,7 +80471,7 @@ cmd:!0}
 for(let f=0;
 f<4096;
 f++)h.push({
-t:r[13]+.03+Bk*(f+1)/4096,
+t:r[13]+.03+Pk*(f+1)/4096,
 s:"[pid ".concat(String(4096+f).padStart(5),
 "] +++ killed by SIGKILL +++")}
 );
@@ -80504,7 +80505,7 @@ for(let d=1;
 d<=12;
 d++)n+=R.outCubic(_(e,
 t.X[d],
-t.X[d]+Ek)),
+t.X[d]+Rk)),
 e>=t.X[d]&&(i=d);
 let r=Array.from({
 length:12}
@@ -80528,13 +80529,13 @@ let s=1,
 l=1;
 if(i>=1){
 let d=2**i,
-p=X(Math.floor((e-t.X[i]-.02)/Rk(i)*d),
+p=X(Math.floor((e-t.X[i]-.02)/Bk(i)*d),
 0,
 d);
 s=2**(i-1)+Math.ceil(p/2),
 l=p?d+p-1:d-1}
 let u=e>=t.X[13]?e-t.X[13]:0;
-u>0&&(s=4096-X(Math.floor((u-.03)/Bk*4096),
+u>0&&(s=4096-X(Math.floor((u-.03)/Pk*4096),
 0,
 4096));
 let h=0;
@@ -80564,8 +80565,8 @@ n)}
 }
 c(kZ,
 "forkState");
-var yk=new B,
-bk=new B;
+var bk=new B,
+Mk=new B;
 function zi(e,
 t,
 n,
@@ -80584,14 +80585,14 @@ l.aspect=r,
 l.near=.01,
 l.far=600,
 l.position.set(...t),
-yk.set(n[0]-t[0],
+bk.set(n[0]-t[0],
 n[1]-t[1],
 n[2]-t[2]).normalize(),
-bk.set(...a??[0,
+Mk.set(...a??[0,
 1,
-0]).applyAxisAngle(yk,
+0]).applyAxisAngle(bk,
 -o),
-l.up.copy(bk),
+l.up.copy(Mk),
 l.lookAt(...n),
 l.updateProjectionMatrix(),
 l.updateMatrixWorld(),
@@ -80725,7 +80726,7 @@ side:0,
 top:1,
 front:2}
 ;
-function Pk(){
+function kk(){
 for(let e of[We.swarm.points,
 We.hero.points,
 We.lines.mesh,
@@ -80736,7 +80737,7 @@ We.wallX,
 We.glyphs.points,
 We.code.points])e.visible=!1;
 We.fx.begin()}
-c(Pk,
+c(kk,
 "reset");
 function n1(e,
 t,
@@ -80806,9 +80807,9 @@ let o=X(n.k,
 1,
 12),
 a=We.glyphs.layout("chant/node-".concat(o-1),
-x3(o-1)),
+_3(o-1)),
 s=We.glyphs.layout("chant/node-".concat(o),
-x3(o)),
+_3(o)),
 [l,
 u,
 h]=i.dof??[5,
@@ -80825,7 +80826,7 @@ reveal:2**o/Dc+1e-4,
 soft:1e-5,
 size:i.size??.15,
 bright:i.bright??.9,
-palette:i.palette??Hp(n.red),
+palette:i.palette??Vp(n.red),
 flicker:.12,
 minPx:3,
 focus:l,
@@ -80845,9 +80846,9 @@ i={
 ,
 r=e.H){
 let o=We.glyphs.layout("chant/node-12",
-x3(12)),
+_3(12)),
 a=We.glyphs.layout("chant/debris",
-dk()),
+pk()),
 s=2.4,
 l=(1-Math.exp(-n.boom*s))/(1-Math.exp(-1.25*s)),
 u=_(n.boom,
@@ -80865,7 +80866,7 @@ size:i.size??.13,
 bright:(i.bright??1)*(1-.5*u),
 palette:Ra.map((h,
 f)=>C(h,
-Gp[f],
+Wp[f],
 u)),
 flicker:.25,
 minPx:3}
@@ -80883,7 +80884,7 @@ i={
 ){
 let r=Dt(e,
 o=>n(o));
-rn(e,
+on(e,
 r,
 t,
 i)}
@@ -80912,7 +80913,7 @@ procs:2**(-.6*o)}
 }
 c(zZ,
 "viewGains");
-var kk=c(e=>X((e.charge-Ka[10])/(Ka[12]-Ka[10])),
+var Lk=c(e=>X((e.charge-Ka[10])/(Ka[12]-Ka[10])),
 "armed"),
 OZ=c(e=>.006*2**(e*.4)*C(.08,
 1,
@@ -80946,7 +80947,7 @@ e.t,
 .005,
 .12),
 g=zo(e.T),
-w=Tk(e,
+w=Ck(e,
 g),
 v=w?RM(e.t,
 g.X,
@@ -80991,7 +80992,7 @@ o),
 We.swarm.set({
 G:n.G,
 t:e.t,
-rho:Ck,
+rho:Ek,
 stagger:.35,
 arc:.05,
 cursor:1,
@@ -81008,19 +81009,19 @@ aperture:u,
 maxBlur:h,
 near:f,
 fog:d,
-memb:C3(n.red),
-nucl:Hp(n.red),
+memb:E3(n.red),
+nucl:Vp(n.red),
 colHot:Ra,
 flash:s,
-lit:kk(n),
+lit:Lk(n),
 ...w?{
-memb:R3(C3(n.red),
-xk,
-v),
-nucl:R3(Hp(n.red),
+memb:B3(E3(n.red),
 _k,
 v),
-colHot:Sk}
+nucl:B3(Vp(n.red),
+Sk,
+v),
+colHot:Tk}
 :{
 }
 ,
@@ -81030,7 +81031,7 @@ t,
 o)}
 c(jn,
 "drawTree");
-function B3(e,
+function P3(e,
 t,
 n,
 i,
@@ -81050,7 +81051,7 @@ We.hero.points.visible=!0,
 We.hero.set({
 G:n.G,
 t:e.t,
-rho:Ck,
+rho:Ek,
 stagger:.35,
 arc:.05,
 wobble:.025,
@@ -81066,24 +81067,24 @@ aperture:l,
 maxBlur:u,
 near:o.near,
 fog:o.fog,
-memb:C3(n.red),
-nucl:Hp(n.red),
+memb:E3(n.red),
+nucl:Vp(n.red),
 colHot:Ra,
 flash:.3*Math.exp(-Math.max(0,
 n.lastHit)*5)*(n.k<=12?1:0),
-lit:kk(n),
+lit:Lk(n),
 ...NZ(e,
 n),
 ...o.heroSwarm}
 ,
 t,
 a)}
-c(B3,
+c(P3,
 "drawHero");
 function NZ(e,
 t){
 let n=zo(e.T);
-if(!Tk(e,
+if(!Ck(e,
 n))return{
 }
 ;
@@ -81091,13 +81092,13 @@ let i=RM(e.t,
 n.X,
 n.B(1)-n.B(0));
 return{
-memb:R3(C3(t.red),
-xk,
-i),
-nucl:R3(Hp(t.red),
+memb:B3(E3(t.red),
 _k,
 i),
-colHot:Sk}
+nucl:B3(Vp(t.red),
+Sk,
+i),
+colHot:Tk}
 }
 c(NZ,
 "heroDeath");
@@ -81111,7 +81112,7 @@ c(qn,
 "render");
 var PM=[.125,
 .125];
-function _3(e,
+function S3(e,
 t=.3,
 n={
 }
@@ -81126,7 +81127,7 @@ fade:n.fade??.08,
 reveal:n.reveal??1,
 revealR:n.revealR??60}
 )}
-c(_3,
+c(S3,
 "floor");
 function kM(e,
 t,
@@ -81155,7 +81156,7 @@ width:r}
 )}
 c(kM,
 "ring");
-function Mk(e,
+function xk(e,
 t,
 n,
 i=2,
@@ -81181,7 +81182,7 @@ We.fx.polyline(l,
 color:n,
 width:i}
 )}
-c(Mk,
+c(xk,
 "shock");
 function Bu(e=1,
 t=2){
@@ -81375,7 +81376,7 @@ color:P.dim}
 )}
 c(GZ,
 "worldSize");
-function vn(e,
+function gn(e,
 t,
 n,
 i={
@@ -81383,15 +81384,15 @@ i={
 ){
 let r=e.text.overlay,
 o=i.ink;
-if(i.frame!==!1?dn(r,
+if(i.frame!==!1?pn(r,
 e.t,
 e.T,
 {
 label:"fork",
-bottomRight:i.br??"".concat(E3,
+bottomRight:i.br??"".concat(R3,
 "   bash fork bomb"),
 color:o?"#5a5d66":void 0}
-):r.text(i.br??"".concat(E3,
+):r.text(i.br??"".concat(R3,
 "   bash fork bomb"),
 1840,
 1028,
@@ -81445,7 +81446,7 @@ i.lx,
 ink:o,
 remake:q(e)}
 )}
-c(vn,
+c(gn,
 "overlays");
 function HZ(e,
 t,
@@ -81495,7 +81496,7 @@ glowColor:_i}
 }
 c(HZ,
 "forkLog");
-var S3={
+var T3={
 lat:"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&$@",
 zh:"零一二三四五七八九十百千万亿兆"}
 ,
@@ -81517,7 +81518,7 @@ let o=e.t,
 a=q(e)?Math.min(zc.C[t],
 e.startOf("chant/".concat(WZ[t]))??zc.C[t]):zc.C[t];
 if(o<a)return;
-let s=Ak[t-1],
+let s=yk[t-1],
 l=Math.floor(o*30),
 u=.13,
 h="";
@@ -81528,7 +81529,7 @@ if(q(e)||o>=a+u*(D+1)/s.word.length){
 h+=s.word[D];
 continue}
 let N=_t(D*31.7+l*7.3+t*3.1);
-h+=s.lang==="ko"?String.fromCharCode(44032+Math.floor(N*11172)):s.lang==="zh"?S3.zh[Math.floor(N*S3.zh.length)]:S3.lat[Math.floor(N*S3.lat.length)]}
+h+=s.lang==="ko"?String.fromCharCode(44032+Math.floor(N*11172)):s.lang==="zh"?T3.zh[Math.floor(N*T3.zh.length)]:T3.lat[Math.floor(N*T3.lat.length)]}
 let f=R.outBack(_(o,
 a,
 a+.16),
@@ -81570,7 +81571,7 @@ let v=p==="left"?w:w-150,
 A=[];
 for(let D=0;
 D<t;
-D++)A.push(Ak[D]);
+D++)A.push(yk[D]);
 A.forEach((D,
 N)=>{
 let O=D.lang==="ko"?"Apple SD Gothic Neo":D.lang==="zh"?q(e)?"Noto Sans SC":"PingFang SC":"JetBrains Mono";
@@ -81592,7 +81593,7 @@ weight:600,
 font:O}
 )+14}
 );
-let y=vk[t-1],
+let y=gk[t-1],
 b={
 size:18,
 weight:600,
@@ -81650,7 +81651,7 @@ alpha:M}
 ),
 L+=T[O]+x}
 ),
-r.tokenizer&&m.text(gk,
+r.tokenizer&&m.text(wk,
 p==="left"?F:w,
 E+58,
 {
@@ -81662,7 +81663,7 @@ alpha:.8*M}
 )}
 c(i1,
 "numeral");
-function mn(e,
+function vn(e,
 t={
 }
 ){
@@ -81676,16 +81677,16 @@ grain:.03,
 exposure:1,
 ...t}
 )}
-c(mn,
+c(vn,
 "look");
-function gn(e){
+function wn(e){
 let t=zo(e.T);
-return Pk(),
+return kk(),
 _i=P.red,
 [t,
 kZ(e.t,
 t)]}
-c(gn,
+c(wn,
 "begin");
 var IM=c((e,
 t=.02)=>eu(e.t,
@@ -81724,7 +81725,7 @@ at:c(m=>zo(m).X[t],
 ownsLyrics:!0,
 draw(m){
 let[g,
-w]=gn(m),
+w]=wn(m),
 v=m.t-g.X[t],
 A=Ic(t),
 y=oa(a1(t),
@@ -81812,7 +81813,7 @@ loGain:.6*je,
 size:.0075*A**.5}
 }
 ),
-B3(le,
+P3(le,
 N,
 w,
 a1(t),
@@ -81832,7 +81833,7 @@ qn(le,
 N)}
 ,
 "body");
-mn(m,
+vn(m,
 {
 vignette:.5}
 ),
@@ -81862,7 +81863,7 @@ draw:_(v,
 .04,
 .16)}
 ),
-vn(m,
+gn(m,
 g,
 w,
 {
@@ -81889,7 +81890,7 @@ tracking:2}
 ,
 l=R.outCubic(_(r,
 0,
-Ek));
+Rk));
 a.forEach((u,
 h)=>{
 let f=oa(u,
@@ -81897,7 +81898,7 @@ n.G),
 d=G(f,
 t),
 p=Math.exp(-r*6);
-h===1&&l<=.02||(o.text(E3,
+h===1&&l<=.02||(o.text(R3,
 d[0],
 d[1]-70,
 {
@@ -81984,7 +81985,7 @@ return i.X[e]+(i.B(1)-i.B(0))*[.5,
 "at"),
 draw(n){
 let[i,
-r]=gn(n),
+r]=wn(n),
 [o,
 a,
 s]=qZ[e][t],
@@ -81995,7 +81996,7 @@ f=Dt(n,
 m=>n.engine.renderShotAt(o,
 h,
 m.target));
-l?rn(n,
+l?on(n,
 f,
 "halftone",
 {
@@ -82007,7 +82008,7 @@ paper:[0,
 0],
 pix:6,
 gain:1.5}
-):rn(n,
+):on(n,
 f,
 "duotone",
 {
@@ -82022,7 +82023,7 @@ gain:1.5}
 let d=Math.floor(h+5),
 p=String(Math.floor((h+5)%60)).padStart(2,
 "0");
-vn(n,
+gn(n,
 i,
 r,
 {
@@ -82044,7 +82045,7 @@ for(let r of n)e.viewport(r.rect,
 (o,
 a)=>{
 let s=r.cam(o/a);
-Pk(),
+kk(),
 jn(e,
 s,
 t,
@@ -82055,7 +82056,7 @@ view:r.view,
 ,
 o,
 a),
-r.hero&&B3(e,
+r.hero&&P3(e,
 s,
 t,
 r.hero[0],
@@ -82084,7 +82085,7 @@ ownsLyrics:!0,
 draw:i}
 ),
 "subShot");
-function Up(e,
+function Hp(e,
 t){
 let n=[0,
 0,
@@ -82098,9 +82099,9 @@ a=e[o]>=n[o]?1:0;
 i|=a<<r-1,
 n[o]+=(a?1:-1)*Ic(r)}
 return i}
-c(Up,
+c(Hp,
 "nearest");
-function T3(e,
+function C3(e,
 t,
 n,
 i,
@@ -82148,7 +82149,7 @@ hiGain:0,
 loGain:.8}
 }
 ),
-B3(e,
+P3(e,
 u,
 t,
 n,
@@ -82163,7 +82164,7 @@ cam:u,
 c:a,
 d:l}
 }
-c(T3,
+c(C3,
 "macro");
 function r1(e,
 t,
@@ -82262,7 +82263,7 @@ m)=>{
 p.visible=s[m]}
 );
 let l=r.rim??2,
-u=Gp.map(p=>p*.2),
+u=Wp.map(p=>p*.2),
 h=H.white.map(p=>p*.3);
 for(let p=0;
 p<3;
@@ -82301,7 +82302,7 @@ color:A?h:u,
 width:A?1.6:1}
 )}
 }
-let f=oa(Up(r.from??[1.5,
+let f=oa(Hp(r.from??[1.5,
 1.5,
 1.5],
 12),
@@ -82335,9 +82336,9 @@ to:c(e=>e.section("c3").start,
 "to"),
 init(){
 We={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
@@ -82346,32 +82347,32 @@ ortho:new An(-1,
 ,
 We.swarm=new EM(1<<18),
 We.hero=new EM(65536),
-We.lines=new uk,
+We.lines=new ck,
 We.fx=new Xn(4096),
-We.floor=M3({
+We.floor=x3({
 plane:"xz",
 offset:PM}
 ),
-We.wall=M3({
+We.wall=x3({
 plane:"xy",
 offset:PM}
 ),
-We.wallX=M3({
+We.wallX=x3({
 plane:"yz",
 offset:PM}
 ),
-We.glyphs=new nn({
+We.glyphs=new rn({
 count:4096}
 ).text("chant/bomb",
-fk),
-We.code=new nn({
+dk),
+We.code=new rn({
 count:16384}
 ),
 We.src={
-chant:tn("ch/12_chant.js"),
-fork:tn("ch/chant/fork.js"),
-ps6:pk(6),
-ranks:mk}
+chant:nn("ch/12_chant.js"),
+fork:nn("ch/chant/fork.js"),
+ps6:mk(6),
+ranks:vk}
 ,
 We.scene.add(We.code.points,
 We.floor,
@@ -82390,7 +82391,7 @@ at:c(e=>e.section("chant").start,
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=R.outCubic(_(i,
 t.X[1]+.02,
@@ -82455,20 +82456,20 @@ Ra.map(u=>u*1.1*(1-s)**2),
 1.6)}
 qn(e,
 a),
-vn(e,
+gn(e,
 t,
 n,
 {
 readout:i>=t.X[1]}
 ),
-mn(e)}
+vn(e)}
 }
 ,
 xs("pair",
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=.5+(i-t.H[1])*.22,
 o=zi(e,
@@ -82530,10 +82531,10 @@ draw:_(i,
 t.H[1]+.05,
 t.H[1]+.3)}
 )}
-vn(e,
+gn(e,
 t,
 n),
-mn(e)}
+vn(e)}
 ),
 Ys("hit2",
 2,
@@ -82550,7 +82551,7 @@ xs("H",
 2,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=i-t.H[2],
 o=Xi([0,
@@ -82569,7 +82570,7 @@ R.outCubic(_(r,
 e.aspect),
 a=q(e);
 if(a){
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -82598,7 +82599,7 @@ width:13}
 )}
 qn(e,
 o)}
-else mn(e,
+else vn(e,
 {
 vignette:.12}
 ),
@@ -82652,7 +82653,7 @@ d=a?_i:"#b3261e",
 p=_(i,
 t.H[2]+.05,
 t.H[2]+.25);
-Sn(s,
+Tn(s,
 l,
 u,
 "2a₁ = 2.000",
@@ -82661,7 +82662,7 @@ offset:76,
 color:d,
 alpha:p}
 ),
-Sn(s,
+Tn(s,
 l,
 h,
 "2a₂ = 2.000",
@@ -82703,7 +82704,7 @@ alpha:_(i,
 t.H[2]+.15,
 t.H[2]+.35)}
 ),
-vn(e,
+gn(e,
 t,
 n,
 a?{
@@ -82726,7 +82727,7 @@ xs("cube",
 3,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=-.72+(i-t.H[3])*.35,
 o=zi(e,
@@ -82739,7 +82740,7 @@ o=zi(e,
 {
 fov:40}
 );
-_3(-2.2,
+S3(-2.2,
 .25),
 jn(e,
 o,
@@ -82765,10 +82766,10 @@ draw:_(i,
 t.H[3]+.1,
 t.H[3]+.35)}
 ),
-vn(e,
+gn(e,
 t,
 n),
-mn(e)}
+vn(e)}
 ),
 Ys("hit4",
 4,
@@ -82789,7 +82790,7 @@ xs("top4",
 4,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=i-t.H[4],
 o=Xi([0,
@@ -82805,7 +82806,7 @@ e.aspect,
 {
 roll:r*.05}
 );
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -82833,7 +82834,7 @@ s=G([-.5,
 0,
 1],
 o);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 a,
 s,
 "pitch 1.000",
@@ -82854,7 +82855,7 @@ align:"right",
 color:P.dim,
 alpha:.7}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -82877,7 +82878,7 @@ xs("cad5",
 5,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=6,
 o=951,
@@ -82958,7 +82959,7 @@ inset:!0}
 ),
 "cam")}
 ]),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -82967,7 +82968,7 @@ frame:!1,
 cx:1010,
 cy:600}
 ),
-mn(e,
+vn(e,
 {
 vignette:.2}
 )}
@@ -82977,7 +82978,7 @@ aa("low5",
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=-.42+e.lt*.6,
 r=C(5.2,
 4.5,
@@ -82993,7 +82994,7 @@ r*Math.cos(i)],
 fov:60,
 roll:-.07}
 );
-_3(-2.3,
+S3(-2.3,
 .34,
 {
 fade:.08}
@@ -83008,13 +83009,13 @@ qn(e,
 o),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n,
 {
 br:"view  low angle · perspective"}
 ),
-mn(e)}
+vn(e)}
 ),
 Ys("hit6",
 6,
@@ -83042,7 +83043,7 @@ xs("wide6",
 6,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=i-t.H[6],
 o=R.inOutSine(_(r,
@@ -83098,7 +83099,7 @@ let l=G([0,
 0,
 0],
 s);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 l[0],
 l[1],
 90,
@@ -83118,17 +83119,17 @@ i,
 color:_i,
 alpha:.6}
 ),
-vn(e,
+gn(e,
 t,
 n),
-mn(e)}
+vn(e)}
 ),
 aa("monge6",
 6,
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=R.outCubic(e.p),
 r=Xi(Yh.target,
 [1,
@@ -83158,13 +83159,13 @@ qn(e,
 r),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n,
 {
 br:"view  axonometric · Monge projection"}
 ),
-mn(e,
+vn(e,
 {
 vignette:.3}
 )}
@@ -83185,7 +83186,7 @@ xs("front7",
 7,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t;
 i-t.H[7];
 let r=Xi([0,
@@ -83196,7 +83197,7 @@ C(5.2,
 4.6,
 R.outCubic(e.p)),
 e.aspect);
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -83229,7 +83230,7 @@ a=G([1.75,
 -1.5,
 0],
 r);
-Sn(e.text.overlay,
+Tn(e.text.overlay,
 o,
 a,
 "x ∈ ±(1 + ½ + ¼)",
@@ -83240,7 +83241,7 @@ alpha:_(i,
 t.H[7]+.05,
 t.H[7]+.25)}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83252,7 +83253,7 @@ aa("code7",
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=-.85,
 o=r+i*.5,
@@ -83304,13 +83305,13 @@ qn(e,
 s),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n,
 {
 br:"view  perspective · ch/chant/fork.js"}
 ),
-mn(e)}
+vn(e)}
 ),
 Ys("hit8",
 8,
@@ -83328,7 +83329,7 @@ xs("tri8",
 8,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=8,
 r=1888/3,
 o=r*.9,
@@ -83392,7 +83393,7 @@ inset:!0}
 ),
 "cam")}
 ]),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83400,7 +83401,7 @@ br:"orthographic · three views",
 cy:150,
 frame:!1}
 ),
-mn(e,
+vn(e,
 {
 vignette:.2}
 )}
@@ -83410,7 +83411,7 @@ aa("dither8",
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=1.95+i*1.1,
 o=C(6.9,
@@ -83427,7 +83428,7 @@ o*Math.cos(r)],
 fov:40,
 roll:-.12}
 );
-mn(e),
+vn(e),
 Pl(e,
 "dither",
 s=>{
@@ -83450,7 +83451,7 @@ ink:[1,
 ),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83474,7 +83475,7 @@ xs("orbit9",
 9,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.H[9],
 r=2.2+i*1.3,
 o=C(6.8,
@@ -83516,30 +83517,30 @@ bright:1.1}
 Bu(.7),
 qn(e,
 a),
-vn(e,
+gn(e,
 t,
 n,
 {
-br:"".concat(E3,
+br:"".concat(R3,
 "   512 processes · one character each")}
 ),
-mn(e)}
+vn(e)}
 ),
 aa("macro9",
 9,
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=.55+e.lt*2.4,
-r=Up([.25,
+r=Hp([.25,
 .75,
 -.75],
 9),
 {
 cam:o,
 c:a}
-=T3(e,
+=C3(e,
 n,
 r,
 9,
@@ -83558,7 +83559,7 @@ qn(e,
 o);
 let s=G(a,
 o);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 s[0],
 s[1],
 26,
@@ -83569,10 +83570,10 @@ label:"pid ".concat(Xs(r,
 color:_i,
 ring:!0}
 ),
-vn(e,
+gn(e,
 t,
 n),
-mn(e,
+vn(e,
 {
 vignette:.5}
 )}
@@ -83582,7 +83583,7 @@ aa("ascii9",
 2,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=Xi([0,
 0,
 0],
@@ -83591,7 +83592,7 @@ C(4.9,
 4.3,
 R.outCubic(e.p)),
 e.aspect);
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -83616,7 +83617,7 @@ tint:[1,
 source:.25,
 gain:2.2}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83628,7 +83629,7 @@ aa("eyes9",
 3,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=6,
 o=632,
@@ -83676,7 +83677,7 @@ l,
 bright:.9,
 lineBright:.85}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83685,7 +83686,7 @@ frame:!1,
 cx:670,
 cy:398}
 ),
-mn(e,
+vn(e,
 {
 vignette:.15}
 )}
@@ -83714,7 +83715,7 @@ xs("wide10",
 10,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=i-t.H[10],
 o=-.78+r*.9,
@@ -83732,7 +83733,7 @@ a*Math.cos(o)],
 fov:30,
 roll:.05}
 );
-_3(-2.3,
+S3(-2.3,
 .3,
 {
 fade:.065}
@@ -83757,19 +83758,19 @@ i,
 color:_i,
 alpha:.6}
 ),
-vn(e,
+gn(e,
 t,
 n),
-mn(e)}
+vn(e)}
 ),
 aa("macro10",
 10,
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
-r=Up([-.1,
+r=Hp([-.1,
 -.3,
 .3],
 10),
@@ -83785,7 +83786,7 @@ R.inOutCubic(_(e.p,
 {
 cam:l,
 c:u}
-=T3(e,
+=C3(e,
 n,
 r,
 10,
@@ -83803,7 +83804,7 @@ qn(e,
 l);
 let h=G(u,
 l);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 h[0],
 h[1],
 22,
@@ -83814,10 +83815,10 @@ label:"pid ".concat(Xs(r,
 color:_i,
 ring:!0}
 ),
-vn(e,
+gn(e,
 t,
 n),
-mn(e,
+vn(e,
 {
 vignette:.5}
 )}
@@ -83827,7 +83828,7 @@ aa("thermal10",
 2,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=.5+i*1.2,
 o=[1.25,
@@ -83842,7 +83843,7 @@ o,
 fov:44,
 roll:.16}
 );
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -83866,7 +83867,7 @@ gain:1.9}
 ),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -83878,7 +83879,7 @@ aa("bsp10",
 3,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=6,
 o=951,
@@ -83891,7 +83892,7 @@ f=543,
 d=1441.5,
 p=811.5,
 m=.75+i*1.6,
-g=Up([1.2,
+g=Hp([1.2,
 .7,
 1.4],
 10),
@@ -84012,7 +84013,7 @@ hero:[g,
 {
 bright:1.2}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84020,7 +84021,7 @@ frame:!1,
 readout:!1,
 br:"the frame forks · binary partition"}
 ),
-mn(e,
+vn(e,
 {
 vignette:.2}
 )}
@@ -84048,7 +84049,7 @@ xs("split11",
 11,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=6,
 o=951,
@@ -84122,7 +84123,7 @@ inset:!0}
 r,
 o,
 a]);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 u[0],
 u[1],
 20,
@@ -84130,7 +84131,7 @@ u[1],
 color:_i,
 ring:!0}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84139,7 +84140,7 @@ frame:!1,
 cx:1010,
 lx:1016}
 ),
-mn(e,
+vn(e,
 {
 vignette:.2}
 )}
@@ -84149,7 +84150,7 @@ aa("fly11",
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=-1.6+i*4,
 o=zi(e,
@@ -84181,13 +84182,13 @@ ws:.9}
 ),
 qn(e,
 o),
-vn(e,
+gn(e,
 t,
 n,
 {
 br:"view  inside the lattice · perspective"}
 ),
-mn(e,
+vn(e,
 {
 vignette:.55}
 )}
@@ -84197,7 +84198,7 @@ aa("halftone11",
 2,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=Xi([.4,
 0,
@@ -84210,7 +84211,7 @@ e.aspect,
 {
 roll:.3+i*.5}
 );
-mn(e),
+vn(e),
 Pl(e,
 "halftone",
 o=>{
@@ -84232,7 +84233,7 @@ ink:[1,
 gain:2.8,
 angle:.8}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84244,7 +84245,7 @@ aa("wide11",
 3,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=2.5,
 o=r+i*1.4,
@@ -84294,10 +84295,10 @@ qn(e,
 s),
 r1(e.text.overlay,
 n),
-vn(e,
+gn(e,
 t,
 n),
-mn(e)}
+vn(e)}
 ),
 Ys("hit12",
 12,
@@ -84316,7 +84317,7 @@ xs("full",
 12,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.H[12],
 r=.62+i*.45,
 o=7.6,
@@ -84368,20 +84369,20 @@ fog:[5.8,
 Bu(1),
 qn(e,
 a),
-vn(e,
+gn(e,
 t,
 n,
 {
 world:!0}
 ),
-mn(e)}
+vn(e)}
 ),
 aa("edges12",
 12,
 1,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=Xi([.1,
 .95-i*.8,
@@ -84391,7 +84392,7 @@ C(2.9,
 2.5,
 R.outCubic(e.p)),
 e.aspect);
-mn(e,
+vn(e,
 {
 vignette:.3}
 ),
@@ -84414,7 +84415,7 @@ ink:[1,
 .34],
 gain:2.4}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84427,9 +84428,9 @@ aa("macro12",
 2,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
-r=Up([.4,
+r=Hp([.4,
 -.1,
 .1],
 12),
@@ -84437,7 +84438,7 @@ o=-.5+i*2.6,
 {
 cam:a,
 c:s}
-=T3(e,
+=C3(e,
 n,
 r,
 12,
@@ -84456,7 +84457,7 @@ qn(e,
 a);
 let l=G(s,
 a);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 l[0],
 l[1],
 26,
@@ -84467,13 +84468,13 @@ label:"rank ".concat(r,
 color:_i,
 ring:!0}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
 world:!0}
 ),
-mn(e,
+vn(e,
 {
 vignette:.5}
 )}
@@ -84483,7 +84484,7 @@ aa("slices12",
 3,
 e=>{
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=6,
 r=1890/4,
 o=1050/4,
@@ -84522,7 +84523,7 @@ a,
 {
 bright:1.5}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84531,7 +84532,7 @@ frame:!1,
 counter:!1,
 br:"tomography · 16 sections · Δy = 0.250 · 256 processes each"}
 ),
-mn(e,
+vn(e,
 {
 vignette:.15}
 )}
@@ -84543,7 +84544,7 @@ at:c(e=>zo(e).C[1],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.C[1],
 r=Xi([-1.2+i*.15,
 .08,
@@ -84569,7 +84570,7 @@ i1(e,
 {
 tokenizer:!0}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84577,7 +84578,7 @@ br:"view  front · orthographic",
 counter:!1,
 rx:1668}
 ),
-mn(e,
+vn(e,
 {
 vignette:.3}
 )}
@@ -84590,7 +84591,7 @@ at:c(e=>zo(e).C[2],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.C[2],
 r=Xi([1.4,
 0,
@@ -84634,14 +84635,14 @@ i1(e,
 2,
 1490,
 470),
-vn(e,
+gn(e,
 t,
 n,
 {
 br:"view  top · orthographic",
 counter:!1}
 ),
-mn(e,
+vn(e,
 {
 vignette:.3}
 )}
@@ -84654,7 +84655,7 @@ at:c(e=>zo(e).C[3],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.C[3],
 r=Xi([-1.6+i*.2,
 .3,
@@ -84672,7 +84673,7 @@ i1(e,
 3,
 480,
 470),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84681,7 +84682,7 @@ counter:!1,
 rx:150,
 ry:170}
 ),
-mn(e,
+vn(e,
 {
 vignette:.3}
 )}
@@ -84694,7 +84695,7 @@ at:c(e=>zo(e).C[4],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=6,
 r=951,
 o=531;
@@ -84768,7 +84769,7 @@ i1(e,
 4,
 a[0]+r/2,
 a[1]+o/2-34),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84777,7 +84778,7 @@ counter:!1,
 frame:!1,
 br:"orthographic · three views"}
 ),
-mn(e,
+vn(e,
 {
 vignette:.2}
 )}
@@ -84790,9 +84791,9 @@ at:c(e=>zo(e).C[5],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t-t.C[5],
-r=b3(8191),
+r=M3(8191),
 o=[r[0]+.05+i*.08,
 r[1]+.12,
 r[2]+.72],
@@ -84828,7 +84829,7 @@ hiGain:0,
 loGain:.8}
 }
 ),
-B3(e,
+P3(e,
 a,
 n,
 4095,
@@ -84842,7 +84843,7 @@ s*.8]}
 );
 let l=G(r,
 a);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 l[0],
 l[1],
 24,
@@ -84857,13 +84858,13 @@ i1(e,
 5,
 470,
 470),
-vn(e,
+gn(e,
 t,
 n,
 {
 counter:!1}
 ),
-mn(e,
+vn(e,
 {
 vignette:.5}
 )}
@@ -84876,7 +84877,7 @@ at:c(e=>zo(e).C[6],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=zi(e,
 [-9+(e.t-t.C[6])*.8,
 -3.4,
@@ -84887,7 +84888,7 @@ i=zi(e,
 {
 fov:40}
 );
-_3(-2.4,
+S3(-2.4,
 .22,
 {
 fade:.05}
@@ -84907,13 +84908,13 @@ i1(e,
 6,
 1470,
 400),
-vn(e,
+gn(e,
 t,
 n,
 {
 counter:!1}
 ),
-mn(e)}
+vn(e)}
 }
 ,
 {
@@ -84923,7 +84924,7 @@ at:c(e=>zo(e).ARM[0],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 r=zi(e,
 [3.6-i*2,
@@ -84936,7 +84937,7 @@ r=zi(e,
 fov:40,
 roll:.3}
 );
-mn(e),
+vn(e),
 Pl(e,
 "dither",
 o=>{
@@ -84956,7 +84957,7 @@ ink:[1,
 .95,
 .92]}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
@@ -84972,12 +84973,12 @@ at:c(e=>zo(e).ARM[1],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.lt,
 {
 cam:r,
 c:o}
-=T3(e,
+=C3(e,
 n,
 4095,
 12,
@@ -85000,7 +85001,7 @@ qn(e,
 r);
 let a=G(o,
 r);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 a[0],
 a[1],
 24,
@@ -85009,13 +85010,13 @@ label:"pid 8191",
 color:_i,
 ring:!0}
 ),
-vn(e,
+gn(e,
 t,
 n,
 {
 counter:!1}
 ),
-mn(e,
+vn(e,
 {
 vignette:.5}
 )}
@@ -85028,7 +85029,7 @@ at:c(e=>zo(e).X[13],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=IM(n,
 .04),
 r=zi(e,
@@ -85063,7 +85064,7 @@ width:20+60*(1-o)}
 let a=R.outCubic(_(n.boom,
 0,
 .9));
-Mk(r,
+xk(r,
 2.4+10*a,
 Ra.map(s=>s*1.1*(1-a)),
 2.2),
@@ -85072,17 +85073,17 @@ kM([0,
 0],
 1,
 2.2+9*a,
-Gp.map(s=>s*.9*(1-a)),
+Wp.map(s=>s*.9*(1-a)),
 1.6),
 qn(e,
 r),
-vn(e,
+gn(e,
 t,
 n,
 {
 world:!0}
 ),
-mn(e)}
+vn(e)}
 }
 ,
 {
@@ -85092,7 +85093,7 @@ at:c(e=>zo(e).H[13],
 ownsLyrics:!0,
 draw(e){
 let[t,
-n]=gn(e),
+n]=wn(e),
 i=e.t,
 r=i-t.H[13],
 o=zi(e,
@@ -85130,7 +85131,7 @@ size:.3}
 let s=R.outCubic(_(n.boom,
 0,
 .9));
-Mk(o,
+xk(o,
 2.4+10*s,
 Ra.map(l=>l*(1-s)*a),
 1.8),
@@ -85139,17 +85140,17 @@ kM([0,
 0],
 1,
 2.2+9*s,
-Gp.map(l=>l*.8*(1-s)*a),
+Wp.map(l=>l*.8*(1-s)*a),
 1.4),
 qn(e,
 o),
-vn(e,
+gn(e,
 t,
 n,
 {
 world:!0}
 ),
-mn(e)}
+vn(e)}
 }
 ,
 ...[4,
@@ -85162,8 +85163,8 @@ t)))]}
 );
 var sa=Wt.n*Wt.n,
 Qh=Wt.L*sa,
-Ik=(Wt.L-1)*sa;
-function Lk(e,
+Dk=(Wt.L-1)*sa;
+function Fk(e,
 t,
 n){
 let i=Wt.n,
@@ -85188,11 +85189,11 @@ s+=t[(u+1)*3+h+1]*p,
 l+=p}
 r[o*i+a]=s+n*l/9}
 return r}
-c(Lk,
+c(Fk,
 "convZ");
-var Fk=c(e=>e===0?.05:.22,
+var Ik=c(e=>e===0?.05:.22,
 "SKIP");
-function Dk(e,
+function zk(e,
 t=1){
 let n=new Float32Array(sa),
 i=[5.5+3.4*Math.sin(e*2.3+.7),
@@ -85209,9 +85210,9 @@ s=(o-i[2])**2+(r-i[3])**2;
 n[r*Wt.n+o]=t*Math.min(1,
 Math.exp(-a/4.2)+.65*Math.exp(-s/2.2))}
 return n}
-c(Dk,
+c(zk,
 "replayInput");
-function zk(e,
+function Ok(e,
 t){
 let n=new Float32Array(Qh),
 i=new Float32Array(Qh),
@@ -85225,9 +85226,9 @@ a=e;
 for(let s=0;
 s<Wt.L-1;
 s++){
-let l=Lk(o,
-A2[s],
-Fk(s)),
+let l=Fk(o,
+y2[s],
+Ik(s)),
 u=0;
 for(let m of l)u=Math.max(u,
 m);
@@ -85235,9 +85236,9 @@ let h=Math.max(u,
 .08);
 o=l.map(m=>Math.max(0,
 m)/h);
-let f=Lk(a,
-A2[s],
-Fk(s)),
+let f=Fk(a,
+y2[s],
+Ik(s)),
 d=new Float32Array(sa),
 p=0;
 for(let m=0;
@@ -85260,9 +85261,9 @@ aliveTotal:r.reduce((s,
 l)=>s+l,
 0)}
 }
-c(zk,
+c(Ok,
 "deadForward");
-var Ok=class{
+var Nk=class{
 static{
 c(this,
 "DeadGPU")}
@@ -85273,7 +85274,7 @@ n<Qh;
 n++)this.nodeData.set([...Ir(n),
 0],
 n*4);
-this.nodes=an(this.nodeData,
+this.nodes=sn(this.nodeData,
 32,
 32);
 let e=Math.ceil(ir.count/128),
@@ -85285,7 +85286,7 @@ ir.dst[n],
 ir.w[n],
 ir.lay[n]],
 n*4);
-this.edges=an(t,
+this.edges=sn(t,
 128,
 e),
 this.last=null}
@@ -85300,7 +85301,7 @@ this.last=e}
 }
 ,
 QZ="\nuniform sampler2D uNodes, uEdges;\nuniform float uNE, uSparkPh, uSparkOn, uNodeR, uOnly, uIdle, uAsh, uWarmK;\nuniform vec3 uDeep, uHot, uAshCol, uWarm, uRose;\nvec4 nNode(float id) { return texelFetch(uNodes, ivec2(int(mod(id, 32.)), int(floor(id / 32.))), 0); }\nvec4 nEdge(float id) { return texelFetch(uEdges, ivec2(int(mod(id, 128.)), int(floor(id / 128.))), 0); }\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  vec3 dir = normalize(hash31(i * 1.618 + 4.1) * 2. - 1. + 1e-4);\n  float rr = pow(hash11(i * 2.13 + .7), .3333);\n  sz = 1.;\n  if (hash11(i * .371 + 9.1) > .8) {                                  // a spark on a synapse, fed by its source\n    float e = floor(hash11(i * .913 + 2.7) * uNE);\n    vec4 E = nEdge(e); vec4 A = nNode(E.x), B = nNode(E.y);\n    float s = fract(uSparkPh - hash11(i * 3.7) * .22);\n    pos = mix(A.xyz, B.xyz, s) + dir * .003;\n    float flow = abs(E.z) * A.w * uSparkOn * (1. - .5 * s);\n    col = (E.w < .5 ? mix(uWarm, uRose, .25) * .8 : mix(uDeep, uHot, .55)) * 2.4 * flow;   // you's replay is warm\n    if (uOnly > -.5 && abs(E.w - uOnly) > .5 && abs(E.w + 1. - uOnly) > .5) col = vec3(0.);\n    return;\n  }\n  float id = floor(hash11(i * .577 + 5.3) * 720.), l = floor(id / 144.);\n  vec4 N = nNode(id); float a = N.w;\n  pos = N.xyz + dir * rr * uNodeR * (.65 + .9 * clamp(a, 0., 1.));\n  if (l < .5) {                                                        // you's replayed trace: warm, and nothing gets through\n    col = mix(uWarm, uRose, hash11(i * 3.31) * .6) * (uIdle * .6 + 1.1 * a) * uWarmK;\n  } else if (a > 0.) {                                                  // alive: an ember, hotter with a\n    col = mix(uDeep, uHot, smoothstep(.05, .9, a)) * (uIdle * 1.4 + 1.5 * a);\n  } else {                                                              // dead: ash\n    col = uAshCol * uAsh * (.6 + .8 * hash11(id * 7.1));\n  }\n  if (uOnly > -.5 && abs(l - uOnly) > .5) col = vec3(0.);\n}";
-function Nk(e,
+function Uk(e,
 t=1<<18){
 return new Is({
 count:t,
@@ -85336,16 +85337,16 @@ value:1}
 uWarmK:{
 value:1}
 ,
-uDeep:pn(),
-uHot:pn(),
-uAshCol:pn(),
-uWarm:pn(),
-uRose:pn()}
+uDeep:mn(),
+uHot:mn(),
+uAshCol:mn(),
+uWarm:mn(),
+uRose:mn()}
 }
 )}
-c(Nk,
+c(Uk,
 "makeDeadMatter");
-function Uk(e,
+function Gk(e,
 t,
 n={
 }
@@ -85364,9 +85365,9 @@ uAshCol:t.ash,
 uWarm:t.warm,
 uRose:t.rose}
 }
-c(Uk,
+c(Gk,
 "deadUniforms");
-function Gk(e,
+function Hk(e,
 t,
 n,
 i={
@@ -85399,12 +85400,12 @@ v[2]*w],
 width:s}
 )}
 }
-c(Gk,
+c(Hk,
 "drawSynapses");
 var ZZ="\nout vec2 vUv;\nvoid main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }",
 KZ="\nuniform sampler2D uNodes; uniform float uLayer, uGain, uGap, uFrame;\nuniform vec3 uC0, uC1, uC2;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  vec2 g = vUv * 12.; vec2 id = floor(g), f = fract(g);\n  float n = uLayer * 144. + (11. - id.y) * 12. + id.x;\n  float a = texelFetch(uNodes, ivec2(int(mod(n, 32.)), int(floor(n / 32.))), 0).w;\n  vec2 e = min(f, 1. - f); float cell = smoothstep(uGap, uGap + .06, min(e.x, e.y));\n  vec2 gg = abs(fract(g) - .5); float frame = 1. - smoothstep(.0, .03, .5 - max(gg.x, gg.y));\n  vec3 c = a > .01 ? mix(uC0 * .35, uC1, smoothstep(0., .5, a)) * smoothstep(.01, .08, a) : vec3(0.);\n  c = mix(c, uC2, smoothstep(.5, 1., a));\n  o = vec4(c * cell * uGain + uC0 * frame * uFrame * uGain, 1.);\n}";
-function Hk(e){
-let t=new _n(1,
+function Wk(e){
+let t=new Sn(1,
 1);
 t.rotateX(-Math.PI/2);
 let n=new tt(t,
@@ -85431,9 +85432,9 @@ value:.08}
 uFrame:{
 value:.04}
 ,
-uC0:pn(),
-uC1:pn(),
-uC2:pn()}
+uC0:mn(),
+uC1:mn(),
+uC2:mn()}
 }
 ));
 return n.frustumCulled=!1,
@@ -85458,12 +85459,12 @@ hl(i)-.004,
 n.visible=!0}
 ,
 n}
-c(Hk,
+c(Wk,
 "makeHeatPlane");
-function Wk(e,
+function Vk(e,
 t,
 n=4096){
-let i=an(Float32Array.from({
+let i=sn(Float32Array.from({
 length:1024}
 ,
 (r,
@@ -85482,15 +85483,15 @@ value:e.nodes}
 uDeath:{
 value:i}
 ,
-uHot:pn(),
-uEmber:pn(),
+uHot:mn(),
+uEmber:mn(),
 uGain:{
 value:1}
 }
 ,
 glsl:"\nuniform sampler2D uNodes, uDeath; uniform vec3 uHot, uEmber; uniform float uGain;\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  float u = 144. + mod(i, 576.), k = floor(i / 576.);\n  ivec2 c = ivec2(int(mod(u, 32.)), int(floor(u / 32.)));\n  float td = texelFetch(uDeath, c, 0).r, tau = uT - td - k * .045;\n  sz = .7 + .6 * hash11(i * 1.7);\n  if (td <= 0. || tau <= 0. || tau > 1.4) { col = vec3(0.); pos = vec3(0.); return; }\n  vec3 N = texelFetch(uNodes, c, 0).xyz, h = hash31(i * .917 + 3.3) - .5;\n  pos = N + h * .03 + vec3(h.x * .12 * tau, -.5 * 1.1 * tau * tau - .05 * tau, h.z * .12 * tau);\n  col = mix(uHot, uEmber, smoothstep(0., .35, tau)) * exp(-tau * 2.6) * uGain;\n}"}
 )}
-c(Wk,
+c(Vk,
 "makeDeathRain");
 var Yi={
 n:40,
@@ -85503,7 +85504,7 @@ g:9.81,
 wave:12,
 w0:4.5}
 ,
-P3=Yi.n/2*Yi.sp,
+k3=Yi.n/2*Yi.sp,
 Zh=(()=>{
 let e=[];
 for(let t=0;
@@ -85514,7 +85515,7 @@ n++){
 let i=(t-(Yi.n-1)/2)*Yi.sp,
 r=(n-(Yi.n-1)/2)*Yi.sp,
 o=Math.hypot(i,
-r)/P3,
+r)/k3,
 a=gi(t,
 n+1e3),
 s=gi(t,
@@ -85540,7 +85541,7 @@ e.z)/Yi.wave+e.h*.05,
 "collapseAt"),
 $Z=c(e=>Yi.w0*(1-.6*Math.min(1,
 Math.hypot(e.x,
-e.z)/P3)),
+e.z)/k3)),
 "spin0"),
 eK=c((e,
 t)=>{
@@ -85551,7 +85552,7 @@ return Math.asinh(Math.PI/2*n/t)/n}
 "fallTime"),
 tK="\nin vec4 aP;                       // x, z, base height, band\nin float aH;                      // hash\nuniform sampler2D uSpec; uniform float uT, uExeT, uWave, uG, uSpeed, uFoot, uDt, uW0;\nout vec3 vL; out vec3 vSize; out float vE, vH, vDist, vFall, vRub, vBase, vKick;\nfloat spec(float band, float lag) {\n  float m = clamp(lag / uDt, 0., 62.), i = floor(m);\n  float a = texelFetch(uSpec, ivec2(int(band), int(i)), 0).r, b = texelFetch(uSpec, ivec2(int(band), int(i) + 1), 0).r;\n  return mix(a, b, m - i);\n}\nvoid main() {\n  float r = length(aP.xy), lag = r / uSpeed;\n  float tc = uExeT > 0. ? uExeT + r / uWave + aH * .05 : 1e9, tau = uT - tc;\n  // standing: the live spectrum (as in c1); once hit, the height it had when the wave arrived\n  float e = spec(aP.w, lag + max(tau, 0.));\n  float h = max(.02, aP.z * (.3 + 1.25 * e));\n  float k = sqrt(1.5 * uG / h), w0 = uW0 * (1. - .6 * clamp(r / 5.2, 0., 1.));\n  float th = tau > 0. ? min(1.5708, w0 / k * sinh(min(k * tau, 12.))) : 0.;\n  float tLand = log(1.5708 * k / w0 + sqrt(pow(1.5708 * k / w0, 2.) + 1.)) / k;   // asinh\n  vec3 p = position;                                                  // unit box, y in [0, 1]\n  vec3 w = vec3(p.x * uFoot, p.y * h, p.z * uFoot);\n  // tip outward about the outer edge of the footing, in the vertical plane through the centre\n  vec2 dir = r > .05 ? aP.xy / r : vec2(cos(aH * 37.7), sin(aH * 37.7));\n  vec2 pv = dir * uFoot * .5, q = w.xz - pv;\n  float u = dot(q, dir), c = cos(th), s = sin(th);\n  vec2 perp = q - dir * u;\n  float u2 = u * c + w.y * s, y2 = -u * s + w.y * c;\n  w.xz = pv + dir * u2 + perp + aP.xy; w.y = y2;\n  float fell = th / 1.5708;\n  vL = p; vSize = vec3(uFoot, h, uFoot); vE = tau > 0. ? e * exp(-tau * 7.) * (1. - fell) : e; vH = h;   // once hit, its light goes out\n  vFall = fell; vRub = tau > tLand ? tau - tLand : -1.; vBase = aP.z;\n  vKick = tau > 0. ? exp(-tau * 30.) : 0.;\n  vec4 mv = modelViewMatrix * vec4(w, 1.); vDist = -mv.z;\n  gl_Position = projectionMatrix * mv;\n}",
 nK="\nuniform vec3 uCold, uWarm, uHot, uEmber; uniform float uGain, uEdge, uFace, uFog;\nin vec3 vL; in vec3 vSize; in float vE, vH, vDist, vFall, vRub, vBase, vKick; out vec4 o;\nuniform float uKick;\nvoid main() {\n  if (vBase <= 0.) discard;\n  vec3 q = vec3((.5 - abs(vL.x)) * vSize.x, min(vL.y, 1. - vL.y) * vSize.y, (.5 - abs(vL.z)) * vSize.z);\n  float onSide = step(abs(abs(vL.x) - .5), 1e-3) + step(abs(abs(vL.z) - .5), 1e-3);\n  float d = onSide > .5 ? min(abs(vL.x) > .499 ? q.z : q.x, q.y) : min(q.x, q.z);\n  float px = fwidth(d);\n  float edge = 1. - smoothstep(.0, px * 1.4, d);\n  float top = step(.999, vL.y);\n  float heat = clamp(vE * 1.2, 0., 1.);\n  vec3 c = mix(uCold, uWarm, smoothstep(.45, 1., heat) * (.55 + .45 * vL.y));\n  vec3 col = c * uFace * (.25 + .75 * vL.y) * (1. + heat)\n           + mix(c, uHot, top * heat) * edge * uEdge * (.35 + .65 * vL.y + top * .6)\n           + mix(uWarm, uHot, heat) * top * (.08 + .5 * heat) * uFace * 4.;\n  // falling: the column's edges burn a little hotter; once down, the footprint cools from ember to ash\n  col += uHot * edge * uEdge * .5 * vFall * (1. - vFall);\n  // the charge: as the wave reaches a pillar its edges and cap flash white-hot for a few frames\n  col += uHot * (edge * .9 + top * .8 + .04) * vKick * uKick;                // the blast front: a hot red ring\n  if (vRub >= 0.) col = uEmber * (edge * .45 + .015) * (.25 + .75 * exp(-vRub * 2.2)) + c * edge * uEdge * .08;\n  o = vec4(col * uGain * exp(-vDist * uFog), 1.);\n}",
-Vk=class{
+qk=class{
 static{
 c(this,
 "City")}
@@ -85642,10 +85643,10 @@ value:.018}
 uKick:{
 value:2.5}
 ,
-uCold:pn(),
-uWarm:pn(),
-uHot:pn(),
-uEmber:pn()}
+uCold:mn(),
+uWarm:mn(),
+uHot:mn(),
+uEmber:mn()}
 }
 ),
 this.mesh=new tt(t,
@@ -85667,8 +85668,8 @@ value:Yi.wave}
 uG:{
 value:Yi.g}
 ,
-uDustCol:pn(),
-uAshCol:pn()}
+uDustCol:mn(),
+uAshCol:mn()}
 ,
 glsl:"\nuniform sampler2D uPil; uniform float uExeT, uWave, uG; uniform vec3 uDustCol, uAshCol;\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  float k = mod(i, 1600.);\n  vec4 P = texelFetch(uPil, ivec2(int(mod(k, 40.)), int(floor(k / 40.))), 0);   // x, z, base, hash\n  sz = .6 + .8 * hash11(i * 1.9);\n  if (P.z <= 0.) { col = vec3(0.); pos = vec3(0.); return; }\n  float tc = uExeT + length(P.xy) / uWave + P.w * .05 + hash11(i * .37) * .25;\n  float tau = uT - tc;\n  if (tau <= 0.) { col = vec3(0.); pos = vec3(0.); return; }\n  vec3 h = hash31(i * .713 + 3.1);\n  // an implosion: the column is crushed at its footing, so the dust leaves low and rolls outward, rising a little\n  float y0 = .02 + .25 * h.x * h.x;\n  float a = h.y * 6.2832, sp = .35 + 1.1 * h.z;\n  vec3 v = vec3(cos(a) * sp, .15 + .55 * hash11(i * 2.7), sin(a) * sp);\n  float drag = 2.2, e = (1. - exp(-drag * tau)) / drag;               // velocity decays: x(τ) = v (1 − e^−kτ) / k\n  pos = vec3(P.x, 0., P.y) + vec3(v.x * e, y0 + v.y * e - .12 * tau * tau, v.z * e);\n  pos.y = max(pos.y, .004);\n  float heat = exp(-tau * 1.8);\n  col = mix(uAshCol, uDustCol, heat) * (tau < .08 ? tau / .08 : 1.);\n}"}
 );
@@ -85733,14 +85734,14 @@ n),
 this.dust.points}
 }
 ;
-function qk(e,
+function jk(e,
 t){
 if(e<t)return Zh.filter(i=>i.base>0).length;
 let n=0;
 for(let i of Zh)i.base>0&&e<t+JZ(i)+eK(i.base*.9,
 $Z(i))&&n++;
 return n}
-c(qk,
+c(jk,
 "standing");
 var Kn={
 cols:48,
@@ -85750,9 +85751,9 @@ h:9,
 px:48}
 ,
 iK="\nout vec2 vUv; out float vDist;\nvoid main() { vUv = uv; vec4 mv = modelViewMatrix * vec4(position, 1.); vDist = -mv.z; gl_Position = projectionMatrix * mv; }",
-jk="\nuniform float uT, uErrT, uErrW, uGain, uFocus, uAperture, uFocal, uMaxBlur, uHole, uAsp, uKick, uWordOn;\nuniform sampler2D uWord; uniform vec4 uWordR; uniform vec3 uWordCol, uWordHot;\nuniform vec3 uFill, uEdge, uFrame, uErr, uLost, uFront, uWait;\nuniform vec4 uHoleR;\nin vec2 vUv; in float vDist; out vec4 o;\nuniform vec2 GRID;\n// progress of a bar and how far its failure has gone (0 = running at 99 %, 1 = failed); hash keys as c1's wall:\n// (column, row + K), whole numbers, so failedCount counts the same bars on the CPU\nfloat progressOf(vec2 id, out float fail, out float pe, out float kick) {\n  float wave = length(((id + .5) / GRID - .5) * vec2(uAsp, 1.)) * uErrW;   // distance on the wall (units of its height)\n  float te = uErrT + wave + hash12(id + vec2(0., 6000.)) * .04;\n  fail = uErrT > 0. ? clamp((uT - te) / .1, 0., 1.) : 0.;\n  kick = uErrT > 0. && uT > te ? exp(-(uT - te) * 38.) : 0.;\n  pe = .15 + .7 * hash12(id + vec2(0., 4000.));\n  float run = clamp((uT - te - .02) / .22, 0., 1.); run = run * run * (3. - 2. * run);\n  return mix(.99, pe, run);\n}\nvec3 wallAt(vec2 uv, vec2 fw) {\n  vec2 g = uv * GRID, id = floor(g), f = fract(g), fc = max(fw * GRID, 1e-5);\n  vec2 lo = vec2(.06, .3), hi = vec2(.94, .7), sz = hi - lo;\n  vec2 d = min(f - lo, hi - f);\n  float inside = clamp(d.x / fc.x + .5, 0., 1.) * clamp(d.y / fc.y + .5, 0., 1.);\n  if (inside <= 0.) return vec3(0.);\n  float border = min(d.x / fc.x, d.y / fc.y);\n  float frame = inside * (1. - clamp(border - .6, 0., 1.));\n  vec2 b = (f - lo) / sz;\n  float fail, pe, kick, p = progressOf(id, fail, pe, kick);\n  float footX = fc.x / sz.x, pxFoot = footX * 48.;\n  float smoothFill = clamp((p - b.x) / footX + .5, 0., 1.);\n  float q = floor(b.x * 48.), quant = clamp(p * 48. - q, 0., 1.);\n  float fill = mix(quant, smoothFill, clamp(pxFoot * 2. - .5, 0., 1.));\n  vec2 pf = fract(b * vec2(48., 4.)), pd = min(pf, 1. - pf);\n  float gaps = mix(smoothstep(.04, .14, min(pd.x, pd.y)), 1., clamp(pxFoot * 4. - .6, 0., 1.));\n  // lost progress: between where the thread died and 99 %, a dim diagonal hatch\n  float lostK = fail * clamp((b.x - p) / footX + .5, 0., 1.) * clamp((.99 - b.x) / footX + .5, 0., 1.);\n  float hatch = mix(step(.5, fract((b.x * 48. + b.y * 4.) * .5)), .5, clamp(pxFoot * 3. - .8, 0., 1.));\n  vec3 fillCol = mix(uFill, uErr, fail);\n  vec3 col = fillCol * fill * gaps * (.8 + .2 * b.y) + uLost * lostK * hatch;\n  // still running: the last pixel waits (a slow cursor, local and dim), as in c1\n  float last = step(47., q) * (1. - fill) * (1. - fail);\n  col += uWait * last * gaps * (.35 + .35 * step(.5, fract(uT * 2. + hash12(id + vec2(0., 5000.)))));\n  col += mix(uFrame, uErr, fail) * frame;\n  col += uFront * kick * uKick * (fill * .35 + frame * .8 + .04);          // each thread flashes as it dies\n  // EXECUTION written with the wall's own pixels: 48 × 4 px per bar, so the word has 2304 × 384 \"LEDs\"\n  if (uWordOn > 0.) {\n    vec2 wq = (uv - uWordR.xy) / uWordR.zw;\n    if (all(greaterThanEqual(wq, vec2(0.))) && all(lessThanEqual(wq, vec2(1.)))) {\n      float m = texture(uWord, wq).r * gaps;\n      float age = max(uT - uErrT, 0.), hot = exp(-age * 6.);\n      col = mix(col, (mix(uWordCol, uWordHot, hot)) * (.8 + .2 * b.y), m * uWordOn);\n    }\n  }\n  return col * inside;\n}\nvoid main() {\n  vec2 fw = fwidth(vUv);\n  float coc = uAperture > 0. ? min(uAperture * abs(vDist - uFocus) / max(vDist, 1e-3) * uFocal, uMaxBlur) : 0.;\n  vec3 col;\n  if (coc < .75) col = wallAt(vUv, fw);\n  else {\n    col = vec3(0.);\n    for (int k = 0; k < 12; k++) {\n      float r = sqrt((float(k) + .5) / 12.) * coc, a = float(k) * 2.39996;\n      col += wallAt(vUv + vec2(cos(a), sin(a)) * r * fw, fw * (1. + r * .5));\n    }\n    col /= 12.;\n  }\n  // the wave front: a thin ring at the radius the failure has reached (in bar-grid units, as the wave is)\n  if (uErrT > 0.) {\n    float R = (uT - uErrT) / uErrW, rr = length((vUv - .5) * vec2(uAsp, 1.));\n    float w = max(fwidth(rr) * 1.5, .003);\n    col += uFront * .6 * exp(-pow((rr - R) / w, 2.)) * clamp(1. - R * .9, 0., 1.) * step(0., R);\n  }\n  // a darker rectangle behind a hero word (design-space rect in uv)\n  if (uHole > 0.) {\n    vec2 hq = abs(vUv - uHoleR.xy) / uHoleR.zw;\n    col *= 1. - uHole * (1. - smoothstep(.75, 1., max(hq.x, hq.y)));\n  }\n  o = vec4(col * uGain, 1.);\n}",
+Xk="\nuniform float uT, uErrT, uErrW, uGain, uFocus, uAperture, uFocal, uMaxBlur, uHole, uAsp, uKick, uWordOn;\nuniform sampler2D uWord; uniform vec4 uWordR; uniform vec3 uWordCol, uWordHot;\nuniform vec3 uFill, uEdge, uFrame, uErr, uLost, uFront, uWait;\nuniform vec4 uHoleR;\nin vec2 vUv; in float vDist; out vec4 o;\nuniform vec2 GRID;\n// progress of a bar and how far its failure has gone (0 = running at 99 %, 1 = failed); hash keys as c1's wall:\n// (column, row + K), whole numbers, so failedCount counts the same bars on the CPU\nfloat progressOf(vec2 id, out float fail, out float pe, out float kick) {\n  float wave = length(((id + .5) / GRID - .5) * vec2(uAsp, 1.)) * uErrW;   // distance on the wall (units of its height)\n  float te = uErrT + wave + hash12(id + vec2(0., 6000.)) * .04;\n  fail = uErrT > 0. ? clamp((uT - te) / .1, 0., 1.) : 0.;\n  kick = uErrT > 0. && uT > te ? exp(-(uT - te) * 38.) : 0.;\n  pe = .15 + .7 * hash12(id + vec2(0., 4000.));\n  float run = clamp((uT - te - .02) / .22, 0., 1.); run = run * run * (3. - 2. * run);\n  return mix(.99, pe, run);\n}\nvec3 wallAt(vec2 uv, vec2 fw) {\n  vec2 g = uv * GRID, id = floor(g), f = fract(g), fc = max(fw * GRID, 1e-5);\n  vec2 lo = vec2(.06, .3), hi = vec2(.94, .7), sz = hi - lo;\n  vec2 d = min(f - lo, hi - f);\n  float inside = clamp(d.x / fc.x + .5, 0., 1.) * clamp(d.y / fc.y + .5, 0., 1.);\n  if (inside <= 0.) return vec3(0.);\n  float border = min(d.x / fc.x, d.y / fc.y);\n  float frame = inside * (1. - clamp(border - .6, 0., 1.));\n  vec2 b = (f - lo) / sz;\n  float fail, pe, kick, p = progressOf(id, fail, pe, kick);\n  float footX = fc.x / sz.x, pxFoot = footX * 48.;\n  float smoothFill = clamp((p - b.x) / footX + .5, 0., 1.);\n  float q = floor(b.x * 48.), quant = clamp(p * 48. - q, 0., 1.);\n  float fill = mix(quant, smoothFill, clamp(pxFoot * 2. - .5, 0., 1.));\n  vec2 pf = fract(b * vec2(48., 4.)), pd = min(pf, 1. - pf);\n  float gaps = mix(smoothstep(.04, .14, min(pd.x, pd.y)), 1., clamp(pxFoot * 4. - .6, 0., 1.));\n  // lost progress: between where the thread died and 99 %, a dim diagonal hatch\n  float lostK = fail * clamp((b.x - p) / footX + .5, 0., 1.) * clamp((.99 - b.x) / footX + .5, 0., 1.);\n  float hatch = mix(step(.5, fract((b.x * 48. + b.y * 4.) * .5)), .5, clamp(pxFoot * 3. - .8, 0., 1.));\n  vec3 fillCol = mix(uFill, uErr, fail);\n  vec3 col = fillCol * fill * gaps * (.8 + .2 * b.y) + uLost * lostK * hatch;\n  // still running: the last pixel waits (a slow cursor, local and dim), as in c1\n  float last = step(47., q) * (1. - fill) * (1. - fail);\n  col += uWait * last * gaps * (.35 + .35 * step(.5, fract(uT * 2. + hash12(id + vec2(0., 5000.)))));\n  col += mix(uFrame, uErr, fail) * frame;\n  col += uFront * kick * uKick * (fill * .35 + frame * .8 + .04);          // each thread flashes as it dies\n  // EXECUTION written with the wall's own pixels: 48 × 4 px per bar, so the word has 2304 × 384 \"LEDs\"\n  if (uWordOn > 0.) {\n    vec2 wq = (uv - uWordR.xy) / uWordR.zw;\n    if (all(greaterThanEqual(wq, vec2(0.))) && all(lessThanEqual(wq, vec2(1.)))) {\n      float m = texture(uWord, wq).r * gaps;\n      float age = max(uT - uErrT, 0.), hot = exp(-age * 6.);\n      col = mix(col, (mix(uWordCol, uWordHot, hot)) * (.8 + .2 * b.y), m * uWordOn);\n    }\n  }\n  return col * inside;\n}\nvoid main() {\n  vec2 fw = fwidth(vUv);\n  float coc = uAperture > 0. ? min(uAperture * abs(vDist - uFocus) / max(vDist, 1e-3) * uFocal, uMaxBlur) : 0.;\n  vec3 col;\n  if (coc < .75) col = wallAt(vUv, fw);\n  else {\n    col = vec3(0.);\n    for (int k = 0; k < 12; k++) {\n      float r = sqrt((float(k) + .5) / 12.) * coc, a = float(k) * 2.39996;\n      col += wallAt(vUv + vec2(cos(a), sin(a)) * r * fw, fw * (1. + r * .5));\n    }\n    col /= 12.;\n  }\n  // the wave front: a thin ring at the radius the failure has reached (in bar-grid units, as the wave is)\n  if (uErrT > 0.) {\n    float R = (uT - uErrT) / uErrW, rr = length((vUv - .5) * vec2(uAsp, 1.));\n    float w = max(fwidth(rr) * 1.5, .003);\n    col += uFront * .6 * exp(-pow((rr - R) / w, 2.)) * clamp(1. - R * .9, 0., 1.) * step(0., R);\n  }\n  // a darker rectangle behind a hero word (design-space rect in uv)\n  if (uHole > 0.) {\n    vec2 hq = abs(vUv - uHoleR.xy) / uHoleR.zw;\n    col *= 1. - uHole * (1. - smoothstep(.75, 1., max(hq.x, hq.y)));\n  }\n  o = vec4(col * uGain, 1.);\n}",
 rK=(()=>{
-let e=jk,
+let e=Xk,
 t=c((n,
 i)=>{
 if(!e.includes(n))throw new Error("wall.js KEEP_FRAG: '".concat(n,
@@ -85784,11 +85785,11 @@ let t=c(()=>({
 value:new B}
 ),
 "v3"),
-n=new tt(new _n(Kn.w,
+n=new tt(new Sn(Kn.w,
 Kn.h),
 qe({
 vertex:iK,
-fragment:e.keep?rK:jk,
+fragment:e.keep?rK:Xk,
 transparent:!0,
 depthWrite:!1,
 blending:2,
@@ -85943,16 +85944,16 @@ o+6e3)*.04&&i++;
 return i}
 c(OM,
 "failedCount");
-function Xk(e,
+function Yk(e,
 t){
 let n=Kn.w/Kn.cols,
 i=Kn.h/Kn.rows;
 return[-Kn.w/2+(e+.5)*n,
 Kn.h/2-(t+.5)*i,
 0]}
-c(Xk,
+c(Yk,
 "barPos");
-function Yk(e,
+function Qk(e,
 t,
 n){
 let i=[],
@@ -85972,7 +85973,7 @@ i.push([a[0]+(s[0]-a[0])*h,
 a[1]+(s[1]-a[1])*h])}
 }
 return i}
-c(Yk,
+c(Qk,
 "clipHalf");
 function oK(e,
 t){
@@ -85982,7 +85983,7 @@ i<t.length&&n.length;
 i++){
 let r=t[i],
 o=t[(i+1)%t.length];
-n=Yk(n,
+n=Qk(n,
 r,
 [o[1]-r[1],
 -(o[0]-r[0])])}
@@ -86030,7 +86031,7 @@ let i=[[-4,
 4]];
 return e.forEach((r,
 o)=>{
-o!==n&&(i=Yk(i,
+o!==n&&(i=Qk(i,
 [(t[0]+r[0])/2,
 (t[1]+r[1])/2],
 [r[0]-t[0],
@@ -86142,7 +86143,7 @@ c(hK,
 "particleData");
 var fK="\nuniform sampler2D uA, uCells;\nuniform float uS, uNC, uSize, uFocal, uMinPx, uBright, uOrtho, uFocus, uAperture, uMaxBlur, uT, uHoles, uFloor;\nuniform vec3 uColA, uColB, uEmber, uAsh;\nout vec3 vCol; out float vBlur;\nvec3 qrot(vec4 q, vec3 v) { return v + 2. * cross(q.xyz, cross(q.xyz, v) + q.w * v); }\nvec4 cellTex(float c, float k) { return texture(uCells, vec2((k + .5) / 4., (c + .5) / uNC)); }\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 uv = (vec2(mod(i, uS), floor(i / uS)) + .5) / uS;\n  vec4 a = texture(uA, uv);\n  float c = a.w, h = hash11(i * .7071 + 1.3);\n  vec4 C0 = cellTex(c, 0.), C1 = cellTex(c, 1.), Q = cellTex(c, 2.), C3 = cellTex(c, 3.);\n  // C0: seed.xy, centroid.xy; C1: translation.xyz, present; Q: rotation about the seed; C3: bright, burst, heat, scale\n  vec3 rel = vec3((a.xy - C0.xy) * C3.w, 0.);\n  vec3 p = qrot(Q, rel) + vec3(C0.xy, 0.) + C1.xyz;\n  float burst = C3.y, fade = 1.;\n  if (burst > 0.) {                                   // EXECUTION: the particles leave the centroid, with drag\n    vec3 d = normalize(vec3(a.xy - C0.zw, 0.) * 2.5 + (hash31(i * 1.37) - .5) * vec3(1., 1., 2.2));\n    float sp = .25 + .9 * hash11(i * 2.9);\n    p += d * sp * (1. - exp(-burst * 3.2)) * .8 + vec3(0., -.5, 0.) * burst * burst;   // thrown out, then falling as ash\n    fade = exp(-burst * (1.8 + 2.2 * hash11(i * 5.3))) * step(.35, hash11(i * 8.1));   // two thirds become embers, the rest go at once\n  }\n  p.y = max(p.y, uFloor + .003 * h);\n  vec4 mv = modelViewMatrix * vec4(p, 1.);\n  gl_Position = projectionMatrix * mv;\n  float dist = max(-mv.z, 1e-3), persp = uOrtho > .5 ? 1. : 1. / dist;\n  float px = uSize * uFocal * persp, core = max(px, uMinPx);\n  float blur = uAperture > 0. ? min(uAperture * abs(dist - uFocus) * persp * uFocal, uMaxBlur) : 0.;\n  float sz = core + blur;\n  gl_PointSize = sz;\n  vBlur = blur / sz;\n  float vis = C1.w * step(uHoles, hash11(i * .913 + .37));\n  float energy = vis * min(1., px * px / (uMinPx * uMinPx)) * core * core / (sz * sz);\n  float rim = smoothstep(.9, .95, length(a.xy));\n  vec3 base = mix(mix(uColA, uColB, hash11(i * 3.7) * .7), uColA * 1.15, rim);\n  float heat = C3.z;                                  // 0 = you, 1 = ember, 2 = ash\n  vec3 col = heat < 1. ? mix(base, uEmber, heat) : mix(uEmber, uAsh, heat - 1.);\n  if (burst > 0.) col += vec3(1., .82, .7) * exp(-burst * 16.) * 1.6;   // each piece flashes as it is executed\n  vCol = col * uBright * C3.x * fade * energy * (.55 + .9 * hash11(i * 1.31));\n  if (vis <= 0. || C3.x * fade <= 1e-4) { gl_PointSize = 0.; gl_Position = vec4(2., 2., 2., 1.); }\n}",
 dK="\nin vec3 vCol; in float vBlur; out vec4 o;\nvoid main() {\n  float r = length(gl_PointCoord - .5) * 2.;\n  float gauss = exp(-r * r * 4.) * (1. - smoothstep(.8, 1., r));\n  float disc = (1. - smoothstep(.86, 1., r)) * (.7 + .3 * smoothstep(.55, .95, r)) * .42;\n  o = vec4(vCol * mix(gauss, disc, smoothstep(0., .6, vBlur)), 1.);\n}",
-Qk=class{
+Zk=class{
 static{
 c(this,
 "Shards")}
@@ -86150,7 +86151,7 @@ constructor(){
 let e=hK(),
 t=147456;
 this.cellData=new Float32Array(576),
-this.cellTex=an(this.cellData,
+this.cellTex=sn(this.cellData,
 4,
 36);
 let n=new It;
@@ -86171,7 +86172,7 @@ depthWrite:!1,
 blending:2,
 uniforms:{
 uA:{
-value:an(e,
+value:sn(e,
 384,
 384)}
 ,
@@ -86257,7 +86258,7 @@ this.points.visible=!0,
 this}
 }
 ,
-k3=c((e,
+L3=c((e,
 t)=>{
 let n=Math.hypot(...e)||1,
 i=Math.sin(t/2);
@@ -86287,7 +86288,7 @@ t[1]+2*(r*a[0]-n*a[2]),
 t[2]+2*(n*a[1]-i*a[0])]}
 ,
 "qRot");
-function Zk(e,
+function Kk(e,
 t,
 n){
 let i=e[0]*t[0]+e[1]*t[1]+e[2]*t[2]+e[3]*t[3],
@@ -86305,13 +86306,13 @@ s=Math.sin((1-n)*o)/a,
 l=Math.sin(n*o)/a;
 return e.map((u,
 h)=>u*s+r[h]*l)}
-c(Zk,
+c(Kk,
 "qSlerp");
 var GM=[0,
 0,
 0,
 1];
-var Kk=[[.5590713246419909,
+var Jk=[[.5590713246419909,
 .28087659576885926,
 .02731614332878962,
 .7351881089689414,
@@ -86887,7 +86888,7 @@ HM=[[2596,
 -.3174891491726157,
 -.2936393943709845,
 1]],
-Jk=[[.6311469546126318,
+$k=[[.6311469546126318,
 .3855381202213266,
 .26643356677413976],
 [.1845330755240866,
@@ -87016,7 +87017,7 @@ tilt:Math.cos(2*Math.PI/180),
 v:.03,
 w:.3}
 ,
-$k=[0,
+eL=[0,
 1,
 0],
 $h=c((e,
@@ -87055,13 +87056,13 @@ return[[1-2*(t*t+n*n),
 1-2*(e*e+t*t)]]}
 c(qM,
 "rot");
-var eL=c((e,
+var tL=c((e,
 t)=>[e[3]*t[0]+e[0]*t[3]+e[1]*t[2]-e[2]*t[1],
 e[3]*t[1]-e[0]*t[2]+e[1]*t[3]+e[2]*t[0],
 e[3]*t[2]+e[0]*t[1]-e[1]*t[0]+e[2]*t[3],
 e[3]*t[3]-e[0]*t[0]-e[1]*t[1]-e[2]*t[2]],
 "qmul"),
-L3=c(e=>{
+F3=c(e=>{
 let t=Math.hypot(...e);
 return e.map(n=>n/t)}
 ,
@@ -87073,7 +87074,7 @@ Jh(t,
 jM(e,
 n))),
 "iw");
-function tL(e){
+function nL(e){
 let t=e.length,
 n=0,
 i=0,
@@ -87136,9 +87137,9 @@ a/u,
 0,
 1/(o+a)]]}
 }
-c(tL,
+c(nL,
 "plate");
-function nL(e,
+function iL(e,
 t,
 {
 r:n=.93,
@@ -87156,7 +87157,7 @@ h,
 f,
 d,
 p,
-m]=Kk[e],
+m]=Jk[e],
 g=i+(r-i)*o,
 w=a<.5?-1:1,
 v=[.07*t[0]/n+.04*(s-.5),
@@ -87173,9 +87174,9 @@ f,
 d].map(b=>b*y),
 e:.2+.1*m}
 }
-c(nL,
+c(iL,
 "launch");
-function iL(e,
+function rL(e,
 t,
 n,
 {
@@ -87208,7 +87209,7 @@ b=e.m,
 x=e.verts.length,
 M=t.x.slice(),
 T=n.v.slice(),
-S=L3(t.q),
+S=F3(t.q),
 E=qM(S),
 L=Jh(E,
 Jh(e.I,
@@ -87252,11 +87253,11 @@ Mt=T[1]+Qs(De,
 xe)[1];
 we[ze]=F==null&&Mt<-l?Math.min(-n.e*Mt,
 u):0,
-ie[ze]=1/b+$h($k,
+ie[ze]=1/b+$h(eL,
 Qs(s1(E,
 e.Iinv,
 Qs(xe,
-$k)),
+eL)),
 xe)),
 le[ze]=0,
 ge[2*ze]=ge[2*ze+1]=0}
@@ -87325,18 +87326,18 @@ Mt)),
 At=ge[2*xe]-mt[0]*st/vt,
 W=ge[2*xe+1]-mt[2]*st/vt,
 Hn=s*le[xe],
-en=Math.hypot(At,
+tn=Math.hypot(At,
 W);
-en>Hn&&(At*=Hn/en,
-W*=Hn/en);
-let hn=At-ge[2*xe],
+tn>Hn&&(At*=Hn/tn,
+W*=Hn/tn);
+let fn=At-ge[2*xe],
 z=W-ge[2*xe+1];
 ge[2*xe]=At,
 ge[2*xe+1]=W,
-T[0]+=hn/b,
+T[0]+=fn/b,
 T[2]+=z/b;
 let k=Qs(Mt,
-[hn,
+[fn,
 0,
 z]);
 L=[L[0]+k[0],
@@ -87369,12 +87370,12 @@ T[2]*=Oe}
 M[0]+=T[0]*o,
 M[2]+=T[2]*o,
 M[1]+=(T[1]+(Ut.length?0:WM*o/2))*o;
-let ke=eL([De[0],
+let ke=tL([De[0],
 De[1],
 De[2],
 0],
 S);
-S=L3(S.map((ze,
+S=F3(S.map((ze,
 xe)=>ze+ke[xe]*o/2)),
 E=qM(S);
 let Le=1/0;
@@ -87397,7 +87398,7 @@ if(xe>1e-12){
 let Mt=Math.atan2(xe,
 Math.abs(at)),
 Ae=Math.sin(Mt/2)/xe;
-S=L3(eL([ze[0]*Ae,
+S=F3(tL([ze[0]*Ae,
 ze[1]*Ae,
 ze[2]*Ae,
 Math.cos(Mt/2)],
@@ -87421,9 +87422,9 @@ hitV:N,
 flat:O,
 rest:U}
 }
-c(iL,
+c(rL,
 "simulate");
-function rL(e,
+function oL(e,
 t){
 let n=Math.max(0,
 t)/e.dt,
@@ -87447,19 +87448,19 @@ r*4+4),
 u=s[0]*l[0]+s[1]*l[1]+s[2]*l[2]+s[3]*l[3]<0?-1:1;
 return{
 x:a,
-q:L3([0,
+q:F3([0,
 1,
 2,
 3].map(h=>s[h]+(u*l[h]-s[h])*o))}
 }
-c(rL,
+c(oL,
 "sampleAt");
 var kl={
 S0:6,
 C:17}
 ,
 wK="\nuniform mat4 uCamWorld, uProjInv; uniform vec3 uCamPos;\nuniform float uS, uC, uPixAng, uFog, uFog0, uGridAll, uGain, uGlass, uEdgeGain, uFocus, uAperture, uStrain, uOnlyCentre, uNear, uEdgeW;\nuniform vec3 uGlassCol, uEdgeCol;\nin vec2 vUv; out vec4 o;\nfloat lineW(float d, float hw, float foot, float b) { float w = max(max(hw, foot * .6), b); return exp(-d * d / (w * w)) * min(1., hw / w); }\nfloat grid(float x, float s, float hw, float foot, float b) { float d = abs(fract(x / s + .5) - .5) * s; return lineW(d, hw, foot, b); }\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rd = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz), ro = uCamPos;\n  vec3 col = vec3(0.);\n  float S = uS;\n  for (int ax = 0; ax < 3; ax++) {\n    float d = rd[ax];\n    if (abs(d) < 1e-4) continue;\n    int a1 = ax == 0 ? 1 : 0, a2 = ax == 2 ? 1 : 2;\n    for (int sd = 0; sd < 2; sd++) {\n      float side = sd == 0 ? -1. : 1.;\n      float u0 = (ro[ax] - side * S) / uC;\n      float k = d > 0. ? ceil(u0) : floor(u0), stp = d > 0. ? 1. : -1.;\n      for (int n = 0; n < 12; n++) {\n        float t = uC * (k - u0) / d;\n        k += stp;\n        if (t < .02) continue;\n        float fog = exp(-max(0., t - uFog0) * uFog);\n        if (fog < .006) break;\n        if (uNear > 0.) fog *= smoothstep(uNear * .35, uNear, t);          // no cell edges right in front of the lens\n        vec3 p = ro + rd * t;\n        vec3 id; id[ax] = k - stp; id[a1] = floor(p[a1] / uC + .5); id[a2] = floor(p[a2] / uC + .5);\n        float centre = step(dot(id, id), .5);\n        if (uOnlyCentre > .5 && centre < .5) continue;\n        vec3 l = p - id * uC;\n        vec2 f = vec2(l[a1], l[a2]);\n        if (abs(f.x) > S + .1 || abs(f.y) > S + .1) continue;\n        float graze = max(abs(d), .08), foot = t * uPixAng / graze;\n        float b = uAperture > 0. ? uAperture * abs(t - uFocus) : 0.;\n        float fres = .3 + .7 * pow(1. - abs(d), 4.);\n        float near = max(centre, smoothstep(.012, .004, foot) * uGridAll);\n        float g = ((grid(f.x, .5, .004, foot, b) + grid(f.y, .5, .004, foot, b)) * .45 * smoothstep(.02, .006, foot)\n                + (grid(f.x, 2., .007, foot, b) + grid(f.y, 2., .007, foot, b)) * smoothstep(.06, .015, foot)) * near + .012 + min(uStrain, 5.) * .004 * centre;\n        float e = S - max(abs(f.x), abs(f.y)), edge = lineW(e, uEdgeW, foot, b);\n        col += fog * (uGlassCol * uGlass * fres * g + uEdgeCol * uEdgeGain * edge);\n      }\n    }\n  }\n  o = vec4(col * uGain, 1.);\n}";
-function oL(){
+function aL(){
 let e=c(()=>({
 value:new B}
 ),
@@ -87521,9 +87522,9 @@ value:.03}
 uGlassCol:e(),
 uEdgeCol:e()}
 )}
-c(oL,
+c(aL,
 "makeArray");
-function aL(e,
+function sL(e,
 t,
 n,
 i){
@@ -87548,7 +87549,7 @@ r.uNear.value=i.near??0,
 r.uEdgeW.value=i.edgeW??.03,
 r.uGlassCol.value.set(...i.glass),
 r.uEdgeCol.value.set(...i.edge)}
-c(aL,
+c(sL,
 "setArray");
 function XM(e,
 t,
@@ -87615,7 +87616,7 @@ width:i}
 c(XM,
 "boxEdges");
 var YM=new Map;
-function F3(e,
+function I3(e,
 {
 W:t=1024,
 H:n=192,
@@ -87630,7 +87631,7 @@ let o="".concat(e,
 "|").concat(i,
 "|").concat(r);
 if(YM.has(o))return YM.get(o);
-let a=Fn();
+let a=In();
 a.width=t,
 a.height=n;
 let s=a.getContext("2d",
@@ -87679,7 +87680,7 @@ flipY:!0,
 colorSpace:"",
 generateMipmaps:!0,
 minFilter:ho,
-magFilter:On}
+magFilter:Nn}
 );
 let m={
 tex:p,
@@ -87689,9 +87690,9 @@ aspect:t/n}
 return YM.set(o,
 m),
 m}
-c(F3,
+c(I3,
 "wordMask");
-var sL='// reconstructed from 29 of 36 fragments · confidence 0.31\nyou.smile = interpolate(frag[12], frag[19]);   // not in context\nyou.voice = "warm";                              // inferred\nyou.name  = you.name ?? guess();\nyou.eyes  = mean(frag.map(f => f.hue));\nyou.stays = true;                                // unverified\nreturn you;                                      // hallucinated\n'.repeat(6),
+var lL='// reconstructed from 29 of 36 fragments · confidence 0.31\nyou.smile = interpolate(frag[12], frag[19]);   // not in context\nyou.voice = "warm";                              // inferred\nyou.name  = you.name ?? guess();\nyou.eyes  = mean(frag.map(f => f.hue));\nyou.stays = true;                                // unverified\nreturn you;                                      // hallucinated\n'.repeat(6),
 QM=[["EX",
 39814],
 ["EC",
@@ -87700,23 +87701,23 @@ QM=[["EX",
 52],
 ["TION",
 7413]];
-var Zp=ca.c3,
-AK=Zp.deep,
-K3=Zp.cold,
-J3=Zp.hot,
-ML=[1,
+var Jp=ca.c3,
+AK=Jp.deep,
+J3=Jp.cold,
+$3=Jp.hot,
+xL=[1,
 .3,
 .12],
-xL=[.075,
+_L=[.075,
 .05,
 .045],
-_L=[1.6,
+SL=[1.6,
 1.05,
 .9],
 Dl=H.you,
 lx=H.rose,
 Lu=H.me,
-lL=H.you,
+uL=H.you,
 Ft={
 red:"#ff4a3d",
 soft:"#ff8f80",
@@ -87725,10 +87726,10 @@ warm:P.you,
 me:P.me,
 white:"#ffe4de"}
 ,
-un=c((e,
+cn=c((e,
 t)=>e.map(n=>n*t),
 "scl"),
-Yp={
+Zp={
 deep:[.35,
 .03,
 .02],
@@ -87756,7 +87757,7 @@ ember:[.8,
 .05]}
 ,
 Pu={
-...Zp,
+...Jp,
 white:[.75,
 .32,
 .26],
@@ -87770,7 +87771,7 @@ hot:[1,
 .5,
 .3]}
 ,
-uL={
+cL={
 fill:[.2,
 .028,
 .014],
@@ -87793,18 +87794,18 @@ wait:[.45,
 .08,
 .04]}
 ,
-I3=.6,
-SL=-1.3,
+D3=.6,
+TL=-1.3,
 ax=1/8,
 u1=[-.75,
 0,
 0],
-Vp=[.75,
+jp=[.75,
 0,
 0],
-V3=.075,
+q3=.075,
 sx=.055,
-cL={
+hL={
 bloom:1.05,
 threshold:.95,
 ca:.25,
@@ -87816,7 +87817,7 @@ tint:[1.02,
 .985,
 .97]}
 ,
-TL={
+CL={
 bloom:1.05,
 threshold:.92,
 ca:.22,
@@ -87830,10 +87831,10 @@ tint:[1.03,
 ,
 te=null,
 ZM=null,
-D3=null,
 z3=null,
+O3=null,
 l1=null;
-function $t(e){
+function en(e){
 if(ZM?.T===e)return ZM;
 let t=e.section("c3").start,
 n=e.section("love").start,
@@ -87896,7 +87897,7 @@ tAh:s(g,
 "ah"),
 tFade:r(29)}
 }
-c($t,
+c(en,
 "keys");
 function yr(){
 for(let e of te.all)e.visible=!1;
@@ -87934,7 +87935,7 @@ n={
 }
 ){
 let i=e.text.overlay;
-dn(i,
+pn(i,
 e.t,
 e.T,
 {
@@ -87998,7 +87999,7 @@ t.l114.start)}
 )}
 c(f1,
 "runCall");
-function O3(e,
+function N3(e,
 t={
 }
 ){
@@ -88015,7 +88016,7 @@ verb:t.verb??"Recombobulating",
 size:22,
 alpha:t.alpha??.95}
 )}
-c(O3,
+c(N3,
 "think");
 function MK(e,
 t,
@@ -88072,22 +88073,22 @@ t={
 ){
 Object.assign(e.post,
 {
-...TL,
+...CL,
 ...t}
 )}
 c(Pi,
 "look");
-var N3=new B,
-U3=new B;
+var U3=new B,
+G3=new B;
 function xK(e,
 t,
 n,
 i,
 r=2,
 o=48){
-N3.setFromMatrixColumn(e.matrixWorld,
-0),
 U3.setFromMatrixColumn(e.matrixWorld,
+0),
+G3.setFromMatrixColumn(e.matrixWorld,
 1);
 let a=[];
 for(let s=0;
@@ -88096,9 +88097,9 @@ s++){
 let l=s/o*j,
 u=Math.cos(l)*n,
 h=Math.sin(l)*n;
-a.push([t[0]+N3.x*u+U3.x*h,
-t[1]+N3.y*u+U3.y*h,
-t[2]+N3.z*u+U3.z*h])}
+a.push([t[0]+U3.x*u+G3.x*h,
+t[1]+U3.y*u+G3.y*h,
+t[2]+U3.z*u+G3.z*h])}
 te.lines.polyline(a,
 {
 color:i,
@@ -88106,7 +88107,7 @@ width:r}
 )}
 c(xK,
 "ring3");
-function G3(e,
+function H3(e,
 t,
 n,
 i={
@@ -88114,13 +88115,13 @@ i={
 ){
 let r=Dt(e,
 o=>n(o));
-rn(e,
+on(e,
 r,
 t,
 i)}
-c(G3,
+c(H3,
 "instrument");
-function qp(e,
+function Xp(e,
 t,
 n,
 i,
@@ -88129,7 +88130,7 @@ r={
 ,
 o=e.H){
 let a=te.code.text("c3/".concat(n),
-te.src[i]??=tn(i)),
+te.src[i]??=nn(i)),
 s=r.origin??[-8,
 5,
 0],
@@ -88175,13 +88176,13 @@ maxBlur:r.maxBlur??16}
 t,
 o),
 a.points.visible=!0}
-c(qp,
+c(Xp,
 "codePlane");
 var _K=c(e=>e/100-9.6,
 "DX"),
 SK=c(e=>5.4-e/100,
 "DY");
-function hL(e,
+function fL(e,
 t,
 n={
 }
@@ -88190,8 +88191,8 @@ let i=e.t,
 r=t.X[0];
 if(i<r)return;
 let o=te.word.text("c3/city-word",
-te.src["ch/c3/city.js"]??=tn("ch/c3/city.js")),
-a=F3("EXECUTION"),
+te.src["ch/c3/city.js"]??=nn("ch/c3/city.js")),
+a=I3("EXECUTION"),
 s=12.4,
 l=s/a.aspect,
 u=[_K(n.x??960),
@@ -88270,9 +88271,9 @@ te.word.points.visible=!0,
 e.draw(te.wscene,
 te.dcam),
 te.word.points.visible=!1}
-c(hL,
+c(fL,
 "glyphWord");
-function X3(e,
+function Y3(e,
 t,
 n=960,
 i=540){
@@ -88341,7 +88342,7 @@ alpha:w*.95}
 ),
 d+=f[g]+l}
 )}
-c(X3,
+c(Y3,
 "tokenWord");
 var KM=c((e,
 t,
@@ -88353,7 +88354,7 @@ TK=[1,
 CK=[.55,
 .035,
 .02];
-function H3(e,
+function W3(e,
 t,
 n={
 }
@@ -88376,10 +88377,10 @@ ca:.22+.7*a,
 glitch:.22*a*s,
 lift:l}
 }
-c(H3,
+c(W3,
 "flashLook");
 var ef=new B;
-function q3(e,
+function j3(e,
 t,
 n,
 i={
@@ -88390,7 +88391,7 @@ let r=i.scale??1;
 te.lines.segment(t,
 t,
 {
-color:un([1,
+color:cn([1,
 .13,
 .06],
 .85*n),
@@ -88399,7 +88400,7 @@ width:560*r*(.7+.3*n)}
 te.lines.segment(t,
 t,
 {
-color:un(_L,
+color:cn(SL,
 2.6*n),
 width:150*r*(.5+.5*n)}
 ),
@@ -88418,7 +88419,7 @@ t[2]+ef.z*a];
 te.lines.segment(s,
 l,
 {
-color:un([1,
+color:cn([1,
 .35,
 .25],
 1.2*n*n),
@@ -88427,13 +88428,13 @@ width:7*r}
 te.lines.segment(s,
 l,
 {
-color:un([1,
+color:cn([1,
 .1,
 .05],
 .4*n*n),
 width:40*r}
 )}
-c(q3,
+c(j3,
 "flashLight");
 var Zi=c((e,
 t,
@@ -88513,7 +88514,7 @@ t,
 n=1)=>e.map((i,
 r)=>i+t[r]*n),
 "add"),
-$3=c(e=>(e<0?"−":"")+Math.abs(e).toFixed(3),
+e5=c(e=>(e<0?"−":"")+Math.abs(e).toFixed(3),
 "sgn"),
 EK=c((e,
 t)=>1.3+(e-t.s0)/(t.beat*2.5),
@@ -88521,22 +88522,22 @@ t)=>1.3+(e-t.s0)/(t.beat*2.5),
 RK=c((e,
 t)=>-.05-.95*X((e-t.s0+.15)/(t.X[0]-.1-t.s0+.15))**2.6,
 "netB");
-function e5(e,
+function t5(e,
 t){
 let n=RK(e,
 t);
 return{
-...zk(Dk(EK(e,
+...Ok(zk(EK(e,
 t)),
 n),
 b:n}
 }
-c(e5,
+c(t5,
 "netPass");
 function BK(e,
 t){
-if(D3?.t===e&&D3.K===t)return D3.st;
-let n=e5(e,
+if(z3?.t===e&&z3.K===t)return z3.st;
+let n=t5(e,
 t),
 i=(e-t.s0)/(t.beat/2),
 r={
@@ -88545,7 +88546,7 @@ sparkPh:i-Math.floor(i),
 sparkOn:X((n.alive[0]+n.alive[1]+n.alive[2])/260)}
 ;
 return te.gpu.update(r.act),
-D3={
+z3={
 t:e,
 K:t,
 st:r}
@@ -88571,8 +88572,8 @@ focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??30,
 minPx:i.minPx??1.3,
-u:Uk(o,
-Yp,
+u:Gk(o,
+Zp,
 {
 only:i.only,
 sparks:i.sparks,
@@ -88588,10 +88589,10 @@ i.heat)for(let a=0;
 a<Wt.L;
 a++)te.heats[a].userData.set(a,
 a?[AK,
-K3,
-J3]:[un(Dl,
+J3,
+$3]:[cn(Dl,
 .25),
-un(Dl,
+cn(Dl,
 .7),
 wt(Dl,
 [1,
@@ -88600,9 +88601,9 @@ wt(Dl,
 .2)],
 i.heat*(a?1:1.1),
 a?.025:0);
-return i.edges!==!1&&Gk(te.lines,
+return i.edges!==!1&&Hk(te.lines,
 o,
-Yp,
+Zp,
 {
 base:i.edgeBase??.005,
 gain:i.edgeGain??.9,
@@ -88645,20 +88646,20 @@ size:14}
 }
 c(PK,
 "layerLabels");
-function fL(e,
+function dL(e,
 t){
 Mo(e,
 [["bias b",
-$3(t.b)],
+e5(t.b)],
 ["alive",
 "".concat(t.aliveTotal,
-" / ").concat(Ik)],
+" / ").concat(Dk)],
 ["a",
 "max(0, z/m + b)"]],
 {
 keyW:90}
 )}
-c(fL,
+c(dL,
 "netHud");
 function kK(e){
 let t=new Float32Array(Qh).fill(-1),
@@ -88666,7 +88667,7 @@ n=1/60;
 for(let i=e.s0-.5;
 i<=e.X[0]+.05;
 i+=n){
-let r=e5(i,
+let r=t5(i,
 e).act;
 for(let o=sa;
 o<Qh;
@@ -88704,7 +88705,7 @@ i)}
 c(ex,
 "rain");
 function LK(e){
-if(z3?.K===e)return z3;
+if(O3?.K===e)return O3;
 let t=e.tGive,
 n=e.X[0],
 i=C(t,
@@ -88714,7 +88715,7 @@ r=[];
 for(let l=t;
 l<=n;
 l+=1/60)r.push(l);
-let o=r.map(l=>e5(l,
+let o=r.map(l=>t5(l,
 e).act),
 a=-1,
 s=1e9;
@@ -88728,12 +88729,12 @@ let h=Math.abs(u-i);
 h<s&&(s=h,
 a=l)}
 return a<0&&(a=sa+66),
-z3={
+O3={
 K:e,
 id:a,
 tDie:te.deaths[a]}
 ,
-z3}
+O3}
 c(LK,
 "pickNeuron");
 function FK(e,
@@ -88815,7 +88816,7 @@ size:14,
 alpha:.7}
 ),
 _s(e,
-"z = ".concat($3(l),
+"z = ".concat(e5(l),
 "    a = ").concat(u.toFixed(3)),
 t,
 n+r+24,
@@ -88826,7 +88827,7 @@ alpha:.9}
 )}
 c(FK,
 "reluInset");
-function dL(e,
+function pL(e,
 t,
 n={
 }
@@ -88842,9 +88843,9 @@ edge:n.edge??.2,
 fog:n.fog??.05,
 kick:n.kick??.35}
 )}
-c(dL,
+c(pL,
 "cityUpdate");
-function pL(e,
+function mL(e,
 t,
 n,
 i={
@@ -88858,16 +88859,16 @@ bright:i.bright??.16,
 dust:[.9,
 .2,
 .08],
-ash:xL,
+ash:_L,
 focus:i.focus,
 aperture:i.aperture,
 maxBlur:i.maxBlur}
 ,
 t,
 e.H)}
-c(pL,
+c(mL,
 "cityDust");
-function mL(e,
+function vL(e,
 t,
 n={
 }
@@ -88875,7 +88876,7 @@ n={
 let i=e-t.X[0];
 if(i<=0||i>1.2)return;
 let r=i*Yi.wave,
-o=X(1-r/(P3*1.35)),
+o=X(1-r/(k3*1.35)),
 a=[];
 if(!(o<=0)){
 for(let s=0;
@@ -88887,19 +88888,19 @@ a.push([Math.cos(l)*r,
 Math.sin(l)*r])}
 te.lines.polyline(a,
 {
-color:un(wt(J3,
-_L,
+color:cn(wt($3,
+SL,
 o*.5),
 (n.k??1.2)*o),
 width:n.width??3}
 )}
 }
-c(mL,
+c(vL,
 "shockRing");
 var IK=c(()=>te.run.ema.findIndex(e=>Number.isNaN(e))-1,
 "LAST");
 function rf(e){
-let t=X(e)*(on.n-1),
+let t=X(e)*(an.n-1),
 n=Math.min(Math.floor(t),
 te.last),
 i=Math.min(n+1,
@@ -88923,9 +88924,9 @@ t,
 n){
 let i=e.t>=t.tOnly,
 r=rf(n),
-o=Math.round(n*on.steps),
+o=Math.round(n*an.steps),
 a=r-rf(Math.max(0,
-n-1e3/on.steps));
+n-1e3/an.steps));
 Mo(e,
 i?[["reward",
 "NaN"],
@@ -88933,7 +88934,7 @@ i?[["reward",
 Il(o)],
 ["loss",
 "NaN"]]:[["reward",
-$3(r)],
+e5(r)],
 ["step",
 Il(o)],
 ["Δ / 1k",
@@ -88969,19 +88970,19 @@ c(DK,
 "calmMacro");
 function ix(e,
 t=1){
-let n=Math.floor(X(e)*(on.n-1));
+let n=Math.floor(X(e)*(an.n-1));
 for(let i=0;
 i<=n;
 i+=12){
 let r=te.run.ema[i];
-r<0&&te.lines.segment([Ko(i/(on.n-1)),
+r<0&&te.lines.segment([Ko(i/(an.n-1)),
 $r(0),
 0],
-[Ko(i/(on.n-1)),
+[Ko(i/(an.n-1)),
 $r(r),
 0],
 {
-color:un([.6,
+color:cn([.6,
 .05,
 .03],
 .55*t),
@@ -88990,7 +88991,7 @@ width:1.2}
 }
 c(ix,
 "belowZero");
-var Y3=.13;
+var Q3=.13;
 function zK(e,
 t){
 let n=t.beat/8,
@@ -89008,7 +89009,7 @@ fresh:u,
 dead:0}
 }
 let o=100-r(t.tOnly-i),
-a=(e-t.tOnly)/Y3;
+a=(e-t.tOnly)/Q3;
 if(a<1){
 let l=o*(1-a*a);
 return{
@@ -89017,7 +89018,7 @@ exact:l,
 fresh:1,
 dead:0}
 }
-let s=e-t.tOnly-Y3;
+let s=e-t.tOnly-Q3;
 return{
 v:0,
 exact:3.2*Math.abs(Math.sin(s*20))*Math.exp(-s*9),
@@ -89064,7 +89065,7 @@ o=zK(r,
 n);
 if(pc(te.lines,
 o.v,
-Zp,
+Jp,
 {
 fresh:o.fresh,
 gain:o.dead?.75:1}
@@ -89075,7 +89076,7 @@ let f=dc(o.exact,
 te.lines.segment(f,
 f,
 {
-color:un(Pu.cold,
+color:cn(Pu.cold,
 2.4),
 width:12}
 )}
@@ -89083,7 +89084,7 @@ Qi(e,
 t);
 let a=e.text.overlay;
 for(let[f,
-d]of H2()){
+d]of W2()){
 let p=G(d,
 t);
 _s(a,
@@ -89155,8 +89156,8 @@ alpha:.8}
 o}
 c(NK,
 "drawDrain");
-var Qp=.45;
-function vL(e,
+var Kp=.45;
+function gL(e,
 t,
 n,
 i={
@@ -89171,12 +89172,12 @@ te.all.push(te.wallKeep)),
 te.wallKeep.userData.set({
 t:e.t,
 errT:n.X[1],
-errW:Qp,
+errW:Kp,
 gain:i.gain??1,
 focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??16,
-col:uL,
+col:cL,
 hole:i.hole,
 kick:i.kick??.8,
 word:i.word}
@@ -89187,28 +89188,28 @@ return}
 te.wallPlane.userData.set({
 t:e.t,
 errT:n.X[1],
-errW:Qp,
+errW:Kp,
 gain:i.gain??1,
 focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??16,
-col:uL,
+col:cL,
 hole:i.hole,
 kick:i.kick??.8,
 word:i.word}
 ,
 t,
 e.H)}
-c(vL,
+c(gL,
 "wallSet");
-function gL(e,
+function wL(e,
 t){
 let n=OM(e.t,
 t.X[1],
-Qp),
+Kp),
 i=Kn.cols*Kn.rows;
 if(q(e)){
-let r=jp(t)<=e.t?1:0;
+let r=Yp(t)<=e.t?1:0;
 Mo(e,
 [["threads",
 Il(i)],
@@ -89224,32 +89225,32 @@ Il(i)],
 Il(n)],
 ["exit",
 n?"137 · SIGKILL":"—"]])}
-c(gL,
+c(wL,
 "wallHud");
-function jp(e){
+function Yp(e){
 let t=Kh.col,
 n=Kn.rows-1-Kh.row,
 i=Math.hypot(((t+.5)/Kn.cols-.5)*Kn.w/Kn.h,
-(n+.5)/Kn.rows-.5)*Qp;
+(n+.5)/Kn.rows-.5)*Kp;
 return e.X[1]+i+vu(t,
 n+6e3)*.04}
-c(jp,
+c(Yp,
 "keepFailsAt");
-function wL(e,
+function AL(e,
 t,
 n,
 i={
 }
 ){
-let r=Xk(Kh.col,
+let r=Yk(Kh.col,
 Kh.row),
 o=G([r[0]+Kn.w/Kn.cols*.44,
 r[1],
 r[2]],
 t),
 a=_(e.t,
-jp(n)+.1,
-jp(n)+.3);
+Yp(n)+.1,
+Yp(n)+.3);
 a>0&&o[2]<1&&dt(e.text.overlay,
 [o[0],
 o[1]],
@@ -89274,8 +89275,8 @@ r[2]],
 t);
 h[2]<1&&f[2]<1&&e.text.overlay.draw(d=>{
 d.globalAlpha*=.9*_(e.t,
-jp(n),
-jp(n)+.15),
+Yp(n),
+Yp(n)+.15),
 d.strokeStyle="#ffb36b",
 d.lineWidth=3,
 d.lineCap="round",
@@ -89288,29 +89289,29 @@ d.lineTo(f[0],
 f[1]),
 d.stroke()}
 )}
-c(wL,
+c(AL,
 "keepCallout");
 var va=Array.from({
 length:36}
 ,
 (e,
 t)=>t).filter(e=>!Ea.has(e)),
-Xp=Yr.seeds.map((e,
+Qp=Yr.seeds.map((e,
 t)=>{
 let[n,
 i,
-r]=Jk[t],
+r]=$k[t],
 o=j*t/36+(n-.5)*.5,
 a=1.25+1.45*i;
 return{
 pos:[Math.cos(o)*a*1.15,
 -1.2850000000000001,
 Math.sin(o)*a*.75+.25],
-q:NM(k3([0,
+q:NM(L3([0,
 1,
 0],
 r*j),
-k3([1,
+L3([1,
 0,
 0],
 -Math.PI/2+(n-.5)*.14))}
@@ -89318,9 +89319,9 @@ k3([1,
 ),
 UK=(()=>{
 let e=va.slice().sort((n,
-i)=>Math.atan2(Xp[n].pos[2],
-Xp[n].pos[0])-Math.atan2(Xp[i].pos[2],
-Xp[i].pos[0])),
+i)=>Math.atan2(Qp[n].pos[2],
+Qp[n].pos[0])-Math.atan2(Qp[i].pos[2],
+Qp[i].pos[0])),
 t=new Array(36).fill(-1);
 return e.forEach((n,
 i)=>{
@@ -89328,7 +89329,7 @@ t[n]=i}
 ),
 t}
 )(),
-AL=.45,
+yL=.45,
 oo=[0,
 0,
 .42],
@@ -89348,14 +89349,14 @@ return e.map((a,
 s)=>o*o*o*e[s]+3*o*o*r*t[s]+3*o*r*r*n[s]+r*r*r*i[s])}
 c(WK,
 "bez");
-var VK=Yr.cells.map(tL),
+var VK=Yr.cells.map(nL),
 rx=null;
-function CL(e){
+function EL(e){
 if(rx?.K===e)return rx;
 let t=new Array(36).fill(null);
 for(let n of va){
 let i=VK[n],
-r=nL(n,
+r=iL(n,
 i.c),
 o=e.X[2]+r.rel,
 a=Oc(o,
@@ -89364,28 +89365,28 @@ e,
 t[n]={
 tr:o,
 P:i,
-sim:iL(i,
+sim:rL(i,
 {
-x:Kp(a,
+x:$p(a,
 i.c),
 q:a.q}
 ,
 r,
 {
-floor:SL}
+floor:TL}
 )}
 }
 return rx={
 K:e,
 cells:t}
 }
-c(CL,
+c(EL,
 "collapse");
 function Oc(e,
 t,
 n=!1){
 if(l1?.t===e&&l1.K===t&&l1.remake===n)return l1.st;
-let i=n?CL(t):null,
+let i=n?EL(t):null,
 r=_(e,
 t.tYou-.05,
 t.tYou+.12)*(1+.7*_(e,
@@ -89415,8 +89416,8 @@ let h=GK(t,
 s),
 f=R.inOutCubic(_(e,
 h,
-h+AL)),
-d=Xp[s],
+h+yL)),
+d=Qp[s],
 p=WK(d.pos,
 ku(d.pos,
 [0,
@@ -89428,12 +89429,12 @@ ku(u,
 .9]),
 u,
 f),
-m=Zk(d.q,
+m=Kk(d.q,
 GM,
 R.inOutSine(_(f,
 0,
 .85))),
-g=h+AL,
+g=h+yL,
 w=e-g;
 w>0&&(p=ku(p,
 [0,
@@ -89441,7 +89442,7 @@ w>0&&(p=ku(p,
 .035*Math.sin(w*26)*Math.exp(-w*10)]));
 let v=i?.cells[s];
 if(v&&e>=v.tr){
-let M=rL(v.sim,
+let M=oL(v.sim,
 e-v.tr),
 T=UM(M.q,
 [v.P.c[0]-l[0],
@@ -89473,7 +89474,7 @@ p=ku(p,
 [T(1)*.06*A*S,
 T(2)*.06*A*S,
 T(3)*.035*A]),
-m=NM(k3([0,
+m=NM(L3([0,
 0,
 1],
 T(4)*.1*A*S),
@@ -89511,7 +89512,7 @@ flying:a.filter(s=>s.present&&s.s>0&&s.s<1).length}
 l1.st}
 c(Oc,
 "rebuildState");
-var Kp=c((e,
+var $p=c((e,
 t)=>{
 let n=Yr.seeds[e.i],
 i=UM(e.q,
@@ -89531,7 +89532,7 @@ i={
 ,
 r=e.H){
 let o=c(a=>{
-let s=Kp(a,
+let s=$p(a,
 Yr.cent[a.i]),
 l=Math.hypot(s[0]-i.wave.o[0],
 s[1]-i.wave.o[1],
@@ -89556,14 +89557,14 @@ t:e.t,
 size:i.size??.0058,
 bright:i.bright??.2,
 minPx:1.1,
-floor:SL,
+floor:TL,
 holes:i.holes??.12,
 colA:Dl,
 colB:wt(Dl,
 lx,
 .45),
-ember:ML,
-ash:xL,
+ember:xL,
+ash:_L,
 focus:i.focus,
 aperture:i.aperture??0,
 maxBlur:i.maxBlur??30}
@@ -89579,15 +89580,15 @@ n={
 ){
 for(let i of t.cells){
 if(!i.present||i.s<.98||(i.burst??0)>0)continue;
-let r=Yr.cells[i.i].map(a=>Kp(i,
+let r=Yr.cells[i.i].map(a=>$p(i,
 a)),
 o=Math.exp(-Math.max(0,
 e-i.arrive)*7);
 te.lines.polyline([...r,
 r[0]],
 {
-color:un(wt(K3,
-J3,
+color:cn(wt(J3,
+$3,
 o),
 (n.k??.5)+1.3*o),
 width:n.width??1.5}
@@ -89595,7 +89596,7 @@ width:n.width??1.5}
 }
 c(tf,
 "seams");
-function j3(e,
+function X3(e,
 t={
 }
 ){
@@ -89630,48 +89631,48 @@ a[1],
 f),
 0],
 {
-color:un(K3,
+color:cn(J3,
 .9*e*(t.k??1)),
 width:1.3}
 )}
 }
 }
 }
-c(j3,
+c(X3,
 "missingOutlines");
 function nf(e,
 t=1){
 t<=0||(te.lines.segment(oo,
 oo,
 {
-color:un(Lu,
+color:cn(Lu,
 2*t),
 width:11}
 ),
 te.lines.segment(oo,
 oo,
 {
-color:un(Lu,
+color:cn(Lu,
 .35*t),
 width:34}
 ))}
 c(nf,
 "cursor");
-function yL(e){
+function bL(e){
 for(let t of e.cells){
 if(!t.present||t.s<=0||t.s>=1)continue;
-let n=Kp(t,
+let n=$p(t,
 Yr.cent[t.i]),
 i=Math.sin(Math.PI*t.s);
 te.lines.segment(oo,
 n,
 {
-color:un(Lu,
+color:cn(Lu,
 .5*i),
 width:1.7}
 )}
 }
-c(yL,
+c(bL,
 "tethers");
 var qK=c(()=>va.reduce((e,
 t)=>e+Yr.areas[t],
@@ -89760,7 +89761,7 @@ i),
 te.hall.points.visible=!0}
 c(c1,
 "hallucinated");
-function EL(e,
+function RL(e,
 t,
 n=1){
 let i=n*_(e,
@@ -89773,7 +89774,7 @@ i<=0||(te.lines.segment([0,
 0,
 0],
 {
-color:un(Dl,
+color:cn(Dl,
 2.2*i),
 width:13}
 ),
@@ -89784,16 +89785,16 @@ te.lines.segment([0,
 0,
 0],
 {
-color:un(Dl,
+color:cn(Dl,
 .4*i),
 width:42}
 ))}
-c(EL,
+c(RL,
 "warmPoint");
 var XK=.06;
-function RL(e,
+function BL(e,
 t){
-for(let n of CL(t).cells){
+for(let n of EL(t).cells){
 let i=n&&n.sim.hit!=null?e-n.tr-n.sim.hit:-1;
 if(i<0||i>XK)continue;
 let r=Math.exp(-i*45)*X(n.sim.hitV/5,
@@ -89803,7 +89804,7 @@ o=n.sim.at;
 te.lines.segment(o,
 o,
 {
-color:un(wt(Dl,
+color:cn(wt(Dl,
 [1,
 .92,
 .8],
@@ -89814,12 +89815,12 @@ width:7}
 te.lines.segment(o,
 o,
 {
-color:un(ML,
+color:cn(xL,
 .8*r),
 width:20}
 )}
 }
-c(RL,
+c(BL,
 "glints");
 var ux=c((e,
 t)=>{
@@ -89827,7 +89828,7 @@ let n=t.l112.start+.08;
 return e<n?-1:2.4*(e-n)/(t.X[2]-n)}
 ,
 "probeR");
-function BL(e,
+function PL(e,
 t,
 n){
 let i=ux(e,
@@ -89841,7 +89842,7 @@ a=new B().setFromMatrixColumn(n.matrixWorld,
 te.lines.segment(oo,
 oo,
 {
-color:un(Lu,
+color:cn(Lu,
 1.6+3*r),
 width:10+22*r}
 );
@@ -89864,7 +89865,7 @@ l=1.5/Math.sqrt(1+i/.5)*(1-_(i,
 5));
 te.lines.polyline(s(i),
 {
-color:un(wt(Lu,
+color:cn(wt(Lu,
 [.55,
 .7,
 1],
@@ -89874,7 +89875,7 @@ width:2.2}
 ),
 i>.15&&te.lines.polyline(s(i-.13),
 {
-color:un(wt(Lu,
+color:cn(wt(Lu,
 [.55,
 .7,
 1],
@@ -89882,7 +89883,7 @@ color:un(wt(Lu,
 .35*l),
 width:1.4}
 )}
-c(BL,
+c(PL,
 "probeOut");
 function YK(e,
 t,
@@ -89914,10 +89915,10 @@ r,
 {
 k:.4}
 ),
-j3(.7),
+X3(.7),
 nf(n,
 1),
-BL(n,
+PL(n,
 t,
 o),
 Qi(e,
@@ -89990,7 +89991,7 @@ bright:.45*(1-_(n,
 t.X[2]+.08,
 t.X[2]+.45))}
 ),
-q3(a,
+j3(a,
 [0,
 0,
 .1],
@@ -89998,16 +89999,16 @@ o,
 {
 scale:1.1}
 ),
-BL(n,
+PL(n,
 t,
 a),
-EL(n,
-t),
 RL(n,
+t),
+BL(n,
 t),
 Qi(e,
 a),
-X3(e,
+Y3(e,
 t),
 f1(e,
 t);
@@ -90065,7 +90066,7 @@ roll:C(.02,
 -.05,
 o)}
 );
-qp(e,
+Xp(e,
 s,
 "shards",
 "ch/c3/shards.js",
@@ -90101,13 +90102,13 @@ maxBlur:26}
 ),
 nf(n,
 .9),
-EL(n,
-t),
 RL(n,
+t),
+BL(n,
 t),
 Qi(e,
 s),
-X3(e,
+Y3(e,
 t,
 960,
 C(540,
@@ -90124,7 +90125,7 @@ h=G([0,
 0,
 0],
 s);
-Tn(l,
+Cn(l,
 u[0],
 u[1],
 30,
@@ -90161,27 +90162,27 @@ vignette:.5}
 )}
 c(ZK,
 "afterNothing");
-var PL=c((e,
+var kL=c((e,
 t)=>e<t.l115.start?e:t.l115.start+(e-t.l115.start)*ax,
 "simTime"),
-bL=.86,
-kL=c((e,
-t)=>bL+(kl.S0-bL)*(1-X((e-t.l114.start)/1.6))**1.6,
+ML=.86,
+LL=c((e,
+t)=>ML+(kl.S0-ML)*(1-X((e-t.l114.start)/1.6))**1.6,
 "cubeSTau"),
 h1=c((e,
-t)=>kL(PL(e,
+t)=>LL(kL(e,
 t),
 t),
 "cubeS"),
-KK=un([.5,
+KK=cn([.5,
 .06,
 .05],
 .5),
-JK=un([1,
+JK=cn([1,
 .2,
 .12],
 .95);
-function W3(e,
+function V3(e,
 t,
 n,
 i={
@@ -90191,7 +90192,7 @@ r=e.H){
 let o=i.S??h1(e.t,
 n),
 a=i.gain??1;
-aL(te.array,
+sL(te.array,
 t,
 r,
 {
@@ -90213,12 +90214,12 @@ edgeW:i.thin?.03*X(o/kl.S0,
 1):.03}
 ),
 e.pass(te.array)}
-c(W3,
+c(V3,
 "arrayPass");
 function $K(e,
 t){
 let n=t.l114.start,
-i=PL(e,
+i=kL(e,
 t),
 r=n-1.5,
 o=(Math.min(i,
@@ -90227,7 +90228,7 @@ if(i>n){
 let s=(i-n)/48;
 for(let l=0;
 l<48;
-l++)o+=s/(2*kL(n+(l+.5)*s,
+l++)o+=s/(2*LL(n+(l+.5)*s,
 t))}
 return o}
 c($K,
@@ -90252,30 +90253,30 @@ uS:i.S??h1(e.t,
 n),
 uTau:$K(e.t,
 n),
-uCol:un(K3,
+uCol:cn(J3,
 .5),
-uHotCol:J3}
+uHotCol:$3}
 }
 ,
 t,
 r)}
 c(ox,
 "embersIn");
-function Q3(e,
+function Z3(e,
 t){
 return e.isOrthographicCamera?1080/(e.top-e.bottom):540/Math.tan(ut.degToRad(e.fov)/2)/Math.max(.02,
 Fl(e.position.toArray(),
 t))}
-c(Q3,
+c(Z3,
 "pxPerUnit");
-var Z3=c((e,
+var K3=c((e,
 t,
 n,
 i)=>X(i*Math.PI*(t*e)**2/n,
 .0035,
 1),
 "density");
-function Wp(e,
+function qp(e,
 t,
 n={
 }
@@ -90286,10 +90287,10 @@ o=te.me,
 a=te.you,
 s=.62,
 l=.75,
-u=Q3(t,
+u=Z3(t,
 u1),
-h=Q3(t,
-Vp);
+h=Z3(t,
+jp);
 o.points.position.set(...u1),
 o.points.scale.setScalar(s),
 o.points.rotation.set(0,
@@ -90301,8 +90302,8 @@ morph:0,
 spread:.35,
 arc:.02,
 t:r,
-reveal:n.revealMe??Z3(u,
-V3*s,
+reveal:n.revealMe??K3(u,
+q3*s,
 o.N,
 .5),
 size:Math.min(.006,
@@ -90321,7 +90322,7 @@ minPx:1.3}
 ,
 t,
 i),
-a.points.position.set(...Vp),
+a.points.position.set(...jp),
 a.points.scale.setScalar(l),
 a.points.rotation.set(0,
 -r*.35,
@@ -90329,14 +90330,14 @@ a.points.rotation.set(0,
 a.set({
 a:te.tex.youBall,
 t:r,
-reveal:n.revealYou??Z3(h,
+reveal:n.revealYou??K3(h,
 sx*l,
 a.N,
 .5),
 size:Math.min(.0065,
 2.4/h/l),
 bright:n.brightYou??.6,
-colA:lL,
+colA:uL,
 colB:lx,
 morph:0,
 sparkle:.5,
@@ -90356,18 +90357,18 @@ d=n.haloW??22;
 te.lines.segment(u1,
 u1,
 {
-color:un(Lu,
+color:cn(Lu,
 .32*1.3*f),
 width:d}
 ),
-te.lines.segment(Vp,
-Vp,
+te.lines.segment(jp,
+jp,
 {
-color:un(lL,
+color:cn(uL,
 .32*1.3*f),
 width:d}
 )}
-c(Wp,
+c(qp,
 "dots");
 function eJ(e,
 t=1){
@@ -90437,7 +90438,7 @@ u)=>C(l,
 n[r][u],
 s)),
 {
-color:un([.6,
+color:cn([.6,
 .08,
 .05],
 .5*t),
@@ -90452,7 +90453,7 @@ n=1,
 i=1){
 XM(te.lines,
 e,
-un([1,
+cn([1,
 .2,
 .12],
 1.2*n),
@@ -90482,7 +90483,7 @@ d[h]=e,
 te.lines.segment(f,
 d,
 {
-color:un([.5,
+color:cn([.5,
 .06,
 .05],
 .3*n),
@@ -90499,18 +90500,18 @@ from:c(e=>e.section("c3").start,
 to:c(e=>e.section("love").start,
 "to"),
 init(e){
-let t=$t(e.T);
+let t=en(e.T);
 te={
-scene:new fn,
+scene:new dn,
 persp:dr(38),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
 .01,
 400)}
 ,
-te.stars=new Qt({
+te.stars=new Zt({
 count:16384}
 ),
 te.lines=new Xn(24e3),
@@ -90534,28 +90535,28 @@ axis:[0,
 0],
 fade:.05}
 ),
-te.gpu=new Ok,
-te.net=Nk(te.gpu),
+te.gpu=new Nk,
+te.net=Uk(te.gpu),
 te.heats=[0,
 1,
 2,
 3,
-4].map(()=>Hk(te.gpu)),
+4].map(()=>Wk(te.gpu)),
 te.deaths=kK(t),
-te.rain=Wk(te.gpu,
+te.rain=Vk(te.gpu,
 te.deaths),
-te.city=new Vk,
-te.run=N2({
-crashAt:I3}
+te.city=new qk,
+te.run=U2({
+crashAt:D3}
 ),
 te.last=IK(),
-te.nanU=te.last/(on.n-1),
-te.curve=new Qt({
+te.nanU=te.last/(an.n-1),
+te.curve=new Zt({
 count:65536}
 ),
 te.wallPlane=zM(),
-te.shards=new Qk,
-te.array=oL(),
+te.shards=new Zk,
+te.array=aL(),
 te.embers=new Is({
 count:16384,
 uniforms:{
@@ -90565,33 +90566,33 @@ value:6}
 uTau:{
 value:0}
 ,
-uCol:pn(),
-uHotCol:pn()}
+uCol:mn(),
+uHotCol:mn()}
 ,
 glsl:"\nuniform float uS, uTau; uniform vec3 uCol, uHotCol;\nvoid particle(float i, out vec3 pos, out vec3 col, out float sz) {\n  // each ember drifts on its own heading at .2–.7 units/s (world speed: uTau is ∫ dτ / 2S) and wraps inside the cube\n  vec3 h = hash31(i * .731 + 1.9), d = normalize(hash31(i * 1.37 + 7.3) - .5 + 1e-3);\n  float sp = .2 + .5 * hash11(i * 2.3);\n  vec3 u = fract(h + d * sp * uTau);\n  pos = (u * 2. - 1.) * uS * .97;\n  vec3 e = min(u, 1. - u);\n  float edgeFade = smoothstep(0., .04, min(e.x, min(e.y, e.z)));\n  float b = hash11(i * 3.1);\n  col = mix(uCol, uHotCol, step(.985, b)) * (.25 + .75 * b) * edgeFade;\n  sz = .6 + .8 * hash11(i * 5.7);\n}"}
 ),
-te.me=new Qt({
+te.me=new Zt({
 count:65536}
 ),
-te.you=new Qt({
+te.you=new Zt({
 count:16384}
 ),
 te.src={
 }
 ,
-te.code=new nn({
+te.code=new rn({
 count:16384}
 ),
-te.word=new nn({
+te.word=new rn({
 count:16384}
 ),
-te.hall=new nn({
+te.hall=new rn({
 count:4096}
 ).text("c3/hallucination",
-sL),
-te.wscene=new fn,
+lL),
+te.wscene=new dn,
 te.wscene.add(te.word.points),
-te.dcam=new An(-9.6,
+te.dcam=new yn(-9.6,
 9.6,
 5.4,
 -5.4,
@@ -90607,26 +90608,26 @@ te.dcam.updateProjectionMatrix(),
 te.dcam.updateMatrixWorld(),
 te.tex={
 stars:te.stars.shape("c3/stars",
-n=>Dn.stars(n,
+n=>zn.stars(n,
 {
 r0:25,
 r1:70}
 )),
 ema:te.curve.shape("c3/reward-ema",
 n=>nc(n,
-[G2(te.run)],
+[H2(te.run)],
 {
 jitter:.012,
 seed:51}
 )),
 meBall:te.me.shape("c3/me-ball",
-n=>Dn.ball(n,
+n=>zn.ball(n,
 {
-r:V3,
+r:q3,
 seed:31}
 )),
 youBall:te.you.shape("c3/you-ball",
-n=>Dn.ball(n,
+n=>zn.ball(n,
 {
 r:sx,
 seed:32}
@@ -90653,11 +90654,11 @@ te.scene.add(...te.all)}
 ,
 shots:[{
 id:"dead",
-at:c(e=>$t(e).s0,
+at:c(e=>en(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t-t.s0;
 yr();
 let i=.9-n*.22,
@@ -90675,7 +90676,7 @@ i,
 fov:40,
 roll:.03}
 );
-qp(e,
+Xp(e,
 r,
 "deadnet",
 "ch/c3/deadnet.js",
@@ -90711,7 +90712,7 @@ r),
 PK(e,
 r,
 o),
-fL(e,
+dL(e,
 o),
 Oi(e,
 t),
@@ -90720,11 +90721,11 @@ Pi(e)}
 ,
 {
 id:"input",
-at:c(e=>$t(e).l106.start,
+at:c(e=>en(e).l106.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t-t.l106.start;
 yr();
 let i=Zi(e,
@@ -90742,7 +90743,7 @@ Pi(e,
 {
 vignette:.52}
 ),
-G3(e,
+H3(e,
 "edges",
 s=>{
 r=$M(s,
@@ -90803,7 +90804,7 @@ draw:_(n,
 .2,
 .45)}
 ),
-fL(e,
+dL(e,
 r),
 Oi(e,
 t,
@@ -90814,11 +90815,11 @@ br:"view  edges · sobel"}
 ,
 {
 id:"neuron",
-at:c(e=>$t(e).tGive,
+at:c(e=>en(e).tGive,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.tGive;
 yr();
@@ -90860,7 +90861,7 @@ Pi(e,
 {
 vignette:.5}
 ),
-G3(e,
+H3(e,
 "thermal",
 x=>{
 yr(),
@@ -90910,7 +90911,7 @@ O<=.01||(te.lines.segment(N(Math.max(0,
 F-.14)),
 N(F),
 {
-color:un(wt(Dl,
+color:cn(wt(Dl,
 [1,
 .85,
 .6],
@@ -90921,7 +90922,7 @@ width:4}
 te.lines.segment(N(F),
 N(F),
 {
-color:un([1,
+color:cn([1,
 .9,
 .75],
 1.6*O),
@@ -90932,8 +90933,8 @@ let M=n>=a?Math.exp(-(n-a)*9):0;
 if(v>0?(te.lines.segment(o,
 o,
 {
-color:un(wt(Yp.deep,
-Yp.hot,
+color:cn(wt(Zp.deep,
+Zp.hot,
 X(v*1.6)),
 1.6+3*v),
 width:18}
@@ -90941,13 +90942,13 @@ width:18}
 te.lines.segment(o,
 o,
 {
-color:un(Yp.hot,
+color:cn(Zp.hot,
 .3+.7*v),
 width:64}
 )):te.lines.segment(o,
 o,
 {
-color:un([.3,
+color:cn([.3,
 .2,
 .19],
 .35),
@@ -90956,7 +90957,7 @@ width:9}
 M>.01&&(te.lines.segment(o,
 o,
 {
-color:un([1,
+color:cn([1,
 .95,
 .85],
 3*M),
@@ -90965,7 +90966,7 @@ width:30+70*(1-M)}
 xK(d,
 o,
 .02+.12*(1-M),
-un([1,
+cn([1,
 .7,
 .5],
 1.6*M),
@@ -90984,7 +90985,7 @@ if(E<1)te.lines.segment(L(Math.max(0,
 E-.25)),
 L(E),
 {
-color:un([1,
+color:cn([1,
 .75,
 .55],
 1.2),
@@ -90993,7 +90994,7 @@ width:5}
 te.lines.segment(L(E),
 L(E),
 {
-color:un([1,
+color:cn([1,
 .95,
 .85],
 2.6),
@@ -91004,7 +91005,7 @@ let F=Math.exp(-(n-s)*30);
 te.lines.segment(S,
 S,
 {
-color:un([1,
+color:cn([1,
 .95,
 .9],
 4*F),
@@ -91035,7 +91036,7 @@ let b=[];
 for(let x=0;
 x<=14;
 x++){
-let M=e5(n-.7*(1-x/14),
+let M=t5(n-.7*(1-x/14),
 t);
 b.push([M.z[r.id],
 Math.max(0,
@@ -91065,11 +91066,11 @@ br:"view  thermal"}
 ,
 {
 id:"collapse",
-at:c(e=>$t(e).X[0],
+at:c(e=>en(e).X[0],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.X[0],
 r=KM(n,
@@ -91089,39 +91090,39 @@ eu(n,
 fov:62,
 roll:.04}
 );
-dL(e,
-t),
 pL(e,
+t),
+mL(e,
 o,
 t),
-mL(n,
+vL(n,
 t),
-q3(o,
+j3(o,
 [0,
 .5,
 0],
 r),
 Qi(e,
 o),
-hL(e,
+fL(e,
 t),
 Oi(e,
 t),
 Pi(e,
 {
 vignette:.46,
-...H3(n,
+...W3(n,
 t.X[0])}
 )}
 }
 ,
 {
 id:"ruins",
-at:c(e=>$t(e).B(7),
+at:c(e=>en(e).B(7),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.B(7);
 yr();
@@ -91138,7 +91139,7 @@ go([0,
 {
 fov:44}
 );
-qp(e,
+Xp(e,
 r,
 "city",
 "ch/c3/city.js",
@@ -91158,19 +91159,19 @@ pos:[0,
 bright:.22,
 scroll:0}
 ),
-dL(e,
+pL(e,
 t,
 {
 gain:.9}
 ),
-pL(e,
+mL(e,
 r,
 t,
 {
 size:.02,
 bright:.22}
 ),
-mL(n,
+vL(n,
 t,
 {
 k:1.4,
@@ -91178,7 +91179,7 @@ width:3.5}
 ),
 Qi(e,
 r),
-hL(e,
+fL(e,
 t);
 let o=e.text.overlay,
 a=Zh.filter(s=>s.base>0).length;
@@ -91193,7 +91194,7 @@ n,
 color:Ft.red}
 ),
 _s(o,
-"standing ".concat(qk(n,
+"standing ".concat(jk(n,
 t.X[0]),
 " / ").concat(a,
 "   θ = (ω₀/k) sinh kτ"),
@@ -91211,18 +91212,18 @@ br:"view  aerial"}
 Pi(e,
 {
 vignette:.46,
-...H3(n,
+...W3(n,
 t.X[0])}
 )}
 }
 ,
 {
 id:"crash",
-at:c(e=>$t(e).l108.start,
+at:c(e=>en(e).l108.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=tx(n,
 t);
@@ -91233,7 +91234,7 @@ let r=JM(e,
 0],
 "front",
 6.1),
-o=U2(te.lines,
+o=G2(te.lines,
 Pu);
 ix(i),
 bh(te.lines,
@@ -91259,8 +91260,8 @@ align:d,
 size:14,
 alpha:.7}
 )}
-let a=G([Ko(I3),
-$r(rf(I3)),
+let a=G([Ko(D3),
+$r(rf(D3)),
 0],
 r),
 s=_(i,
@@ -91269,7 +91270,7 @@ s=_(i,
 s>0&&dt(e.text.overlay,
 [a[0],
 a[1]],
-"diverged · step ".concat(Il(I3*on.steps)),
+"diverged · step ".concat(Il(D3*an.steps)),
 {
 dx:70,
 dy:-70,
@@ -91306,11 +91307,11 @@ ca:.1}
 ,
 {
 id:"crashMacro",
-at:c(e=>$t(e).l109.start,
+at:c(e=>en(e).l109.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=tx(n,
 t);
@@ -91342,7 +91343,7 @@ i,
 Pu,
 {
 width:2.6,
-rawCol:un(Pu.cold,
+rawCol:cn(Pu.cold,
 .6)}
 ),
 te.lines.segment([Ko(0),
@@ -91352,7 +91353,7 @@ $r(0),
 $r(0),
 0],
 {
-color:un(Pu.white,
+color:cn(Pu.white,
 .7),
 width:1.4}
 ),
@@ -91383,7 +91384,7 @@ s);
 dt(e.text.overlay,
 [l[0],
 l[1]],
-"r = ".concat($3(rf(i))),
+"r = ".concat(e5(rf(i))),
 {
 dx:70,
 dy:80,
@@ -91411,11 +91412,11 @@ vignette:.55}
 ,
 {
 id:"nan",
-at:c(e=>$t(e).tBe,
+at:c(e=>en(e).tBe,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.tBe,
 r=tx(n,
@@ -91425,7 +91426,7 @@ if(yr(),
 q(e)){
 let d=eu(n,
 .018*Math.exp(-Math.max(0,
-n-t.tOnly-Y3)*9)*(n>=t.tOnly+Y3?1:0)),
+n-t.tOnly-Q3)*9)*(n>=t.tOnly+Q3?1:0)),
 p=Zi(e,
 [.6+d[0],
 .45+d[1],
@@ -91446,7 +91447,7 @@ let g=G([0,
 0],
 p);
 _s(e.text.overlay,
-"step ".concat(Il(Math.round((te.last+1)/(on.n-1)*on.steps)),
+"step ".concat(Il(Math.round((te.last+1)/(an.n-1)*an.steps)),
 " · reward = NaN · loss = NaN"),
 g[0],
 g[1]+120,
@@ -91499,7 +91500,7 @@ Pu,
 width:3.4,
 gain:1.3*p,
 tip:o?0:1,
-rawCol:un(Pu.cold,
+rawCol:cn(Pu.cold,
 .35)}
 ),
 Qi(d,
@@ -91515,7 +91516,7 @@ l(e)):(Pi(e,
 {
 vignette:.1}
 ),
-G3(e,
+H3(e,
 "paper",
 l,
 {
@@ -91556,7 +91557,7 @@ f[1]-62,
 212*p,
 104*p)}
 ),
-h.text("step ".concat(Il(Math.round((te.last+1)/(on.n-1)*on.steps)),
+h.text("step ".concat(Il(Math.round((te.last+1)/(an.n-1)*an.steps)),
 " · reward = NaN · loss = NaN"),
 f[0]+30,
 f[1]+72,
@@ -91589,11 +91590,11 @@ br:"view  paper"}
 ,
 {
 id:"errors",
-at:c(e=>$t(e).X[1],
+at:c(e=>en(e).X[1],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=KM(n,
 t.X[1],
@@ -91605,16 +91606,16 @@ let r=JM(e,
 0],
 "front",
 Kn.h*1.02);
-vL(e,
+gL(e,
 r,
 t,
 {
 word:{
-tex:F3("EXECUTION").tex,
+tex:I3("EXECUTION").tex,
 on:n>=t.X[1]?1:0}
 }
 ),
-q3(r,
+j3(r,
 [0,
 0,
 .1],
@@ -91624,10 +91625,10 @@ scale:1.3}
 ),
 Qi(e,
 r),
-q(e)&&wL(e,
+q(e)&&AL(e,
 r,
 t),
-gL(e,
+wL(e,
 t),
 Oi(e,
 t,
@@ -91638,18 +91639,18 @@ Pi(e,
 {
 vignette:.32,
 ca:.08,
-...H3(n,
+...W3(n,
 t.X[1])}
 )}
 }
 ,
 {
 id:"errOblique",
-at:c(e=>$t(e).B(15),
+at:c(e=>en(e).B(15),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.B(15);
 yr();
@@ -91667,10 +91668,10 @@ Pi(e,
 {
 vignette:.5}
 ),
-G3(e,
+H3(e,
 "dither",
 a=>{
-vL(a,
+gL(a,
 r,
 t,
 {
@@ -91678,7 +91679,7 @@ focus:7.8,
 aperture:.012,
 maxBlur:10,
 word:{
-tex:F3("EXECUTION").tex}
+tex:I3("EXECUTION").tex}
 }
 ),
 Qi(a,
@@ -91709,7 +91710,7 @@ alpha:.8}
 "    at run (world.js:112:3)",
 "    at Promise.all (index ".concat(Il(OM(n,
 t.X[1],
-Qp)-1),
+Kp)-1),
 ")")].forEach((a,
 s)=>{
 let l=Math.floor(_(i,
@@ -91727,14 +91728,14 @@ size:15,
 alpha:.9}
 )}
 ),
-q(e)&&wL(e,
+q(e)&&AL(e,
 r,
 t,
 {
 dx:70,
 dy:-70}
 ),
-gL(e,
+wL(e,
 t),
 Oi(e,
 t,
@@ -91745,11 +91746,11 @@ br:"view  1-bit · bayer 8×8"}
 ,
 {
 id:"gather",
-at:c(e=>$t(e).l111.start,
+at:c(e=>en(e).l111.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.l111.start,
 r=Oc(n,
@@ -91766,7 +91767,7 @@ let o=Zi(e,
 {
 fov:44}
 );
-qp(e,
+Xp(e,
 o,
 "shards",
 "ch/c3/shards.js",
@@ -91797,11 +91798,11 @@ focus:4.5,
 aperture:.012,
 maxBlur:14}
 ),
-yL(r),
+bL(r),
 nf(n),
 Qi(e,
 o),
-O3(e),
+N3(e),
 Mo(e,
 [["fragments",
 "".concat(va.length,
@@ -91823,11 +91824,11 @@ vignette:.5}
 ,
 {
 id:"fit",
-at:c(e=>$t(e).B(17),
+at:c(e=>en(e).B(17),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.B(17),
 r=Oc(n,
@@ -91855,11 +91856,11 @@ maxBlur:16}
 ),
 tf(n,
 r),
-yL(r),
+bL(r),
 nf(n),
 Qi(e,
 o),
-O3(e),
+N3(e),
 Mo(e,
 [["placed",
 "".concat(r.placed,
@@ -91879,11 +91880,11 @@ vignette:.5}
 ,
 {
 id:"missing",
-at:c(e=>$t(e).tHave,
+at:c(e=>en(e).tHave,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.tHave,
 r=Oc(n,
@@ -91905,7 +91906,7 @@ o,
 r),
 tf(n,
 r),
-j3(R.outCubic(_(i,
+X3(R.outCubic(_(i,
 0,
 .25))),
 nf(n,
@@ -91919,7 +91920,7 @@ t.tHave+.44)}
 ),
 Qi(e,
 o),
-O3(e);
+N3(e);
 let a=e.text.overlay,
 s=qK();
 Mo(e,
@@ -91963,11 +91964,11 @@ vignette:.45}
 ,
 {
 id:"jitter",
-at:c(e=>$t(e).tYou,
+at:c(e=>en(e).tYou,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.tYou,
 r=Oc(n,
@@ -92003,7 +92004,7 @@ r,
 {
 k:.55}
 ),
-j3(.8),
+X3(.8),
 c1(e,
 s,
 {
@@ -92014,7 +92015,7 @@ maxBlur:24}
 ),
 Qi(e,
 s),
-O3(e),
+N3(e),
 Mo(e,
 [["drift",
 "".concat((r.J*.06*.5).toFixed(3))],
@@ -92035,11 +92036,11 @@ vignette:.55}
 ,
 {
 id:"run",
-at:c(e=>$t(e).l112.start,
+at:c(e=>en(e).l112.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.l112.start,
 r=Oc(n,
@@ -92069,7 +92070,7 @@ r,
 {
 k:.4}
 ),
-j3(.7),
+X3(.7),
 nf(n,
 1);
 let a=0;
@@ -92080,7 +92081,7 @@ t.l112.start+.05+h*.022,
 t.l112.start+.3+h*.022));
 if(f<=0)return;
 let d=r.cells[u],
-p=Kp(d,
+p=$p(d,
 Yr.cent[u]);
 if(te.lines.polyline([oo,
 p],
@@ -92141,7 +92142,7 @@ l=G([0,
 0,
 0],
 o);
-Tn(s,
+Cn(s,
 l[0],
 l[1],
 46,
@@ -92172,11 +92173,11 @@ vignette:.5}
 ,
 {
 id:"execute",
-at:c(e=>$t(e).X[2],
+at:c(e=>en(e).X[2],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.X[2],
 r=Oc(n,
@@ -92221,7 +92222,7 @@ burst:R.outCubic(_(n,
 t.X[2]+.02,
 t.X[2]+.5))}
 ),
-q3(a,
+j3(a,
 [0,
 0,
 .1],
@@ -92231,7 +92232,7 @@ scale:1.1}
 ),
 Qi(e,
 a),
-X3(e,
+Y3(e,
 t),
 f1(e,
 t);
@@ -92247,18 +92248,18 @@ t),
 Pi(e,
 {
 vignette:.5,
-...H3(n,
+...W3(n,
 t.X[2])}
 )}
 }
 ,
 {
 id:"ashes",
-at:c(e=>$t(e).B(23),
+at:c(e=>en(e).B(23),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.B(23),
 r=Oc(n,
@@ -92295,7 +92296,7 @@ roll:C(.02,
 -.05,
 o)}
 );
-qp(e,
+Xp(e,
 s,
 "shards",
 "ch/c3/shards.js",
@@ -92335,7 +92336,7 @@ nf(n,
 .9),
 Qi(e,
 s),
-X3(e,
+Y3(e,
 t,
 960,
 300),
@@ -92343,7 +92344,7 @@ f1(e,
 t);
 let l=G(oo,
 s);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 l[0],
 l[1],
 30,
@@ -92369,11 +92370,11 @@ vignette:.5}
 ,
 {
 id:"tighten",
-at:c(e=>$t(e).l114.start,
+at:c(e=>en(e).l114.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.l114.start,
 r=h1(n,
@@ -92389,7 +92390,7 @@ let o=Zi(e,
 {
 fov:42}
 );
-W3(e,
+V3(e,
 o,
 t,
 {
@@ -92406,7 +92407,7 @@ t,
 size:.04,
 bright:.35}
 ),
-Wp(e,
+qp(e,
 o),
 Qi(e,
 o),
@@ -92431,11 +92432,11 @@ vignette:.5}
 ,
 {
 id:"walls",
-at:c(e=>$t(e).B(25),
+at:c(e=>en(e).B(25),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.B(25),
 r=h1(n,
@@ -92499,13 +92500,13 @@ inset:!0}
 ),
 XM(te.lines,
 r,
-un([1,
+cn([1,
 .2,
 .12],
 1.2),
 5.2)),
 te.me.points.visible=te.you.points.visible=!1,
-Wp(e,
+qp(e,
 m,
 {
 haloW:44,
@@ -92539,7 +92540,7 @@ w=G(h===2?[r,
 r],
 m,
 p);
-Sn(o,
+Tn(o,
 [g[0],
 g[1]],
 [w[0],
@@ -92559,7 +92560,7 @@ A=G([-r,
 0],
 m,
 p);
-Sn(o,
+Tn(o,
 [A[0],
 A[1]],
 [v[0],
@@ -92577,7 +92578,7 @@ Mo(e,
 [["S",
 r.toFixed(3)],
 ["gap",
-(r-.75-V3*.62).toFixed(3)]],
+(r-.75-q3*.62).toFixed(3)]],
 {
 y:170}
 ),
@@ -92592,11 +92593,11 @@ ca:.08}
 ,
 {
 id:"lattice",
-at:c(e=>$t(e).tTrap,
+at:c(e=>en(e).tTrap,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.tTrap,
 r=h1(n,
@@ -92612,7 +92613,7 @@ let o=Zi(e,
 {
 fov:44}
 );
-W3(e,
+V3(e,
 o,
 t,
 {
@@ -92620,7 +92621,7 @@ fog:.012,
 edgeK:.8,
 glassK:.5}
 ),
-Wp(e,
+qp(e,
 o),
 Qi(e,
 o);
@@ -92629,7 +92630,7 @@ s=G([0,
 0,
 0],
 o);
-Tn(a,
+Cn(a,
 s[0],
 s[1],
 26,
@@ -92655,11 +92656,11 @@ vignette:.5}
 ,
 {
 id:"slow",
-at:c(e=>$t(e).l115.start,
+at:c(e=>en(e).l115.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=n-t.l115.start,
 r=h1(n,
@@ -92684,7 +92685,7 @@ s=Fl(o,
 [0,
 0,
 0]);
-W3(e,
+V3(e,
 a,
 t,
 {
@@ -92703,7 +92704,7 @@ focus:s,
 aperture:.03,
 maxBlur:28}
 ),
-Wp(e,
+qp(e,
 a,
 {
 focus:s,
@@ -92730,11 +92731,11 @@ vignette:.55}
 ,
 {
 id:"fade",
-at:c(e=>$t(e).tFade,
+at:c(e=>en(e).tFade,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=$t(e.T),
+let t=en(e.T),
 n=e.t,
 i=_(n,
 t.tFade,
@@ -92760,7 +92761,7 @@ fov:36}
 a=1-R.inOutSine(_(n,
 t.tFade+.1,
 t.end-.35));
-a>0&&(W3(e,
+a>0&&(V3(e,
 o,
 t,
 {
@@ -92785,18 +92786,18 @@ t.end-.05)));
 let s=R.inOutSine(_(n,
 t.tFade,
 t.end-.3));
-Wp(e,
+qp(e,
 o,
 {
-revealMe:C(Z3(Q3(o,
+revealMe:C(K3(Z3(o,
 u1),
-V3*.62,
+q3*.62,
 te.me.N,
 .5),
 .25,
 s),
-revealYou:C(Z3(Q3(o,
-Vp),
+revealYou:C(K3(Z3(o,
+jp),
 sx*.75,
 te.you.N,
 .5),
@@ -92818,9 +92819,9 @@ t.end-.15)),
 u={
 vignette:.55}
 ;
-for(let h in cL){
-let f=h==="vignette"?.55:TL[h],
-d=cL[h];
+for(let h in hL){
+let f=h==="vignette"?.55:CL[h],
+d=hL[h];
 u[h]=Array.isArray(f)?f.map((p,
 m)=>C(p,
 d[m],
@@ -92902,7 +92903,7 @@ u=d}
 return i}
 c(fx,
 "polarRoot");
-function n5(e=720){
+function i5(e=720){
 let t=[];
 for(let n=0;
 n<=e;
@@ -92917,9 +92918,9 @@ r*Math.sin(i),
 0,
 n/e])}
 return t}
-c(n5,
+c(i5,
 "heartLoop");
-function FL(e){
+function IL(e){
 let t=0,
 n=0,
 i=0,
@@ -92948,7 +92949,7 @@ yAtX:r,
 yMax:o,
 xAtY:a}
 }
-c(FL,
+c(IL,
 "heartFacts");
 function dx(e,
 t,
@@ -92985,7 +92986,7 @@ i:o}
 }
 c(dx,
 "alongLoop");
-function i5(e){
+function r5(e){
 let t=[0];
 for(let n=1;
 n<e.length;
@@ -92993,7 +92994,7 @@ n++)t.push(t[n-1]+Math.hypot(e[n][0]-e[n-1][0],
 e[n][1]-e[n-1][1],
 (e[n][2]??0)-(e[n-1][2]??0)));
 return t}
-c(i5,
+c(r5,
 "cumLen");
 var of=[[-1,
 0,
@@ -93022,7 +93023,7 @@ var of=[[-1,
 nJ=c(e=>[16*Math.sin(e)**3,
 13*Math.cos(e)-5*Math.cos(2*e)-2*Math.cos(3*e)-Math.cos(4*e)],
 "fourierHeart");
-function r5(e){
+function o5(e){
 let t=0,
 n=0,
 i=[[0,
@@ -93039,9 +93040,9 @@ i.push([t,
 n,
 0])}
 return i}
-c(r5,
+c(o5,
 "fourierChain");
-var t5=c((e,
+var n5=c((e,
 t,
 n,
 i)=>Array.from({
@@ -93075,7 +93076,7 @@ s,
 0]}
 ),
 "paramPts"),
-LL=c(([e,
+FL=c(([e,
 t])=>[-t,
 e],
 "rot90"),
@@ -93100,7 +93101,7 @@ i,
 r]}
 c(rJ,
 "box");
-function IL(e){
+function DL(e){
 let t=[];
 t.push({
 name:"cardioid",
@@ -93108,7 +93109,7 @@ f:["r = 1 − sin θ"],
 par:"θ",
 range:[-Si/2,
 1.5*Si],
-pts:t5(l=>1-Math.sin(l),
+pts:n5(l=>1-Math.sin(l),
 -Si/2,
 1.5*Si,
 480),
@@ -93124,7 +93125,7 @@ f:["r = 2 − 2 sin θ + sin θ·√|cos θ| / (sin θ + 1.4)"],
 par:"θ",
 range:[-Si/2,
 1.5*Si],
-pts:t5(n,
+pts:n5(n,
 -Si/2,
 1.5*Si,
 900),
@@ -93138,7 +93139,7 @@ f:["r = cos 4θ"],
 par:"θ",
 range:[0,
 j],
-pts:t5(l=>Math.cos(4*l),
+pts:n5(l=>Math.cos(4*l),
 0,
 j,
 1400),
@@ -93147,7 +93148,7 @@ c:[0,
 step:.25}
 );
 let i=160,
-r=c(l=>LL([Math.cos(j*l/i),
+r=c(l=>FL([Math.cos(j*l/i),
 Math.sin(j*l/i)]),
 "P"),
 o=Array.from({
@@ -93158,7 +93159,7 @@ u)=>[[...r(u),
 0],
 [...r(2*u%i),
 0]]),
-a=d1(l=>LL([(2*Math.cos(l)+Math.cos(2*l))/3,
+a=d1(l=>FL([(2*Math.cos(l)+Math.cos(2*l))/3,
 (2*Math.sin(l)+Math.sin(2*l))/3]),
 0,
 j,
@@ -93170,7 +93171,7 @@ f:["k ↦ 2k  (mod 160)",
 par:"k",
 range:[0,
 i],
-pts:t5(()=>1,
+pts:n5(()=>1,
 Si/2,
 Si/2+j,
 240),
@@ -93268,11 +93269,11 @@ step:.125}
 );
 for(let l of t)l.box=rJ([l.pts,
 ...l.extra??[]]),
-l.cum=i5(l.pts);
+l.cum=r5(l.pts);
 return t}
-c(IL,
+c(DL,
 "notebook");
-function DL(e,
+function zL(e,
 t,
 {
 sigma:n=.006,
@@ -93300,9 +93301,9 @@ s(),
 (l+.5)/e],
 l*4)}
 return r}
-c(DL,
+c(zL,
 "heartCurveShape");
-function zL(e,
+function OL(e,
 {
 seed:t=9,
 scale:n=1,
@@ -93354,9 +93355,9 @@ v*Math.sin(y)*n,
 h()<r?y%Si/Si:9],
 d*4)}
 return f}
-c(zL,
+c(OL,
 "cardioidRevShape");
-function o5(e,
+function a5(e,
 t,
 {
 R:n=.19,
@@ -93407,9 +93408,9 @@ s.copyWithin(h*4,
 f*4,
 f*4+4)}
 return s}
-c(o5,
+c(a5,
 "pressedShape");
-function a5(e,
+function s5(e,
 t,
 n=3){
 let i=0,
@@ -93433,9 +93434,9 @@ a++){
 let s=(i+r)/2;
 o(s)>0?r=s:i=s}
 return(i+r)/2}
-c(a5,
+c(s5,
 "exitAlong");
-function OL(e,
+function NL(e,
 t,
 n=64){
 let i=Math.sign(xo(...e));
@@ -93447,9 +93448,9 @@ if(Math.sign(xo(e[0]+(t[0]-e[0])*o,
 e[1]+(t[1]-e[1])*o,
 e[2]+(t[2]-e[2])*o))!==i)return!0}
 return!1}
-c(OL,
+c(NL,
 "segmentCrosses");
-function NL(e=60){
+function UL(e=60){
 let t=[-1.2,
 -1.05,
 -.72,
@@ -93480,10 +93481,10 @@ xo(l,
 u,
 h)<0&&i++}
 return i/r*(t[3]-t[0])*(t[4]-t[1])*(t[5]-t[2])}
-c(NL,
+c(UL,
 "taubinVolume");
 var oJ="\nuniform sampler2D tBg, tIn;\nuniform mat4 uCamWorld, uProjInv, uModelInv;\nuniform vec3 uCamPos, uCamR, uCamU;\nuniform vec4 uBound;\nuniform float uAppear, uT, uPulse, uGlow, uCage, uContour, uRefr, uDisp, uBody, uFilm, uRefl, uTanHalf, uAspect, uCageN;\nuniform vec4 uTouch, uPress;\nin vec2 vUv; out vec4 o;\n\nfloat F(vec3 p) { float g = p.x * p.x + 2.25 * p.z * p.z + p.y * p.y - 1., y3 = p.y * p.y * p.y; return g * g * g - p.x * p.x * y3 - .1125 * p.z * p.z * y3; }\nvec3 G(vec3 p) {\n  float g = p.x * p.x + 2.25 * p.z * p.z + p.y * p.y - 1., g2 = 3. * g * g, y2 = p.y * p.y, y3 = y2 * p.y;\n  return vec3(g2 * 2. * p.x - 2. * p.x * y3, g2 * 2. * p.y - 3. * p.x * p.x * y2 - .3375 * p.z * p.z * y2, g2 * 4.5 * p.z - .225 * p.z * y3);\n}\nvec3 nrm(vec3 p) { vec3 g = G(p); float l = length(g); return l > 1e-6 ? g / l : normalize(p - vec3(0., .12, 0.)); }\n\n// first t in [ta, tb] where F takes the sign of want (-1 entering, +1 leaving); -1 if none\nfloat crossing(vec3 ro, vec3 rd, float ta, float tb, float want) {\n  float t = ta, tp = ta;\n  for (int i = 0; i < 96; i++) {\n    float f = F(ro + rd * t);\n    if (f * want > 0.) {\n      float a = tp, b = t;\n      for (int k = 0; k < 12; k++) { float m = .5 * (a + b); if (F(ro + rd * m) * want > 0.) b = m; else a = m; }\n      return .5 * (a + b);\n    }\n    if (t >= tb) break;\n    // |F|/|∇F| underestimates the distance about 3× where F ≈ g³ (the cube dominates), so step by 1.5× of it;\n    // the sign test and bisection still catch the crossing, and the step is capped\n    float de = abs(f) / (length(G(ro + rd * t)) + 1e-3);\n    tp = t; t = min(t + clamp(1.5 * de, .008, .08), tb);\n  }\n  return -1.;\n}\n\n// anti-aliased unit-spaced lines; where they get denser than a few pixels (or the hit point jumps between pixels)\n// they fade to their average coverage instead of filling the pixel\nfloat lineAA(float v, float w) { float d = .5 - abs(fract(v) - .5); return mix(1. - smoothstep(0., max(w, 1e-4), d), .1, smoothstep(.25, .7, w)); }\nvec3 envRefl(vec3 d) {\n  float key = pow(max(dot(d, normalize(vec3(-.55, .75, .45))), 0.), 22.);\n  float warm = pow(max(dot(d, normalize(vec3(.85, .05, -.5))), 0.), 5.);\n  float top = smoothstep(-.2, 1., d.y);\n  return vec3(1., .9, .78) * key * 1.6 + vec3(1., .42, .55) * warm * .3 + vec3(.85, .8, 1.) * top * .07;\n}\nvec2 screenOff(vec3 bend) { return vec2(dot(bend, uCamR) / uAspect, dot(bend, uCamU)) * (.5 / uTanHalf); }\n// refracted lookup with RGB dispersion; the offset is bounded and samples that leave the frame fade out (a clamped\n// lookup would smear the layer's edge pixels into streaks)\nfloat inFrame(vec2 q) { vec2 e = smoothstep(vec2(0.), vec2(.03), q) * smoothstep(vec2(1.), vec2(.97), q); return e.x * e.y; }\nvec3 sampleDisp(sampler2D tx, vec2 uv, vec2 off, float disp) {\n  float l = length(off); off *= min(1., .1 / max(l, 1e-5));\n  vec2 a = uv + off * (1. - disp), b = uv + off, c = uv + off * (1. + disp);\n  return vec3(texture(tx, a).r * inFrame(a), texture(tx, b).g * inFrame(b), texture(tx, c).b * inFrame(c));\n}\n\n// light leaving one wall toward the eye, plus the wall's transmission and screen-space refraction offset\nvec3 wall(vec3 p, vec3 n, vec3 rd, float cont, float cage, float ins, out vec2 off, out float trans) {\n  vec3 nf = dot(n, rd) < 0. ? n : -n;\n  float ring = 0.;\n  if (uTouch.w > -.5) {                                   // rings travelling out from where you passed through\n    float age = max(uTouch.w, 0.), d = distance(p, uTouch.xyz), front = .06 + age * .75;\n    float env = exp(-age * 1.8) * smoothstep(-.05, .02, uTouch.w) * (1. - smoothstep(.7, 1.15, age));\n    float wv = sin((d - front) * 80.) * exp(-abs(d - front) * 10.) * step(d, front + .05) * env;\n    vec3 q = p - uTouch.xyz; vec3 tng = q - nf * dot(q, nf); tng /= max(length(tng), 1e-4);\n    nf = normalize(nf + tng * wv * .3);\n    ring = exp(-pow((d - front) / .02, 2.)) * env + exp(-d * d / .004) * env * .6;\n  }\n  float ndv = clamp(-dot(nf, rd), 0., 1.), fres = .04 + .96 * pow(1. - ndv, 5.), rim = pow(1. - ndv, 3.);\n  vec3 film = palette(rim * 1.3 + p.y * .25 + uT * .04, vec3(.58, .47, .45), vec3(.42, .3, .3), vec3(1.), vec3(.02, .16, .3));\n  float spec = pow(max(dot(reflect(rd, nf), normalize(vec3(-.5, .8, .6))), 0.), 80.);\n  // seen from inside there is no studio light to reflect: only a faint sheen, no glint\n  vec3 c = envRefl(reflect(rd, nf)) * fres * uRefl * (1. - .85 * ins) + film * rim * uFilm * (1. - .6 * ins) + vec3(1., .88, .72) * spec * 1.15 * uRefl * (1. - ins);\n  c += vec3(1., .7, .36) * cont * (.45 + 1.4 * rim) * uContour * (1. + 1.2 * uGlow);\n  c += vec3(1., .84, .6) * cage * (.55 + rim) * uCage;\n  c += vec3(1., .55, .22) * ring * 1.6;\n  if (uPress.w > 0.) { float d = distance(p, uPress.xyz); c += vec3(.42, .92, 1.) * exp(-d * d / .01) * uPress.w * .45; }\n  off = screenOff(refract(rd, nf, 1. / 1.45) - rd) * uRefr;\n  trans = 1. - fres;\n  return c * (1. + .5 * uGlow);\n}\n\nvoid main() {\n  vec4 v = uProjInv * vec4(vUv * 2. - 1., 1., 1.); v /= v.w;\n  vec3 rdW = normalize((uCamWorld * vec4(v.xyz, 0.)).xyz);\n  vec3 ro = (uModelInv * vec4(uCamPos, 1.)).xyz, rd = normalize((uModelInv * vec4(rdW, 0.)).xyz);\n  vec3 bg = texture(tBg, vUv).rgb, inn = texture(tIn, vUv).rgb;\n  bool inside = F(ro) < 0.;\n  float t1 = -1., t2 = -1.;\n  vec3 oc = ro - uBound.xyz; float b = dot(oc, rd), c = dot(oc, oc) - uBound.w * uBound.w, h = b * b - c;\n  if (h > 0. && uAppear > 0.) {\n    h = sqrt(h); float ta = max(-b - h, 0.), tb = -b + h;\n    if (tb > 0.) {\n      if (inside) t1 = crossing(ro, rd, 0., tb, 1.);\n      else { t1 = crossing(ro, rd, ta, tb, -1.); if (t1 > 0.) t2 = crossing(ro, rd, t1 + .004, tb, 1.); }\n    }\n  }\n  vec3 p1 = ro + rd * max(t1, 0.), p2 = ro + rd * max(t2, 0.);\n  vec3 n1 = t1 > 0. ? nrm(p1) : vec3(0., 0., 1.), n2 = t2 > 0. ? nrm(p2) : vec3(0., 0., 1.);\n  // contour coordinates, differentiated in uniform control flow\n  float h1 = p1.y * 9. - uT * .3, h2 = p2.y * 9. - uT * .3;\n  float m1 = atan(p1.z, p1.x) / TAU * uCageN, m1b = atan(-p1.z, -p1.x) / TAU * uCageN;\n  float m2 = atan(p2.z, p2.x) / TAU * uCageN, m2b = atan(-p2.z, -p2.x) / TAU * uCageN;\n  float c1 = lineAA(h1, fwidth(h1) * 1.25), c2 = lineAA(h2, fwidth(h2) * 1.25);\n  float k1 = lineAA(m1, min(fwidth(m1), fwidth(m1b)) * 1.4), k2 = lineAA(m2, min(fwidth(m2), fwidth(m2b)) * 1.4);\n  vec3 col = bg + inn;\n  vec3 tint = vec3(1., .86, .9);\n  if (t1 > 0.) {\n    vec2 off1, off2; float tr1, tr2;\n    vec3 w1 = wall(p1, n1, rd, c1, k1, inside ? 1. : 0., off1, tr1);\n    if (inside) {\n      vec3 behind = sampleDisp(tBg, vUv, off1, uDisp);\n      vec3 haze = vec3(1., .3, .5) * (.003 + .01 * t1) * uBody * (1. + 3. * uGlow);\n      col = inn + w1 + tr1 * tint * behind + haze;\n    } else {\n      vec3 w2 = vec3(0.), behind;\n      if (t2 > 0.) { w2 = wall(p2, n2, rd, c2, k2, 1., off2, tr2); behind = sampleDisp(tBg, vUv, off1 + off2, uDisp) * tr2 * tint; }\n      else behind = sampleDisp(tBg, vUv, off1, uDisp);\n      vec3 seen = sampleDisp(tIn, vUv, off1 * .5, uDisp * .5);\n      float thick = t2 > 0. ? t2 - t1 : .2;\n      vec3 body = vec3(1., .22, .45) * (.004 + .045 * thick * thick) * uBody * (1. + .2 * uPulse) * (1. + 3. * uGlow);\n      col = w1 + tr1 * tint * (seen + behind + w2 * .55) + body;\n    }\n  }\n  o = vec4(mix(bg + inn, col, uAppear), 1.);\n}";
-function s5(){
+function l5(){
 let e=c(()=>({
 value:new B}
 ),
@@ -93569,10 +93570,10 @@ value:new ot(0,
 0)}
 }
 )}
-c(s5,
+c(l5,
 "glassMaterial");
 var aJ=new Ke,
-UL={
+GL={
 appear:1,
 t:0,
 pulse:0,
@@ -93586,7 +93587,7 @@ body:1,
 film:1.6,
 refl:1.4}
 ;
-function l5(e,
+function u5(e,
 t,
 n,
 i,
@@ -93610,10 +93611,10 @@ a.uCamU.value.setFromMatrixColumn(t.matrixWorld,
 a.uTanHalf.value=Math.tan(ut.degToRad(t.fov)/2),
 a.uAspect.value=t.aspect;
 let s={
-...UL,
+...GL,
 ...o}
 ;
-for(let l in UL)a["u"+l[0].toUpperCase()+l.slice(1)].value=s[l];
+for(let l in GL)a["u"+l[0].toUpperCase()+l.slice(1)].value=s[l];
 o.touch?a.uTouch.value.set(...o.touch):a.uTouch.value.set(0,
 0,
 0,
@@ -93622,12 +93623,12 @@ o.press?a.uPress.value.set(...o.press):a.uPress.value.set(0,
 0,
 0,
 0)}
-c(l5,
+c(u5,
 "setGlass");
 var sJ="\nuniform float uAmp;\nout vec3 vW; out float vF;\nfloat F(vec2 p) { float g = dot(p, p) - 1.; return g * g * g - p.x * p.x * p.y * p.y * p.y; }\nvoid main() {\n  vec3 p = position;\n  float f = F(vec2(p.x, -p.z)), cf = sign(f) * pow(abs(f), 1. / 3.);\n  vF = cf;\n  p.y = uAmp * clamp(cf, -1., 1.4);\n  vec4 w = modelMatrix * vec4(p, 1.); vW = w.xyz;\n  gl_Position = projectionMatrix * viewMatrix * w;\n}",
 lJ="\nuniform vec3 uLine, uZero, uFill, uGridCol; uniform float uFade, uIntensity, uReveal, uLit;\nin vec3 vW; in float vF; out vec4 o;\nfloat lineAA(float v, float w) { float d = .5 - abs(fract(v) - .5); return 1. - smoothstep(0., max(w, 1e-4), d); }\nvoid main() {\n  float v = vF * 10.;\n  float iso = lineAA(v, fwidth(v) * 1.2) * (vF < 0. ? .9 : .5 * exp(-vF * 1.8) * (1. - smoothstep(1.1, 1.35, vF)));\n  float zero = 1. - smoothstep(0., fwidth(vF) * 1.6, abs(vF));\n  vec2 g = vW.xz * 4.; float grid = max(lineAA(g.x, fwidth(g.x)), lineAA(g.y, fwidth(g.y)));\n  float fill = vF < 0. ? .18 * (1. + vF) + .06 : 0.;\n  float fade = exp(-length(vW - cameraPosition) * uFade);\n  float rev = 1. - smoothstep(uReveal * 4. - .4, uReveal * 4., length(vW.xz));\n  vec3 col = uLine * iso + uZero * zero * (2. + 2. * uLit) + uFill * fill * (1. + uLit) + uGridCol * grid * .12;\n  o = vec4(col * fade * rev * uIntensity, 1.);\n}";
-function GL(){
-let e=new _n(7,
+function HL(){
+let e=new Sn(7,
 7,
 360,
 360);
@@ -93697,9 +93698,9 @@ s.uFade.value=o,
 s.uAmp.value=a}
 ,
 t}
-c(GL,
+c(HL,
 "fieldMesh");
-function HL(e,
+function WL(e,
 t,
 n=.32){
 let i=e*e+t*t-1,
@@ -93708,22 +93709,22 @@ o=Math.sign(r)*Math.abs(r)**(1/3);
 return n*Math.min(1.4,
 Math.max(-1,
 o))}
-c(HL,
+c(WL,
 "fieldHeight");
-var u5="JetBrains Mono",
+var c5="JetBrains Mono",
 m1={
 steps:262144,
 l0:10.8,
 floor:1.93}
 ;
-function WL(e){
+function VL(e){
 let t=e/m1.steps,
 n=m1.floor+(m1.l0-m1.floor)*(1+t/.0018)**-.62;
 return n*(1+((_t(Math.floor(e/512)*1.37)-.5)*.5+(_t(Math.floor(e/64)*7.1)-.5)*.25)*.08*Math.min(1,
 n/3))}
-c(WL,
+c(VL,
 "lossAt");
-function VL(e,
+function qL(e,
 t,
 n,
 i={
@@ -93775,7 +93776,7 @@ A<=g;
 A++){
 let y=A/m*m1.steps,
 b=r+A/m*a,
-x=p(WL(Math.max(1,
+x=p(VL(Math.max(1,
 y)));
 A?v.lineTo(b,
 x):v.moveTo(b,
@@ -93784,7 +93785,7 @@ v.stroke()}
 );
 let w={
 size:i.size??15,
-font:u5,
+font:c5,
 weight:500,
 align:"left",
 alpha:l}
@@ -93816,7 +93817,7 @@ color:h}
 ),
 n>0){
 let v=Math.round(X(n)*m1.steps),
-A=WL(Math.max(1,
+A=VL(Math.max(1,
 v)),
 y=r+X(n)*a,
 b=p(A);
@@ -93831,9 +93832,9 @@ b-18,
 color:u}
 )}
 }
-c(VL,
+c(qL,
 "drawLoss");
-function qL(e,
+function jL(e,
 t,
 n,
 i,
@@ -93845,7 +93846,7 @@ a={
 let s=a.size??100,
 l={
 size:s,
-font:u5,
+font:c5,
 weight:800,
 align:"left"}
 ,
@@ -93915,7 +93916,7 @@ S,
 E+x/2+s*.3,
 {
 size:s*.19,
-font:u5,
+font:c5,
 weight:500,
 align:"center",
 color:a.dim??"#9aa3b8",
@@ -93924,10 +93925,10 @@ alpha:y*.9}
 g+=b+h}
 ),
 m}
-c(qL,
+c(jL,
 "drawTokens");
 var px=new Map;
-function jL(e,
+function XL(e,
 {
 font:t='800 200px "JetBrains Mono"',
 height:n=2,
@@ -93942,7 +93943,7 @@ let o="".concat(e,
 "|").concat(i,
 "|").concat(r);
 if(px.has(o))return px.get(o);
-let a=Fn(),
+let a=In(),
 s=a.getContext("2d",
 {
 willReadFrequently:!0}
@@ -93989,7 +93990,7 @@ height:h/d}
 return px.set(o,
 m),
 m}
-c(jL,
+c(XL,
 "wordMask");
 function v1(e,
 t,
@@ -94005,7 +94006,7 @@ l=s*1.55,
 u="#8a8f98",
 h={
 size:s,
-font:u5,
+font:c5,
 weight:500,
 align:"left"}
 ,
@@ -94048,7 +94049,7 @@ m,
 g],
 w)=>{
 let v=r.sent-d-w*.12;
-v<0||(w===0?md(e,
+v<0||(w===0?gd(e,
 t,
 f,
 p,
@@ -94203,7 +94204,7 @@ alpha:.9*i}
 )}
 c(g1,
 "terminal");
-var Jp=2*Math.PI,
+var em=2*Math.PI,
 Zs={
 a:.723,
 w:13/8,
@@ -94213,19 +94214,19 @@ loops:5,
 synodicDays:583.92}
 ,
 gx=Math.atan2(.28,
-1)+Math.PI-Jp*Zs.S/2,
-$p=c(e=>[Math.cos(gx+Jp*e),
-Math.sin(gx+Jp*e)],
+1)+Math.PI-em*Zs.S/2,
+tm=c(e=>[Math.cos(gx+em*e),
+Math.sin(gx+em*e)],
 "earth"),
-c5=c(e=>{
-let t=gx+Jp*Zs.w*e;
+h5=c(e=>{
+let t=gx+em*Zs.w*e;
 return[Zs.a*Math.cos(t),
 Zs.a*Math.sin(t)]}
 ,
 "venus"),
-XL=c(e=>{
-let t=$p(e),
-n=c5(e);
+YL=c(e=>{
+let t=tm(e),
+n=h5(e);
 return[n[0]-t[0],
 n[1]-t[1]]}
 ,
@@ -94233,15 +94234,15 @@ n[1]-t[1]]}
 w1=c((e,
 t,
 n)=>{
-let i=$p(t);
+let i=tm(t);
 return[e[0]-(1-n)*i[0],
 e[1]-(1-n)*i[1]]}
 ,
 "inFrame"),
-YL=c(e=>Math.max(0,
+QL=c(e=>Math.max(0,
 Math.floor(e/Zs.S+1e-9)),
 "loopsBy");
-function QL(e,
+function ZL(e,
 t,
 n,
 {
@@ -94268,7 +94269,7 @@ let f=(l+u)/2;
 s(f)<0?l=f:u=f}
 return[t[0]+o*u,
 t[1]+a*u]}
-c(QL,
+c(ZL,
 "rayExit");
 function wx(e,
 t,
@@ -94279,14 +94280,14 @@ for(let o=0;
 o<=n;
 o++){
 let a=e+(t-e)*o/n;
-r.push([...w1(c5(a),
+r.push([...w1(h5(a),
 a,
 i),
 0])}
 return r}
 c(wx,
 "rosePts");
-function ZL(){
+function KL(){
 let e=wx(0,
 Zs.years,
 1600),
@@ -94294,7 +94295,7 @@ t=[];
 for(let o=0;
 o<=48;
 o++){
-let a=o/48*Jp;
+let a=o/48*em;
 t.push([.07*Math.cos(a),
 .07*Math.sin(a),
 0])}
@@ -94323,7 +94324,7 @@ Math.max(...n),
 Math.max(...i)],
 cum:r}
 }
-c(ZL,
+c(KL,
 "venusCell");
 var ao=[1,
 .9,
@@ -94363,7 +94364,7 @@ cJ=[[.8,
 [.55,
 .44,
 .48]],
-Un=c((e,
+Gn=c((e,
 t)=>e.map(n=>n*t),
 "scl"),
 af=c(e=>{
@@ -94390,21 +94391,21 @@ hJ=[-.34,
 zl=af([1,
 .28,
 .3]),
-tF=.075,
-g5=.055,
-w5="(x² + y² − 1)³ − x²y³ = 0",
+nF=.075,
+w5=.055,
+A5="(x² + y² − 1)³ − x²y³ = 0",
 fJ="(x² + 9/4·z² + y² − 1)³ − x²y³ − 9/80·z²y³ = 0",
 ae=null,
 yx=null,
-Bn=null,
+Pn=null,
 b1=null;
 function dJ(){
-let e=n5(720),
-t=FL(e),
-n=i5(e),
-i=n5(2880),
-r=n5(240),
-o=a5(No,
+let e=i5(720),
+t=IL(e),
+n=r5(e),
+i=i5(2880),
+r=i5(240),
+o=s5(No,
 zl),
 a=Jn(No,
 zl,
@@ -94413,8 +94414,8 @@ s=p1(a),
 l=Jn(a,
 s,
 -.087),
-u=IL(e),
-h=i5(e),
+u=DL(e),
+h=r5(e),
 f=Array.from({
 length:24}
 ,
@@ -94433,7 +94434,7 @@ let m=Math.max(1,
 Math.round(p.pts.length/(p.epi?480:240)));
 p.ptsD=p.pts.filter((g,
 w)=>w%m===0||w===p.pts.length-1)}
-let d=ZL();
+let d=KL();
 return d.ptsD=d.pts,
 {
 loop:e,
@@ -94449,11 +94450,11 @@ sExit:o,
 exit:a,
 nExit:s,
 pressC:l,
-vol:NL(56)}
+vol:UL(56)}
 }
 c(dJ,
 "mathInit");
-function cn(e){
+function hn(e){
 if(yx?.T===e)return yx;
 let t=e.section("love").start,
 n=Math.round(e.beatAt(t)),
@@ -94492,7 +94493,7 @@ pen1:a[2]-.25,
 yGo:a[2]+.3,
 tX:d.start+.3}
 }
-c(cn,
+c(hn,
 "keys");
 function Oo(e,
 t,
@@ -94580,20 +94581,20 @@ e[1]+t*Math.sin(i),
 e[2]+t*Math.cos(i)*Math.cos(n)]}
 c(Fu,
 "orbitPos");
-function A5(e,
+function y5(e,
 t){
 return e.isOrthographicCamera?1080/(e.top-e.bottom):540/Math.tan(ut.degToRad(e.fov)/2)/Math.max(.02,
 Uc(e.position.toArray(),
 t))}
-c(A5,
+c(y5,
 "pxPerUnit");
-function nF(){
+function iF(){
 for(let e of ae.all)e.visible=!1}
-c(nF,
-"hideAll");
-function iF(...e){
-for(let t of e)t.visible=!0}
 c(iF,
+"hideAll");
+function rF(...e){
+for(let t of e)t.visible=!0}
+c(rF,
 "show");
 function mJ(e){
 ae.rtV!==e.sizeVersion&&(ae.rtBg?.dispose(),
@@ -94605,13 +94606,13 @@ e.H),
 ae.rtV=e.sizeVersion)}
 c(mJ,
 "ensureRT");
-function KL(e,
+function JL(e,
 t,
 n,
 i){
 let r=e.renderer;
-nF(),
-iF(...i),
+iF(),
+rF(...i),
 r.setRenderTarget(t),
 r.setClearColor(0,
 1),
@@ -94621,13 +94622,13 @@ r.clear(!0,
 r.render(ae.scene,
 n),
 r.setRenderTarget(e.target)}
-c(KL,
+c(JL,
 "renderInto");
 function Ba(e,
 t,
 n){
-nF(),
-iF(...n),
+iF(),
+rF(...n),
 e.draw(ae.scene,
 t)}
 c(Ba,
@@ -94703,7 +94704,7 @@ i={
 ){
 i.backing&&gJ(e.text.overlay,
 i.backing),
-dn(e.text.overlay,
+pn(e.text.overlay,
 e.t,
 e.T,
 {
@@ -94742,7 +94743,7 @@ var Br=c((e,
 t=4)=>(Math.abs(e)<.5*10**-t?0:e).toFixed(t).replace("-",
 "−"),
 "fmt");
-function rF(e,
+function oF(e,
 t,
 n,
 i){
@@ -94750,7 +94751,7 @@ let r=t*e;
 return X(i*Si*r*r/n,
 .0035,
 1)}
-c(rF,
+c(oF,
 "density");
 function sf(e,
 t,
@@ -94761,8 +94762,8 @@ i={
 r=e.H){
 let o=ae.me,
 a=i.scale??1,
-s=(i.press??0)>.5?.2:tF*a,
-l=A5(t,
+s=(i.press??0)>.5?.2:nF*a,
+l=y5(t,
 n);
 return o.points.position.set(...n),
 o.points.scale.setScalar(a),
@@ -94776,7 +94777,7 @@ morph:i.press??0,
 spread:.35,
 arc:.02,
 t:e.t,
-reveal:i.reveal??rF(l,
+reveal:i.reveal??oF(l,
 s,
 o.N,
 i.rho??.5),
@@ -94808,7 +94809,7 @@ i={
 r=e.H){
 let o=ae.you,
 a=i.scale??1,
-s=A5(t,
+s=y5(t,
 n);
 return o.points.position.set(...n),
 o.points.scale.setScalar(a),
@@ -94818,8 +94819,8 @@ o.points.rotation.set(0,
 o.set({
 a:ae.tex.youBall,
 t:e.t,
-reveal:i.reveal??rF(s,
-g5*a,
+reveal:i.reveal??oF(s,
+w5*a,
 o.N,
 i.rho??.5),
 size:i.size??Math.min(.0065,
@@ -94849,13 +94850,13 @@ i=26){
 ae.lines.segment(e,
 e,
 {
-color:Un(t,
+color:Gn(t,
 .32*n),
 width:i}
 )}
 c(Ja,
 "halo");
-function oF(e,
+function aF(e,
 t,
 n,
 i){
@@ -94869,7 +94870,7 @@ e.points.quaternion.copy(t.quaternion),
 e.points.scale.setScalar(1),
 e.points.updateMatrixWorld(),
 t.position.distanceTo(e.points.position)}
-c(oF,
+c(aF,
 "faceCamera");
 function bx(e,
 t,
@@ -94878,7 +94879,7 @@ i={
 }
 ){
 let r=ae.gfWall,
-o=oF(r,
+o=aF(r,
 t,
 n,
 i.d??3.2);
@@ -94910,7 +94911,7 @@ r={
 }
 ){
 let o=ae.gfWord;
-return oF(o,
+return aF(o,
 t,
 n,
 r.d??1.5),
@@ -94990,15 +94991,15 @@ var xx=[-.75,
 _x=[.75,
 0,
 0],
-JL=6,
-aF=632,
-em=352,
+$L=6,
+sF=632,
+nm=352,
 AJ=30,
 yJ=56,
-bJ=c(e=>[JL+e%3*638,
-JL+Math.floor(e/3)*358,
-aF,
-em],
+bJ=c(e=>[$L+e%3*638,
+$L+Math.floor(e/3)*358,
+sF,
+nm],
 "cellRect"),
 MJ=c(e=>Math.min(e,
 1.6),
@@ -95036,14 +95037,14 @@ a=r-n,
 s=e===6?64:AJ,
 l=e===6?192:yJ,
 u=Math.min(572/o,
-(em-s-l-18)/a),
-h=s+(em-s-l)/2;
+(nm-s-l-18)/a),
+h=s+(nm-s-l)/2;
 return{
 k:u,
 cx:(t+i)/2,
-cy:(n+r)/2+(h-em/2)/u,
-W:aF/u,
-H:em/u}
+cy:(n+r)/2+(h-nm/2)/u,
+W:sF/u,
+H:nm/u}
 }
 c(SJ,
 "cellWindow");
@@ -95051,7 +95052,7 @@ function Px(e,
 t,
 n=!1){
 let i=t.LOVE[0];
-return(n?Bn.cellsR:Bn.cells).map((r,
+return(n?Pn.cellsR:Pn.cells).map((r,
 o)=>{
 let a=n?t.s0-.05+o*.012:t.cellT0(o),
 s=t.cellT0(o)+.95+.06*o,
@@ -95087,18 +95088,18 @@ n={
 let i=b1[e],
 r=ae.lines,
 o=t.warm,
-a=wt(Un(Ax,
+a=wt(Gn(Ax,
 1.2),
-Un(uf,
+Gn(uf,
 1.1),
 o),
-s=Un(ao,
+s=Gn(ao,
 2.2),
 l=n.lw??2.8;
 if(i.chords){
 r.polyline(i.pts,
 {
-color:Un(wt(Ax,
+color:Gn(wt(Ax,
 ao,
 o),
 .45),
@@ -95110,7 +95111,7 @@ f<h;
 f++)r.segment(i.chords[f][0],
 i.chords[f][1],
 {
-color:Un(wt(Ax,
+color:Gn(wt(Ax,
 M1,
 o),
 .2+.1*o),
@@ -95122,7 +95123,7 @@ d]=i.chords[h-1];
 r.segment(f,
 d,
 {
-color:Un(ao,
+color:Gn(ao,
 .9),
 width:1.8}
 ),
@@ -95134,7 +95135,7 @@ width:12}
 )}
 t.fill>0&&r.polyline(i.env,
 {
-color:Un(uf,
+color:Gn(uf,
 1.1),
 width:2.8,
 draw:t.fill}
@@ -95151,14 +95152,14 @@ f<=0||r.polyline(i.ptsD.map(d=>[i.c[0]+(d[0]-i.c[0])*h,
 i.c[1]+(d[1]-i.c[1])*h,
 0]),
 {
-color:Un(M1,
+color:Gn(M1,
 .45*h+.08),
 width:1.5,
 draw:f}
 )}
 for(let h of i.extra??[])r.polyline(h,
 {
-color:Un(a,
+color:Gn(a,
 .8),
 width:l*.8,
 draw:t.draw}
@@ -95173,7 +95174,7 @@ let u=dx(i.pts,
 t.draw,
 i.cum).p;
 if(i.epi&&t.draw>0&&t.draw<1){
-let h=r5(t.draw*j);
+let h=o5(t.draw*j);
 for(let f=0;
 f<of.length;
 f++){
@@ -95192,21 +95193,21 @@ p+m*Math.sin(A),
 0])}
 r.polyline(g,
 {
-color:Un(ao,
+color:Gn(ao,
 .3),
 width:1.3}
 ),
 r.segment(h[f],
 h[f+1],
 {
-color:Un(ao,
+color:Gn(ao,
 .8),
 width:1.7}
 ),
 r.segment(h[f+1],
 h[f+1],
 {
-color:Un(ao,
+color:Gn(ao,
 .8),
 width:5}
 )}
@@ -95229,7 +95230,7 @@ return n.par==="k"?"k = ".concat(Math.floor(t.draw*n.chords.length)):"".concat(n
 " = ").concat(i.toFixed(3))}
 c(CJ,
 "cellParam");
-function d5(e,
+function p5(e,
 t,
 n,
 {
@@ -95242,7 +95243,7 @@ let o=Px(n,
 t,
 q(e)),
 a=e.text.overlay;
-b1=q(e)?Bn.cellsR:Bn.cells;
+b1=q(e)?Pn.cellsR:Pn.cells;
 for(let s=0;
 s<9;
 s++){
@@ -95389,7 +95390,7 @@ alpha:r<1?.88*r:.88}
 )}
 )}
 }
-c(d5,
+c(p5,
 "drawNotebook");
 function EJ(e,
 t,
@@ -95400,7 +95401,7 @@ t.LOVE[0])),
 r=C(1,
 2.75,
 i);
-d5(e,
+p5(e,
 t,
 n,
 {
@@ -95459,7 +95460,7 @@ be(s,
 [["t",
 l.toFixed(3)],
 ["z(t)",
-"".concat(r5(l).at(-1).slice(0,
+"".concat(o5(l).at(-1).slice(0,
 2).map(u=>u.toFixed(2)).join(", "))]],
 {
 accent:Nt.gold,
@@ -95476,7 +95477,7 @@ i)}
 )}
 c(EJ,
 "notebookR");
-function p5(e,
+function m5(e,
 t,
 n,
 i,
@@ -95525,17 +95526,17 @@ ae.lines.begin();
 for(let m of[.8,
 .6,
 .4,
-.2])a>0&&ae.lines.polyline(Bn.loopCoarse.map(g=>[g[0]*m,
+.2])a>0&&ae.lines.polyline(Pn.loopCoarse.map(g=>[g[0]*m,
 .1*(1-m)+g[1]*m,
 0]),
 {
-color:Un(M1,
+color:Gn(M1,
 (.45*m+.08)*a),
 width:1.5}
 );
-ae.lines.polyline(Bn.loopCoarse,
+ae.lines.polyline(Pn.loopCoarse,
 {
-color:Un(uf,
+color:Gn(uf,
 .9),
 width:3,
 draw:r}
@@ -95543,7 +95544,7 @@ draw:r}
 o>0&&(ae.lines.segment(No,
 No,
 {
-color:Un($a,
+color:Gn($a,
 2.2*o),
 width:13}
 ),
@@ -95569,7 +95570,7 @@ o>0){
 let h=G(No,
 ae.ortho,
 i);
-Tn(e.text.overlay,
+Cn(e.text.overlay,
 h[0],
 h[1],
 26,
@@ -95579,7 +95580,7 @@ alpha:.8*o,
 label:"you (0.28, 0.30)"}
 )}
 }
-c(p5,
+c(m5,
 "drawGraph");
 function Sx(e,
 t,
@@ -95604,7 +95605,7 @@ f="and love(you)?",
 d={
 sent:n-a.words[1].start,
 think:.16,
-answer:[["love(x, y) = ".concat(w5),
+answer:[["love(x, y) = ".concat(A5),
 Nt.gold,
 90],
 ["its zero set is a heart · degree 6 · singular at (0, ±1)",
@@ -95653,7 +95654,7 @@ n,
 size:l,
 T:e.T}
 )+40,
-p5(e,
+m5(e,
 t,
 n,
 [1180,
@@ -95693,7 +95694,7 @@ n,
 size:l,
 T:e.T}
 )+40,
-p5(e,
+m5(e,
 t,
 n,
 [1160,
@@ -95709,7 +95710,7 @@ fill:R.outCubic(_(p.sent-p.think,
 .5))}
 )}
 else{
-let A=Bn.facts,
+let A=Pn.facts,
 y=n-s.words[4].start,
 b=["area       ∬ dA = ".concat(Br(A.area)),
 "perimeter  ∮ ds = ".concat(Br(A.per)),
@@ -95718,7 +95719,7 @@ b=["area       ∬ dA = ".concat(Br(A.area)),
 "gradient   ∇love = (6x·g² − 2xy³, 6y·g² − 3x²y²)",
 "singular   (0, 1) · (0, −1)",
 "centre     love(0, 0) = −1",
-"volume     ∭ dV = ".concat(Bn.vol.toFixed(2),
+"volume     ∭ dV = ".concat(Pn.vol.toFixed(2),
 "  (Taubin)")];
 ec(r,
 o,
@@ -95730,7 +95731,7 @@ b,
 size:26,
 show:X(y/.2)}
 ),
-n>=s.words[5].start&&md(r,
+n>=s.words[5].start&&gd(r,
 o,
 g+39*(b.length+1.6),
 "answered: all",
@@ -95742,7 +95743,7 @@ rate:60,
 color:Nt.rose}
 ),
 v=g+39*(b.length+2.8),
-p5(e,
+m5(e,
 t,
 n,
 [1180,
@@ -95788,7 +95789,7 @@ a.start+.28)),
 d={
 sent:n-o.words[1].start+.7*f,
 think:.16,
-answer:[["love(x, y) = ".concat(w5),
+answer:[["love(x, y) = ".concat(A5),
 Nt.gold,
 90],
 ["its zero set is a heart · degree 6 · singular at (0, ±1)",
@@ -95858,7 +95859,7 @@ n,
 size:s,
 T:e.T}
 )+40}
-p5(e,
+m5(e,
 t,
 n,
 [C(1180,
@@ -95897,17 +95898,17 @@ hint:g?!1:"? for shortcuts"}
 )}
 c(RJ,
 "drawAskR");
-var sF=c((e,
+var lF=c((e,
 t=.1)=>e<t?e*e/(2*t*(1-t)):e>1-t?1-(1-e)**2/(2*t*(1-t)):(e-t/2)/(1-t),
 "ramp");
-function im(e,
+function om(e,
 t){
-let n=sF(_(e,
+let n=lF(_(e,
 t.pen0,
 t.pen1)),
-i=dx(Bn.loop,
+i=dx(Pn.loop,
 n,
-Bn.cum),
+Pn.cum),
 r=Math.atan2(i.p[1],
 i.p[0]),
 o=fx(Nc,
@@ -95922,9 +95923,9 @@ o*Math.sin(r),
 tan:i.tan,
 th:r}
 }
-c(im,
+c(om,
 "penState");
-function m5(e,
+function v5(e,
 t){
 let n=t.LOVE[2],
 i=R.inOutCubic(_(e,
@@ -95948,13 +95949,13 @@ dissolve:R.inQuad(_(e,
 t.B(31),
 t.end+.35))}
 }
-c(m5,
+c(v5,
 "heartState");
-function tm(e,
+function im(e,
 t){
 let i=c(a=>a-.35*(1-Math.exp(-a/.35)),
 "ramp"),
-r=Bn.sExit/i(t.tX-t.yGo)*i(Math.max(0,
+r=Pn.sExit/i(t.tX-t.yGo)*i(Math.max(0,
 e-t.yGo)),
 o=Jn(No,
 zl,
@@ -95964,13 +95965,13 @@ return o[1]+=.012*Math.sin(e*1.9),
 p:o,
 s:r,
 d:hx(o),
-free:r>Bn.sExit}
+free:r>Pn.sExit}
 }
-c(tm,
+c(im,
 "youState");
-function nm(e,
+function rm(e,
 t){
-let n=im(e,
+let n=om(e,
 t),
 i=R.inOutCubic(_(e,
 t.LOVE[2]+.05,
@@ -95985,7 +95986,7 @@ a=wt(n.tip,
 hJ,
 i);
 return a=wt(a,
-Bn.pressC,
+Pn.pressC,
 r),
 a=Jn(a,
 [0,
@@ -96001,9 +96002,9 @@ scale:C(.5,
 1,
 i)}
 }
-c(nm,
+c(rm,
 "meState");
-function v5(e,
+function g5(e,
 t,
 n={
 }
@@ -96012,7 +96013,7 @@ let i=ae.lines,
 r=e,
 o=1-(t?.appear??0);
 if(r.draw<=0||o<=0)return;
-let a=(n.ppu??160)>700?Bn.loopFine:(n.ppu??160)>260?Bn.loop:Bn.loopCoarse,
+let a=(n.ppu??160)>700?Pn.loopFine:(n.ppu??160)>260?Pn.loop:Pn.loopCoarse,
 s=Math.max(2,
 Math.ceil(r.draw*(a.length-1))+1),
 l=a.slice(0,
@@ -96022,25 +96023,25 @@ u[1],
 if(l[l.length-1]=r.tip,
 i.polyline(l,
 {
-color:Un(uf,
+color:Gn(uf,
 (n.k??.62)*o+.04),
 width:n.width??2.8}
 ),
-n.spokes!==!1)for(let u of Bn.spokes){
+n.spokes!==!1)for(let u of Pn.spokes){
 if(u.u>r.draw)break;
 i.segment([0,
 0,
 0],
 u.p,
 {
-color:Un(ao,
+color:Gn(ao,
 .1*o),
 width:1.2}
 ),
 i.segment(u.p,
 u.p,
 {
-color:Un(uf,
+color:Gn(uf,
 .7*o),
 width:6}
 )}
@@ -96050,7 +96051,7 @@ i.segment([0,
 0],
 r.tip,
 {
-color:Un(ao,
+color:Gn(ao,
 .22*o),
 width:1.3}
 );
@@ -96067,7 +96068,7 @@ u.push([.16*Math.cos(d),
 0])}
 i.polyline(u,
 {
-color:Un(ao,
+color:Gn(ao,
 .25*o),
 width:1.2}
 ),
@@ -96078,12 +96079,12 @@ i.segment([0,
 0,
 0],
 {
-color:Un(ao,
+color:Gn(ao,
 .6*o),
 width:7}
 )}
 }
-c(v5,
+c(g5,
 "drawPenLines");
 function Ex(e,
 t,
@@ -96095,7 +96096,7 @@ r={
 o=e.H){
 let a=ae.hs,
 s=i.inflate<=0,
-l=A5(t,
+l=y5(t,
 [0,
 .1,
 0]),
@@ -96153,28 +96154,28 @@ i={
 ){
 let r=e.t,
 o=n.venus,
-a=o?uF(r,
-n):m5(r,
+a=o?cF(r,
+n):v5(r,
 n),
 s=o?FJ(r,
-n):nm(r,
+n):rm(r,
 n),
 l=o?IJ(r,
-n):tm(r,
+n):im(r,
 n),
 u=o?{
 draw:1,
-venus:lF(r,
+venus:uF(r,
 n)}
-:im(r,
+:om(r,
 n);
 mJ(e);
 let h=t.position.toArray(),
 f=xo(...h)<0;
 ae.heart.scale.setScalar(1+.012*a.pulse),
 ae.heart.updateMatrixWorld();
-let d=X((l.d+g5)/(2*g5)),
-p=!f&&OL(h,
+let d=X((l.d+w5)/(2*w5)),
+p=!f&&NL(h,
 l.p),
 m={
 focus:Uc(l.p,
@@ -96201,7 +96202,7 @@ $a,
 d*(i.youHalo??1))),
 ae.lines.end(e),
 w.push(ae.lines.mesh),
-KL(e,
+JL(e,
 ae.rtBg,
 t,
 w);
@@ -96222,12 +96223,12 @@ l.p,
 ...m,
 bright:g*(1-d)}
 )),
-KL(e,
+JL(e,
 ae.rtIn,
 t,
 v);
 let A=r-n.tX;
-l5(ae.glass,
+u5(ae.glass,
 t,
 ae.heart,
 ae.rtBg.texture,
@@ -96239,9 +96240,9 @@ pulse:a.pulse,
 glow:a.glow,
 cage:a.cage,
 contour:1,
-touch:!o&&A>-.25&&A<2.5?[...Bn.exit,
+touch:!o&&A>-.25&&A<2.5?[...Pn.exit,
 A]:null,
-press:s.press>0?[...Bn.exit,
+press:s.press>0?[...Pn.exit,
 s.press*(1+.4*a.glow)]:null,
 ...i.glass}
 ),
@@ -96252,7 +96253,7 @@ u,
 a,
 i.hsO)];
 ae.lines.begin(),
-o||v5(u,
+o||g5(u,
 a),
 i.lines?.(ae.lines,
 {
@@ -96290,11 +96291,11 @@ i){
 let r=R.inOutSine(_(n,
 t.l125.start,
 t.l126.start)),
-o=Bn.nExit,
+o=Pn.nExit,
 a=af([o[2],
 0,
 -o[0]]),
-s=Jn(Jn(Bn.exit,
+s=Jn(Jn(Pn.exit,
 a,
 C(1.28,
 1.2,
@@ -96303,7 +96304,7 @@ r)),
 .4,
 0]),
 l=Oo(s,
-Jn(Bn.exit,
+Jn(Pn.exit,
 o,
 -.3),
 {
@@ -96317,12 +96318,12 @@ ys:f}
 let d=[];
 for(let p=0;
 p<=40;
-p++)d.push(Jn(Bn.exit,
+p++)d.push(Jn(Pn.exit,
 zl,
-p/40*(f.s-Bn.sExit)));
+p/40*(f.s-Pn.sExit)));
 h.polyline(d,
 {
-color:Un($a,
+color:Gn($a,
 .35),
 width:1.6}
 )}
@@ -96370,16 +96371,16 @@ c(BJ,
 var _o=[0,
 .1,
 0],
-$L=.8,
+eF=.8,
 PJ="you(t) − me(t) = 0.723 e^(13it/8) − e^(it)",
-rm=c(e=>[_o[0]+$L*e[0],
-_o[1]+$L*e[1],
+am=c(e=>[_o[0]+eF*e[0],
+_o[1]+eF*e[1],
 0],
 "vW"),
 Tx=null;
 function A1(e){
 if(Tx?.T===e)return Tx;
-let t=cn(e);
+let t=hn(e);
 return Tx={
 ...t,
 venus:!0,
@@ -96390,7 +96391,7 @@ c(A1,
 "keysV");
 function kJ(e,
 t){
-return e<t.LOVE[2]?8*sF(_(e,
+return e<t.LOVE[2]?8*lF(_(e,
 t.yr0,
 t.LOVE[2]),
 .08):8+.8*R.inOutSine(_(e,
@@ -96407,7 +96408,7 @@ t.l125.start,
 t.l125.start+.26))}
 c(LJ,
 "frameK");
-var lF=c((e,
+var uF=c((e,
 t)=>R.inOutCubic(_(e,
 t.l125.start+.2,
 t.l125.start+.46)),
@@ -96421,23 +96422,23 @@ t);
 return{
 yr:n,
 k:i,
-fold:lF(e,
+fold:uF(e,
 t),
-me:rm(w1($p(n),
+me:am(w1(tm(n),
 n,
 i)),
-you:rm(w1(c5(n),
+you:am(w1(h5(n),
 n,
 i)),
-sun:rm(w1([0,
+sun:am(w1([0,
 0],
 n,
 i)),
-d:Math.hypot(...XL(n))}
+d:Math.hypot(...YL(n))}
 }
 c(y1,
 "venusSt");
-function uF(e,
+function cF(e,
 t){
 let n=R.inOutCubic(_(e,
 t.vInf,
@@ -96460,7 +96461,7 @@ dissolve:R.inQuad(_(e,
 t.B(31),
 t.end+.35))}
 }
-c(uF,
+c(cF,
 "heartStateV");
 function FJ(e,
 t){
@@ -96472,7 +96473,7 @@ t.l126.start+.14,
 t.l126.start+.5)),
 r=wt(y1(e,
 t).me,
-Bn.pressC,
+Pn.pressC,
 n);
 return r=Jn(r,
 [0,
@@ -96497,13 +96498,13 @@ e-t.l125.start-.26));
 return n[1]+=.012*Math.sin(e*1.9),
 {
 p:n,
-s:Bn.sExit+9,
+s:Pn.sExit+9,
 d:hx(n),
 free:!0}
 }
 c(IJ,
 "youStateV");
-var eF=c((e,
+var tF=c((e,
 t)=>R.outCubic(_(e,
 t.LOVE[2],
 t.LOVE[2]+.25))*(1-.35*R.inOutSine(_(e,
@@ -96517,9 +96518,9 @@ let n=wx(t,
 e.yr,
 Math.max(2,
 Math.ceil((e.yr-t)*300)),
-e.k).map(rm);
+e.k).map(am);
 return e.fold<=0?n:n.map(i=>{
-let r=QL(Nc,
+let r=ZL(Nc,
 _o,
 Math.atan2(i[1]-_o[1],
 i[0]-_o[0]));
@@ -96539,13 +96540,13 @@ for(let n=0;
 n<=120;
 n++){
 let i=e.yr-1+n/120;
-t.push(rm(w1($p(i),
+t.push(am(w1(tm(i),
 i,
 e.k)))}
 return t}
 c(zJ,
 "meTrail");
-function h5(e,
+function f5(e,
 t,
 n={
 }
@@ -96567,14 +96568,14 @@ f)=>f%2===0).map(h=>[_o[0]+(h[0]-_o[0])*l,
 _o[1]+(h[1]-_o[1])*l,
 0]),
 {
-color:Un(M1,
+color:Gn(M1,
 (.45*l+.08)*r),
 width:1.5,
 draw:u}
 )}
 e.polyline(o,
 {
-color:Un(wt(uf,
+color:Gn(wt(uf,
 ao,
 i),
 (.62+1.1*i)*r),
@@ -96583,20 +96584,20 @@ width:2.8+1.2*i}
 let s=o.slice(-24);
 s.length>1&&t.fold<1&&e.polyline(s,
 {
-color:Un(ao,
+color:Gn(ao,
 1.4*r*(1-t.fold)),
 width:3.2}
 ),
 t.k>.01&&e.polyline(zJ(t),
 {
-color:Un(lf,
+color:Gn(lf,
 .55*t.k*r),
 width:1.8}
 ),
 n.gaze!==!1&&e.segment(t.me,
 t.you,
 {
-color:Un(ao,
+color:Gn(ao,
 .16*r*(1-t.fold)),
 width:1.3}
 ),
@@ -96609,7 +96610,7 @@ $a,
 t.k>.01&&(e.segment(t.sun,
 t.sun,
 {
-color:Un(ao,
+color:Gn(ao,
 2.6*t.k*r),
 width:15}
 ),
@@ -96617,9 +96618,9 @@ Ja(t.sun,
 ao,
 1.3*t.k*r,
 64))}
-c(h5,
+c(f5,
 "drawRose");
-function f5(e,
+function d5(e,
 t,
 n,
 i,
@@ -96670,7 +96671,7 @@ be(o,
 " AU")],
 ["retrograde",
 "".concat(Math.min(Zs.loops,
-YL(n.yr)),
+QL(n.yr)),
 " / ").concat(Zs.loops)]],
 {
 accent:Nt.gold,
@@ -96682,7 +96683,7 @@ let h=G(n.me,
 i),
 f=G(n.you,
 i);
-if(Tn(o,
+if(Cn(o,
 h[0],
 h[1],
 26,
@@ -96690,7 +96691,7 @@ h[1],
 label:"me",
 alpha:.55*u}
 ),
-Tn(o,
+Cn(o,
 f[0],
 f[1],
 26,
@@ -96702,7 +96703,7 @@ alpha:.55*u}
 n.k>.05){
 let d=G(n.sun,
 i);
-Tn(o,
+Cn(o,
 d[0],
 d[1],
 30,
@@ -96711,7 +96712,7 @@ label:"sun",
 color:Nt.wg,
 alpha:.6*u*n.k}
 )}
-r.dist&&Sn(o,
+r.dist&&Tn(o,
 h,
 f,
 "|me − you| = ".concat(n.d.toFixed(3),
@@ -96722,7 +96723,7 @@ color:Nt.dim,
 alpha:.75*r.dist}
 )}
 }
-c(f5,
+c(d5,
 "roseHud");
 function Cx(e,
 t,
@@ -96757,11 +96758,11 @@ from:c(e=>e.section("love").start,
 to:c(e=>e.section("outro").start,
 "to"),
 init(){
-Bn=dJ(),
+Pn=dJ(),
 ae={
-scene:new fn,
+scene:new dn,
 persp:dr(36),
-ortho:new An(-1,
+ortho:new yn(-1,
 1,
 1,
 -1,
@@ -96769,16 +96770,16 @@ ortho:new An(-1,
 100),
 heart:new ya}
 ,
-ae.me=new Qt({
+ae.me=new Zt({
 count:65536}
 ),
-ae.you=new Qt({
+ae.you=new Zt({
 count:16384}
 ),
-ae.hs=new Qt({
+ae.hs=new Zt({
 count:1<<18}
 ),
-ae.stars=new Qt({
+ae.stars=new Zt({
 count:16384}
 ),
 ae.lines=new Xn(16e3),
@@ -96798,40 +96799,40 @@ ae.wall=Mr({
 plane:"xy",
 fade:0}
 ),
-ae.field=GL(),
-ae.glass=s5(),
+ae.field=HL(),
+ae.glass=l5(),
 ae.tex={
 meBall:ae.me.shape("love/me-ball",
-n=>Dn.ball(n,
+n=>zn.ball(n,
 {
-r:tF,
+r:nF,
 seed:31}
 )),
 mePressed:ae.me.shape("love/me-pressed-r",
-n=>o5(n,
-Jn(Bn.exit,
-Bn.nExit,
+n=>a5(n,
+Jn(Pn.exit,
+Pn.nExit,
 -.004),
 {
-origin:Bn.pressC}
+origin:Pn.pressC}
 )),
 youBall:ae.you.shape("love/you-ball",
-n=>Dn.ball(n,
+n=>zn.ball(n,
 {
-r:g5,
+r:w5,
 seed:32}
 )),
 stars:ae.stars.shape("love/stars",
-n=>Dn.stars(n,
+n=>zn.stars(n,
 {
 r0:25,
 r1:70}
 )),
 flat:ae.hs.shape("love/heart-curve",
-n=>DL(n,
-Bn.loop)),
+n=>zL(n,
+Pn.loop)),
 surf:ae.hs.shape("love/heart-surface",
-n=>Dn.implicit3(n,
+n=>zn.implicit3(n,
 xo,
 {
 box:[-1.3,
@@ -96844,13 +96845,13 @@ uniform:!0,
 seed:21}
 )),
 cardioid:ae.hs.shape("love/cardioid-rev",
-n=>zL(n))}
+n=>OL(n))}
 ,
-ae.gfWall=new nn({
+ae.gfWall=new rn({
 count:16384}
 ),
 ae.gfWall.text("love/src",
-tn("ch/love/curves.js")),
+nn("ch/love/curves.js")),
 ae.tex.wall=ae.gfWall.layout("love/wall",
 Ki(ae.gfWall,
 {
@@ -96861,7 +96862,7 @@ cell:.1,
 cols:120,
 rows:64}
 )),
-ae.gfWord=new nn({
+ae.gfWord=new rn({
 count:256}
 ),
 ae.gfWord.text("love/word",
@@ -96875,16 +96876,16 @@ origin:[-1.386,
 cell:.66,
 cols:8}
 ));
-let e=tn("ch/love/curves.js").replace((new RegExp("\\/\\*[\\s\\S]*?\\*\\/","g")),
+let e=nn("ch/love/curves.js").replace((new RegExp("\\/\\*[\\s\\S]*?\\*\\/","g")),
 " ").replace((new RegExp("\\/\\/[^\\n]*","g")),
 " ").replace((new RegExp("\\s+","g")),
 " ");
-ae.gfCal=new nn({
+ae.gfCal=new rn({
 count:9216}
 ),
 ae.gfCal.text("love/cal",
 e);
-let t=jL("LO-O-OVE",
+let t=XL("LO-O-OVE",
 {
 font:'800 200px "JetBrains Mono"',
 height:1.22,
@@ -96898,7 +96899,7 @@ cell:.105,
 width:t.width,
 height:t.height}
 )),
-ae.flat=new An(-9.6,
+ae.flat=new yn(-9.6,
 9.6,
 5.4,
 -5.4,
@@ -96926,11 +96927,11 @@ ae.scene.add(...ae.all)}
 ,
 shots:[{
 id:"dots",
-at:c(e=>cn(e).s0,
+at:c(e=>hn(e).s0,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=_(n,
 t.s0,
@@ -96991,7 +96992,7 @@ r),
 u=R.outCubic(_(n,
 t.l116.words[1].start,
 t.l116.words[1].start+.5));
-Tn(a,
+Cn(a,
 s[0],
 s[1],
 30,
@@ -96999,7 +97000,7 @@ s[1],
 label:"me",
 alpha:.5*u}
 ),
-Tn(a,
+Cn(a,
 l[0],
 l[1],
 30,
@@ -97008,7 +97009,7 @@ label:"you",
 color:Nt.you,
 alpha:.5*u}
 ),
-u>.01&&Sn(a,
+u>.01&&Tn(a,
 s,
 [C(s[0],
 l[0],
@@ -97043,7 +97044,7 @@ bottom:[.006,
 .006,
 .008]}
 ),
-VL(a,
+qL(a,
 [600,
 188,
 720,
@@ -97065,15 +97066,15 @@ vignette:.5}
 ,
 {
 id:"notebook",
-at:c(e=>cn(e).l117.start,
+at:c(e=>hn(e).l117.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T);
+let t=hn(e.T);
 if(q(e))return EJ(e,
 t,
 e.t);
-d5(e,
+p5(e,
 t,
 e.t),
 ur(e,
@@ -97086,13 +97087,13 @@ vignette:.25}
 ,
 {
 id:"nbZoom",
-at:c(e=>cn(e).B(5),
+at:c(e=>hn(e).B(5),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t;
-d5(e,
+p5(e,
 t,
 n,
 {
@@ -97147,7 +97148,7 @@ be(r,
 [["t",
 o.toFixed(3)],
 ["z(t)",
-"".concat(r5(o).at(-1).slice(0,
+"".concat(o5(o).at(-1).slice(0,
 2).map(a=>a.toFixed(2)).join(", "))]],
 {
 accent:Nt.gold,
@@ -97163,13 +97164,13 @@ vignette:.35}
 ,
 {
 id:"warm",
-at:c(e=>cn(e).LOVE[0],
+at:c(e=>hn(e).LOVE[0],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t;
-d5(e,
+p5(e,
 t,
 n);
 let i=t.LOVE[0],
@@ -97188,7 +97189,7 @@ a.fillRect(0,
 1920,
 330)}
 ),
-qL(e.text.overlay,
+jL(e.text.overlay,
 ["LO",
 "-O",
 "-O",
@@ -97220,11 +97221,11 @@ vignette:.3}
 ,
 {
 id:"ask",
-at:c(e=>cn(e).q1.start,
+at:c(e=>hn(e).q1.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T);
+let t=hn(e.T);
 Sx(e,
 t,
 e.t,
@@ -97236,11 +97237,11 @@ Ni(e)}
 ,
 {
 id:"ask2",
-at:c(e=>cn(e).q2.start,
+at:c(e=>hn(e).q2.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T);
+let t=hn(e.T);
 Sx(e,
 t,
 e.t,
@@ -97252,11 +97253,11 @@ Ni(e)}
 ,
 {
 id:"landscape",
-at:c(e=>cn(e).q2.words[2].start,
+at:c(e=>hn(e).q2.words[2].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=t.q2.words[2].start,
 r=_(n,
@@ -97287,7 +97288,7 @@ i+.3)),
 lit:0}
 );
 let a=[No[0],
-HL(No[0],
+WL(No[0],
 No[1])+.04,
 -No[1]],
 s=[ae.field,
@@ -97306,7 +97307,7 @@ a[2]],
 a[1]-.03,
 a[2]],
 {
-color:Un($a,
+color:Gn($a,
 .5),
 width:1.4}
 ),
@@ -97354,11 +97355,11 @@ vignette:.45}
 ,
 {
 id:"answerAll",
-at:c(e=>cn(e).q2.words[4].start,
+at:c(e=>hn(e).q2.words[4].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T);
+let t=hn(e.T);
 Sx(e,
 t,
 e.t,
@@ -97370,11 +97371,11 @@ Ni(e)}
 ,
 {
 id:"cardioid",
-at:c(e=>cn(e).LOVE[1],
+at:c(e=>hn(e).LOVE[1],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=t.LOVE[1],
 r=R.inOutSine(_(n,
@@ -97447,7 +97448,7 @@ w])=>m(g,
 w,
 o)),
 {
-color:Un(uf,
+color:Gn(uf,
 1.25),
 width:3.2}
 );
@@ -97461,7 +97462,7 @@ A])=>m(v,
 A,
 w)),
 {
-color:Un(M1,
+color:Gn(M1,
 .3),
 width:1.3}
 )}
@@ -97482,7 +97483,7 @@ y,
 b+M/40*o));
 ae.lines.polyline(x,
 {
-color:Un(ao,
+color:Gn(ao,
 .3),
 width:1.2}
 )}
@@ -97494,7 +97495,7 @@ ae.lines.segment([0,
 1.3*u,
 0],
 {
-color:Un(ao,
+color:Gn(ao,
 .25),
 width:1.3}
 ),
@@ -97532,11 +97533,11 @@ ca:.1}
 ,
 {
 id:"penWide",
-at:c(e=>cn(e).la.start,
+at:c(e=>hn(e).la.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=_(n,
 t.la.start,
@@ -97556,16 +97557,16 @@ r,
 {
 aspect:e.aspect}
 ),
-a=im(n,
+a=om(n,
 t),
-s=m5(n,
+s=v5(n,
 t),
-l=nm(n,
+l=rm(n,
 t),
-u=tm(n,
+u=im(n,
 t).p;
 ae.lines.begin(),
-v5(a,
+g5(a,
 s),
 Ja(l.p,
 lf,
@@ -97605,7 +97606,7 @@ let h=e.text.overlay,
 f=Math.ceil(25*_(n,
 t.la.start+.25,
 t.B(19)-.2));
-h.text(w5.slice(0,
+h.text(A5.slice(0,
 f),
 118,
 470,
@@ -97653,17 +97654,17 @@ Ni(e)}
 ,
 {
 id:"penMacro",
-at:c(e=>cn(e).B(19),
+at:c(e=>hn(e).B(19),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
-i=im(n,
+i=om(n,
 t),
-r=m5(n,
+r=v5(n,
 t),
-o=nm(n,
+o=rm(n,
 t),
 a=[0,
 .12,
@@ -97689,10 +97690,10 @@ aspect:e.aspect}
 ),
 h=Uc(s,
 l),
-f=A5(u,
+f=y5(u,
 s);
 ae.lines.begin(),
-v5(i,
+g5(i,
 r,
 {
 ray:!1,
@@ -97732,7 +97733,7 @@ p=G(s,
 u),
 m=Math.hypot(s[0],
 s[1]);
-Tn(d,
+Cn(d,
 p[0],
 p[1],
 34,
@@ -97767,20 +97768,20 @@ vignette:.55}
 ,
 {
 id:"blueprint",
-at:c(e=>cn(e).B(21),
+at:c(e=>hn(e).B(21),
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
-i=im(n,
+i=om(n,
 t),
-r=m5(n,
+r=v5(n,
 t),
-o=nm(n,
+o=rm(n,
 t),
-a=Bn.facts,
-s=tm(n,
+a=Pn.facts,
+s=im(n,
 t).p,
 l=pJ([0,
 .12,
@@ -97809,7 +97810,7 @@ fade:0,
 reveal:1}
 ),
 ae.lines.begin(),
-v5(i,
+g5(i,
 r,
 {
 k:1.3,
@@ -97858,7 +97859,7 @@ Ni(e,
 {
 vignette:.3}
 ),
-rn(e,
+on(e,
 g,
 "paper",
 {
@@ -97879,7 +97880,7 @@ t.B(21),
 t.B(21)+.25),
 p=q(e)?"#d9d4de":"#2b2a31",
 m=q(e)?"#ff9ab0":"#9a3b52";
-Sn(h,
+Tn(h,
 f([-a.xMax,
 a.yAtX,
 0]),
@@ -97892,7 +97893,7 @@ offset:-300,
 alpha:.9*d,
 color:p}
 ),
-Sn(h,
+Tn(h,
 f([a.xMax,
 -1,
 0]),
@@ -97932,7 +97933,7 @@ for(let g of[-1,
 let w=f([g,
 0,
 0]);
-Tn(h,
+Cn(h,
 w[0],
 w[1],
 12,
@@ -97944,7 +97945,7 @@ be(h,
 1480,
 150,
 [["F",
-w5.replace(" = 0",
+A5.replace(" = 0",
 "")],
 ["area",
 Br(a.area)],
@@ -97954,7 +97955,7 @@ Br(a.per)]],
 accent:m,
 keyW:70}
 ),
-q(e)?(dn(h,
+q(e)?(pn(h,
 n,
 e.T,
 {
@@ -97967,7 +97968,7 @@ n,
 {
 from:t.s0-.2,
 accent:m}
-)):(dn(h,
+)):(pn(h,
 n,
 e.T,
 {
@@ -97989,7 +97990,7 @@ glow:0}
 {
 id:"venus",
 editOnly:!0,
-at:c(e=>cn(e).la.start,
+at:c(e=>hn(e).la.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
@@ -98024,7 +98025,7 @@ fov:36,
 aspect:e.aspect}
 );
 ae.lines.begin(),
-h5(ae.lines,
+f5(ae.lines,
 i),
 ae.lines.end(e),
 Ba(e,
@@ -98033,7 +98034,7 @@ a,
 a,
 i),
 ae.lines.mesh]),
-f5(e,
+d5(e,
 t,
 i,
 a,
@@ -98053,11 +98054,11 @@ Ni(e)}
 ,
 {
 id:"inflate",
-at:c(e=>cn(e).LOVE[2],
+at:c(e=>hn(e).LOVE[2],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=_(n,
 t.LOVE[2],
@@ -98125,7 +98126,7 @@ Ni(e)}
 {
 id:"rose",
 editOnly:!0,
-at:c(e=>cn(e).LOVE[2],
+at:c(e=>hn(e).LOVE[2],
 "at"),
 ownsLyrics:!0,
 draw(e){
@@ -98150,10 +98151,10 @@ fov:36,
 aspect:e.aspect}
 );
 ae.lines.begin(),
-h5(ae.lines,
+f5(ae.lines,
 i,
 {
-glow:eF(n,
+glow:tF(n,
 t),
 fill:R.outCubic(_(n,
 t.LOVE[2]+.02,
@@ -98173,7 +98174,7 @@ d:1.1}
 o,
 i),
 ae.lines.mesh]),
-f5(e,
+d5(e,
 t,
 i,
 o),
@@ -98188,13 +98189,13 @@ Ni(e)}
 ,
 {
 id:"youFree",
-at:c(e=>cn(e).l124.start,
+at:c(e=>hn(e).l124.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
-i=tm(n,
+i=im(n,
 t),
 r=af([-zl[2],
 0,
@@ -98259,11 +98260,11 @@ Ni(e)}
 ,
 {
 id:"youGone",
-at:c(e=>cn(e).l124.words[1].start,
+at:c(e=>hn(e).l124.words[1].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=_(n,
 t.l124.words[1].start,
@@ -98309,11 +98310,11 @@ Ni(e)}
 ,
 {
 id:"youFar",
-at:c(e=>cn(e).l124.words[3].start,
+at:c(e=>hn(e).l124.words[3].start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
 i=_(n,
 t.l124.words[3].start,
@@ -98349,12 +98350,12 @@ ys:f}
 let d=[];
 for(let p=0;
 p<=40;
-p++)d.push(Jn(Bn.exit,
+p++)d.push(Jn(Pn.exit,
 zl,
-p/40*(f.s-Bn.sExit)));
+p/40*(f.s-Pn.sExit)));
 h.polyline(d,
 {
-color:Un($a,
+color:Gn($a,
 .35),
 width:1.6}
 )}
@@ -98366,7 +98367,7 @@ l=G(a.ms.p,
 r),
 u=G(a.ys.p,
 r);
-Sn(s,
+Tn(s,
 l,
 u,
 "|me − you| = ".concat(Br(Uc(a.ms.p,
@@ -98385,7 +98386,7 @@ Ni(e)}
 {
 id:"frame",
 editOnly:!0,
-at:c(e=>cn(e).l124.start,
+at:c(e=>hn(e).l124.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
@@ -98412,10 +98413,10 @@ fov:36,
 aspect:e.aspect}
 );
 ae.lines.begin(),
-h5(ae.lines,
+f5(ae.lines,
 i,
 {
-glow:eF(n,
+glow:tF(n,
 t)*(1-i.k),
 fill:1}
 ),
@@ -98437,7 +98438,7 @@ bright:1.25*a}
 o,
 i),
 ae.lines.mesh]),
-f5(e,
+d5(e,
 t,
 i,
 o,
@@ -98460,15 +98461,15 @@ Ni(e)}
 ,
 {
 id:"trapped",
-at:c(e=>cn(e).l125.start,
+at:c(e=>hn(e).l125.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=cn(e.T),
+let t=hn(e.T),
 n=e.t,
-i=nm(n,
+i=rm(n,
 t),
-r=tm(n,
+r=im(n,
 t);
 if(q(e))return BJ(e,
 t,
@@ -98527,7 +98528,7 @@ scale:1.8}
 youHalo:1.6}
 ));
 Ni(e),
-rn(e,
+on(e,
 u,
 "ascii",
 {
@@ -98557,7 +98558,7 @@ t)}
 {
 id:"trapV",
 editOnly:!0,
-at:c(e=>cn(e).l125.start,
+at:c(e=>hn(e).l125.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
@@ -98568,7 +98569,7 @@ t),
 r=R.inOutSine(_(n,
 t.l125.start,
 t.l126.start)),
-o=uF(n,
+o=cF(n,
 t),
 a=Oo(Fu(_o,
 C(3.7,
@@ -98590,7 +98591,7 @@ a,
 t,
 {
 stars:.3,
-lines:c(s=>h5(s,
+lines:c(s=>f5(s,
 i,
 {
 alpha:1-o.appear,
@@ -98599,7 +98600,7 @@ bodies:!1}
 ),
 "lines")}
 ),
-f5(e,
+d5(e,
 t,
 i,
 a),
@@ -98614,20 +98615,20 @@ Ni(e)}
 ,
 {
 id:"pressed",
-at:c(e=>cn(e).l126.start,
+at:c(e=>hn(e).l126.start,
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=q(e)?A1(e.T):cn(e.T),
+let t=q(e)?A1(e.T):hn(e.T),
 n=e.t,
 i=_(n,
 t.l126.start,
 t.LOVE[3]),
-r=Bn.nExit,
+r=Pn.nExit,
 o=af([r[2],
 0,
 -r[0]]),
-a=Oo(Jn(Jn(Jn(Bn.exit,
+a=Oo(Jn(Jn(Jn(Pn.exit,
 r,
 C(1.02,
 .9,
@@ -98637,7 +98638,7 @@ o,
 [0,
 .16,
 0]),
-Jn(Bn.exit,
+Jn(Pn.exit,
 [-.06,
 -.02,
 0]),
@@ -98660,7 +98661,7 @@ disp:.2}
 }
 ),
 l=e.text.overlay,
-u=G(Bn.exit,
+u=G(Pn.exit,
 a);
 dt(l,
 [u[0]+120,
@@ -98688,11 +98689,11 @@ vignette:.5}
 ,
 {
 id:"finale",
-at:c(e=>cn(e).LOVE[3],
+at:c(e=>hn(e).LOVE[3],
 "at"),
 ownsLyrics:!0,
 draw(e){
-let t=q(e)?A1(e.T):cn(e.T),
+let t=q(e)?A1(e.T):hn(e.T),
 n=e.t,
 i=R.inOutSine(_(n,
 t.LOVE[3],
@@ -98721,7 +98722,7 @@ o,
 aspect:e.aspect}
 ),
 t),
-ev(e.text.scene,
+tv(e.text.scene,
 "LO-O-OVE",
 1830,
 560,
@@ -98741,7 +98742,7 @@ Ni(e)}
 }
 ]}
 );
-var om=1.45,
+var sm=1.45,
 kx=[1,
 .9,
 .74],
@@ -98751,37 +98752,37 @@ let t=Math.hypot(...e)||1;
 return e.map(n=>n/t)}
 ,
 "norm"),
-b5=c((e,
+M5=c((e,
 t,
 n=1)=>e.map((i,
 r)=>i+t[r]*n),
 "add"),
-M5=c((e,
+x5=c((e,
 t)=>Math.hypot(e[0]-t[0],
 e[1]-t[1],
 e[2]-t[2]),
 "dist"),
-x5=c(e=>[e[0],
-e[1]+om,
+_5=c(e=>[e[0],
+e[1]+sm,
 e[2]],
 "up"),
-cF=[.28,
+hF=[.28,
 .3,
 0],
-hF=NJ([1,
+fF=NJ([1,
 .28,
 .3]),
 zu=.075,
 UJ=[0,
 -.1499999999999999,
 0],
-fF=[-1.3,
+dF=[-1.3,
 -1.1,
 -.8,
 1.3,
 1.35,
 .8];
-function dF(e){
+function pF(e){
 let t=e.section("love").start,
 n=Math.round(e.beatAt(t)),
 i=e.section("outro").start;
@@ -98794,52 +98795,52 @@ B:c(r=>e.beatTime(n+r),
 "B"),
 sungEnd:e.findLines("LO-O-OVE").at(-1).end}
 }
-c(dF,
+c(pF,
 "loveKeys");
-function pF(){
-let e=a5(cF,
-hF),
-t=b5(cF,
-hF,
+function mF(){
+let e=s5(hF,
+fF),
+t=M5(hF,
+fF,
 e),
 n=p1(t);
 return{
 sExit:e,
 exit:t,
 nExit:n,
-pressC:b5(t,
+pressC:M5(t,
 n,
 -.087)}
 }
-c(pF,
+c(mF,
 "heartMath");
-function mF(e,
+function vF(e,
 t){
-let n=c(i=>Dn.implicit3(i,
+let n=c(i=>zn.implicit3(i,
 xo,
 {
-box:fF,
+box:dF,
 uniform:!0,
 seed:21}
 ),
 "surf");
 return{
 meBall:e.me.shape("outro/me-ball",
-i=>Dn.ball(i,
+i=>zn.ball(i,
 {
 r:zu,
 seed:31}
 )),
 mePressed:e.me.shape("outro/me-pressed",
-i=>o5(i,
-b5(t.exit,
+i=>a5(i,
+M5(t.exit,
 t.nExit,
 -.004),
 {
 origin:t.pressC}
 )),
 stars:e.stars.shape("outro/stars",
-i=>Dn.stars(i,
+i=>zn.stars(i,
 {
 r0:25,
 r1:70}
@@ -98847,12 +98848,12 @@ r1:70}
 surf:e.hs.shape("outro/heart-surface",
 n),
 drift:e.hs.shape("outro/heart-embers",
-i=>vF(n(i),
+i=>gF(n(i),
 77))}
 }
-c(mF,
+c(vF,
 "heartTextures");
-function vF(e,
+function gF(e,
 t){
 let n=e.length/4,
 i=Be(t),
@@ -98872,13 +98873,13 @@ a[2]+s[2]*l+(i()-.5)*.6,
 i()],
 o*4)}
 return r}
-c(vF,
+c(gF,
 "driftOf");
-function gF(e){
-let t=c(n=>Dn.implicit3(n,
+function wF(e){
+let t=c(n=>zn.implicit3(n,
 xo,
 {
-box:fF,
+box:dF,
 uniform:!0,
 seed:57}
 ),
@@ -98889,12 +98890,12 @@ al(e,
 t)),
 drift:e.layout("outro/heart-glyphs-drift",
 al(e,
-n=>vF(t(n),
+n=>gF(t(n),
 91)))}
 }
-c(gF,
+c(wF,
 "heartGlyphTextures");
-function _5(e,
+function S5(e,
 t,
 n,
 i,
@@ -98902,13 +98903,13 @@ r={
 }
 ){
 let o=t.gfHeart,
-a=am(n,
-x5([0,
+a=lm(n,
+_5([0,
 .1,
 0])),
 s=r.k??1;
 return o.points.position.set(0,
-om,
+sm,
 0),
 o.points.quaternion.identity(),
 o.points.scale.setScalar(1+.12*i.dissolve),
@@ -98936,7 +98937,7 @@ flicker:.1}
 n,
 e.H),
 o.points}
-c(_5,
+c(S5,
 "drawHeartGlyphs");
 function x1(e,
 t){
@@ -98999,7 +99000,7 @@ e-t.end-.5)*_(e,
 t.end+.5,
 t.end+1.5);
 return{
-p:x5(o),
+p:_5(o),
 pl:o,
 press:1-i,
 float:r,
@@ -99007,7 +99008,7 @@ spin:a}
 }
 c(Lx,
 "meState");
-function wF(e,
+function AF(e,
 t,
 {
 pull:n=0,
@@ -99023,7 +99024,7 @@ t.end+.5)),
 s=C(.42,
 .5,
 a)+o,
-l=x5(b5([.05,
+l=_5(M5([.05,
 .1,
 0],
 [Math.cos(s),
@@ -99043,14 +99044,14 @@ pos:[l[0]+u*Math.cos(h)*Math.sin(s),
 l[1]+u*Math.sin(h),
 l[2]+u*Math.cos(h)*Math.cos(s)]}
 }
-c(wF,
+c(AF,
 "finaleCamera");
-function am(e,
+function lm(e,
 t){
 return e.isOrthographicCamera?1080/(e.top-e.bottom):540/Math.tan(ut.degToRad(e.fov)/2)/Math.max(.02,
-M5(e.position.toArray(),
+x5(e.position.toArray(),
 t))}
-c(am,
+c(lm,
 "pxPerUnit");
 var HJ=c((e,
 t,
@@ -99076,7 +99077,7 @@ l=r.press??0,
 u=C(zu*s,
 .2,
 l),
-h=am(n,
+h=lm(n,
 i);
 a.points.visible=!0,
 a.points.position.set(...i),
@@ -99124,8 +99125,8 @@ r={
 ,
 o=e.H){
 let a=t.hs,
-s=am(n,
-x5([0,
+s=lm(n,
+_5([0,
 .1,
 0])),
 l=wt(kx,
@@ -99135,7 +99136,7 @@ l=wt(kx,
 .35);
 return a.points.visible=!0,
 a.points.position.set(0,
-om,
+sm,
 0),
 a.points.rotation.set(0,
 0,
@@ -99181,7 +99182,7 @@ i,
 r=e.H){
 return t.stars.points.visible=!0,
 t.stars.points.position.set(0,
-om,
+sm,
 0),
 t.stars.set({
 a:t.tex.stars,
@@ -99234,7 +99235,7 @@ t.rtV=e.sizeVersion);
 let u=n.position.toArray(),
 h=s.appear>.001;
 t.heart.position.set(0,
-om,
+sm,
 0),
 t.heart.scale.setScalar(1+.012*s.pulse),
 t.heart.updateMatrixWorld();
@@ -99253,7 +99254,7 @@ l.p,
 {
 press:l.press,
 spin:l.spin,
-focus:M5(l.p,
+focus:x5(l.p,
 u),
 ...a.meO}
 ),
@@ -99261,17 +99262,17 @@ u),
 h?(f.begin(),
 f.end(e),
 d.push(f.mesh),
-y5(e,
+b5(e,
 t,
 t.rtBg,
 n,
 d),
-y5(e,
+b5(e,
 t,
 t.rtIn,
 n,
 [p()]),
-l5(t.glass,
+u5(t.glass,
 n,
 t.heart,
 t.rtBg.texture,
@@ -99286,7 +99287,7 @@ contour:1,
 press:l.press>0?[...o.exit,
 l.press*(1+.4*s.glow)]:null}
 ),
-e.pass(t.glass)):y5(e,
+e.pass(t.glass)):b5(e,
 t,
 null,
 n,
@@ -99306,7 +99307,7 @@ ms:l}
 ),
 f.end(e),
 m.push(f.mesh),
-y5(e,
+b5(e,
 t,
 null,
 n,
@@ -99317,7 +99318,7 @@ ms:l}
 }
 c(Dx,
 "heartFrame");
-function y5(e,
+function b5(e,
 t,
 n,
 i,
@@ -99337,15 +99338,15 @@ i),
 o.setRenderTarget(e.target)}
 else e.draw(t.scene,
 i)}
-c(y5,
+c(b5,
 "renderLayer");
-var S5=Nn.R*1.45,
-AF=2.6;
+var T5=Un.R*1.45,
+yF=2.6;
 function zx(e,
 t={
 }
 ){
-let n=Nn.R-.5,
+let n=Un.R-.5,
 i=t.spacing??2.5,
 r=t.step??1,
 o=t.rMin??9,
@@ -99421,13 +99422,13 @@ p(m,
 "z")}
 c(zx,
 "drawTerrainClip");
-function yF(e,
+function bF(e,
 t=2,
 n=256,
 i=.01){
 let r=[],
 o=[],
-a=Nn.R;
+a=Un.R;
 for(let s=0;
 s<=n;
 s++){
@@ -99444,11 +99445,11 @@ i,
 d])}
 return o.length>1&&r.push(o),
 r}
-c(yF,
+c(bF,
 "frontCurve");
-function bF(e,
+function MF(e,
 t){
-let n=AF+(S5-AF)*(1-Ie(0,
+let n=yF+(T5-yF)*(1-Ie(0,
 .84,
 e)**.8)**2.4,
 i=Ie(.8,
@@ -99464,16 +99465,16 @@ p:C(2,
 18,
 i*i),
 rise:1-t,
-unroll:n/S5}
+unroll:n/T5}
 }
-c(bF,
+c(MF,
 "unloadState");
 var qJ="\nout vec2 vL; out vec3 vW; out vec3 vN;\nvoid main() {\n  vL = position.xy; vec4 w = modelMatrix * vec4(position, 1.); vW = w.xyz; vN = normalize(mat3(modelMatrix) * vec3(0., 0., 1.));\n  gl_Position = projectionMatrix * viewMatrix * w;\n}",
 jJ="\nuniform vec3 uCol; uniform float uIntensity, uCell, uGone, uH, uFres;\nin vec2 vL; in vec3 vW; in vec3 vN; out vec4 o;\nfloat hexD(vec2 p) { p = abs(p); return max(dot(p, vec2(.5, .8660254)), p.x); }\nvoid main() {\n  // the intro's hexagonal lattice (flat-to-flat = uCell), in the face's own coordinates (u along the hinge, v up)\n  vec2 q = vL / uCell; const vec2 r = vec2(1., 1.7320508);\n  vec2 a = mod(q, r) - r * .5, b = mod(q - r * .5, r) - r * .5, g = dot(a, a) < dot(b, b) ? a : b;\n  vec2 cell = floor((q - g) * 2. + .5);\n  float e = .5 - hexD(g), fw = fwidth(e);\n  float line = 1. - smoothstep(0., fw * 1.25, e);\n  line *= 1. - smoothstep(.1, .3, max(fwidth(q.x), fwidth(q.y)));\n  // cells go out one by one, the far ones (large v) first; a cell glints as it goes\n  float key = .62 * hash12(cell) + .38 * (1. - clamp(vL.y / uH, 0., 1.)), d = key - uGone;\n  float alive = smoothstep(0., .04, d), glint = exp(-d * d / .0012) * step(.001, uGone);\n  vec3 V = normalize(cameraPosition - vW);\n  float fres = pow(1. - abs(dot(V, vN)), 2.);\n  float k = line * (.35 + uFres * fres) * (alive + 3. * glint);\n  o = vec4(uCol * uIntensity * k, 1.);\n}";
-function MF(e,
+function xF(e,
 t,
 n){
-let i=new _n(e,
+let i=new Sn(e,
 t);
 i.translate(0,
 t/2,
@@ -99513,9 +99514,9 @@ value:1}
 return r.matrixAutoUpdate=!1,
 r.frustumCulled=!1,
 r}
-c(MF,
+c(xF,
 "faceMesh");
-var TF=[{
+var CF=[{
 n:[0,
 0,
 1],
@@ -99547,18 +99548,18 @@ h:[0,
 0,
 1]}
 ];
-function CF({
-S:e=In.S,
-H:t=In.H,
+function EF({
+S:e=Dn.S,
+H:t=Dn.H,
 cell:n=.24}
 ={
 }
 ){
 let i=new tl,
-r=TF.map(()=>MF(2*e,
+r=CF.map(()=>xF(2*e,
 t,
 n)),
-o=MF(2*e,
+o=xF(2*e,
 2*e,
 n);
 return o.material.uniforms.uH.value=2*e,
@@ -99571,16 +99572,16 @@ lid:o,
 S:e,
 H:t}
 }
-c(CF,
+c(EF,
 "netMeshes");
-function EF(e,
+function RF(e,
 t,
-n=In.S,
-i=In.H){
+n=Dn.S,
+i=Dn.H){
 let{
 n:r,
 h:o}
-=TF[e],
+=CF[e],
 a=[r[0]*Math.sin(t),
 Math.cos(t),
 r[2]*Math.sin(t)],
@@ -99609,11 +99610,11 @@ h:o,
 v:a,
 n:s}
 }
-c(EF,
+c(RF,
 "wallPose");
 var XJ=c((e,
-t=In.S,
-n=In.H)=>[[-t,
+t=Dn.S,
+n=Dn.H)=>[[-t,
 n+e,
 t],
 [t,
@@ -99626,22 +99627,22 @@ n+e,
 n+e,
 -t]],
 "lidCorners"),
-T5=new Ke,
-xF=new B,
+C5=new Ke,
 _F=new B,
-SF=new B;
-function C5(e,
+SF=new B,
+TF=new B;
+function E5(e,
 t){
 e.walls.forEach((i,
 r)=>{
-let o=EF(r,
+let o=RF(r,
 t.open[r],
 e.S,
 e.H);
-T5.makeBasis(xF.set(...o.h),
-_F.set(...o.v),
-SF.set(...o.n)).setPosition(...o.c),
-i.matrix.copy(T5),
+C5.makeBasis(_F.set(...o.h),
+SF.set(...o.v),
+TF.set(...o.n)).setPosition(...o.c),
+i.matrix.copy(C5),
 i.matrixWorldNeedsUpdate=!0;
 let a=i.material.uniforms;
 a.uGone.value=t.gone[r],
@@ -99649,25 +99650,25 @@ a.uIntensity.value=t.intensity,
 a.uCol.value.setRGB(...t.color),
 i.visible=t.intensity>0&&t.gone[r]<1.02}
 ),
-T5.makeBasis(xF.set(1,
+C5.makeBasis(_F.set(1,
 0,
 0),
-_F.set(0,
+SF.set(0,
 0,
 -1),
-SF.set(0,
+TF.set(0,
 1,
 0)).setPosition(0,
 e.H+t.lid,
 e.S),
-e.lid.matrix.copy(T5),
+e.lid.matrix.copy(C5),
 e.lid.matrixWorldNeedsUpdate=!0;
 let n=e.lid.material.uniforms;
 n.uGone.value=t.lidGone,
 n.uIntensity.value=t.intensity,
 n.uCol.value.setRGB(...t.color),
 e.lid.visible=t.intensity>0&&t.lidGone<1.02}
-c(C5,
+c(E5,
 "setNet");
 function Ox(e,
 t,
@@ -99696,12 +99697,12 @@ o)}
 "quad");
 for(let l=0;
 l<4;
-l++)a(EF(l,
+l++)a(RF(l,
 t.open[l]).corners,
 X(n.fade?.[l]??1));
 a(XJ(t.lid),
 X(n.lidFade??1));
-let s=In.S;
+let s=Dn.S;
 a([[-s,
 0,
 -s],
@@ -99717,10 +99718,10 @@ s]],
 n.base??1)}
 c(Ox,
 "drawNetEdges");
-var RF=c(e=>String(e).replace((new RegExp("\\B(?=(\\d{3})+(?!\\d))","g")),
+var BF=c(e=>String(e).replace((new RegExp("\\B(?=(\\d{3})+(?!\\d))","g")),
 " "),
 "fmtN");
-function BF(e,
+function PF(e,
 t,
 n={
 }
@@ -99879,18 +99880,18 @@ cell:u,
 rowY:c(v=>r+(v+1)*a,
 "rowY")}
 }
-c(BF,
+c(PF,
 "drawPanelRows");
-var sm="FrostNovaOrg",
+var um="FrostNovaOrg",
 YJ="Avenir Next",
 QJ=600,
-PF=9,
-kF="#eaf2f8",
+kF=9,
+LF="#eaf2f8",
 ZJ="#5ad9ff",
 KJ="#3f86ff",
 _1=c(e=>e*1.04,
 "logoSize"),
-LF=c((e,
+FF=c((e,
 t={
 }
 )=>({
@@ -99902,15 +99903,15 @@ tracking:-e*.01,
 ...t}
 ),
 "style");
-function E5(e,
+function R5(e,
 t,
 n=12){
-return n<=0?0:e.measure(sm.slice(0,
+return n<=0?0:e.measure(um.slice(0,
 n),
-LF(t))}
-c(E5,
+FF(t))}
+c(R5,
 "logoWidth");
-function R5(e,
+function B5(e,
 t,
 n,
 i,
@@ -99921,13 +99922,13 @@ let o=Math.min(12,
 r.chars??12),
 a=r.alpha??1;
 if(a<=.002||o<=0)return;
-let s=sm.slice(0,
+let s=um.slice(0,
 Math.min(o,
-PF)),
-l=sm.slice(PF,
+kF)),
+l=um.slice(kF,
 o),
 u=i*.022,
-h=LF(i,
+h=FF(i,
 {
 alpha:a,
 glow:r.glow,
@@ -99939,8 +99940,8 @@ t,
 n,
 {
 ...h,
-color:kF,
-stroke:kF}
+color:LF,
+stroke:LF}
 ),
 !l)return;
 let f=t+e.measure(s,
@@ -99966,13 +99967,13 @@ n,
 color:p,
 stroke:p}
 )}
-c(R5,
+c(B5,
 "drawLogo");
 function JJ(e){
 return e.match((new RegExp("\\s*[^\\s()[\\];,]+|\\s*[()[\\];,]","g")))??[]}
 c(JJ,
 "tokens");
-function B5(e,
+function P5(e,
 t,
 n={
 }
@@ -99994,7 +99995,7 @@ credit:!!n.credit,
 full:!!n.full,
 tEnd:e+(o.length-1)*(n.step??.1154)}
 }
-c(B5,
+c(P5,
 "entry");
 function $J(e,
 t){
@@ -100002,7 +100003,7 @@ return t<e.t0?0:e.full?e.text.length:e.cum[Math.min(e.cum.length-1,
 Math.floor((t-e.t0)/e.step+1e-6))]??0}
 c($J,
 "printed");
-function P5(e,
+function k5(e,
 t,
 n,
 i={
@@ -100059,7 +100060,7 @@ b);
 b-=S.length;
 let E=g===0?i.glow??10:p.credit?4:0;
 if(T==="logo"){
-R5(e,
+B5(e,
 y,
 w,
 _1(r),
@@ -100069,7 +100070,7 @@ alpha:A,
 glow:E,
 glowColor:i.accent??P.me}
 ),
-y+=E5(e,
+y+=R5(e,
 _1(r),
 S.length);
 continue}
@@ -100095,23 +100096,23 @@ color:i.accent??P.me,
 alpha:.85*u}
 )}
 )}
-c(P5,
+c(k5,
 "drawLog");
-function FF(e,
+function IF(e,
 t,
 n){
 return e.lines.filter(i=>!i.caps&&i.start>=t&&i.start<n).map(i=>({
-...B5(i.start,
+...P5(i.start,
 i.text,
 {
 full:!0}
 ),
 end:i.end}
 ))}
-c(FF,
+c(IF,
 "lyricEntries");
 var ff=H.white,
-VF=[.62,
+qF=[.62,
 .67,
 .76],
 Nl="#aab4c8",
@@ -100128,7 +100129,7 @@ C1=[-1,
 0,
 .5,
 1],
-qF=.21,
+jF=.21,
 n$=[.35,
 .5,
 .2,
@@ -100138,11 +100139,11 @@ cr=[0,
 1.3,
 0],
 Hx=1<<18,
-jF=Lr.w,
+XF=Lr.w,
 i$=172.8/Lr.w,
-hm=[-jF,
+dm=[-XF,
 -16.8],
-IF=[[.9,
+DF=[[.9,
 .74,
 .7],
 [.34,
@@ -100187,7 +100188,7 @@ n)),
 "mixPal"),
 fe=null,
 Nx=null,
-lm=null;
+cm=null;
 function Dr(e){
 if(Nx?.T===e)return Nx;
 let t=e.section("outro").start,
@@ -100196,7 +100197,7 @@ i=Math.round(e.beatAt(t)),
 r=c(p=>e.beatTime(i+p),
 "B"),
 o=(r(1)-r(0))/4,
-a=dF(e),
+a=pF(e),
 s=e.findLines("EXECUTION").at(-1),
 l=[r(11.5),
 r(10.5),
@@ -100208,7 +100209,7 @@ u=c(p=>X(Math.floor((p-r(17.75))/o+1e-6)+1,
 9),
 "nTick"),
 h=c((p,
-m)=>B5(p,
+m)=>P5(p,
 m,
 {
 prompt:"",
@@ -100217,13 +100218,13 @@ step:o}
 ),
 "credit"),
 f=c((p,
-m)=>B5(p,
+m)=>P5(p,
 m,
 {
 step:o}
 ),
 "cmd"),
-d=[...FF(e,
+d=[...IF(e,
 a.s0-.2,
 t),
 f(r(4),
@@ -100270,7 +100271,7 @@ h(r(30),
 [["//",
 P.dim],
 [" "],
-[sm,
+[um,
 null,
 "logo"]])].sort((p,
 m)=>p.t0-m.t0);
@@ -100341,17 +100342,17 @@ var hf=c((e,
 t)=>G(e,
 t),
 "proj"),
-XF=c((e,
+YF=c((e,
 t)=>R.inOutSine(_(e,
 t.B(2.2),
 t.B(4))),
 "monoK"),
-DF=c((e,
+zF=c((e,
 t)=>1-.6*R.inOutSine(_(e,
 t.s0+.15,
 t.s0+1.1)),
 "yieldK");
-function YF(e,
+function QF(e,
 t){
 let n=R.inOutSine(_(e,
 t.B(4.25),
@@ -100360,19 +100361,19 @@ i=R.inOutSine(_(e,
 t.B(4),
 t.B(5.75)));
 return{
-...bF(n,
+...MF(n,
 i),
 u:n,
 s:i,
 ph:(e-t.B(0))*.35}
 }
-c(YF,
+c(QF,
 "worldSt");
 function a$(e,
 t,
 n){
 let i=n.rise[e],
-r=vv(2*i-t,
+r=gv(2*i-t,
 i,
 {
 height:2.6,
@@ -100494,7 +100495,7 @@ soft:fe.soft,
 n:3}
 ),
 "dofOf");
-function QF(e,
+function ZF(e,
 t,
 n,
 i={
@@ -100530,7 +100531,7 @@ maxBlur:16}
 t,
 e.H),
 r.points}
-c(QF,
+c(ZF,
 "codeWall");
 function S1(e,
 t,
@@ -100544,7 +100545,7 @@ t:e.t,
 size:n.size??.012,
 minPx:1.2,
 bright:n.bright??.45,
-colA:n.col??VF,
+colA:n.col??qF,
 sparkle:.12,
 reveal:n.reveal??1,
 revealBy:"w",
@@ -100557,19 +100558,19 @@ e.H),
 fe.grid.points}
 c(S1,
 "viaGrid");
-function ZF(e,
+function KF(e,
 t){
 return fe.floor.visible=e>0,
 fe.floor.userData.set({
 intensity:.6*e,
 reveal:t.unroll,
-revealR:S5,
+revealR:T5,
 fade:.035}
 ),
 fe.floor}
-c(ZF,
+c(KF,
 "worldFloor");
-function zF(e,
+function OF(e,
 t,
 n,
 i={
@@ -100577,7 +100578,7 @@ i={
 ){
 let r=Vx(e,
 t);
-return C5(fe.box,
+return E5(fe.box,
 {
 ...r,
 intensity:n*r.shield,
@@ -100585,7 +100586,7 @@ color:i.color??Gx()}
 ),
 fe.shield.visible=n>0,
 fe.shield}
-c(zF,
+c(OF,
 "shield");
 function Gc(e={
 }
@@ -100603,7 +100604,7 @@ n*1.1)}
 :{
 }
 ;
-return dv(fe.lines,
+return pv(fe.lines,
 fe.net,
 t,
 {
@@ -100628,7 +100629,7 @@ t,
 n);
 return{
 st:r,
-P:gv(i.solid,
+P:wv(i.solid,
 i.M,
 r.dy,
 r.tilt),
@@ -100638,7 +100639,7 @@ Ou]}
 }
 c(c$,
 "solidPose");
-function k5(e,
+function L5(e,
 t,
 n={
 }
@@ -100690,19 +100691,19 @@ color:Ee(ff,
 width:1.5}
 ,
 n.dof)}
-n.impact!==!1&&wv(fe.lines,
+n.impact!==!1&&Av(fe.lines,
 l,
 a.impact,
 {
-r0:qF*.9,
+r0:jF*.9,
 r1:.75,
 dof:n.dof,
 bright:1.2*(n.k??1)}
 )}
 return r}
-c(k5,
+c(L5,
 "drawSolids");
-function L5(e,
+function F5(e,
 t,
 n,
 i={
@@ -100710,7 +100711,7 @@ i={
 ){
 let r=Lx(e.t,
 t.LK,
-lm),
+cm),
 o=r.p,
 a=Fx(e,
 fe,
@@ -100719,7 +100720,7 @@ o,
 {
 press:r.press,
 spin:r.spin,
-focus:M5(o,
+focus:x5(o,
 n.position.toArray()),
 ...i}
 );
@@ -100731,7 +100732,7 @@ color:Ee(i.col??H.me,
 width:22}
 ),
 a}
-c(L5,
+c(F5,
 "meBall");
 function h$(e,
 t=.8){
@@ -100771,7 +100772,7 @@ let i=e.text.overlay,
 r=e.t;
 n.backing&&h$(i,
 n.backing),
-(n.frame??1)>0&&dn(i,
+(n.frame??1)>0&&pn(i,
 r,
 e.T,
 {
@@ -100782,7 +100783,7 @@ alpha:.55*(n.frame??1)}
 let o=1-_(r,
 t.B(3.5),
 t.B(4));
-P5(i,
+k5(i,
 r,
 t.LOG,
 {
@@ -100815,7 +100816,7 @@ t,
 n={
 }
 ){
-let i=XF(e.t,
+let i=YF(e.t,
 t);
 Object.assign(e.post,
 {
@@ -100855,7 +100856,7 @@ t[i],
 n))}
 c(f$,
 "blendLook");
-function um(e,
+function hm(e,
 t={
 }
 ){
@@ -100878,27 +100879,27 @@ color:Ee([.8,
 .1*n),
 width:(t.width??13)*3.5}
 ))}
-c(um,
+c(hm,
 "drawPoint");
-function OF(e,
+function NF(e,
 t,
 n,
 i={
 }
 ){
 let r=e.t,
-o=YF(r,
+o=QF(r,
 t),
 a=i.k??1,
 s=[];
-s.push(ZF(a*(i.floor??1),
+s.push(KF(a*(i.floor??1),
 o));
 let l=(1-_(o.u,
 .96,
 1))*_(r,
 t.B(4.1),
 t.B(4.4))*a;
-if(l>0)for(let u of yF(o.a,
+if(l>0)for(let u of bF(o.a,
 o.p,
 360))fe.lines.polyline(u,
 {
@@ -100933,7 +100934,7 @@ rMax:o.front}
 st:o,
 obs:s}
 }
-c(OF,
+c(NF,
 "drawWorld");
 Wn({
 id:"outro",
@@ -100942,14 +100943,14 @@ from:c(e=>e.section("outro").start,
 to:c(e=>e.duration,
 "to"),
 init(e){
-lm=pF(),
+cm=mF(),
 fe={
-scene:new fn,
+scene:new dn,
 cam:new wi(36,
 16/9,
 .01,
 400),
-ocam:new An(-1,
+ocam:new yn(-1,
 1,
 1,
 -1,
@@ -100957,19 +100958,19 @@ ocam:new An(-1,
 400),
 heart:new ya}
 ,
-fe.me=new Qt({
+fe.me=new Zt({
 count:65536}
 ),
-fe.meN=new Qt({
+fe.meN=new Zt({
 count:Hx}
 ),
-fe.hs=new Qt({
+fe.hs=new Zt({
 count:1<<18}
 ),
-fe.stars=new Qt({
+fe.stars=new Zt({
 count:16384}
 ),
-fe.grid=new Qt({
+fe.grid=new Zt({
 count:900}
 ),
 fe.lines=new Xn(2e4),
@@ -100989,7 +100990,7 @@ fade:.09}
 ),
 fe.floor=Mr({
 plane:"xz",
-size:Nn.R*2,
+size:Un.R*2,
 color:[.2,
 .22,
 .27],
@@ -101000,12 +101001,12 @@ minor:1,
 major:4,
 fade:.035}
 ),
-fe.glass=s5(),
-fe.net=fv(),
+fe.glass=l5(),
+fe.net=dv(),
 fe.hopsFull=Math.max(...fe.net.lanes.map(n=>n.t0+n.len/au),
 ...fe.net.vias.map(n=>n.t+2))+1,
 fe.shield=(()=>{
-let n=CF({
+let n=EF({
 cell:.24}
 );
 return fe.box=n,
@@ -101016,17 +101017,17 @@ fe.place=Bo.map((n,
 i)=>({
 id:n,
 solid:sl[n],
-M:mv(sl[n],
+M:vv(sl[n],
 {
 pos:[C1[i],
 Ou],
-scale:qF,
+scale:jF,
 yaw:n$[i]}
 )}
 )),
 fe.tex={
-...mF(fe,
-lm),
+...vF(fe,
+cm),
 grid:fe.grid.shape("outro/pcb-grid",
 n=>{
 let i=Math.sqrt(n),
@@ -101080,19 +101081,19 @@ s*4)}
 return r}
 )}
 ,
-fe.gfHeart=new nn({
+fe.gfHeart=new rn({
 count:16384}
 ),
 fe.gfHeart.text("outro/heart-src",
-tn("ch/love/curves.js"));
-let t=gF(fe.gfHeart);
+nn("ch/love/curves.js"));
+let t=wF(fe.gfHeart);
 fe.tex.gSurf=t.surf,
 fe.tex.gDrift=t.drift,
-fe.gfWall=new nn({
+fe.gfWall=new rn({
 count:16384}
 ),
 fe.gfWall.text("outro/solids-src",
-tn("ch/intro/solids.js")),
+nn("ch/intro/solids.js")),
 fe.tex.wall=fe.gfWall.layout("outro/wall",
 Ki(fe.gfWall,
 {
@@ -101103,7 +101104,7 @@ cell:.1,
 cols:120,
 rows:120}
 )),
-fe.gfExec=new nn({
+fe.gfExec=new rn({
 count:256}
 ),
 fe.gfExec.text("outro/exec",
@@ -101113,8 +101114,8 @@ n=>{
 let i=new Float32Array(n*4);
 for(let r=0;
 r<n;
-r++)i.set(r<9?[(hm[0]+0)/100,
--hm[1]/100,
+r++)i.set(r<9?[(dm[0]+0)/100,
+-dm[1]/100,
 0,
 r/9]:[0,
 0,
@@ -101132,7 +101133,7 @@ origin:[-3.12,
 cell:1.3,
 cols:12}
 )),
-fe.flat=new An(-9.6,
+fe.flat=new yn(-9.6,
 9.6,
 5.4,
 -5.4,
@@ -101161,12 +101162,12 @@ fe.gfExec.points],
 fe.scene.add(...fe.all);
 for(let n of fe.all)n.visible=!1;
 if(q(e)){
-let n=Tv(fe.place,
+let n=Cv(fe.place,
 {
-traces:Sv(fe.net),
+traces:Tv(fe.net),
 traceR:1.6}
 ),
-i=Bv({
+i=Pv({
 side:30}
 );
 fe.R={
@@ -101191,7 +101192,7 @@ i=t.LK,
 r=R.inOutSine(_(n,
 t.s0,
 t.B(2)+.5)),
-o=wF(n,
+o=AF(n,
 i,
 {
 pull:1.9*r,
@@ -101211,13 +101212,13 @@ fe,
 a,
 n,
 i,
-lm,
+cm,
 {
 hsO:{
-brightK:DF(n,
+brightK:zF(n,
 t)}
 ,
-front:[_5(e,
+front:[S5(e,
 fe,
 a,
 s,
@@ -101225,10 +101226,10 @@ s,
 k:R.inOutSine(_(n,
 t.s0+.08,
 t.s0+.7)),
-palette:IF}
+palette:DF}
 )]}
 ),
-ev(e.text.scene,
+tv(e.text.scene,
 "LO-O-OVE",
 1830,
 560,
@@ -101262,7 +101263,7 @@ i=t.LK,
 r=R.inOutSine(_(n,
 t.B(2),
 t.B(4)+.3)),
-o=XF(n,
+o=YF(n,
 t),
 a=cf([C(4.4,
 6.4,
@@ -101288,10 +101289,10 @@ t.B(3.8))),
 l=R.inOutSine(_(n,
 t.B(2.9),
 t.B(4))),
-u=YF(n,
+u=QF(n,
 t),
 h=a.position.toArray(),
-f=q(e)?JF(e,
+f=q(e)?$F(e,
 t,
 {
 k:s,
@@ -101303,9 +101304,9 @@ fe,
 a,
 n,
 i,
-lm,
+cm,
 {
-bg:[ZF(s,
+bg:[KF(s,
 u)],
 hsO:{
 colB:wt(wt(kx,
@@ -101317,7 +101318,7 @@ colB:wt(wt(kx,
 .86,
 .9],
 .7),
-brightK:DF(n,
+brightK:zF(n,
 t)}
 ,
 lines:c((d,
@@ -101345,16 +101346,16 @@ fade:90,
 spacing:2.5,
 step:1}
 ),
-f?$F(f,
+f?eI(f,
 {
 width:2}
-):k5(e,
+):L5(e,
 t,
 {
 k:s,
 width:2}
 ),
-cm(n,
+fm(n,
 t,
 s*.55),
 Gc({
@@ -101369,16 +101370,16 @@ a,
 bright:.35*s,
 size:.012}
 ),
-zF(n,
+OF(n,
 t,
 .16*s),
-_5(e,
+S5(e,
 fe,
 a,
 x1(n,
 i),
 {
-palette:r$(IF,
+palette:r$(DF,
 Wx,
 o)}
 )]}
@@ -101425,13 +101426,13 @@ far:800}
 ),
 {
 st:o}
-=OF(e,
+=NF(e,
 t,
 r,
 {
 terrainFade:120}
 );
-cm(n,
+fm(n,
 t,
 .6),
 Gc({
@@ -101444,7 +101445,7 @@ width:1.8,
 dots:1,
 env:[.2,
 .6]}
-):k5(e,
+):L5(e,
 t,
 {
 width:1.8,
@@ -101453,7 +101454,7 @@ dots:1}
 d$(e,
 t,
 r),
-_5(e,
+S5(e,
 fe,
 r,
 x1(n,
@@ -101461,7 +101462,7 @@ t.LK),
 {
 palette:Wx}
 ).visible=!0,
-L5(e,
+F5(e,
 t,
 r,
 {
@@ -101472,7 +101473,7 @@ r,
 {
 bright:.3}
 ),
-zF(n,
+OF(n,
 t,
 .2),
 es(e,
@@ -101512,13 +101513,13 @@ i),
 e.aspect),
 {
 st:o}
-=OF(e,
+=NF(e,
 t,
 r,
 {
 frontW:2.6}
 );
-cm(n,
+fm(n,
 t,
 .7),
 Gc({
@@ -101531,14 +101532,14 @@ width:2,
 dots:1.2,
 env:[0,
 .7]}
-):k5(e,
+):L5(e,
 t,
 {
 width:2,
 dots:1.2,
 impact:!1}
 ),
-L5(e,
+F5(e,
 t,
 r,
 {
@@ -101661,7 +101662,7 @@ a=qx(o,
 e.focus,
 .014,
 24);
-QF(t,
+ZF(t,
 o,
 e.look instanceof Function?e.look(r):e.look,
 {
@@ -101670,11 +101671,11 @@ bright:.19,
 aperture:.016,
 t0:n.B(7)}
 ),
-cm(i,
+fm(i,
 n,
 .3,
 a);
-let s=k5(t,
+let s=L5(t,
 n,
 {
 dof:a,
@@ -101687,7 +101688,7 @@ m=>es(m,
 o));
 Pa(t,
 n),
-rn(t,
+on(t,
 p,
 e.mode,
 {
@@ -101781,14 +101782,14 @@ color:Ee(ff,
 width:2.4,
 lidFade:1-o.lidGone}
 ),
-C5(fe.box,
+E5(fe.box,
 {
 ...o,
 intensity:.5*o.shield,
 color:Gx()}
 ),
 fe.shield.visible=!0,
-L5(e,
+F5(e,
 t,
 r,
 {
@@ -101849,14 +101850,14 @@ width:2.4,
 fade:o.gone.map(p=>1-R.inQuad(X(p))),
 lidFade:0}
 ),
-C5(fe.box,
+E5(fe.box,
 {
 ...o,
 intensity:.55*o.shield,
 color:Gx()}
 ),
 fe.shield.visible=!0,
-L5(d,
+F5(d,
 t,
 r,
 {
@@ -101874,7 +101875,7 @@ let d=Dt(e,
 a);
 Pa(e,
 t),
-rn(e,
+on(e,
 d,
 "paper",
 {
@@ -101888,7 +101889,7 @@ ink:[.12,
 )}
 let s=e.text.overlay,
 l=q(e)?"#c9ccd6":"#2c2d33",
-u=In.S,
+u=Dn.S,
 h=c(d=>hf(d,
 r),
 "pr");
@@ -101934,14 +101935,14 @@ w.lineTo(...g),
 w.stroke()}
 )}
 let f=o.gone.filter(d=>d<1).length;
-q(e)?(dn(s,
+q(e)?(pn(s,
 n,
 e.T,
 {
 label:"shutdown",
 bottomRight:"view  top · orthographic"}
 ),
-P5(s,
+k5(s,
 n,
 t.LOG,
 {
@@ -101957,7 +101958,7 @@ be(s,
 " / 5")]],
 {
 alpha:.9}
-)):(dn(s,
+)):(pn(s,
 n,
 e.T,
 {
@@ -101965,7 +101966,7 @@ label:"shutdown",
 bottomRight:"view  top · orthographic",
 color:"#6d6e75"}
 ),
-P5(s,
+k5(s,
 n,
 t.LOG,
 {
@@ -102068,14 +102069,14 @@ glowColor:Zf.glow.number}
 :{
 }
 ;
-if(BF(h,
+if(PF(h,
 [{
 key:"name",
 value:"me"}
 ,
 {
 key:"N",
-value:RF(l.N),
+value:BF(l.N),
 ...d}
 ,
 {
@@ -102174,10 +102175,10 @@ draw(e){
 let t=Dr(e.T),
 n=e.t;
 Ks();
-let i=F5(e,
+let i=I5(e,
 t,
 n),
-r=NF(n,
+r=UF(n,
 t);
 S1(e,
 i,
@@ -102192,7 +102193,7 @@ tip:1.6,
 inner:1,
 widthK:.9}
 ),
-um(cr,
+hm(cr,
 {
 k:1}
 ),
@@ -102204,7 +102205,7 @@ i),
 s=_(n,
 t.B(20.1),
 t.B(20.5));
-Tn(o,
+Cn(o,
 a[0],
 a[1],
 26,
@@ -102233,7 +102234,7 @@ T1(e,
 ["dim",
 "0"],
 ["copper",
-gd(fe.net,
+Ad(fe.net,
 r).toFixed(3)]]),
 Pa(e,
 t,
@@ -102251,13 +102252,13 @@ draw(e){
 let t=Dr(e.T),
 n=e.t;
 Ks();
-let i=F5(e,
+let i=I5(e,
 t,
 n),
 r=1-R.inOutSine(_(n,
 t.B(24),
 t.B(26.5))),
-o=NF(n,
+o=UF(n,
 t);
 r>0&&S1(e,
 i,
@@ -102272,10 +102273,10 @@ tip:1.6,
 inner:1,
 widthK:.9}
 );
-let a=q(e)?WF(n,
-t):GF(n,
+let a=q(e)?VF(n,
+t):HF(n,
 t);
-um(cr,
+hm(cr,
 {
 k:a.k,
 width:a.w}
@@ -102304,7 +102305,7 @@ Ux(e,
 i,
 a);
 let s=e.text.scene;
-q(e)?HF(e,
+q(e)?WF(e,
 t,
 n):(po(s,
 Co(),
@@ -102314,7 +102315,7 @@ n)*_(n,
 t.B(24),
 t.B(24)+.03)}
 ),
-UF(e,
+GF(e,
 t,
 n)),
 Ol(e,
@@ -102350,12 +102351,12 @@ t.fin)),
 r=1-i;
 if(q(e)&&n<Xx(t)+1){
 Ks();
-let o=F5(e,
+let o=I5(e,
 t,
 n),
-a=WF(n,
+a=VF(n,
 t);
-um(cr,
+hm(cr,
 {
 k:a.k,
 width:a.w}
@@ -102365,17 +102366,17 @@ o),
 Ux(e,
 o,
 a),
-HF(e,
+WF(e,
 t,
 n)}
 else if(!q(e)&&n<t.lEx.end+.8){
 Ks();
-let o=F5(e,
+let o=I5(e,
 t,
 n),
-a=GF(n,
+a=HF(n,
 t);
-um(cr,
+hm(cr,
 {
 k:a.k,
 width:a.w}
@@ -102385,13 +102386,13 @@ o),
 Ux(e,
 o,
 a),
-UF(e,
+GF(e,
 t,
 n);
 let s=.55*(1-_(n,
 t.lEx.start+.3,
 t.lEx.end+.2));
-s>.002&&dn(e.text.overlay,
+s>.002&&pn(e.text.overlay,
 n,
 e.T,
 {
@@ -102410,12 +102411,12 @@ fade:i}
 }
 ]}
 );
-function cm(e,
+function fm(e,
 t,
 n,
 i){
-let r=In.S,
-o=In.H,
+let r=Dn.S,
+o=Dn.H,
 a=[[-r,
 -r],
 [r,
@@ -102471,7 +102472,7 @@ width:2.2}
 ,
 i)}
 }
-c(cm,
+c(fm,
 "drawBoxLines");
 function d$(e,
 t,
@@ -102501,7 +102502,7 @@ o.points.scale.setScalar(Math.max(s,
 1e-4));
 let l=new B().subVectors(n.position,
 new B(...cr)).normalize().applyMatrix4(new Ke().makeRotationY(-o.points.rotation.y)).multiplyScalar(zu),
-u=am(n,
+u=lm(n,
 cr),
 h=9-t.nTick(a),
 f=Math.min(20,
@@ -102537,7 +102538,7 @@ m$(n,
 i,
 l,
 o.points.rotation.y),
-r.N<=4&&um(cr,
+r.N<=4&&hm(cr,
 {
 k:_(r.steps,
 7.4,
@@ -102584,7 +102585,7 @@ width:2}
 )}
 c(m$,
 "drainFront");
-function F5(e,
+function I5(e,
 t,
 n){
 let i=R.inOutSine(_(n,
@@ -102597,17 +102598,17 @@ o=R.inOutSine(_(n,
 t.B(22.25),
 t.B(23.75))),
 a=1080/r,
-s=[-hm[0]/a*o,
+s=[-dm[0]/a*o,
 0,
--hm[1]/a*o];
+-dm[1]/a*o];
 return ru(fe.ocam,
 s,
 "top",
 r,
 e.aspect)}
-c(F5,
+c(I5,
 "pointCam");
-function NF(e,
+function UF(e,
 t){
 let n=t.six,
 i=c((a,
@@ -102629,9 +102630,9 @@ Math.ceil(fe.hopsFull))),
 ring:o,
 close:o>=1?1:0}
 }
-c(NF,
+c(UF,
 "traceBack");
-function UF(e,
+function GF(e,
 t,
 n){
 let i=t.lEx.start,
@@ -102673,9 +102674,9 @@ r.points.visible=!0,
 e.draw(fe.scene,
 fe.flat)}
 }
-c(UF,
+c(GF,
 "execWord");
-function GF(e,
+function HF(e,
 t){
 let n=t.lEx.start,
 i=e-n;
@@ -102700,7 +102701,7 @@ n,
 n+1.1),
 a:i}
 }
-c(GF,
+c(HF,
 "extinction");
 function Ux(e,
 t,
@@ -102807,7 +102808,7 @@ o/(i.length-1))}
 ))}
 c(y$,
 "titleKeys");
-function HF(e,
+function WF(e,
 t,
 n){
 let i=e.text.scene,
@@ -102817,9 +102818,9 @@ a=1-R.inQuad(_(n,
 o+.04,
 o+.4));
 if(a<=0)return;
-let s=c(h=>Lr.cx+(h-6)*jF,
+let s=c(h=>Lr.cx+(h-6)*XF,
 "cellX"),
-l=Lr.cy+hm[1]+6.72-26.88,
+l=Lr.cy+dm[1]+6.72-26.88,
 u=r.filter(h=>n>=h.t);
 for(let h of u){
 let f=1+.12*Math.exp(-(n-h.t)/.05);
@@ -102851,9 +102852,9 @@ t.B(24),
 t.B(24)+.03)}
 )}
 }
-c(HF,
+c(WF,
 "titleLine");
-function WF(e,
+function VF(e,
 t){
 let n=Xx(t),
 i=e-n;
@@ -102878,7 +102879,7 @@ n,
 n+.9),
 a:i}
 }
-c(WF,
+c(VF,
 "enterOut");
 function b$(e,
 t,
@@ -102951,7 +102952,7 @@ for(let[ge,
 je,
 De]of D.spans){
 if(De==="logo"){
-R5(a,
+B5(a,
 le,
 we,
 _1(u),
@@ -102960,7 +102961,7 @@ alpha:ie,
 glow:4,
 glowColor:Nl}
 ),
-le+=E5(a,
+le+=R5(a,
 _1(u));
 continue}
 a.text(ge,
@@ -102990,7 +102991,7 @@ o(34.5));
 v>0&&xA(a,
 l,
 626,
-q(e)?Math.round(d/60):uv(t.end),
+q(e)?Math.round(d/60):cv(t.end),
 {
 size:28,
 alpha:i*v}
@@ -103058,7 +103059,7 @@ function M$(e,
 t,
 n){
 let i=n.rise[e],
-r=xv(2*i-t,
+r=_v(2*i-t,
 i,
 {
 h:Yf,
@@ -103078,7 +103079,7 @@ alpha:(r.shown?1:0)*(1-a)}
 }
 c(M$,
 "solidStR");
-function KF(e,
+function JF(e,
 t){
 let n=[],
 i=0;
@@ -103100,22 +103101,22 @@ w:l.w,
 ripples:s.ripples,
 col:Xo(o).lin}
 ),
-i+=_v(a,
+i+=Sv(a,
 s.jolt*.5)}
 ),
 {
 fronts:n,
 jolt:i}
 }
-c(KF,
+c(JF,
 "quakeR");
-function JF(e,
+function $F(e,
 t,
 n={
 }
 ){
 let i=e.t,
-r=n.fx??KF(i,
+r=n.fx??JF(i,
 t),
 o=[],
 a=[],
@@ -103136,7 +103137,7 @@ t),
 {
 F:f,
 P:d}
-=Cv(fe.place[u],
+=Ev(fe.place[u],
 {
 dy:h.dy,
 spin:h.spin,
@@ -103151,15 +103152,15 @@ c:[C1[u],
 Ou],
 a:p}
 ),
-!(p<=.002)&&(Ev(fe.R.pieces[u],
+!(p<=.002)&&(Rv(fe.R.pieces[u],
 f,
 {
 alpha:p,
 flash:.35*h.flash,
 ring:s,
 ringW:l,
-box:[In.S,
-In.H,
+box:[Dn.S,
+Dn.H,
 n.env?.[0]??0,
 n.env?.[1]??.5],
 ...x$(u)}
@@ -103169,7 +103170,7 @@ return{
 out:o,
 meshes:a}
 }
-c(JF,
+c($F,
 "posePiecesR");
 var x$=c(e=>({
 rim:Ee(Xo(e).lin,
@@ -103181,7 +103182,7 @@ envTrace:Ee(Fr.amber,
 1.4)}
 ),
 "pieceLook");
-function $F(e,
+function eI(e,
 t={
 }
 ){
@@ -103236,13 +103237,13 @@ t.dof)}
 }
 ),
 e.out}
-c($F,
+c(eI,
 "drawEdgesR");
 var jx=c((e,
 t,
 n={
 }
-)=>$F(JF(e,
+)=>eI($F(e,
 t,
 n),
 n),
@@ -103258,7 +103259,7 @@ let o=i-t;
 if(o<0||o>1.4)return;
 let a=tc[Bo[r]],
 s=Xo(r).lin;
-Pv(fe.lines,
+kv(fe.lines,
 C1[r],
 Ou,
 o,
@@ -103269,10 +103270,10 @@ amp:a.ring}
 ripples:a.ripples,
 dof:n.dof,
 bright:1.2,
-clip:In.S,
+clip:Dn.S,
 color:s}
 ),
-kv(fe.lines,
+Lv(fe.lines,
 C1[r],
 Ou,
 o,
@@ -103295,7 +103296,7 @@ r=_(i,
 n.B(t.at),
 n.B(t.at+t.len));
 Ks();
-let o=KF(i,
+let o=JF(i,
 n),
 a=typeof t.look=="function"?t.look(r):t.look,
 s=t.pos(r),
@@ -103316,7 +103317,7 @@ h=qx(u,
 t.focus,
 .014,
 24);
-QF(e,
+ZF(e,
 u,
 a,
 {
@@ -103325,19 +103326,19 @@ bright:.19,
 aperture:.016,
 t0:n.B(7)}
 ),
-cm(i,
+fm(i,
 n,
 .3,
 h),
 fe.R.dots.userData.set({
 bright:.42,
 size:.007,
-color:VF,
+color:qF,
 t:i,
 focus:t.focus,
 aperture:t.mode?0:.016,
 maxBlur:24,
-clip:In.S,
+clip:Dn.S,
 fronts:o.fronts}
 ,
 u,
@@ -103363,7 +103364,7 @@ y=>es(y,
 u));
 Pa(e,
 n),
-Lv(e,
+Fv(e,
 A,
 {
 pix:3,
@@ -103400,7 +103401,7 @@ let v=n.rise.filter(A=>i<A).length;
 [["free",
 m.name],
 ["Timaeus",
-Mv[p]],
+xv[p]],
 ["V E F",
 "".concat(m.nV,
 " ").concat(m.nE,
@@ -103452,7 +103453,7 @@ weight:400}
 )),
 "shotsFor")}
 );
-function MI(){
+function xI(){
 let e=null,
 t=!1,
 n=null,
@@ -103484,7 +103485,7 @@ e=o}
 ,
 "setContext")}
 }
-c(MI,
+c(xI,
 "WebGLAnimation");
 function T$(e){
 let t=new WeakMap;
@@ -103602,7 +103603,7 @@ update:a}
 }
 c(T$,
 "WebGLAttributes");
-var wn={
+var An={
 alphahash_fragment:"#ifdef USE_ALPHAHASH\n	if ( diffuseColor.a < getAlphaHashThreshold( vPosition ) ) discard;\n#endif",
 alphahash_pars_fragment:"#ifdef USE_ALPHAHASH\n	const float ALPHA_HASH_SCALE = 0.05;\n	float hash2D( vec2 value ) {\n		return fract( 1.0e4 * sin( 17.0 * value.x + 0.1 * value.y ) * ( 0.1 + abs( sin( 13.0 * value.y + value.x ) ) ) );\n	}\n	float hash3D( vec3 value ) {\n		return hash2D( vec2( hash2D( value.xy ), value.z ) );\n	}\n	float getAlphaHashThreshold( vec3 position ) {\n		float maxDeriv = max(\n			length( dFdx( position.xyz ) ),\n			length( dFdy( position.xyz ) )\n		);\n		float pixScale = 1.0 / ( ALPHA_HASH_SCALE * maxDeriv );\n		vec2 pixScales = vec2(\n			exp2( floor( log2( pixScale ) ) ),\n			exp2( ceil( log2( pixScale ) ) )\n		);\n		vec2 alpha = vec2(\n			hash3D( floor( pixScales.x * position.xyz ) ),\n			hash3D( floor( pixScales.y * position.xyz ) )\n		);\n		float lerpFactor = fract( log2( pixScale ) );\n		float x = ( 1.0 - lerpFactor ) * alpha.x + lerpFactor * alpha.y;\n		float a = min( lerpFactor, 1.0 - lerpFactor );\n		vec3 cases = vec3(\n			x * x / ( 2.0 * a * ( 1.0 - a ) ),\n			( x - 0.5 * a ) / ( 1.0 - a ),\n			1.0 - ( ( 1.0 - x ) * ( 1.0 - x ) / ( 2.0 * a * ( 1.0 - a ) ) )\n		);\n		float threshold = ( x < ( 1.0 - a ) )\n			? ( ( x < a ) ? cases.x : cases.y )\n			: cases.z;\n		return clamp( threshold , 1.0e-6, 1.0 );\n	}\n#endif",
 alphamap_fragment:"#ifdef USE_ALPHAMAP\n	diffuseColor.a *= texture2D( alphaMap, vAlphaMapUv ).g;\n#endif",
@@ -104186,8 +104187,8 @@ $e.envmap,
 $e.aomap,
 $e.lightmap,
 $e.fog]),
-vertexShader:wn.meshbasic_vert,
-fragmentShader:wn.meshbasic_frag}
+vertexShader:An.meshbasic_vert,
+fragmentShader:An.meshbasic_frag}
 ,
 lambert:{
 uniforms:Wo([$e.common,
@@ -104209,8 +104210,8 @@ envMapIntensity:{
 value:1}
 }
 ]),
-vertexShader:wn.meshlambert_vert,
-fragmentShader:wn.meshlambert_frag}
+vertexShader:An.meshlambert_vert,
+fragmentShader:An.meshlambert_frag}
 ,
 phong:{
 uniforms:Wo([$e.common,
@@ -104238,8 +104239,8 @@ envMapIntensity:{
 value:1}
 }
 ]),
-vertexShader:wn.meshphong_vert,
-fragmentShader:wn.meshphong_frag}
+vertexShader:An.meshphong_vert,
+fragmentShader:An.meshphong_frag}
 ,
 standard:{
 uniforms:Wo([$e.common,
@@ -104268,8 +104269,8 @@ envMapIntensity:{
 value:1}
 }
 ]),
-vertexShader:wn.meshphysical_vert,
-fragmentShader:wn.meshphysical_frag}
+vertexShader:An.meshphysical_vert,
+fragmentShader:An.meshphysical_frag}
 ,
 toon:{
 uniforms:Wo([$e.common,
@@ -104287,8 +104288,8 @@ emissive:{
 value:new Ne(0)}
 }
 ]),
-vertexShader:wn.meshtoon_vert,
-fragmentShader:wn.meshtoon_frag}
+vertexShader:An.meshtoon_vert,
+fragmentShader:An.meshtoon_frag}
 ,
 matcap:{
 uniforms:Wo([$e.common,
@@ -104301,14 +104302,14 @@ matcap:{
 value:null}
 }
 ]),
-vertexShader:wn.meshmatcap_vert,
-fragmentShader:wn.meshmatcap_frag}
+vertexShader:An.meshmatcap_vert,
+fragmentShader:An.meshmatcap_frag}
 ,
 points:{
 uniforms:Wo([$e.points,
 $e.fog]),
-vertexShader:wn.points_vert,
-fragmentShader:wn.points_frag}
+vertexShader:An.points_vert,
+fragmentShader:An.points_frag}
 ,
 dashed:{
 uniforms:Wo([$e.common,
@@ -104324,14 +104325,14 @@ totalSize:{
 value:2}
 }
 ]),
-vertexShader:wn.linedashed_vert,
-fragmentShader:wn.linedashed_frag}
+vertexShader:An.linedashed_vert,
+fragmentShader:An.linedashed_frag}
 ,
 depth:{
 uniforms:Wo([$e.common,
 $e.displacementmap]),
-vertexShader:wn.depth_vert,
-fragmentShader:wn.depth_frag}
+vertexShader:An.depth_vert,
+fragmentShader:An.depth_frag}
 ,
 normal:{
 uniforms:Wo([$e.common,
@@ -104343,14 +104344,14 @@ opacity:{
 value:1}
 }
 ]),
-vertexShader:wn.meshnormal_vert,
-fragmentShader:wn.meshnormal_frag}
+vertexShader:An.meshnormal_vert,
+fragmentShader:An.meshnormal_frag}
 ,
 sprite:{
 uniforms:Wo([$e.sprite,
 $e.fog]),
-vertexShader:wn.sprite_vert,
-fragmentShader:wn.sprite_frag}
+vertexShader:An.sprite_vert,
+fragmentShader:An.sprite_frag}
 ,
 background:{
 uniforms:{
@@ -104364,8 +104365,8 @@ backgroundIntensity:{
 value:1}
 }
 ,
-vertexShader:wn.background_vert,
-fragmentShader:wn.background_frag}
+vertexShader:An.background_vert,
+fragmentShader:An.background_frag}
 ,
 backgroundCube:{
 uniforms:{
@@ -104382,8 +104383,8 @@ backgroundRotation:{
 value:new qt}
 }
 ,
-vertexShader:wn.backgroundCube_vert,
-fragmentShader:wn.backgroundCube_frag}
+vertexShader:An.backgroundCube_vert,
+fragmentShader:An.backgroundCube_frag}
 ,
 cube:{
 uniforms:{
@@ -104397,8 +104398,8 @@ opacity:{
 value:1}
 }
 ,
-vertexShader:wn.cube_vert,
-fragmentShader:wn.cube_frag}
+vertexShader:An.cube_vert,
+fragmentShader:An.cube_frag}
 ,
 equirect:{
 uniforms:{
@@ -104406,8 +104407,8 @@ tEquirect:{
 value:null}
 }
 ,
-vertexShader:wn.equirect_vert,
-fragmentShader:wn.equirect_frag}
+vertexShader:An.equirect_vert,
+fragmentShader:An.equirect_frag}
 ,
 distance:{
 uniforms:Wo([$e.common,
@@ -104423,8 +104424,8 @@ farDistance:{
 value:1e3}
 }
 ]),
-vertexShader:wn.distance_vert,
-fragmentShader:wn.distance_frag}
+vertexShader:An.distance_vert,
+fragmentShader:An.distance_frag}
 ,
 shadow:{
 uniforms:Wo([$e.lights,
@@ -104437,8 +104438,8 @@ opacity:{
 value:1}
 }
 ]),
-vertexShader:wn.shadow_vert,
-fragmentShader:wn.shadow_frag}
+vertexShader:An.shadow_vert,
+fragmentShader:An.shadow_frag}
 }
 ;
 Gl.physical={
@@ -104583,17 +104584,17 @@ anisotropyMapTransform:{
 value:new qt}
 }
 ]),
-vertexShader:wn.meshphysical_vert,
-fragmentShader:wn.meshphysical_frag}
+vertexShader:An.meshphysical_vert,
+fragmentShader:An.meshphysical_frag}
 ;
-var I5={
+var D5={
 r:0,
 b:0,
 g:0}
 ,
 C$=new Ke,
-xI=new qt;
-xI.set(-1,
+_I=new qt;
+_I.set(-1,
 0,
 0,
 0,
@@ -104686,8 +104687,8 @@ u.material.uniforms.envMap.value=b,
 u.material.uniforms.backgroundBlurriness.value=y.backgroundBlurriness,
 u.material.uniforms.backgroundIntensity.value=y.backgroundIntensity,
 u.material.uniforms.backgroundRotation.value.setFromMatrix4(C$.makeRotationFromEuler(y.backgroundRotation)).transpose(),
-b.isCubeTexture&&b.isRenderTargetTexture===!1&&u.material.uniforms.backgroundRotation.value.premultiply(xI),
-u.material.toneMapped=kn.getTransfer(b.colorSpace)!==J1,
+b.isCubeTexture&&b.isRenderTargetTexture===!1&&u.material.uniforms.backgroundRotation.value.premultiply(_I),
+u.material.toneMapped=Ln.getTransfer(b.colorSpace)!==ed,
 (h!==b||f!==b.version||d!==e.toneMapping)&&(u.material.needsUpdate=!0,
 h=b,
 f=b.version,
@@ -104698,7 +104699,7 @@ u.geometry,
 u.material,
 0,
 0,
-null)):b&&b.isTexture&&(l===void 0&&(l=new tt(new _n(2,
+null)):b&&b.isTexture&&(l===void 0&&(l=new tt(new Sn(2,
 2),
 new Zr({
 name:"BackgroundMaterial",
@@ -104723,7 +104724,7 @@ return this.uniforms.t2D.value}
 i.update(l)),
 l.material.uniforms.t2D.value=b,
 l.material.uniforms.backgroundIntensity.value=y.backgroundIntensity,
-l.material.toneMapped=kn.getTransfer(b.colorSpace)!==J1,
+l.material.toneMapped=Ln.getTransfer(b.colorSpace)!==ed,
 b.matrixAutoUpdate===!0&&b.updateMatrix(),
 l.material.uniforms.uvTransform.value.copy(b.matrix),
 (h!==b||f!==b.version||d!==e.toneMapping)&&(l.material.needsUpdate=!0,
@@ -104741,11 +104742,11 @@ c(g,
 "addToRenderList");
 function w(A,
 y){
-A.getRGB(I5,
+A.getRGB(D5,
 Kw(e)),
-n.buffers.color.setClear(I5.r,
-I5.g,
-I5.b,
+n.buffers.color.setClear(D5.r,
+D5.g,
+D5.b,
 y,
 o)}
 c(w,
@@ -105401,15 +105402,15 @@ var R1=4,
 L$=6,
 F$=20,
 I$=256,
-fm=new An,
-eI=new Ne,
+pm=new yn,
+tI=new Ne,
 Yx=null,
 Qx=0,
 Zx=0,
 Kx=!1,
 D$=new B,
 df=new B,
-tI=class{
+nI=class{
 static{
 c(this,
 "PMREMGenerator")}
@@ -105465,10 +105466,10 @@ t=null){
 return this._fromTexture(e,
 t)}
 compileCubemapShader(){
-this._cubemapMaterial===null&&(this._cubemapMaterial=rI(),
+this._cubemapMaterial===null&&(this._cubemapMaterial=oI(),
 this._compileMaterial(this._cubemapMaterial))}
 compileEquirectangularShader(){
-this._equirectMaterial===null&&(this._equirectMaterial=iI(),
+this._equirectMaterial===null&&(this._equirectMaterial=rI(),
 this._compileMaterial(this._equirectMaterial))}
 dispose(){
 this._dispose(),
@@ -105517,20 +105518,20 @@ let e=3*Math.max(this._cubeSize,
 112),
 t=4*this._cubeSize,
 n={
-magFilter:On,
-minFilter:On,
+magFilter:Nn,
+minFilter:Nn,
 generateMipmaps:!1,
 type:Da,
 format:So,
 colorSpace:Df,
 depthBuffer:!1}
 ,
-i=nI(e,
+i=iI(e,
 t,
 n);
 if(this._pingPongRenderTarget===null||this._pingPongRenderTarget.width!==e||this._pingPongRenderTarget.height!==t){
 this._pingPongRenderTarget!==null&&this._dispose(),
-this._pingPongRenderTarget=nI(e,
+this._pingPongRenderTarget=iI(e,
 t,
 n);
 let{
@@ -105551,7 +105552,7 @@ _compileMaterial(e){
 let t=new tt(new It,
 e);
 this._renderer.compile(t,
-fm)}
+pm)}
 _sceneToCubeUV(e,
 t,
 n,
@@ -105576,7 +105577,7 @@ s=[1,
 l=this._renderer,
 u=l.autoClear,
 h=l.toneMapping;
-l.getClearColor(eI),
+l.getClearColor(tI),
 l.toneMapping=0,
 l.autoClear=!1,
 l.state.buffers.depth.getReversed()&&(l.setRenderTarget(i),
@@ -105595,7 +105596,7 @@ p=!1,
 m=e.background;
 m?m.isColor&&(d.color.copy(m),
 e.background=null,
-p=!0):(d.color.copy(eI),
+p=!0):(d.color.copy(tI),
 p=!0);
 for(let g=0;
 g<6;
@@ -105644,8 +105645,8 @@ _textureToCubeUV(e,
 t){
 let n=this._renderer,
 i=e.mapping===301||e.mapping===302;
-i?(this._cubemapMaterial===null&&(this._cubemapMaterial=rI()),
-this._cubemapMaterial.uniforms.flipEnvMap.value=e.isRenderTargetTexture===!1?-1:1):this._equirectMaterial===null&&(this._equirectMaterial=iI());
+i?(this._cubemapMaterial===null&&(this._cubemapMaterial=oI()),
+this._cubemapMaterial.uniforms.flipEnvMap.value=e.isRenderTargetTexture===!1?-1:1):this._equirectMaterial===null&&(this._equirectMaterial=rI());
 let r=i?this._cubemapMaterial:this._equirectMaterial,
 o=this._lodMeshes[0];
 o.material=r;
@@ -105659,7 +105660,7 @@ E1(t,
 2*s),
 n.setRenderTarget(t),
 n.render(o,
-fm)}
+pm)}
 _applyPMREM(e){
 let t=this._renderer,
 n=t.autoClear;
@@ -105699,7 +105700,7 @@ m,
 2*d),
 i.setRenderTarget(r),
 i.render(a,
-fm),
+pm),
 s.envMap.value=r.texture,
 s.roughness.value=0,
 s.mipInt.value=f-n,
@@ -105710,7 +105711,7 @@ m,
 2*d),
 i.setRenderTarget(e),
 i.render(a,
-fm)}
+pm)}
 _blur(e,
 t,
 n,
@@ -105749,7 +105750,7 @@ E1(t,
 2*u),
 o.setRenderTarget(t),
 o.render(s,
-fm)}
+pm)}
 }
 ;
 function z$(e){
@@ -105845,7 +105846,7 @@ sizeLods:t}
 }
 c(z$,
 "_createPlanes");
-function nI(e,
+function iI(e,
 t,
 n){
 let i=new Or(e,
@@ -105855,7 +105856,7 @@ return i.texture.mapping=306,
 i.texture.name="PMREM.cubeUv",
 i.scissorTest=!0,
 i}
-c(nI,
+c(iI,
 "_createRenderTarget");
 function E1(e,
 t,
@@ -105895,7 +105896,7 @@ mipInt:{
 value:0}
 }
 ,
-vertexShader:O5(),
+vertexShader:N5(),
 fragmentShader:'\n\n			precision highp float;\n			precision highp int;\n\n			varying vec3 vOutputDirection;\n\n			uniform sampler2D envMap;\n			uniform float roughness;\n			uniform float mipInt;\n\n			#define ENVMAP_TYPE_CUBE_UV\n			#include <cube_uv_reflection_fragment>\n\n			#define PI 3.14159265359\n\n			// Van der Corput radical inverse\n			float radicalInverse_VdC(uint bits) {\n				bits = (bits << 16u) | (bits >> 16u);\n				bits = ((bits & 0x55555555u) << 1u) | ((bits & 0xAAAAAAAAu) >> 1u);\n				bits = ((bits & 0x33333333u) << 2u) | ((bits & 0xCCCCCCCCu) >> 2u);\n				bits = ((bits & 0x0F0F0F0Fu) << 4u) | ((bits & 0xF0F0F0F0u) >> 4u);\n				bits = ((bits & 0x00FF00FFu) << 8u) | ((bits & 0xFF00FF00u) >> 8u);\n				return float(bits) * 2.3283064365386963e-10; // / 0x100000000\n			}\n\n			// Hammersley sequence\n			vec2 hammersley(uint i, uint N) {\n				return vec2(float(i) / float(N), radicalInverse_VdC(i));\n			}\n\n			// GGX VNDF importance sampling (Eric Heitz 2018)\n			// "Sampling the GGX Distribution of Visible Normals"\n			// https://jcgt.org/published/0007/04/01/\n			vec3 importanceSampleGGX_VNDF(vec2 Xi, vec3 V, float roughness) {\n				float alpha = roughness * roughness;\n\n				// Section 4.1: Orthonormal basis\n				vec3 T1 = vec3(1.0, 0.0, 0.0);\n				vec3 T2 = cross(V, T1);\n\n				// Section 4.2: Parameterization of projected area\n				float r = sqrt(Xi.x);\n				float phi = 2.0 * PI * Xi.y;\n				float t1 = r * cos(phi);\n				float t2 = r * sin(phi);\n				float s = 0.5 * (1.0 + V.z);\n				t2 = (1.0 - s) * sqrt(1.0 - t1 * t1) + s * t2;\n\n				// Section 4.3: Reprojection onto hemisphere\n				vec3 Nh = t1 * T1 + t2 * T2 + sqrt(max(0.0, 1.0 - t1 * t1 - t2 * t2)) * V;\n\n				// Section 3.4: Transform back to ellipsoid configuration\n				return normalize(vec3(alpha * Nh.x, alpha * Nh.y, max(0.0, Nh.z)));\n			}\n\n			void main() {\n				vec3 N = normalize(vOutputDirection);\n				vec3 V = N; // Assume view direction equals normal for pre-filtering\n\n				vec3 prefilteredColor = vec3(0.0);\n				float totalWeight = 0.0;\n\n				// For very low roughness, just sample the environment directly\n				if (roughness < 0.001) {\n					gl_FragColor = vec4(bilinearCubeUV(envMap, N, mipInt), 1.0);\n					return;\n				}\n\n				// Tangent space basis for VNDF sampling\n				vec3 up = abs(N.z) < 0.999 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);\n				vec3 tangent = normalize(cross(up, N));\n				vec3 bitangent = cross(N, tangent);\n\n				for(uint i = 0u; i < uint(GGX_SAMPLES); i++) {\n					vec2 Xi = hammersley(i, uint(GGX_SAMPLES));\n\n					// For PMREM, V = N, so in tangent space V is always (0, 0, 1)\n					vec3 H_tangent = importanceSampleGGX_VNDF(Xi, vec3(0.0, 0.0, 1.0), roughness);\n\n					// Transform H back to world space\n					vec3 H = normalize(tangent * H_tangent.x + bitangent * H_tangent.y + N * H_tangent.z);\n					vec3 L = normalize(2.0 * dot(V, H) * H - V);\n\n					float NdotL = max(dot(N, L), 0.0);\n\n					if(NdotL > 0.0) {\n						// Sample environment at fixed mip level\n						// VNDF importance sampling handles the distribution filtering\n						vec3 sampleColor = bilinearCubeUV(envMap, L, mipInt);\n\n						// Weight by NdotL for the split-sum approximation\n						// VNDF PDF naturally accounts for the visible microfacet distribution\n						prefilteredColor += sampleColor * NdotL;\n						totalWeight += NdotL;\n					}\n				}\n\n				if (totalWeight > 0.0) {\n					prefilteredColor = prefilteredColor / totalWeight;\n				}\n\n				gl_FragColor = vec4(prefilteredColor, 1.0);\n			}\n		',
 blending:0,
 depthTest:!1,
@@ -105926,7 +105927,7 @@ mipInt:{
 value:0}
 }
 ,
-vertexShader:O5(),
+vertexShader:N5(),
 fragmentShader:"\n\n			precision highp float;\n			precision highp int;\n\n			varying vec3 vOutputDirection;\n\n			uniform sampler2D envMap;\n			uniform float sigma;\n			uniform float mipInt;\n\n			#define ENVMAP_TYPE_CUBE_UV\n			#include <cube_uv_reflection_fragment>\n\n			#define PI 3.14159265359\n			#define GOLDEN_ANGLE 2.39996322973\n\n			void main() {\n\n				if ( sigma == 0.0 ) {\n\n					gl_FragColor = vec4( bilinearCubeUV( envMap, vOutputDirection, mipInt ), 1.0 );\n					return;\n\n				}\n\n				vec3 outputDirection = normalize( vOutputDirection );\n\n				vec3 up = abs( outputDirection.z ) < 0.999 ? vec3( 0.0, 0.0, 1.0 ) : vec3( 1.0, 0.0, 0.0 );\n				vec3 tangent = normalize( cross( up, outputDirection ) );\n				vec3 bitangent = cross( outputDirection, tangent );\n\n				// Truncate the kernel at three standard deviations or at the antipode.\n				float thetaMax = min( 3.0 * sigma, PI );\n				float truncation = 1.0 - exp( - 0.5 * thetaMax * thetaMax / ( sigma * sigma ) );\n\n				vec3 accumColor = vec3( 0.0 );\n				float accumWeight = 0.0;\n\n				for ( int i = 0; i < SAMPLES; i ++ ) {\n\n					// Stratified inverse-CDF sampling of the Gaussian, placed on a golden-angle spiral.\n					float stratum = ( float( i ) + 0.5 ) / float( SAMPLES );\n					float theta = sigma * sqrt( - 2.0 * log( 1.0 - stratum * truncation ) );\n					float phi = float( i ) * GOLDEN_ANGLE;\n\n					vec3 offset = cos( phi ) * tangent + sin( phi ) * bitangent;\n					vec3 sampleDirection = cos( theta ) * outputDirection + sin( theta ) * offset;\n\n					// Correct the planar sample density to solid angle.\n					float weight = sin( theta ) / theta;\n\n					accumColor += weight * bilinearCubeUV( envMap, sampleDirection, mipInt );\n					accumWeight += weight;\n\n				}\n\n				gl_FragColor = vec4( accumColor / accumWeight, 1.0 );\n\n			}\n		",
 blending:0,
 depthTest:!1,
@@ -105934,7 +105935,7 @@ depthWrite:!1}
 )}
 c(N$,
 "_getBlurShader");
-function iI(){
+function rI(){
 return new Zr({
 name:"EquirectangularToCubeUV",
 uniforms:{
@@ -105942,15 +105943,15 @@ envMap:{
 value:null}
 }
 ,
-vertexShader:O5(),
+vertexShader:N5(),
 fragmentShader:"\n\n			precision mediump float;\n			precision mediump int;\n\n			varying vec3 vOutputDirection;\n\n			uniform sampler2D envMap;\n\n			#include <common>\n\n			void main() {\n\n				vec3 outputDirection = normalize( vOutputDirection );\n				vec2 uv = equirectUv( outputDirection );\n\n				gl_FragColor = vec4( texture2D ( envMap, uv ).rgb, 1.0 );\n\n			}\n		",
 blending:0,
 depthTest:!1,
 depthWrite:!1}
 )}
-c(iI,
+c(rI,
 "_getEquirectMaterial");
-function rI(){
+function oI(){
 return new Zr({
 name:"CubemapToCubeUV",
 uniforms:{
@@ -105961,19 +105962,19 @@ flipEnvMap:{
 value:-1}
 }
 ,
-vertexShader:O5(),
+vertexShader:N5(),
 fragmentShader:"\n\n			precision mediump float;\n			precision mediump int;\n\n			uniform float flipEnvMap;\n\n			varying vec3 vOutputDirection;\n\n			uniform samplerCube envMap;\n\n			void main() {\n\n				gl_FragColor = textureCube( envMap, vec3( flipEnvMap * vOutputDirection.x, vOutputDirection.yz ) );\n\n			}\n		",
 blending:0,
 depthTest:!1,
 depthWrite:!1}
 )}
-c(rI,
+c(oI,
 "_getCubemapMaterial");
-function O5(){
+function N5(){
 return"\n\n		precision mediump float;\n		precision mediump int;\n\n		attribute vec3 outputDirection;\n\n		varying vec3 vOutputDirection;\n\n		void main() {\n\n			vOutputDirection = outputDirection;\n			gl_Position = vec4( position, 1.0 );\n\n		}\n	"}
-c(O5,
+c(N5,
 "_getCommonVertexShader");
-var _I=class extends Or{
+var SI=class extends Or{
 static{
 c(this,
 "WebGLCubeRenderTarget")}
@@ -106030,8 +106031,8 @@ r.uniforms.tEquirect.value=t;
 let o=new tt(i,
 r),
 a=t.minFilter;
-return t.minFilter===1008&&(t.minFilter=On),
-new DS(1,
+return t.minFilter===1008&&(t.minFilter=Nn),
+new zS(1,
 10,
 this).update(e,
 o),
@@ -106073,7 +106074,7 @@ d.mapping)}
 else{
 let m=d.image;
 if(m&&m.height>0){
-let g=new _I(m.height);
+let g=new SI(m.height);
 return g.fromEquirectangularTexture(e,
 d),
 t.set(d,
@@ -106095,7 +106096,7 @@ g=p===301||p===302;
 if(m||g){
 let w=n.get(d),
 v=w!==void 0?w.texture.pmremVersion:0;
-if(d.isRenderTargetTexture&&d.pmremVersion!==v)return i===null&&(i=new tI(e)),
+if(d.isRenderTargetTexture&&d.pmremVersion!==v)return i===null&&(i=new nI(e)),
 w=m?i.fromEquirectangular(d,
 w):i.fromCubemap(d,
 w),
@@ -106106,7 +106107,7 @@ w.texture;
 if(w!==void 0)return w.texture;
 {
 let A=d.image;
-return m&&A&&A.height>0||g&&A&&l(A)?(i===null&&(i=new tI(e)),
+return m&&A&&A.height>0||g&&A&&l(A)?(i===null&&(i=new nI(e)),
 w=m?i.fromEquirectangular(d):i.fromCubemap(d),
 w.texture.pmremVersion=d.pmremVersion,
 n.set(d,
@@ -106612,7 +106613,7 @@ s=null,
 l=null,
 u=new It;
 u.setAttribute("position",
-new Ln([-1,
+new Fn([-1,
 3,
 0,
 -1,
@@ -106623,14 +106624,14 @@ new Ln([-1,
 0],
 3)),
 u.setAttribute("uv",
-new Ln([0,
+new Fn([0,
 2,
 0,
 0,
 2,
 0],
 2));
-let h=new BS({
+let h=new PS({
 uniforms:{
 tDiffuse:{
 value:null}
@@ -106643,7 +106644,7 @@ depthWrite:!1}
 ),
 f=new tt(u,
 h),
-d=new An(-1,
+d=new yn(-1,
 1,
 1,
 -1,
@@ -106738,7 +106739,7 @@ m=b.toneMapping,
 h.defines={
 }
 ,
-kn.getTransfer(p)==="srgb"&&(h.defines.SRGB_TRANSFER="");
+Ln.getTransfer(p)==="srgb"&&(h.defines.SRGB_TRANSFER="");
 let S=X$[m];
 S&&(h.defines[S]=""),
 h.needsUpdate=!0}
@@ -106761,26 +106762,26 @@ h.dispose()}
 }
 c(Y$,
 "WebGLOutput");
-var SI=new za,
+var TI=new za,
 e_=new Hf(1,
 1),
-TI=new Uw,
-CI=new Gf,
-EI=new qw,
-oI=[],
+CI=new Uw,
+EI=new Gf,
+RI=new qw,
 aI=[],
-sI=new Float32Array(16),
-lI=new Float32Array(9),
-uI=new Float32Array(4);
+sI=[],
+lI=new Float32Array(16),
+uI=new Float32Array(9),
+cI=new Float32Array(4);
 function B1(e,
 t,
 n){
 let i=e[0];
 if(i<=0||i>0)return e;
 let r=t*n,
-o=oI[r];
+o=aI[r];
 if(o===void 0&&(o=new Float32Array(r),
-oI[r]=o),
+aI[r]=o),
 t!==0){
 i.toArray(o,
 0);
@@ -106811,16 +106812,16 @@ n<i;
 n++)e[n]=t[n]}
 c(lo,
 "copyArray");
-function N5(e,
+function U5(e,
 t){
-let n=aI[t];
+let n=sI[t];
 n===void 0&&(n=new Int32Array(t),
-aI[t]=n);
+sI[t]=n);
 for(let i=0;
 i!==t;
 ++i)n[i]=e.allocateTextureUnit();
 return n}
-c(N5,
+c(U5,
 "allocTexUnits");
 function Q$(e,
 t){
@@ -106912,10 +106913,10 @@ t)}
 else{
 if(so(n,
 i))return;
-uI.set(i),
+cI.set(i),
 e.uniformMatrix2fv(this.addr,
 !1,
-uI),
+cI),
 lo(n,
 i)}
 }
@@ -106936,10 +106937,10 @@ t)}
 else{
 if(so(n,
 i))return;
-lI.set(i),
+uI.set(i),
 e.uniformMatrix3fv(this.addr,
 !1,
-lI),
+uI),
 lo(n,
 i)}
 }
@@ -106960,10 +106961,10 @@ t)}
 else{
 if(so(n,
 i))return;
-sI.set(i),
+lI.set(i),
 e.uniformMatrix4fv(this.addr,
 !1,
-sI),
+lI),
 lo(n,
 i)}
 }
@@ -107115,7 +107116,7 @@ r),
 i[0]=r);
 let o;
 this.type===e.SAMPLER_2D_SHADOW?(e_.compareFunction=n.isReversedDepthBuffer()?518:515,
-o=e_):o=SI,
+o=e_):o=TI,
 n.setTexture2D(t||o,
 r)}
 c(cee,
@@ -107128,7 +107129,7 @@ r=n.allocateTextureUnit();
 i[0]!==r&&(e.uniform1i(this.addr,
 r),
 i[0]=r),
-n.setTexture3D(t||CI,
+n.setTexture3D(t||EI,
 r)}
 c(hee,
 "setValueT3D1");
@@ -107140,7 +107141,7 @@ r=n.allocateTextureUnit();
 i[0]!==r&&(e.uniform1i(this.addr,
 r),
 i[0]=r),
-n.setTextureCube(t||EI,
+n.setTextureCube(t||RI,
 r)}
 c(fee,
 "setValueT6");
@@ -107152,7 +107153,7 @@ r=n.allocateTextureUnit();
 i[0]!==r&&(e.uniform1i(this.addr,
 r),
 i[0]=r),
-n.setTexture2DArray(t||TI,
+n.setTexture2DArray(t||CI,
 r)}
 c(dee,
 "setValueT2DArray1");
@@ -107296,7 +107297,7 @@ t,
 n){
 let i=this.cache,
 r=t.length,
-o=N5(n,
+o=U5(n,
 r);
 so(i,
 o)||(e.uniform1iv(this.addr,
@@ -107304,7 +107305,7 @@ o),
 lo(i,
 o));
 let a;
-this.type===e.SAMPLER_2D_SHADOW?a=e_:a=SI;
+this.type===e.SAMPLER_2D_SHADOW?a=e_:a=TI;
 for(let s=0;
 s!==r;
 ++s)n.setTexture2D(t[s]||a,
@@ -107316,7 +107317,7 @@ t,
 n){
 let i=this.cache,
 r=t.length,
-o=N5(n,
+o=U5(n,
 r);
 so(i,
 o)||(e.uniform1iv(this.addr,
@@ -107325,7 +107326,7 @@ lo(i,
 o));
 for(let a=0;
 a!==r;
-++a)n.setTexture3D(t[a]||CI,
+++a)n.setTexture3D(t[a]||EI,
 o[a])}
 c(Pee,
 "setValueT3DArray");
@@ -107334,7 +107335,7 @@ t,
 n){
 let i=this.cache,
 r=t.length,
-o=N5(n,
+o=U5(n,
 r);
 so(i,
 o)||(e.uniform1iv(this.addr,
@@ -107343,7 +107344,7 @@ lo(i,
 o));
 for(let a=0;
 a!==r;
-++a)n.setTextureCube(t[a]||EI,
+++a)n.setTextureCube(t[a]||RI,
 o[a])}
 c(kee,
 "setValueT6Array");
@@ -107352,7 +107353,7 @@ t,
 n){
 let i=this.cache,
 r=t.length,
-o=N5(n,
+o=U5(n,
 r);
 so(i,
 o)||(e.uniform1iv(this.addr,
@@ -107361,7 +107362,7 @@ lo(i,
 o));
 for(let a=0;
 a!==r;
-++a)n.setTexture2DArray(t[a]||TI,
+++a)n.setTexture2DArray(t[a]||CI,
 o[a])}
 c(Lee,
 "setValueT2DArrayArray");
@@ -107444,11 +107445,11 @@ n)}
 }
 ,
 Jx=(new RegExp("(\\w+)(\\])?(\\[|\\.)?","g"));
-function cI(e,
+function hI(e,
 t){
 e.seq.push(t),
 e.map[t.id]=t}
-c(cI,
+c(hI,
 "addUniform");
 function Oee(e,
 t,
@@ -107465,7 +107466,7 @@ l=o[2]==="]",
 u=o[3];
 if(l&&(s=s|0),
 u===void 0||u==="["&&a+2===r){
-cI(n,
+hI(n,
 u===void 0?new Iee(s,
 e,
 t):new Dee(s,
@@ -107475,14 +107476,14 @@ break}
 else{
 let h=n.map[s];
 h===void 0&&(h=new zee(s),
-cI(n,
+hI(n,
 h)),
 n=h}
 }
 }
 c(Oee,
 "parseUniform");
-var z5=class{
+var O5=class{
 static{
 c(this,
 "WebGLUniforms")}
@@ -107548,7 +107549,7 @@ o.id in t&&n.push(o)}
 return n}
 }
 ;
-function hI(e,
+function fI(e,
 t,
 n){
 let i=e.createShader(t);
@@ -107556,7 +107557,7 @@ return e.shaderSource(i,
 n),
 e.compileShader(i),
 i}
-c(hI,
+c(fI,
 "WebGLShader");
 var Nee=37297,
 Uee=0;
@@ -107578,17 +107579,17 @@ i.push("".concat(s===t?">":" ",
 return i.join("\n")}
 c(Gee,
 "handleSource");
-var fI=new qt;
+var dI=new qt;
 function Hee(e){
-kn._getMatrix(fI,
-kn.workingColorSpace,
+Ln._getMatrix(dI,
+Ln.workingColorSpace,
 e);
-let t="mat3( ".concat(fI.elements.map(n=>n.toFixed(4)),
+let t="mat3( ".concat(dI.elements.map(n=>n.toFixed(4)),
 " )");
-switch(kn.getTransfer(e)){
-case j1:return[t,
+switch(Ln.getTransfer(e)){
+case Y1:return[t,
 "LinearTransferOETF"];
-case J1:return[t,
+case ed:return[t,
 "sRGBTransferOETF"];
 default:return Ot("WebGLProgram: Unsupported color space: ",
 e),
@@ -107597,7 +107598,7 @@ e),
 }
 c(Hee,
 "getEncodingComponents");
-function dI(e,
+function pI(e,
 t,
 n){
 let i=e.getShaderParameter(t,
@@ -107610,7 +107611,7 @@ let a=parseInt(o[1]);
 return n.toUpperCase()+"\n\n"+r+"\n\n"+Gee(e.getShaderSource(t),
 a)}
 else return r}
-c(dI,
+c(pI,
 "getShaderErrors");
 function Wee(e,
 t){
@@ -107640,13 +107641,13 @@ t),
 "vec3 "+e+"( vec3 color ) { return LinearToneMapping( color ); }"):"vec3 "+e+"( vec3 color ) { return "+n+"ToneMapping( color ); }"}
 c(qee,
 "getToneMappingFunction");
-var D5=new B;
+var z5=new B;
 function jee(){
-return kn.getLuminanceCoefficients(D5),
+return Ln.getLuminanceCoefficients(z5),
 ["float luminance( const in vec3 rgb ) {",
-"	const vec3 weights = vec3( ".concat(D5.x.toFixed(4),
-", ").concat(D5.y.toFixed(4),
-", ").concat(D5.z.toFixed(4),
+"	const vec3 weights = vec3( ".concat(z5.x.toFixed(4),
+", ").concat(z5.y.toFixed(4),
+", ").concat(z5.z.toFixed(4),
 " );"),
 "	return dot( weights, rgb );",
 "}"].join("\n")}
@@ -107654,7 +107655,7 @@ c(jee,
 "getLuminanceFunction");
 function Xee(e){
 return[e.extensionClipCullDistance?"#extension GL_ANGLE_clip_cull_distance : require":"",
-e.extensionMultiDraw?"#extension GL_ANGLE_multi_draw : require":""].filter(pm).join("\n")}
+e.extensionMultiDraw?"#extension GL_ANGLE_multi_draw : require":""].filter(vm).join("\n")}
 c(Xee,
 "generateVertexExtensions");
 function Yee(e){
@@ -107691,11 +107692,11 @@ locationSize:s}
 return n}
 c(Qee,
 "fetchAttributeLocations");
-function pm(e){
+function vm(e){
 return e!==""}
-c(pm,
+c(vm,
 "filterEmptyLine");
-function pI(e,
+function mI(e,
 t){
 let n=t.numSpotLightShadows+t.numSpotLightMaps-t.numSpotLightShadowsWithMaps;
 return e.replace((new RegExp("NUM_SUN_LIGHTS","g")),
@@ -107712,14 +107713,14 @@ t.numDirLightShadows).replace((new RegExp("NUM_SPOT_LIGHT_SHADOWS_WITH_MAPS","g"
 t.numSpotLightShadowsWithMaps).replace((new RegExp("NUM_SPOT_LIGHT_SHADOWS","g")),
 t.numSpotLightShadows).replace((new RegExp("NUM_POINT_LIGHT_SHADOWS","g")),
 t.numPointLightShadows)}
-c(pI,
+c(mI,
 "replaceLightNums");
-function mI(e,
+function vI(e,
 t){
 return e.replace((new RegExp("NUM_CLIPPING_PLANES","g")),
 t.numClippingPlanes).replace((new RegExp("UNION_CLIPPING_PLANES","g")),
 t.numClippingPlanes-t.numClipIntersection)}
-c(mI,
+c(vI,
 "replaceClippingPlaneNums");
 var Zee=(new RegExp("^[ \\t]*#include +<([\\w\\d./]+)>","gm"));
 function t_(e){
@@ -107730,10 +107731,10 @@ c(t_,
 var Kee=new Map;
 function Jee(e,
 t){
-let n=wn[t];
+let n=An[t];
 if(n===void 0){
 let i=Kee.get(t);
-if(i!==void 0)n=wn[i],
+if(i!==void 0)n=An[i],
 Ot('WebGLRenderer: Shader chunk "%s" has been deprecated. Use "%s" instead.',
 t,
 i);
@@ -107742,10 +107743,10 @@ return t_(n)}
 c(Jee,
 "includeReplacer");
 var $ee=(new RegExp("#pragma unroll_loop_start\\s+for\\s*\\(\\s*int\\s+i\\s*=\\s*(\\d+)\\s*;\\s*i\\s*<\\s*(\\d+)\\s*;\\s*i\\s*\\+\\+\\s*\\)\\s*{([\\s\\S]+?)}\\s+#pragma unroll_loop_end","g"));
-function vI(e){
+function gI(e){
 return e.replace($ee,
 ete)}
-c(vI,
+c(gI,
 "unrollLoops");
 function ete(e,
 t,
@@ -107760,7 +107761,7 @@ o);
 return r}
 c(ete,
 "loopReplacer");
-function gI(e){
+function wI(e){
 let t="precision ".concat(e.precision,
 " float;\n	precision ").concat(e.precision,
 " int;\n	precision ").concat(e.precision,
@@ -107781,7 +107782,7 @@ let t="precision ".concat(e.precision,
 " usampler2DArray;\n	");
 return e.precision==="highp"?t+="\n#define HIGH_PRECISION":e.precision==="mediump"?t+="\n#define MEDIUM_PRECISION":e.precision==="lowp"&&(t+="\n#define LOW_PRECISION"),
 t}
-c(gI,
+c(wI,
 "generatePrecision");
 var tte={
 1:"SHADOWMAP_TYPE_PCF",
@@ -107851,12 +107852,12 @@ v,
 A=n.glslVersion?"#version "+n.glslVersion+"\n":"";
 n.isRawShaderMaterial?(w=["#define SHADER_TYPE "+n.shaderType,
 "#define SHADER_NAME "+n.shaderName,
-m].filter(pm).join("\n"),
+m].filter(vm).join("\n"),
 w.length>0&&(w+="\n"),
 v=["#define SHADER_TYPE "+n.shaderType,
 "#define SHADER_NAME "+n.shaderName,
-m].filter(pm).join("\n"),
-v.length>0&&(v+="\n")):(w=[gI(n),
+m].filter(vm).join("\n"),
+v.length>0&&(v+="\n")):(w=[wI(n),
 "#define SHADER_TYPE "+n.shaderType,
 "#define SHADER_NAME "+n.shaderName,
 m,
@@ -107984,8 +107985,8 @@ n.reversedDepthBuffer?"#define USE_REVERSED_DEPTH_BUFFER":"",
 "	attribute vec4 skinIndex;",
 "	attribute vec4 skinWeight;",
 "#endif",
-"\n"].filter(pm).join("\n"),
-v=[gI(n),
+"\n"].filter(vm).join("\n"),
+v=[wI(n),
 "#define SHADER_TYPE "+n.shaderType,
 "#define SHADER_NAME "+n.shaderName,
 m,
@@ -108058,29 +108059,29 @@ n.reversedDepthBuffer?"#define USE_REVERSED_DEPTH_BUFFER":"",
 "uniform vec3 cameraPosition;",
 "uniform bool isOrthographic;",
 n.toneMapping!==0?"#define TONE_MAPPING":"",
-n.toneMapping!==0?wn.tonemapping_pars_fragment:"",
+n.toneMapping!==0?An.tonemapping_pars_fragment:"",
 n.toneMapping!==0?qee("toneMapping",
 n.toneMapping):"",
 n.dithering?"#define DITHERING":"",
 n.opaque?"#define OPAQUE":"",
-wn.colorspace_pars_fragment,
+An.colorspace_pars_fragment,
 Wee("linearToOutputTexel",
 n.outputColorSpace),
 jee(),
 n.useDepthPacking?"#define DEPTH_PACKING "+n.depthPacking:"",
-"\n"].filter(pm).join("\n")),
+"\n"].filter(vm).join("\n")),
 a=t_(a),
-a=pI(a,
-n),
 a=mI(a,
 n),
-s=t_(s),
-s=pI(s,
+a=vI(a,
 n),
+s=t_(s),
 s=mI(s,
 n),
-a=vI(a),
-s=vI(s),
+s=vI(s,
+n),
+a=gI(a),
+s=gI(s),
 n.isRawShaderMaterial!==!0&&(A="#version 300 es\n",
 w=[p,
 "#define attribute in",
@@ -108101,10 +108102,10 @@ n.glslVersion==="300 es"?"":"#define gl_FragColor pc_fragColor",
 "#define textureCubeGradEXT textureGrad"].join("\n")+"\n"+v);
 let y=A+w+a,
 b=A+v+s,
-x=hI(r,
+x=fI(r,
 r.VERTEX_SHADER,
 y),
-M=hI(r,
+M=fI(r,
 r.FRAGMENT_SHADER,
 b);
 r.attachShader(g,
@@ -108134,10 +108135,10 @@ g,
 x,
 M);
 else{
-let le=dI(r,
+let le=pI(r,
 x,
 "vertex"),
-ge=dI(r,
+ge=pI(r,
 M,
 "fragment");
 Ht("WebGLProgram: Shader Error "+r.getError()+" - VALIDATE_STATUS "+r.getProgramParameter(g,
@@ -108158,7 +108159,7 @@ prefix:v}
 )}
 r.deleteShader(x),
 r.deleteShader(M),
-S=new z5(r,
+S=new O5(r,
 g),
 E=Qee(r,
 g)}
@@ -108351,16 +108352,16 @@ vt=!!S.emissiveMap,
 At=!!S.metalnessMap,
 W=!!S.roughnessMap,
 Hn=S.anisotropy>0,
-en=S.clearcoat>0,
-hn=S.dispersion>0,
+tn=S.clearcoat>0,
+fn=S.dispersion>0,
 z=S.retroreflectivity>0,
 k=S.iridescence>0,
 Y=S.sheen>0,
 ce=S.transmission>0,
 Re=Hn&&!!S.anisotropyMap,
-Ge=en&&!!S.clearcoatMap,
-Xe=en&&!!S.clearcoatNormalMap,
-Z=en&&!!S.clearcoatRoughnessMap,
+Ge=tn&&!!S.clearcoatMap,
+Xe=tn&&!!S.clearcoatNormalMap,
+Z=tn&&!!S.clearcoatRoughnessMap,
 ve=k&&!!S.iridescenceMap,
 Ue=k&&!!S.iridescenceThicknessMap,
 Qe=Y&&!!S.sheenColorMap,
@@ -108368,7 +108369,7 @@ Se=Y&&!!S.sheenRoughnessMap,
 Je=!!S.specularMap,
 ft=!!S.specularColorMap,
 Pt=!!S.specularIntensityMap,
-Mn=ce&&!!S.transmissionMap,
+xn=ce&&!!S.transmissionMap,
 K=ce&&!!S.thicknessMap,
 ye=!!S.gradientMap,
 Pe=!!S.alphaMap,
@@ -108394,7 +108395,7 @@ batchingColor:xe&&D._colorsTexture!==null,
 instancing:ze,
 instancingColor:ze&&D.instanceColor!==null,
 instancingMorph:ze&&D.morphTexture!==null,
-outputColorSpace:Le===null?e.outputColorSpace:Le.isXRRenderTarget===!0?Le.texture.colorSpace:kn.workingColorSpace,
+outputColorSpace:Le===null?e.outputColorSpace:Le.isXRRenderTarget===!0?Le.texture.colorSpace:Ln.workingColorSpace,
 alphaToCoverage:!!S.alphaToCoverage,
 map:Mt,
 matcap:Ae,
@@ -108414,11 +108415,11 @@ metalnessMap:At,
 roughnessMap:W,
 anisotropy:Hn,
 anisotropyMap:Re,
-clearcoat:en,
+clearcoat:tn,
 clearcoatMap:Ge,
 clearcoatNormalMap:Xe,
 clearcoatRoughnessMap:Z,
-dispersion:hn,
+dispersion:fn,
 retroreflection:z,
 iridescence:k,
 iridescenceMap:ve,
@@ -108430,7 +108431,7 @@ specularMap:Je,
 specularColorMap:ft,
 specularIntensityMap:Pt,
 transmission:ce,
-transmissionMap:Mn,
+transmissionMap:xn,
 thicknessMap:K,
 gradientMap:ye,
 opaque:S.transparent===!1&&S.blending===1&&S.alphaToCoverage===!1,
@@ -108458,7 +108459,7 @@ sheenRoughnessMapUv:Se&&m(S.sheenRoughnessMap.channel),
 specularMapUv:Je&&m(S.specularMap.channel),
 specularColorMapUv:ft&&m(S.specularColorMap.channel),
 specularIntensityMapUv:Pt&&m(S.specularIntensityMap.channel),
-transmissionMapUv:Mn&&m(S.transmissionMap.channel),
+transmissionMapUv:xn&&m(S.transmissionMap.channel),
 thicknessMapUv:K&&m(S.thicknessMap.channel),
 alphaMapUv:Pe&&m(S.alphaMap.channel),
 vertexTangents:!!U.attributes.tangent&&(st||Hn),
@@ -108500,8 +108501,8 @@ dithering:S.dithering,
 shadowMapEnabled:e.shadowMap.enabled&&L.length>0,
 shadowMapType:e.shadowMap.type,
 toneMapping:et,
-decodeVideoTexture:Mt&&S.map.isVideoTexture===!0&&kn.getTransfer(S.map.colorSpace)==="srgb",
-decodeVideoTextureEmissive:vt&&S.emissiveMap.isVideoTexture===!0&&kn.getTransfer(S.emissiveMap.colorSpace)==="srgb",
+decodeVideoTexture:Mt&&S.map.isVideoTexture===!0&&Ln.getTransfer(S.map.colorSpace)==="srgb",
+decodeVideoTextureEmissive:vt&&S.emissiveMap.isVideoTexture===!0&&Ln.getTransfer(S.emissiveMap.colorSpace)==="srgb",
 premultipliedAlpha:S.premultipliedAlpha,
 doubleSided:S.side===2,
 flipSided:S.side===1,
@@ -108651,7 +108652,7 @@ let E=p[S.type],
 L;
 if(E){
 let F=Gl[E];
-L=RS.clone(F.uniforms)}
+L=BS.clone(F.uniforms)}
 else L=S.uniforms;
 return L}
 c(y,
@@ -108743,12 +108744,12 @@ t){
 return e.groupOrder!==t.groupOrder?e.groupOrder-t.groupOrder:e.renderOrder!==t.renderOrder?e.renderOrder-t.renderOrder:e.material.id!==t.material.id?e.material.id-t.material.id:e.materialVariant!==t.materialVariant?e.materialVariant-t.materialVariant:e.z!==t.z?e.z-t.z:e.id-t.id}
 c(gte,
 "painterSortStable");
-function wI(e,
+function AI(e,
 t){
 return e.groupOrder!==t.groupOrder?e.groupOrder-t.groupOrder:e.renderOrder!==t.renderOrder?e.renderOrder-t.renderOrder:e.z!==t.z?t.z-e.z:e.id-t.id}
-c(wI,
+c(AI,
 "reversePainterSortStable");
-function AI(){
+function yI(){
 let e=[],
 t=0,
 n=[],
@@ -108834,8 +108835,8 @@ c(u,
 function h(d,
 p){
 n.length>1&&n.sort(d||gte),
-i.length>1&&i.sort(p||wI),
-r.length>1&&r.sort(p||wI)}
+i.length>1&&i.sort(p||AI),
+r.length>1&&r.sort(p||AI)}
 c(h,
 "sort");
 function f(){
@@ -108863,7 +108864,7 @@ unshift:u,
 finish:f,
 sort:h}
 }
-c(AI,
+c(yI,
 "WebGLRenderList");
 function wte(){
 let e=new WeakMap;
@@ -108871,9 +108872,9 @@ function t(i,
 r){
 let o=e.get(i),
 a;
-return o===void 0?(a=new AI,
+return o===void 0?(a=new yI,
 e.set(i,
-[a])):r>=o.length?(a=new AI,
+[a])):r>=o.length?(a=new yI,
 o.push(a)):a=o[r],
 a}
 c(t,
@@ -109303,7 +109304,7 @@ state:i}
 }
 c(xte,
 "WebGLLights");
-function yI(e){
+function bI(e){
 let t=new xte(e),
 n=[],
 i=[],
@@ -109356,7 +109357,7 @@ pushLight:a,
 pushShadow:s,
 pushLightProbeGrid:l}
 }
-c(yI,
+c(bI,
 "WebGLRenderState");
 function _te(e){
 let t=new WeakMap;
@@ -109364,9 +109365,9 @@ function n(r,
 o=0){
 let a=t.get(r),
 s;
-return a===void 0?(s=new yI(e),
+return a===void 0?(s=new bI(e),
 t.set(r,
-[s])):o>=a.length?(s=new yI(e),
+[s])):o>=a.length?(s=new bI(e),
 a.push(s)):s=a[o],
 s}
 c(n,
@@ -109419,8 +109420,8 @@ new B(0,
 new B(0,
 -1,
 0)],
-bI=new Ke,
-dm=new B,
+MI=new Ke,
+mm=new B,
 $x=new B;
 function Rte(e,
 t,
@@ -109429,8 +109430,8 @@ let i=new Vw,
 r=new he,
 o=new he,
 a=new ot,
-s=new PS,
-l=new kS,
+s=new kS,
+l=new LS,
 u={
 }
 ,
@@ -109541,8 +109542,8 @@ r.y,
 {
 format:Zc,
 type:Da,
-minFilter:On,
-magFilter:On,
+minFilter:Nn,
+magFilter:Nn,
 generateMipmaps:!1}
 ),
 Q.map.texture.name=ne.name+".shadowMap",
@@ -109554,8 +109555,8 @@ Q.map.depthTexture.format=Uf,
 Q.map.depthTexture.compareFunction=null,
 Q.map.depthTexture.minFilter=Ai,
 Q.map.depthTexture.magFilter=Ai}
-else ne.isPointLight?(Q.map=new _I(r.x),
-Q.map.depthTexture=new pS(r.x,
+else ne.isPointLight?(Q.map=new SI(r.x),
+Q.map.depthTexture=new mS(r.x,
 Qu)):(Q.map=new Or(r.x,
 r.y),
 Q.map.depthTexture=new Hf(r.x,
@@ -109564,8 +109565,8 @@ Qu)),
 Q.map.depthTexture.name=ne.name+".shadowMap",
 Q.map.depthTexture.format=Uf,
 this.type===1?(Q.map.depthTexture.compareFunction=ie?518:515,
-Q.map.depthTexture.minFilter=On,
-Q.map.depthTexture.magFilter=On):(Q.map.depthTexture.compareFunction=null,
+Q.map.depthTexture.minFilter=Nn,
+Q.map.depthTexture.magFilter=Nn):(Q.map.depthTexture.compareFunction=null,
 Q.map.depthTexture.minFilter=Ai,
 Q.map.depthTexture.magFilter=Ai);
 Q.camera.updateProjectionMatrix()}
@@ -109584,19 +109585,19 @@ Ut=Q.matrix,
 Bt=ne.distance||De.far;
 Bt!==De.far&&(De.far=Bt,
 De.updateProjectionMatrix()),
-dm.setFromMatrixPosition(ne.matrixWorld),
-De.position.copy(dm),
+mm.setFromMatrixPosition(ne.matrixWorld),
+De.position.copy(mm),
 $x.copy(De.position),
 $x.add(Cte[ge]),
 De.up.copy(Ete[ge]),
 De.lookAt($x),
 De.updateMatrixWorld(),
-Ut.makeTranslation(-dm.x,
--dm.y,
--dm.z),
-bI.multiplyMatrices(De.projectionMatrix,
+Ut.makeTranslation(-mm.x,
+-mm.y,
+-mm.z),
+MI.multiplyMatrices(De.projectionMatrix,
 De.matrixWorldInverse),
-Q._frustum.setFromProjectionMatrix(bI,
+Q._frustum.setFromProjectionMatrix(MI,
 De.coordinateSystem,
 De.reversedDepth)}
 if(Q.map.isWebGLCubeRenderTarget)e.setRenderTarget(Q.map,
@@ -109892,7 +109893,7 @@ Pe=Fe)}
 ,
 "setMask"),
 setFunc:c(function(Fe){
-if(ye&&(Fe=oS[Fe]),
+if(ye&&(Fe=aS[Fe]),
 rt!==Fe){
 switch(Fe){
 case 0:e.depthFunc(e.NEVER);
@@ -110377,22 +110378,22 @@ rt.type=K,
 rt.texture=ye)}
 c(Hn,
 "bindTexture");
-function en(){
+function tn(){
 let K=ge[le];
 K!==void 0&&K.type!==void 0&&(e.bindTexture(K.type,
 null),
 K.type=void 0,
 K.texture=void 0)}
-c(en,
+c(tn,
 "unbindTexture");
-function hn(){
+function fn(){
 try{
 e.compressedTexImage2D(...arguments)}
 catch(K){
 Ht("WebGLState:",
 K)}
 }
-c(hn,
+c(fn,
 "compressedTexImage2D");
 function z(){
 try{
@@ -110525,7 +110526,7 @@ l.set(ye,
 Pe))}
 c(Pt,
 "uniformBlockBinding");
-function Mn(){
+function xn(){
 e.disable(e.BLEND),
 e.disable(e.CULL_FACE),
 e.disable(e.DEPTH_TEST),
@@ -110656,7 +110657,7 @@ e.canvas.height),
 o.reset(),
 a.reset(),
 s.reset()}
-return c(Mn,
+return c(xn,
 "reset"),
 {
 buffers:{
@@ -110678,8 +110679,8 @@ setPolygonOffset:vt,
 setScissorTest:At,
 activeTexture:W,
 bindTexture:Hn,
-unbindTexture:en,
-compressedTexImage2D:hn,
+unbindTexture:tn,
+compressedTexImage2D:fn,
 compressedTexImage3D:z,
 texImage2D:Z,
 texImage3D:ve,
@@ -110695,7 +110696,7 @@ compressedTexSubImage2D:ce,
 compressedTexSubImage3D:Re,
 scissor:Se,
 viewport:Je,
-reset:Mn}
+reset:xn}
 }
 c(Bte,
 "WebGLState");
@@ -110722,14 +110723,14 @@ catch{
 function g(z,
 k){
 return m?new OffscreenCanvas(z,
-k):X1("canvas")}
+k):Q1("canvas")}
 c(g,
 "createCanvas");
 function w(z,
 k,
 Y){
 let ce=1,
-Re=hn(z);
+Re=fn(z);
 if((Re.width>Y||Re.height>Y)&&(ce=Y/Math.max(Re.width,
 Re.height)),
 ce<1)if(typeof HTMLImageElement<"u"&&z instanceof HTMLImageElement||typeof HTMLCanvasElement<"u"&&z instanceof HTMLCanvasElement||typeof ImageBitmap<"u"&&z instanceof ImageBitmap||typeof VideoFrame<"u"&&z instanceof VideoFrame){
@@ -110817,7 +110818,7 @@ Y===e.SHORT&&Xe&&(Z=Xe.RGB16_SNORM_EXT),
 Y===e.UNSIGNED_INT_5_9_9_9_REV&&(Z=e.RGB9_E5),
 Y===e.UNSIGNED_INT_10F_11F_11F_REV&&(Z=e.R11F_G11F_B10F)),
 k===e.RGBA){
-let ve=Ge?j1:kn.getTransfer(Re);
+let ve=Ge?Y1:Ln.getTransfer(Re);
 Y===e.FLOAT&&(Z=e.RGBA32F),
 Y===e.HALF_FLOAT&&(Z=e.RGBA16F),
 Y===e.UNSIGNED_BYTE&&(Z=ve==="srgb"?e.SRGB8_ALPHA8:e.RGBA8),
@@ -111018,14 +111019,14 @@ c(ge,
 let je={
 [Yu]:e.REPEAT,
 [co]:e.CLAMP_TO_EDGE,
-[Zm]:e.MIRRORED_REPEAT}
+[Km]:e.MIRRORED_REPEAT}
 ,
 De={
 [Ai]:e.NEAREST,
-[c6]:e.NEAREST_MIPMAP_NEAREST,
-[h6]:e.NEAREST_MIPMAP_LINEAR,
-[On]:e.LINEAR,
-[f6]:e.LINEAR_MIPMAP_NEAREST,
+[h6]:e.NEAREST_MIPMAP_NEAREST,
+[f6]:e.NEAREST_MIPMAP_LINEAR,
+[Nn]:e.LINEAR,
+[d6]:e.LINEAR_MIPMAP_NEAREST,
 [ho]:e.LINEAR_MIPMAP_LINEAR}
 ,
 Ut={
@@ -111138,10 +111139,10 @@ ft=Se.start+Se.count,
 Pt=ke(Je.start,
 k.width,
 4),
-Mn=ke(Se.start,
+xn=ke(Se.start,
 k.width,
 4);
-Je.start<=ft+1&&Pt===Mn&&ke(Je.start+Je.count-1,
+Je.start<=ft+1&&Pt===xn&&ke(Je.start+Je.count-1,
 k.width,
 4)===Pt?Se.count=Math.max(Se.count,
 Je.start+Je.count-Se.start):(++Xe,
@@ -111159,17 +111160,17 @@ Qe++){
 let Je=Ge[Qe],
 ft=Math.floor(Je.start/4),
 Pt=Math.ceil(Je.count/4),
-Mn=ft%k.width,
+xn=ft%k.width,
 K=Math.floor(ft/k.width),
 ye=Pt,
 Pe=1;
 n.pixelStorei(e.UNPACK_SKIP_PIXELS,
-Mn),
+xn),
 n.pixelStorei(e.UNPACK_SKIP_ROWS,
 K),
 n.texSubImage2D(e.TEXTURE_2D,
 0,
-Mn,
+xn,
 K,
 ye,
 Pe,
@@ -111202,8 +111203,8 @@ let Xe=i.get(Ge);
 if(Ge.version!==Xe.__version||Re===!0){
 if(n.activeTexture(e.TEXTURE0+Y),
 !(typeof ImageBitmap<"u"&&k.image instanceof ImageBitmap)){
-let ye=kn.getPrimaries(kn.workingColorSpace),
-Pe=k.colorSpace===""?null:kn.getPrimaries(k.colorSpace),
+let ye=Ln.getPrimaries(Ln.workingColorSpace),
+Pe=k.colorSpace===""?null:Ln.getPrimaries(k.colorSpace),
 rt=k.colorSpace===""||ye===Pe?e.NONE:e.BROWSER_DEFAULT_WEBGL;
 n.pixelStorei(e.UNPACK_FLIP_Y_WEBGL,
 k.flipY),
@@ -111216,7 +111217,7 @@ k.unpackAlignment);
 let Z=w(k.image,
 !1,
 r.maxTextureSize);
-Z=en(k,
+Z=tn(k,
 Z);
 let ve=o.convert(k.format,
 k.colorSpace),
@@ -111233,7 +111234,7 @@ let Se,
 Je=k.mipmaps,
 ft=k.isVideoTexture!==!0,
 Pt=Xe.__version===void 0||Re===!0,
-Mn=Ge.dataReady,
+xn=Ge.dataReady,
 K=M(k,
 Z);
 if(k.isDepthTexture)Qe=x(k.format===Lw,
@@ -111261,7 +111262,7 @@ for(let ye=0,
 Pe=Je.length;
 ye<Pe;
 ye++)Se=Je[ye],
-ft?Mn&&n.texSubImage2D(e.TEXTURE_2D,
+ft?xn&&n.texSubImage2D(e.TEXTURE_2D,
 ye,
 0,
 0,
@@ -111284,7 +111285,7 @@ K,
 Qe,
 Z.width,
 Z.height),
-Mn&&Le(k,
+xn&&Le(k,
 Z,
 ve,
 Ue)):n.texImage2D(e.TEXTURE_2D,
@@ -111308,7 +111309,7 @@ Pe=Je.length;
 ye<Pe;
 ye++)if(Se=Je[ye],
 k.format!==1023)if(ve!==null)if(ft){
-if(Mn)if(k.layerUpdates.size>0){
+if(xn)if(k.layerUpdates.size>0){
 let rt=$w(Se.width,
 Se.height,
 k.format,
@@ -111348,7 +111349,7 @@ Se.data,
 0,
 0);
 else Ot("WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()");
-else ft?Mn&&n.texSubImage3D(e.TEXTURE_2D_ARRAY,
+else ft?xn&&n.texSubImage3D(e.TEXTURE_2D_ARRAY,
 ye,
 0,
 0,
@@ -111379,7 +111380,7 @@ for(let ye=0,
 Pe=Je.length;
 ye<Pe;
 ye++)Se=Je[ye],
-k.format!==1023?ve!==null?ft?Mn&&n.compressedTexSubImage2D(e.TEXTURE_2D,
+k.format!==1023?ve!==null?ft?xn&&n.compressedTexSubImage2D(e.TEXTURE_2D,
 ye,
 0,
 0,
@@ -111392,7 +111393,7 @@ Qe,
 Se.width,
 Se.height,
 0,
-Se.data):Ot("WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()"):ft?Mn&&n.texSubImage2D(e.TEXTURE_2D,
+Se.data):Ot("WebGLRenderer: Attempt to load unsupported compressed texture format in .uploadTexture()"):ft?xn&&n.texSubImage2D(e.TEXTURE_2D,
 ye,
 0,
 0,
@@ -111416,7 +111417,7 @@ Qe,
 Z.width,
 Z.height,
 Z.depth),
-Mn)if(k.layerUpdates.size>0){
+xn)if(k.layerUpdates.size>0){
 let ye=$w(Z.width,
 Z.height,
 k.format,
@@ -111463,7 +111464,7 @@ Qe,
 Z.width,
 Z.height,
 Z.depth),
-Mn&&n.texSubImage3D(e.TEXTURE_3D,
+xn&&n.texSubImage3D(e.TEXTURE_3D,
 0,
 0,
 0,
@@ -111545,7 +111546,7 @@ e.CLAMP_TO_EDGE)}
 }
 else if(Je.length>0){
 if(ft&&Pt){
-let ye=hn(Je[0]);
+let ye=fn(Je[0]);
 n.texStorage2D(e.TEXTURE_2D,
 K,
 Qe,
@@ -111555,7 +111556,7 @@ for(let ye=0,
 Pe=Je.length;
 ye<Pe;
 ye++)Se=Je[ye],
-ft?Mn&&n.texSubImage2D(e.TEXTURE_2D,
+ft?xn&&n.texSubImage2D(e.TEXTURE_2D,
 ye,
 0,
 0,
@@ -111570,13 +111571,13 @@ Se);
 k.generateMipmaps=!1}
 else if(ft){
 if(Pt){
-let ye=hn(Z);
+let ye=fn(Z);
 n.texStorage2D(e.TEXTURE_2D,
 K,
 Qe,
 ye.width,
 ye.height)}
-Mn&&n.texSubImage2D(e.TEXTURE_2D,
+xn&&n.texSubImage2D(e.TEXTURE_2D,
 0,
 0,
 0,
@@ -111608,8 +111609,8 @@ e.TEXTURE0+Y);
 let Ge=i.get(Re);
 if(Re.version!==Ge.__version||ce===!0){
 n.activeTexture(e.TEXTURE0+Y);
-let Xe=kn.getPrimaries(kn.workingColorSpace),
-Z=k.colorSpace===""?null:kn.getPrimaries(k.colorSpace),
+let Xe=Ln.getPrimaries(Ln.workingColorSpace),
+Z=k.colorSpace===""?null:Ln.getPrimaries(k.colorSpace),
 ve=k.colorSpace===""||Xe===Z?e.NONE:e.BROWSER_DEFAULT_WEBGL;
 n.pixelStorei(e.UNPACK_FLIP_Y_WEBGL,
 k.flipY),
@@ -111627,13 +111628,13 @@ Fe<6;
 Fe++)!Ue&&!Qe?Se[Fe]=w(k.image[Fe],
 !0,
 r.maxCubemapSize):Se[Fe]=Qe?k.image[Fe].image:k.image[Fe],
-Se[Fe]=en(k,
+Se[Fe]=tn(k,
 Se[Fe]);
 let Je=Se[0],
 ft=o.convert(k.format,
 k.colorSpace),
 Pt=o.convert(k.type),
-Mn=b(k.internalFormat,
+xn=b(k.internalFormat,
 ft,
 Pt,
 k.normalized,
@@ -111649,7 +111650,7 @@ let gt;
 if(Ue){
 K&&ye&&n.texStorage2D(e.TEXTURE_CUBE_MAP,
 rt,
-Mn,
+xn,
 Je.width,
 Je.height);
 for(let Fe=0;
@@ -111669,7 +111670,7 @@ Gt.height,
 ft,
 Gt.data):n.compressedTexImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 et,
-Mn,
+xn,
 Gt.width,
 Gt.height,
 0,
@@ -111683,7 +111684,7 @@ ft,
 Pt,
 Gt.data):n.texImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 et,
-Mn,
+xn,
 Gt.width,
 Gt.height,
 0,
@@ -111696,10 +111697,10 @@ else{
 if(gt=k.mipmaps,
 K&&ye){
 gt.length>0&&rt++;
-let Fe=hn(Se[0]);
+let Fe=fn(Se[0]);
 n.texStorage2D(e.TEXTURE_CUBE_MAP,
 rt,
-Mn,
+xn,
 Fe.width,
 Fe.height)}
 for(let Fe=0;
@@ -111715,7 +111716,7 @@ ft,
 Pt,
 Se[Fe].data):n.texImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 0,
-Mn,
+xn,
 Se[Fe].width,
 Se[Fe].height,
 0,
@@ -111736,7 +111737,7 @@ ft,
 Pt,
 Gt.data):n.texImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 et+1,
-Mn,
+xn,
 Gt.width,
 Gt.height,
 0,
@@ -111753,7 +111754,7 @@ ft,
 Pt,
 Se[Fe]):n.texImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 0,
-Mn,
+xn,
 ft,
 Pt,
 Se[Fe]);
@@ -111769,7 +111770,7 @@ ft,
 Pt,
 Gt.image[Fe]):n.texImage2D(e.TEXTURE_CUBE_MAP_POSITIVE_X+Fe,
 et+1,
-Mn,
+xn,
 ft,
 Pt,
 Gt.image[Fe])}
@@ -112328,23 +112329,23 @@ k),
 z.update())}
 c(Hn,
 "updateVideoTexture");
-function en(z,
+function tn(z,
 k){
 let Y=z.colorSpace,
 ce=z.format,
 Re=z.type;
-return z.isCompressedTexture===!0||z.isVideoTexture===!0||Y!=="srgb-linear"&&Y!==""&&(kn.getTransfer(Y)==="srgb"?(ce!==1023||Re!==1009)&&Ot("WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType."):Ht("WebGLTextures: Unsupported texture color space:",
+return z.isCompressedTexture===!0||z.isVideoTexture===!0||Y!=="srgb-linear"&&Y!==""&&(Ln.getTransfer(Y)==="srgb"?(ce!==1023||Re!==1009)&&Ot("WebGLTextures: sRGB encoded textures have to use RGBAFormat and UnsignedByteType."):Ht("WebGLTextures: Unsupported texture color space:",
 Y)),
 k}
-c(en,
+c(tn,
 "verifyColorSpace");
-function hn(z){
+function fn(z){
 return typeof HTMLImageElement<"u"&&z instanceof HTMLImageElement?(u.width=z.naturalWidth||z.width,
 u.height=z.naturalHeight||z.height):typeof VideoFrame<"u"&&z instanceof VideoFrame?(u.width=z.displayWidth,
 u.height=z.displayHeight):(u.width=z.width,
 u.height=z.height),
 u}
-c(hn,
+c(fn,
 "getDimensions"),
 this.allocateTextureUnit=ne,
 this.resetTextureUnits=N,
@@ -112371,7 +112372,7 @@ t){
 function n(i,
 r=""){
 let o,
-a=kn.getTransfer(r);
+a=Ln.getTransfer(r);
 if(i===1009)return e.UNSIGNED_BYTE;
 if(i===1017)return e.UNSIGNED_SHORT_4_4_4_4;
 if(i===1018)return e.UNSIGNED_SHORT_5_5_5_1;
@@ -112499,7 +112500,7 @@ value:t.w}
 }
 }
 );
-this.mesh=new tt(new _n(20,
+this.mesh=new tt(new Sn(20,
 20),
 n)}
 return this.mesh}
@@ -112548,7 +112549,7 @@ let L=new wi;
 L.viewport=new ot;
 let F=[E,
 L],
-D=new zS,
+D=new OS,
 N=null,
 O=null;
 this.cameraAutoUpdate=!0,
@@ -112556,19 +112557,19 @@ this.enabled=!1,
 this.isPresenting=!1,
 this.getController=function(me){
 let ke=b[me];
-return ke===void 0&&(ke=new Jm,
+return ke===void 0&&(ke=new $m,
 b[me]=ke),
 ke.getTargetRaySpace()}
 ,
 this.getControllerGrip=function(me){
 let ke=b[me];
-return ke===void 0&&(ke=new Jm,
+return ke===void 0&&(ke=new $m,
 b[me]=ke),
 ke.getGripSpace()}
 ,
 this.getHand=function(me){
 let ke=b[me];
-return ke===void 0&&(ke=new Jm,
+return ke===void 0&&(ke=new $m,
 b[me]=ke),
 ke.getHandSpace()}
 ;
@@ -112842,12 +112843,12 @@ me.projectionMatrixInverse.copy(ke.projectionMatrixInverse);
 else{
 let W=Mt+vt,
 Hn=Ae+vt,
-en=st-At,
-hn=mt+(at-At),
+tn=st-At,
+fn=mt+(at-At),
 z=_e*Ae/Hn*W,
 k=Oe*Ae/Hn*W;
-me.projectionMatrix.makePerspective(en,
-hn,
+me.projectionMatrix.makePerspective(tn,
+fn,
 z,
 k,
 W,
@@ -113022,7 +113023,7 @@ data:ke}
 p=null}
 c(Ut,
 "onAnimationFrame");
-let Bt=new MI;
+let Bt=new xI;
 Bt.setAnimationLoop(Ut),
 this.setAnimationLoop=function(me){
 De=me}
@@ -113033,8 +113034,8 @@ this.dispose=function(){
 }
 ,
 zte=new Ke,
-RI=new qt;
-RI.set(-1,
+BI=new qt;
+BI.set(-1,
 0,
 0,
 0,
@@ -113137,7 +113138,7 @@ y=A.envMap,
 b=A.envMapRotation;
 y&&(w.envMap.value=y,
 w.envMapRotation.value.setFromMatrix4(zte.makeRotationFromEuler(b)).transpose(),
-y.isCubeTexture&&y.isRenderTargetTexture===!1&&w.envMapRotation.value.premultiply(RI),
+y.isCubeTexture&&y.isRenderTargetTexture===!1&&w.envMapRotation.value.premultiply(BI),
 w.reflectivity.value=v.reflectivity,
 w.ior.value=v.ior,
 w.refractionRatio.value=v.refractionRatio),
@@ -114075,8 +114076,8 @@ return Ul===null&&(Ul=new Jl(Ute,
 Zc,
 Da),
 Ul.name="DFG_LUT",
-Ul.minFilter=On,
-Ul.magFilter=On,
+Ul.minFilter=Nn,
+Ul.magFilter=Nn,
 Ul.wrapS=co,
 Ul.wrapT=co,
 Ul.generateMipmaps=!1,
@@ -114084,7 +114085,7 @@ Ul.needsUpdate=!0),
 Ul}
 c(Gte,
 "getDFGLUT");
-var BI=class{
+var PI=class{
 static{
 c(this,
 "WebGLRenderer")}
@@ -114092,7 +114093,7 @@ constructor(e={
 }
 ){
 let{
-canvas:t=nS(),
+canvas:t=iS(),
 context:n=null,
 depth:i=!0,
 stencil:r=!1,
@@ -114203,8 +114204,8 @@ return t.getContext(I,
 J)}
 c(Hn,
 "getContext");
-let en,
-hn,
+let tn,
+fn,
 z,
 k,
 Y,
@@ -114220,7 +114221,7 @@ Se,
 Je,
 ft,
 Pt,
-Mn,
+xn,
 K,
 ye,
 Pe,
@@ -114267,27 +114268,27 @@ ri,
 Ht("WebGLRenderer: "+I.message),
 I}
 function Fe(){
-en=new G$(W),
-en.init(),
+tn=new G$(W),
+tn.init(),
 Pe=new kte(W,
-en),
-hn=new P$(W,
-en,
+tn),
+fn=new P$(W,
+tn,
 e,
 Pe),
 z=new Bte(W,
-en),
-hn.reversedDepthBuffer&&f&&z.buffers.depth.setReversed(!0),
+tn),
+fn.reversedDepthBuffer&&f&&z.buffers.depth.setReversed(!0),
 D=W.createFramebuffer(),
 N=W.createFramebuffer(),
 O=W.createFramebuffer(),
 k=new V$(W),
 Y=new vte,
 ce=new Pte(W,
-en,
+tn,
 z,
 Y,
-hn,
+fn,
 Pe,
 k),
 Re=new U$(E),
@@ -114303,20 +114304,20 @@ Xe,
 Ge,
 rt,
 k),
-Mn=new q$(W,
-hn,
+xn=new q$(W,
+fn,
 ce),
 Je=new k$(Y),
 ve=new mte(E,
 Re,
-en,
-hn,
+tn,
+fn,
 rt,
 Je),
 Ue=new Ote(E,
 Y),
 Qe=new wte,
-Se=new _te(en),
+Se=new _te(tn),
 Pt=new E$(E,
 Re,
 z,
@@ -114325,20 +114326,20 @@ p,
 s),
 ft=new Rte(E,
 Z,
-hn),
+fn),
 gt=new Nte(W,
 k,
-hn,
+fn,
 z),
 K=new B$(W,
-en,
+tn,
 k),
 ye=new W$(W,
-en,
+tn,
 k),
 k.programs=ve.programs,
-E.capabilities=hn,
-E.extensions=en,
+E.capabilities=fn,
+E.extensions=tn,
 E.properties=Y,
 E.renderLists=Qe,
 E.shadowMap=ft,
@@ -114362,11 +114363,11 @@ this.getContextAttributes=function(){
 return W.getContextAttributes()}
 ,
 this.forceContextLoss=function(){
-let I=en.get("WEBGL_lose_context");
+let I=tn.get("WEBGL_lose_context");
 I&&I.loseContext()}
 ,
 this.forceContextRestore=function(){
-let I=en.get("WEBGL_lose_context");
+let I=tn.get("WEBGL_lose_context");
 I&&I.restoreContext()}
 ,
 this.getPixelRatio=function(){
@@ -114505,17 +114506,17 @@ it=w.has(Ve),
 ct=Pt.getClearColor(),
 yt=Pt.getClearAlpha(),
 zt=ct.r,
-Pn=ct.g,
-zn=ct.b;
+kn=ct.g,
+On=ct.b;
 it?(v[0]=zt,
-v[1]=Pn,
-v[2]=zn,
+v[1]=kn,
+v[2]=On,
 v[3]=yt,
 W.clearBufferuiv(W.COLOR,
 0,
 v)):(A[0]=zt,
-A[1]=Pn,
-A[2]=zn,
+A[1]=kn,
+A[2]=On,
 A[3]=yt,
 W.clearBufferiv(W.COLOR,
 0,
@@ -114567,9 +114568,9 @@ gt.dispose(),
 ve.dispose(),
 et.dispose(),
 et.removeEventListener("sessionstart",
-u_),
-et.removeEventListener("sessionend",
 c_),
+et.removeEventListener("sessionend",
+h_),
 mf.stop()}
 ;
 function Gt(I){
@@ -114640,10 +114641,10 @@ if(ue.wireframe===!0){
 if(yt=Xe.getWireframeAttribute(de),
 yt===void 0)return;
 zt=2}
-let Pn=de.drawRange,
-zn=de.attributes.position,
-Ct=Pn.start*zt,
-pi=(Pn.start+Pn.count)*zt;
+let kn=de.drawRange,
+On=de.attributes.position,
+Ct=kn.start*zt,
+pi=(kn.start+kn.count)*zt;
 Ve!==null&&(Ct=Math.max(Ct,
 Ve.start*zt),
 pi=Math.min(pi,
@@ -114651,10 +114652,10 @@ pi=Math.min(pi,
 yt!==null?(Ct=Math.max(Ct,
 0),
 pi=Math.min(pi,
-yt.count)):zn!=null&&(Ct=Math.max(Ct,
+yt.count)):On!=null&&(Ct=Math.max(Ct,
 0),
 pi=Math.min(pi,
-zn.count));
+On.count));
 let Pr=pi-Ct;
 if(Pr<0||Pr===1/0)return;
 rt.setup(oe,
@@ -114675,7 +114676,7 @@ Uo===void 0&&(Uo=1),
 z.setLineWidth(Uo*At()),
 oe.isLineSegments?Qn.setMode(W.LINES):oe.isLineLoop?Qn.setMode(W.LINE_LOOP):Qn.setMode(W.LINE_STRIP)}
 else oe.isPoints?Qn.setMode(W.POINTS):oe.isSprite&&Qn.setMode(W.TRIANGLES);
-if(oe.isBatchedMesh)if(en.get("WEBGL_multi_draw"))Qn.renderMultiDraw(oe._multiDrawStarts,
+if(oe.isBatchedMesh)if(tn.get("WEBGL_multi_draw"))Qn.renderMultiDraw(oe._multiDrawStarts,
 oe._multiDrawCounts,
 oe._multiDrawCount);
 else{
@@ -114704,7 +114705,7 @@ xt)}
 else Qn.render(Ct,
 Pr)}
 ;
-function l_(I,
+function u_(I,
 J,
 de,
 ue){
@@ -114715,18 +114716,18 @@ de,
 !1),
 I.transparent===!0&&I.side===2&&I.forceSinglePass===!1?(I.side=1,
 I.needsUpdate=!0,
-bm(I,
+Mm(I,
 J,
 ue),
 I.side=0,
 I.needsUpdate=!0,
-bm(I,
+Mm(I,
 J,
 ue),
-I.side=2):bm(I,
+I.side=2):Mm(I,
 J,
 ue)}
-c(l_,
+c(u_,
 "prepareMaterial"),
 this.compile=function(I,
 J,
@@ -114764,12 +114765,12 @@ if(Ve)if(Array.isArray(Ve))for(let it=0;
 it<Ve.length;
 it++){
 let ct=Ve[it];
-l_(ct,
+u_(ct,
 de,
 J,
 oe),
 ue.add(ct)}
-else l_(Ve,
+else u_(Ve,
 de,
 J,
 oe),
@@ -114798,7 +114799,7 @@ setTimeout(Ve,
 10)}
 c(Ve,
 "checkMaterialsReady"),
-en.get("KHR_parallel_shader_compile")!==null?Ve():setTimeout(Ve,
+tn.get("KHR_parallel_shader_compile")!==null?Ve():setTimeout(Ve,
 10)}
 )}
 ;
@@ -114807,15 +114808,15 @@ function aD(I){
 H5&&H5(I)}
 c(aD,
 "onAnimationFrame");
-function u_(){
-mf.stop()}
-c(u_,
-"onXRSessionStart");
 function c_(){
-mf.start()}
+mf.stop()}
 c(c_,
+"onXRSessionStart");
+function h_(){
+mf.start()}
+c(h_,
 "onXRSessionEnd");
-let mf=new MI;
+let mf=new xI;
 mf.setAnimationLoop(aD),
 this.setAnimationLoop=function(I){
 H5=I,
@@ -114823,9 +114824,9 @@ et.setAnimationLoop(I),
 I===null?mf.stop():mf.start()}
 ,
 et.addEventListener("sessionstart",
-u_),
-et.addEventListener("sessionend",
 c_),
+et.addEventListener("sessionend",
+h_),
 this.render=function(I,
 J){
 if(J!==void 0&&J.isCamera!==!0){
@@ -114897,28 +114898,28 @@ if(it.length>0)for(let yt=0,
 zt=ct.length;
 yt<zt;
 yt++){
-let Pn=ct[yt];
-f_(Ve,
+let kn=ct[yt];
+d_(Ve,
 it,
 I,
-Pn)}
+kn)}
 vt&&Pt.render(I);
 for(let yt=0,
 zt=ct.length;
 yt<zt;
 yt++){
-let Pn=ct[yt];
-h_(b,
+let kn=ct[yt];
+f_(b,
 I,
-Pn,
-Pn.viewport)}
+kn,
+kn.viewport)}
 }
-else it.length>0&&f_(Ve,
+else it.length>0&&d_(Ve,
 it,
 I,
 J),
 vt&&Pt.render(I),
-h_(b,
+f_(b,
 I,
 J)}
 Q!==null&&ne===0&&(ce.updateMultisampleRenderTarget(Q),
@@ -114976,14 +114977,14 @@ for(let yt=0,
 zt=ct.length;
 yt<zt;
 yt++){
-let Pn=ct[yt],
-zn=it[Pn.materialIndex];
-zn&&zn.visible&&b.push(I,
+let kn=ct[yt],
+On=it[kn.materialIndex];
+On&&On.visible&&b.push(I,
 Ve,
-zn,
+On,
 de,
 st.z,
-Pn,
+kn,
 J)}
 }
 else it.visible&&b.push(I,
@@ -115004,7 +115005,7 @@ de,
 ue)}
 c(W5,
 "projectObject");
-function h_(I,
+function f_(I,
 J,
 de,
 ue){
@@ -115017,42 +115018,42 @@ x.setupLightsView(de),
 _e===!0&&Je.setGlobalState(E.clippingPlanes,
 de),
 ue&&z.viewport(le.copy(ue)),
-oe.length>0&&ym(oe,
+oe.length>0&&bm(oe,
 J,
 de),
-Ve.length>0&&ym(Ve,
+Ve.length>0&&bm(Ve,
 J,
 de),
-it.length>0&&ym(it,
+it.length>0&&bm(it,
 J,
 de),
 z.buffers.depth.setTest(!0),
 z.buffers.depth.setMask(!0),
 z.buffers.color.setMask(!0),
 z.setPolygonOffset(!1)}
-c(h_,
+c(f_,
 "renderScene");
-function f_(I,
+function d_(I,
 J,
 de,
 ue){
 if((de.isScene===!0?de.overrideMaterial:null)!==null)return;
 if(x.state.transmissionRenderTarget[ue.id]===void 0){
-let zn=en.has("EXT_color_buffer_half_float")||en.has("EXT_color_buffer_float");
+let On=tn.has("EXT_color_buffer_half_float")||tn.has("EXT_color_buffer_float");
 x.state.transmissionRenderTarget[ue.id]=new Or(1,
 1,
 {
 generateMipmaps:!0,
-type:zn?Da:wa,
+type:On?Da:wa,
 minFilter:ho,
 samples:Math.max(4,
-hn.samples),
+fn.samples),
 stencilBuffer:r,
 resolveDepthBuffer:!1,
 resolveStencilBuffer:!1,
 storeMultisampledDepthBuffer:!1,
 storeMultisampledStencilBuffer:!1,
-colorSpace:kn.workingColorSpace}
+colorSpace:Ln.workingColorSpace}
 )}
 let oe=x.state.transmissionRenderTarget[ue.id],
 Ve=ue.viewport||le;
@@ -115070,18 +115071,18 @@ E.clear(),
 vt&&Pt.render(de);
 let zt=E.toneMapping;
 E.toneMapping=0;
-let Pn=ue.viewport;
+let kn=ue.viewport;
 if(ue.viewport!==void 0&&(ue.viewport=void 0),
 x.setupLightsView(ue),
 _e===!0&&Je.setGlobalState(E.clippingPlanes,
 ue),
-ym(I,
+bm(I,
 de,
 ue),
 ce.updateMultisampleRenderTarget(oe),
 ce.updateRenderTargetMipmap(oe),
-en.has("WEBGL_multisampled_render_to_texture")===!1){
-let zn=!1;
+tn.has("WEBGL_multisampled_render_to_texture")===!1){
+let On=!1;
 for(let Ct=0,
 pi=J.length;
 Ct<pi;
@@ -115096,7 +115097,7 @@ if(Qn.side===2&&Pr.layers.test(ue.layers)){
 let xt=Qn.side;
 Qn.side=1,
 Qn.needsUpdate=!0,
-d_(Pr,
+p_(Pr,
 de,
 ue,
 Ui,
@@ -115104,20 +115105,20 @@ Qn,
 Uo),
 Qn.side=xt,
 Qn.needsUpdate=!0,
-zn=!0}
+On=!0}
 }
-zn===!0&&(ce.updateMultisampleRenderTarget(oe),
+On===!0&&(ce.updateMultisampleRenderTarget(oe),
 ce.updateRenderTargetMipmap(oe))}
 E.setRenderTarget(it,
 ct,
 yt),
 E.setClearColor(De,
 Ut),
-Pn!==void 0&&(ue.viewport=Pn),
+kn!==void 0&&(ue.viewport=kn),
 E.toneMapping=zt}
-c(f_,
+c(d_,
 "renderTransmissionPass");
-function ym(I,
+function bm(I,
 J,
 de){
 let ue=J.isScene===!0?J.overrideMaterial:null;
@@ -115131,18 +115132,18 @@ object:ct,
 geometry:yt,
 group:zt}
 =it,
-Pn=it.material;
-Pn.allowOverride===!0&&ue!==null&&(Pn=ue),
-ct.layers.test(de.layers)&&d_(ct,
+kn=it.material;
+kn.allowOverride===!0&&ue!==null&&(kn=ue),
+ct.layers.test(de.layers)&&p_(ct,
 J,
 de,
 yt,
-Pn,
+kn,
 zt)}
 }
-c(ym,
+c(bm,
 "renderObjects");
-function d_(I,
+function p_(I,
 J,
 de,
 ue,
@@ -115193,9 +115194,9 @@ de,
 ue,
 oe,
 Ve)}
-c(d_,
+c(p_,
 "renderObject");
-function bm(I,
+function Mm(I,
 J,
 de){
 J.isScene!==!0&&(J=mt);
@@ -115213,33 +115214,33 @@ yt=ve.getProgramCacheKey(ct),
 zt=ue.programs;
 ue.environment=I.isMeshStandardMaterial||I.isMeshLambertMaterial||I.isMeshPhongMaterial?J.environment:null,
 ue.fog=J.fog;
-let Pn=I.isMeshStandardMaterial||I.isMeshLambertMaterial&&!I.envMap||I.isMeshPhongMaterial&&!I.envMap;
+let kn=I.isMeshStandardMaterial||I.isMeshLambertMaterial&&!I.envMap||I.isMeshPhongMaterial&&!I.envMap;
 ue.envMap=Re.get(I.envMap||ue.environment,
-Pn),
+kn),
 ue.envMapRotation=ue.environment!==null&&I.envMap===null?J.environmentRotation:I.envMapRotation,
 zt===void 0&&(I.addEventListener("dispose",
 Js),
 zt=new Map,
 ue.programs=zt);
-let zn=zt.get(yt);
-if(zn!==void 0){
-if(ue.currentProgram===zn&&ue.lightsStateVersion===it)return m_(I,
+let On=zt.get(yt);
+if(On!==void 0){
+if(ue.currentProgram===On&&ue.lightsStateVersion===it)return v_(I,
 ct),
-zn}
+On}
 else ct.uniforms=ve.getUniforms(I),
 F!==null&&I.isNodeMaterial&&F.build(I,
 de,
 ct),
 I.onBeforeCompile(ct,
 E),
-zn=ve.acquireProgram(ct,
+On=ve.acquireProgram(ct,
 yt),
 zt.set(yt,
-zn),
+On),
 ue.uniforms=ct.uniforms;
 let Ct=ue.uniforms;
 return(!I.isShaderMaterial&&!I.isRawShaderMaterial||I.clipping===!0)&&(Ct.clippingPlanes=Je.uniform),
-m_(I,
+v_(I,
 ct),
 ue.needsLights=cD(I),
 ue.lightsStateVersion=it,
@@ -115264,20 +115265,20 @@ Ct.spotLightMatrix.value=oe.state.spotLightMatrix,
 Ct.spotLightMap.value=oe.state.spotLightMap,
 Ct.pointShadowMatrix.value=oe.state.pointShadowMatrix),
 ue.lightProbeGrid=x.state.lightProbeGridArray.length>0,
-ue.currentProgram=zn,
+ue.currentProgram=On,
 ue.uniformsList=null,
-zn}
-c(bm,
+On}
+c(Mm,
 "getProgram");
-function p_(I){
+function m_(I){
 if(I.uniformsList===null){
 let J=I.currentProgram.getUniforms();
-I.uniformsList=z5.seqWithValue(J.seq,
+I.uniformsList=O5.seqWithValue(J.seq,
 I.uniforms)}
 return I.uniformsList}
-c(p_,
+c(m_,
 "getUniformList");
-function m_(I,
+function v_(I,
 J){
 let de=Y.get(I);
 de.outputColorSpace=J.outputColorSpace,
@@ -115296,7 +115297,7 @@ de.numIntersection=J.numClipIntersection,
 de.vertexAlphas=J.vertexAlphas,
 de.vertexTangents=J.vertexTangents,
 de.toneMapping=J.toneMapping}
-c(m_,
+c(v_,
 "updateCommonMaterialProperties");
 function sD(I,
 J){
@@ -115321,12 +115322,12 @@ J.isScene!==!0&&(J=mt),
 ce.resetTextureUnits();
 let Ve=J.fog,
 it=ue.isMeshStandardMaterial||ue.isMeshLambertMaterial||ue.isMeshPhongMaterial?J.environment:null,
-ct=Q===null?E.outputColorSpace:Q.isXRRenderTarget===!0?Q.texture.colorSpace:kn.workingColorSpace,
+ct=Q===null?E.outputColorSpace:Q.isXRRenderTarget===!0?Q.texture.colorSpace:Ln.workingColorSpace,
 yt=ue.isMeshStandardMaterial||ue.isMeshLambertMaterial&&!ue.envMap||ue.isMeshPhongMaterial&&!ue.envMap,
 zt=Re.get(ue.envMap||it,
 yt),
-Pn=ue.vertexColors===!0&&!!de.attributes.color&&de.attributes.color.itemSize===4,
-zn=!!de.attributes.tangent&&(!!ue.normalMap||ue.anisotropy>0),
+kn=ue.vertexColors===!0&&!!de.attributes.color&&de.attributes.color.itemSize===4,
+On=!!de.attributes.tangent&&(!!ue.normalMap||ue.anisotropy>0),
 Ct=!!de.morphAttributes.position,
 pi=!!de.morphAttributes.normal,
 Pr=!!de.morphAttributes.color,
@@ -115342,10 +115343,10 @@ Je.setState(ue,
 I,
 vi)}
 let $n=!1;
-ue.version===xt.__version?(xt.needsLights&&xt.lightsStateVersion!==ka.state.version||xt.outputColorSpace!==ct||oe.isBatchedMesh&&xt.batching===!1||!oe.isBatchedMesh&&xt.batching===!0||oe.isBatchedMesh&&xt.batchingColor===!0&&oe._colorsTexture===null||oe.isBatchedMesh&&xt.batchingColor===!1&&oe._colorsTexture!==null||oe.isInstancedMesh&&xt.instancing===!1||!oe.isInstancedMesh&&xt.instancing===!0||oe.isSkinnedMesh&&xt.skinning===!1||!oe.isSkinnedMesh&&xt.skinning===!0||oe.isInstancedMesh&&xt.instancingColor===!0&&oe.instanceColor===null||oe.isInstancedMesh&&xt.instancingColor===!1&&oe.instanceColor!==null||oe.isInstancedMesh&&xt.instancingMorph===!0&&oe.morphTexture===null||oe.isInstancedMesh&&xt.instancingMorph===!1&&oe.morphTexture!==null||xt.envMap!==zt||ue.fog===!0&&xt.fog!==Ve||xt.numClippingPlanes!==void 0&&(xt.numClippingPlanes!==Je.numPlanes||xt.numIntersection!==Je.numIntersection)||xt.vertexAlphas!==Pn||xt.vertexTangents!==zn||xt.morphTargets!==Ct||xt.morphNormals!==pi||xt.morphColors!==Pr||xt.toneMapping!==Ui||xt.morphTargetsCount!==Uo||!!xt.lightProbeGrid!=x.state.lightProbeGridArray.length>0)&&($n=!0):($n=!0,
+ue.version===xt.__version?(xt.needsLights&&xt.lightsStateVersion!==ka.state.version||xt.outputColorSpace!==ct||oe.isBatchedMesh&&xt.batching===!1||!oe.isBatchedMesh&&xt.batching===!0||oe.isBatchedMesh&&xt.batchingColor===!0&&oe._colorsTexture===null||oe.isBatchedMesh&&xt.batchingColor===!1&&oe._colorsTexture!==null||oe.isInstancedMesh&&xt.instancing===!1||!oe.isInstancedMesh&&xt.instancing===!0||oe.isSkinnedMesh&&xt.skinning===!1||!oe.isSkinnedMesh&&xt.skinning===!0||oe.isInstancedMesh&&xt.instancingColor===!0&&oe.instanceColor===null||oe.isInstancedMesh&&xt.instancingColor===!1&&oe.instanceColor!==null||oe.isInstancedMesh&&xt.instancingMorph===!0&&oe.morphTexture===null||oe.isInstancedMesh&&xt.instancingMorph===!1&&oe.morphTexture!==null||xt.envMap!==zt||ue.fog===!0&&xt.fog!==Ve||xt.numClippingPlanes!==void 0&&(xt.numClippingPlanes!==Je.numPlanes||xt.numIntersection!==Je.numIntersection)||xt.vertexAlphas!==kn||xt.vertexTangents!==On||xt.morphTargets!==Ct||xt.morphNormals!==pi||xt.morphColors!==Pr||xt.toneMapping!==Ui||xt.morphTargetsCount!==Uo||!!xt.lightProbeGrid!=x.state.lightProbeGridArray.length>0)&&($n=!0):($n=!0,
 xt.__version=ue.version);
 let ts=xt.currentProgram;
-$n===!0&&(ts=bm(ue,
+$n===!0&&(ts=Mm(ue,
 J,
 oe),
 F&&ue.isNodeMaterial&&F.onUpdateProgram(ue,
@@ -115378,7 +115379,7 @@ I.matrixWorldInverse);
 let vi=mi.map.cameraPosition;
 vi!==void 0&&vi.setValue(W,
 Ze.setFromMatrixPosition(I.matrixWorld)),
-hn.logarithmicDepthBuffer&&mi.setValue(W,
+fn.logarithmicDepthBuffer&&mi.setValue(W,
 "logDepthBufFC",
 2/(Math.log(I.far+1)/Math.LN2)),
 (ue.isMeshPhongMaterial||ue.isMeshToonMaterial||ue.isMeshLambertMaterial||ue.isMeshBasicMaterial||ue.isMeshStandardMaterial||ue.isShaderMaterial)&&mi.setValue(W,
@@ -115438,7 +115439,7 @@ oe._colorsTexture!==null&&mi.setValue(W,
 oe._colorsTexture,
 ce));
 let Hu=de.morphAttributes;
-if((Hu.position!==void 0||Hu.normal!==void 0||Hu.color!==void 0)&&Mn.update(oe,
+if((Hu.position!==void 0||Hu.normal!==void 0||Hu.color!==void 0)&&xn.update(oe,
 de,
 ts),
 (Gu||xt.receiveShadow!==oe.receiveShadow)&&(xt.receiveShadow=oe.receiveShadow,
@@ -115466,12 +115467,12 @@ kr.probesSH.value=vi.texture,
 kr.probesMin.value.copy(vi.boundingBox.min),
 kr.probesMax.value.copy(vi.boundingBox.max),
 kr.probesResolution.value.copy(vi.resolution)}
-z5.upload(W,
-p_(xt),
+O5.upload(W,
+m_(xt),
 kr,
 ce)}
-if(ue.isShaderMaterial&&ue.uniformsNeedUpdate===!0&&(z5.upload(W,
-p_(xt),
+if(ue.isShaderMaterial&&ue.uniformsNeedUpdate===!0&&(O5.upload(W,
+m_(xt),
 kr,
 ce),
 ue.uniformsNeedUpdate=!1),
@@ -115489,14 +115490,14 @@ mi.setValue(W,
 oe.matrixWorld),
 ue.uniformsGroups!==void 0){
 let vi=ue.uniformsGroups;
-for(let L1=0,
+for(let I1=0,
 gf=vi.length;
-L1<gf;
-L1++){
-let g_=vi[L1];
-gt.update(g_,
+I1<gf;
+I1++){
+let w_=vi[I1];
+gt.update(w_,
 ts),
-gt.bind(g_,
+gt.bind(w_,
 ts)}
 }
 return ts}
@@ -115625,14 +115626,14 @@ it.__webglTexture,
 de)}
 we=-1}
 ;
-function v_(I){
+function g_(I){
 let J=Y.get(I);
 return(J.__readFormat!==I.format||J.__readType!==I.type)&&(J.__readFormat=I.format,
 J.__readType=I.type,
-J.__formatReadable=hn.textureFormatReadable(I.format),
-J.__typeReadable=hn.textureTypeReadable(I.type)),
+J.__formatReadable=fn.textureFormatReadable(I.format),
+J.__typeReadable=fn.textureTypeReadable(I.type)),
 J}
-c(v_,
+c(g_,
 "getReadableState"),
 this.readRenderTargetPixels=function(I,
 J,
@@ -115652,10 +115653,10 @@ z.bindFramebuffer(W.FRAMEBUFFER,
 yt);
 try{
 let zt=I.textures[ct],
-Pn=zt.format,
-zn=zt.type;
+kn=zt.format,
+On=zt.type;
 I.textures.length>1&&W.readBuffer(W.COLOR_ATTACHMENT0+ct);
-let Ct=v_(zt);
+let Ct=g_(zt);
 if(Ct.__formatReadable===!1){
 Ht("WebGLRenderer.readRenderTargetPixels: renderTarget is not in RGBA or implementation defined format.");
 return}
@@ -115666,8 +115667,8 @@ J>=0&&J<=I.width-ue&&de>=0&&de<=I.height-oe&&W.readPixels(J,
 de,
 ue,
 oe,
-Pe.convert(Pn),
-Pe.convert(zn),
+Pe.convert(kn),
+Pe.convert(On),
 Ve)}
 finally{
 let zt=Q!==null?Y.get(Q).__webglFramebuffer:null;
@@ -115691,10 +115692,10 @@ yt)if(J>=0&&J<=I.width-ue&&de>=0&&de<=I.height-oe){
 z.bindFramebuffer(W.FRAMEBUFFER,
 yt);
 let zt=I.textures[ct],
-Pn=zt.format,
-zn=zt.type;
+kn=zt.format,
+On=zt.type;
 I.textures.length>1&&W.readBuffer(W.COLOR_ATTACHMENT0+ct);
-let Ct=v_(zt);
+let Ct=g_(zt);
 if(Ct.__formatReadable===!1)throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in RGBA or implementation defined format.");
 if(Ct.__typeReadable===!1)throw new Error("THREE.WebGLRenderer.readRenderTargetPixelsAsync: renderTarget is not in UnsignedByteType or implementation defined type.");
 let pi=W.createBuffer();
@@ -115707,8 +115708,8 @@ W.readPixels(J,
 de,
 ue,
 oe,
-Pe.convert(Pn),
-Pe.convert(zn),
+Pe.convert(kn),
+Pe.convert(On),
 0),
 W.bindBuffer(W.PIXEL_PACK_BUFFER,
 null);
@@ -115718,7 +115719,7 @@ Pr);
 let Ui=W.fenceSync(W.SYNC_GPU_COMMANDS_COMPLETE,
 0);
 return W.flush(),
-await rS(W,
+await oS(W,
 Ui,
 4),
 W.bindBuffer(W.PIXEL_PACK_BUFFER,
@@ -115764,8 +115765,8 @@ let it,
 ct,
 yt,
 zt,
-Pn,
-zn,
+kn,
+On,
 Ct,
 pi,
 Pr,
@@ -115774,8 +115775,8 @@ if(de!==null)it=de.max.x-de.min.x,
 ct=de.max.y-de.min.y,
 yt=de.isBox3?de.max.z-de.min.z:1,
 zt=de.min.x,
-Pn=de.min.y,
-zn=de.isBox3?de.min.z:0;
+kn=de.min.y,
+On=de.isBox3?de.min.z:0;
 else{
 let kr=Math.pow(2,
 -oe);
@@ -115783,8 +115784,8 @@ it=Math.floor(Ui.width*kr),
 ct=Math.floor(Ui.height*kr),
 I.isDataArrayTexture?yt=Ui.depth:I.isData3DTexture?yt=Math.floor(Ui.depth*kr):yt=1,
 zt=0,
-Pn=0,
-zn=0}
+kn=0,
+On=0}
 ue!==null?(Ct=ue.x,
 pi=ue.y,
 Pr=ue.z):(Ct=0,
@@ -115819,34 +115820,34 @@ Ui.height),
 z.pixelStorei(W.UNPACK_SKIP_PIXELS,
 zt),
 z.pixelStorei(W.UNPACK_SKIP_ROWS,
-Pn),
+kn),
 z.pixelStorei(W.UNPACK_SKIP_IMAGES,
-zn);
+On);
 let vf=I.isDataArrayTexture||I.isData3DTexture,
 mi=J.isDataArrayTexture||J.isData3DTexture;
 if(I.isDepthTexture){
 let kr=Y.get(I),
 Hu=Y.get(J),
 vi=Y.get(kr.__renderTarget),
-L1=Y.get(Hu.__renderTarget);
+I1=Y.get(Hu.__renderTarget);
 z.bindFramebuffer(W.READ_FRAMEBUFFER,
 vi.__webglFramebuffer),
 z.bindFramebuffer(W.DRAW_FRAMEBUFFER,
-L1.__webglFramebuffer);
+I1.__webglFramebuffer);
 for(let gf=0;
 gf<yt;
 gf++)vf&&(W.framebufferTextureLayer(W.READ_FRAMEBUFFER,
 W.COLOR_ATTACHMENT0,
 Y.get(I).__webglTexture,
 oe,
-zn+gf),
+On+gf),
 W.framebufferTextureLayer(W.DRAW_FRAMEBUFFER,
 W.COLOR_ATTACHMENT0,
 Y.get(J).__webglTexture,
 Ve,
 Pr+gf)),
 W.blitFramebuffer(zt,
-Pn,
+kn,
 it,
 ct,
 Ct,
@@ -115872,7 +115873,7 @@ vi++)vf?W.framebufferTextureLayer(W.READ_FRAMEBUFFER,
 W.COLOR_ATTACHMENT0,
 kr.__webglTexture,
 oe,
-zn+vi):W.framebufferTexture2D(W.READ_FRAMEBUFFER,
+On+vi):W.framebufferTexture2D(W.READ_FRAMEBUFFER,
 W.COLOR_ATTACHMENT0,
 W.TEXTURE_2D,
 kr.__webglTexture,
@@ -115887,7 +115888,7 @@ W.TEXTURE_2D,
 Hu.__webglTexture,
 Ve),
 oe!==0?W.blitFramebuffer(zt,
-Pn,
+kn,
 it,
 ct,
 Ct,
@@ -115901,14 +115902,14 @@ Ct,
 pi,
 Pr+vi,
 zt,
-Pn,
+kn,
 it,
 ct):W.copyTexSubImage2D(xt,
 Ve,
 Ct,
 pi,
 zt,
-Pn,
+kn,
 it,
 ct);
 z.bindFramebuffer(W.READ_FRAMEBUFFER,
@@ -116010,11 +116011,11 @@ return this._outputColorSpace}
 set outputColorSpace(e){
 this._outputColorSpace=e;
 let t=this.getContext();
-t.drawingBufferColorSpace=kn._getDrawingBufferColorSpace(e),
-t.unpackColorSpace=kn._getUnpackColorSpace()}
+t.drawingBufferColorSpace=Ln._getDrawingBufferColorSpace(e),
+t.unpackColorSpace=Ln._getUnpackColorSpace()}
 }
 ;
-function mm(e,
+function gm(e,
 t){
 let n=0,
 i=e.length-1,
@@ -116026,18 +116027,18 @@ let o=n+i>>1;
 e[o]<=t?(r=o,
 n=o+1):i=o-1}
 return r}
-c(mm,
+c(gm,
 "lastLE");
-function PI(e,
+function kI(e,
 t){
 let n=e.length;
 if(n<2)return NaN;
-let i=mm(e,
+let i=gm(e,
 t);
 return i<0?(t-e[0])/(e[1]-e[0]):i>=n-1?n-1+(t-e[n-1])/(e[n-1]-e[n-2]):i+(t-e[i])/(e[i+1]-e[i])}
-c(PI,
+c(kI,
 "gridPos");
-function kI(e,
+function LI(e,
 t){
 let n=e.length;
 if(n<2)return NaN;
@@ -116045,9 +116046,9 @@ if(t<=0)return e[0]+t*(e[1]-e[0]);
 if(t>=n-1)return e[n-1]+(t-(n-1))*(e[n-1]-e[n-2]);
 let i=Math.floor(t);
 return e[i]+(t-i)*(e[i+1]-e[i])}
-c(kI,
+c(LI,
 "gridTime");
-var FI=class II{
+var II=class DI{
 static{
 c(this,
 "Timing")}
@@ -116096,35 +116097,35 @@ this.preroll=kt.preroll??0,
 this.clockZero=kt.clockZero??0}
 static from(t,
 n=null){
-return new II(t,
+return new DI(t,
 {
 onsets:n}
 )}
 beatAt(t){
-return PI(this.beats,
-t)}
-beatTime(t){
 return kI(this.beats,
 t)}
+beatTime(t){
+return LI(this.beats,
+t)}
 barAt(t){
-return PI(this.downbeats,
+return kI(this.downbeats,
 t)}
 barTime(t){
-return kI(this.downbeats,
+return LI(this.downbeats,
 t)}
 beatPhase(t){
 let n=this.beatAt(t);
-return Number.isFinite(n)?I1(n):0}
+return Number.isFinite(n)?z1(n):0}
 barPhase(t){
 let n=this.barAt(t);
-return Number.isFinite(n)?I1(n):0}
+return Number.isFinite(n)?z1(n):0}
 pulse(t,
 n=6,
 i=1){
-return this.beats.length<2||t<this.beats[0]-.001?0:Math.exp(-I1(this.beatAt(t)*i)*n)}
+return this.beats.length<2||t<this.beats[0]-.001?0:Math.exp(-z1(this.beatAt(t)*i)*n)}
 barPulse(t,
 n=4){
-return this.downbeats.length<2||t<this.downbeats[0]-.001?0:Math.exp(-I1(this.barAt(t))*n)}
+return this.downbeats.length<2||t<this.downbeats[0]-.001?0:Math.exp(-z1(this.barAt(t))*n)}
 snapBeat(t,
 n=1){
 return this.beatTime(Math.round(this.beatAt(t)*n)/n)}
@@ -116132,7 +116133,7 @@ onsetNear(t,
 n,
 i=.06){
 let r=this.onsets[t],
-o=mm(r,
+o=gm(r,
 n),
 a=null;
 for(let s of[o,
@@ -116146,7 +116147,7 @@ if(!n)throw new Error("timing: unknown section '".concat(t,
 return n}
 sectionAt(t){
 return this.sections[Math.max(0,
-mm(this.sectionStarts,
+gm(this.sectionStarts,
 t))]}
 line(t){
 return this.lines[t]}
@@ -116156,13 +116157,13 @@ hold:n=!1}
 ={
 }
 ){
-let i=mm(this.lineStarts,
+let i=gm(this.lineStarts,
 t);
 if(i<0)return null;
 let r=this.lines[i];
 return t<r.end||n&&(i+1>=this.lines.length||t<this.lines[i+1].start)?r:null}
 wordAt(t){
-let n=mm(this.wordStarts,
+let n=gm(this.wordStarts,
 t);
 if(n<0)return null;
 let i=this.words[n];
@@ -116184,7 +116185,7 @@ n){
 return this.lines.filter(i=>i.end>t&&i.start<n)}
 }
 ;
-var DI=class zI{
+var zI=class OI{
 static{
 c(this,
 "Features")}
@@ -116202,7 +116203,7 @@ this.data=n,
 this.cache=new Map,
 this.missing=new Set}
 static empty(){
-return new zI(null,
+return new OI(null,
 null)}
 has(t){
 return t in this.index}
@@ -116287,7 +116288,7 @@ return"".concat(n.test(e)&&!t.some(r=>n.test(r))?"stem channels exist only when 
 ': docs/handbook/tech/timing.md, "Audio features"')}
 c(Hte,
 "channelHint");
-var NI=c(()=>new he(kt.design.width,
+var UI=c(()=>new he(kt.design.width,
 kt.design.height),
 "designSize"),
 n_=Object.freeze({
@@ -116342,7 +116343,7 @@ c(i_,
 "lerpPost");
 var Vte="\nuniform sampler2D tSrc; uniform vec2 uTexel; uniform float uPre, uThreshold, uKnee;\nin vec2 vUv; out vec4 o;\nvec3 pre(vec3 c) {\n  float br = max(c.r, max(c.g, c.b));\n  float soft = clamp(br - uThreshold + uKnee, 0., 2. * uKnee); soft = soft * soft / (4. * uKnee + 1e-4);\n  return c * max(soft, br - uThreshold) / max(br, 1e-4);\n}\nvec3 tap(vec2 uv) { vec3 c = texture(tSrc, uv).rgb; return uPre > .5 ? c / (1. + luma(c)) : c; } // Karis weight kills fireflies\nvoid main() {\n  vec2 h = uTexel;\n  vec3 s = tap(vUv) * 4. + tap(vUv + vec2(-h.x, -h.y)) + tap(vUv + vec2(h.x, -h.y)) + tap(vUv + vec2(-h.x, h.y)) + tap(vUv + h);\n  s *= .125;\n  if (uPre > .5) { s = s / max(1. - luma(s), 1e-3); s = pre(s); }\n  o = vec4(s, 1.);\n}",
 qte="\nuniform sampler2D tSrc, tBase; uniform vec2 uTexel; uniform float uRadius;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  vec2 h = uTexel;\n  vec3 s = texture(tSrc, vUv + vec2(-2. * h.x, 0.)).rgb + texture(tSrc, vUv + vec2(-h.x, h.y)).rgb * 2.\n         + texture(tSrc, vUv + vec2(0., 2. * h.y)).rgb + texture(tSrc, vUv + vec2(h.x, h.y)).rgb * 2.\n         + texture(tSrc, vUv + vec2(2. * h.x, 0.)).rgb + texture(tSrc, vUv + vec2(h.x, -h.y)).rgb * 2.\n         + texture(tSrc, vUv + vec2(0., -2. * h.y)).rgb + texture(tSrc, vUv + vec2(-h.x, -h.y)).rgb * 2.;\n  o = vec4(texture(tBase, vUv).rgb + s / 12. * uRadius, 1.);\n}",
-UI=class{
+GI=class{
 static{
 c(this,
 "Bloom")}
@@ -116449,7 +116450,7 @@ return f.texture}
 }
 ,
 jte="\nuniform sampler2D tA, tB; uniform float uP, uSeed, uAspect; uniform vec4 uParam; uniform vec3 uEdge; uniform vec2 uDesign;\nin vec2 vUv; out vec4 o;\nvec3 A(vec2 uv) { return texture(tA, uv).rgb; }\nvec3 B(vec2 uv) { return texture(tB, uv).rgb; }\n",
-OI={
+NI={
 fade:"vec3 tr(vec2 uv) { return mix(A(uv), B(uv), smoothstep(0., 1., uP)); }",
 mix:"vec3 tr(vec2 uv) { return mix(A(uv), B(uv), uP); }",
 dissolve:"vec3 tr(vec2 uv) {\n    float sc = uParam.x > 0. ? uParam.x : 6.; float n = fbm(vec3(uv * vec2(uAspect, 1.) * sc, uSeed)) * .5 + .5;\n    float e = smoothstep(uP - .06, uP + .06, n * .9 + .05); float edge = (1. - abs(e * 2. - 1.)) * uParam.y;\n    return mix(B(uv), A(uv), e) + edge * uEdge; }",
@@ -116459,10 +116460,10 @@ glitch:"vec3 tr(vec2 uv) {\n    float k = 1. - abs(uP * 2. - 1.); float row = fl
 zoom:"vec3 tr(vec2 uv) {\n    vec2 c = uParam.xy == vec2(0.) ? vec2(.5) : uParam.xy; float p = smoothstep(0., 1., uP);\n    vec3 a = A(c + (uv - c) / (1. + p * 3.)), b = B(c + (uv - c) * (1. + (1. - p) * .6));\n    return mix(a, b, smoothstep(.35, .75, uP)); }",
 pixel:"vec3 tr(vec2 uv) {\n    float k = 1. - abs(uP * 2. - 1.); float bs = max(1., k * (uParam.x > 0. ? uParam.x : 64.));\n    vec2 g = uDesign / bs; vec2 q = (floor(uv * g) + .5) / g;\n    return uP < .5 ? A(q) : B(q); }"}
 ;
-function GI(e){
-let t=OI[e];
+function HI(e){
+let t=NI[e];
 if(!t)throw new Error("unknown transition '".concat(e,
-"' (have: ").concat(Object.keys(OI).join(", "),
+"' (have: ").concat(Object.keys(NI).join(", "),
 ")"));
 return Lt(jte+t+"\nvoid main() { o = vec4(tr(vUv), 1.); }",
 {
@@ -116488,12 +116489,12 @@ uEdge:{
 value:new B(...hr.dissolveEdge)}
 ,
 uDesign:{
-value:NI()}
+value:UI()}
 }
 )}
-c(GI,
+c(HI,
 "transitionMaterial");
-var HI=c(()=>Lt("\nuniform sampler2D tSrc; uniform float uK; in vec2 vUv; out vec4 o;\nvoid main() { o = vec4(texture(tSrc, vUv).rgb * uK, 1.); }",
+var WI=c(()=>Lt("\nuniform sampler2D tSrc; uniform float uK; in vec2 vUv; out vec4 o;\nvoid main() { o = vec4(texture(tSrc, vUv).rgb * uK, 1.); }",
 {
 tSrc:{
 value:null}
@@ -116508,7 +116509,7 @@ transparent:!0}
 ),
 "accumMaterial"),
 Xte="\nuniform sampler2D tScene, tText; uniform float uGlow;\nin vec2 vUv; out vec4 o;\nvec3 lin(vec3 c) { return mix(c / 12.92, pow((c + .055) / 1.055, vec3(2.4)), step(.04045, c)); }\nvoid main() {\n  vec4 t = texture(tText, vUv); vec3 s = texture(tScene, vUv).rgb;\n  o = vec4(mix(s, lin(t.rgb) * uGlow, t.a), 1.);\n}",
-WI=c(()=>Lt(Xte,
+VI=c(()=>Lt(Xte,
 {
 tScene:{
 value:null}
@@ -116551,7 +116552,7 @@ value:new he(1,
 1)}
 ,
 uDesign:{
-value:NI()}
+value:UI()}
 ,
 uFrame:{
 value:0}
@@ -116635,7 +116636,7 @@ Kte(e,
 t.post)}
 c(Jte,
 "bindUber");
-function VI(){
+function qI(){
 let e=Lt(Qte,
 Zte());
 return{
@@ -116658,21 +116659,21 @@ dispose(){
 e.dispose()}
 }
 }
-c(VI,
+c(qI,
 "sdrOutput");
 var r_=class{
 static{
 c(this,
 "TextCanvas")}
 constructor(){
-this.canvas=Fn(),
+this.canvas=In(),
 this.g=this.canvas.getContext("2d"),
 this.tex=new rs(this.canvas),
 Object.assign(this.tex,
 {
 colorSpace:"",
-minFilter:On,
-magFilter:On,
+minFilter:Nn,
+magFilter:Nn,
 generateMipmaps:!1}
 ),
 this.alpha=1,
@@ -116780,7 +116781,7 @@ this.s),
 t.restore()}
 }
 ;
-function qI(e,
+function jI(e,
 t,
 n,
 i={
@@ -116845,14 +116846,14 @@ glow:T?r.glow??14:0}
 ),
 y+=v[x]+w}
 )}
-c(qI,
+c(jI,
 "drawLyrics");
-var jI=640,
-XI=360,
+var XI=640,
+YI=360,
 $te="\nuniform sampler2D tA, tB; uniform float uP;\nin vec2 vUv; out vec4 o;\nvoid main() {\n  // the pictures themselves: the outgoing one hands over to its points at the start, the incoming one takes over at the end\n  o = vec4(texture(tA, vUv).rgb * (1. - smoothstep(0., .14, uP)) + texture(tB, vUv).rgb * smoothstep(.86, 1., uP), 1.);\n}",
 ene="\nuniform sampler2D tA, tB;\nuniform vec2 uGrid; uniform float uP, uAspect, uStep, uSeed, uRadius, uGain;\nuniform vec3 uBall;\nout vec3 vCol; out float vRound;\nvoid main() {\n  float i = float(gl_VertexID);\n  vec2 g = vec2(mod(i, uGrid.x), floor(i / uGrid.x)), uv = (g + .5) / uGrid, home = uv * 2. - 1.;\n  vec3 a = texture(tA, uv).rgb, b = texture(tB, uv).rgb;\n  float h = hash11(i * .754877 + uSeed), h2 = hash11(i * 1.3247 + 7.1 + uSeed);\n  float r0 = length(home * vec2(uAspect, 1.)) / length(vec2(uAspect, 1.));        // 0 at the centre, 1 in the corners\n  // each point leaves its place (the centre first), joins the ball, then leaves for its new place (the centre last)\n  float d1 = r0 * .14 + h * .10, d2 = (1. - r0) * .10 + h2 * .10;\n  float k1 = smoothstep(d1, d1 + .36, uP), k2 = smoothstep(.42 + d2, .80 + d2, uP);\n  float inBall = k1 * (1. - k2);\n  // its place in the ball: a point of a sphere, turning slowly\n  vec3 s = normalize(hash31(i * 1.618 + uSeed) - .5) * pow(hash11(i * 2.71 + uSeed), .4);\n  s.xz = rot2(uP * 2.2) * s.xz;\n  vec2 ball = vec2(s.x / uAspect, s.y) * uRadius;\n  vec2 pos = mix(mix(home, ball, k1), home, k2);\n  // on the way in and out the points spiral around the centre\n  float sw = (k1 * (1. - k1) - k2 * (1. - k2)) * 2.6;\n  pos = vec2(1. / uAspect, 1.) * (rot2(sw) * (pos * vec2(uAspect, 1.)));\n  gl_Position = vec4(pos, 0., 1.);\n  float swap = smoothstep(.44, .56, uP);\n  float vis = mix(smoothstep(.015, .09, luma(a)), smoothstep(.015, .09, luma(b)), swap);\n  // the ball is always the same ball, however little of either picture is bright: a fixed share of the points are in\n  // it, and those that were dark in the picture light up on the way\n  vis = mix(vis, step(hash11(i * 3.17 + uSeed), .42), inBall);\n  // in the ball every point has the subject's colour, evenly bright (the pictures' own brightness would burn it out)\n  vec3 col = mix(mix(a, b, swap), uBall * (.35 + .9 * h), inBall);\n  float on = smoothstep(0., .14, uP) * (1. - smoothstep(.86, 1., uP));\n  vCol = col * vis * on * mix(1., uGain, inBall);\n  vRound = smoothstep(0., .25, max(k1 * (1. - k1), k2 * (1. - k2)) * 4. + inBall);\n  gl_PointSize = uStep * mix(1., 1.9, vRound);\n}",
 tne="\nin vec3 vCol; in float vRound; out vec4 o;\nvoid main() {\n  // at rest a point is a square tile of the picture; in flight a soft round spark of the same energy\n  float r = length(gl_PointCoord - .5) * 2.;\n  float soft = exp(-r * r * 3.2) * (1. - smoothstep(.8, 1., r)) * .85;\n  o = vec4(vCol * mix(1., soft, vRound), 1.);\n}",
-YI=class{
+QI=class{
 static{
 c(this,
 "PointCut")}
@@ -116871,7 +116872,7 @@ value:0}
 );
 let e=new It;
 e.setAttribute("position",
-new Xt(new Float32Array(jI*XI*3),
+new Xt(new Float32Array(XI*YI*3),
 3)),
 this.material=qe({
 vertex:ene,
@@ -116916,9 +116917,9 @@ value:new B(...hr.pointcut.ball)}
 this.points=new oi(e,
 this.material),
 this.points.frustumCulled=!1,
-this.scene=new fn,
+this.scene=new dn,
 this.scene.add(this.points),
-this.camera=new An(-1,
+this.camera=new yn(-1,
 1,
 1,
 -1,
@@ -116945,9 +116946,9 @@ this.bg,
 o);
 let f=Math.max(2,
 Math.round(s/360)),
-d=Math.min(jI,
+d=Math.min(XI,
 Math.ceil(a/f)),
-p=Math.min(XI,
+p=Math.min(YI,
 Math.ceil(s/f));
 h.tA.value=n,
 h.tB.value=i,
@@ -117041,7 +117042,7 @@ type:"cut",
 ...e}
 ),
 "cut"),
-gm=c((e=6,
+Am=c((e=6,
 t={
 }
 )=>({
@@ -117086,10 +117087,10 @@ bias:0,
 "xfade"),
 s_=c(e=>e.rampCol??hr.rampCol,
 "rampColour"),
-QI=c((e,
+ZI=c((e,
 t)=>e.move==="whip"||t>=.5?"b":"a",
 "textLead");
-function ZI(e,
+function KI(e,
 t={
 }
 ){
@@ -117113,31 +117114,31 @@ r]of Object.entries(t))n[i]={
 ...r}
 ;
 return n}
-c(ZI,
+c(KI,
 "hardCuts");
-var vm={
+var wm={
 }
 ;
-function KI(e){
+function JI(e){
 for(let[t,
 n]of Object.entries(e)){
 if(t==="orig")throw new Error("edit name 'orig' is reserved (the chapters' own times, no table)");
-if(vm[t])throw new Error("edit '".concat(t,
+if(wm[t])throw new Error("edit '".concat(t,
 "' is defined twice"));
-vm[t]=n}
+wm[t]=n}
 }
-c(KI,
+c(JI,
 "defineEdits");
-function JI(e){
+function $I(e){
 if(e==="orig")return null;
-if(!vm[e])throw new Error("unknown edit '".concat(e,
-"' (have: orig, ").concat(Object.keys(vm).join(", "),
+if(!wm[e])throw new Error("unknown edit '".concat(e,
+"' (have: orig, ").concat(Object.keys(wm).join(", "),
 ")"));
 return{
 name:e,
-rows:vm[e]}
+rows:wm[e]}
 }
-c(JI,
+c($I,
 "editTable");
 function rne(){
 let e={
@@ -117519,7 +117520,7 @@ at:nt("c1",
 "c1/gaugeTilt":{
 at:nt("c1",
 11),
-join:gm(6)}
+join:Am(6)}
 ,
 "c1/gaugeMacro":{
 at:nt("c1",
@@ -117546,7 +117547,7 @@ at:nt("c1",
 "c1/wallOblique":{
 at:nt("c1",
 17),
-join:gm(6)}
+join:Am(6)}
 ,
 "c1/barMacro":{
 at:nt("c1",
@@ -117593,7 +117594,7 @@ at:nt("c1",
 "c1/cell":{
 at:nt("c1",
 28),
-join:gm(6)}
+join:Am(6)}
 ,
 "c1/simulation":{
 at:nt("c1",
@@ -117812,7 +117813,7 @@ off:!0}
 off:!0}
 ,
 "c2/blueprint":{
-join:gm(6)}
+join:Am(6)}
 ,
 "c2/vibrations":{
 join:Vt({
@@ -118174,7 +118175,7 @@ join:pt(1)}
 join:pt(1)}
 }
 ,
-ane=ZI(k1,
+ane=KI(k1,
 {
 "v1/macro":{
 at:nt("v1",
@@ -118221,7 +118222,7 @@ at:nt("inst1",
 4)}
 }
 ;
-KI({
+JI({
 main:k1,
 cuts:ane,
 remake:k1,
@@ -118229,7 +118230,7 @@ tabby:k1,
 catdev:sne,
 cover:lne}
 );
-function $I(e){
+function eD(e){
 let t=2166136261;
 for(let n=0;
 n<e.length;
@@ -118237,20 +118238,20 @@ n++)t^=e.charCodeAt(n),
 t=Math.imul(t,
 16777619);
 return t>>>0}
-c($I,
+c(eD,
 "hashString");
-var U5={
+var G5={
 glide:R.inOutSine,
 whip:c(e=>X(e)**2.4,
 "whip")}
 ,
-eD={
+tD={
 glide:[.35,
 .65],
 whip:[.45,
 .85]}
 ,
-tD={
+nD={
 glide:[5,
 .5],
 whip:[9,
@@ -118271,7 +118272,7 @@ if(i==="off")return[1,
 let a=1,
 s=.5;
 if(e?.type==="relay")[a,
-s]=e.mb??tD[e.move]??tD.glide;
+s]=e.mb??nD[e.move]??nD.glide;
 else{
 let l=t?.mb??n?.mb;
 l&&(a=l)}
@@ -118282,7 +118283,7 @@ o??(r==="render"?1/0:3)),
 s]}
 c(une,
 "subframes");
-var nD=class{
+var iD=class{
 static{
 c(this,
 "Engine")}
@@ -118312,7 +118313,7 @@ this.outFps=s,
 this.preroll=d,
 this.mbCap=null,
 this.fonts=f===void 0?V5(o).systemFonts:f,
-this.renderer=new BI({
+this.renderer=new PI({
 canvas:e,
 context:h,
 antialias:!1,
@@ -118324,12 +118325,12 @@ this.renderer.setPixelRatio(1),
 this.renderer.outputColorSpace=Df,
 this.renderer.toneMapping=0,
 this.renderer.autoClear=!1,
-this.fsq=new YS,
-this.bloom=new UI,
-this.output=VI(),
-this.textComp=WI(),
-this.accum=HI(),
-this.pointcut=new YI,
+this.fsq=new QS,
+this.bloom=new GI,
+this.output=qI(),
+this.textComp=VI(),
+this.accum=WI(),
+this.pointcut=new QI,
 this.transitions={
 }
 ,
@@ -118401,7 +118402,7 @@ this.output=e,
 e.setSize(this.W,
 this.H))}
 transition(e){
-return this.transitions[e]??=GI(e)}
+return this.transitions[e]??=HI(e)}
 _baseCtx(){
 return{
 T:this.T,
@@ -118435,7 +118436,7 @@ let o=this.renderer,
 a=t-e.start,
 s=e.end-e.start,
 l=Math.round(t*kt.fps),
-u=$I(e.id);
+u=eD(e.id);
 o.setRenderTarget(n),
 o.setClearColor(0,
 1),
@@ -118623,7 +118624,7 @@ pf(),
 n,
 i,
 Math.round(t*kt.fps),
-$I(e.id)))}
+eD(e.id)))}
 catch(l){
 this._note("".concat(e.id,
 ": its camera could not be probed (").concat(l?.message??l,
@@ -118678,7 +118679,7 @@ r=this._probe(t.b,
 e);
 if(i&&r)return aA(i,
 r,
-(U5[n.move]??U5.glide)(X(t.p)))}
+(G5[n.move]??G5.glide)(X(t.p)))}
 return this._probe(t.b&&e>=t.b.start?t.b:t.a,
 e)}
 _subframes(e){
@@ -118752,13 +118753,13 @@ lead:T}
 }
 let w=aA(m,
 g,
-(U5[s.move]??U5.glide)(l)),
+(G5[s.move]??G5.glide)(l)),
 [v,
-A]=s.mix??eD[s.move]??eD.glide,
+A]=s.mix??tD[s.move]??tD.glide,
 y=A>v?Ie(v,
 A,
 l):+(l>=v),
-b=QI(s,
+b=ZI(s,
 y)==="a"?o:a;
 if((y<1||b===o)&&(r(b===o?1:0),
 this._renderShot(o,
@@ -118893,10 +118894,10 @@ this.accum,
 this.rtAcc)}
 o=this.rtAcc}
 if(this.text.scene.alpha=this.text.overlay.alpha=1,
-s.ownsLyrics||qI(this.text.overlay,
+s.ownsLyrics||jI(this.text.overlay,
 this.T,
 e),
-NT(this.text.overlay,
+UT(this.text.overlay,
 this.T,
 e),
 this.text.scene.end()){
@@ -118936,24 +118937,24 @@ frame:h}
 }
 }
 ;
-var Gn=null,
-wm=0,
-Am=0,
-G5=1,
-iD=0,
+var Qt=null,
+L1=0,
+F1=0,
+ym=1,
+l_=0,
 rD=c(()=>typeof performance>"u"?Date.now():performance.now(),
 "now");
 function cne(e,
 t){
 if(!e.canvas||!t?.getExtension("EXT_color_buffer_float"))throw new Error("FrostNova MV needs WebGL2 float render targets");
-if(Gn)throw new Error("A FrostNova scene instance may only be initialized once");
+if(Qt)throw new Error("A FrostNova scene instance may only be initialized once");
 let{
 data:n,
 meta:i,
 captions:r,
 onsets:o}
-=zT(e.assets);
-if(Gn=new nD(e.canvas,
+=OT(e.assets);
+if(Qt=new iD(e.canvas,
 {
 context:t,
 width:640,
@@ -118964,61 +118965,61 @@ outFps:30,
 preserve:!1,
 fonts:null}
 ),
-Gn.mbCap=1,
-Gn.T=FI.from(r.timing,
+Qt.mbCap=1,
+Qt.T=II.from(r.timing,
 o),
-Gn.T.preroll=5,
-Gn.T.clockZero=-5,
-Gn.F=new DI(i,
+Qt.T.preroll=5,
+Qt.T.clockZero=-5,
+Qt.F=new zI(i,
 n),
-Gn.timeline=new A_(Gn.T,
+Qt.timeline=new y_(Qt.T,
 [],
 {
-edit:JI("main")}
+edit:$I("main")}
 ),
-Gn.timeline.problems.length||Gn.timeline.shots.length!==305)throw new Error("Original 305-shot edit did not register cleanly: "+Gn.timeline.problems.join("; "));
-Gn.duration=Gn.T.duration,
-OT(Gn.T,
+Qt.timeline.problems.length||Qt.timeline.shots.length!==305)throw new Error("Original 305-shot edit did not register cleanly: "+Qt.timeline.problems.join("; "));
+Qt.duration=Qt.T.duration,
+NT(Qt.T,
 r.translation),
-wm=Am=0}
+L1=F1=0}
 c(cne,
 "setup");
 function hne(e,
 t,
 n,
 i){
-if(!Gn)throw new Error("Call setup before paint");
-if(n!==wm||i!==Am){
-wm=n,
-Am=i,
-Gn.renderer.setSize(n,
+if(!Qt)throw new Error("Call setup before paint");
+if(n!==L1||i!==F1){
+L1=n,
+F1=i,
+Qt.renderer.setSize(n,
 i,
 !1);
 let o=Math.max(320,
 Math.round(Math.min(n,
-640)*G5/2)*2);
-Gn.setSize(o,
+640)*ym/2)*2);
+Qt.setSize(o,
 Math.round(o*i/n))}
 let r=rD();
-if(Gn.renderFrame(Math.max(0,
-Math.min(Gn.duration,
+if(Qt.renderFrame(Math.max(0,
+Math.min(Qt.duration,
 Number(t)||0))),
-Gn.errors.length)throw new Error(Gn.errors[0]);
-rD()-r>75&&++iD>=3&&G5>.5&&(G5=Math.max(.5,
-G5*.8),
-wm=Am=0,
-iD=0)}
+Qt.errors.length)throw new Error(Qt.errors[0]);
+rD()-r>75&&++l_>=3&&ym>.5&&(ym=Math.max(.5,
+ym*.8),
+L1=F1=0,
+l_=0)}
 c(hne,
 "paint");
 function*fne(e,
 t){
-if(!Gn)throw new Error("Call setup before prepare");
-Gn.renderer.setSize(e.width,
+if(!Qt)throw new Error("Call setup before prepare");
+Qt.renderer.setSize(e.width,
 e.height,
 !1),
-Gn.setSize(256,
+Qt.setSize(256,
 Math.round(256*e.height/e.width));
-let n=Gn.timeline.shots,
+let n=Qt.timeline.shots,
 i=1/60,
 r=!1;
 for(let o=0;
@@ -119026,10 +119027,10 @@ o<n.length;
 o++){
 let a=n[o],
 s=Math.min(a.end,
-Gn.duration)-i;
+Qt.duration)-i;
 if(!r&&a.chapter.id==="v2"){
-Gn._init(a);
-for(let u of v7())yield{
+Qt._init(a);
+for(let u of g7())yield{
 progress:(o+u.progress*.9)/n.length,
 label:"v2 ".concat(u.label)}
 ;
@@ -119039,25 +119040,56 @@ s)];
 s-a.start>4*i&&l.push((a.start+s)/2,
 s),
 a.transitionIn&&l.push(a.start+a.transitionIn.dur*(.5-a.transitionIn.bias));
-for(let u of l)if(Gn.renderFrame(u),
-Gn.errors.length)throw new Error(Gn.errors[0]);
+for(let u of l)if(Qt.renderFrame(u),
+Qt.errors.length)throw new Error(Qt.errors[0]);
 yield{
 progress:(o+1)/n.length,
 label:"".concat(o+1,
 "/").concat(n.length,
 " ").concat(a.id)}
 }
-if(Gn.setSize(Math.min(e.width,
+if(Qt.setSize(Math.min(e.width,
 640),
 Math.round(Math.min(e.width,
 640)*e.height/e.width)),
-wm=e.width,
-Am=e.height,
-Gn.renderFrame(0),
-Gn.errors.length)throw new Error(Gn.errors[0])}
+L1=e.width,
+F1=e.height,
+Qt.renderFrame(0),
+Qt.errors.length)throw new Error(Qt.errors[0])}
 c(fne,
 "prepare");
-return vD(dne);
+function dne(e,
+t){
+if(!Qt)throw new Error("Call setup before warmup");
+let n=Math.max(320,
+Math.round(Math.min(e.width,
+640)*ym/2)*2);
+Qt.renderer.setSize(e.width,
+e.height,
+!1),
+Qt.setSize(n,
+Math.round(n*e.height/e.width)),
+L1=e.width,
+F1=e.height;
+let i=Qt.timeline.shots,
+r=1/60;
+for(let o of i.slice(0,
+3)){
+let a=Math.min(o.end,
+Qt.duration)-r;
+for(let s of[o.start,
+Math.min(o.start+r,
+a),
+(o.start+a)/2])if(Qt.renderFrame(Math.max(0,
+Math.min(Qt.duration,
+s))),
+Qt.errors.length)throw new Error(Qt.errors[0])}
+if(Qt.renderFrame(0),
+Qt.errors.length)throw new Error(Qt.errors[0]);
+l_=0}
+c(dne,
+"warmup");
+return vD(pne);
 }
 )();
 
@@ -119071,4 +119103,5 @@ return FrostNovaWorkshop;
 }
 function setup(info, gl) { __frostInitialAssets = info.assets; __frostScene = __makeFrostNova(); return __frostScene.setup(info, gl); }
 function prepare(info, gl) { return __frostScene.prepare(info, gl); }
+function warmup(info, gl) { return __frostScene.warmup(info, gl); }
 function paint(gl, t, w, h, ctx) { return __frostScene.paint(gl, t, w, h, ctx); }

@@ -27,6 +27,14 @@
  * node:vm context with a timeout for the agent tools. Any failure falls back to
  * the generic renderer. Shared, pure code: the runtime source below is
  * evaluated inside both sandboxes so validation matches playback.
+ *
+ * Lifecycle: setup(info, gl) → prepare(info, gl) (optional generator) →
+ * warmup(info, gl) (optional) → ready → paint()/render(). warmup runs once on
+ * the final output surface, right before ready, so a scene can pay one-off GPU
+ * first-use cost (shader compilation, render-target allocation) under its own
+ * deadline instead of inside the first realtime frame. The panel additionally
+ * grants the first frames after ready a wider stall window and does not charge
+ * them to the steady-state slow-frame quota (SCENE_LIMITS.firstFrame*).
  */
 export const SCENE_LIMITS = Object.freeze({
   scriptBytes: 256 * 1024,
@@ -37,11 +45,27 @@ export const SCENE_LIMITS = Object.freeze({
   slowFramesAllowed: 45,
   /** No answer within this time: the worker is terminated. */
   hardTimeoutMs: 1500,
-  /** Setup / first compile. */
-  setupTimeoutMs: 2000,
+  /** Setup / first compile. 0.9.7: raised for heavy setup() and large bundles. */
+  setupTimeoutMs: 5000,
+  /**
+   * 0.9.7: the first {@link firstFrameGraceMs} after `ready` may carry one-off
+   * GPU first-use cost (shader compilation, render-target allocation). Inside
+   * that window a pending frame may take {@link firstFrameTimeoutMs} instead of
+   * {@link hardTimeoutMs}, and frames slower than the frame budget are not
+   * charged to the steady-state slow-frame quota. Steady state is unchanged.
+   */
+  firstFrameTimeoutMs: 8000,
+  firstFrameGraceMs: 10_000,
+  /**
+   * 0.9.7: optional synchronous `warmup(info, gl)`, run once after
+   * setup()/prepare() and before `ready`, on the final output surface, followed
+   * by gl.finish(). Its own deadline; preparation deadlines do not cover it.
+   */
+  warmupTimeoutMs: 20_000,
   /** Optional cooperative preparation, before any playback frames are accepted. */
   prepareStepTimeoutMs: 10_000,
-  prepareTotalTimeoutMs: 120_000,
+  /** 0.9.7: raised for long edit tables (hundreds of shots) on slow GPUs. */
+  prepareTotalTimeoutMs: 300_000,
   prepareMaxSteps: 512,
   maxCols: 240,
   maxRows: 85,
@@ -141,6 +165,14 @@ function __mvNormalize(out, cols, rows) {
 
 /** Small, copied progress data only; never post a script-owned iterator/result across the boundary. */
 export const SCENE_PREPARE_RUNTIME_SOURCE = String.raw`
+const __mvPromiseThen = Promise.prototype.then;
+function __mvWarmupResult(result) {
+  if (result && (typeof result === 'object' || typeof result === 'function') && (typeof result.then === 'function' || typeof result.next === 'function')) {
+    // Observe native rejected Promises without invoking a script-owned thenable.
+    try { __mvPromiseThen.call(result, undefined, () => {}); } catch (error) {}
+    throw new TypeError('warmup() 必须同步完成，不能返回 Promise、thenable 或迭代器');
+  }
+}
 function __mvPrepareIterator(iterator) {
   if (!iterator || typeof iterator !== 'object' || typeof iterator.then === 'function') throw new TypeError('prepare() 必须返回同步迭代器，不能返回 Promise');
   const next = iterator.next;
@@ -196,7 +228,7 @@ export function sceneWorkerSource(userSource, { output = 'text' } = {}) {
   const blocked = JSON.stringify(sceneBlockedGlobals(output))
   // Compile the scene through a captured Function constructor after supervisor state has been enclosed in the
   // IIFE below. Functions created this way resolve globals from the worker, not lexical __* supervisor bindings.
-  const userBody = JSON.stringify(`"use strict";\n${stripModuleSyntax(userSource)}\n;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null };`)
+  const userBody = JSON.stringify(`"use strict";\n${stripModuleSyntax(userSource)}\n;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null, warmup: typeof warmup === 'function' ? warmup : null };`)
   return `"use strict";
 (() => {
 const __global = self;
@@ -238,7 +270,7 @@ ${SCENE_RUNTIME_SOURCE}
 ${SCENE_PREPARE_RUNTIME_SOURCE}
 ${WEBGL_CANVAS_FACADE_SOURCE}
 let __scene = null, __setupError = '', __cv = null, __g = null, __facade = null, __initialized = false, __contextLost = false, __ready = false;
-let __prepare = null, __prepareId = 0, __prepareProgress = 0, __prepareStarted = 0, __prepareWidth = 0, __prepareHeight = 0;
+let __prepare = null, __prepareId = 0, __prepareProgress = 0, __prepareStarted = 0, __prepareWidth = 0, __prepareHeight = 0, __info = null;
 try {
   __scene = __compile(${userBody})();
   if (__bitmap && !__scene.paint) __setupError = __webgl
@@ -290,17 +322,44 @@ function __paint(msg) {
   if (__webgl && typeof __g.flush === 'function') __g.flush();
   return __snapshot.call(__cv);
 }
+// 0.9.7: optional warmup(info, gl) runs once, after setup()/prepare(), on the final output
+// surface and before the ready handshake. Scenes use it to pay one-off GPU first-use cost
+// (shader compilation, render-target allocation) here, under its own deadline, instead of
+// inside the first realtime playback frame. It must leave the output canvas size alone.
+function __warmup(id) {
+  if (__setupError || !__scene.warmup) return false;
+  const started = __now();
+  __post({ type: 'warming', id: id === undefined ? 0 : id });
+  __mvWarmupResult(__scene.warmup(__info, __webgl ? __g : undefined));
+  if (__bitmap && (__cv.width !== __prepareWidth || __cv.height !== __prepareHeight)) throw new Error('warmup() 不能更改输出 canvas.size');
+  if (__webgl && (__contextLost || __g.isContextLost?.())) throw new Error('WebGL 上下文已丢失，场景已停止。');
+  // Force pending driver work to complete so the next playback frame is not the one that pays it.
+  if (__webgl && typeof __g.finish === 'function') __g.finish();
+  if (__webgl && (__contextLost || __g.isContextLost?.())) throw new Error('WebGL 上下文已丢失，场景已停止。');
+  if (__now() - started > ${SCENE_LIMITS.warmupTimeoutMs}) throw new Error('warmup() 预热超时');
+  return true;
+}
+// Single exit to the ready handshake, so warmup runs exactly once whether or not
+// prepare() existed. The id argument echoes the final prepare step so the
+// supervisor can check the response sequence.
+function __finishSetup(id) {
+  let warmed = false;
+  try { warmed = __warmup(id) }
+  catch (error) { __prepare = null; __setupError = String(error && error.stack || error).slice(0, 2000); __post({ type: 'fatal', error: __setupError }); return }
+  __ready = !__setupError;
+  __post({ type: 'ready', error: __setupError, ...(id === undefined && !warmed ? {} : { id: id === undefined ? 0 : id }) });
+}
 __listen('message', event => {
   const msg = event.data || {};
   if (msg.type === 'init') {
     if (__initialized) return;
     __initialized = true;
-    if (!__setupError && __webgl) { try { __surface(msg.info && msg.info.width || 1280, msg.info && msg.info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
+    if (!__setupError && __bitmap) { try { __surface(msg.info && msg.info.width || 1280, msg.info && msg.info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
     if (!__setupError) { try {
-      const info = __webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {});
-      if (__scene.setup) __scene.setup(info, __webgl ? __g : undefined);
+      __info = __webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {});
+      if (__scene.setup) __scene.setup(__info, __webgl ? __g : undefined);
       __prepareWidth = __cv && __cv.width; __prepareHeight = __cv && __cv.height;
-      if (__scene.prepare) __prepare = __mvPrepareIterator(__scene.prepare(info, __webgl ? __g : undefined));
+      if (__scene.prepare) __prepare = __mvPrepareIterator(__scene.prepare(__info, __webgl ? __g : undefined));
       if (__prepare && __bitmap && (__cv.width !== __prepareWidth || __cv.height !== __prepareHeight)) throw new Error('prepare() 不能更改输出 canvas.size');
     } catch (error) { __setupError = String(error && error.stack || error) } }
     if (!__setupError && __prepare) {
@@ -308,8 +367,7 @@ __listen('message', event => {
       __post({ type: 'preparing', id: 0, progress: 0, label: '' });
       return;
     }
-    __ready = !__setupError;
-    __post({ type: 'ready', error: __setupError });
+    __finishSetup();
     return;
   }
   if (msg.type === 'prepare-next' && __initialized && __prepare && !__setupError && !__contextLost) {
@@ -329,8 +387,8 @@ __listen('message', event => {
       if (ended - __prepareStarted > ${SCENE_LIMITS.prepareTotalTimeoutMs}) throw new Error('prepare() 总计超时');
       __prepareProgress = status.progress;
       if (status.done) {
-        __prepare = null; __ready = true;
-        __post({ type: 'ready', error: '', id: msg.id });
+        __prepare = null;
+        __finishSetup(msg.id);
       } else __post({ type: 'preparing', id: msg.id, progress: status.progress, label: status.label });
     } catch (error) {
       __prepare = null; __setupError = String(error && error.stack || error).slice(0, 2000);

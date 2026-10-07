@@ -5,6 +5,10 @@
  * as plain text (pixel scenes run against a recording canvas stand-in). Data goes in and out as JSON text only, so no Host object is
  * reachable from the script.
  *
+ * The whole lifecycle is mirrored here, not just the frame call: setup(),
+ * prepare() and the 0.9.7 warmup() stage all run, so a scene that only
+ * initialises correctly is not reported as broken by the checker.
+ *
  * node:vm is not a security boundary against hostile code; it is used here to
  * catch mistakes (syntax errors, endless loops, wrong return shapes) in a
  * script the user asked their own agent to write. Playback in the panel uses a
@@ -13,7 +17,7 @@
 import vm from 'node:vm'
 import { SCENE_LIMITS, SCENE_BLOCKED_GLOBALS, SCENE_RUNTIME_SOURCE, SCENE_PREPARE_RUNTIME_SOURCE, WEBGL_CANVAS_FACADE_SOURCE, sceneContext, sceneSourceProblems, stripModuleSyntax } from './mv-scene.mjs'
 
-export const PREVIEW_LIMITS = Object.freeze({ compileTimeoutMs: 2000, frameTimeoutMs: 500, maxCols: 160, maxRows: 60 })
+export const PREVIEW_LIMITS = Object.freeze({ compileTimeoutMs: 5000, frameTimeoutMs: 500, warmupTimeoutMs: SCENE_LIMITS.warmupTimeoutMs, maxCols: 160, maxRows: 60 })
 
 /**
  * A recording stand-in for the 2D canvas API, so pixel scenes (canvas.output
@@ -133,27 +137,45 @@ export function compileScene(source, { output = 'text' } = {}) {
   for (const name of ${JSON.stringify(SCENE_BLOCKED_GLOBALS)}) Object.defineProperty(scope, name, { value: undefined, writable: false, configurable: false });
 })(globalThis);
 ${SCENE_RUNTIME_SOURCE}${SCENE_PREPARE_RUNTIME_SOURCE}${WEBGL_CANVAS_FACADE_SOURCE}${bitmap ? PIXEL_STUB_SOURCE : ''}${webgl ? WEBGL_STUB_SOURCE : ''}
+${pixels ? 'var __hostCanvas = new OffscreenCanvas(1, 1);' : ''}
 var __scene = (function () {
 ${stripModuleSyntax(source)}
-;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null };
+;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null, warmup: typeof warmup === 'function' ? warmup : null };
 })();
-var __hostPreparation = null, __hostPrepareProgress = 0, __hostPrepareWidth = 0, __hostPrepareHeight = 0;
+var __hostPreparation = null, __hostPrepareProgress = 0, __hostPrepareWidth = 0, __hostPrepareHeight = 0, __hostInfo = null;
 var __hostReady = false;
 function __hostSetup(info) {
-  ${webgl ? '__hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720; info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl);' : ''}
+  __hostReady = false;
+  ${bitmap ? '__hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720;' : ''}
+  ${webgl ? 'info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl);' : ''}
+  __hostInfo = info;
   if (__scene.setup) __scene.setup(info, ${webgl ? '__hostGl' : 'undefined'});
-  ${webgl ? '__hostPrepareWidth = __hostCanvas.width; __hostPrepareHeight = __hostCanvas.height;' : ''}
+  ${bitmap ? '__hostPrepareWidth = __hostCanvas.width; __hostPrepareHeight = __hostCanvas.height;' : ''}
   __hostPreparation = __scene.prepare ? __mvPrepareIterator(__scene.prepare(info, ${webgl ? '__hostGl' : 'undefined'})) : null;
-  ${webgl ? `if (__hostPreparation && (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight)) throw Error('prepare() 不能更改输出 canvas.size');` : ''}
-  __hostPrepareProgress = 0; __hostReady = !__hostPreparation;
+  ${bitmap ? `if (__hostPreparation && (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight)) throw Error('prepare() 不能更改输出 canvas.size');` : ''}
+  __hostPrepareProgress = 0; __hostReady = false;
+}
+// 0.9.7: mirrors the worker's warmup stage, so a scene that only warms up correctly
+// is not reported as broken here. Recording-only: gl.finish() is a no-op stub.
+function __hostWarmup() {
+  if (__hostPreparation) throw Error('prepare() 尚未完成');
+  // Scenes without a warmup() stage are ready once setup()/prepare() are done.
+  if (!__scene.warmup) { __hostReady = true; return false; }
+  __mvWarmupResult(__scene.warmup(__hostInfo, ${webgl ? '__hostGl' : 'undefined'}));
+  ${bitmap ? `if (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight) throw Error('warmup() 不能更改输出 canvas.size');` : ''}
+  ${webgl ? `if (__hostGl.isContextLost()) throw Error('WebGL 上下文已丢失');
+  __hostGl.finish();
+  if (__hostGl.isContextLost()) throw Error('WebGL 上下文已丢失');` : ''}
+  __hostReady = true;
+  return true;
 }
 function __hostPrepareStep() {
   const status = __mvPrepareProgress(__hostPreparation.next.call(__hostPreparation.iterator), __hostPrepareProgress);
-  ${webgl ? `if (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight) throw Error('prepare() 不能更改输出 canvas.size');
-  if (__hostGl.isContextLost()) throw Error('WebGL 上下文已丢失');
+  ${bitmap ? `if (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight) throw Error('prepare() 不能更改输出 canvas.size');` : ''}
+  ${webgl ? `if (__hostGl.isContextLost()) throw Error('WebGL 上下文已丢失');
   __hostGl.finish();` : ''}
   __hostPrepareProgress = status.progress;
-  if (status.done) { __hostPreparation = null; __hostReady = true; }
+  if (status.done) __hostPreparation = null;
   return JSON.stringify(status);
 }`, context, { timeout: PREVIEW_LIMITS.compileTimeoutMs, filename: 'scenes.js' })
   } catch (error) {
@@ -163,6 +185,12 @@ function __hostPrepareStep() {
   const hasEntry = vm.runInContext(`typeof __scene.${entry}`, context, { timeout: 100 }) === 'function'
   if (!hasEntry) return { ok: false, problems: [webgl ? '场景脚本没有定义 paint(gl, t, width, height, ctx) 函数（canvas.output 为 "webgl"）。' : pixels ? '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。' : '场景脚本没有定义 render(t, cols, rows, ctx) 函数。'] }
   const call = (code, timeout) => vm.runInContext(code, context, { timeout })
+  // Mirrors the worker: warmup() runs once, after setup()/prepare(), on the final surface.
+  const runWarmup = () => {
+    const started = Date.now()
+    const warmup = Boolean(call('__hostWarmup()', PREVIEW_LIMITS.warmupTimeoutMs))
+    return { warmup, warmupMs: Date.now() - started }
+  }
   return {
     ok: true,
     problems: [],
@@ -171,7 +199,10 @@ function __hostPrepareStep() {
     gpuValidated: webgl ? false : undefined,
     setup(info) {
       call(`__hostSetup(JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}))`, PREVIEW_LIMITS.compileTimeoutMs)
-      if (!call('Boolean(__hostPreparation)', 100)) return null
+      if (!call('Boolean(__hostPreparation)', 100)) {
+        const warmed = runWarmup()
+        return warmed.warmup ? { steps: 0, ms: 0, progress: [], ...warmed } : null
+      }
       const started = Date.now(), progress = []
       for (let step = 1; step <= SCENE_LIMITS.prepareMaxSteps; step++) {
         const remaining = SCENE_LIMITS.prepareTotalTimeoutMs - (Date.now() - started)
@@ -181,7 +212,10 @@ function __hostPrepareStep() {
         catch (error) { throw new Error(`prepare() 第 ${step} 步（上一步 ${progress.at(-1)?.label || '开始'}）：${errorText(error)}`) }
         progress.push({ step, progress: status.progress, label: status.label })
         if (Date.now() - started > SCENE_LIMITS.prepareTotalTimeoutMs) throw new Error('prepare() 总计超时')
-        if (status.done) return { steps: step, ms: Date.now() - started, progress }
+        if (status.done) {
+          const ms = Date.now() - started
+          return { steps: step, ms, progress, ...runWarmup() }
+        }
       }
       throw new Error(`prepare() 超过 ${SCENE_LIMITS.prepareMaxSteps} 个步骤`)
     },
@@ -227,7 +261,7 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
   let preparation = null
   try { preparation = scene.setup(bitmap ? { ...info, width: cols, height: rows } : info) } catch (error) {
     const needsPixels = webgl && errorText(error).includes('MV_HOST_REQUIRES_PIXEL_READBACK')
-    return { ok: false, problems: [needsPixels ? '此 WebGL 场景通过真实画布像素生成几何；Host 仅能记录 API 调用，需在真实浏览器中验证。' : `setup() / prepare() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}), ...(needsPixels ? { requiresBrowserValidation: true } : {}) }
+    return { ok: false, problems: [needsPixels ? '此 WebGL 场景通过真实画布像素生成几何；Host 仅能记录 API 调用，需在真实浏览器中验证。' : `setup() / prepare() / warmup() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}), ...(needsPixels ? { requiresBrowserValidation: true } : {}) }
   }
   const frames = []
   const cueAt = t => { let found = null; for (const cue of cues) if (cue.time <= t && !(cue.end <= t)) found = cue; return found }

@@ -37,9 +37,9 @@ Ported community projects / 移植社区项目：Wallpaper 保持 2D（0.9.1+）
 | [`world-execute-me-three`](packs/world-execute-me-three) — complete 1.1.0, original 12 scenes and 75 bilingual cues; plugin 0.9.4+ | [wiers-jack/world-execute-me-mv](https://gitee.com/wiers-jack/world-execute-me-mv) | Visual code and Three.js MIT; Mili captions under separate non-commercial fan terms ([NOTICE](packs/world-execute-me-three/LYRICS-NOTICE.md)) |
 
 They are built by `presets/ports/*/build.mjs` in dsh-mv-cli from the upstream commits named in each NOTICE.
-FrostNova's [world-execute-me-frostnova 1.0.0](packs/world-execute-me-frostnova) preserves the original realtime 3D main edit: 305 shots, 16 chapters, 129 caption indices, Chinese translation, analysis and offline OFL font resources. Requires plugin **0.9.6+** and hardware WebGL2 with float render targets. Resources prepare before music starts; the tested RTX 4070 took about 25–64 seconds. Only the music recording is user-provided.
+FrostNova's [world-execute-me-frostnova 1.0.1](packs/world-execute-me-frostnova) preserves the original realtime 3D main edit: 305 shots, 16 chapters, 129 caption indices, Chinese translation, analysis and offline OFL font resources. Requires plugin **0.9.7+** and hardware WebGL2 with float render targets. Resources prepare and warm at the final size before music starts; the current RTX 4070 full-film test loaded in about 26.6 seconds, with a maximum worker frame of 122.3 ms. Hardware performance varies. Only the music recording is user-provided.
 
-FrostNova code/generated visuals and the adapter are AGPL-3.0-or-later; Mili text, OFL fonts and trademarks retain separate terms. The repository default license does not replace these terms. [Free complete Corresponding Source](https://github.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.0/20261007_frostnova-corresponding-source-1.0.0.zip) includes the pinned upstream, editable adapter and reproducible build inputs. 含快速闪烁与强对比切镜，请先阅读包内光敏提示。
+FrostNova code/generated visuals and the adapter are AGPL-3.0-or-later; Mili text, OFL fonts and trademarks retain separate terms. The repository default license does not replace these terms. [Free complete Corresponding Source](https://github.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.1/20261007_frostnova-corresponding-source-1.0.1.zip) includes the pinned upstream, editable adapter and reproducible build inputs. 含快速闪烁与强对比切镜，请先阅读包内光敏提示。
 
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
 
@@ -68,6 +68,7 @@ Use `canvas.renderer: "script"`, `canvas.output: "webgl"`, `canvas.size: [1280, 
 Textures belong in `canvas.assets` (PNG/WebP as ImageBitmap); JSON shards are merged before setup.
 WebGL scripts may be 2 MiB; the index marks them `renderer: webgl` and `requires: 0.9.2`.
 Scenes using the optional synchronous-generator `prepare(info, gl)` require 0.9.6: 10 seconds per step, 120 seconds total, at most 512 steps. The player shows progress and waits before starting music.
+Plugin 0.9.7 raises setup to 5 seconds and total preparation to 300 seconds, and adds synchronous `warmup(info, gl)` with its own 20-second deadline. Frames requested within 10 seconds after ready have an 8-second deadline; later requests use 1.5 seconds. Async warmup and mismatched stage ids are rejected.
 CI uses a recording stand-in, **not a GPU**; maintainers must also verify real Chromium shader compilation,
 nonblank frames, seeking and cleanup. 在真实浏览器验着色器、画面、拖动进度和切包清理，不能只看 Node/CI 通过。
 

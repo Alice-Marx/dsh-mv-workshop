@@ -150,13 +150,13 @@
   },
   "x-dsh-mv-workshop": {
     "id": "world-execute-me-frostnova",
-    "version": "1.0.0",
-    "requires": "0.9.6",
+    "version": "1.0.1",
+    "requires": "0.9.7",
     "author": "Alice-Marx",
     "license": "AGPL-3.0-or-later AND LicenseRef-Mili-NonCommercial-FanWork",
     "source": "https://github.com/FrostNovaOrg/world-execute-web/tree/29aefca50e40c14498420e1c6e1f3a1037727e17",
     "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-frostnova",
-    "description": "FrostNova 原作实时3D完整非音乐适配：305镜头、16章、逐词英文与官方中文、60Hz分析、代码字形和离线OFL字体素材随包提供。音乐自备，非官方AI辅助同人MV；需插件0.9.6。",
+    "description": "FrostNova 原作实时3D完整非音乐适配：305镜头、16章、逐词英文与官方中文、60Hz分析、代码字形和离线OFL字体素材随包提供。音乐自备，非官方AI辅助同人MV；需插件0.9.7。",
     "tags": [
       "world.execute(me)",
       "Mili",
