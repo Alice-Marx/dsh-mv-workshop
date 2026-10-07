@@ -11,7 +11,7 @@
  * Web Worker sandbox (see mv-scene.mjs).
  */
 import vm from 'node:vm'
-import { SCENE_LIMITS, SCENE_BLOCKED_GLOBALS, SCENE_RUNTIME_SOURCE, WEBGL_CANVAS_FACADE_SOURCE, sceneContext, sceneSourceProblems, stripModuleSyntax } from './mv-scene.mjs'
+import { SCENE_LIMITS, SCENE_BLOCKED_GLOBALS, SCENE_RUNTIME_SOURCE, SCENE_PREPARE_RUNTIME_SOURCE, WEBGL_CANVAS_FACADE_SOURCE, sceneContext, sceneSourceProblems, stripModuleSyntax } from './mv-scene.mjs'
 
 export const PREVIEW_LIMITS = Object.freeze({ compileTimeoutMs: 2000, frameTimeoutMs: 500, maxCols: 160, maxRows: 60 })
 
@@ -21,7 +21,11 @@ export const PREVIEW_LIMITS = Object.freeze({ compileTimeoutMs: 2000, frameTimeo
  * drawing calls are counted, nothing is drawn. Evaluated inside the vm.
  */
 export const PIXEL_STUB_SOURCE = String.raw`
-var __drawCalls = 0;
+var __drawCalls = 0, __requiresRealReadback = false;
+// VM-local recording handle: paths can be constructed, but no pixels are
+// rasterized here. Keep Host functions and objects outside the scene context.
+function Path2D() {}
+for (const name of ['addPath', 'closePath', 'moveTo', 'lineTo', 'bezierCurveTo', 'quadraticCurveTo', 'arcTo', 'rect', 'arc', 'ellipse', 'roundRect']) Path2D.prototype[name] = function () {};
 var __DRAW = { fill: 1, stroke: 1, fillRect: 1, strokeRect: 1, fillText: 1, strokeText: 1, drawImage: 1, putImageData: 1 };
 function __stubContext(canvas) {
   var noop = function () {};
@@ -31,7 +35,10 @@ function __stubContext(canvas) {
     measureText: function (text) { var n = String(text).length; return { width: n * 8, actualBoundingBoxAscent: 8, actualBoundingBoxDescent: 2, actualBoundingBoxLeft: 0, actualBoundingBoxRight: n * 8 } },
     createLinearGradient: function () { return gradient }, createRadialGradient: function () { return gradient }, createConicGradient: function () { return gradient },
     createPattern: function () { return { setTransform: noop } },
-    getImageData: function (x, y, w, h) { w = Math.max(1, Math.min(4096, w | 0)); h = Math.max(1, Math.min(4096, h | 0)); return { width: w, height: h, data: new Uint8ClampedArray(Math.min(16777216, w * h * 4)) } },
+    // A WebGL scene may derive geometry from actual text/image pixels. Empty
+    // fabricated data can make valid sampling loops diverge; stop explicitly
+    // and require browser validation instead of pretending to rasterize ink.
+    getImageData: function (x, y, w, h) { if (__requiresRealReadback) throw new Error('MV_HOST_REQUIRES_PIXEL_READBACK'); w = Math.max(1, Math.min(4096, w | 0)); h = Math.max(1, Math.min(4096, h | 0)); return { width: w, height: h, data: new Uint8ClampedArray(Math.min(16777216, w * h * 4)) } },
     createImageData: function (w, h) { if (w && typeof w === 'object') { h = w.height; w = w.width } w = Math.max(1, Math.min(4096, w | 0)); h = Math.max(1, Math.min(4096, h | 0)); return { width: w, height: h, data: new Uint8ClampedArray(Math.min(16777216, w * h * 4)) } },
     getTransform: function () { return { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 } },
     isPointInPath: function () { return false }, isPointInStroke: function () { return false }, getLineDash: function () { return [] },
@@ -55,6 +62,7 @@ OffscreenCanvas.prototype.transferToImageBitmap = function () { return { width: 
  */
 export const WEBGL_STUB_SOURCE = String.raw`
 var __glCalls = 0, __glDrawCalls = 0;
+__requiresRealReadback = true;
 var __GL_DRAW = { clear: 1, drawArrays: 1, drawElements: 1, drawArraysInstanced: 1, drawElementsInstanced: 1, blitFramebuffer: 1 };
 var __GL_OBJECT = { createBuffer: 1, createFramebuffer: 1, createProgram: 1, createQuery: 1, createRenderbuffer: 1, createSampler: 1, createShader: 1, createTexture: 1, createTransformFeedback: 1, createVertexArray: 1, fenceSync: 1 };
 var __GL_TRUE = { isBuffer: 1, isEnabled: 1, isFramebuffer: 1, isProgram: 1, isQuery: 1, isRenderbuffer: 1, isSampler: 1, isShader: 1, isSync: 1, isTexture: 1, isTransformFeedback: 1, isVertexArray: 1 };
@@ -88,7 +96,7 @@ function __stubWebGL2(canvas) {
         if (k === 'getUniformLocation') return { __webglStub: k };
         if (k === 'getShaderInfoLog' || k === 'getProgramInfoLog') return '';
         if (k === 'getSupportedExtensions') return [];
-        if (k === 'getExtension') return null;
+        if (k === 'getExtension') return arguments[0] === 'EXT_color_buffer_float' ? {} : null;
         if (k === 'isContextLost') return false;
         if (k === 'getContextAttributes') return { alpha: false, antialias: true, depth: true, stencil: false, premultipliedAlpha: false };
         if (k === 'getParameter') {
@@ -124,11 +132,30 @@ export function compileScene(source, { output = 'text' } = {}) {
 (function (scope) {
   for (const name of ${JSON.stringify(SCENE_BLOCKED_GLOBALS)}) Object.defineProperty(scope, name, { value: undefined, writable: false, configurable: false });
 })(globalThis);
-${SCENE_RUNTIME_SOURCE}${WEBGL_CANVAS_FACADE_SOURCE}${bitmap ? PIXEL_STUB_SOURCE : ''}${webgl ? WEBGL_STUB_SOURCE : ''}
+${SCENE_RUNTIME_SOURCE}${SCENE_PREPARE_RUNTIME_SOURCE}${WEBGL_CANVAS_FACADE_SOURCE}${bitmap ? PIXEL_STUB_SOURCE : ''}${webgl ? WEBGL_STUB_SOURCE : ''}
 var __scene = (function () {
 ${stripModuleSyntax(source)}
-;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };
-})();`, context, { timeout: PREVIEW_LIMITS.compileTimeoutMs, filename: 'scenes.js' })
+;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null };
+})();
+var __hostPreparation = null, __hostPrepareProgress = 0, __hostPrepareWidth = 0, __hostPrepareHeight = 0;
+var __hostReady = false;
+function __hostSetup(info) {
+  ${webgl ? '__hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720; info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl);' : ''}
+  if (__scene.setup) __scene.setup(info, ${webgl ? '__hostGl' : 'undefined'});
+  ${webgl ? '__hostPrepareWidth = __hostCanvas.width; __hostPrepareHeight = __hostCanvas.height;' : ''}
+  __hostPreparation = __scene.prepare ? __mvPrepareIterator(__scene.prepare(info, ${webgl ? '__hostGl' : 'undefined'})) : null;
+  ${webgl ? `if (__hostPreparation && (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight)) throw Error('prepare() 不能更改输出 canvas.size');` : ''}
+  __hostPrepareProgress = 0; __hostReady = !__hostPreparation;
+}
+function __hostPrepareStep() {
+  const status = __mvPrepareProgress(__hostPreparation.next.call(__hostPreparation.iterator), __hostPrepareProgress);
+  ${webgl ? `if (__hostCanvas.width !== __hostPrepareWidth || __hostCanvas.height !== __hostPrepareHeight) throw Error('prepare() 不能更改输出 canvas.size');
+  if (__hostGl.isContextLost()) throw Error('WebGL 上下文已丢失');
+  __hostGl.finish();` : ''}
+  __hostPrepareProgress = status.progress;
+  if (status.done) { __hostPreparation = null; __hostReady = true; }
+  return JSON.stringify(status);
+}`, context, { timeout: PREVIEW_LIMITS.compileTimeoutMs, filename: 'scenes.js' })
   } catch (error) {
     return { ok: false, problems: [`场景脚本无法加载：${errorText(error)}`] }
   }
@@ -143,11 +170,23 @@ ${stripModuleSyntax(source)}
     webgl,
     gpuValidated: webgl ? false : undefined,
     setup(info) {
-      call(webgl
-        ? `(function () { const info = JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}); __hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720; info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl); if (__scene.setup) __scene.setup(info, __hostGl); })()`
-        : `if (__scene.setup) __scene.setup(JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}))`, PREVIEW_LIMITS.compileTimeoutMs)
+      call(`__hostSetup(JSON.parse(${JSON.stringify(JSON.stringify(info ?? {}))}))`, PREVIEW_LIMITS.compileTimeoutMs)
+      if (!call('Boolean(__hostPreparation)', 100)) return null
+      const started = Date.now(), progress = []
+      for (let step = 1; step <= SCENE_LIMITS.prepareMaxSteps; step++) {
+        const remaining = SCENE_LIMITS.prepareTotalTimeoutMs - (Date.now() - started)
+        if (remaining <= 0) throw new Error('prepare() 总计超时')
+        let status
+        try { status = JSON.parse(call('__hostPrepareStep()', Math.min(SCENE_LIMITS.prepareStepTimeoutMs, remaining))) }
+        catch (error) { throw new Error(`prepare() 第 ${step} 步（上一步 ${progress.at(-1)?.label || '开始'}）：${errorText(error)}`) }
+        progress.push({ step, progress: status.progress, label: status.label })
+        if (Date.now() - started > SCENE_LIMITS.prepareTotalTimeoutMs) throw new Error('prepare() 总计超时')
+        if (status.done) return { steps: step, ms: Date.now() - started, progress }
+      }
+      throw new Error(`prepare() 超过 ${SCENE_LIMITS.prepareMaxSteps} 个步骤`)
     },
     renderFrame(t, cols, rows, ctxData) {
+      if (!call('__hostReady', 100)) throw new Error('场景尚未准备完成')
       const started = process.hrtime.bigint()
       const code = pixels
         ? `(function () { __drawCalls = 0; var c = new OffscreenCanvas(${cols | 0}, ${rows | 0}); __scene.paint(c.getContext('2d'), ${Number(t)}, ${cols | 0}, ${rows | 0}, JSON.parse(${JSON.stringify(JSON.stringify(ctxData))})); return JSON.stringify({ lines: [], styles: [], calls: __drawCalls }) })()`
@@ -185,7 +224,11 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
   const scene = compileScene(source, { output })
   if (!scene.ok) return { ok: false, problems: scene.problems, frames: [] }
   const problems = []
-  try { scene.setup(bitmap ? { ...info, width: cols, height: rows } : info) } catch (error) { return { ok: false, problems: [`setup() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) } }
+  let preparation = null
+  try { preparation = scene.setup(bitmap ? { ...info, width: cols, height: rows } : info) } catch (error) {
+    const needsPixels = webgl && errorText(error).includes('MV_HOST_REQUIRES_PIXEL_READBACK')
+    return { ok: false, problems: [needsPixels ? '此 WebGL 场景通过真实画布像素生成几何；Host 仅能记录 API 调用，需在真实浏览器中验证。' : `setup() / prepare() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}), ...(needsPixels ? { requiresBrowserValidation: true } : {}) }
+  }
   const frames = []
   const cueAt = t => { let found = null; for (const cue of cues) if (cue.time <= t && !(cue.end <= t)) found = cue; return found }
   const nextAt = t => cues.find(cue => cue.time > t) ?? null
@@ -207,5 +250,5 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
     }
   }
   if (webgl) problems.push('WebGL 场景在 Host 中只做结构与 API 调用记录检查；未在真实 GPU 上编译 shader 或验证像素。')
-  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows, ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) }
+  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows, ...(preparation ? { preparation } : {}), ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) }
 }

@@ -1,0 +1,598 @@
+{
+  "format": "frostnova-font-build",
+  "em": 64,
+  "faces": [
+    {
+      "id": "0-400-n",
+      "family": "JetBrains Mono",
+      "aliases": [
+        "Menlo",
+        "Menlo-Regular",
+        "Menlo-Bold",
+        "monospace"
+      ],
+      "weight": 400,
+      "italic": false,
+      "ascent": 65,
+      "descent": 19,
+      "sourceSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "baselines": {
+        "top": 49.453125,
+        "hanging": 52,
+        "middle": 17.453125,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.546875
+      }
+    },
+    {
+      "id": "0-500-n",
+      "family": "JetBrains Mono",
+      "aliases": [
+        "Menlo",
+        "Menlo-Regular",
+        "Menlo-Bold",
+        "monospace"
+      ],
+      "weight": 500,
+      "italic": false,
+      "ascent": 65,
+      "descent": 19,
+      "sourceSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "baselines": {
+        "top": 49.453125,
+        "hanging": 52,
+        "middle": 17.453125,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.546875
+      }
+    },
+    {
+      "id": "0-600-n",
+      "family": "JetBrains Mono",
+      "aliases": [
+        "Menlo",
+        "Menlo-Regular",
+        "Menlo-Bold",
+        "monospace"
+      ],
+      "weight": 600,
+      "italic": false,
+      "ascent": 65,
+      "descent": 19,
+      "sourceSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "baselines": {
+        "top": 49.453125,
+        "hanging": 52,
+        "middle": 17.453125,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.546875
+      }
+    },
+    {
+      "id": "0-700-n",
+      "family": "JetBrains Mono",
+      "aliases": [
+        "Menlo",
+        "Menlo-Regular",
+        "Menlo-Bold",
+        "monospace"
+      ],
+      "weight": 700,
+      "italic": false,
+      "ascent": 65,
+      "descent": 19,
+      "sourceSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "baselines": {
+        "top": 49.453125,
+        "hanging": 52,
+        "middle": 17.453125,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.546875
+      }
+    },
+    {
+      "id": "0-800-n",
+      "family": "JetBrains Mono",
+      "aliases": [
+        "Menlo",
+        "Menlo-Regular",
+        "Menlo-Bold",
+        "monospace"
+      ],
+      "weight": 800,
+      "italic": false,
+      "ascent": 65,
+      "descent": 19,
+      "sourceSha256": "48715a42ec242c21e9f02692891e147d022299a52e48d5e413e1a942193ffeda",
+      "baselines": {
+        "top": 49.453125,
+        "hanging": 52,
+        "middle": 17.453125,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.546875
+      }
+    },
+    {
+      "id": "1-400-n",
+      "family": "Space Grotesk",
+      "aliases": [
+        "Avenir Next",
+        "AvenirNext",
+        "AvenirNext-Regular",
+        "AvenirNext-Medium",
+        "AvenirNext-DemiBold",
+        "AvenirNext-Bold",
+        "AvenirNext-Heavy",
+        "sans-serif"
+      ],
+      "weight": 400,
+      "italic": false,
+      "ascent": 63,
+      "descent": 19,
+      "sourceSha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "baselines": {
+        "top": 49.359375,
+        "hanging": 50.400001525878906,
+        "middle": 17.359375,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.640625
+      }
+    },
+    {
+      "id": "1-500-n",
+      "family": "Space Grotesk",
+      "aliases": [
+        "Avenir Next",
+        "AvenirNext",
+        "AvenirNext-Regular",
+        "AvenirNext-Medium",
+        "AvenirNext-DemiBold",
+        "AvenirNext-Bold",
+        "AvenirNext-Heavy",
+        "sans-serif"
+      ],
+      "weight": 500,
+      "italic": false,
+      "ascent": 63,
+      "descent": 19,
+      "sourceSha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "baselines": {
+        "top": 49.359375,
+        "hanging": 50.400001525878906,
+        "middle": 17.359375,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.640625
+      }
+    },
+    {
+      "id": "1-600-n",
+      "family": "Space Grotesk",
+      "aliases": [
+        "Avenir Next",
+        "AvenirNext",
+        "AvenirNext-Regular",
+        "AvenirNext-Medium",
+        "AvenirNext-DemiBold",
+        "AvenirNext-Bold",
+        "AvenirNext-Heavy",
+        "sans-serif"
+      ],
+      "weight": 600,
+      "italic": false,
+      "ascent": 63,
+      "descent": 19,
+      "sourceSha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "baselines": {
+        "top": 49.359375,
+        "hanging": 50.400001525878906,
+        "middle": 17.359375,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.640625
+      }
+    },
+    {
+      "id": "1-700-n",
+      "family": "Space Grotesk",
+      "aliases": [
+        "Avenir Next",
+        "AvenirNext",
+        "AvenirNext-Regular",
+        "AvenirNext-Medium",
+        "AvenirNext-DemiBold",
+        "AvenirNext-Bold",
+        "AvenirNext-Heavy",
+        "sans-serif"
+      ],
+      "weight": 700,
+      "italic": false,
+      "ascent": 63,
+      "descent": 19,
+      "sourceSha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
+      "baselines": {
+        "top": 49.359375,
+        "hanging": 50.400001525878906,
+        "middle": 17.359375,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -14.640625
+      }
+    },
+    {
+      "id": "2-500-n",
+      "family": "Noto Sans SC",
+      "aliases": [
+        "PingFang SC",
+        "PingFangSC"
+      ],
+      "weight": 500,
+      "italic": false,
+      "ascent": 74,
+      "descent": 18,
+      "sourceSha256": "03d5bc4a0a514993a3bf4c0e01d0662f51c70ac9d84ffcc514db0b31a207009a",
+      "baselines": {
+        "top": 56.3125,
+        "hanging": 59.20000076293945,
+        "middle": 24.3125,
+        "alphabetic": 0,
+        "ideographic": -7.6800079345703125,
+        "bottom": -7.6875
+      }
+    },
+    {
+      "id": "3-400-n",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 400,
+      "italic": false,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-500-n",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 500,
+      "italic": false,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-600-n",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 600,
+      "italic": false,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-700-n",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 700,
+      "italic": false,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-400-i",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 400,
+      "italic": true,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "88c0e2e316eaff56eddc9e51e4850317e2a1e490bbf758b2dec4793aedba9c74",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-500-i",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 500,
+      "italic": true,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "88c0e2e316eaff56eddc9e51e4850317e2a1e490bbf758b2dec4793aedba9c74",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-600-i",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 600,
+      "italic": true,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "88c0e2e316eaff56eddc9e51e4850317e2a1e490bbf758b2dec4793aedba9c74",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "3-700-i",
+      "family": "STIX Two Text",
+      "aliases": [
+        "serif"
+      ],
+      "weight": 700,
+      "italic": true,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "88c0e2e316eaff56eddc9e51e4850317e2a1e490bbf758b2dec4793aedba9c74",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "4-400-n",
+      "family": "STIX Two Math",
+      "aliases": [],
+      "weight": 400,
+      "italic": false,
+      "ascent": 49,
+      "descent": 15,
+      "sourceSha256": "562551b15b836e6e01d1b7350909baf3c8c8d83260c1190fbf4544333e6936de",
+      "baselines": {
+        "top": 48.765625,
+        "hanging": 39.20000076293945,
+        "middle": 16.765625,
+        "alphabetic": 0,
+        "ideographic": -15,
+        "bottom": -15.234375
+      }
+    },
+    {
+      "id": "5-800-n",
+      "family": "Noto Sans KR",
+      "aliases": [
+        "Apple SD Gothic Neo",
+        "AppleSDGothicNeo"
+      ],
+      "weight": 800,
+      "italic": false,
+      "ascent": 74,
+      "descent": 18,
+      "sourceSha256": "194018e6b2b293a7964f037b25c0249ce1418bc9ab3c971060a03aa57861e252",
+      "baselines": {
+        "top": 56.3125,
+        "hanging": 59.20000076293945,
+        "middle": 24.3125,
+        "alphabetic": 0,
+        "ideographic": -7.6800079345703125,
+        "bottom": -7.6875
+      }
+    },
+    {
+      "id": "6-500-n",
+      "family": "Noto Sans",
+      "aliases": [],
+      "weight": 500,
+      "italic": false,
+      "ascent": 68,
+      "descent": 19,
+      "sourceSha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d",
+      "baselines": {
+        "top": 50.234375,
+        "hanging": 54.400001525878906,
+        "middle": 18.234375,
+        "alphabetic": 0,
+        "ideographic": -19,
+        "bottom": -13.765625
+      }
+    },
+    {
+      "id": "7-400-n",
+      "family": "Noto Sans Symbols 2",
+      "aliases": [
+        "Apple Symbols"
+      ],
+      "weight": 400,
+      "italic": false,
+      "ascent": 68,
+      "descent": 40,
+      "sourceSha256": "7d5fb73b7ca67a6798101741f5d280a3d016a56a197afcd4199dbb57b4b82a21",
+      "baselines": {
+        "top": 40.265625,
+        "hanging": 54.400001525878906,
+        "middle": 8.265625,
+        "alphabetic": 0,
+        "ideographic": -40,
+        "bottom": -23.734375
+      }
+    }
+  ],
+  "characters": 555,
+  "glyphs": 3642,
+  "shards": [
+    {
+      "name": "font-1.json",
+      "bytes": 491335,
+      "sha256": "e12fdfb782a0f97d1b4138c4d5d58da02e7cc4ff93abf8a44d40f7b5984a8e14"
+    },
+    {
+      "name": "font-2.json",
+      "bytes": 491282,
+      "sha256": "546d6a7b33993d88a32e3cbfbd7b0645bff9488bb6dd1abbd65bb90628c40b26"
+    },
+    {
+      "name": "font-3.json",
+      "bytes": 490939,
+      "sha256": "60d1974c7ff50d594b0ac1e91566eeb5a189cdc334f87d217fc0f8e4dd9117d1"
+    },
+    {
+      "name": "font-4.json",
+      "bytes": 491249,
+      "sha256": "48d4f093d6e6e8e5a380d8f7b1b9a4a6eed00eb1f260ae7a5546563f29b5f783"
+    },
+    {
+      "name": "font-5.json",
+      "bytes": 491158,
+      "sha256": "4a4296bdb97177f4181ddd9279c3314fd37b284bf2a7479da7128daab198e31c"
+    },
+    {
+      "name": "font-6.json",
+      "bytes": 42806,
+      "sha256": "b9ed688239ca3a507c03af72ed888d5163f7d4f34c63142d158da14b163234fb"
+    }
+  ],
+  "missing": [
+    {
+      "char": "鿿",
+      "codepoint": "U+9FFF"
+    },
+    {
+      "char": "힯",
+      "codepoint": "U+D7AF"
+    },
+    {
+      "char": "﫿",
+      "codepoint": "U+FAFF"
+    },
+    {
+      "char": "︰",
+      "codepoint": "U+FE30"
+    },
+    {
+      "char": "＀",
+      "codepoint": "U+FF00"
+    },
+    {
+      "char": "￯",
+      "codepoint": "U+FFEF"
+    },
+    {
+      "char": "𠀀",
+      "codepoint": "U+20000"
+    },
+    {
+      "char": "𿿿",
+      "codepoint": "U+3FFFF"
+    }
+  ],
+  "totalBytes": 2498769,
+  "sources": [
+    {
+      "family": "JetBrains Mono",
+      "license": "SIL OFL 1.1",
+      "source": "FrostNova upstream assets/fonts/JetBrainsMono-VF.ttf"
+    },
+    {
+      "family": "Space Grotesk",
+      "license": "SIL OFL 1.1",
+      "source": "FrostNova upstream assets/fonts/SpaceGrotesk-VF.ttf"
+    },
+    {
+      "family": "Noto Sans SC",
+      "license": "SIL OFL 1.1",
+      "source": "FrostNova upstream assets/fonts/NotoSansSC-Medium-zh.ttf"
+    },
+    {
+      "family": "STIX Two Text",
+      "license": "SIL OFL 1.1",
+      "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/stixtwotext"
+    },
+    {
+      "family": "STIX Two Math",
+      "license": "SIL OFL 1.1",
+      "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/stixtwomath"
+    },
+    {
+      "family": "Noto Sans KR",
+      "license": "SIL OFL 1.1",
+      "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/notosanskr"
+    },
+    {
+      "family": "Noto Sans",
+      "license": "SIL OFL 1.1",
+      "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/notosans"
+    },
+    {
+      "family": "Noto Sans Symbols 2",
+      "license": "SIL OFL 1.1",
+      "sourceUrl": "https://github.com/google/fonts/tree/main/ofl/notosanssymbols2"
+    }
+  ]
+}

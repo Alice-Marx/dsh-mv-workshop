@@ -1,0 +1,194 @@
+{
+  "format": "dsh-mv-browser-evidence",
+  "version": 1,
+  "status": "passed",
+  "packId": "world-execute-me-frostnova",
+  "packVersion": "1.0.0",
+  "testedOn": "2026-10-07",
+  "plugin": "0.9.6",
+  "browser": "154.0.8037.98",
+  "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Laptop GPU (0x00002820) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "reportSha256": "622bf5c7c61c73ea34165fb360e2a08e5a66ea679e8ab740effde6a254187870",
+  "reportSource": "Corresponding Source ZIP: release-evidence/browser-report.json",
+  "externalRequests": 0,
+  "audioFiles": 0,
+  "errors": 0,
+  "limitsChecked": true,
+  "cleanupChecked": true,
+  "coverage": {
+    "shots": 305,
+    "transitions": 231,
+    "pause": 19,
+    "seek": 19
+  },
+  "prepareSteps": 434,
+  "prepareMs": 25294.100000023842,
+  "pixelComparison": {
+    "maxChannelDelta": 1,
+    "maxDifferentPixelFraction": 0.0002,
+    "alphaDifferences": 0,
+    "exactHashesRetained": true
+  },
+  "files": [
+    {
+      "path": "cover.jpg",
+      "size": 126062,
+      "sha256": "2a0d81e9d34728cfa4538ed97a22922cbf60362c81f4aa90ffa9128906e34f59"
+    },
+    {
+      "path": "data/features-1.json",
+      "size": 466702,
+      "sha256": "f0069ffb105b2cad869171d8c31737a9fb5ade9b9f033299f9703dc20593e890"
+    },
+    {
+      "path": "data/features-2.json",
+      "size": 466702,
+      "sha256": "d2fd5a2b19bc6f55f8b282a6b0a33531118fbdbca278d537c92cddd2543db0ec"
+    },
+    {
+      "path": "data/features-3.json",
+      "size": 466702,
+      "sha256": "dbd3d94ffa9efecef13480af2885193e9a4c5a560af17ff3e6f50208a1cb5297"
+    },
+    {
+      "path": "data/features-4.json",
+      "size": 62210,
+      "sha256": "0b9fbf0d451a354887f38b302c4fc2c1662b9a70ceb11d4d99829be0959c5708"
+    },
+    {
+      "path": "data/features.json",
+      "size": 4500,
+      "sha256": "91e3670c86f7f0b717ca2991150a3cdc6331061142239e8c5fec5289adc49d9a"
+    },
+    {
+      "path": "data/font-1.json",
+      "size": 491335,
+      "sha256": "e12fdfb782a0f97d1b4138c4d5d58da02e7cc4ff93abf8a44d40f7b5984a8e14"
+    },
+    {
+      "path": "data/font-2.json",
+      "size": 491282,
+      "sha256": "546d6a7b33993d88a32e3cbfbd7b0645bff9488bb6dd1abbd65bb90628c40b26"
+    },
+    {
+      "path": "data/font-3.json",
+      "size": 490939,
+      "sha256": "60d1974c7ff50d594b0ac1e91566eeb5a189cdc334f87d217fc0f8e4dd9117d1"
+    },
+    {
+      "path": "data/font-4.json",
+      "size": 491249,
+      "sha256": "48d4f093d6e6e8e5a380d8f7b1b9a4a6eed00eb1f260ae7a5546563f29b5f783"
+    },
+    {
+      "path": "data/font-5.json",
+      "size": 491158,
+      "sha256": "4a4296bdb97177f4181ddd9279c3314fd37b284bf2a7479da7128daab198e31c"
+    },
+    {
+      "path": "data/font-6.json",
+      "size": 42806,
+      "sha256": "b9ed688239ca3a507c03af72ed888d5163f7d4f34c63142d158da14b163234fb"
+    },
+    {
+      "path": "data/onsets.json",
+      "size": 16650,
+      "sha256": "62da145bb24ef1a910cc7ef30fec4c9976ba266f8d864a141e9693f1fd1f3a9d"
+    },
+    {
+      "path": "data/quotes-1.json",
+      "size": 466702,
+      "sha256": "ff8ef7a97ea80143804dab677cbefc33a3718e29a7a888db2e182433f4bb4bbb"
+    },
+    {
+      "path": "data/quotes-2.json",
+      "size": 466702,
+      "sha256": "0a050e273e5207e22b79db981d682056d84478eb6bcb76f0e34f76f0f649eb20"
+    },
+    {
+      "path": "data/quotes-3.json",
+      "size": 92422,
+      "sha256": "d295fc70c8016df483281f81fed2bc429bbad244e84d3070abecf71ec09e8ffa"
+    },
+    {
+      "path": "LICENSE.txt",
+      "size": 34524,
+      "sha256": "8d56b405468aad11f87ab5763f901e276e08d9646ff5c8481b1762b6b789e9ed"
+    },
+    {
+      "path": "licenses/FFLATE-MIT.txt",
+      "size": 1069,
+      "sha256": "0a1df3a083d0c010560aa342e87959c8c1070e6fd54545741f083f22d0c8b551"
+    },
+    {
+      "path": "licenses/FONT-MASKS.md",
+      "size": 7011,
+      "sha256": "ef13dcaaebaa4939a53b86754b2a6b0583ee6789dede493f9b95b4ca181ee0c6"
+    },
+    {
+      "path": "licenses/FONT-PROVENANCE.json",
+      "size": 14737,
+      "sha256": "957f991460bd3a13bf04a530a7b69ec84e33b9dfa25f0d52bd81fbd6d59e479d"
+    },
+    {
+      "path": "licenses/FONTS-OFL.txt",
+      "size": 49258,
+      "sha256": "335f78c25e10acca43a235945d7aff2014d383b0ba295b4dfce599e380ed4474"
+    },
+    {
+      "path": "licenses/THREE-MIT.txt",
+      "size": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    {
+      "path": "licenses/UPSTREAM-NOTICE.md",
+      "size": 2142,
+      "sha256": "733e0a8bc234d2e7fc2e4c3c9e95489a2afd1d14fc8dd1c48c52637e30234805"
+    },
+    {
+      "path": "licenses/UPSTREAM-NOTICE.zh-CN.md",
+      "size": 1956,
+      "sha256": "f71e0b45024d037e412a354198df13cfcb7d578e4973fcdbfbcd39aba9258679"
+    },
+    {
+      "path": "LYRICS-NOTICE.md",
+      "size": 789,
+      "sha256": "bd7f975eba1d264b12b008417f8c8348997ee9800675318bee796b250f82e1ca"
+    },
+    {
+      "path": "lyrics.json",
+      "size": 76321,
+      "sha256": "ec0ee05a7011c1637e1f6f2f6f5a6f6c417c53b487a56f5c4e6aa25b7ce4bb22"
+    },
+    {
+      "path": "lyrics.timing.json",
+      "size": 9861,
+      "sha256": "c6c21b2aac9e8cf53cfd3ab22ea8d2f822fdcf419ed7a9772ac857b3b7cdfc63"
+    },
+    {
+      "path": "mv.json",
+      "size": 4747,
+      "sha256": "d14f6dc3e2cb9b2088a888795cb7dd7c697ea82f6d7c27e93786e01c0490e943"
+    },
+    {
+      "path": "NOTICE.md",
+      "size": 2531,
+      "sha256": "3ea0bc4e31d5f4cb0b6eb23849f020bccac5c48b6bf3580372567eed5fb4ca31"
+    },
+    {
+      "path": "README.md",
+      "size": 2000,
+      "sha256": "f453429d801a6cb4d4adda0093ecf48a9ab9359d29996f0ad7a852d5cb4a148f"
+    },
+    {
+      "path": "scenes.js",
+      "size": 1933262,
+      "sha256": "90f468040014a2949c9f28f7eef02da5eb75dd1255bfdb99cc081dd742c989ec"
+    },
+    {
+      "path": "source-provenance.json",
+      "size": 45475,
+      "sha256": "6948e6906500abc21ae4c36d3b1776a39bd971eb2d48f9beed5f121eb5545a24"
+    }
+  ]
+}

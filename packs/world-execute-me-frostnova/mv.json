@@ -1,0 +1,174 @@
+{
+  "format": "dsh-mv-pack",
+  "version": 1,
+  "title": "world.execute(me); · FrostNova 实时 3D MV",
+  "artist": "Mili",
+  "duration": 211.907,
+  "credits": [
+    "Visuals — Claude Opus 5.5 Max; Copyright (C) 2026 FrostNova, AGPL-3.0-or-later",
+    "Worker adaptation © 2026 Alice-Marx, AGPL-3.0-or-later, modified 2026-10-07",
+    "Three.js contributors, MIT; offline font glyph masks from separately licensed OFL fonts",
+    "Mili and their rights holders: song text and official Chinese translation, NOT AGPL; music recording not included",
+    "Claude name and logo: Anthropic trademarks; no endorsement"
+  ],
+  "notice": "Unofficial AI-assisted fan MV. Photosensitivity warning: rapid flashing and cuts. Choose only your own music. Original English/Chinese captions are static data. See NOTICE.md and Corresponding Source.",
+  "lyrics": {
+    "file": "lyrics.json",
+    "offset": 0
+  },
+  "canvas": {
+    "renderer": "script",
+    "script": "scenes.js",
+    "output": "webgl",
+    "size": [
+      960,
+      540
+    ],
+    "subtitles": false,
+    "assets": {
+      "captions": "lyrics.json",
+      "onsets": "data/onsets.json",
+      "feature-meta": "data/features.json",
+      "features": [
+        "data/features-1.json",
+        "data/features-2.json",
+        "data/features-3.json",
+        "data/features-4.json"
+      ],
+      "quotes": [
+        "data/quotes-1.json",
+        "data/quotes-2.json",
+        "data/quotes-3.json"
+      ],
+      "font-1": "data/font-1.json",
+      "font-2": "data/font-2.json",
+      "font-3": "data/font-3.json",
+      "font-4": "data/font-4.json",
+      "font-5": "data/font-5.json",
+      "font-6": "data/font-6.json"
+    }
+  },
+  "x-dsh-mv-ai": {
+    "sections": [
+      {
+        "kind": "intro",
+        "label": "intro",
+        "start": 0,
+        "end": 15.067
+      },
+      {
+        "kind": "verse",
+        "label": "inst",
+        "start": 15.067,
+        "end": 29.836
+      },
+      {
+        "kind": "verse",
+        "label": "verse",
+        "start": 29.836,
+        "end": 44.606
+      },
+      {
+        "kind": "verse",
+        "label": "prechorus",
+        "start": 44.606,
+        "end": 59.375
+      },
+      {
+        "kind": "chorus",
+        "label": "chorus",
+        "start": 59.375,
+        "end": 74.144
+      },
+      {
+        "kind": "verse",
+        "label": "verse",
+        "start": 74.144,
+        "end": 88.914
+      },
+      {
+        "kind": "verse",
+        "label": "prechorus",
+        "start": 88.914,
+        "end": 103.683
+      },
+      {
+        "kind": "chorus",
+        "label": "chorus",
+        "start": 103.683,
+        "end": 118.452
+      },
+      {
+        "kind": "verse",
+        "label": "chorus",
+        "start": 118.452,
+        "end": 125.837
+      },
+      {
+        "kind": "bridge",
+        "label": "bridge",
+        "start": 125.837,
+        "end": 133.222
+      },
+      {
+        "kind": "verse",
+        "label": "inst",
+        "start": 133.222,
+        "end": 147.991
+      },
+      {
+        "kind": "bridge",
+        "label": "chant",
+        "start": 147.991,
+        "end": 162.76
+      },
+      {
+        "kind": "chorus",
+        "label": "chorus",
+        "start": 162.76,
+        "end": 177.53
+      },
+      {
+        "kind": "verse",
+        "label": "chorus",
+        "start": 177.53,
+        "end": 192.299
+      },
+      {
+        "kind": "outro",
+        "label": "outro",
+        "start": 192.299,
+        "end": 207.068
+      },
+      {
+        "kind": "verse",
+        "label": "end",
+        "start": 207.068,
+        "end": 211.907
+      }
+    ]
+  },
+  "x-dsh-mv-workshop": {
+    "id": "world-execute-me-frostnova",
+    "version": "1.0.0",
+    "requires": "0.9.6",
+    "author": "Alice-Marx",
+    "license": "AGPL-3.0-or-later AND LicenseRef-Mili-NonCommercial-FanWork",
+    "source": "https://github.com/FrostNovaOrg/world-execute-web/tree/29aefca50e40c14498420e1c6e1f3a1037727e17",
+    "homepage": "https://github.com/Alice-Marx/dsh-mv-workshop/tree/main/packs/world-execute-me-frostnova",
+    "description": "FrostNova 原作实时3D完整非音乐适配：305镜头、16章、逐词英文与官方中文、60Hz分析、代码字形和离线OFL字体素材随包提供。音乐自备，非官方AI辅助同人MV；需插件0.9.6。",
+    "tags": [
+      "world.execute(me)",
+      "Mili",
+      "frostnova",
+      "three.js",
+      "3d",
+      "webgl"
+    ],
+    "publishedAt": "2026-10-07",
+    "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
+    "lyricsCredit": "Mili / rights holders: song text and official Chinese translation; timing from FrostNovaOrg/world-execute-web",
+    "lyricsSource": "https://projectmili.com/copyright-guidelines",
+    "lyricsTiming": "lyrics.timing.json"
+  }
+}

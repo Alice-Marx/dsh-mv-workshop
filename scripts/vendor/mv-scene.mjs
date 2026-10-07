@@ -39,6 +39,10 @@ export const SCENE_LIMITS = Object.freeze({
   hardTimeoutMs: 1500,
   /** Setup / first compile. */
   setupTimeoutMs: 2000,
+  /** Optional cooperative preparation, before any playback frames are accepted. */
+  prepareStepTimeoutMs: 10_000,
+  prepareTotalTimeoutMs: 120_000,
+  prepareMaxSteps: 512,
   maxCols: 240,
   maxRows: 85,
 })
@@ -135,6 +139,27 @@ function __mvNormalize(out, cols, rows) {
 }
 `
 
+/** Small, copied progress data only; never post a script-owned iterator/result across the boundary. */
+export const SCENE_PREPARE_RUNTIME_SOURCE = String.raw`
+function __mvPrepareIterator(iterator) {
+  if (!iterator || typeof iterator !== 'object' || typeof iterator.then === 'function') throw new TypeError('prepare() 必须返回同步迭代器，不能返回 Promise');
+  const next = iterator.next;
+  if (typeof next !== 'function') throw new TypeError('prepare() 必须返回带 next() 的同步迭代器');
+  return { iterator, next };
+}
+function __mvPrepareProgress(result, previous) {
+  if (!result || typeof result !== 'object' || typeof result.then === 'function' || typeof result.done !== 'boolean') throw new TypeError('prepare.next() 必须返回同步的 { done, value }，不能返回 Promise');
+  if (result.done) return { done: true, progress: 1, label: '' };
+  const value = result.value;
+  if (value === undefined) return { done: false, progress: previous, label: '' };
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new TypeError('prepare() 的进度应为 { progress, label } 或 undefined');
+  const progress = value.progress, label = value.label === undefined ? '' : value.label;
+  if (!Number.isFinite(progress) || progress < 0 || progress > 1 || progress < previous) throw new RangeError('prepare() progress 必须是 0–1 的单调有限数');
+  if (typeof label !== 'string' || label.length > 160) throw new TypeError('prepare() label 必须是不超过 160 字符的字符串');
+  return { done: false, progress, label };
+}
+`
+
 /** Minimal canvas interface for bundled Three.js, shared by playback and structural checks. */
 export const WEBGL_CANVAS_FACADE_SOURCE = String.raw`
 function __mvCanvasFacade(canvas, gl) {
@@ -171,7 +196,7 @@ export function sceneWorkerSource(userSource, { output = 'text' } = {}) {
   const blocked = JSON.stringify(sceneBlockedGlobals(output))
   // Compile the scene through a captured Function constructor after supervisor state has been enclosed in the
   // IIFE below. Functions created this way resolve globals from the worker, not lexical __* supervisor bindings.
-  const userBody = JSON.stringify(`"use strict";\n${stripModuleSyntax(userSource)}\n;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null };`)
+  const userBody = JSON.stringify(`"use strict";\n${stripModuleSyntax(userSource)}\n;return { render: typeof render === 'function' ? render : null, paint: typeof paint === 'function' ? paint : null, setup: typeof setup === 'function' ? setup : null, prepare: typeof prepare === 'function' ? prepare : null };`)
   return `"use strict";
 (() => {
 const __global = self;
@@ -210,8 +235,10 @@ const __canvasListen = typeof EventTarget !== 'undefined' ? EventTarget.prototyp
   }
 })();
 ${SCENE_RUNTIME_SOURCE}
+${SCENE_PREPARE_RUNTIME_SOURCE}
 ${WEBGL_CANVAS_FACADE_SOURCE}
-let __scene = null, __setupError = '', __cv = null, __g = null, __facade = null, __initialized = false, __contextLost = false;
+let __scene = null, __setupError = '', __cv = null, __g = null, __facade = null, __initialized = false, __contextLost = false, __ready = false;
+let __prepare = null, __prepareId = 0, __prepareProgress = 0, __prepareStarted = 0, __prepareWidth = 0, __prepareHeight = 0;
 try {
   __scene = __compile(${userBody})();
   if (__bitmap && !__scene.paint) __setupError = __webgl
@@ -269,11 +296,49 @@ __listen('message', event => {
     if (__initialized) return;
     __initialized = true;
     if (!__setupError && __webgl) { try { __surface(msg.info && msg.info.width || 1280, msg.info && msg.info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
-    if (!__setupError && __scene.setup) { try { __scene.setup(__webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {}), __webgl ? __g : undefined) } catch (error) { __setupError = String(error && error.stack || error) } }
+    if (!__setupError) { try {
+      const info = __webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {});
+      if (__scene.setup) __scene.setup(info, __webgl ? __g : undefined);
+      __prepareWidth = __cv && __cv.width; __prepareHeight = __cv && __cv.height;
+      if (__scene.prepare) __prepare = __mvPrepareIterator(__scene.prepare(info, __webgl ? __g : undefined));
+      if (__prepare && __bitmap && (__cv.width !== __prepareWidth || __cv.height !== __prepareHeight)) throw new Error('prepare() 不能更改输出 canvas.size');
+    } catch (error) { __setupError = String(error && error.stack || error) } }
+    if (!__setupError && __prepare) {
+      __prepareStarted = __now();
+      __post({ type: 'preparing', id: 0, progress: 0, label: '' });
+      return;
+    }
+    __ready = !__setupError;
     __post({ type: 'ready', error: __setupError });
     return;
   }
-  if (msg.type !== 'frame' || !__initialized || __setupError || __contextLost) return;
+  if (msg.type === 'prepare-next' && __initialized && __prepare && !__setupError && !__contextLost) {
+    const started = __now();
+    try {
+      if (!Number.isSafeInteger(msg.id) || msg.id !== __prepareId + 1) throw new Error('准备步骤编号不匹配');
+      if (msg.id > ${SCENE_LIMITS.prepareMaxSteps}) throw new Error('prepare() 超过 ${SCENE_LIMITS.prepareMaxSteps} 个步骤');
+      if (started - __prepareStarted > ${SCENE_LIMITS.prepareTotalTimeoutMs}) throw new Error('prepare() 总计超时');
+      __prepareId = msg.id;
+      const status = __mvPrepareProgress(__prepare.next.call(__prepare.iterator), __prepareProgress);
+      if (__bitmap && (__cv.width !== __prepareWidth || __cv.height !== __prepareHeight)) throw new Error('prepare() 不能更改输出 canvas.size');
+      if (__webgl && (__contextLost || __g.isContextLost?.())) throw new Error('WebGL 上下文已丢失，场景已停止。');
+      // Complete first-use GPU work here, not in the first timed playback frame.
+      if (__webgl && typeof __g.finish === 'function') __g.finish();
+      const ended = __now();
+      if (ended - started > ${SCENE_LIMITS.prepareStepTimeoutMs}) throw new Error('prepare() 单步骤超时');
+      if (ended - __prepareStarted > ${SCENE_LIMITS.prepareTotalTimeoutMs}) throw new Error('prepare() 总计超时');
+      __prepareProgress = status.progress;
+      if (status.done) {
+        __prepare = null; __ready = true;
+        __post({ type: 'ready', error: '', id: msg.id });
+      } else __post({ type: 'preparing', id: msg.id, progress: status.progress, label: status.label });
+    } catch (error) {
+      __prepare = null; __setupError = String(error && error.stack || error).slice(0, 2000);
+      __post({ type: 'fatal', error: __setupError });
+    }
+    return;
+  }
+  if (msg.type !== 'frame' || !__initialized || !__ready || __setupError || __contextLost) return;
   const started = __now();
   try {
     if (__bitmap) {

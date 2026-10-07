@@ -7,10 +7,11 @@
 //   node scripts/validate.mjs                 all packs
 //   node scripts/validate.mjs --changed BASE  also fail if a PR touches files outside packs/<id>/
 import { execFileSync } from 'node:child_process'
-import { existsSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, statSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { validateWorkshopPack } from './vendor/mv-workshop.mjs'
 import { checkScene } from './vendor/mv-scene-host.mjs'
+import { verifyBrowserEvidence } from './browser-evidence.mjs'
 import { PACKS, ROOT, packFiles, packIds, readPackText, readPackBytes } from './lib.mjs'
 
 const args = process.argv.slice(2)
@@ -62,7 +63,15 @@ for (const id of ids) {
     const sizes = (output === 'text') ? [[100, 32], [60, 18]] : [pack.canvas.size]
     for (const [cols, rows] of sizes) {
       const check = checkScene(source, { times, cols, rows, info, ...(output !== 'text' ? { output, size: pack.canvas.size } : {}) })
-      if (!check.ok) fail(`packs/${id}: scene script fails in the sandbox (${cols}x${rows}): ${check.problems.join('; ')}`)
+      if (check.requiresBrowserValidation) {
+        const evidencePath = join(ROOT, 'validation', `${id}-${result.meta.version}.json`)
+        let evidence = null
+        try { evidence = JSON.parse(readFileSync(evidencePath, 'utf8')) } catch {}
+        const errors = verifyBrowserEvidence(evidence, { id, version: result.meta.version, files })
+        if (errors.length) fail(`packs/${id}: Host cannot rasterize this scene; verified maintainer browser evidence required: ${errors.join('; ')}`)
+        else warn(`packs/${id}: real pixel readback requires browser QA; matching maintainer evidence verified for all ${files.length} files. Host does not validate GPU pixels.`)
+      }
+      else if (!check.ok) fail(`packs/${id}: scene script fails in the sandbox (${cols}x${rows}): ${check.problems.join('; ')}`)
       else for (const p of check.problems) warn(`packs/${id}: ${p}`)
     }
   }
