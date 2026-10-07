@@ -2,8 +2,8 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "521ee59582fb9826a186772e86e02c671c69902d",
- "generated": "2026-10-07T10:07:56.591Z",
+ "commit": "d24f6ed2f7aaa9be5d2430d6bbcbb6ab4b667549",
+ "generated": "2026-10-07T15:23:58.595Z",
  "packs": [
   {
    "id": "world-execute-me-frostnova",
@@ -11,10 +11,10 @@
    "artist": "Mili",
    "author": "Alice-Marx",
    "license": "AGPL-3.0-or-later AND LicenseRef-Mili-NonCommercial-FanWork",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "duration": 211.907,
    "renderer": "webgl",
-   "description": "FrostNova 原作实时3D完整非音乐适配：305镜头、16章、逐词英文与官方中文、60Hz分析、代码字形和离线OFL字体素材随包提供。音乐自备，非官方AI辅助同人MV；需插件0.9.6。",
+   "description": "FrostNova 原作实时3D完整非音乐适配：305镜头、16章、逐词英文与官方中文、60Hz分析、代码字形和离线OFL字体素材随包提供。音乐自备，非官方AI辅助同人MV；需插件0.9.7。",
    "tags": [
     "world.execute(me)",
     "Mili",
@@ -34,8 +34,8 @@
    "lyricsLicense": "LicenseRef-Mili-NonCommercial-FanWork",
    "lyricsCredit": "Mili / rights holders: song text and official Chinese translation; timing from FrostNovaOrg/world-execute-web",
    "lyricsSource": "https://projectmili.com/copyright-guidelines",
-   "requires": "0.9.6",
-   "updated": "2026-10-07T18:07:18+08:00",
+   "requires": "0.9.7",
+   "updated": "2026-10-07T23:07:52+08:00",
    "files": [
     {
      "path": "LICENSE.txt",
@@ -49,13 +49,13 @@
     },
     {
      "path": "NOTICE.md",
-     "size": 2531,
-     "sha256": "3ea0bc4e31d5f4cb0b6eb23849f020bccac5c48b6bf3580372567eed5fb4ca31"
+     "size": 2888,
+     "sha256": "3dfbbf98638146468c7337ddc927c3772b2f2b60db8e87b046d65413c7528fe0"
     },
     {
      "path": "README.md",
-     "size": 2000,
-     "sha256": "f453429d801a6cb4d4adda0093ecf48a9ab9359d29996f0ad7a852d5cb4a148f"
+     "size": 2357,
+     "sha256": "66890d0da5c044e8c3c010cef4c98b37f1c204ff63e1ebf8207fb2ad72b13b3e"
     },
     {
      "path": "cover.jpg",
@@ -185,17 +185,17 @@
     {
      "path": "mv.json",
      "size": 4747,
-     "sha256": "d14f6dc3e2cb9b2088a888795cb7dd7c697ea82f6d7c27e93786e01c0490e943"
+     "sha256": "8f6c0816ab0986a95aab0736b05eef9d40c2b5ecea18647deacc3355b3e14f52"
     },
     {
      "path": "scenes.js",
-     "size": 1933262,
-     "sha256": "90f468040014a2949c9f28f7eef02da5eb75dd1255bfdb99cc081dd742c989ec"
+     "size": 1933959,
+     "sha256": "9424d0130cc62e3b4671c519ec6d8485532c72d1ab94f0a253dd854299606481"
     },
     {
      "path": "source-provenance.json",
      "size": 45475,
-     "sha256": "6948e6906500abc21ae4c36d3b1776a39bd971eb2d48f9beed5f121eb5545a24"
+     "sha256": "9ff2d1da65e3b2246d734f649b30eb28b44c850300c4aa8b30f8a4dd5906ae97"
     }
    ]
   },
