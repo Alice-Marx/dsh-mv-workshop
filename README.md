@@ -62,6 +62,19 @@ Local check / 本地检查: `node scripts/validate.mjs` (Node 20+, no dependenci
 
 ## Domestic download mirror / 国内下载备用源
 
+**Current status / 当前状态（2026-10-08）:** Gitee remains a Git mirror, but is **not enabled as the
+default download fallback**. Some raw JSON resources return HTTP 451, with the platform message
+`The content may contain violation information`. Successful Git synchronization or an accessible
+index does not mean every pack resource can be downloaded. Complete installation of affected packs
+is unavailable through this mirror until the restriction is resolved; GitHub remains the official
+primary download source. Platform review must be handled by the repository owner; this project does
+not submit automatic appeals or bypass content filters.
+
+Gitee 仓库与 Git 同步已正常建立，但部分 raw 数据文件被平台返回 **HTTP 451 内容限制**，
+所以目前不启用默认备用源。索引能打开、提交能同步，不代表全部素材能下载；受影响作品暂不能
+通过 Gitee 完整安装。GitHub 仍为官方主下载源。平台复核由仓库拥有者处理，不自动对外申诉、
+发送消息或规避平台拦截。
+
 The official [Gitee mirror](https://gitee.com/Alice-Marx/dsh-mv-workshop) keeps the same published GitHub
 `main`, tags and commit IDs. Plugin versions supporting automatic fallback first try GitHub; network
 failures can fall back to `https://raw.giteeusercontent.com/Alice-Marx/dsh-mv-workshop/raw` without a proxy.
