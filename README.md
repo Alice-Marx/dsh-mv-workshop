@@ -60,6 +60,31 @@ scripts/vendor/          rule files shared with the plugin
 
 Local check / 本地检查: `node scripts/validate.mjs` (Node 20+, no dependencies).
 
+## Domestic download mirror / 国内下载备用源
+
+The official [Gitee mirror](https://gitee.com/Alice-Marx/dsh-mv-workshop) keeps the same published GitHub
+`main`, tags and commit IDs. Plugin versions supporting automatic fallback first try GitHub; network
+failures can fall back to `https://raw.giteeusercontent.com/Alice-Marx/dsh-mv-workshop/raw` without a proxy.
+Each pack file still uses the complete commit named by `index.json`, its declared size and SHA-256;
+certificate, size or integrity errors do not silently switch sources. The mirror contains no song audio.
+
+官方 Gitee 备用仓与 GitHub 使用相同发布提交；支持自动备用的插件在 GitHub 网络失败时可直连
+Gitee，继续逐文件核对大小及 SHA-256。音乐仍需自备。公开 raw 单文件超过 10 MB 时 Gitee 要求认证，
+因此保留逐文件安装，不以大型 raw ZIP 替代；平台仍可能限流或暂时不可用。
+
+After validation and the index job complete, the protected `mirror` CI job fetches the final GitHub
+`main` and published tags and pushes them to Gitee without force or deletion. It runs only for this
+official repository's `main` push or manual workflow run, never for pull requests or forks. Its credential
+is the repository Actions secret `GITEE_TOKEN`, not a committed token. A new tag published after the
+main run can be mirrored with a manual `validate packs` run on `main`.
+
+Git synchronization does **not** synchronize Release attachments. In particular, FrostNova's complete
+AGPL Corresponding Source ZIP is a separate free Release asset, not an anonymous raw file; mirror
+attachments must be uploaded and their unauthenticated downloads verified independently.
+The [Gitee Corresponding Source attachment](https://gitee.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.1/20261007_frostnova-corresponding-source-1.0.1.zip)
+was separately uploaded and anonymously verified byte-for-byte against the GitHub release archive
+(14,683,605 bytes, SHA-256 `809d44af31c83418a351f2a77ebd3628a0533f9ac979118e04420c4bb193469e`).
+
 ## 3D packs / 3D 包
 
 Use `canvas.renderer: "script"`, `canvas.output: "webgl"`, `canvas.size: [1280, 720]` and a bundled

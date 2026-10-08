@@ -58,3 +58,41 @@ jobs:
           git add index.json
           git commit -m "index: rebuild [skip ci]"
           git push
+
+  mirror:
+    # Wait for the index bot, then mirror the final GitHub main. No PR secrets.
+    needs: [validate, index]
+    if: >-
+      always() && github.repository == 'Alice-Marx/dsh-mv-workshop' &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      needs.validate.result == 'success' &&
+      (needs.index.result == 'success' || needs.index.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    concurrency:
+      group: gitee-mirror-main
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Mirror published main and tags to Gitee (no force or deletion)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REPOSITORY" = "Alice-Marx/dsh-mv-workshop"
+          test "$GITHUB_REF" = "refs/heads/main"
+          test -n "$GITEE_TOKEN" || { echo "GITEE_TOKEN secret is not configured"; exit 1; }
+          # Public GitHub fetch; do not execute scripts from the checked-out repository.
+          git fetch origin main --tags
+          git -c credential.helper= \
+            -c 'credential.helper=!f() { if [ "$1" = get ]; then printf "%s\n" "username=Alice-Marx" "password=$GITEE_TOKEN"; fi; }; f' \
+            -c credential.useHttpPath=true \
+            push https://gitee.com/Alice-Marx/dsh-mv-workshop.git \
+            refs/remotes/origin/main:refs/heads/main 'refs/tags/*:refs/tags/*'
