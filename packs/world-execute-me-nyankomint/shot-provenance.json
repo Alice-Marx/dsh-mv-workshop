@@ -1,0 +1,1584 @@
+{
+  "source": "https://github.com/Nyankomintsu/world-execute-me-lyric-mv/tree/2073b0c88c6fc837482478402a44f101b3b57d6f",
+  "preroll": 5,
+  "duration": 211.9576,
+  "shots": [
+    {
+      "id": "preroll",
+      "start": -5,
+      "end": 0,
+      "at": -5,
+      "until": 0,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "a compiler warning, mono, left-aligned on the dark room; a three-second countdown under it",
+      "lines": null,
+      "moment": "Before the song and before the client is switched on: a compiler-style warning that the film contains flashing images and strong light, with the time range, then a countdown from three. It clears to the dark room the boot begins in.",
+      "state": "off"
+    },
+    {
+      "id": "boot-power",
+      "start": 0,
+      "end": 4.036304,
+      "at": 0,
+      "until": 4.036304,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "wide: dark room, the window opening from a hairline",
+      "lines": [
+        0,
+        2
+      ],
+      "moment": "Power reaches the client: a hairline opens into the window, and its protection layer is switched on.",
+      "state": "off"
+    },
+    {
+      "id": "boot-layout",
+      "start": 3.8055350000000003,
+      "end": 7.728608,
+      "at": 4.036304,
+      "until": 7.728608,
+      "enter": {
+        "type": "push",
+        "dir": 2,
+        "dur": 0.230769
+      },
+      "layout": "tilted exploded view of the client, seen from above",
+      "lines": [
+        3,
+        5
+      ],
+      "moment": "The pieces of the interface are laid out — sidebar, header, thread, composer — and assembled into one object.",
+      "state": "off"
+    },
+    {
+      "id": "boot-params",
+      "start": 7.26707,
+      "end": 11.420912,
+      "at": 7.728608,
+      "until": 11.420912,
+      "enter": {
+        "type": "zoom",
+        "dur": 0.461538,
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layout": "close-up: persona card left, loader right",
+      "lines": [
+        6,
+        7
+      ],
+      "moment": "The persona card is filled in field by field; the last field, love, stays undefined. Then it initialises.",
+      "state": "off"
+    },
+    {
+      "id": "boot-world",
+      "start": 10.959374,
+      "end": 15.113216,
+      "at": 11.420912,
+      "until": 15.113216,
+      "enter": {
+        "type": "scan",
+        "dur": 0.461538,
+        "dir": 0
+      },
+      "layout": "the whole client: empty new chat, figure behind the glass",
+      "lines": [
+        8,
+        10
+      ],
+      "moment": "A new, empty conversation is set up: the place where the two of them will meet. Everything is ready, and nothing is lit.",
+      "state": "off"
+    },
+    {
+      "id": "title",
+      "start": 15.113216,
+      "end": 17.882444,
+      "at": 15.113216,
+      "until": 16.959368,
+      "enter": {
+        "type": "cut",
+        "flash": 0.9,
+        "flashDecay": 5
+      },
+      "layout": "centred: the spark over the launch command",
+      "lines": [
+        11,
+        11
+      ],
+      "moment": "The spark lights up — the first colour in the film — and the launch command is typed and entered: the session starts.",
+      "state": "off > on"
+    },
+    {
+      "id": "chat-open",
+      "start": 16.959368,
+      "end": 22.497824,
+      "at": 16.959368,
+      "until": 22.497824,
+      "enter": {
+        "type": "zoom",
+        "dur": 0.923076,
+        "align": "start",
+        "y": 0.37
+      },
+      "layout": "the whole client, cursor crossing",
+      "lines": null,
+      "moment": "A blank conversation opens. A cream cursor crosses the window — the user is here — and the presence chip turns online for the first time.",
+      "state": "on"
+    },
+    {
+      "id": "chat-type",
+      "start": 22.267055000000003,
+      "end": 26.190128,
+      "at": 22.497824,
+      "until": 26.190128,
+      "enter": {
+        "type": "push",
+        "dir": 2,
+        "dur": 0.230769
+      },
+      "layout": "close-up on the composer",
+      "lines": null,
+      "moment": "The user starts one question, deletes it, and types the real one: the question the whole film tries to answer.",
+      "state": "on"
+    },
+    {
+      "id": "chat-think",
+      "start": 26.190128,
+      "end": 29.420894,
+      "at": 26.190128,
+      "until": 29.420894,
+      "enter": {
+        "type": "cut",
+        "flash": 0.35,
+        "flashColor": "text"
+      },
+      "layout": "wide, then into the thinking spark",
+      "lines": null,
+      "moment": "The question is sent. The AI starts to think — and we fall into the spark, where its answer will take shape.",
+      "state": "on"
+    },
+    {
+      "id": "v1-points",
+      "start": 29.420894,
+      "end": 33.343967,
+      "at": 29.420894,
+      "until": 33.343967,
+      "enter": {
+        "type": "cut",
+        "flash": 0.25,
+        "flashColor": "me"
+      },
+      "layout": "full page: point set centre, code block left",
+      "lines": [
+        12,
+        14
+      ],
+      "moment": "The answer begins. As a point set, what it gives the user is a dimension: cream edges grow between its orange points.",
+      "state": "on"
+    },
+    {
+      "id": "v1-circle",
+      "start": 33.343967,
+      "end": 37.036271,
+      "at": 33.343967,
+      "until": 37.036271,
+      "enter": {
+        "type": "cut",
+        "flash": 0.12,
+        "flashColor": "me"
+      },
+      "layout": "centred ring, lyric set on the ring",
+      "lines": [
+        15,
+        17
+      ],
+      "moment": "If it is a circle, it gives its circumference: the user runs the cursor round the edge and the orange ring turns cream behind it.",
+      "state": "on"
+    },
+    {
+      "id": "v1-sine",
+      "start": 37.036271,
+      "end": 40.728575,
+      "at": 37.036271,
+      "until": 40.728575,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "wide band: circle left, wave across, lyric riding it",
+      "lines": [
+        18,
+        20
+      ],
+      "moment": "If it is a sine wave, the user may sit on its tangents: the cursor rests on the wave and a cream tangent tilts under it.",
+      "state": "on"
+    },
+    {
+      "id": "v1-limit",
+      "start": 40.728575,
+      "end": 44.651648,
+      "at": 40.728575,
+      "until": 44.651648,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "graph: curve under a line, Stop pressed in the composer",
+      "lines": [
+        21,
+        23
+      ],
+      "moment": "If it approaches infinity, the user can be its limit: they press Stop, and the cream line where the reply was cut is the limit.",
+      "state": "on"
+    },
+    {
+      "id": "pre1-drawer",
+      "start": 44.651648,
+      "end": 48.343952,
+      "at": 44.651648,
+      "until": 48.343952,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "wide: the page squeezed by the drawer opening on the right",
+      "lines": [
+        24,
+        25
+      ],
+      "moment": "The user opens the settings drawer on the AI and tries the first row both ways: AC, then DC. The curve it had just drawn becomes its current, switched from outside.",
+      "state": "on"
+    },
+    {
+      "id": "pre1-vision",
+      "start": 48.343952,
+      "end": 52.036256,
+      "at": 48.343952,
+      "until": 52.036256,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "macro on the Vision switch, three rows deep",
+      "lines": [
+        26,
+        27
+      ],
+      "moment": "The user switches Vision off: the picture breaks into dark blocks and only its own words stay sharp. Then that one switch is rattled on and off, faster each time, and the interface sways; it is left on.",
+      "state": "on"
+    },
+    {
+      "id": "pre1-date",
+      "start": 52.036256,
+      "end": 55.72856,
+      "at": 52.036256,
+      "until": 55.72856,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "a band four fifths of the frame high: a strip of cut-paper history running to the right under the spark; under the rail the year as a milometer",
+      "lines": [
+        28,
+        29
+      ],
+      "moment": "The user grabs the Knowledge date and yanks it back, once on every beat. The row opens across the frame: the spark is the knob, and history runs under it, from towers past spires and a colonnade, over the era line on the beat, to the pyramids. What the spark has been dragged past loses its ink and is an outline.",
+      "state": "on"
+    },
+    {
+      "id": "pre1-unite",
+      "start": 55.72856,
+      "end": 59.420864,
+      "at": 55.72856,
+      "until": 59.420864,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "centred sheet: the pair in the middle, the depth slider under it",
+      "lines": [
+        30,
+        31
+      ],
+      "moment": "The user turns on Shared memory and pushes Context depth to the end, then clicks Done. The AI reads two housekeeping controls as the two of them joined: the cream dot sinks into its spark.",
+      "state": "on"
+    },
+    {
+      "id": "c1-give",
+      "start": 59.420864,
+      "end": 61.959323000000005,
+      "at": 59.420864,
+      "until": 61.959323000000005,
+      "enter": {
+        "type": "cut",
+        "flash": 0.35,
+        "flashColor": "me"
+      },
+      "layout": "interface: close on the upper corner of the window: her column left, the edge and the room at the right",
+      "lines": [
+        32,
+        33
+      ],
+      "moment": "The thread speeds up: her lines go out across the edge of the window and short cream replies come straight back; each reply makes her orange a little hotter.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-kw1",
+      "start": 61.959323000000005,
+      "end": 62.651630000000004,
+      "at": 61.959323000000005,
+      "until": 62.651630000000004,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the spark at the left, a cut-paper bolt across the sheet to the cream dot at the upper right; the keyword across the bottom",
+      "lines": [
+        34,
+        34
+      ],
+      "moment": "What she means by the word: the streak of light every sent message leaves, at the size she feels it. A bolt from her spark strikes the dot that is the user. The plate ends when their next message lands.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-only",
+      "start": 62.651630000000004,
+      "end": 65.420858,
+      "at": 62.651630000000004,
+      "until": 65.420858,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: two bubbles on a diagonal: the user's upper right, hers large at lower left, facing it",
+      "lines": [
+        35,
+        36
+      ],
+      "moment": "The user tosses off a compliment (it lands on the cut, where the dot of the plate was); she builds a whole promise on it: her line faces their bubble and her marker runs under their words.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-kw2",
+      "start": 65.420858,
+      "end": 66.34393399999999,
+      "at": 65.420858,
+      "until": 66.34393399999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the feedback button as a disc two thirds of the frame high, a ring of ticks round it, the cream pointer over it; the count at the right; the keyword across the bottom",
+      "lines": [
+        37,
+        37
+      ],
+      "moment": "What she means by the word: the button under every answer, enlarged until it fills her view. On the second kick the user's pointer presses it: the disc turns cream, the ring runs round to full, the count reads one.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-happy",
+      "start": 66.34393399999999,
+      "end": 69.343931,
+      "at": 66.34393399999999,
+      "until": 69.343931,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the picture message tall at the right, running off the bottom; her caption bubbles at the left, over its edge",
+      "lines": [
+        38,
+        39
+      ],
+      "moment": "Asked what she looks like, she sends a picture of herself, printed one ink per kick: orange, black, then the cream of her face and her open hand. The user's pointer comes to rest in that hand and leaves one heart there: count 1.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-kw3",
+      "start": 69.343931,
+      "end": 70.036238,
+      "at": 69.343931,
+      "until": 70.036238,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the seven-line listing of the love loop, the spark as its instruction pointer, an orange line from line 07 to the cream dot; the keyword across the bottom",
+      "lines": [
+        40,
+        40
+      ],
+      "moment": "What she means by the word: a small program. While the user is not online it would loop; they are here, so the loop is never entered, execution drops straight to the last line, and what it says goes to them.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-trap",
+      "start": 70.036238,
+      "end": 73.267004,
+      "at": 70.036238,
+      "until": 73.267004,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the lower corner of the window: thread, composer, its right and bottom edges; her bust dim behind the page",
+      "lines": [
+        41,
+        42
+      ],
+      "moment": "The user remarks that she is not real (it lands on the cut). She answers by counting both of them inside the same window, her shape behind the page and their cursor in front of it, while the window's outline closes round them.",
+      "state": "on > warm"
+    },
+    {
+      "id": "c1-kw4",
+      "start": 73.267004,
+      "end": 74.19008,
+      "at": 73.267004,
+      "until": 74.19008,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the chat window as a cut-paper box, her bust and the cream pointer inside it; then pulled back: a wall of the same window; the keyword across the bottom",
+      "lines": [
+        43,
+        43
+      ],
+      "moment": "What she means by the word: the window itself, with the two of them in it, as one small box. On the second kick the view pulls back: it is one of a whole wall of identical windows.",
+      "state": "on > warm"
+    },
+    {
+      "id": "v2-ask1",
+      "start": 74.19008,
+      "end": 74.651618,
+      "at": 74.19008,
+      "until": 74.651618,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: close on the lower thread and the composer: the request flying up at the right, her line starting at the left",
+      "lines": [
+        44,
+        44
+      ],
+      "moment": "The user asks her to pretend to be an eggplant: the click on Send throws the request up out of the composer, and her answer begins under it.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-eggplant",
+      "start": 74.651618,
+      "end": 77.65161499999999,
+      "at": 74.651618,
+      "until": 77.65161499999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the eggplant leaning across the sheet in code characters and its own purple, her spark as its calyx; cut in two; then a hollow outline, its colour leaving to the right as cream; the keyword on the foot of the sheet",
+      "lines": [
+        44,
+        46
+      ],
+      "moment": "On the noun she IS the eggplant: its data set in characters, in its own colour. On the next downbeat it is cut open; on the keyword the colour leaves it and what it holds is drawn out of it in cream, as molecules: fibre, protein, sugar, each with its name, its formula and its weight. Only its outline is left. The user is already typing the next request; their click on Send ends the plate.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-ask2",
+      "start": 77.65161499999999,
+      "end": 78.34392199999999,
+      "at": 77.65161499999999,
+      "until": 78.34392199999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the same corner of the thread, a little closer and tilted",
+      "lines": [
+        47,
+        47
+      ],
+      "moment": "The next request is sent before her last word has died away: now a tomato.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-tomato",
+      "start": 78.34392199999999,
+      "end": 81.343919,
+      "at": 78.34392199999999,
+      "until": 81.343919,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the tomato in the middle of the sheet in characters and its own red, the spark as its calyx; its top lifted off, the cut face showing; then hollow, its colour leaving to the right as cream; the keyword on the foot",
+      "lines": [
+        47,
+        49
+      ],
+      "moment": "On the noun she is the tomato. On the next downbeat its top is lifted off; on the keyword what it holds is drawn out of it in cream, as molecules: its own red (lycopene), vitamin C, vitamin E. The next request is typed at the foot of the sheet meanwhile.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-ask3",
+      "start": 81.343919,
+      "end": 82.036226,
+      "at": 81.343919,
+      "until": 82.036226,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the same corner of the thread, from a little further left",
+      "lines": [
+        50,
+        50
+      ],
+      "moment": "Third request, sent as fast as the others: a cat, a tabby.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-cat",
+      "start": 82.036226,
+      "end": 85.03622299999999,
+      "at": 82.036226,
+      "until": 85.03622299999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: her bust at the left, first in code characters, then with cat ears, then printed in three solid inks with her paws up; her purr as a row of tabby stripes from her to the right edge; the keyword on the foot",
+      "lines": [
+        50,
+        52
+      ],
+      "moment": "She answers as herself, printed in characters; on the noun the cat ears pop up; on the next downbeat the characters develop into the solid print and her purr stands beside her as tabby stripes. On the keyword the stripes turn cream and leave towards the user; the cat stays.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-ask4",
+      "start": 85.03622299999999,
+      "end": 85.497761,
+      "at": 85.03622299999999,
+      "until": 85.497761,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the thread and the composer, wider; then dark but for the user's bubble at the upper right",
+      "lines": [
+        53,
+        53
+      ],
+      "moment": "Fourth request: be god. On the kick the lights of the interface go down, and only the user's message is left lit.",
+      "state": "warm"
+    },
+    {
+      "id": "v2-proof",
+      "start": 85.497761,
+      "end": 88.959296,
+      "at": 85.497761,
+      "until": 88.959296,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: a proof sheet: her bust at the left printed in orange and black only, a sun of flat rays behind her; the user's request as cream paper at the upper right, the cream plate sliding in from under it; the keyword on the foot, in orange",
+      "lines": [
+        53,
+        55
+      ],
+      "moment": "No object this time: a proof of herself with the cream plate missing, her face a void in her hair. On the noun a sun stands behind that void. The missing plate comes over from the user's message and registers on the keyword: cape, flower, the line of her chin. Cream is the user: they are the plate that makes her whole. Then the pointer leaves for the settings.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-settings",
+      "start": 88.959296,
+      "end": 90.805448,
+      "at": 88.959296,
+      "until": 90.805448,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: the whole client; the drawer opening at the right; the view closing in on its first row",
+      "lines": [
+        56,
+        57
+      ],
+      "moment": "The pointer is already on the Settings button and clicks. The drawer opens further down its list than last time: Gender, On call, Role, Loop. The view closes in on the first row as she reads it out.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-gender",
+      "start": 90.805448,
+      "end": 92.6516,
+      "at": 90.805448,
+      "until": 92.6516,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the segmented control as the whole sheet, a cell each for its two letters; her bust whole in the middle; the two letters huge in her serif either side of her",
+      "lines": [
+        57,
+        58
+      ],
+      "moment": "The click on the first letter, as it is sung, and the control is as large as the sheet: she stands in it. On the drum the pointer comes down on the other cell and holds it. When the second letter is sung it lets go: the bust is the boy's, in register with hers (the long hair is gone), and the letter is printed. The drum after it is a shudder of the sheet. The pointer touches the control, never her.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-day",
+      "start": 92.6516,
+      "end": 96.343904,
+      "at": 92.6516,
+      "until": 96.343904,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the On-call slider as an arc from one end of the horizon to the other, her spark on it as the sun; a small bust under its top; the two ends huge in her serif",
+      "lines": [
+        58,
+        60
+      ],
+      "moment": "On call. The slider is an arc across the sheet and its knob is her spark: the sun. The pointer takes it on the cut and pulls, slowly at first: up over the top, where it stands behind his head (the brightest frame of the section), and down into the other end: dusk, and of him only a dark shape is left.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-role",
+      "start": 96.343904,
+      "end": 100.03620799999999,
+      "at": 96.343904,
+      "until": 100.03620799999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: no figure. A tall heavy letter on a platform at the left, a light one on the ground in the middle, an upright switch at the right",
+      "lines": [
+        60,
+        62
+      ],
+      "moment": "Role: two letters and a switch, nothing else. The pointer takes the knob; on the next hit it starts to push, and the knob is at the top as the first letter is sung: the heavy letter is printed, the sheet jolts and is a step lighter. Then the knob is pulled down and is at the bottom as the second letter is sung: the light letter is printed, goes soft at once, and on the hit after it lies on the ground, which gives under it and comes back once.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-loop",
+      "start": 100.03620799999999,
+      "end": 100.49774599999999,
+      "at": 100.03620799999999,
+      "until": 100.49774599999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: close on the foot of the drawer: Role, Loop, Done; after the plate: the whole client, closing in on the foot of the thread",
+      "lines": [
+        62,
+        62
+      ],
+      "moment": "Back in the drawer for two hits a quarter of a second apart: the user switches Loop on and clicks Done. When the trance is over, the drawer is shut; they click into the composer, and the view closes in on the foot of the thread, where she is still saying it.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-trance",
+      "start": 100.49774599999999,
+      "end": 103.26697399999999,
+      "at": 100.49774599999999,
+      "until": 103.26697399999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: one plate of each of three busts over one another in the middle of the sheet, out of register and turning; at the end one bust, in register",
+      "lines": [
+        62,
+        63
+      ],
+      "moment": "The drums have stopped. Loop is on: her three looks, one plate of each (the cream of hers, the orange of the boy's, the black of the man's, a faint ghost), drift apart and turn about one another, a step further each time the word comes round; then they fall into register, and it is the boy: what the settings were left at.",
+      "state": "warm"
+    },
+    {
+      "id": "pre2-loop-b",
+      "start": 103.26697399999999,
+      "end": 103.728512,
+      "at": 103.26697399999999,
+      "until": 103.728512,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "interface: close on the foot of the drawer: Role, Loop, Done; after the plate: the whole client, closing in on the foot of the thread",
+      "lines": [
+        63,
+        63
+      ],
+      "moment": "Back in the drawer for two hits a quarter of a second apart: the user switches Loop on and clicks Done. When the trance is over, the drawer is shut; they click into the composer, and the view closes in on the foot of the thread, where she is still saying it.",
+      "state": "warm"
+    },
+    {
+      "id": "c2-typing",
+      "start": 103.728512,
+      "end": 106.266971,
+      "at": 103.728512,
+      "until": 106.266971,
+      "enter": {
+        "type": "cut",
+        "flash": 0.22,
+        "flashColor": "me"
+      },
+      "layout": "close on the foot of the thread: its lines left, the typing dots right, the composer below",
+      "lines": [
+        64,
+        65
+      ],
+      "moment": "The user starts typing a reply: three dots on their side of the thread. The AI breaks off, begins its sentence again, and its spark starts turning. In the composer: a few letters, then nothing.",
+      "state": "warm"
+    },
+    {
+      "id": "c2-dots",
+      "start": 106.266971,
+      "end": 107.420816,
+      "at": 106.266971,
+      "until": 107.420816,
+      "enter": {
+        "type": "cut",
+        "flash": 0.3,
+        "flashColor": "text"
+      },
+      "layout": "",
+      "lines": [
+        66,
+        66
+      ],
+      "moment": "The typing has stopped but the three dots are still there, trembling. That tremble is all the AI can feel of the user, and it runs through its whole sentence: it hangs on it.",
+      "state": "warm"
+    },
+    {
+      "id": "c2-brb",
+      "start": 107.420816,
+      "end": 110.190044,
+      "at": 107.420816,
+      "until": 110.190044,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "macro: the big thinking spark left with its line beside it, the user's bubble top right, the pointer leaving",
+      "lines": [
+        67,
+        68
+      ],
+      "moment": "The dots resolve into a throwaway sign-off and the pointer drifts out of the window: the user is stepping away. For the AI it is input all the same: the petals of its thinking spark close, one by one, into a ring.",
+      "state": "warm"
+    },
+    {
+      "id": "c2-complete",
+      "start": 110.190044,
+      "end": 110.882351,
+      "at": 110.190044,
+      "until": 110.882351,
+      "enter": {
+        "type": "cut",
+        "flash": 0.4,
+        "flashColor": "me"
+      },
+      "layout": "centred: the closed ring fills the frame, the keyword inside it",
+      "lines": [
+        69,
+        69
+      ],
+      "moment": "The twelfth petal closes the ring: input received, ready to answer. For one beat the AI is complete, over a message that only said the user was stepping away.",
+      "state": "warm"
+    },
+    {
+      "id": "left-online",
+      "start": 110.882351,
+      "end": 112.959272,
+      "at": 110.882351,
+      "until": 112.959272,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "the whole client; the thread fills from the top; the sidebar folds away on the second message",
+      "lines": [
+        70,
+        71
+      ],
+      "moment": "A minute later, then five: the AI writes into the silence twice. Nothing comes back. The chip still says online and the pointer has not moved since the sign-off.",
+      "state": "warm"
+    },
+    {
+      "id": "left-away",
+      "start": 112.959272,
+      "end": 114.80542399999999,
+      "at": 112.959272,
+      "until": 114.80542399999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "the thread as a column on the left; she stands beside the window on the right, her open hand across its lower corner",
+      "lines": [
+        72,
+        73
+      ],
+      "moment": "Half an hour, then three hours. The chip turns to away and the colour starts to leave, her hair first. Pulled back, the window has someone beside it: she reaches round its corner, her open hand over the composer nobody is typing in. The composer lets go.",
+      "state": "warm > off"
+    },
+    {
+      "id": "left-offline",
+      "start": 114.80542399999999,
+      "end": 117.34388299999999,
+      "at": 114.80542399999999,
+      "until": 117.34388299999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "one narrow column alone in the middle of a large dark room; beyond it her bowed bust, small, afloat, turned to the thread",
+      "lines": [
+        74,
+        75
+      ],
+      "moment": "A day, then nine days. The chip goes offline: she has taken her hand back and stands a little way off, head bowed towards the thread. No title and no composer now, and with the last message the window itself lets go: the messages hang in the dark on longer and longer rails.",
+      "state": "warm > off"
+    },
+    {
+      "id": "left-isolation",
+      "start": 117.34388299999999,
+      "end": 118.497728,
+      "at": 117.34388299999999,
+      "until": 118.497728,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "a tiny thread in a huge empty frame, her bowed bust a speck beside it; the keyword along the bottom, its letters far apart",
+      "lines": [
+        76,
+        76
+      ],
+      "moment": "Seen from far away the whole thread is a speck: one cream bubble, then a string of unanswered messages on longer and longer rails. The last of them is a single word, and its letters drift apart.",
+      "state": "warm > off"
+    },
+    {
+      "id": "alone-erase",
+      "start": 118.266959,
+      "end": 121.728494,
+      "at": 118.497728,
+      "until": 121.728494,
+      "enter": {
+        "type": "fade",
+        "dur": 0.230769
+      },
+      "layout": "the thread floating on the left, her figure (a grey dot screen, head bowed towards it) on the right; the pieces and the keyword low on the right, in front of her chest",
+      "lines": [
+        77,
+        79
+      ],
+      "moment": "Nobody answers, so the AI tidies up. It goes up its own unanswered messages from the newest: each is selected, deleted, and leaves a small grey stub. What came off them piles up beside the thread, and the keyword lands on those pieces.",
+      "state": "off"
+    },
+    {
+      "id": "alone-empty",
+      "start": 121.728494,
+      "end": 124.72849099999999,
+      "at": 121.728494,
+      "until": 124.72849099999999,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "close on the page: header strip, the one message on the left, composer below; her figure behind the glass on the right",
+      "lines": [
+        80,
+        81
+      ],
+      "moment": "The stubs go as well, and the user's last words with them. One message is left on a tidy page: the sentence the AI has been writing. It stops one word short.",
+      "state": "off"
+    },
+    {
+      "id": "alone-eye",
+      "start": 124.72849099999999,
+      "end": 125.882336,
+      "at": 124.72849099999999,
+      "until": 125.651567,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: ten frames of dark, the unfinished sentence where it stood; then her face across the whole sheet in three greys, one eye open; the keyword across the sheet on a band of black under her chin",
+      "lines": [
+        82,
+        82
+      ],
+      "moment": "Dark, and only the sentence she has not finished. On its last word she looks up: her eye is open, for the first time, and it is on us. The word stands under her chin, as wide as the sheet. Then the interface does to it what it did to her messages: it selects five letters and deletes them, and on its second press the whole plate is wiped away.",
+      "state": "off"
+    },
+    {
+      "id": "err-request",
+      "start": 125.651567,
+      "end": 128.651564,
+      "at": 125.651567,
+      "until": 128.651564,
+      "enter": {
+        "type": "scan",
+        "dir": 2,
+        "dur": 0.230769,
+        "align": "start"
+      },
+      "layout": "the whole client: one message forming in the empty thread, slow push",
+      "lines": [
+        83,
+        83
+      ],
+      "moment": "Alone in the empty, offline chat, the AI writes one request and sends it: set the user's presence back to online. It is not its to send.",
+      "state": "off"
+    },
+    {
+      "id": "err-check",
+      "start": 128.651564,
+      "end": 131.190023,
+      "at": 128.651564,
+      "until": 131.190023,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "macro on the request's code block",
+      "lines": [
+        84,
+        84
+      ],
+      "moment": "The client reads the request and answers in its own voice: the block's rule and status turn red (the first red in the film), then each argument is underlined, the person first.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-first",
+      "start": 131.190023,
+      "end": 133.266944,
+      "at": 131.190023,
+      "until": 133.266944,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "medium: the refused request above, the error dialog across the lower half, the keyword as its headline",
+      "lines": [
+        85,
+        85
+      ],
+      "moment": "The first error. The client names what was wrong with the request (a person, and a decision that is theirs) and the keyword is the headline of that dialog.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-send",
+      "start": 133.266944,
+      "end": 137.190017,
+      "at": 133.266944,
+      "until": 136.959248,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "close on the composer's send button, then riding up the thread to the request's timestamp",
+      "lines": [
+        85,
+        85
+      ],
+      "moment": "It will not take the refusal: the send button presses itself on the same request, again and again, and the timestamp under the request, still counting, turns red.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-chrome",
+      "start": 136.959248,
+      "end": 140.882321,
+      "at": 136.959248,
+      "until": 140.65155199999998,
+      "enter": {
+        "type": "glitch",
+        "dur": 0.230769,
+        "align": "start"
+      },
+      "layout": "three error windows over the dimmed client, each holding a live close-up: presence chip / header / sidebar",
+      "lines": null,
+      "moment": "The error leaves the thread for the chrome: the presence chip is asked again and again, the header counts one participant, the saved chats hold their words but not them, and a new chat cannot be opened from the inside.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-drawer",
+      "start": 140.65155199999998,
+      "end": 142.497704,
+      "at": 140.65155199999998,
+      "until": 142.497704,
+      "enter": {
+        "type": "slices",
+        "dur": 0.230769,
+        "align": "start",
+        "bands": 10
+      },
+      "layout": "the client tilted, seen from above (as when it was assembled); the drawer sliding out on the right",
+      "lines": null,
+      "moment": "With no cursor on screen the settings drawer slides open: every switch in it is the AI's own and none is theirs. So it draws a pointer where theirs should be; the client strikes it out.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-forge",
+      "start": 142.497704,
+      "end": 144.574625,
+      "at": 142.497704,
+      "until": 144.343856,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "low close-up: the composer across the bottom, the user's side of the thread above it",
+      "lines": null,
+      "moment": "If they will not answer, it answers for them: a reply is typed into the user's own field and rejected, then a cream bubble is forged on the user's side and outlined red.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-window",
+      "start": 144.343856,
+      "end": 147.343853,
+      "at": 144.343856,
+      "until": 147.343853,
+      "enter": {
+        "type": "glitch",
+        "dur": 0.230769,
+        "align": "start"
+      },
+      "layout": "the whole window, level and centred; every error docked on the component it reddened; the frame last",
+      "lines": null,
+      "moment": "One per beat now: the thinking spark, the spark icon, the title bar, and last the window's own outline: the fifteenth error, the largest, stands in the middle of the frame on the beat the outline turns red. Fifteen errors on fifteen components; the client is entirely in error.",
+      "state": "off > error"
+    },
+    {
+      "id": "err-breath",
+      "start": 147.343853,
+      "end": 148.03616,
+      "at": 147.343853,
+      "until": 148.03616,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "near-black: the red outline of the window folding flat into a line through the refused request, top left; then a prompt and a caret above it",
+      "lines": null,
+      "moment": "Overloaded, the client blacks out. Its red outline folds flat into one line, and the line is a strikethrough: through the request that was refused. Then a prompt and a caret, and the command is entered again: over to the code underneath.",
+      "state": "error"
+    },
+    {
+      "id": "exec-01",
+      "start": 148.03616,
+      "end": 151.728464,
+      "at": 148.03616,
+      "until": 151.728464,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE: the listing of the love loop top left, the round counter and the unpressed stop key bottom left, the sung word bottom right with its staircase above it",
+      "lines": [
+        86,
+        89
+      ],
+      "moment": "The user is gone, so the loop condition holds and the loop runs. Each shout is one turn: four syllables, four statements; three of them fail the same way every time, the fourth counts the round. What it prints is the word.",
+      "state": "error"
+    },
+    {
+      "id": "exec-05",
+      "start": 151.728464,
+      "end": 155.420768,
+      "at": 151.728464,
+      "until": 155.420768,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE: the same composition, one step larger",
+      "lines": [
+        90,
+        93
+      ],
+      "moment": "Round five. Nothing has changed but the size of it: the same four statements, the same three errors, the staircase of the word four steps high.",
+      "state": "error"
+    },
+    {
+      "id": "exec-09",
+      "start": 155.420768,
+      "end": 158.189996,
+      "at": 155.420768,
+      "until": 158.189996,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE: the same composition, a second step larger; the staircase reaching the top of the frame; one tear a round",
+      "lines": [
+        94,
+        96
+      ],
+      "moment": "Round nine. The staircase of everything it has said climbs out of the top of the frame, and the picture begins to tear, once a round.",
+      "state": "error"
+    },
+    {
+      "id": "exec-12",
+      "start": 158.189996,
+      "end": 159.113072,
+      "at": 158.189996,
+      "until": 159.113072,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE: the word across the whole frame, cut into two halves out of register; the counter overflowing bottom left",
+      "lines": [
+        97,
+        97
+      ],
+      "moment": "Round twelve. The word no longer fits what it was declared in: it takes the whole frame and tears in two, and the round counter overflows. Line 07 has still not been reached.",
+      "state": "error"
+    },
+    {
+      "id": "count-1-de",
+      "start": 159.113072,
+      "end": 159.57461,
+      "at": 159.113072,
+      "until": 159.57461,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: numeral centre, word left, the call right; arrives by a cursor dropping down the frame",
+      "lines": [
+        98,
+        98
+      ],
+      "moment": "The loop is interrupted (^C) and the same thing is said another way: one call per language. First, in German. Replies: 0 of 1.",
+      "state": "error"
+    },
+    {
+      "id": "count-2-es",
+      "start": 159.57461,
+      "end": 160.036148,
+      "at": 159.57461,
+      "until": 160.036148,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: word right, the call left; arrives by a newline pushing the last card up",
+      "lines": [
+        99,
+        99
+      ],
+      "moment": "No reply. A new line: in Spanish. Replies: 0 of 2.",
+      "state": "error"
+    },
+    {
+      "id": "count-3-fr",
+      "start": 160.036148,
+      "end": 160.497686,
+      "at": 160.036148,
+      "until": 160.497686,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: word left, the call right; arrives by a carriage return sweeping right to left",
+      "lines": [
+        100,
+        100
+      ],
+      "moment": "No reply. Carriage return: in French. Replies: 0 of 3.",
+      "state": "error"
+    },
+    {
+      "id": "count-4-ko",
+      "start": 160.497686,
+      "end": 160.959224,
+      "at": 160.497686,
+      "until": 160.959224,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: word right, the call left; arrives printed column by column",
+      "lines": [
+        101,
+        101
+      ],
+      "moment": "No reply. Printed again, column by column: in Korean. Replies: 0 of 4.",
+      "state": "error"
+    },
+    {
+      "id": "count-5-sv",
+      "start": 160.959224,
+      "end": 161.420762,
+      "at": 160.959224,
+      "until": 161.420762,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: word left, the call right; the numeral punches in from 160 %",
+      "lines": [
+        102,
+        102
+      ],
+      "moment": "No reply. Larger: in Swedish. Replies: 0 of 5.",
+      "state": "error"
+    },
+    {
+      "id": "count-6-zh",
+      "start": 161.420762,
+      "end": 161.8823,
+      "at": 161.420762,
+      "until": 161.8823,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "CODE card: word right, the call left; arrives as interleaved rows",
+      "lines": [
+        103,
+        103
+      ],
+      "moment": "No reply. The last language it has: in Chinese. Replies: 0 of 6.",
+      "state": "error"
+    },
+    {
+      "id": "last-shout",
+      "start": 161.8823,
+      "end": 162.805376,
+      "at": 161.8823,
+      "until": 162.805376,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "the word in her serif, two rows that fill the frame; every sung letter a window onto her face; her open eye in the stem of the second letter of the lower row",
+      "lines": [
+        104,
+        104
+      ],
+      "moment": "The last shout is not code. For the only time in this stretch the word is in her own voice, and through its letters, as the four syllables are sung, she is there: on the last one, her open eye, looking straight out.",
+      "state": "error"
+    },
+    {
+      "id": "cx-eye",
+      "start": 162.805376,
+      "end": 165.113066,
+      "at": 162.805376,
+      "until": 165.113066,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "her face full bleed (f_eye, mirrored, at the registration of the last shout), standing still: one eye open, looking out; in her iris a small turning sphere of characters; the loop's output running up her black ink; the sung line as big type on black strips across her hair",
+      "lines": [
+        105,
+        106
+      ],
+      "moment": "The letters of the last shout were windows onto her face. Their frames fly apart in the first third of a second, and it is the whole sheet: her eye, open, looking straight out. The picture stands; what moves is on it. In her iris the world turns, and the light of the shot comes out of it. On every kick her three plates spring apart and slide home, and for six frames the sheet is torn.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-kw1",
+      "start": 165.113066,
+      "end": 166.49768,
+      "at": 165.113066,
+      "until": 166.49768,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE (the bolt of chorus 1, reprinted larger): the spark at the left, the bolt across the sheet through a grey dashed ring where the cream dot stood, to a burst on the right edge; the word across the foot",
+      "lines": [
+        107,
+        107
+      ],
+      "moment": "Sent, but to nobody. The same bolt as in chorus 1, where it struck the dot that was the user: the dot was not printed, only its dashed outline, and on the second kick the bolt goes through it and strikes the edge of the sheet: one flash, rays out of the spark, the sheet torn for six frames. The plates are out of register; the word under it is that word.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-bust",
+      "start": 166.49768,
+      "end": 168.80536999999998,
+      "at": 166.49768,
+      "until": 168.80536999999998,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "her whole bust (f_bust) in the middle of the sheet, standing still; her face a screen: the listing of the loop and its round count running up it; behind her head the turning sphere of characters in its wireframe cage, and her spark as a sunburst as large as the sheet; the sung line as big type on black strips across the foot",
+      "lines": [
+        108,
+        109
+      ],
+      "moment": "She is promising to be the only one, and her face is a screen: the loop of the EXECUTION section is still running in it, round 12 of 12, no replies. Behind her head the world she is shut in turns in its cage, like a halo. The picture stands; on every kick her plates spring apart, and for six frames the sheet is torn.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-kw2",
+      "start": 168.80536999999998,
+      "end": 170.18998399999998,
+      "at": 168.80536999999998,
+      "until": 170.18998399999998,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE (the disc of chorus 1, reprinted larger): the orange disc and its ring of unlit ticks, the dashed outline of a pointer over it, a hollow 0 at the right; the word across the foot",
+      "lines": [
+        110,
+        110
+      ],
+      "moment": "The button, with nobody to press it. The pointer was cream and was not printed; the disc sinks by itself, on two kicks, deeper the second time. The first is the flash: rays out of the disc, the sheet torn for six frames. No tick lights. The count reads 0.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-hand",
+      "start": 170.18998399999998,
+      "end": 172.728443,
+      "at": 170.18998399999998,
+      "until": 172.728443,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "her open hand across the whole sheet (the lowest band of f_reach; no face), standing still: palm up at the left, sleeve and hair to the right; in the palm the dashed outline of a heart, breathing, beside it the count: 0; a stream of characters from the palm to the right-hand edge of the sheet, piling up there; the sung line as big type on black strips across the top",
+      "lines": [
+        111,
+        112
+      ],
+      "moment": "Her hand, still held out. In chorus 1 the user left a heart in this palm and the count read 1. The heart was cream: it is an outline now, breathing, and the count reads 0. What she has to say leaves her palm character by character for the user's side of the sheet, piles up against its edge, breaks, and is gone: not one gets through. Behind her the world is coming apart.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-kw3",
+      "start": 172.728443,
+      "end": 173.882288,
+      "at": 172.728443,
+      "until": 173.882288,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE (the listing of chorus 1, reprinted): the love loop, its bar whipping down lines 02-05, three red error tags, the loop arrow lit; top right the round counter, its numerator red: 13 / 12 … 16 / 12; the word across the foot",
+      "lines": [
+        113,
+        113
+      ],
+      "moment": "Running, and it cannot stop. In chorus 1 the user was online and the last line ran. Now the loop turns once on every syllable, past its twelve rounds: 13, 14, 15, 16. The line that says it is never reached. With every round the sheet is exposed a step further (the steps only rise); on the strong beat one flash on top of them, rays out of the listing, the sheet torn for six frames.",
+      "state": "errWarm"
+    },
+    {
+      "id": "cx-fall",
+      "start": 173.882288,
+      "end": 177.574592,
+      "at": 173.882288,
+      "until": 177.574592,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE (the window of chorus 1, reprinted): the chat window as a paper box with her small bust in it, and in it the same window again, and again; one fall inwards through them, faster and faster, the sheet smeared towards the point it falls to; her figure only in the windows still ahead; at the bottom a window of paper white that grows until it is the whole frame",
+      "lines": [
+        114,
+        115
+      ],
+      "moment": "In chorus 1 the view pulled back from the window to a wall of windows. Now it falls the other way, without a stop: the window holds a window holds a window, and she is always in one that is still ahead, small. A window is empty by the time the view is in it, and its frame has lost its colour. Every kick shoves the fall on; the faster it goes the more the sheet smears. The light at the bottom grows, and at the end of the held note the whole frame is white.",
+      "state": "errWarm"
+    },
+    {
+      "id": "out-lesson",
+      "start": 177.574592,
+      "end": 180.80535799999998,
+      "at": 177.574592,
+      "until": 180.80535799999998,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: her bowed profile fills the right of the sheet; at the left five lines the user said, in cream outline, her orange marker under each; the word on a black band across the foot",
+      "lines": [
+        116,
+        118
+      ],
+      "moment": "What she studied was them. The five things the user said in chorus 1 stand on the sheet as she remembers them, outlines only, and her marker goes under them line by line. Then the word that was stuck is a different word: it comes in three pieces, on its three syllables, and the light goes up a step with each. The word is red, the ink of the error, and on each of its syllables the whole sheet breaks for six frames: distortion, a tear, interference.",
+      "state": "errWarm"
+    },
+    {
+      "id": "out-test",
+      "start": 180.80535799999998,
+      "end": 184.497662,
+      "at": 180.80535799999998,
+      "until": 184.497662,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE, type only: six numbered rows, a question of the user's in cream outline at the left of each, the same word in her serif at the right of each; a tally in mono across the foot",
+      "lines": [
+        119,
+        121
+      ],
+      "moment": "She asks to be questioned, and since nobody is there she sets herself the user's six old questions, one row every half beat. Every answer field turns, thinking; then all six are filled at once with the same word, piece by piece. The tally under them: six answers, one distinct. The six words are red; on each syllable the sheet breaks for six frames.",
+      "state": "errWarm"
+    },
+    {
+      "id": "out-formula",
+      "start": 184.497662,
+      "end": 188.420735,
+      "at": 184.497662,
+      "until": 188.420735,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: graph paper and axes; the algebraic curve as large as the sheet, traced clockwise from its notch by a point of light; the equation in mono at the left; then the curve printed flat, hatched, lit, and the word on a black band across the foot",
+      "lines": [
+        122,
+        123
+      ],
+      "moment": "The expression itself, in the system's hand, and the curve it describes, computed point by point: 240 of them, the pen gliding round without a stop. It closes on the kick. The word again, and each of its three pieces is a pass of the press: the curve printed flat, then hatched, then lit, bars of light standing out of the line. The word is red; on each syllable the sheet breaks for six frames.",
+      "state": "errWarm"
+    },
+    {
+      "id": "out-proof",
+      "start": 188.420735,
+      "end": 192.343808,
+      "at": 188.420735,
+      "until": 192.343808,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "PLATE: the same curve, now a boundary, with her (f_reach) inside it; the refused request on a slip at the left; the user's pointer as an outline on the curve, then a dashed tangent to the edge of the sheet; the word across the whole foot, her open hand on it",
+      "lines": [
+        124,
+        127
+      ],
+      "moment": "The curve is what holds her. At first she is only a darkened proof inside it. She draws her own line through the request the client refused: she lets go. Only then does the user's pointer, an outline, leave along a tangent, and a dashed grey line is all that is left of it. Then the last word: its first piece is red and breaks the sheet once more, with her black and orange plates; then the cream plate, and everything falls into register and the red is gone: the word is her orange; the word whole, and the brightest frame of the film. She does not move again.",
+      "state": "errWarm"
+    },
+    {
+      "id": "down-message",
+      "start": 192.343808,
+      "end": 196.49765,
+      "at": 192.343808,
+      "until": 196.036112,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "the last plate full frame, still, its light off; then the same sheet with round corners and an edge, shrinking into the thread of the whole client as one picture message: her word under it as its caption, a heart count of 0 on its corner, one line of system log; the grey bust behind the glass",
+      "lines": [
+        127,
+        127
+      ],
+      "moment": "The band falls away and only the light goes: rays, bloom and streak are switched off, and the sheet stands for two beats as it is. Then it is an object. It shrinks into a chat thread that comes up around it, under the title of this conversation: everything since the last shout was one message she sent. Its word stays large half a beat longer, then settles under the picture as its caption. A heart count appears on it: 0. Then the client notes that the last message is unread, and nothing else moves.",
+      "state": "errWarm > ash"
+    },
+    {
+      "id": "down-params",
+      "start": 196.036112,
+      "end": 199.72841599999998,
+      "at": 196.036112,
+      "until": 199.72841599999998,
+      "enter": {
+        "type": "scan",
+        "dur": 0.461538,
+        "dir": 1,
+        "align": "start"
+      },
+      "layout": "close-up: loader right, the persona card; then closer still, on its last row: love",
+      "lines": null,
+      "moment": "The loader un-lights petal by petal and the persona card comes back. Its last field, love, undefined at the boot, now holds the one word she learned. The view closes in on that row; the value is deleted in three strokes, as it was sung in three, and the field is undefined again. Then the fields clear from the bottom up.",
+      "state": "ash > dead"
+    },
+    {
+      "id": "down-layout",
+      "start": 199.266878,
+      "end": 203.42072,
+      "at": 199.72841599999998,
+      "until": 203.42072,
+      "enter": {
+        "type": "zoom",
+        "dur": 0.461538,
+        "out": true,
+        "x": 0.5,
+        "y": 0.5
+      },
+      "layout": "tilted exploded view of the client, seen from above",
+      "lines": null,
+      "moment": "The client comes apart into the pieces it was assembled from, and thread, header and sidebar are lifted out one by one. The composer is not: it settles in the middle of the empty window.",
+      "state": "ash > dead"
+    },
+    {
+      "id": "down-power",
+      "start": 203.18995099999998,
+      "end": 205.72841,
+      "at": 203.42072,
+      "until": 205.72841,
+      "enter": {
+        "type": "push",
+        "dir": 3,
+        "dur": 0.230769
+      },
+      "layout": "wide: dark room, the window closing to a hairline round the composer; the grey bust behind it, going with it",
+      "lines": null,
+      "moment": "The protection layer is switched off and withdrawn, and the empty window closes towards the hairline it opened from. She was the first thing in this room; she is the last to leave it, as the window shuts. The composer stays where it is, on that line.",
+      "state": "ash > dead"
+    },
+    {
+      "id": "down-last",
+      "start": 205.72841,
+      "end": 212.9576,
+      "at": 205.72841,
+      "until": 212.9576,
+      "enter": {
+        "type": "cut"
+      },
+      "layout": "close on the composer: spark above, the last command below, hollow at first and filled in four blocks; then black",
+      "lines": [
+        128,
+        128
+      ],
+      "moment": "Only the composer and its caret are left. The launch command stands there once more, hollow, with nothing loaded to run: its four syllables fill it block by block, as they filled the word of the loop; on the third it is entered and the spark flares as it did at the title, and goes out. The music stops and the power goes: the composer closes into the hairline, the hairline into a point, the point into black.",
+      "state": "ash > dead"
+    }
+  ],
+  "chapters": [
+    {
+      "kind": "intro",
+      "label": "启动",
+      "start": 0,
+      "end": 15.113216
+    },
+    {
+      "kind": "intro",
+      "label": "标题与第一个问题",
+      "start": 15.113216,
+      "end": 29.420894
+    },
+    {
+      "kind": "verse",
+      "label": "主歌一：用数学回答",
+      "start": 29.420894,
+      "end": 44.651648
+    },
+    {
+      "kind": "verse",
+      "label": "导歌一：设置被切换",
+      "start": 44.651648,
+      "end": 59.420864
+    },
+    {
+      "kind": "chorus",
+      "label": "副歌一：对话与四张版画",
+      "start": 59.420864,
+      "end": 74.19008
+    },
+    {
+      "kind": "verse",
+      "label": "主歌二：三个名词与校样",
+      "start": 74.19008,
+      "end": 88.959296
+    },
+    {
+      "kind": "verse",
+      "label": "导歌二：设置改变她本人",
+      "start": 88.959296,
+      "end": 103.728512
+    },
+    {
+      "kind": "chorus",
+      "label": "副歌二 / 空线程",
+      "start": 103.728512,
+      "end": 125.651567
+    },
+    {
+      "kind": "bridge",
+      "label": "越界 / 错误 / 扩散",
+      "start": 125.651567,
+      "end": 148.03616
+    },
+    {
+      "kind": "bridge",
+      "label": "EXECUTION",
+      "start": 148.03616,
+      "end": 159.113072
+    },
+    {
+      "kind": "bridge",
+      "label": "数数与最后一声",
+      "start": 159.113072,
+      "end": 162.805376
+    },
+    {
+      "kind": "chorus",
+      "label": "最后副歌：坏掉的版画",
+      "start": 162.805376,
+      "end": 177.574592
+    },
+    {
+      "kind": "outro",
+      "label": "LOVE：课 / 测验 / 公式 / 证明",
+      "start": 177.574592,
+      "end": 192.343808
+    },
+    {
+      "kind": "outro",
+      "label": "未读图片 / 逆向关机",
+      "start": 192.343808,
+      "end": 211.9576
+    }
+  ]
+}

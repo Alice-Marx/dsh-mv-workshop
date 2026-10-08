@@ -135,7 +135,9 @@ function jsonWords(value) {
 
 /** Recognition only; the parser below checks tokens and never imports/evaluates JS. */
 const JS_GAP = String.raw`(?:\s|\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?:\r\n?|\n|$))*`
-const JS_LYRICS_DECL = new RegExp(`\\b(?:const|let|var)\\b${JS_GAP}LYRICS\\b${JS_GAP}=`, 'i')
+// Recognise static array declarations, not a bundled class named Lyrics or a
+// runtime `const lyrics = new Lyrics(data)` that contains no embedded text.
+const JS_LYRICS_DECL = new RegExp(`\\b(?:const|let|var)\\b${JS_GAP}LYRICS\\b${JS_GAP}=${JS_GAP}\\[`, 'i')
 export const looksLikeLyricsJs = text => {
   const body = String(text)
   // JSON text may quote a declaration; keep it JSON, and avoid repeatedly

@@ -124,10 +124,11 @@ var __hostCanvas = new OffscreenCanvas(1, 1), __hostGl = __hostCanvas.getContext
 `
 
 /** Compile a scene; returns { ok, problems, renderFrame(t, cols, rows, ctxData) } (pixels: cols × rows are width × height). */
-export function compileScene(source, { output = 'text' } = {}) {
+export function compileScene(source, { output = 'text', unavailableBitmapAssets = [] } = {}) {
   const pixels = output === 'pixels'
   const webgl = output === 'webgl'
   const bitmap = pixels || webgl
+  if (!Array.isArray(unavailableBitmapAssets) || unavailableBitmapAssets.length > 64 || unavailableBitmapAssets.some(n => typeof n !== 'string' || !/^[A-Za-z0-9_-]{1,64}$/.test(n))) return { ok: false, problems: ['Host 位图资源声明无效'] }
   const problems = sceneSourceProblems(source, { output })
   if (problems.length) return { ok: false, problems }
   const context = vm.createContext(Object.create(null), { codeGeneration: { strings: false, wasm: false }, microtaskMode: 'afterEvaluate' })
@@ -146,6 +147,7 @@ var __hostPreparation = null, __hostPrepareProgress = 0, __hostPrepareWidth = 0,
 var __hostReady = false;
 function __hostSetup(info) {
   __hostReady = false;
+  ${bitmap ? `info.assets = info.assets || {}; for (const name of ${JSON.stringify(unavailableBitmapAssets)}) if (!(name in info.assets)) info.assets[name] = new Proxy({}, { get: function () { throw Error('MV_HOST_REQUIRES_BITMAP_RESOURCE'); } });` : ''}
   ${bitmap ? '__hostCanvas.width = info.width || 1280; __hostCanvas.height = info.height || 720;' : ''}
   ${webgl ? 'info.canvas = __mvCanvasFacade(__hostCanvas, __hostGl);' : ''}
   __hostInfo = info;
@@ -246,7 +248,7 @@ const SAMPLE_BANDS = t => Array.from({ length: 48 }, (_, i) => Math.max(0, Math.
  * Run the scene at a few times (or one) and report problems, timing and the
  * text of the frames. `cues` are parsed lyric cues ({ time, end, en, zh }).
  */
-export function checkScene(source, { times = [0], cols = 100, rows = 32, info = {}, cues = [], bandsAt = SAMPLE_BANDS, output = 'text', size = [1280, 720] } = {}) {
+export function checkScene(source, { times = [0], cols = 100, rows = 32, info = {}, cues = [], bandsAt = SAMPLE_BANDS, output = 'text', size = [1280, 720], unavailableBitmapAssets = [] } = {}) {
   const pixels = output === 'pixels'
   const webgl = output === 'webgl'
   const bitmap = pixels || webgl
@@ -255,13 +257,13 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
     cols = Math.max(20, Math.min(PREVIEW_LIMITS.maxCols, cols | 0))
     rows = Math.max(8, Math.min(PREVIEW_LIMITS.maxRows, rows | 0))
   }
-  const scene = compileScene(source, { output })
+  const scene = compileScene(source, { output, unavailableBitmapAssets })
   if (!scene.ok) return { ok: false, problems: scene.problems, frames: [] }
   const problems = []
   let preparation = null
   try { preparation = scene.setup(bitmap ? { ...info, width: cols, height: rows } : info) } catch (error) {
-    const needsPixels = webgl && errorText(error).includes('MV_HOST_REQUIRES_PIXEL_READBACK')
-    return { ok: false, problems: [needsPixels ? '此 WebGL 场景通过真实画布像素生成几何；Host 仅能记录 API 调用，需在真实浏览器中验证。' : `setup() / prepare() / warmup() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}), ...(needsPixels ? { requiresBrowserValidation: true } : {}) }
+    const needsPixels = bitmap && /MV_HOST_REQUIRES_PIXEL_READBACK|MV_HOST_REQUIRES_BITMAP_RESOURCE/.test(errorText(error))
+    return { ok: false, problems: [needsPixels ? '此位图场景需要真实图片/画布像素；Host 仅能记录 API 调用，需在真实浏览器中验证。' : `setup() / prepare() / warmup() 出错：${errorText(error)}`], frames: [], ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}), ...(needsPixels ? { requiresBrowserValidation: true } : {}) }
   }
   const frames = []
   const cueAt = t => { let found = null; for (const cue of cues) if (cue.time <= t && !(cue.end <= t)) found = cue; return found }
@@ -280,9 +282,10 @@ export function checkScene(source, { times = [0], cols = 100, rows = 32, info = 
       if (frame.lines.every(line => !line.trim())) problems.push(`t=${t}s 这一帧是空白的。`)
       frames.push({ t, ms: Math.round(frame.ms * 10) / 10, text: frame.lines.map(line => line.replace(/\s+$/, '')).join('\n'), styled: frame.styles.some(Boolean) })
     } catch (error) {
+      if (bitmap && /MV_HOST_REQUIRES_PIXEL_READBACK|MV_HOST_REQUIRES_BITMAP_RESOURCE/.test(errorText(error))) return { ok: false, problems: ['此位图场景需要真实图片/画布像素；请在真实浏览器中验证。'], frames, requiresBrowserValidation: true, gpuValidated: false }
       problems.push(`render(${t}) 出错：${errorText(error)}`)
     }
   }
   if (webgl) problems.push('WebGL 场景在 Host 中只做结构与 API 调用记录检查；未在真实 GPU 上编译 shader 或验证像素。')
-  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows, ...(preparation ? { preparation } : {}), ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) }
+  return { ok: !problems.some(p => /出错|超时/.test(p)), problems, frames, cols, rows, ...(preparation ? { preparation } : {}), ...(bitmap && unavailableBitmapAssets.length ? { requiresBrowserValidation: true } : {}), ...(webgl ? { gpuValidated: false, validation: 'webgl-call-recording' } : {}) }
 }

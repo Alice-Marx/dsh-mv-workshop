@@ -45,11 +45,12 @@ for (const id of ids) {
     const duration = pack.duration ?? result.meta.duration ?? 180
     const times = [0.5, duration * 0.25, duration * 0.5, duration * 0.75, Math.max(0, duration - 1)].map(t => Math.round(t * 10) / 10)
     // 0.9.1: scripts get canvas.assets (JSON shards merged like the panel does) in setup(info.assets).
-    const assets = {}
+    const assets = {}, unavailableBitmapAssets = []
     for (const [name, value] of Object.entries(pack.canvas.assets ?? {})) {
       const list = Array.isArray(value) ? value : [value]
       if (!list.every(p => /\.json$/i.test(p))) {
         warn(`packs/${id}: canvas.assets.${name} is an image; CI does not decode image assets. Verify this scene in the browser.`)
+        unavailableBitmapAssets.push(name)
         continue
       }
       const shards = list.map(p => JSON.parse(readPackText(id)(p)))
@@ -62,8 +63,8 @@ for (const id of ids) {
     const output = pack.canvas.output === 'pixels' || pack.canvas.output === 'webgl' ? pack.canvas.output : 'text'
     const sizes = (output === 'text') ? [[100, 32], [60, 18]] : [pack.canvas.size]
     for (const [cols, rows] of sizes) {
-      const check = checkScene(source, { times, cols, rows, info, ...(output !== 'text' ? { output, size: pack.canvas.size } : {}) })
-      if (check.requiresBrowserValidation) {
+      const check = checkScene(source, { times, cols, rows, info, unavailableBitmapAssets, ...(output !== 'text' ? { output, size: pack.canvas.size } : {}) })
+      if (check.requiresBrowserValidation || check.ok && output !== 'text' && pack.canvas.fonts?.length) {
         const evidencePath = join(ROOT, 'validation', `${id}-${result.meta.version}.json`)
         let evidence = null
         try { evidence = JSON.parse(readFileSync(evidencePath, 'utf8')) } catch {}

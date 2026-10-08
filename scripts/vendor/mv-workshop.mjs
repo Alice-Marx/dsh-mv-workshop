@@ -10,13 +10,15 @@
  * audio, matched by duration and an optional energy fingerprint. Full lyrics
  * require their own explicit shareable license and attribution declaration.
  */
-import { assetParts, checkDshPvFont, DSHPV_FONT_ASSETS, DSHPV_FONT_LIMITS, DSHPV_FONT_NOTICE, parseMvPack, WINDOWS_FONT_NAME } from './mv-pack.mjs'
+import { assetParts, checkDshPvFont, checkSceneFont, DSHPV_FONT_ASSETS, DSHPV_FONT_LIMITS, DSHPV_FONT_NOTICE, MV_FONT_EXTENSIONS, MV_FONT_LIMITS, parseMvPack, WINDOWS_FONT_NAME } from './mv-pack.mjs'
 import { looksLikeLyricsJs, parseLyrics } from './mv-lyrics.mjs'
 
 export const WORKSHOP_REPO = 'Alice-Marx/dsh-mv-workshop'
 export const WORKSHOP_BRANCH = 'main'
 export const WORKSHOP_RAW = 'https://raw.githubusercontent.com'
 export const WORKSHOP_INDEX_URL = `${WORKSHOP_RAW}/${WORKSHOP_REPO}/${WORKSHOP_BRANCH}/index.json`
+/** Official independent static mirror; same immutable commits and SHA-256. */
+export const WORKSHOP_DEFAULT_MIRROR = 'https://www.jianweilimarx.top/dsh-mv-workshop'
 export const WORKSHOP_INDEX_FORMAT = 'dsh-mv-workshop-index'
 export const WORKSHOP_TIMING_FORMAT = 'dsh-mv-lyrics-timing'
 export const WORKSHOP_TIMING_FILE = 'lyrics.timing.json'
@@ -38,6 +40,9 @@ export const WORKSHOP_LIMITS = Object.freeze({
   maxFiles: 40,
   /** 0.9.5: dsh-pv raster pages, data shards and independent OFL notices. */
   dshPvFiles: 64,
+  bitmapFiles: 160,
+  bitmapImageBytes: 2 * 1024 * 1024,
+  bitmapPackBytes: 32 * 1024 * 1024,
   fileBytes: 512 * 1024,
   coverBytes: 1024 * 1024,
   scriptBytes: 256 * 1024,
@@ -52,7 +57,7 @@ export const WORKSHOP_LIMITS = Object.freeze({
 })
 
 /** File kinds a workshop pack may contain. */
-export const WORKSHOP_ALLOWED_EXT = Object.freeze(['.json', '.js', '.mjs', '.lrc', '.srt', '.vtt', '.md', '.txt', '.png', '.webp', '.jpg', '.jpeg', '.ttf'])
+export const WORKSHOP_ALLOWED_EXT = Object.freeze(['.json', '.js', '.mjs', '.lrc', '.srt', '.vtt', '.md', '.txt', '.png', '.webp', '.jpg', '.jpeg', '.ttf', '.otf', '.woff2'])
 /** Music/video and unsupported subtitle formats are rejected outright. */
 export const WORKSHOP_BANNED_EXT = Object.freeze([
   '.mp3', '.mp2', '.m4a', '.mp4', '.aac', '.webm', '.mka', '.mkv', '.ogg', '.oga', '.opus', '.flac', '.wav', '.wma', '.aiff', '.aif', '.ape', '.amr', '.ac3', '.mov', '.avi', '.mid', '.midi',
@@ -235,15 +240,19 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
   }
   // 0.9.2: webgl packs (declared via canvas.output) get higher caps for their .js scene scripts.
   const isWebglPack = pack.canvas?.renderer === 'script' && pack.canvas.output === 'webgl'
+  const isBitmapPack = pack.canvas?.renderer === 'script' && ['pixels', 'webgl'].includes(pack.canvas.output)
   const isDshPvPack = pack.canvas?.renderer === 'dsh-pv'
-  const maxFiles = isDshPvPack ? WORKSHOP_LIMITS.dshPvFiles : WORKSHOP_LIMITS.maxFiles
-  const packBytes = isDshPvPack ? WORKSHOP_LIMITS.dshPvPackBytes : WORKSHOP_LIMITS.packBytes
+  const maxFiles = isBitmapPack ? WORKSHOP_LIMITS.bitmapFiles : isDshPvPack ? WORKSHOP_LIMITS.dshPvFiles : WORKSHOP_LIMITS.maxFiles
+  const packBytes = isBitmapPack ? WORKSHOP_LIMITS.bitmapPackBytes : isDshPvPack ? WORKSHOP_LIMITS.dshPvPackBytes : WORKSHOP_LIMITS.packBytes
   if (files.length > maxFiles) errors.push(`文件太多（上限 ${maxFiles}）`)
   const lyricsFile = pack.lyrics?.file, spectrumFile = pack.spectrum?.file
   const ws = isObject(raw['x-dsh-mv-workshop']) ? raw['x-dsh-mv-workshop'] : null
   const timingFile = typeof ws?.lyricsTiming === 'string' ? ws.lyricsTiming : undefined
   const fonts = Object.entries(DSHPV_FONT_ASSETS).filter(([name]) => pack.canvas?.assets?.[name] !== undefined)
-  const fontPaths = new Set(fonts.map(([, font]) => font.path))
+  const sceneFonts = pack.canvas?.fonts ?? []
+  const fontPaths = new Set([...fonts.map(([, font]) => font.path), ...sceneFonts.map(face => face.file)])
+  const sceneFontPaths = new Set(sceneFonts.map(face => face.file))
+  const imagePaths = new Set(Object.values(pack.canvas?.assets ?? {}).flat().filter(path => /\.(?:png|webp)$/i.test(path)))
   const readable = new Set()
   let total = 0
   for (const file of files) {
@@ -253,13 +262,13 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
     total += file.size
     if (!isWorkshopPath(file.path)) { errors.push(`文件路径不允许：${file.path}（只能用字母数字 . _ -，最多两层子文件夹，不能以 . 开头）`); continue }
     if (WINDOWS_FONT_NAME.test(name)) { errors.push(`不能上传 Windows 专有字体：${file.path}（只使用本机已安装字体，不随包分发）`); continue }
-    if (ext === '.ttf' && !fontPaths.has(file.path)) { errors.push(`不允许上传未声明或不受支持的 TTF 字体：${file.path}（仅 dsh-pv 的 font-head / font-banner）`); continue }
+    if (MV_FONT_EXTENSIONS.includes(ext) && !fontPaths.has(file.path)) { errors.push(`不允许上传未声明或不受支持的字体：${file.path}（请声明 canvas.fonts 或 dsh-pv 的 font-head / font-banner）`); continue }
     if (WORKSHOP_BANNED_EXT.includes(ext)) { errors.push(`不允许上传音频 / 视频文件或不支持的歌词格式：${file.path}`); continue }
     if (file.path !== lyricsFile && (['.lrc', '.srt', '.vtt'].includes(ext) || BANNED_NAMES.test(name) && file.path !== WORKSHOP_TIMING_FILE && !(file.path === timingFile && pack.workshop?.lyricsTiming === timingFile))) { errors.push(`不允许上传未声明的歌词文件：${file.path}（请用 lyrics.file 引用并声明 lyricsLicense / lyricsCredit）`); continue }
     if (!WORKSHOP_ALLOWED_EXT.includes(ext)) { errors.push(`不支持的文件类型：${file.path}`); continue }
     const isImage = ['.png', '.webp', '.jpg', '.jpeg'].includes(ext)
     const isScript = ['.js', '.mjs'].includes(ext) && file.path !== lyricsFile
-    const max = ext === '.ttf' ? DSHPV_FONT_LIMITS.fileBytes : isImage ? WORKSHOP_LIMITS.coverBytes : isScript && isWebglPack ? WORKSHOP_LIMITS.webglScriptBytes : isScript ? WORKSHOP_LIMITS.scriptBytes : WORKSHOP_LIMITS.fileBytes
+    const max = sceneFontPaths.has(file.path) ? MV_FONT_LIMITS.fileBytes : ext === '.ttf' ? DSHPV_FONT_LIMITS.fileBytes : isImage ? (isBitmapPack && imagePaths.has(file.path) && !COVER_NAMES.includes(file.path) ? WORKSHOP_LIMITS.bitmapImageBytes : WORKSHOP_LIMITS.coverBytes) : isScript && isWebglPack ? WORKSHOP_LIMITS.webglScriptBytes : isScript ? WORKSHOP_LIMITS.scriptBytes : WORKSHOP_LIMITS.fileBytes
     if (file.size > max) errors.push(`${file.path} 太大（上限 ${Math.round(max / 1024)} KB）`)
     else readable.add(file.path)
   }
@@ -295,7 +304,7 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
   for (const name of Object.keys(pack.canvas?.assets ?? {})) {
     for (const ref of assetParts(pack, name)) if (!paths.has(ref)) errors.push(`canvas.assets.${name} 指向的文件不在包里：${ref}`)
   }
-  if (fonts.length) {
+  if (fonts.length || sceneFonts.length) {
     if (ws?.fontsLicense !== 'OFL-1.1') errors.push('x-dsh-mv-workshop.fontsLicense 必须为 OFL-1.1（字体不继承场景代码许可）')
     if (typeof ws?.fontsCredit !== 'string' || !ws.fontsCredit.trim() || ws.fontsCredit.length > 500 || /[\0\r]/.test(ws.fontsCredit)) errors.push('x-dsh-mv-workshop.fontsCredit 必填（字体作者署名，最多 500 字符）')
     if (ws?.fontsNotice !== DSHPV_FONT_NOTICE || !paths.has(DSHPV_FONT_NOTICE)) errors.push(`OFL 字体需要 x-dsh-mv-workshop.fontsNotice="${DSHPV_FONT_NOTICE}" 和随包字体署名说明`)
@@ -316,6 +325,24 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
         }
       }
     }
+    let fontTotal = 0
+    for (const face of sceneFonts) {
+      if (!paths.has(face.file)) errors.push(`canvas.fonts 字体文件不在包里：${face.file}`)
+      if (!paths.has(face.licenseFile)) errors.push(`OFL 字体缺少许可全文：${face.licenseFile}`)
+      else if (readable.has(face.licenseFile)) {
+        const text = await readText(face.licenseFile)
+        if (!/SIL\s+OPEN\s+FONT\s+LICENSE/i.test(text) || !/Version\s+1\.1/i.test(text)) errors.push(`${face.licenseFile}：应包含 SIL Open Font License 1.1 许可全文`)
+      }
+      fontTotal += files.find(file => file.path === face.file)?.size ?? 0
+      if (!readable.has(face.file)) continue
+      if (typeof readBytes !== 'function') { errors.push(`${face.file}：字体校验需要二进制 readBytes`); continue }
+      try {
+        const bytes = await readBytes(face.file)
+        errors.push(...checkSceneFont(bytes, face.file).errors)
+        if (bytes?.byteLength !== files.find(file => file.path === face.file)?.size) errors.push(`${face.file}：字体字节长度与文件清单不一致`)
+      } catch (error) { errors.push(`${face.file}：无法读取字体：${error?.message ?? error}`) }
+    }
+    if (fontTotal > MV_FONT_LIMITS.totalBytes) errors.push('canvas.fonts 字体总大小超过 12 MiB')
   }
   if (pack.canvas?.renderer === 'world-execute-me') errors.push('canvas.renderer "world-execute-me" 自 0.9.0 起不再内置：请把场景写成 scene script（renderer "script"）')
   if (pack.canvas?.renderer === 'dsh-pv' && !['timeline', 'chat', 'band'].every(n => pack.canvas?.assets?.[n])) errors.push('dsh-pv 渲染器需要 canvas.assets 里的 timeline、chat、band')
@@ -356,6 +383,8 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
   if (!paths.has('README.md')) warnings.push('没有 README.md')
   const audioDuration = Number.isFinite(ws?.audio?.duration) ? ws.audio.duration : pack.duration
   if (!audioDuration) warnings.push('没有写歌曲时长（duration 或 x-dsh-mv-workshop.audio.duration），安装后无法检查用户的音频是否匹配')
+  const extendedBitmap = isBitmapPack && (sceneFonts.length > 0 || pack.canvas.preroll !== undefined || files.length > WORKSHOP_LIMITS.maxFiles || total > WORKSHOP_LIMITS.packBytes || files.some(file => imagePaths.has(file.path) && file.size > WORKSHOP_LIMITS.coverBytes))
+  const minimum = packRequires(pack, ws?.requires)
   const meta = {
     id, title: pack.title, artist: pack.artist ?? '', author: String(ws?.author ?? '').slice(0, 120), license: String(ws?.license ?? '').slice(0, 120),
     version: String(ws?.version ?? ''), duration: audioDuration ? Math.round(audioDuration * 1000) / 1000 : null,
@@ -365,9 +394,10 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
     source: typeof ws?.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(ws.source) ? ws.source : undefined,
     cover, fingerprint: Boolean(pack.workshop?.audio?.fingerprint), timing: Boolean(timing), lyrics: Boolean(lyricsFile), spectrum: Boolean(spectrumFile), sections: pack.sections?.length ?? 0,
     ...(lyricsFile ? { lyricsLicense: String(ws?.lyricsLicense ?? '').slice(0, 120), lyricsCredit: String(ws?.lyricsCredit ?? '').slice(0, 500), ...(isHttpsUrl(ws?.lyricsSource) ? { lyricsSource: ws.lyricsSource } : {}) } : {}),
-    ...(fonts.length ? { fonts: true, fontsLicense: String(ws?.fontsLicense ?? '').slice(0, 120), fontsCredit: String(ws?.fontsCredit ?? '').slice(0, 500), fontsNotice: ws?.fontsNotice } : {}),
+    ...(fonts.length || sceneFonts.length ? { fonts: true, fontsLicense: String(ws?.fontsLicense ?? '').slice(0, 120), fontsCredit: String(ws?.fontsCredit ?? '').slice(0, 500), fontsNotice: ws?.fontsNotice } : {}),
+    ...(extendedBitmap ? { bitmap: true } : {}),
     ...(isDshPvPack && pack.canvas.assets?.['raster-timeline'] && pack.canvas.assets?.['raster-atlas'] ? { raster: true } : {}),
-    requires: packRequires(pack, ws?.requires),
+    requires: extendedBitmap && compareVersions(minimum, '0.10.0') < 0 ? '0.10.0' : minimum,
   }
   if (pack.canvas?.renderer === 'script' && ['pixels', 'webgl'].includes(pack.canvas.output)) {
     const script = pack.canvas.script && readable.has(pack.canvas.script) && pack.canvas.script !== lyricsFile ? stripCommentsAndStrings(await readText(pack.canvas.script)) : ''
@@ -386,7 +416,9 @@ export async function validateWorkshopPack({ id, files, readText, readBytes }) {
  * explicit x-dsh-mv-workshop.requires can raise it.
  */
 export function packRequires(pack, declared) {
-  let need = pack?.canvas?.renderer === 'dsh-pv' && [...Object.keys(DSHPV_FONT_ASSETS), 'raster-timeline', 'raster-atlas'].some(name => pack.canvas.assets?.[name] !== undefined)
+  let need = pack?.canvas?.renderer === 'script' && (pack.canvas.fonts?.length || pack.canvas.preroll !== undefined || pack.canvas.context !== undefined)
+    ? '0.10.0'
+    : pack?.canvas?.renderer === 'dsh-pv' && [...Object.keys(DSHPV_FONT_ASSETS), 'raster-timeline', 'raster-atlas'].some(name => pack.canvas.assets?.[name] !== undefined)
     ? '0.9.5'
     : pack?.lyrics || pack?.spectrum
     ? '0.9.4'
@@ -407,13 +439,14 @@ export function parseWorkshopIndex(value) {
   const packs = []
   for (const p of value.packs.slice(0, WORKSHOP_LIMITS.maxPacks)) {
     if (!isObject(p) || !ID_PATTERN.test(String(p.id)) || !Array.isArray(p.files) || !hasShareableLicense(p.license)) continue
-    const limit = path => extOf(path) === '.ttf' ? DSHPV_FONT_LIMITS.fileBytes : ['.png', '.webp', '.jpg', '.jpeg'].includes(extOf(path)) ? WORKSHOP_LIMITS.coverBytes : ['.js', '.mjs'].includes(extOf(path)) ? (p.renderer === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : p.lyrics === true ? WORKSHOP_LIMITS.fileBytes : WORKSHOP_LIMITS.scriptBytes) : WORKSHOP_LIMITS.fileBytes
+    const bitmap = p.bitmap === true && ['script', 'webgl'].includes(p.renderer)
+    const limit = path => MV_FONT_EXTENSIONS.includes(extOf(path)) ? (bitmap ? MV_FONT_LIMITS.fileBytes : DSHPV_FONT_LIMITS.fileBytes) : ['.png', '.webp', '.jpg', '.jpeg'].includes(extOf(path)) ? (bitmap && !COVER_NAMES.includes(path) ? WORKSHOP_LIMITS.bitmapImageBytes : WORKSHOP_LIMITS.coverBytes) : ['.js', '.mjs'].includes(extOf(path)) ? (p.renderer === 'webgl' ? WORKSHOP_LIMITS.webglScriptBytes : p.lyrics === true ? WORKSHOP_LIMITS.fileBytes : WORKSHOP_LIMITS.scriptBytes) : WORKSHOP_LIMITS.fileBytes
     const files = p.files.filter(f => isObject(f) && isWorkshopPath(f.path) && Number.isInteger(f.size) && f.size >= 0 && f.size <= limit(f.path) && SHA256_PATTERN.test(String(f.sha256)) && WORKSHOP_ALLOWED_EXT.includes(extOf(f.path)))
     const dshPv = p.renderer === 'dsh-pv'
-    if (!files.some(f => f.path === 'mv.json') || files.length !== p.files.length || files.length > (dshPv ? WORKSHOP_LIMITS.dshPvFiles : WORKSHOP_LIMITS.maxFiles)) continue
-    if (new Set(files.map(f => f.path.toLowerCase())).size !== files.length || files.reduce((s, f) => s + f.size, 0) > (dshPv ? WORKSHOP_LIMITS.dshPvPackBytes : WORKSHOP_LIMITS.packBytes)) continue
-    const indexedFonts = files.filter(file => extOf(file.path) === '.ttf')
-    if (indexedFonts.length && (p.renderer !== 'dsh-pv' || p.fontsLicense !== 'OFL-1.1' || typeof p.fontsCredit !== 'string' || !p.fontsCredit.trim() || p.fontsNotice !== DSHPV_FONT_NOTICE || !files.some(file => file.path === DSHPV_FONT_NOTICE) || indexedFonts.some(file => !Object.values(DSHPV_FONT_ASSETS).some(font => font.path === file.path && files.some(license => license.path === font.licenseFile))))) continue
+    if (!files.some(f => f.path === 'mv.json') || files.length !== p.files.length || files.length > (bitmap ? WORKSHOP_LIMITS.bitmapFiles : dshPv ? WORKSHOP_LIMITS.dshPvFiles : WORKSHOP_LIMITS.maxFiles)) continue
+    if (new Set(files.map(f => f.path.toLowerCase())).size !== files.length || files.reduce((s, f) => s + f.size, 0) > (bitmap ? WORKSHOP_LIMITS.bitmapPackBytes : dshPv ? WORKSHOP_LIMITS.dshPvPackBytes : WORKSHOP_LIMITS.packBytes)) continue
+    const indexedFonts = files.filter(file => MV_FONT_EXTENSIONS.includes(extOf(file.path)))
+    if (indexedFonts.length && (!(dshPv || bitmap) || p.fontsLicense !== 'OFL-1.1' || typeof p.fontsCredit !== 'string' || !p.fontsCredit.trim() || p.fontsNotice !== DSHPV_FONT_NOTICE || !files.some(file => file.path === DSHPV_FONT_NOTICE) || !bitmap && indexedFonts.some(file => !Object.values(DSHPV_FONT_ASSETS).some(font => font.path === file.path && files.some(license => license.path === font.licenseFile))) || bitmap && (indexedFonts.length > MV_FONT_LIMITS.maxFaces || indexedFonts.reduce((n, file) => n + file.size, 0) > MV_FONT_LIMITS.totalBytes || !files.some(file => /^fonts\/OFL[-_].*\.txt$/.test(file.path))))) continue
     const requires = VERSION_PATTERN.test(String(p.requires ?? '')) ? p.requires : ''
     packs.push({
       id: p.id, title: str(p.title, 200) || p.id, artist: str(p.artist, 200), author: str(p.author, 120), license: str(p.license, 120),
@@ -421,11 +454,12 @@ export function parseWorkshopIndex(value) {
       renderer: str(p.renderer, 40), description: str(p.description, 500), tags: Array.isArray(p.tags) ? p.tags.filter(t => typeof t === 'string').slice(0, 8).map(t => t.slice(0, 24)) : [],
       homepage: typeof p.homepage === 'string' && /^https:\/\//.test(p.homepage) ? p.homepage.slice(0, 300) : '',
       source: typeof p.source === 'string' && /^https:\/\/[^\s"<>]{3,300}$/.test(p.source) ? p.source : '',
-      requires: (indexedFonts.length || dshPv && p.raster === true) && compareVersions(requires, '0.9.5') < 0 ? '0.9.5' : (p.lyrics === true || p.spectrum === true) && compareVersions(requires, '0.9.4') < 0 ? '0.9.4' : p.renderer === 'webgl' && compareVersions(requires, '0.9.2') < 0 ? '0.9.2' : requires,
+      requires: bitmap && compareVersions(requires, '0.10.0') < 0 ? '0.10.0' : (indexedFonts.length || dshPv && p.raster === true) && compareVersions(requires, '0.9.5') < 0 ? '0.9.5' : (p.lyrics === true || p.spectrum === true) && compareVersions(requires, '0.9.4') < 0 ? '0.9.4' : p.renderer === 'webgl' && compareVersions(requires, '0.9.2') < 0 ? '0.9.2' : requires,
       cover: typeof p.cover === 'string' && COVER_NAMES.includes(p.cover) && files.some(f => f.path === p.cover) ? p.cover : '',
       fingerprint: p.fingerprint === true, timing: p.timing === true, lyrics: p.lyrics === true, spectrum: p.spectrum === true,
       lyricsLicense: hasShareableLicense(p.lyricsLicense) ? str(p.lyricsLicense, 120) : '', lyricsCredit: str(p.lyricsCredit, 500), lyricsSource: isHttpsUrl(p.lyricsSource) ? p.lyricsSource : '',
       ...(indexedFonts.length ? { fonts: true, fontsLicense: 'OFL-1.1', fontsCredit: str(p.fontsCredit, 500), fontsNotice: DSHPV_FONT_NOTICE } : {}),
+      ...(bitmap ? { bitmap: true } : {}),
       ...(dshPv && p.raster === true ? { raster: true } : {}),
       sections: Number.isInteger(p.sections) ? p.sections : 0,
       updated: str(p.updated, 40), size: files.reduce((s, f) => s + f.size, 0), files,

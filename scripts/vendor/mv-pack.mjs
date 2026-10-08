@@ -40,7 +40,7 @@
  * ignored (the loader reports a warning).
  */
 
-import { normalizeSections } from './mv-scene.mjs'
+import { normalizeSections, SCENE_FONT_LIMITS, sceneFontFamilyValid, sceneFontUnicodeRangeValid, sceneWebglContextProblems } from './mv-scene.mjs'
 
 export const MV_PACK_FORMAT = 'dsh-mv-pack'
 export const MV_PACK_VERSION = 1
@@ -48,7 +48,7 @@ export const MV_PACK_MANIFEST = 'mv.json'
 export const MV_PACK_SCHEMA_FILE = 'mv.schema.json'
 export const MV_CANVAS_RENDERERS = Object.freeze(['generic', 'world-execute-me', 'dsh-pv', 'script'])
 /** Pack files the panel may read (only through the pack's own manifest). */
-export const MV_PACK_FILE_ROLES = Object.freeze(['audio', 'lyrics', 'spectrum', 'scene', 'timing', 'asset'])
+export const MV_PACK_FILE_ROLES = Object.freeze(['audio', 'lyrics', 'spectrum', 'scene', 'timing', 'asset', 'font'])
 /** Renderers the plugin itself implements (0.9.0 moved the world.execute(me) scenes to a workshop pack). */
 export const MV_RENDERERS_BUILTIN = Object.freeze(['generic', 'dsh-pv', 'script'])
 /** What a scene script draws: characters, a 2D bitmap, or a raw WebGL2 bitmap. */
@@ -64,6 +64,8 @@ export const DSHPV_FONT_ASSETS = Object.freeze({
 })
 export const DSHPV_FONT_NOTICE = 'fonts/NOTICE.md'
 export const WINDOWS_FONT_NAME = /^(?:consola[a-z]*|msyh[a-z]*|msyi[a-z]*|simsun[a-z]*|simhei[a-z]*|simfang[a-z]*|simkai[a-z]*|seg(?:oe|ui)[a-z]*|tahoma[a-z]*|arial[a-z]*|calibri[a-z]*|cambria[a-z]*|verdana[a-z]*)\.(?:ttf|ttc|otf|woff2?)$/i
+export const MV_FONT_EXTENSIONS = Object.freeze(['.ttf', '.otf', '.woff2'])
+export const MV_FONT_LIMITS = SCENE_FONT_LIMITS
 /** Local lyric data only. JS/MJS imports extract a static LYRICS array; no code is executed. */
 export const MV_LYRICS_EXTENSIONS = Object.freeze(['.lrc', '.srt', '.vtt', '.json', '.txt', '.js', '.mjs'])
 
@@ -199,7 +201,7 @@ export function parseMvPack(input) {
   const canvas = data.canvas ?? {}
   if (!isObject(canvas)) problems.push('canvas 必须是对象')
   else {
-    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets', 'output', 'size', 'subtitles']), 'canvas', problems)
+    unknownKeys(canvas, new Set(['renderer', 'fontSize', 'script', 'bpm', 'beatOffset', 'assets', 'output', 'size', 'subtitles', 'fonts', 'preroll', 'context']), 'canvas', problems)
     const renderer = canvas.renderer ?? (canvas.script ? 'script' : 'generic')
     if (!MV_CANVAS_RENDERERS.includes(renderer)) problems.push(`canvas.renderer 必须是 ${MV_CANVAS_RENDERERS.join(' / ')}`)
     let script
@@ -213,6 +215,13 @@ export function parseMvPack(input) {
     const output = canvas.output ?? 'text'
     if (!MV_SCENE_OUTPUTS.includes(output)) problems.push(`canvas.output 必须是 ${MV_SCENE_OUTPUTS.join(' / ')}`)
     else if (output !== 'text' && renderer !== 'script') problems.push('canvas.output 只用于 renderer "script"')
+    const fonts = canvasFonts(canvas.fonts, problems, renderer, output)
+    if (canvas.context !== undefined) {
+      problems.push(...sceneWebglContextProblems(canvas.context, output))
+      if (renderer !== 'script' || output !== 'webgl') problems.push('canvas.context 只用于 script WebGL 输出')
+    }
+    const preroll = optionalNumber(canvas, 'preroll', 0, 30, problems, 'canvas.preroll')
+    if (preroll !== undefined && (renderer !== 'script' || !['pixels', 'webgl'].includes(output))) problems.push('canvas.preroll 只用于 script 位图场景，歌曲开始前静默播放，不能移动音频或歌词时间轴')
     if (canvas.subtitles !== undefined) {
       if (typeof canvas.subtitles !== 'boolean') problems.push('canvas.subtitles 必须是布尔值（true / false）')
       else if (renderer !== 'script' || !['pixels', 'webgl'].includes(output)) problems.push('canvas.subtitles 只用于 renderer "script" 的 "pixels" / "webgl" 输出')
@@ -228,6 +237,8 @@ export function parseMvPack(input) {
     pack.canvas = {
       renderer, ...(script ? { script } : {}), ...(assets ? { assets } : {}), ...(output !== 'text' && MV_SCENE_OUTPUTS.includes(output) ? { output } : {}),
       ...(typeof canvas.subtitles === 'boolean' ? { subtitles: canvas.subtitles } : {}),
+      ...(fonts?.length ? { fonts } : {}), ...(preroll !== undefined ? { preroll } : {}),
+      ...(canvas.context !== undefined && isObject(canvas.context) ? { context: canvas.context } : {}),
       ...(['pixels', 'webgl'].includes(output) ? { size: size ?? MV_PIXEL_LIMITS.defaultSize } : {}), fontSize: optionalNumber(canvas, 'fontSize', 8, 32, problems, 'canvas.fontSize'),
       bpm: optionalNumber(canvas, 'bpm', 20, 400, problems, 'canvas.bpm'), beatOffset: optionalNumber(canvas, 'beatOffset', -60, 60, problems, 'canvas.beatOffset'),
     }
@@ -278,6 +289,56 @@ function canvasAssets(value, problems, renderer) {
 
 /** Files of one canvas asset (always a list). */
 export const assetParts = (pack, name) => { const v = pack?.canvas?.assets?.[name]; return v === undefined ? [] : Array.isArray(v) ? v : [v] }
+
+/** Local-only fonts, loaded by the worker supervisor, never by scene code or a URL. */
+function canvasFonts(value, problems, renderer, output) {
+  if (value === undefined) return undefined
+  if (!Array.isArray(value) || value.length > MV_FONT_LIMITS.maxFaces) { problems.push(`canvas.fonts 应是最多 ${MV_FONT_LIMITS.maxFaces} 项的字体数组`); return undefined }
+  if (renderer !== 'script' || !['pixels', 'webgl'].includes(output)) problems.push('canvas.fonts 只用于 script 的 pixels / webgl 输出')
+  const out = [], seen = new Set()
+  for (const [index, face] of value.entries()) {
+    const subject = `canvas.fonts[${index}]`
+    if (!isObject(face)) { problems.push(`${subject} 必须是字体描述对象`); continue }
+    unknownKeys(face, new Set(['family', 'file', 'weight', 'style', 'unicodeRange', 'licenseFile']), subject, problems)
+    const family = face.family, weight = face.weight ?? '400', style = face.style ?? 'normal'
+    if (!sceneFontFamilyValid(family) || /^(?:Consolas|Microsoft YaHei|Arial|Calibri|Cambria|Verdana|Tahoma|Segoe UI)$/i.test(family)) problems.push(`${subject}.family 无效（安全字体族名，Windows 专有字体不随包分发）`)
+    if (typeof weight !== 'string' || !/^[1-9]00$/.test(weight)) problems.push(`${subject}.weight 应是 100–900 的数字字符串`)
+    if (!['normal', 'italic', 'oblique'].includes(style)) problems.push(`${subject}.style 无效`)
+    if (face.unicodeRange !== undefined && !sceneFontUnicodeRangeValid(face.unicodeRange)) problems.push(`${subject}.unicodeRange 无效或超过受限范围`)
+    const file = checkPackPath(face.file, `${subject}.file`, problems), licenseFile = checkPackPath(face.licenseFile, `${subject}.licenseFile`, problems)
+    if (file && (isAbsolutePackPath(file) || file.includes(':') || !MV_FONT_EXTENSIONS.includes(extOf(file)) || WINDOWS_FONT_NAME.test(basenameOf(file)))) problems.push(`${subject}.file 必须是包内 .woff2 / .ttf / .otf 字体（不能是 Windows 专有字体）`)
+    if (licenseFile && (isAbsolutePackPath(licenseFile) || licenseFile.includes(':') || !['.txt', '.md'].includes(extOf(licenseFile)))) problems.push(`${subject}.licenseFile 必须是包内许可文本路径`)
+    const identity = JSON.stringify([family, weight, style, face.unicodeRange ?? ''])
+    if (seen.has(identity)) problems.push(`${subject} 重复的字体描述`)
+    seen.add(identity)
+    out.push({ family, file, weight, style, ...(face.unicodeRange !== undefined ? { unicodeRange: face.unicodeRange } : {}), licenseFile })
+  }
+  return out
+}
+
+/** Bounded binary header/table validation. Licensing still requires human-reviewed OFL provenance. */
+export function checkSceneFont(value, path = 'font.woff2') {
+  const bytes = value instanceof Uint8Array ? value : value instanceof ArrayBuffer ? new Uint8Array(value) : null
+  const invalid = message => ({ errors: [`${path}：${message}`] })
+  if (!bytes || bytes.byteLength < 12 || bytes.byteLength > MV_FONT_LIMITS.fileBytes) return invalid('字体大小无效（上限 2 MiB）')
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength), signature = view.getUint32(0, false)
+  if (extOf(path) === '.woff2') {
+    if (bytes.byteLength < 48 || signature !== 0x774f4632 || view.getUint32(8, false) !== bytes.byteLength || view.getUint16(12, false) < 1 || view.getUint16(12, false) > 128 || view.getUint16(14, false) !== 0 || view.getUint32(16, false) < 12 || view.getUint32(16, false) > 8 * 1024 * 1024 || view.getUint32(20, false) > bytes.byteLength - 48) return invalid('WOFF2 签名/长度/表数/解压大小无效')
+    if (![0x00010000, 0x4f54544f].includes(view.getUint32(4, false))) return invalid('不支持的 WOFF2 字体类型')
+    for (const [offAt, lenAt] of [[28, 32], [40, 44]]) {
+      const off = view.getUint32(offAt, false), len = view.getUint32(lenAt, false)
+      if (off > bytes.byteLength || len > bytes.byteLength - off || (off === 0 && len !== 0)) return invalid('WOFF2 扩展数据范围无效')
+    }
+  } else {
+    const count = view.getUint16(4, false), directory = 12 + count * 16
+    if (!['.ttf', '.otf'].includes(extOf(path)) || signature !== (extOf(path) === '.ttf' ? 0x00010000 : 0x4f54544f) || count < 1 || count > 128 || directory > bytes.byteLength) return invalid('SFNT 签名/表目录无效')
+    for (let i = 0; i < count; i++) {
+      const at = 12 + i * 16, off = view.getUint32(at + 8, false), len = view.getUint32(at + 12, false)
+      if (off < directory || off > bytes.byteLength || len > bytes.byteLength - off) return invalid('SFNT 表范围无效')
+    }
+  }
+  return { errors: [] }
+}
 
 /** Data-only bounded sfnt/name check; known font assets must identify the supported family and style. */
 export function checkDshPvFont(value, name = 'font.ttf') {
@@ -365,7 +426,7 @@ export function parsePackLoad(value) {
 
 export function parsePackRead(value) {
   if (!isObject(value)) throw new TypeError('pack read request must be an object')
-  const extra = Object.keys(value).filter(key => !['manifestPath', 'role', 'offset', 'length', 'asset', 'part'].includes(key))
+  const extra = Object.keys(value).filter(key => !['manifestPath', 'role', 'offset', 'length', 'asset', 'part', 'font'].includes(key))
   if (extra.length) throw new TypeError(`pack read request has unexpected fields: ${extra.join(', ')}`)
   if (!MV_PACK_FILE_ROLES.includes(value.role)) throw new TypeError(`role must be ${MV_PACK_FILE_ROLES.join(' / ')}`)
   const offset = value.offset ?? 0
@@ -374,12 +435,18 @@ export function parsePackRead(value) {
   if (!Number.isInteger(length) || length < 1 || length > MV_PACK_LIMITS.readChunkBytes) throw new TypeError(`length must be 1..${MV_PACK_LIMITS.readChunkBytes}`)
   const request = { manifestPath: parseManifestPath(value.manifestPath), role: value.role, offset, length }
   if (value.role === 'asset') {
+    if (value.font !== undefined) throw new TypeError('font is only for role "font"')
     if (typeof value.asset !== 'string' || !MV_ASSET_NAME.test(value.asset)) throw new TypeError('asset must be a canvas.assets name')
     const part = value.part ?? 0
     if (!Number.isInteger(part) || part < 0 || part >= MV_PACK_LIMITS.maxAssetParts) throw new TypeError('part is invalid')
     return { ...request, asset: value.asset, part }
   }
   if (value.asset !== undefined || value.part !== undefined) throw new TypeError('asset / part are only for role "asset"')
+  if (value.role === 'font') {
+    if (!Number.isInteger(value.font) || value.font < 0 || value.font >= MV_FONT_LIMITS.maxFaces) throw new TypeError('font must be a canvas.fonts index')
+    return { ...request, font: value.font }
+  }
+  if (value.font !== undefined) throw new TypeError('font is only for role "font"')
   return request
 }
 

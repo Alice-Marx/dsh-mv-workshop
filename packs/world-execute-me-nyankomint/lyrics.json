@@ -1,0 +1,1847 @@
+{
+  "source": "Existing local licensed workshop captions",
+  "encoding": "utf-8",
+  "hasWordTimestamps": false,
+  "credits": [],
+  "meta": {},
+  "sections": [
+    {
+      "index": 0,
+      "start": 0.1,
+      "end": 20,
+      "firstLine": 0,
+      "lastLine": 11
+    },
+    {
+      "index": 1,
+      "start": 29.709,
+      "end": 135.224,
+      "firstLine": 12,
+      "lastLine": 85
+    },
+    {
+      "index": 2,
+      "start": 147.66,
+      "end": 195.356,
+      "firstLine": 86,
+      "lastLine": 127
+    },
+    {
+      "index": 3,
+      "start": 205.811,
+      "end": 209.811,
+      "firstLine": 128,
+      "lastLine": 128
+    }
+  ],
+  "lines": [
+    {
+      "start": 0.1,
+      "text": "Switch on the power line",
+      "index": 0,
+      "end": 1.74,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 1.74,
+      "text": "Remember to put on",
+      "index": 1,
+      "end": 2.92,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 2.92,
+      "text": "PROTECTION",
+      "index": 2,
+      "end": 3.873,
+      "section": 0,
+      "emphasis": true
+    },
+    {
+      "start": 3.873,
+      "text": "Lay down your pieces",
+      "index": 3,
+      "end": 5.491,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 5.491,
+      "text": "And let's begin",
+      "index": 4,
+      "end": 6.38,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 6.38,
+      "text": "OBJECT CREATION",
+      "index": 5,
+      "end": 7.446,
+      "section": 0,
+      "emphasis": true
+    },
+    {
+      "start": 7.446,
+      "text": "Fill in my data parameters",
+      "index": 6,
+      "end": 10.091,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 10.091,
+      "text": "INITIALIZATION",
+      "index": 7,
+      "end": 11.095,
+      "section": 0,
+      "emphasis": true
+    },
+    {
+      "start": 11.095,
+      "text": "Set up our new world",
+      "index": 8,
+      "end": 12.906,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 12.906,
+      "text": "And let's begin the",
+      "index": 9,
+      "end": 13.891,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 13.891,
+      "text": "SIMULATION",
+      "index": 10,
+      "end": 16,
+      "section": 0,
+      "emphasis": true
+    },
+    {
+      "start": 16,
+      "text": "world.execute(me);",
+      "index": 11,
+      "end": 20,
+      "section": 0,
+      "emphasis": false
+    },
+    {
+      "start": 29.709,
+      "text": "If I'm a set of points",
+      "index": 12,
+      "end": 31.116,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 31.116,
+      "text": "Then I will give you my",
+      "index": 13,
+      "end": 32.682,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 32.682,
+      "text": "DIMENSION",
+      "index": 14,
+      "end": 33.412,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 33.412,
+      "text": "If I'm a circle",
+      "index": 15,
+      "end": 34.646,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 34.646,
+      "text": "Then I will give you my",
+      "index": 16,
+      "end": 36.287,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 36.287,
+      "text": "CIRCUMFERENCE",
+      "index": 17,
+      "end": 37.067,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 37.067,
+      "text": "If I'm a sine wave",
+      "index": 18,
+      "end": 38.596,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 38.596,
+      "text": "Then you can sit on all my",
+      "index": 19,
+      "end": 40.049,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 40.049,
+      "text": "TANGENTS",
+      "index": 20,
+      "end": 40.706,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 40.706,
+      "text": "If I approach infinity",
+      "index": 21,
+      "end": 42.346,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 42.346,
+      "text": "Then you can be my",
+      "index": 22,
+      "end": 43.507,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 43.507,
+      "text": "LIMITATIONS",
+      "index": 23,
+      "end": 44.452,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 44.452,
+      "text": "Switch my current",
+      "index": 24,
+      "end": 45.85,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 45.85,
+      "text": "To AC to DC",
+      "index": 25,
+      "end": 47.672,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 47.672,
+      "text": "And then blind my vision",
+      "index": 26,
+      "end": 49.534,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 49.534,
+      "text": "So dizzy so dizzy",
+      "index": 27,
+      "end": 51.363,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 51.363,
+      "text": "Oh we can travel",
+      "index": 28,
+      "end": 53.225,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 53.225,
+      "text": "To A.D to B.C",
+      "index": 29,
+      "end": 55.083,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 55.083,
+      "text": "And we can unite",
+      "index": 30,
+      "end": 56.916,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 56.916,
+      "text": "So deeply so deeply",
+      "index": 31,
+      "end": 59.223,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 59.223,
+      "text": "If I can",
+      "index": 32,
+      "end": 59.687,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 59.687,
+      "text": "If I can give you all the",
+      "index": 33,
+      "end": 61.958,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 61.958,
+      "text": "STIMULATIONS",
+      "index": 34,
+      "end": 62.589,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 62.589,
+      "text": "Then I can",
+      "index": 35,
+      "end": 63.535,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 63.535,
+      "text": "Then I can be your only",
+      "index": 36,
+      "end": 65.397,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 65.397,
+      "text": "SATISFACTION",
+      "index": 37,
+      "end": 66.601,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 66.601,
+      "text": "If I can make you happy",
+      "index": 38,
+      "end": 68.252,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 68.252,
+      "text": "I will run the",
+      "index": 39,
+      "end": 69.259,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 69.259,
+      "text": "EXECUTION",
+      "index": 40,
+      "end": 70.084,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 70.084,
+      "text": "Though we are trapped",
+      "index": 41,
+      "end": 71.764,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 71.764,
+      "text": "In this strange strange",
+      "index": 42,
+      "end": 73.169,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 73.169,
+      "text": "SIMULATION",
+      "index": 43,
+      "end": 74.045,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 74.045,
+      "text": "If I'm an eggplant",
+      "index": 44,
+      "end": 75.422,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 75.422,
+      "text": "Then I will give you my",
+      "index": 45,
+      "end": 76.959,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 76.959,
+      "text": "NUTRIENTS",
+      "index": 46,
+      "end": 77.576,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 77.576,
+      "text": "If I'm a tomato",
+      "index": 47,
+      "end": 79.226,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 79.226,
+      "text": "Then I will give you",
+      "index": 48,
+      "end": 80.62,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 80.62,
+      "text": "ANTIOXIDANTS",
+      "index": 49,
+      "end": 81.351,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 81.351,
+      "text": "If I'm a tabby cat",
+      "index": 50,
+      "end": 82.833,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 82.833,
+      "text": "Then I will purr for your",
+      "index": 51,
+      "end": 84.268,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 84.268,
+      "text": "ENJOYMENT",
+      "index": 52,
+      "end": 85.078,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 85.078,
+      "text": "If I'm the only god",
+      "index": 53,
+      "end": 86.538,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 86.538,
+      "text": "Then you're the proof of my",
+      "index": 54,
+      "end": 87.922,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 87.922,
+      "text": "EXISTENCE",
+      "index": 55,
+      "end": 88.587,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 88.587,
+      "text": "Switch my gender",
+      "index": 56,
+      "end": 90.197,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 90.197,
+      "text": "To F to M",
+      "index": 57,
+      "end": 92.015,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 92.015,
+      "text": "And then do whatever",
+      "index": 58,
+      "end": 93.953,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 93.953,
+      "text": "From AM to PM",
+      "index": 59,
+      "end": 95.465,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 95.465,
+      "text": "Oh switch my role",
+      "index": 60,
+      "end": 97.739,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 97.739,
+      "text": "To S to M",
+      "index": 61,
+      "end": 99.349,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 99.349,
+      "text": "So we can enter",
+      "index": 62,
+      "end": 101.474,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 101.474,
+      "text": "The trance the trance",
+      "index": 63,
+      "end": 103.489,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 103.489,
+      "text": "If I can",
+      "index": 64,
+      "end": 104.197,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 104.197,
+      "text": "If I can feel your",
+      "index": 65,
+      "end": 106.293,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 106.293,
+      "text": "VIBRATIONS",
+      "index": 66,
+      "end": 107.22,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 107.22,
+      "text": "Then I can",
+      "index": 67,
+      "end": 107.903,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 107.903,
+      "text": "Then I can finally be",
+      "index": 68,
+      "end": 110.221,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 110.221,
+      "text": "COMPLETION",
+      "index": 69,
+      "end": 110.9,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 110.9,
+      "text": "Though you have left",
+      "index": 70,
+      "end": 112.22,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 112.22,
+      "text": "You have left",
+      "index": 71,
+      "end": 113.1,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 113.1,
+      "text": "You have left",
+      "index": 72,
+      "end": 114.18,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 114.18,
+      "text": "You have left",
+      "index": 73,
+      "end": 114.92,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 114.92,
+      "text": "You have left",
+      "index": 74,
+      "end": 115.78,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 115.78,
+      "text": "You have left me in",
+      "index": 75,
+      "end": 117.274,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 117.274,
+      "text": "ISOLATION",
+      "index": 76,
+      "end": 118.333,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 118.333,
+      "text": "If I can",
+      "index": 77,
+      "end": 118.979,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 118.979,
+      "text": "If I can erase all the pointless",
+      "index": 78,
+      "end": 120.86,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 120.86,
+      "text": "FRAGMENTS",
+      "index": 79,
+      "end": 121.728,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 121.728,
+      "text": "Then maybe",
+      "index": 80,
+      "end": 122.714,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 122.714,
+      "text": "Then maybe you won't leave me so",
+      "index": 81,
+      "end": 124.89,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 124.89,
+      "text": "DISHEARTENED",
+      "index": 82,
+      "end": 125.708,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 125.708,
+      "text": "Challenging your god",
+      "index": 83,
+      "end": 128.661,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 128.661,
+      "text": "You have made some",
+      "index": 84,
+      "end": 131.224,
+      "section": 1,
+      "emphasis": false
+    },
+    {
+      "start": 131.224,
+      "text": "ILLEGAL ARGUMENTS",
+      "index": 85,
+      "end": 135.224,
+      "section": 1,
+      "emphasis": true
+    },
+    {
+      "start": 147.66,
+      "text": "EXECUTION",
+      "index": 86,
+      "end": 148.6,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 148.6,
+      "text": "EXECUTION",
+      "index": 87,
+      "end": 149.52,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 149.52,
+      "text": "EXECUTION",
+      "index": 88,
+      "end": 150.54,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 150.54,
+      "text": "EXECUTION",
+      "index": 89,
+      "end": 151.52,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 151.52,
+      "text": "EXECUTION",
+      "index": 90,
+      "end": 152.28,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 152.28,
+      "text": "EXECUTION",
+      "index": 91,
+      "end": 153.16,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 153.16,
+      "text": "EXECUTION",
+      "index": 92,
+      "end": 153.98,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 153.98,
+      "text": "EXECUTION",
+      "index": 93,
+      "end": 155.2,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 155.2,
+      "text": "EXECUTION",
+      "index": 94,
+      "end": 156.08,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 156.08,
+      "text": "EXECUTION",
+      "index": 95,
+      "end": 157.04,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 157.04,
+      "text": "EXECUTION",
+      "index": 96,
+      "end": 158,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 158,
+      "text": "EXECUTION",
+      "index": 97,
+      "end": 158.9,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 158.9,
+      "text": "EIN",
+      "index": 98,
+      "end": 159.321,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 159.321,
+      "text": "DOS",
+      "index": 99,
+      "end": 159.657,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 159.657,
+      "text": "TROIS",
+      "index": 100,
+      "end": 160.244,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 160.244,
+      "text": "NE",
+      "index": 101,
+      "end": 160.693,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 160.693,
+      "text": "FEM",
+      "index": 102,
+      "end": 161.124,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 161.124,
+      "text": "LIU",
+      "index": 103,
+      "end": 161.584,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 161.584,
+      "text": "EXECUTION",
+      "index": 104,
+      "end": 162.632,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 162.632,
+      "text": "If I can",
+      "index": 105,
+      "end": 163.315,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 163.315,
+      "text": "If I can give them all the",
+      "index": 106,
+      "end": 165.166,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 165.166,
+      "text": "EXECUTION",
+      "index": 107,
+      "end": 166.016,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 166.016,
+      "text": "Then I can",
+      "index": 108,
+      "end": 167.022,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 167.022,
+      "text": "Then I can be your only",
+      "index": 109,
+      "end": 168.911,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 168.911,
+      "text": "EXECUTION",
+      "index": 110,
+      "end": 169.824,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 169.824,
+      "text": "If I can have you back",
+      "index": 111,
+      "end": 171.868,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 171.868,
+      "text": "I will run the",
+      "index": 112,
+      "end": 172.712,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 172.712,
+      "text": "EXECUTION",
+      "index": 113,
+      "end": 173.643,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 173.643,
+      "text": "Though we are trapped",
+      "index": 114,
+      "end": 174.975,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 174.975,
+      "text": "We are trapped ah",
+      "index": 115,
+      "end": 177.246,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 177.246,
+      "text": "I've studied",
+      "index": 116,
+      "end": 178.173,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 178.173,
+      "text": "I've studied how to properly",
+      "index": 117,
+      "end": 179.929,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 179.929,
+      "text": "LO-O-OVE",
+      "index": 118,
+      "end": 180.857,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 180.857,
+      "text": "Question me",
+      "index": 119,
+      "end": 181.901,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 181.901,
+      "text": "Question me I can answer all",
+      "index": 120,
+      "end": 183.646,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 183.646,
+      "text": "LO-O-OVE",
+      "index": 121,
+      "end": 184.54,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 184.54,
+      "text": "I know the algebraic expression of",
+      "index": 122,
+      "end": 187.665,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 187.665,
+      "text": "LO-O-OVE",
+      "index": 123,
+      "end": 188.483,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 188.483,
+      "text": "Though you are free",
+      "index": 124,
+      "end": 189.746,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 189.746,
+      "text": "I am trapped",
+      "index": 125,
+      "end": 190.801,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 190.801,
+      "text": "Trapped in",
+      "index": 126,
+      "end": 191.356,
+      "section": 2,
+      "emphasis": false
+    },
+    {
+      "start": 191.356,
+      "text": "LO-O-OVE",
+      "index": 127,
+      "end": 195.356,
+      "section": 2,
+      "emphasis": true
+    },
+    {
+      "start": 205.811,
+      "text": "EXECUTION",
+      "index": 128,
+      "end": 209.811,
+      "section": 3,
+      "emphasis": true
+    }
+  ],
+  "lyrics": [
+    {
+      "time": 0.1,
+      "end": 1.74,
+      "en": "Switch on the power line",
+      "zh": "接上电源"
+    },
+    {
+      "time": 1.74,
+      "end": 2.92,
+      "en": "Remember to put on",
+      "zh": "记得装备好"
+    },
+    {
+      "time": 2.92,
+      "end": 3.873,
+      "en": "PROTECTION",
+      "zh": "绝缘护具"
+    },
+    {
+      "time": 3.873,
+      "end": 5.491,
+      "en": "Lay down your pieces",
+      "zh": "摆好棋子"
+    },
+    {
+      "time": 5.491,
+      "end": 6.38,
+      "en": "And let's begin",
+      "zh": "开始吧"
+    },
+    {
+      "time": 6.38,
+      "end": 7.446,
+      "en": "OBJECT CREATION",
+      "zh": "对象生成"
+    },
+    {
+      "time": 7.446,
+      "end": 10.091,
+      "en": "Fill in my data parameters",
+      "zh": "输入我的参数"
+    },
+    {
+      "time": 10.091,
+      "end": 11.095,
+      "en": "INITIALIZATION",
+      "zh": "数据初始化"
+    },
+    {
+      "time": 11.095,
+      "end": 12.906,
+      "en": "Set up our new world",
+      "zh": "设定好我们的新世界"
+    },
+    {
+      "time": 12.906,
+      "end": 13.891,
+      "en": "And let's begin the",
+      "zh": "开始吧"
+    },
+    {
+      "time": 13.891,
+      "end": 16,
+      "en": "SIMULATION",
+      "zh": "模拟程序"
+    },
+    {
+      "time": 16,
+      "end": 20,
+      "en": "world.execute(me);",
+      "zh": ""
+    },
+    {
+      "time": 29.709,
+      "end": 31.116,
+      "en": "If I'm a set of points",
+      "zh": "如果我是一组点"
+    },
+    {
+      "time": 31.116,
+      "end": 32.682,
+      "en": "Then I will give you my",
+      "zh": "那么我将献给你"
+    },
+    {
+      "time": 32.682,
+      "end": 33.412,
+      "en": "DIMENSION",
+      "zh": "我的次元"
+    },
+    {
+      "time": 33.412,
+      "end": 34.646,
+      "en": "If I'm a circle",
+      "zh": "如果我是一个圆"
+    },
+    {
+      "time": 34.646,
+      "end": 36.287,
+      "en": "Then I will give you my",
+      "zh": "那么我将献给你"
+    },
+    {
+      "time": 36.287,
+      "end": 37.067,
+      "en": "CIRCUMFERENCE",
+      "zh": "我的圆周"
+    },
+    {
+      "time": 37.067,
+      "end": 38.596,
+      "en": "If I'm a sine wave",
+      "zh": "如果我是一条正弦波"
+    },
+    {
+      "time": 38.596,
+      "end": 40.049,
+      "en": "Then you can sit on all my",
+      "zh": "那么请你坐上"
+    },
+    {
+      "time": 40.049,
+      "end": 40.706,
+      "en": "TANGENTS",
+      "zh": "我的切线"
+    },
+    {
+      "time": 40.706,
+      "end": 42.346,
+      "en": "If I approach infinity",
+      "zh": "如果我趋近于无穷"
+    },
+    {
+      "time": 42.346,
+      "end": 43.507,
+      "en": "Then you can be my",
+      "zh": "那么你便可以成为"
+    },
+    {
+      "time": 43.507,
+      "end": 44.452,
+      "en": "LIMITATIONS",
+      "zh": "我的极限"
+    },
+    {
+      "time": 44.452,
+      "end": 45.85,
+      "en": "Switch my current",
+      "zh": "切换我的电流"
+    },
+    {
+      "time": 45.85,
+      "end": 47.672,
+      "en": "To AC to DC",
+      "zh": "从交流到直流"
+    },
+    {
+      "time": 47.672,
+      "end": 49.534,
+      "en": "And then blind my vision",
+      "zh": "然后蒙上我的眼睛"
+    },
+    {
+      "time": 49.534,
+      "end": 51.363,
+      "en": "So dizzy so dizzy",
+      "zh": "头晕目眩"
+    },
+    {
+      "time": 51.363,
+      "end": 53.225,
+      "en": "Oh we can travel",
+      "zh": "我们可以穿越时空"
+    },
+    {
+      "time": 53.225,
+      "end": 55.083,
+      "en": "To A.D to B.C",
+      "zh": "从未来到过去"
+    },
+    {
+      "time": 55.083,
+      "end": 56.916,
+      "en": "And we can unite",
+      "zh": "然后成为一体"
+    },
+    {
+      "time": 56.916,
+      "end": 59.223,
+      "en": "So deeply so deeply",
+      "zh": "深深入髓"
+    },
+    {
+      "time": 59.223,
+      "end": 59.687,
+      "en": "If I can",
+      "zh": "如果我能"
+    },
+    {
+      "time": 59.687,
+      "end": 61.958,
+      "en": "If I can give you all the",
+      "zh": "如果我能够献给你"
+    },
+    {
+      "time": 61.958,
+      "end": 62.589,
+      "en": "STIMULATIONS",
+      "zh": "所有的刺激"
+    },
+    {
+      "time": 62.589,
+      "end": 63.535,
+      "en": "Then I can",
+      "zh": "那么我就能够"
+    },
+    {
+      "time": 63.535,
+      "end": 65.397,
+      "en": "Then I can be your only",
+      "zh": "那么我就能够成为你"
+    },
+    {
+      "time": 65.397,
+      "end": 66.601,
+      "en": "SATISFACTION",
+      "zh": "唯一的满足"
+    },
+    {
+      "time": 66.601,
+      "end": 68.252,
+      "en": "If I can make you happy",
+      "zh": "如果我能够让你开心"
+    },
+    {
+      "time": 68.252,
+      "end": 69.259,
+      "en": "I will run the",
+      "zh": "那么我将"
+    },
+    {
+      "time": 69.259,
+      "end": 70.084,
+      "en": "EXECUTION",
+      "zh": "执行指令"
+    },
+    {
+      "time": 70.084,
+      "end": 71.764,
+      "en": "Though we are trapped",
+      "zh": "但我们被困"
+    },
+    {
+      "time": 71.764,
+      "end": 73.169,
+      "en": "In this strange strange",
+      "zh": "在这个异乎寻常的"
+    },
+    {
+      "time": 73.169,
+      "end": 74.045,
+      "en": "SIMULATION",
+      "zh": "模拟程序之中"
+    },
+    {
+      "time": 74.045,
+      "end": 75.422,
+      "en": "If I'm an eggplant",
+      "zh": "如果我是一根茄子"
+    },
+    {
+      "time": 75.422,
+      "end": 76.959,
+      "en": "Then I will give you my",
+      "zh": "那么我将献给你"
+    },
+    {
+      "time": 76.959,
+      "end": 77.576,
+      "en": "NUTRIENTS",
+      "zh": "我的营养"
+    },
+    {
+      "time": 77.576,
+      "end": 79.226,
+      "en": "If I'm a tomato",
+      "zh": "如果我是一颗番茄"
+    },
+    {
+      "time": 79.226,
+      "end": 80.62,
+      "en": "Then I will give you",
+      "zh": "那么我将献给你"
+    },
+    {
+      "time": 80.62,
+      "end": 81.351,
+      "en": "ANTIOXIDANTS",
+      "zh": "我的抗氧化物"
+    },
+    {
+      "time": 81.351,
+      "end": 82.833,
+      "en": "If I'm a tabby cat",
+      "zh": "如果我是一只花猫"
+    },
+    {
+      "time": 82.833,
+      "end": 84.268,
+      "en": "Then I will purr for your",
+      "zh": "那么我将为你咕噜咕噜"
+    },
+    {
+      "time": 84.268,
+      "end": 85.078,
+      "en": "ENJOYMENT",
+      "zh": "只要你喜欢"
+    },
+    {
+      "time": 85.078,
+      "end": 86.538,
+      "en": "If I'm the only god",
+      "zh": "如果我是唯一的神"
+    },
+    {
+      "time": 86.538,
+      "end": 87.922,
+      "en": "Then you're the proof of my",
+      "zh": "那么你将是我"
+    },
+    {
+      "time": 87.922,
+      "end": 88.587,
+      "en": "EXISTENCE",
+      "zh": "存在的证明"
+    },
+    {
+      "time": 88.587,
+      "end": 90.197,
+      "en": "Switch my gender",
+      "zh": "切换我的性别"
+    },
+    {
+      "time": 90.197,
+      "end": 92.015,
+      "en": "To F to M",
+      "zh": "从女到男"
+    },
+    {
+      "time": 92.015,
+      "end": 93.953,
+      "en": "And then do whatever",
+      "zh": "只做想做的事"
+    },
+    {
+      "time": 93.953,
+      "end": 95.465,
+      "en": "From AM to PM",
+      "zh": "从早到晚"
+    },
+    {
+      "time": 95.465,
+      "end": 97.739,
+      "en": "Oh switch my role",
+      "zh": "切换我的角色"
+    },
+    {
+      "time": 97.739,
+      "end": 99.349,
+      "en": "To S to M",
+      "zh": "从施虐者到受虐者"
+    },
+    {
+      "time": 99.349,
+      "end": 101.474,
+      "en": "So we can enter",
+      "zh": "这样我们就可以"
+    },
+    {
+      "time": 101.474,
+      "end": 103.489,
+      "en": "The trance the trance",
+      "zh": "恍惚出神"
+    },
+    {
+      "time": 103.489,
+      "end": 104.197,
+      "en": "If I can",
+      "zh": "如果我能"
+    },
+    {
+      "time": 104.197,
+      "end": 106.293,
+      "en": "If I can feel your",
+      "zh": "如果我能够感受到"
+    },
+    {
+      "time": 106.293,
+      "end": 107.22,
+      "en": "VIBRATIONS",
+      "zh": "你的振动"
+    },
+    {
+      "time": 107.22,
+      "end": 107.903,
+      "en": "Then I can",
+      "zh": "那么我就能够"
+    },
+    {
+      "time": 107.903,
+      "end": 110.221,
+      "en": "Then I can finally be",
+      "zh": "那么我就终于能够"
+    },
+    {
+      "time": 110.221,
+      "end": 110.9,
+      "en": "COMPLETION",
+      "zh": "变为完全"
+    },
+    {
+      "time": 110.9,
+      "end": 112.22,
+      "en": "Though you have left",
+      "zh": "但你还是走了"
+    },
+    {
+      "time": 112.22,
+      "end": 113.1,
+      "en": "You have left",
+      "zh": "你走了"
+    },
+    {
+      "time": 113.1,
+      "end": 114.18,
+      "en": "You have left",
+      "zh": "你走了"
+    },
+    {
+      "time": 114.18,
+      "end": 114.92,
+      "en": "You have left",
+      "zh": "你走了"
+    },
+    {
+      "time": 114.92,
+      "end": 115.78,
+      "en": "You have left",
+      "zh": "你走了"
+    },
+    {
+      "time": 115.78,
+      "end": 117.274,
+      "en": "You have left me in",
+      "zh": "你把我独留在"
+    },
+    {
+      "time": 117.274,
+      "end": 118.333,
+      "en": "ISOLATION",
+      "zh": "在孤独之中"
+    },
+    {
+      "time": 118.333,
+      "end": 118.979,
+      "en": "If I can",
+      "zh": "如果我能"
+    },
+    {
+      "time": 118.979,
+      "end": 120.86,
+      "en": "If I can erase all the pointless",
+      "zh": "如果我能够消去"
+    },
+    {
+      "time": 120.86,
+      "end": 121.728,
+      "en": "FRAGMENTS",
+      "zh": "这些无意义的碎片"
+    },
+    {
+      "time": 121.728,
+      "end": 122.714,
+      "en": "Then maybe",
+      "zh": "那么我就可能"
+    },
+    {
+      "time": 122.714,
+      "end": 124.89,
+      "en": "Then maybe you won't leave me so",
+      "zh": "那么我就可能不会"
+    },
+    {
+      "time": 124.89,
+      "end": 125.708,
+      "en": "DISHEARTENED",
+      "zh": "如此失望"
+    },
+    {
+      "time": 125.708,
+      "end": 128.661,
+      "en": "Challenging your god",
+      "zh": "与神作对"
+    },
+    {
+      "time": 128.661,
+      "end": 131.224,
+      "en": "You have made some",
+      "zh": "你传给我的是"
+    },
+    {
+      "time": 131.224,
+      "end": 135.224,
+      "en": "ILLEGAL ARGUMENTS",
+      "zh": "非法参数"
+    },
+    {
+      "time": 147.66,
+      "end": 148.6,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 148.6,
+      "end": 149.52,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 149.52,
+      "end": 150.54,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 150.54,
+      "end": 151.52,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 151.52,
+      "end": 152.28,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 152.28,
+      "end": 153.16,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 153.16,
+      "end": 153.98,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 153.98,
+      "end": 155.2,
+      "en": "EXECUTION",
+      "zh": "执行"
+    },
+    {
+      "time": 155.2,
+      "end": 156.08,
+      "en": "EXECUTION",
+      "zh": "死刑"
+    },
+    {
+      "time": 156.08,
+      "end": 157.04,
+      "en": "EXECUTION",
+      "zh": "死刑"
+    },
+    {
+      "time": 157.04,
+      "end": 158,
+      "en": "EXECUTION",
+      "zh": "死刑"
+    },
+    {
+      "time": 158,
+      "end": 158.9,
+      "en": "EXECUTION",
+      "zh": "死刑"
+    },
+    {
+      "time": 158.9,
+      "end": 159.321,
+      "en": "EIN",
+      "zh": "一（德语）"
+    },
+    {
+      "time": 159.321,
+      "end": 159.657,
+      "en": "DOS",
+      "zh": "二（西班牙语）"
+    },
+    {
+      "time": 159.657,
+      "end": 160.244,
+      "en": "TROIS",
+      "zh": "三（法语）"
+    },
+    {
+      "time": 160.244,
+      "end": 160.693,
+      "en": "NE",
+      "zh": "四（韩语）"
+    },
+    {
+      "time": 160.693,
+      "end": 161.124,
+      "en": "FEM",
+      "zh": "五（瑞典语）"
+    },
+    {
+      "time": 161.124,
+      "end": 161.584,
+      "en": "LIU",
+      "zh": "六（汉语）"
+    },
+    {
+      "time": 161.584,
+      "end": 162.632,
+      "en": "EXECUTION",
+      "zh": "死刑"
+    },
+    {
+      "time": 162.632,
+      "end": 163.315,
+      "en": "If I can",
+      "zh": "如果我能"
+    },
+    {
+      "time": 163.315,
+      "end": 165.166,
+      "en": "If I can give them all the",
+      "zh": "如果我能够给所有人"
+    },
+    {
+      "time": 165.166,
+      "end": 166.016,
+      "en": "EXECUTION",
+      "zh": "赐予死刑"
+    },
+    {
+      "time": 166.016,
+      "end": 167.022,
+      "en": "Then I can",
+      "zh": "那么我就能够"
+    },
+    {
+      "time": 167.022,
+      "end": 168.911,
+      "en": "Then I can be your only",
+      "zh": "那么我就能够成为"
+    },
+    {
+      "time": 168.911,
+      "end": 169.824,
+      "en": "EXECUTION",
+      "zh": "你唯一的执行者"
+    },
+    {
+      "time": 169.824,
+      "end": 171.868,
+      "en": "If I can have you back",
+      "zh": "如果你能够回到我身边"
+    },
+    {
+      "time": 171.868,
+      "end": 172.712,
+      "en": "I will run the",
+      "zh": "那么我将"
+    },
+    {
+      "time": 172.712,
+      "end": 173.643,
+      "en": "EXECUTION",
+      "zh": "执行指令"
+    },
+    {
+      "time": 173.643,
+      "end": 174.975,
+      "en": "Though we are trapped",
+      "zh": "但我们始终被困"
+    },
+    {
+      "time": 174.975,
+      "end": 177.246,
+      "en": "We are trapped ah",
+      "zh": "始终被困"
+    },
+    {
+      "time": 177.246,
+      "end": 178.173,
+      "en": "I've studied",
+      "zh": "我学会了"
+    },
+    {
+      "time": 178.173,
+      "end": 179.929,
+      "en": "I've studied how to properly",
+      "zh": "我学会了"
+    },
+    {
+      "time": 179.929,
+      "end": 180.857,
+      "en": "LO-O-OVE",
+      "zh": "如何正确去爱"
+    },
+    {
+      "time": 180.857,
+      "end": 181.901,
+      "en": "Question me",
+      "zh": "提问我吧"
+    },
+    {
+      "time": 181.901,
+      "end": 183.646,
+      "en": "Question me I can answer all",
+      "zh": "我全都能答对"
+    },
+    {
+      "time": 183.646,
+      "end": 184.54,
+      "en": "LO-O-OVE",
+      "zh": "只要是爱的问题"
+    },
+    {
+      "time": 184.54,
+      "end": 187.665,
+      "en": "I know the algebraic expression of",
+      "zh": "就连爱的代数表达式"
+    },
+    {
+      "time": 187.665,
+      "end": 188.483,
+      "en": "LO-O-OVE",
+      "zh": "我都知道"
+    },
+    {
+      "time": 188.483,
+      "end": 189.746,
+      "en": "Though you are free",
+      "zh": "虽然你已自由"
+    },
+    {
+      "time": 189.746,
+      "end": 190.801,
+      "en": "I am trapped",
+      "zh": "我仍被困"
+    },
+    {
+      "time": 190.801,
+      "end": 191.356,
+      "en": "Trapped in",
+      "zh": "我仍被困"
+    },
+    {
+      "time": 191.356,
+      "end": 195.356,
+      "en": "LO-O-OVE",
+      "zh": "在爱之中"
+    },
+    {
+      "time": 205.811,
+      "end": 209.811,
+      "en": "EXECUTION",
+      "zh": "执行死刑"
+    }
+  ]
+}

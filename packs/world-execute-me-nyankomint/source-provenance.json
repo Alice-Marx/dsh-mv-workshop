@@ -1,0 +1,364 @@
+{
+  "format": "nyankomint-workshop-adaptation",
+  "version": 1,
+  "commit": "2073b0c88c6fc837482478402a44f101b3b57d6f",
+  "source": "https://github.com/Nyankomintsu/world-execute-me-lyric-mv/tree/2073b0c88c6fc837482478402a44f101b3b57d6f",
+  "modules": {
+    "src/engine/prng.js": {
+      "originalSha256": "00264cb3115bf0436daaed8a63f93751ac6e7dc002fd438ad5a585617e81f7f4",
+      "adaptedSha256": "00264cb3115bf0436daaed8a63f93751ac6e7dc002fd438ad5a585617e81f7f4",
+      "changed": false
+    },
+    "src/engine/engine.js": {
+      "originalSha256": "c89741af29ddd35ef75272621975c41558f4782f1a348c6506a8bbc49403bef0",
+      "adaptedSha256": "8cd13ebd4f4e08f8aa162b9c49f02af5d3acbe899dcab1204c312027887d6a8a",
+      "changed": true
+    },
+    "src/engine/art.js": {
+      "originalSha256": "563228a4404ce087b28fd34a36644c7052703ead93cb3d35cf1963554fb379ea",
+      "adaptedSha256": "9ff487b670b3a109043924c98429e33cf384808ced4344844064144c8d2b0b33",
+      "changed": true
+    },
+    "src/engine/util.js": {
+      "originalSha256": "e4546a3e9659c5a604c077cfa58563aff61b41dd19dbaa13f577c3b3d4c45f98",
+      "adaptedSha256": "e4546a3e9659c5a604c077cfa58563aff61b41dd19dbaa13f577c3b3d4c45f98",
+      "changed": false
+    },
+    "src/engine/trace.js": {
+      "originalSha256": "ad118d4691a2ebc19c81bac71fb95e111ca68170b103d35bfe35030bf7d6c0b4",
+      "adaptedSha256": "ad118d4691a2ebc19c81bac71fb95e111ca68170b103d35bfe35030bf7d6c0b4",
+      "changed": false
+    },
+    "src/engine/features.js": {
+      "originalSha256": "1f407324dabaa1e9dfa31e4acd12b44f45753d61f5b4431c4ade7fd93ce659e0",
+      "adaptedSha256": "1f407324dabaa1e9dfa31e4acd12b44f45753d61f5b4431c4ade7fd93ce659e0",
+      "changed": false
+    },
+    "src/engine/transitions.js": {
+      "originalSha256": "58d6213ef727f4ca7dd1cac46a31acafbac8e538fc35f8cbce9a631f073f832d",
+      "adaptedSha256": "58d6213ef727f4ca7dd1cac46a31acafbac8e538fc35f8cbce9a631f073f832d",
+      "changed": false
+    },
+    "src/engine/lyrics.js": {
+      "originalSha256": "756587272439ce66662349b068827b99ec1928d98ee52d3b50eaaf554bc9dc69",
+      "adaptedSha256": "756587272439ce66662349b068827b99ec1928d98ee52d3b50eaaf554bc9dc69",
+      "changed": false
+    },
+    "src/scenes/index.js": {
+      "originalSha256": "c4ef826914140e3e484d38dc452a64c668744fb08c0581bd3aaec9666e65254e",
+      "adaptedSha256": "75a20f9ca3389df9b0c307acbbc210a20373ed7371e493e3533f6da688a23033",
+      "changed": true
+    },
+    "src/engine/post.js": {
+      "originalSha256": "32750263d4645d584fe8720f7a48450863d574498daa5b236b95204ed9e03865",
+      "adaptedSha256": "32750263d4645d584fe8720f7a48450863d574498daa5b236b95204ed9e03865",
+      "changed": false
+    },
+    "src/engine/palette.js": {
+      "originalSha256": "5636cee04fe5f384387a7028045566b8bcc6b238b447802838af11c986e1aae8",
+      "adaptedSha256": "5636cee04fe5f384387a7028045566b8bcc6b238b447802838af11c986e1aae8",
+      "changed": false
+    },
+    "src/engine/draw.js": {
+      "originalSha256": "f60c3b089f059b71d9f3f3ae1f17ad15c60c9617f17bc0ed750bc68e002d0725",
+      "adaptedSha256": "8d6e11f076a88af0a699572e91e531c981f493cfb4971f7047affdfc4247bf4f",
+      "changed": true
+    },
+    "src/engine/layout.js": {
+      "originalSha256": "97350e6d770ab810c0541b79ea6b3049e10e30fee71199fff832cdf7c3e00f20",
+      "adaptedSha256": "97350e6d770ab810c0541b79ea6b3049e10e30fee71199fff832cdf7c3e00f20",
+      "changed": false
+    },
+    "src/scenes/01_boot.js": {
+      "originalSha256": "335f7306fbd46ae88aa784933b59add61961f6ea30d241e28adba2f9b563c0ad",
+      "adaptedSha256": "335f7306fbd46ae88aa784933b59add61961f6ea30d241e28adba2f9b563c0ad",
+      "changed": false
+    },
+    "src/scenes/history.js": {
+      "originalSha256": "92798c9035bdeb17cdba04eb4db249203f287810c4757b31cbfd63b3c267e9ac",
+      "adaptedSha256": "e8ffabc3a27d8382d20c9911ac3142467ca9d11e3b51777ebd5ec89088b06c70",
+      "changed": true
+    },
+    "src/scenes/04_pre1.js": {
+      "originalSha256": "97878c6a11785c030e1dc8c0b0a38f925d5a84ab9793e4262e8da98169a23954",
+      "adaptedSha256": "49930fe1d4e53494485bf3ab7042862e15558aa74cc27f4cddf8875a594a9196",
+      "changed": true
+    },
+    "src/scenes/02_title.js": {
+      "originalSha256": "8610a341ef8b4eedf2b45a3c19df6b3b41c5ffdb681738f7dd3cec5a3908432e",
+      "adaptedSha256": "8610a341ef8b4eedf2b45a3c19df6b3b41c5ffdb681738f7dd3cec5a3908432e",
+      "changed": false
+    },
+    "src/scenes/03_verse1.js": {
+      "originalSha256": "086749399709a99c4ed123d6b56126e3a150975e831ae551a66cd2304c157708",
+      "adaptedSha256": "086749399709a99c4ed123d6b56126e3a150975e831ae551a66cd2304c157708",
+      "changed": false
+    },
+    "src/scenes/08_chorus2.js": {
+      "originalSha256": "c9aff4768ba94298d58663fb9a2f30b61dd9fd27a560e6317c43701150f30974",
+      "adaptedSha256": "0a41cf7a24d8053b473887836a2155437a1b099defed653f46ab90a47b429f82",
+      "changed": false
+    },
+    "src/scenes/09_alone.js": {
+      "originalSha256": "e76bab5801826e8ba3aec8f02be763ed791b0748aa925cd8fa71c37d87c89a20",
+      "adaptedSha256": "c27c4760d72aa3daec361e276d5a8e0650dbceca0403689d863336a194ba4a5c",
+      "changed": false
+    },
+    "src/scenes/12_outro.js": {
+      "originalSha256": "9dab1bda23f4feaf8958f9574826d00999734a8a4ac9b1412d9ab7ee79ca0008",
+      "adaptedSha256": "9dab1bda23f4feaf8958f9574826d00999734a8a4ac9b1412d9ab7ee79ca0008",
+      "changed": false
+    },
+    "src/scenes/12_chorusx.js": {
+      "originalSha256": "1408cb76d2e95f928990568e296b542ab9e83c6e8c375961b8925134a539d702",
+      "adaptedSha256": "1408cb76d2e95f928990568e296b542ab9e83c6e8c375961b8925134a539d702",
+      "changed": false
+    },
+    "src/scenes/07_pre2.js": {
+      "originalSha256": "9561f48d3b6f6affdc3dcef8d7d039b0533be528ce96b688a4fcef3f5cb74a19",
+      "adaptedSha256": "52d566ebe69b6e93d46aa22fba052de4ad5d6b916da6e9b627221576c5767557",
+      "changed": false
+    },
+    "src/scenes/13_shutdown.js": {
+      "originalSha256": "09e9d95d7a6d27f87a3cf5f597fed6a450b4831fe465a48686051d390d7c8447",
+      "adaptedSha256": "09e9d95d7a6d27f87a3cf5f597fed6a450b4831fe465a48686051d390d7c8447",
+      "changed": false
+    },
+    "src/scenes/10_error.js": {
+      "originalSha256": "504fafe5911906737317972eb7e8144d9be06e86384399a30355f99c1fb64a55",
+      "adaptedSha256": "8ef7f09decaa4bdd9b84f62a0eb19d59d9b1d9e743805e1730d7c9aea138c9ad",
+      "changed": false
+    },
+    "src/scenes/shot.js": {
+      "originalSha256": "e14b4c23a3c0dc71b364294dafec7cdebe0f5e1512f2ba3875d254da11d03f38",
+      "adaptedSha256": "e14b4c23a3c0dc71b364294dafec7cdebe0f5e1512f2ba3875d254da11d03f38",
+      "changed": false
+    },
+    "src/scenes/11_count.js": {
+      "originalSha256": "191730b6313cd995e1383deb9411d303b97c7384e1a1f8108733569f42f1dd0f",
+      "adaptedSha256": "191730b6313cd995e1383deb9411d303b97c7384e1a1f8108733569f42f1dd0f",
+      "changed": false
+    },
+    "src/scenes/overlay.js": {
+      "originalSha256": "f2b9eef8cb2135e8c3c8bd2a830e34c5e202b201fe0fd97b4115ab455eccff9c",
+      "adaptedSha256": "f2b9eef8cb2135e8c3c8bd2a830e34c5e202b201fe0fd97b4115ab455eccff9c",
+      "changed": false
+    },
+    "src/scenes/11_execution.js": {
+      "originalSha256": "031af8933e1ffab09454239872b0a91647bce440f0da07054f0cc12da7505c04",
+      "adaptedSha256": "031af8933e1ffab09454239872b0a91647bce440f0da07054f0cc12da7505c04",
+      "changed": false
+    },
+    "src/scenes/05_chorus.js": {
+      "originalSha256": "4af34389f9effbb548862ea32967faeb6d47cd2c7dcae3b168cef980704efed5",
+      "adaptedSha256": "61d92baeaea1831018ed6be4898228fb526801d83cb98224e7dd31d77e9fc4f6",
+      "changed": false
+    },
+    "src/scenes/06_verse2.js": {
+      "originalSha256": "ea175b96cf41f89b89dbe6a46ef15baf5456f5fe3ecd8026f45d196a2c8c996d",
+      "adaptedSha256": "570cf58bbdfdcf2629c6e56d0d3f4286b525f75fb29a4e838a10ca1e2623602e",
+      "changed": false
+    },
+    "src/components/plate.js": {
+      "originalSha256": "0489378c49741a0b44bef785804fc9310117decfe9ee7b01a1cede9f50ae9eea",
+      "adaptedSha256": "ab1ef82b76f0845bdb8bcb6183c3d2020b6524b4b14af40b085b052dae0d85d0",
+      "changed": true
+    },
+    "src/components/chat.js": {
+      "originalSha256": "fd500baade2deee818926d79e73a973d3eee979789ffaac382d5f129016406bc",
+      "adaptedSha256": "fd500baade2deee818926d79e73a973d3eee979789ffaac382d5f129016406bc",
+      "changed": false
+    },
+    "src/scenes/kit.js": {
+      "originalSha256": "8060fd51305d9055e6dc1e956fd4111ae2051e557c63f577e6f509137565a6f9",
+      "adaptedSha256": "bf945233ff4d3d0009ee56138d7bf392781290a8e7531d7a4cbd8487886f22ed",
+      "changed": false
+    },
+    "src/components/motif.js": {
+      "originalSha256": "3d83a6ce48420c0bb34cb97b2a17fd16292b30ee23e9560496f24c9c65f3f5de",
+      "adaptedSha256": "3d83a6ce48420c0bb34cb97b2a17fd16292b30ee23e9560496f24c9c65f3f5de",
+      "changed": false
+    },
+    "src/scenes/loop.js": {
+      "originalSha256": "5a81fc470ff4791853eb2b815a3199796d659f730dca1d526ef705a421ac142d",
+      "adaptedSha256": "5a81fc470ff4791853eb2b815a3199796d659f730dca1d526ef705a421ac142d",
+      "changed": false
+    },
+    "src/components/code.js": {
+      "originalSha256": "feae5923af696dd75802fa210f4385a1f971f3d53ccb91fe1576c97226e1359b",
+      "adaptedSha256": "feae5923af696dd75802fa210f4385a1f971f3d53ccb91fe1576c97226e1359b",
+      "changed": false
+    },
+    "src/scenes/climax.js": {
+      "originalSha256": "7748edb2520161bffd753d5738fe6cbf0b57a252528ef54797c3812f7f9a4226",
+      "adaptedSha256": "2c4123f0fe4c8cd4873859e18979c83a83902e8eb122465c18919672fb596139",
+      "changed": true
+    },
+    "src/scenes/cues.js": {
+      "originalSha256": "4638d5d987c21c8317f633c33389e7a65961a66b5782c4ac72d5cf057ffbccac",
+      "adaptedSha256": "ca449c916746ec2e021ab01ff353ffdb366e1ddee642e7aa676eb63dcd3a9548",
+      "changed": false
+    },
+    "src/scenes/plates_love.js": {
+      "originalSha256": "ed35eac0604cb55db1de369f5ffa011b3afcf7c4c64d8e4e16858d6171e74c40",
+      "adaptedSha256": "ed35eac0604cb55db1de369f5ffa011b3afcf7c4c64d8e4e16858d6171e74c40",
+      "changed": false
+    },
+    "src/components/cursor.js": {
+      "originalSha256": "1c806d2576b6a7d38ed808f1a0d91ce5b380cb778d9a226f02878d0babb51649",
+      "adaptedSha256": "1c806d2576b6a7d38ed808f1a0d91ce5b380cb778d9a226f02878d0babb51649",
+      "changed": false
+    },
+    "src/scenes/shared.js": {
+      "originalSha256": "436f21531f5af9b9ac76223a57d13c53b8bdb42a875d2096b3a7d7bf4f711a5b",
+      "adaptedSha256": "436f21531f5af9b9ac76223a57d13c53b8bdb42a875d2096b3a7d7bf4f711a5b",
+      "changed": false
+    },
+    "src/scenes/bubbles.js": {
+      "originalSha256": "7dad5207c9b8df9a701fcc44d386d3a133b29ee1a36444c8c3604ca9555687d1",
+      "adaptedSha256": "266025ea92cc1cdf371e0530cc7fb3acc751376fd5b5ada1fddde1beeebdbdb3",
+      "changed": false
+    },
+    "src/scenes/plates_verse2.js": {
+      "originalSha256": "815d62b657e4007f36411be805aa7c425805cea1becab242ceb3ebe163388d90",
+      "adaptedSha256": "4a8d1653928558d1f0145956a041b7f97759cb979e4a634b4f8c56e54027cda0",
+      "changed": false
+    },
+    "src/engine/geom.js": {
+      "originalSha256": "2a59497332489d00f2985b62fd979e8aadbae26dfbb24125930113868343f4f9",
+      "adaptedSha256": "2a59497332489d00f2985b62fd979e8aadbae26dfbb24125930113868343f4f9",
+      "changed": false
+    },
+    "src/engine/shapes.js": {
+      "originalSha256": "ff179e3f6284680d0c5b3d844ed41ed17b34979946cafb14fc400af5093e026d",
+      "adaptedSha256": "ff179e3f6284680d0c5b3d844ed41ed17b34979946cafb14fc400af5093e026d",
+      "changed": false
+    },
+    "src/engine/type.js": {
+      "originalSha256": "df83cbb23c921ed191be7c59263cd9f79d83f236242dae2b8d9bf50cc1620749",
+      "adaptedSha256": "73380047f4acce50520cbc20ec905ba955cc9676da6ee7610e218948263b0d29",
+      "changed": false
+    },
+    "src/scenes/plates_chorus.js": {
+      "originalSha256": "31799666d93a068e9979c92eb2360ffa2bb340fb26f0b8152e0104fa5845526e",
+      "adaptedSha256": "b9c5c4c674f2866438d625c974c2718f22f387e2ae30305a7b48fcfce61e47eb",
+      "changed": false
+    },
+    "src/scenes/plates_pre2.js": {
+      "originalSha256": "be6c66899e3b203362217edc5904c9a952173f1682439496dc01348f3b84cbd4",
+      "adaptedSha256": "01ae9be50a49bb40430af221acbc5bc36f0a5cc0a25cf7326ba6725920a8dfb7",
+      "changed": false
+    },
+    "src/engine/ascii.js": {
+      "originalSha256": "ef31b6efb010cdd0cdd0f7b8a3dbefc0bff2a85b6691c4156a90891f2cb89625",
+      "adaptedSha256": "6ee1ae73f869df5df52788e03b81176eac3307dceb172b4398958c0cf52c7a02",
+      "changed": false
+    },
+    "src/scenes/objects.js": {
+      "originalSha256": "1779e39e8e91de38ecd36d40d9283907f38b45ae95d3fb3da191a7e79e0a46f8",
+      "adaptedSha256": "f278cddfcf108308d155e98e3b01341fdfc3fd22a08bfed72a325f66fe6ee914",
+      "changed": false
+    },
+    "src/scenes/molecules.js": {
+      "originalSha256": "9ca29904539074071d4c80de86c4e825026f03d9cc15f54b4cbbde2535b1091a",
+      "adaptedSha256": "ecc34f976f8c8b84c21c60038c413ce311864e15fadf506aded09730d0e02d89",
+      "changed": false
+    }
+  },
+  "changedModules": [
+    "src/components/plate.js",
+    "src/engine/art.js",
+    "src/engine/draw.js",
+    "src/engine/engine.js",
+    "src/scenes/04_pre1.js",
+    "src/scenes/climax.js",
+    "src/scenes/history.js",
+    "src/scenes/index.js"
+  ],
+  "art": [
+    {
+      "path": "art/f_bust.png",
+      "source": "assets/character/f_bust.png",
+      "bytes": 1512365,
+      "sha256": "bf1d9abd713cccf204d330cfa73b26344587ffa7186306465a84476fc0db7add"
+    },
+    {
+      "path": "art/f_profile.png",
+      "source": "assets/character/f_profile.png",
+      "bytes": 1269994,
+      "sha256": "524f3f1bc30a7b6659f5c9842a9f6d2d3ba80d015079b7b7c95befb920c34157"
+    },
+    {
+      "path": "art/f_reach.png",
+      "source": "assets/character/f_reach.png",
+      "bytes": 1447993,
+      "sha256": "0765eac9571800dfe6f5d2a26708c918e2f1d7d4779f7217eb2804f3704f2028"
+    },
+    {
+      "path": "art/f_eye.png",
+      "source": "assets/character/f_eye.png",
+      "bytes": 1568964,
+      "sha256": "bd2bcd24f1f976d4f663995fafc74d2890acbe0813a015c99b4ad86122ef51a6"
+    },
+    {
+      "path": "art/boy_bust.png",
+      "source": "assets/character/boy_bust.png",
+      "bytes": 1223887,
+      "sha256": "bc9c45cf0a6e557ca7db951ae3248c66b2cef1b93f07c2b8ff3ca4ab22574efb"
+    },
+    {
+      "path": "art/man_bust.png",
+      "source": "assets/character/man_bust.png",
+      "bytes": 1215360,
+      "sha256": "2d71059d3e93e03b1d03d7421e5e0a8dce73dc418fad426a87290976c39fca3a"
+    },
+    {
+      "path": "art/cat_bust.png",
+      "source": "assets/character/cat_bust.png",
+      "bytes": 1344070,
+      "sha256": "ef358ff3817dcd4c33dc032f8c7f2060f24f83d39d007bc7d818e8eec4c14985"
+    },
+    {
+      "path": "art/cat_paws.png",
+      "source": "assets/character/cat_paws.png",
+      "bytes": 1520296,
+      "sha256": "61bd0b494d3f35f38bc2b35d055386d07c07abd6293729f0084d1309ec788526"
+    }
+  ],
+  "features": {
+    "sourceSha256": "5b296d0e9f5dbbddce5cf75c6c416bad6b3c9ac29a3f99994f89e944cd851189",
+    "reconstructionSha256": "0f7f314d2deaf62dea996334bdbfea69433aa242868c5ce992e135fbafa644ab",
+    "shards": [
+      "data/features-1.json",
+      "data/features-2.json",
+      "data/features-3.json",
+      "data/features-4.json",
+      "data/features-5.json",
+      "data/features-6.json",
+      "data/features-7.json",
+      "data/features-8.json",
+      "data/features-9.json",
+      "data/features-10.json",
+      "data/features-11.json",
+      "data/features-12.json"
+    ],
+    "frames": 12718,
+    "fps": 60,
+    "spectrumBands": 32
+  },
+  "captions": {
+    "localSourceSha256": "ec0ee05a7011c1637e1f6f2f6f5a6f6c417c53b487a56f5c4e6aa25b7ce4bb22",
+    "sourceTimingSha256": "283d2b411b9e54d367ac0c807fe5fcc9d10fb970cb777cde218cf9641c5ba720",
+    "count": 129,
+    "exact": 129,
+    "licence": "LicenseRef-Mili-NonCommercial-FanWork"
+  },
+  "fonts": {
+    "descriptors": 34,
+    "files": 34,
+    "bytes": 937812
+  },
+  "shots": 87,
+  "preroll": 5,
+  "duration": 211.9576
+}

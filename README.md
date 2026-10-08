@@ -41,15 +41,19 @@ FrostNova's [world-execute-me-frostnova 1.0.1](packs/world-execute-me-frostnova)
 
 FrostNova code/generated visuals and the adapter are AGPL-3.0-or-later; Mili text, OFL fonts and trademarks retain separate terms. The repository default license does not replace these terms. [Free complete Corresponding Source](https://github.com/Alice-Marx/dsh-mv-workshop/releases/download/world-execute-me-frostnova-1.0.1/20261007_frostnova-corresponding-source-1.0.1.zip) includes the pinned upstream, editable adapter and reproducible build inputs. 含快速闪烁与强对比切镜，请先阅读包内光敏提示。
 
+[Nyankomint 1.0.0](packs/world-execute-me-nyankomint), from [Nyankomintsu/world-execute-me-lyric-mv](https://github.com/Nyankomintsu/world-execute-me-lyric-mv/tree/2073b0c88c6fc837482478402a44f101b3b57d6f), requires **plugin 0.10.0+**. Complete 87 shots / 14 chapters, 129 captions, 8 original PNG silhouettes, 34 exact offline OFL faces and all 60Hz numerical features. Canvas2D layers + WebGL2 post-processing, not geometric 3D. Five-second silent warning at negative song time, audio remains at zero. Only music is user-provided. Code/docs MIT (Nyankomint); art/output CC BY-NC-SA 4.0; fonts OFL; Mili text separate non-commercial fan terms. Attributed original prompts/methods are teaching references in the plugin template, not executable scene instructions. 非商业同人适配，原作署名和许可保留；快速闪光及强对比切镜仍在，测试不是光敏安全认证。
+
 `mv.json` → `x-dsh-mv-workshop.source` names the original work; the panel shows it as **原作** on the card and in the details.
 
 ## How it works / 工作方式
 
-No server. `index.json` (rebuilt by GitHub Actions after every merge) lists each pack's metadata and every file's
+`index.json` (rebuilt by GitHub Actions after every merge) lists each pack's metadata and every file's
 size and sha256. The plugin downloads `index.json` and the files from `raw.githubusercontent.com` at the commit named
 in the index, verifies each sha256, re-runs the same validation, and installs the pack under
 `%LOCALAPPDATA%\dsh-mv\workshop\<id>\`. Scene scripts always run in the plugin's sandbox (Web Worker, no network,
 no storage, per-frame time limit).
+
+Plugin 0.10.0 defaults to the independently hosted [Huawei HTTPS static fallback](https://www.jianweilimarx.top/dsh-mv-workshop/main/index.json) when eligible GitHub network requests fail. It preserves commit paths, hashes and validation; no arbitrary proxy or uploader. A separate unprivileged fixed-repository pull service checks every 15 minutes, verifies complete bytes before replacing the index, and keeps the old catalogue on failure. Existing seven packs plus Corresponding Source: all 137 files / 40,317,815 bytes were verified anonymously without a proxy. Gitee's HTTP 451 restrictions are not lifted or evaded; its Git mirror remains available for repository synchronization but is not the default download source. Explicit empty plugin mirror configuration disables fallback.
 
 ```
 packs/<id>/mv.json · scenes.js · cover.png · README.md · lyrics.timing.json · data/… (canvas.assets)

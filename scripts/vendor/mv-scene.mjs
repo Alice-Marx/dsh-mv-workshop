@@ -87,8 +87,8 @@ export const SCENE_BLOCKED_GLOBALS = Object.freeze([
   'WebAssembly',
   // Code generation: still blocked in every mode.
   'Function', 'eval',
-  // Fonts: scripts use the fonts the system already has.
-  'FontFace', 'fonts',
+  // Offline fonts are loaded privately before user code runs; no font API is exposed.
+  'FontFace', 'FontFaceSet', 'FontFaceSetLoadEvent', 'fonts',
   // Supervisor uses these before lockdown; user code is compiled in a separate Function scope
   // and cannot reach supervisor-private __* bindings.
   'importScripts', 'onmessage', 'postMessage',
@@ -113,6 +113,71 @@ export const PIXEL_SCENE_LIMITS = Object.freeze({
   // frame rate instead of blocking the panel: it is stopped only below ~10 fps for too long.
   frameBudgetMs: 100,
 })
+
+/** Offline bitmap-scene font transport, independently bounded from scene data. */
+export const SCENE_FONT_LIMITS = Object.freeze({
+  maxFaces: 64, fileBytes: 2 * 1024 * 1024, totalBytes: 12 * 1024 * 1024,
+  maxRangeChars: 4096, maxRanges: 256, loadMs: 30_000, maxFamilyChars: 100,
+})
+
+/** Fixed local family names only; never CSS source syntax or generic aliases. */
+export function sceneFontFamilyValid(value) {
+  return typeof value === 'string' && value.length <= SCENE_FONT_LIMITS.maxFamilyChars && value === value.trim()
+    && /^[A-Za-z][A-Za-z0-9 _-]*$/.test(value)
+    && !/^(?:serif|sans-serif|monospace|cursive|fantasy|system-ui|ui-serif|ui-sans-serif|ui-monospace|ui-rounded|emoji|math|fangsong|inherit|initial|unset|revert|revert-layer|default)$/i.test(value)
+}
+
+/** Bounded CSS Unicode ranges (intervals, singletons and trailing wildcards). */
+export function sceneFontUnicodeRangeValid(value) {
+  if (typeof value !== 'string' || !value || value.length > SCENE_FONT_LIMITS.maxRangeChars || value.split(',').length > SCENE_FONT_LIMITS.maxRanges) return false
+  return value.split(',').every(part => {
+    const m = /^\s*U\+([0-9A-F]{1,6})(?:-([0-9A-F]{1,6}))?\s*$/i.exec(part)
+    const w = /^\s*U\+([0-9A-F]{0,5}\?{1,6})\s*$/i.exec(part)
+    const low = m ? parseInt(m[1], 16) : w ? parseInt(w[1].replaceAll('?', '0'), 16) : -1
+    const high = m ? parseInt(m[2] || m[1], 16) : w ? parseInt(w[1].replaceAll('?', 'F'), 16) : -1
+    return low >= 0 && high >= low && high <= 0x10ffff
+  })
+}
+
+/** Shared by ScriptFilm and the private worker loader. No CSS URLs or live font API. */
+export function sceneFontProblems(fonts, { output = 'text' } = {}) {
+  const errors = []
+  if (!Array.isArray(fonts)) return ['离线字体描述必须是数组。']
+  if (!fonts.length) return errors
+  if (output !== 'pixels' && output !== 'webgl') return ['离线字体仅用于 script 位图场景。']
+  if (fonts.length > SCENE_FONT_LIMITS.maxFaces) return [`离线字体超过 ${SCENE_FONT_LIMITS.maxFaces} 个描述。`]
+  let bytes = 0
+  for (const [i, font] of fonts.entries()) {
+    const bad = detail => errors.push(`离线字体 ${i + 1}：${detail}`)
+    if (!font || typeof font !== 'object' || Array.isArray(font)) { bad('描述不是对象。'); continue }
+    if (Object.keys(font).some(key => !['family', 'weight', 'style', 'unicodeRange', 'bytes'].includes(key))) bad('描述有未知字段。')
+    if (!sceneFontFamilyValid(font.family)) bad('family 必须是安全的本地字体名称，不能是 generic 别名。')
+    if (typeof font.weight !== 'string' || !/^[1-9]00$/.test(font.weight)) bad('weight 必须是 100–900 的固定字重。')
+    if (!['normal', 'italic', 'oblique'].includes(font.style)) bad('style 必须为 normal、italic 或 oblique。')
+    if (font.unicodeRange !== undefined && !sceneFontUnicodeRangeValid(font.unicodeRange)) bad('unicodeRange 大小或范围无效。')
+    if (!(font.bytes instanceof ArrayBuffer) || font.bytes.byteLength < 4 || font.bytes.byteLength > SCENE_FONT_LIMITS.fileBytes) bad('bytes 必须是大小受限的字体 ArrayBuffer。')
+    else {
+      bytes += font.bytes.byteLength
+      const b = new Uint8Array(font.bytes, 0, 4)
+      if (!((b[0] === 119 && b[1] === 79 && b[2] === 70 && b[3] === 50) || (b[0] === 79 && b[1] === 84 && b[2] === 84 && b[3] === 79) || (b[0] === 0 && b[1] === 1 && b[2] === 0 && b[3] === 0))) bad('只允许 WOFF2、TTF 或 OTF 字体字节。')
+    }
+  }
+  if (bytes > SCENE_FONT_LIMITS.totalBytes) errors.push(`离线字体总计超过 ${SCENE_FONT_LIMITS.totalBytes / 1024 / 1024} MiB。`)
+  return errors
+}
+
+/** Only bounded WebGL creation attributes; no canvas handles or arbitrary context types. */
+export function sceneWebglContextProblems(value, output = 'webgl') {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return ['canvas.context 必须是受限 WebGL 参数对象']
+  const errors = []
+  if (Object.keys(value).length && output !== 'webgl') errors.push('canvas.context 只用于 script WebGL 输出')
+  for (const [key, setting] of Object.entries(value)) {
+    if (['antialias', 'depth', 'premultipliedAlpha', 'preserveDrawingBuffer'].includes(key)) { if (typeof setting !== 'boolean') errors.push(`canvas.context.${key} 必须是布尔值`) }
+    else if (key === 'powerPreference') { if (!['default', 'low-power', 'high-performance'].includes(setting)) errors.push('canvas.context.powerPreference 无效') }
+    else errors.push(`canvas.context 未支持 ${key}`)
+  }
+  return errors
+}
 
 /** Accept `export function render…` / `export default function…` written by habit. */
 export function stripModuleSyntax(source) {
@@ -222,7 +287,9 @@ function __mvCanvasFacade(canvas, gl) {
  * minimal canvas facade. Bundled Three.js must use { canvas: info.canvas, context: gl }.
  * setup(info) receives info.assets (the pack's canvas.assets, JSON parsed).
  */
-export function sceneWorkerSource(userSource, { output = 'text' } = {}) {
+export function sceneWorkerSource(userSource, { output = 'text', context = {} } = {}) {
+  const contextProblems = sceneWebglContextProblems(context, output)
+  if (contextProblems.length) throw new Error(contextProblems.join('；'))
   const pixels = output === 'pixels'
   const webgl = output === 'webgl'
   const blocked = JSON.stringify(sceneBlockedGlobals(output))
@@ -243,6 +310,14 @@ const __Canvas = typeof OffscreenCanvas === 'function' ? OffscreenCanvas : null;
 const __nativeGetContext = __Canvas && OffscreenCanvas.prototype.getContext;
 const __snapshot = __Canvas && OffscreenCanvas.prototype.transferToImageBitmap;
 const __canvasListen = typeof EventTarget !== 'undefined' ? EventTarget.prototype.addEventListener : null;
+// Capture the native font capabilities and timers before lockdown. The separately
+// compiled user scope can never reach these references, faces or byte buffers.
+const __FontFace = typeof __global.FontFace === 'function' ? __global.FontFace : null;
+const __fontSet = __global.fonts;
+const __fontAdd = __fontSet && typeof __fontSet.add === 'function' ? __fontSet.add.bind(__fontSet) : null;
+const __fontDelete = __fontSet && typeof __fontSet.delete === 'function' ? __fontSet.delete.bind(__fontSet) : null;
+const __fontTimer = typeof __global.setTimeout === 'function' ? __global.setTimeout.bind(__global) : null;
+const __fontClearTimer = typeof __global.clearTimeout === 'function' ? __global.clearTimeout.bind(__global) : null;
 (() => {
   const names = ${blocked};
   const seen = new Set();
@@ -269,22 +344,56 @@ const __canvasListen = typeof EventTarget !== 'undefined' ? EventTarget.prototyp
 ${SCENE_RUNTIME_SOURCE}
 ${SCENE_PREPARE_RUNTIME_SOURCE}
 ${WEBGL_CANVAS_FACADE_SOURCE}
+const SCENE_FONT_LIMITS = ${JSON.stringify(SCENE_FONT_LIMITS)};
+const sceneFontFamilyValid = ${sceneFontFamilyValid.toString()};
+const sceneFontUnicodeRangeValid = ${sceneFontUnicodeRangeValid.toString()};
+const __fontProblems = ${sceneFontProblems.toString()};
+async function __loadFonts(descriptors) {
+  if (!__FontFace || !__fontAdd || !__fontDelete) throw new Error('这个环境不支持离线字体加载（FontFace / FontFaceSet）。');
+  if (!__fontTimer || !__fontClearTimer) throw new Error('这个环境没有离线字体加载监督计时器。');
+  const started = __now(), total = descriptors.length, registered = [];
+  let timer, active = true, loaded = 0;
+  __post({ type: 'font-loading', loaded: 0, total, progress: 0, label: 'Offline fonts', done: false });
+  try {
+    const deadline = new Promise((resolve, reject) => {
+      timer = __fontTimer(() => reject(new Error('离线字体加载总计超过 ${SCENE_FONT_LIMITS.loadMs} ms。')), ${SCENE_FONT_LIMITS.loadMs});
+    });
+    const jobs = descriptors.map(async (descriptor, index) => {
+      const face = new __FontFace(descriptor.family, descriptor.bytes, { weight: descriptor.weight, style: descriptor.style,
+        ...(descriptor.unicodeRange === undefined ? {} : { unicodeRange: descriptor.unicodeRange }) });
+      const result = await face.load();
+      if (result.status !== 'loaded') throw new Error('离线字体 ' + (index + 1) + ' 未加载完成。');
+      loaded++;
+      if (active && loaded < total) __post({ type: 'font-loading', loaded, total, progress: loaded / total, label: descriptor.family + ' ' + descriptor.weight, done: false });
+      return result;
+    });
+    const faces = await Promise.race([Promise.all(jobs), deadline]);
+    if (__now() - started >= ${SCENE_FONT_LIMITS.loadMs}) throw new Error('离线字体加载总计超时。');
+    // Register only after all loads succeed. A failed registration rolls back the
+    // entire batch rather than leaving a mix of real and fallback fonts.
+    for (const face of faces) { __fontAdd(face); registered.push(face); }
+    __post({ type: 'font-loading', loaded: total, total, progress: 1, label: '', done: true });
+  } catch (error) {
+    for (const face of registered) { try { __fontDelete(face) } catch {} }
+    throw error;
+  } finally { active = false; __fontClearTimer(timer); }
+}
 let __scene = null, __setupError = '', __cv = null, __g = null, __facade = null, __initialized = false, __contextLost = false, __ready = false;
 let __prepare = null, __prepareId = 0, __prepareProgress = 0, __prepareStarted = 0, __prepareWidth = 0, __prepareHeight = 0, __info = null;
-try {
+function __compileScene() { try {
   __scene = __compile(${userBody})();
   if (__bitmap && !__scene.paint) __setupError = __webgl
     ? '场景脚本没有定义 paint(gl, t, width, height, ctx) 函数（canvas.output 为 "webgl"）。'
     : '场景脚本没有定义 paint(g, t, width, height, ctx) 函数（canvas.output 为 "pixels"）。';
   else if (__bitmap && !__Canvas) __setupError = '这个环境不支持 OffscreenCanvas，无法运行像素场景。';
   else if (!__bitmap && !__scene.render) __setupError = '场景脚本没有定义 render(t, cols, rows, ctx) 函数。';
-} catch (error) { __setupError = String(error && error.stack || error); }
+} catch (error) { __setupError = String(error && error.stack || error); } }
 function __surface(w, h) {
   w = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxWidth}, w | 0)); h = Math.max(1, Math.min(${PIXEL_SCENE_LIMITS.maxHeight}, h | 0));
   if (!__cv) {
     __cv = new __Canvas(w, h);
     __g = __webgl
-      ? __nativeGetContext.call(__cv, 'webgl2', { alpha: false, antialias: true, depth: true, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false })
+      ? __nativeGetContext.call(__cv, 'webgl2', { alpha: false, antialias: true, depth: true, stencil: false, premultipliedAlpha: false, preserveDrawingBuffer: false, ...${JSON.stringify(context)} })
       : __nativeGetContext.call(__cv, '2d');
     if (__webgl && __g) {
       __facade = __mvCanvasFacade(__cv, __g);
@@ -349,14 +458,13 @@ function __finishSetup(id) {
   __ready = !__setupError;
   __post({ type: 'ready', error: __setupError, ...(id === undefined && !warmed ? {} : { id: id === undefined ? 0 : id }) });
 }
-__listen('message', event => {
-  const msg = event.data || {};
-  if (msg.type === 'init') {
-    if (__initialized) return;
-    __initialized = true;
-    if (!__setupError && __bitmap) { try { __surface(msg.info && msg.info.width || 1280, msg.info && msg.info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
+function __startScene(info) {
+    // User top-level code also runs only after fonts are loaded: it cannot
+    // monkey-patch array/Promise/native methods to inspect a private descriptor.
+    __compileScene();
+    if (!__setupError && __bitmap) { try { __surface(info && info.width || 1280, info && info.height || 720) } catch (error) { __setupError = String(error && error.stack || error) } }
     if (!__setupError) { try {
-      __info = __webgl ? { ...(msg.info || {}), canvas: __facade } : (msg.info || {});
+      __info = __webgl ? { ...(info || {}), canvas: __facade } : (info || {});
       if (__scene.setup) __scene.setup(__info, __webgl ? __g : undefined);
       __prepareWidth = __cv && __cv.width; __prepareHeight = __cv && __cv.height;
       if (__scene.prepare) __prepare = __mvPrepareIterator(__scene.prepare(__info, __webgl ? __g : undefined));
@@ -368,6 +476,20 @@ __listen('message', event => {
       return;
     }
     __finishSetup();
+}
+__listen('message', event => {
+  const msg = event.data || {};
+  if (msg.type === 'init') {
+    if (__initialized) return;
+    __initialized = true;
+    const descriptors = msg.fonts === undefined ? [] : msg.fonts;
+    const problems = __fontProblems(descriptors, { output: __webgl ? 'webgl' : __pixels ? 'pixels' : 'text' });
+    if (problems.length) { __setupError = problems.join(' '); __post({ type: 'fatal', error: __setupError }); return; }
+    if (!descriptors.length) { __startScene(msg.info); return; }
+    __loadFonts(descriptors).then(() => __startScene(msg.info)).catch(error => {
+      __setupError = String(error && error.stack || error).slice(0, 2000);
+      __post({ type: 'fatal', error: __setupError });
+    });
     return;
   }
   if (msg.type === 'prepare-next' && __initialized && __prepare && !__setupError && !__contextLost) {
