@@ -2,8 +2,8 @@
  "format": "dsh-mv-workshop-index",
  "version": 1,
  "repo": "Alice-Marx/dsh-mv-workshop",
- "commit": "04b9ff4a2ff5d031164818c404d3e0e8afba1b1c",
- "generated": "2026-10-08T14:50:25.367Z",
+ "commit": "b4bb105aa2ad01e921a19dfeeb4db1b310f46ffa",
+ "generated": "2026-10-09T04:04:09.626Z",
  "packs": [
   {
    "id": "world-execute-me-nyankomint",
@@ -11,7 +11,7 @@
    "artist": "Mili",
    "author": "Alice-Marx",
    "license": "MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1 AND LicenseRef-Mili-NonCommercial-FanWork",
-   "version": "1.0.0",
+   "version": "1.0.1",
    "duration": 211.958,
    "renderer": "webgl",
    "description": "Nyankomint 原作完整非音频适配：87镜头、129行固定歌词时间、三色AI角色剪影、原版Canvas2D + WebGL2后处理、全部离线OFL字体、5秒静默闪光警告。仅音乐自备，非商业同人用途。",
@@ -40,7 +40,7 @@
    "fontsNotice": "fonts/NOTICE.md",
    "bitmap": true,
    "requires": "0.10.0",
-   "updated": "2026-10-08T22:50:20+08:00",
+   "updated": "2026-10-09T12:03:55+08:00",
    "files": [
     {
      "path": "LICENSE.txt",
@@ -435,7 +435,7 @@
     {
      "path": "mv.json",
      "size": 37422,
-     "sha256": "cf8705e0e3cc8ce6185d248a840b570a4cd532710076572b09b23413be666fac"
+     "sha256": "a01d6d26023de840cf5926eaf6f3548f89c4e35f5652037faf42deccf1294445"
     },
     {
      "path": "scenes.js",
@@ -1237,8 +1237,8 @@
     },
     {
      "path": "scenes.js",
-     "size": 133414,
-     "sha256": "7a1b8a074dc032ccf510f332b12d2e5cebace5f178dc3b85ed456c060180e849"
+     "size": 133330,
+     "sha256": "a8ae75c43aa428c239b761c7a921a5d21f4269140d93de5ae7e4f5a6d251b37d"
     },
     {
      "path": "source-provenance.json",
@@ -1276,13 +1276,13 @@
    "files": [
     {
      "path": "NOTICE.md",
-     "size": 1665,
-     "sha256": "af697387edebfaf18f486ed37b276148c57fb235e01a06b8ba3f8c576e007b30"
+     "size": 1649,
+     "sha256": "3d02ccdc2bccc1bad76068153984a94161ffd61f1341ad6b262efbde9cef276b"
     },
     {
      "path": "README.md",
-     "size": 1736,
-     "sha256": "f9561d4958dd8fd97b03db6f05f0138044e2de3fea5193937f905957af93ff91"
+     "size": 1713,
+     "sha256": "e94534c7ff2eec0cdfe1a3c178eaf443f30e4b647fad5daf4e7118e825cdc525"
     },
     {
      "path": "cover.png",
@@ -1291,13 +1291,13 @@
     },
     {
      "path": "mv.json",
-     "size": 2389,
-     "sha256": "8fc2a39fec2885732a24492c18581354eb03fe6767c8ac8e5c9d3e02b2e09d33"
+     "size": 2318,
+     "sha256": "99a2deb6c4caddc5fee01cb7642dfae710d70279db874273639e00052a88dab7"
     },
     {
      "path": "scenes.js",
-     "size": 205211,
-     "sha256": "da85c39362281d175f52a72a28d2d7f009fb9dafc138035460eafa031be92202"
+     "size": 200971,
+     "sha256": "51fea45ad7c701cdcfa307f8e17a1f7e972441a8183b4361b96b5065401abc4c"
     }
    ]
   },
@@ -1327,8 +1327,8 @@
    "files": [
     {
      "path": "README.md",
-     "size": 1037,
-     "sha256": "21536c696840f9285211863e9dfad15ab6a5c9e80ea64d3c3a0ba829cbd3148e"
+     "size": 1020,
+     "sha256": "064cce807e15c435e4afbf466c967d01d5ca46257135d1d151cb4e9ed55073af"
     },
     {
      "path": "cover.png",
@@ -1337,18 +1337,18 @@
     },
     {
      "path": "lyrics.timing.json",
-     "size": 3230,
-     "sha256": "75d478eb72f991befb398fbc65b1799808c49d8fffdd27a33006ea5b83aa5b74"
+     "size": 3008,
+     "sha256": "45caaaa2addaaea84fc5e662e4b8acd1c14406b21ca0c95afb30f3545573b89c"
     },
     {
      "path": "mv.json",
-     "size": 2015,
-     "sha256": "9d433fdb0360234d88dcac78f8af033b226fa565bd7a8ad3a542f25742140ea9"
+     "size": 1939,
+     "sha256": "ca45611d4b6fc41cac4f5d0b22b59a6963b3eaca1a68996c2407e6dfa07a38c6"
     },
     {
      "path": "scenes.js",
-     "size": 12696,
-     "sha256": "55cba8a02aba04ccf85e6bba73cbbb1e8308565e88d9d520606cb33ae8765e61"
+     "size": 12503,
+     "sha256": "0897d70e2f7d1ba431797bd487e5eb91e8b84824e94f1c6b8ccd9d660827a186"
     }
    ]
   }

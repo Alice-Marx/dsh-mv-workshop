@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+      - name: Test byte-bound browser evidence and immutable catalogue
+        run: node --test scripts/browser-evidence.test.mjs scripts/git-pack-reader.test.mjs
       - name: Validate packs (PR — only changed packs, only files under packs/)
         if: github.event_name == 'pull_request'
         env:
