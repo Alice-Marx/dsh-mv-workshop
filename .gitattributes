@@ -1,3 +1,4 @@
 # Generated complete packs include provenance hashes and must retain exact bytes.
 packs/world-execute-me-dsh-pv/** -text
 packs/world-execute-me-frostnova/** -text
+packs/world-execute-me-nyankomint/** -text

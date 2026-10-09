@@ -412,7 +412,7 @@
   },
   "x-dsh-mv-workshop": {
     "id": "world-execute-me-nyankomint",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "requires": "0.10.0",
     "author": "Alice-Marx",
     "license": "MIT AND CC-BY-NC-SA-4.0 AND OFL-1.1 AND LicenseRef-Mili-NonCommercial-FanWork",

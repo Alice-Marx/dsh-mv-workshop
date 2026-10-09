@@ -6,14 +6,16 @@ import { execFileSync } from 'node:child_process'
 import { writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { WORKSHOP_INDEX_FORMAT, WORKSHOP_REPO, validateWorkshopPack } from './vendor/mv-workshop.mjs'
-import { ROOT, packFiles, packIds, readPackText, readPackBytes } from './lib.mjs'
+import { ROOT } from './lib.mjs'
+import { gitPackReader } from './git-pack-reader.mjs'
 
 const git = (...a) => { try { return execFileSync('git', a, { cwd: ROOT, encoding: 'utf8' }).trim() } catch { return '' } }
 const commit = process.env.INDEX_COMMIT || git('rev-parse', 'HEAD') || 'main'
+const source = gitPackReader(commit)
 const packs = []
-for (const id of packIds()) {
-  const files = packFiles(id)
-  const result = await validateWorkshopPack({ id, files, readText: readPackText(id), readBytes: readPackBytes(id) })
+for (const id of source.ids()) {
+  const files = source.files(id)
+  const result = await validateWorkshopPack({ id, files, readText: source.readText(id), readBytes: source.readBytes(id) })
   if (result.errors.length) { console.log(`skip packs/${id}: ${result.errors[0]}`); continue }
   const updated = git('log', '-1', '--format=%cI', '--', `packs/${id}`) || new Date().toISOString()
   const { meta } = result
